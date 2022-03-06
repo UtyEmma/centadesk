@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('firstname');
             $table->string('lastname');
+            $table->string('username')->nullable();
             $table->string('account_name')->nullable();
             $table->string('account_no')->nullable();
             $table->string('bank')->nullable();
@@ -28,10 +29,16 @@ return new class extends Migration
             $table->string('total_courses');
             $table->string('total_reviews');
             $table->string('avg_rating');
-            $table->string('specialties')->nullable();
             $table->string('interests')->nullable();
             $table->string('kyc_status');
             $table->string('kyc_method')->nullable();
+            $table->string('id_number')->nullable();
+            $table->string('id_image')->nullable();
+            $table->string('specialty')->nullable();
+            $table->string('desc')->nullable();
+            $table->string('instagram')->nullable();
+            $table->string('facebook')->nullable();
+            $table->string('twitter')->nullable();
             $table->string('role');
             $table->boolean('is_verified');
             $table->string('status');

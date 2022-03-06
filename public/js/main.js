@@ -5,7 +5,7 @@
     /*--
 		Header Sticky
     -----------------------------------*/
-    $(window).on('scroll', function(event) {    
+    $(window).on('scroll', function(event) {
         var scroll = $(window).scrollTop();
         if (scroll <= 100) {
             $(".header-main").removeClass("sticky");
@@ -13,19 +13,19 @@
             $(".header-main").addClass("sticky");
         }
 	});
-    
+
 
     /*--
 		Menu Active
     -----------------------------------*/
     $(function () {
-    var url = window.location.pathname; 
-    var activePage = url.substring(url.lastIndexOf('/') + 1); 
-        $('.nav-menu li a').each(function () { 
-            var linkPage = this.href.substring(this.href.lastIndexOf('/') + 1); 
-    
-            if (activePage == linkPage) { 
-                $(this).closest("li").addClass("active"); 
+    var url = window.location.pathname;
+    var activePage = url.substring(url.lastIndexOf('/') + 1);
+        $('.nav-menu li a').each(function () {
+            var linkPage = this.href.substring(this.href.lastIndexOf('/') + 1);
+
+            if (activePage == linkPage) {
+                $(this).closest("li").addClass("active");
             }
         });
     });
@@ -41,17 +41,17 @@
             $('.mobile-menu').addClass('open')
             $('.overlay').addClass('open')
         });
-        
+
         $('.menu-close').on('click', function(){
             $('.mobile-menu').removeClass('open')
             $('.overlay').removeClass('open')
         });
-        
+
         $('.overlay').on('click', function(){
             $('.mobile-menu').removeClass('open')
             $('.overlay').removeClass('open')
         });
-        
+
         /*Variables*/
         var $offCanvasNav = $('.mobile-menu-items'),
         $offCanvasNavSubMenu = $offCanvasNav.find('.sub-menu');
@@ -104,24 +104,24 @@
     -----------------------------------*/
     var edule = new Swiper('.courses-active .swiper-container', {
         speed: 600,
-        spaceBetween: 30,        
+        spaceBetween: 30,
         navigation: {
             nextEl: '.courses-active .swiper-button-next',
             prevEl: '.courses-active .swiper-button-prev',
-        },       
+        },
         breakpoints: {
             0: {
                 slidesPerView: 1,
             },
             576: {
                 slidesPerView: 2,
-            },  
+            },
             768: {
                 slidesPerView: 3,
-            },            
+            },
             992: {
                 slidesPerView: 4,
-            },            
+            },
             1200: {
                 slidesPerView: 5,
             }
@@ -134,7 +134,7 @@
     -----------------------------------*/
     var edule = new Swiper('.testimonial-active .swiper-container', {
         speed: 600,
-        spaceBetween: 30,        
+        spaceBetween: 30,
         pagination: {
             el: '.testimonial-active .swiper-pagination',
             clickable: true,
@@ -142,10 +142,10 @@
         breakpoints: {
             0: {
                 slidesPerView: 1,
-            },  
+            },
             768: {
                 slidesPerView: 1,
-            },            
+            },
             992: {
                 slidesPerView: 2,
             }
@@ -164,17 +164,17 @@
             0: {
                 slidesPerView: 2,
                 spaceBetween: 20,
-            },  
+            },
             576: {
                 slidesPerView: 3,
-            },  
+            },
             768: {
                 slidesPerView: 4,
-            },            
+            },
             992: {
                 slidesPerView: 5,
                 spaceBetween: 45,
-            },            
+            },
             1200: {
                 slidesPerView: 5,
                 spaceBetween: 85,
@@ -192,11 +192,11 @@
     var edule = new Swiper('.reviews-active .swiper-container', {
         speed: 600,
         spaceBetween: 30,
-        loop: true,  
+        loop: true,
         pagination: {
             el: '.reviews-active .swiper-pagination',
             clickable: true,
-        },      
+        },
         autoplay: {
             delay: 8000,
         },
@@ -208,15 +208,15 @@
     -----------------------------------*/
     var edule = new Swiper('.students-active .swiper-container', {
         speed: 600,
-        spaceBetween: 30,        
+        spaceBetween: 30,
         navigation: {
             nextEl: '.students-active .swiper-button-next',
             prevEl: '.students-active .swiper-button-prev',
-        },       
+        },
         breakpoints: {
             0: {
                 slidesPerView: 1,
-            },  
+            },
             768: {
                 slidesPerView: 2,
             },
@@ -252,7 +252,7 @@
 		})
 	})
 
-	
+
 	$('#rating li').on('click', function(e) {
 		var onStar = parseInt($(this).data('value'), 10);
 		var siblings = $(this).parent().children('li.star');
@@ -267,7 +267,7 @@
 				child.classList.add('fa-star-o')
 			}
 		})
-	}) 
+	})
 
 
     /*--
@@ -306,11 +306,9 @@
             scrollTop: 0,
         }, 1500);
     });
-
-    
 })(jQuery);
 
 
 
 
-  
+

@@ -16,21 +16,69 @@
 
         {{-- <img class="shape-3" src="{{asset('images/shape/shape-24.png')}}" alt="Shape"> --}}
 
+        <div class="container">
+            <div class="row justify-content-between">
+                <div class="col-md-6 d-flex align-items-end">
+                    <div class="page-banner-content mb-10">
+                        <h2 class="title pb-0">Learning Center</h2>
+                        <ul class="breadcrumb">
+                            <li><a href="/">Account</a></li>
+                            <li class="active">Courses</li>
+                        </ul>
+                    </div>
+                </div>
 
-        <div class="container mb-0">
-            <!-- All Courses Tabs Menu Start -->
-            <div class="bg-transparent w-100 courses-active mt-10 bg-primary">
-                <ul class="nav justify-start border-bottom border-primary ">
-                    <li class="w-auto"><a href="/profile/courses" class="active border-bottom pb-3">My Courses</a></li>
-                    <li class="w-auto"><a href="#" class="border-bottom">My Mentors</a></li>
-                    <li class="w-auto"><a href="#" class="border-bottom">My Profile</a></li>
-                </ul>
+                @if (Auth::user()->role === 'mentor')
+                    <div class="col-md-6 new-courses px-8 mt-0" style="background-image: url({{asset('images/new-courses-banner.jpg')}});">
+                        <div class="row">
+                            <div class="new-courses-title">
+                                <h3 class="title">Your students are waiting for you.</h3>
+                            </div>
+                            <div class="new-courses-btn mt-3">
+                                <a href="/me" class="btn">Visit Mentor Dashboard<i class="icofont-rounded-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                @else
+                    <div class="col-md-6 new-courses px-8 mt-0" style="background-image: url({{asset('images/new-courses-banner.jpg')}});">
+                        <div class="row">
+                            <div class="new-courses-title">
+                                <h3 class="title">Start earning Money by publishing your courses on Centadesk.</h3>
+                            </div>
+
+                            <div class="new-courses-btn mt-3">
+                                <a href="/mentor/onboarding" class="btn">Create Mentor Account<i class="icofont-rounded-right"></i></a>
+                            </div>
+                        </div>
+                        {{-- <img class="shape d-none d-xl-block" src="{{asset('images/shape/shape-27.png')}}" alt="Shape"> --}}
+                    </div>
+                @endif
+            </div>
+
+            <div class="row py-4">
+                <!-- All Courses Tabs Menu Start -->
+                <div class="bg-transparent bg-primary px-0">
+                    <ul class="nav">
+                        <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/profile/courses">My Courses</a>
+                        </li>
+                        <li class="nav-item">
+                        <a class="nav-link" href="#">My Mentors</a>
+                        </li>
+                        <li class="nav-item">
+                        <a class="nav-link" href="/profile">My Profile</a>
+                        </li>
+                        <li class="nav-item">
+                        <a class="nav-link disabled">Settings</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
     <!-- Page Banner End -->
 
-    <div class="container py-5">
+    <div class="container px-0">
         {{$slot}}
     </div>
 

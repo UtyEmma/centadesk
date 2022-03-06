@@ -1,5 +1,12 @@
 <x-guest-layout>
-    <x-page-banner></x-page-banner>
+    <x-page-banner>
+        <x-slot name="current">
+            Courses
+        </x-slot>
+        <x-slot name="title">
+            {{$course->name}}
+        </x-slot>
+    </x-page-banner>
 
     <!-- Courses Start -->
     <div class="section section-padding mt-n10">
@@ -11,33 +18,33 @@
                     <div class="courses-details">
 
                         <div class="courses-details-images">
-                            <img src="assets/images/courses/courses-details.jpg" alt="Courses Details">
+                            <img src="{{asset('images/courses/courses-details.jpg')}}" alt="Courses Details">
                             <span class="tags">Finance</span>
 
                             <div class="courses-play">
-                                <img src="assets/images/courses/circle-shape.png" alt="Play">
-                                <a class="play video-popup" href="https://www.youtube.com/watch?v=Wif4ZkwC0AM"><i class="flaticon-play"></i></a>
+                                <img src="{{asset('images/courses/circle-shape.png')}}" alt="Play">
+                                <a class="play video-popup" href="{{$batch->video}}"><i class="flaticon-play"></i></a>
                             </div>
                         </div>
 
-                        <h2 class="title">Finance & Investment Series: Learn to Budget and Calculate Your Net Worth.</h2>
+                        <h2 class="title">{{$course->name}}</h2>
 
                         <div class="courses-details-admin">
                             <div class="admin-author">
                                 <div class="author-thumb">
-                                    <img src="assets/images/author/author-01.jpg" alt="Author">
+                                    <img src="{{asset($mentor->avatar)}}" alt="Author">
                                 </div>
                                 <div class="author-content">
-                                    <a class="name" href="#">Pamela Foster</a>
-                                    <span class="Enroll">286 Enrolled Students</span>
+                                    <a class="name" href="#">{{$mentor->firstname}} {{$mentor->lastname}}</a>
+                                    <span class="Enroll">{{$course->total_students}} Enrolled Students</span>
                                 </div>
                             </div>
                             <div class="admin-rating">
-                                <span class="rating-count">4.9</span>
+                                <span class="rating-count">{{$course->rating}}.0</span>
                                 <span class="rating-star">
-                                        <span class="rating-bar" style="width: 80%;"></span>
+                                        <span class="rating-bar" style="width: {{$course->rating * 20}}%;"></span>
                                 </span>
-                                <span class="rating-text">(5,764 Rating)</span>
+                                <span class="rating-text">({{$course->reviews}} Reviews)</span>
                             </div>
                         </div>
 
@@ -63,16 +70,9 @@
                                         <div class="tab-description">
                                             <div class="description-wrapper">
                                                 <h3 class="tab-title">Description:</h3>
-                                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-                                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularsed in the 1960 with release containing Lorem Ipsum passages desktop publishing software.</p>
-                                            </div>
-                                            <div class="description-wrapper">
-                                                <h3 class="tab-title">Curriculum:</h3>
-                                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularsed in the 1960 with release containing Lorem Ipsum passages desktop publishing software.</p>
-                                            </div>
-                                            <div class="description-wrapper">
-                                                <h3 class="tab-title">Certification:</h3>
-                                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularsed in the 1960 with release containing Lorem Ipsum passages desktop publishing software.</p>
+                                                <p>
+                                                    {!! $course->desc !!}
+                                                </p>
                                             </div>
                                         </div>
                                         <!-- Tab Description End -->
@@ -389,20 +389,20 @@
                         <!-- Sidebar Widget Information Start -->
                         <div class="sidebar-widget widget-information">
                             <div class="info-price">
-                                <span class="price">$420.38</span>
+                                <span class="price">$ {{$batch->price}}</span>
                             </div>
                             <div class="info-list">
                                 <ul>
-                                    <li><i class="icofont-man-in-glasses"></i> <strong>Instructor</strong> <span>Pamela Foster</span></li>
-                                    <li><i class="icofont-clock-time"></i> <strong>Duration</strong> <span>08 hr 15 mins</span></li>
+                                    <li><i class="icofont-man-in-glasses"></i> <strong>Instructor</strong> <span>{{$mentor->firstname}} {{$mentor->lastname}}</span></li>
+                                    <li><i class="icofont-clock-time"></i> <strong>Duration</strong> <span>{{$batch->duration}}</span></li>
                                     <li><i class="icofont-ui-video-play"></i> <strong>Lectures</strong> <span>29</span></li>
-                                    <li><i class="icofont-bars"></i> <strong>Level</strong> <span>Secondary</span></li>
-                                    <li><i class="icofont-book-alt"></i> <strong>Language</strong> <span>English</span></li>
+                                    <li><i class="icofont-bars"></i> <strong>Batch</strong> <span>{{$batch->count}}</span></li>
+                                    {{-- <li><i class="icofont-book-alt"></i> <strong>Language</strong> <span>English</span></li> --}}
                                     <li><i class="icofont-certificate-alt-1"></i> <strong>Certificate</strong> <span>Yes</span></li>
                                 </ul>
                             </div>
                             <div class="info-btn">
-                                <a href="#" class="btn btn-primary btn-hover-dark">Enroll Now</a>
+                                <a href="#" class="btn btn-primary btn-hover-dark">Enroll for Batch {{$batch->count}}</a>
                             </div>
                         </div>
                         <!-- Sidebar Widget Information End -->

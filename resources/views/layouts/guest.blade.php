@@ -17,10 +17,12 @@
         <link rel="stylesheet" href="{{ asset('css/plugins/icofont.min.css')}} ">
         <link rel="stylesheet" href="{{ asset('css/plugins/flaticon.css')}} ">
         <link rel="stylesheet" href="{{ asset('css/plugins/font-awesome.min.css')}} ">
+        <link rel="stylesheet" href="{{ asset('css/plugins/tagify.min.css')}} ">
 
         <!-- Main Style CSS -->
         <link rel="stylesheet" href="{{asset('css/vendor/plugins.min.css')}}">
         <link rel="stylesheet" href="{{asset('css/style.min.css')}}">
+        <link rel="stylesheet" href="{{ asset('css/custom.css')}} ">
 
         <!-- JS
         ============================================ -->
@@ -45,6 +47,8 @@
         <!-- Bootstrap JS -->
         <script src="{{asset('js/plugins/popper.min.js')}}" defer></script>
         <script src="{{asset('js/plugins/bootstrap.min.js')}}" defer></script>
+        <script src="{{asset('js/plugins/tagify/tagify.min.js')}}" defer></script>
+        <script src="{{asset('js/plugins/tagify/tagify.polyfills.min.js')}}" defer></script>
 
         <!--====== Use the minified version files listed below for better performance and remove the files listed above ======-->
         <script src="{{asset('js/plugins.min.js')}}" defer></script>

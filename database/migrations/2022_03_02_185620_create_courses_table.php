@@ -15,6 +15,18 @@ return new class extends Migration
     {
         Schema::create('courses', function (Blueprint $table) {
             $table->id();
+            $table->string('unique_id')->unique();
+            $table->string('mentor_id');
+            $table->string('name');
+            $table->string('slug');
+            $table->string('desc');
+            $table->string('tags');
+            $table->string('video');
+            $table->string('images');
+            $table->integer('total_batches');
+            $table->integer('total_students');
+            $table->string('active_batch')->nullable();
+            $table->string('status');
             $table->timestamps();
         });
     }

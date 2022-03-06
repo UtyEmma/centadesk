@@ -1,0 +1,39 @@
+.radius{
+    border-radius: 10px !important;
+}
+
+.radius-top{
+    border-radius: 10px 10px 0 0 !important;
+}
+
+.radius-bottom{
+    border-radius: 0 0 10px 10px !important;
+}
+
+.radio-custom:checked + label{
+    border-width: 1px !important;
+    border-color: #309255 !important;
+    font-weight: 500;
+}
+
+.radio-custom:checked + label i{
+    display: block !important;
+    color: #309255 !important;
+}
+
+.cursor-pointer{
+    cursor: pointer !important;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+.hide-increment[type=number] {
+  -moz-appearance: textfield;
+}
+

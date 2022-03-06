@@ -57,6 +57,13 @@
                                             <small class="text-danger">{{$message}}</small>
                                         @enderror
                                     </div>
+
+                                    <div class="form-check mt-3">
+                                        <input class="form-check-input" id="remember" name="remember" type="checkbox">
+                                        <label class="form-check-label" for="remember">
+                                          Remember Me
+                                        </label>
+                                    </div>
                                     <!-- Single Form End -->
                                     <!-- Single Form Start -->
                                     <div class="single-form">

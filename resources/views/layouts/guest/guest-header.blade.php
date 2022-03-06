@@ -61,9 +61,9 @@
                         <ul class="nav-menu">
                             <li><a href="/">Home</a></li>
                             <li>
-                                <a href="/courses">Courses</a>
+                                <a href="/classes">Courses</a>
                             </li>
-                            <li><a href="/mentors">Mentors</a></li>
+                            <li><a href="/mentor">Mentors</a></li>
                             <li><a href="/contact">Contact</a></li>
                         </ul>
 
@@ -72,9 +72,14 @@
 
                     <!-- Header Sing In & Up Start -->
                     <div class="header-sign-in-up d-none d-lg-block">
-                        @if (Auth::user())
+                        @if ($user = Auth::user())
                             <ul>
-                                <li><a class="sign-up" href="/dashboard">My Account</a></li>
+                                <li><a class="sign-in" href="/profile/courses">My Learning</a></li>
+                                @if ($user->role === 'mentor')
+                                    <li><a class="sign-in text-primary" href="/dashboard">Mentor Dashboard</a></li>
+                                @else
+                                    <li><a class="sign-up" href="/dashboard">Become a Mentor</a></li>
+                                @endif
                             </ul>
 
                             @else

@@ -20,19 +20,39 @@ Route::get('/', function () {
     return view('front.index');
 });
 
-Route::prefix('/courses')->group(function(){
-    Route::get('/', [CourseController::class, 'index']);
+
+Route::prefix('classes')->group(function(){
+    Route::get('/', [CourseController::class, 'all']);
     Route::get('/{slug}', [CourseController::class, 'show']);
+    Route::get('/{slug}/enroll', [CourseController::class, 'enroll']);
 });
 
-Route::middleware(['auth'])->group(function(){
-    Route::get('/dashboard', [UserController::class, 'home'])->name('dashboard');
-    Route::get('/onboarding', [MentorController::class, 'create']);
+Route::prefix('mentor')->group(function(){
+    Route::get('/', [MentorController::class, 'index']);
+    Route::get('/{slug}', [MentorController::class, 'show']);
+});
 
+
+Route::middleware(['auth'])->group(function(){
     Route::prefix('/profile')->group(function(){
         Route::get('/courses', [CourseController::class, 'studentCourses']);
+        Route::get('/mentors', [MentorController::class, 'studentMentors']);
     });
 
+    Route::prefix('mentor')->group(function(){
+        Route::get('/onboarding', [MentorController::class, 'mentorSignup']);
+        Route::post('/create', [MentorController::class, 'store']);
+    });
+
+    Route::prefix('/me')->middleware('is.mentor')->group(function(){
+        Route::get('/', [UserController::class, 'home'])->name('dashboard');
+        Route::prefix('courses')->group(function(){
+            Route::get('/', [CourseController::class, 'fetch']);
+            Route::get('/{slug}', [CourseController::class, 'single']);
+            Route::get('/create', [CourseController::class, 'create']);
+            Route::post('/new', [CourseController::class, 'store']);
+        });
+    });
 });
 
 require __DIR__.'/auth.php';

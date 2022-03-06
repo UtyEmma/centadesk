@@ -27,6 +27,7 @@ class User extends Authenticatable
         'total_batches' => 0,
         'total_courses' => 0,
         'total_reviews' => 0,
+        'earnings' => 0,
         'avg_rating' => 1,
         'kyc_status' => 'pending',
         'role' => 'user',
@@ -37,4 +38,8 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function courses (){
+        return $this->hasMany(Courses::class, 'mentor_id', 'unique_id');
+    }
 }

@@ -1,5 +1,5 @@
 <!-- Login Header Start -->
-    <div class="section login-header">
+    <div class="section login-header position-sticky top-0">
         <!-- Login Header Wrapper Start -->
         <div class="login-header-wrapper navbar navbar-expand">
 

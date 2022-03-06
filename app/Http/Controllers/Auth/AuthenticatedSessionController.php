@@ -32,7 +32,7 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(RouteServiceProvider::HOME);
+        return redirect()->intended(RouteServiceProvider::LEARNING_CENTER);
     }
 
     /**
@@ -41,8 +41,7 @@ class AuthenticatedSessionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy(Request $request)
-    {
+    public function destroy(Request $request){
         Auth::guard('web')->logout();
 
         $request->session()->invalidate();
