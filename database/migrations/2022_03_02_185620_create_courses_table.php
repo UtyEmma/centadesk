@@ -25,6 +25,9 @@ return new class extends Migration
             $table->string('images');
             $table->integer('total_batches');
             $table->integer('total_students');
+            $table->integer('reviews');
+            $table->integer('rating');
+            $table->integer('revenue');
             $table->string('active_batch')->nullable();
             $table->string('status');
             $table->timestamps();

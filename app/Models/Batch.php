@@ -20,4 +20,8 @@ class Batch extends Model{
         'status' => 'ongoing'
     ];
 
+    public function students (){
+        // return $this->hasMany('')
+    }
+
 }

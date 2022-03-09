@@ -18,7 +18,7 @@ class Courses extends Model
     protected $attributes = [
         'total_batches' => 0,
         'total_students' => 0,
-        'earnings' => 0,
+        'revenue' => 0,
         'rating' => 1,
         'reviews' => 0,
         'status' => 'published'

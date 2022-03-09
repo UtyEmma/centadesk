@@ -7,10 +7,14 @@ use App\Library\FileHandler;
 use App\Library\Token;
 use App\Models\Batch;
 use App\Models\Courses;
+use App\Models\Enrollment;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
+use Nette\Utils\Arrays;
 
 class CourseController extends Controller
 {
@@ -20,18 +24,26 @@ class CourseController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function all(){
-        $courses = Courses::all();
+
+        $courses =  DB::table('courses')
+                        ->join('users', 'users.unique_id', '=', 'courses.mentor_id')
+                        ->select('courses.*', 'users.firstname', 'users.lastname', 'users.avatar')
+                        ->get();
+
         return view('front.courses', [
             'courses' => $courses
         ]);
     }
 
     public function enroll($slug){
+        $user = Auth::user();
         $course = Courses::where('slug', $slug)->first();
         $batch = Batch::find($course->active_batch);
+
         return view('front.student.course-enrollment', [
             'course' => $course,
-            'batch' => $batch
+            'batch' => $batch,
+            'user' => $user
         ]);
     }
 
@@ -42,10 +54,6 @@ class CourseController extends Controller
      */
     public function create(){
         return view('dashboard.create-courses');
-    }
-
-    public function studentCourses(){
-        return view('front.student.enrolled-courses');
     }
 
     /**
@@ -135,13 +143,15 @@ class CourseController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($slug){
+        $user = $this->user();
         $course = Courses::where('slug', $slug)->first();
         $mentor = User::find($course->mentor_id);
         $batch = Batch::find($course->active_batch);
         return view('front.course-detail', [
             'course' => $course,
             'mentor' => $mentor,
-            'batch' => $batch
+            'batch' => $batch,
+            'user' => $user
         ]);
     }
 

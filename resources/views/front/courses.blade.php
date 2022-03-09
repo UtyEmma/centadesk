@@ -60,8 +60,7 @@
                                                 <a href="#"><img src="{{asset('images/author/author-01.jpg')}}" alt="Author"></a>
                                             </div>
                                             <div class="author-name">
-                                                {{-- <a class="name" href="#">Jason Williams</a> --}}
-                                                <a class="name" href="#">Ohula Malsh</a>
+                                                <a class="name" href="#">{{$course->firstname}} {{$course->lastname}}</a>
                                             </div>
                                         </div>
                                     </div>

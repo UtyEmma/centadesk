@@ -23,6 +23,8 @@ return new class extends Migration
             $table->integer('attendees')->nullable();
             $table->integer('price')->nullable();
             $table->integer('total_students');
+            $table->string('class_link')->nullable();
+            $table->string('status');
             $table->boolean('current');
             $table->integer('count');
             $table->timestamps();

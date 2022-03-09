@@ -11,10 +11,15 @@ return new class extends Migration
      *
      * @return void
      */
-    public function up()
-    {
+    public function up(){
         Schema::create('enrollments', function (Blueprint $table) {
             $table->id();
+            $table->string('unique_id')->unique();
+            $table->string('batch_id');
+            $table->string('student_id');
+            $table->string('course_id');
+            $table->string('mentor_id');
+            $table->string('transaction_id')->unique();
             $table->timestamps();
         });
     }

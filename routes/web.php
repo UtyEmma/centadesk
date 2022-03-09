@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\ForumController;
 use App\Http\Controllers\MentorController;
+use App\Http\Controllers\StudentController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -24,7 +26,6 @@ Route::get('/', function () {
 Route::prefix('classes')->group(function(){
     Route::get('/', [CourseController::class, 'all']);
     Route::get('/{slug}', [CourseController::class, 'show']);
-    Route::get('/{slug}/enroll', [CourseController::class, 'enroll']);
 });
 
 Route::prefix('mentor')->group(function(){
@@ -35,8 +36,13 @@ Route::prefix('mentor')->group(function(){
 
 Route::middleware(['auth'])->group(function(){
     Route::prefix('/profile')->group(function(){
-        Route::get('/courses', [CourseController::class, 'studentCourses']);
-        Route::get('/mentors', [MentorController::class, 'studentMentors']);
+        Route::get('/courses', [StudentController::class, 'enrolledCourses']);
+        Route::get('/courses/{slug}', [StudentController::class, 'enrolledCourse']);
+        Route::get('/mentors', [StudentController::class, 'fetchMentors']);
+    });
+
+    Route::prefix('classes')->group(function(){
+        Route::get('/{slug}/enroll', [CourseController::class, 'enroll']);
     });
 
     Route::prefix('mentor')->group(function(){
@@ -51,6 +57,10 @@ Route::middleware(['auth'])->group(function(){
             Route::get('/{slug}', [CourseController::class, 'single']);
             Route::get('/create', [CourseController::class, 'create']);
             Route::post('/new', [CourseController::class, 'store']);
+            Route::prefix('/{slug}/{batch_id}')->group(function(){
+                Route::get('/', [CourseController::class, 'fetchStudents']);
+                Route::get('/forum', [ForumController::class, 'show']);
+            });
         });
     });
 });

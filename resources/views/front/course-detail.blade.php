@@ -1,4 +1,7 @@
 <x-guest-layout>
+
+    @include('front.student.js.enrollment-js')
+
     <x-page-banner>
         <x-slot name="current">
             Courses
@@ -240,7 +243,7 @@
                                                         <div class="single-review swiper-slide">
                                                             <div class="review-author">
                                                                 <div class="author-thumb">
-                                                                    <img src="assets/images/author/author-06.jpg" alt="Author">
+                                                                    <img src="{{asset('images/author/author-06.jpg')}}" alt="Author">
                                                                     <i class="icofont-quote-left"></i>
                                                                 </div>
                                                                 <div class="author-content">
@@ -259,7 +262,7 @@
                                                         <div class="single-review swiper-slide">
                                                             <div class="review-author">
                                                                 <div class="author-thumb">
-                                                                    <img src="assets/images/author/author-07.jpg" alt="Author">
+                                                                    <img src="{{asset('images/author/author-07.jpg')}}" alt="Author">
                                                                     <i class="icofont-quote-left"></i>
                                                                 </div>
                                                                 <div class="author-content">
@@ -278,7 +281,7 @@
                                                         <div class="single-review swiper-slide">
                                                             <div class="review-author">
                                                                 <div class="author-thumb">
-                                                                    <img src="assets/images/author/author-03.jpg" alt="Author">
+                                                                    <img src="{{asset('images/author/author-03.jpg')}}" alt="Author">
                                                                     <i class="icofont-quote-left"></i>
                                                                 </div>
                                                                 <div class="author-content">
@@ -402,7 +405,7 @@
                                 </ul>
                             </div>
                             <div class="info-btn">
-                                <a href="#" class="btn btn-primary btn-hover-dark">Enroll for Batch {{$batch->count}}</a>
+                                <button onclick="createTransaction()" class="btn btn-primary btn-hover-dark">Enroll for Batch {{$batch->count}}</b>
                             </div>
                         </div>
                         <!-- Sidebar Widget Information End -->

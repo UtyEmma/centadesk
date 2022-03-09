@@ -33,22 +33,10 @@ class MentorController extends Controller{
         return view('front.mentors.onboarding');
     }
 
-
-    public function studentMentors(){
-        return view('front.student.mentors');
-    }
-
     public function mentorSignup(){
         return view('front.mentors.onboarding');
     }
 
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request){
         $user = $this->user();
 
@@ -67,35 +55,17 @@ class MentorController extends Controller{
         return redirect(self::HOME);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function show($id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         //

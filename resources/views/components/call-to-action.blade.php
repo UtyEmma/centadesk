@@ -18,13 +18,13 @@
             </div>
             <!-- Section Title End -->
 
-            <img class="shape-1 animation-right" src="assets/images/shape/shape-14.png" alt="Shape">
+            <img class="shape-1 animation-right" src="{{asset('images/shape/shape-14.png')}}" alt="Shape">
 
             <!-- Download App Button End -->
             <div class="download-app-btn">
                 <ul class="app-btn">
-                    <li><a href="#"><img src="assets/images/google-play.png" alt="Google Play"></a></li>
-                    <li><a href="#"><img src="assets/images/app-store.png" alt="App Store"></a></li>
+                    <li><a href="#"><img src="{{asset('images/google-play.png')}}" alt="Google Play"></a></li>
+                    <li><a href="#"><img src="{{asset('images/app-store.png')}}" alt="App Store"></a></li>
                 </ul>
             </div>
             <!-- Download App Button End -->

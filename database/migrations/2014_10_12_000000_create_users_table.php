@@ -30,6 +30,8 @@ return new class extends Migration
             $table->string('total_reviews');
             $table->string('avg_rating');
             $table->string('interests')->nullable();
+            $table->string('avatar')->nullable();
+            $table->integer('earnings');
             $table->string('kyc_status');
             $table->string('kyc_method')->nullable();
             $table->string('id_number')->nullable();

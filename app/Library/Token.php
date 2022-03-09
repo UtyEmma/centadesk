@@ -23,4 +23,8 @@ class Token {
         $random = rand($min, $max);
         return $random;
     }
+
+    static function text(int $len){
+        // $random = range();
+    }
 }

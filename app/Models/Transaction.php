@@ -5,7 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Transaction extends Model
-{
+class Transaction extends Model{
     use HasFactory;
+
+    protected $fillable = ['unique_id', 'user_id', 'type', 'reference', 'status', 'amount', 'currency', 'batch_id'];
+
+    protected $primaryKey = 'unique_id';
+    protected $keyType = 'string';
+    public $incrementing = false;
+
+    protected $attributes = [
+        'status' => 'pending',
+        'currency' => 'NGN'
+    ];
+
 }
