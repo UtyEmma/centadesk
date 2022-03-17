@@ -35,18 +35,6 @@ class CourseController extends Controller
         ]);
     }
 
-    public function enroll($slug){
-        $user = Auth::user();
-        $course = Courses::where('slug', $slug)->first();
-        $batch = Batch::find($course->active_batch);
-
-        return view('front.student.course-enrollment', [
-            'course' => $course,
-            'batch' => $batch,
-            'user' => $user
-        ]);
-    }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -136,12 +124,6 @@ class CourseController extends Controller
         ]);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($slug){
         $user = $this->user();
         $course = Courses::where('slug', $slug)->first();

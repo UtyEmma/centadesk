@@ -23,7 +23,6 @@
                                 <img src="{{asset('images/shape/shape-26.png')}}" alt="Shape">
                             </div>
 
-
                             <div class="images">
                                 <img src="{{asset('images/register-login.png')}}" alt="Register Login">
                             </div>

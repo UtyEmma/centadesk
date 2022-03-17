@@ -4,13 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\MentorSignupRequest;
 use App\Library\FileHandler;
+use App\Models\Enrollment;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class MentorController extends Controller{
 
-    const HOME = '/dashboard';
+    const HOME = '/me';
     /**
      * Display a listing of the resource.
      *
@@ -24,6 +25,15 @@ class MentorController extends Controller{
         ]);
     }
 
+    public function home(){
+        $mentor = $this->user();
+        $enrollments = Enrollment::where('mentor_id', $mentor->unique_id)->get();
+        return view('dashboard.index', [
+            'user' => $mentor,
+            'enrollments' => $enrollments->count()
+        ]);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -33,15 +43,15 @@ class MentorController extends Controller{
         return view('front.mentors.onboarding');
     }
 
-    public function mentorSignup(){
+    public function onboarding(){
         return view('front.mentors.onboarding');
     }
 
     public function store(Request $request){
         $user = $this->user();
 
-        $avatar = FileHandler::upload($request->file('avatar'), 'mentors', 'public');
-        $id_image = FileHandler::upload($request->file('avatar'), 'kyc', 'private');
+        $avatar = $request->file('avatar')->storeAs('users', $user->unique_id);
+        $id_image = $request->file('id_image')->storeAs('kyc', $user->unique_id);
 
         $user->update(array_merge(
             $request->all(),
@@ -57,27 +67,6 @@ class MentorController extends Controller{
 
 
     public function show($id)
-    {
-        //
-    }
-
-    public function edit($id)
-    {
-        //
-    }
-
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
     {
         //
     }

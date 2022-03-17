@@ -13,8 +13,8 @@
 
         const response = await fetch('{{env('MAIN_APP_URL')}}/api/transaction/initialize', {
             method: 'POST',
-            mode: 'same-origin',
-            credentials: 'same-origin', // include, *same-origin, omit
+            // mode: 'same-origin',
+            // credentials: 'same-origin', // include, *same-origin, omit
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json'
@@ -33,10 +33,10 @@
     }
 
     async function enrollUser(payment){
-        const response = await fetch('{{env('MAIN_APP_URL')}}/api/batch/enroll/'+'{{$batch->unique_id}}'+'payment.transaction_id', {
+        const response = await fetch('{{env('MAIN_APP_URL')}}/api/enroll/'+'{{$batch->unique_id}}/'+payment.transaction_id, {
             method: 'GET',
-            mode: 'same-origin',
-            credentials: 'same-origin', // include, *same-origin, omit
+            // mode: 'same-origin',
+            // credentials: 'same-origin', // include, *same-origin, omit
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json'

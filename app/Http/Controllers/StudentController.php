@@ -10,6 +10,12 @@ use Illuminate\Support\Facades\DB;
 
 class StudentController extends Controller{
 
+    public function show(Request $request){
+        $user = $this->user();
+
+        return view('front.student.profile');
+    }
+
     public function fetchMentors(Request $request){
         $user = $this->user();
         $mentors = Enrollment::where('student_id', $user->unique_id)
@@ -42,12 +48,15 @@ class StudentController extends Controller{
         $course = Courses::where('slug', $slug)->first();
 
         $enrollment = Enrollment::where([
-            'student_id' => $user->unique_id,
+            // 'student_id' => $user->unique_id,
             'course_id' => $course->unique_id
         ])->first();
 
-        $batch = Batch::find($enrollment->batch_id);
+        // print_r($course);
+        // print_r([$user->unique_id, $course->unique_id]);
 
+        $batch = Batch::find($enrollment->batch_id);
+        // print_r($enrollment);
         return view('front.student.enrolled-course-detail', [
             'batch' => $batch,
             'course' => $course,

@@ -76,9 +76,9 @@
                             <ul>
                                 <li><a class="sign-in" href="/profile/courses">My Learning</a></li>
                                 @if ($user->role === 'mentor')
-                                    <li><a class="sign-in text-primary" href="/dashboard">Mentor Dashboard</a></li>
+                                    <li><a class="sign-in text-primary" href="/me">Mentor Dashboard</a></li>
                                 @else
-                                    <li><a class="sign-up" href="/dashboard">Become a Mentor</a></li>
+                                    <li><a class="sign-up" href="/mentor/onboarding">Become a Mentor</a></li>
                                 @endif
                             </ul>
 

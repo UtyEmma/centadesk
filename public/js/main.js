@@ -283,7 +283,7 @@
     /*--
         Nice Select
 	-----------------------------------*/
-    $('select').niceSelect();
+    $('.nice-select').niceSelect();
 
 
     /*--

@@ -8,7 +8,7 @@
             <p class="my-0">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laudantium, aliquam.</p>
         </div>
 
-        <form action="/courses/new" method="POST" enctype="multipart/form-data">
+        <form action="/me/courses/new" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="row mt-5">
                 <div class="col-md-6">

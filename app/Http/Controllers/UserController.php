@@ -16,10 +16,6 @@ class UserController extends Controller
         //
     }
 
-    public function home(){
-        return view('dashboard.index');
-    }
-
     /**
      * Show the form for creating a new resource.
      *

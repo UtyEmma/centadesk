@@ -27,4 +27,9 @@ Route::prefix('transaction')->group(function(){
     Route::post('initialize', [TransactionsController::class, 'create']);
 });
 
-Route::get('batch/enroll/{batch_id}/{reference}', [EnrollmentController::class, 'enroll']);
+Route::get('enroll/{batch_id}/{reference}', [EnrollmentController::class, 'enroll']);
+
+Route::prefix('banks')->group(function(){
+    Route::get('/', [TransactionsController::class, 'fetchBanks']);
+    Route::post('/verify', [TransactionsController::class, 'verifyBankDetails']);
+});

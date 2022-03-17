@@ -5,13 +5,17 @@
     <section class="flex flex-column justify-content-center">
         <nav class="navbar navbar-expand-lg navbar-light bg-light py-3">
             <div class="container-fluid">
-                <div class="row flex">
+                <div class="row align-items-center">
                     <div class="col-auto">
-                        <a class="navbar-brand" href="#">Navbar</a>
+                        <!-- Header Logo Start -->
+                        <div class="header-logo">
+                            <a href="/"><img src="{{asset('images/logo.png')}}" alt="Logo"></a>
+                        </div>
+                        <!-- Header Logo End -->
                     </div>
 
                     <div class="border-start col-auto">
-                        <a class="navbar-brand" href="#">Sign up as a Mentor</a>
+                        <a class="navbar-brand" href="#">Signup to your new Mentor's account</a>
                     </div>
                 </div>
             </div>
@@ -33,6 +37,19 @@
                               <span class="bs-stepper-label">Personal Information</span>
                             </button>
                           </div>
+
+                          <div class="step" data-target="#qualifications">
+                            <button type="button" class="step-trigger" role="tab" aria-controls="qualifications" id="qualifications-trigger">
+                              <span class="bs-stepper-label">Qualifications</span>
+                            </button>
+                          </div>
+
+                          <div class="step" data-target="#experience">
+                            <button type="button" class="step-trigger" role="tab" aria-controls="experience" id="experience-trigger">
+                              <span class="bs-stepper-label">Experience</span>
+                            </button>
+                          </div>
+
                           <div class="step" data-target="#information-part">
                             <button type="button" class="step-trigger" role="tab" aria-controls="information-part" id="information-part-trigger">
                               <span class="bs-stepper-label">Payment Information</span>
@@ -44,12 +61,25 @@
                               <span class="bs-stepper-label">Bank Information</span>
                             </button>
                           </div>
+
                         </div>
                         <div class="bs-stepper-content">
                           <!-- your steps content here -->
                           <div id="logins-part" class="content" role="tabpanel" aria-labelledby="logins-part-trigger">
                             <div class="container">
                                 @include('front.mentors.components.onboarding.personal-info')
+                            </div>
+                          </div>
+
+                          <div id="qualifications" class="content" role="tabpanel" aria-labelledby="qualifications-trigger">
+                            <div class="container">
+                                @include('front.mentors.components.onboarding.qualifications')
+                            </div>
+                          </div>
+
+                          <div id="experience" class="content" role="tabpanel" aria-labelledby="experience-trigger">
+                            <div class="container">
+                                @include('front.mentors.components.onboarding.experience')
                             </div>
                           </div>
 

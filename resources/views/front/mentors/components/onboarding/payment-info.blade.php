@@ -1,3 +1,6 @@
+@include('front.mentors.js.bank-details-verification-js')
+@include('front.mentors.js.crypto-wallet-js')
+
 <div class="row">
     <div class="col-md-9 mx-auto row row-cols-1 gy-3 px-0">
         <div class="p-0">
@@ -48,20 +51,26 @@
                             <p>Please provide your bank account information </p>
                         </div>
 
+                        <p id="bank_info_error" class="text-danger"></p>
+
                         <div class="single-form">
-                            <select name="bank" class="w-50 select mb-3">
+                            <select name="bank" class="w-50 radius form-select border py-3 mb-3">
                                 <option>Select Bank</option>
-                                <option value="1">National Identity Card</option>
-                                <option value="1">International Passport</option>
-                                <option value="1">Drivers License</option>
                             </select>
                         </div>
 
                         <div class="single-form">
-                            <input class="input" name="account_name" placeholder="Account Name">
+                            <input class="input" name='account_number' placeholder="Account Number">
                         </div>
+
                         <div class="single-form">
-                            <input class="input" placeholder="Account Number">
+                            {{-- <p class="">Account Name</p> --}}
+                            <h5 id="account_name"></h5>
+                            <input class="input" name="account_name" hidden readonly placeholder="Account Name" >
+                        </div>
+
+                        <div class="single-form">
+                            <button type="button"  onclick="verifyBankDetails()" class="btn btn-outline btn-primary">Verify Bank Details</button>
                         </div>
                     </div>
                 </div>
@@ -77,7 +86,7 @@
                         </div>
 
                         <div class="mt-3">
-                            <button type="button" class="btn btn-primary" >Connect to your Metamask Wallet</button>
+                            <button type="button" onclick="getWalletAddress()" class="btn btn-primary" >Connect to your Metamask Wallet</button>
                         </div>
                     </div>
                 </div>

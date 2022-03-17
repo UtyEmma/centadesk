@@ -81,6 +81,7 @@
                         @endforeach
                     @else
                         <div class="text-center">You have not enrolled for any courses</div>
+                        <a href="/classes" class="btn btn-primary mx-auto w-auto mt-5">Find Courses</a>
                     @endif
                 </div>
             </div>

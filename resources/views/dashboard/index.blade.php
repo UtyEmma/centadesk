@@ -9,25 +9,25 @@
                         <h5 class="mb-3">Account Overview</h5>
 
                         <div class="overview-box mt-0">
-                            <div class="single-box mt-0">
-                                <h5 class="title">Total Revenue</h5>
-                                <div class="count">$568.00</div>
+                            <div class="single-box mt-0 px-3">
+                                <h5 class="title">Revenue</h5>
+                                <div class="count">&#8358; {{$user->earnings}}</div>
                                 <p><span>$235.00</span> This months</p>
                             </div>
 
-                            <div class="single-box mt-0">
-                                <h5 class="title">Total Enrollment’s</h5>
-                                <div class="count">2,570</div>
+                            <div class="single-box mt-0 px-3">
+                                <h5 class="title">Enrollments</h5>
+                                <div class="count">{{$enrollments}}</div>
                                 <p><span>345</span> This months</p>
                             </div>
 
-                            <div class="single-box mt-0">
-                                <h5 class="title">Mentor Rating</h5>
+                            <div class="single-box mt-0 px-3">
+                                <h5 class="title">Rating</h5>
                                 <div class="count">
-                                    4.5
+                                    {{$user->avg_rating}}.0
 
                                     <span class="rating-star">
-                                            <span class="rating-bar" style="width: 80%;"></span>
+                                            <span class="rating-bar" style="width: {{$user->avg_rating * 20}}%;"></span>
                                     </span>
                                 </div>
                                 <p><span>58</span> This months</p>
