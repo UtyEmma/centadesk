@@ -4,21 +4,55 @@
 
         const formItems = []
 
+        const __qualificationSchema = {
+            rules: {
+                qualification: "required|string",
+                institution: "required|string",
+                date: "required|date"
+            },
+
+            attributes: {
+                qualification: "Qualification",
+                institution: "Institution",
+                date: "Date"
+            }
+        }
+
+        function parseErrors(errors){
+            const keys = Object.keys(errors)
+            keys.map(key => {
+                $(`#${key}-error`).text(errors[key][0])
+            })
+        }
+
         function addItem(){
-            let qualification = document.querySelector('input[name="qualification"]')
-            let institution = document.querySelector('input[name="institution"]')
-            let date = document.querySelector('input[name="date"]')
+            let qualification = document.querySelector('input[name="qualification"]').value
+            let institution = document.querySelector('input[name="institution"]').value
+            let date = document.querySelector('input[name="date"]').value
+
+            const validation = new Validator({
+                qualification: qualification,
+                institution: institution,
+                date: date
+            }, __qualificationSchema.rules)
+
+            validation.setAttributeNames(__qualificationSchema.attributes)
+
+            if(validation.fails()){
+                const errors = validation.errors.errors
+                return parseErrors(errors)
+            }
 
             formItems.push({
-                qualification: qualification.value,
-                institution: institution.value,
+                qualification: qualification,
+                institution: institution,
                 date: date,
             })
 
             const experience = `<div class="d-flex justify-content-between my-2" id="experience-${formItems.length - 1}">
                     <div>
-                        <h6 class="mb-0 mt-0">${qualification.value}  - <span class="mb-0">${date.value}</span> </h6>
-                        <p class="mt-0">${institution.value}</p>
+                        <h6 class="mb-0 mt-0">${qualification}  - <span class="mb-0">${date}</span> </h6>
+                        <p class="mt-0">${institution}</p>
                     </div>
 
                     <div>
@@ -26,15 +60,23 @@
                     </div>
                 </div>`
 
-            qualification.value = ""
-            institution.value  = ""
-            date.value  = ""
+            clear()
+
             document.getElementById('experience').insertAdjacentHTML('beforeend', experience)
+        }
+
+        function clear(){
+            $('#qualification').val("")
+            $('#institution').val("")
+            $('#date').val("")
+
+            $("#qualification-error").html("")
+            $("#institution-error").html("")
+            $("#date-error").html("")
         }
 
         function deleteItem(id){
             const element = document.getElementById(`experience-${id}`)
-            console.log(element)
             element.remove()
         }
 
@@ -59,17 +101,20 @@
             <div id="experienceItem">
                 <div class="single-form">
                     <input type="text" name="qualification" id="qualification" placeholder="Qualification" />
+                    <small id="qualification-error" class="text-danger"></small>
                 </div>
 
                 <div class="row">
                     <div class="col-6 w-full">
                         <div class="single-form">
                             <input type="text" name="institution" id="institution" placeholder="Institution" />
+                            <small id="institution-error" class="text-danger"></small>
                         </div>
                     </div>
 
                     <div class="single-form w-full col-6">
                         <input type="date" name="date" class="form-control" id="date" placeholder="Year Acquired" />
+                        <small id="date-error" class="text-danger"></small>
                     </div>
                 </div>
             </div>

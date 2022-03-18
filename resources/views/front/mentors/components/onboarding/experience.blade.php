@@ -1,4 +1,5 @@
 <div class="row">
+
     @include('front.mentors.js.experience-js')
 
     <div class="col-md-9 mx-auto px-0 row row-cols-1 gy-3">
@@ -11,11 +12,11 @@
             <div>
                 <h6 class="p-0">Personal Information</h6>
             </div>
-
         </div>
 
         <div class="single-form d-flex justify-content-end">
             <button type="button" class="btn btn-primary" onclick="next()">Next</button>
         </div>
     </div>
+
 </div>
