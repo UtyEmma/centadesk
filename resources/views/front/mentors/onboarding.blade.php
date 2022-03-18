@@ -7,11 +7,9 @@
             <div class="container-fluid">
                 <div class="row align-items-center">
                     <div class="col-auto">
-                        <!-- Header Logo Start -->
                         <div class="header-logo">
                             <a href="/"><img src="{{asset('images/logo.png')}}" alt="Logo"></a>
                         </div>
-                        <!-- Header Logo End -->
                     </div>
 
                     <div class="border-start col-auto">
@@ -31,71 +29,71 @@
                 <div class="card-body">
                     <div class="bs-stepper">
                         <div class="bs-stepper-header d-none" role="tablist">
-                          <!-- your steps here -->
-                          <div class="step" data-target="#logins-part">
-                            <button type="button" class="step-trigger p-0" role="tab" aria-controls="logins-part" id="logins-part-trigger">
-                              <span class="bs-stepper-label">Personal Information</span>
-                            </button>
-                          </div>
+                            <!-- your steps here -->
+                            <div class="step" data-target="#logins-part">
+                                <button type="button" class="step-trigger p-0" role="tab" aria-controls="logins-part" id="logins-part-trigger">
+                                <span class="bs-stepper-label">Personal Information</span>
+                                </button>
+                            </div>
 
-                          <div class="step" data-target="#qualifications">
-                            <button type="button" class="step-trigger" role="tab" aria-controls="qualifications" id="qualifications-trigger">
-                              <span class="bs-stepper-label">Qualifications</span>
-                            </button>
-                          </div>
+                            <div class="step" data-target="#qualifications">
+                                <button type="button" class="step-trigger" role="tab" aria-controls="qualifications" id="qualifications-trigger">
+                                <span class="bs-stepper-label">Qualifications</span>
+                                </button>
+                            </div>
 
-                          <div class="step" data-target="#experience">
-                            <button type="button" class="step-trigger" role="tab" aria-controls="experience" id="experience-trigger">
-                              <span class="bs-stepper-label">Experience</span>
-                            </button>
-                          </div>
+                            <div class="step" data-target="#experience">
+                                <button type="button" class="step-trigger" role="tab" aria-controls="experience" id="experience-trigger">
+                                <span class="bs-stepper-label">Experience</span>
+                                </button>
+                            </div>
 
-                          <div class="step" data-target="#information-part">
-                            <button type="button" class="step-trigger" role="tab" aria-controls="information-part" id="information-part-trigger">
-                              <span class="bs-stepper-label">Payment Information</span>
-                            </button>
-                          </div>
+                            <div class="step" data-target="#information-part">
+                                <button type="button" class="step-trigger" role="tab" aria-controls="information-part" id="information-part-trigger">
+                                <span class="bs-stepper-label">Payment Information</span>
+                                </button>
+                            </div>
 
-                          <div class="step" data-target="#bank-info">
-                            <button type="button" class="step-trigger" role="tab" aria-controls="bank-info" id="bank-info-trigger">
-                              <span class="bs-stepper-label">Bank Information</span>
-                            </button>
-                          </div>
-
+                            <div class="step" data-target="#bank-info">
+                                <button type="button" class="step-trigger" role="tab" aria-controls="bank-info" id="bank-info-trigger">
+                                <span class="bs-stepper-label">Bank Information</span>
+                                </button>
+                            </div>
                         </div>
+
                         <div class="bs-stepper-content">
-                          <!-- your steps content here -->
-                          <div id="logins-part" class="content" role="tabpanel" aria-labelledby="logins-part-trigger">
-                            <div class="container">
-                                @include('front.mentors.components.onboarding.personal-info')
+                            <!-- your steps content here -->
+                            <div id="logins-part" class="content" role="tabpanel" aria-labelledby="logins-part-trigger">
+                                <div class="container">
+                                    @include('front.mentors.components.onboarding.personal-info')
+                                </div>
                             </div>
-                          </div>
 
-                          <div id="qualifications" class="content" role="tabpanel" aria-labelledby="qualifications-trigger">
-                            <div class="container">
-                                @include('front.mentors.components.onboarding.qualifications')
+                            <div id="qualifications" class="content" role="tabpanel" aria-labelledby="qualifications-trigger">
+                                <div class="container">
+                                    @include('front.mentors.components.onboarding.qualifications')
+                                </div>
                             </div>
-                          </div>
 
-                          <div id="experience" class="content" role="tabpanel" aria-labelledby="experience-trigger">
-                            <div class="container">
-                                @include('front.mentors.components.onboarding.experience')
+                            <div id="experience" class="content" role="tabpanel" aria-labelledby="experience-trigger">
+                                <div class="container">
+                                    @include('front.mentors.components.onboarding.experience')
+                                </div>
                             </div>
-                          </div>
 
-                          <div id="information-part" class="content" role="tabpanel" aria-labelledby="information-part-trigger">
-                            <div class="container">
-                                @include('front.mentors.components.onboarding.kyc')
+                            <div id="information-part" class="content" role="tabpanel" aria-labelledby="information-part-trigger">
+                                <div class="container">
+                                    @include('front.mentors.components.onboarding.kyc')
+                                </div>
                             </div>
-                          </div>
 
-                          <div id="bank-info" class="content" role="tabpanel" aria-labelledby="bank-info-trigger">
-                            <div class="container">
-                                @include('front.mentors.components.onboarding.payment-info')
+                            <div id="bank-info" class="content" role="tabpanel" aria-labelledby="bank-info-trigger">
+                                <div class="container">
+                                    @include('front.mentors.components.onboarding.payment-info')
+                                </div>
                             </div>
-                          </div>
                         </div>
-                      </div>
+                    </div>
                 </div>
             </form>
         </div>

@@ -125,12 +125,11 @@
                         @enderror
                     </small>
                 </div>
-
             </div>
+        </div>
 
-            <div class="single-form d-flex justify-content-end">
-                <button type="button" class="btn btn-primary" onclick="next()">Next</button>
-            </div>
+        <div class="single-form d-flex justify-content-end">
+            <button type="button" class="btn btn-primary" onclick="next()">Next</button>
         </div>
     </div>
 </div>
