@@ -39,6 +39,11 @@ class MentorSignupRequest extends FormRequest
             'id_number' => ['required', 'numeric'],
             'payment_method' => ['required', 'string'],
             'crypto_wallet' => ['required', 'string'],
+            'experience' => ['required', 'string'],
+            'qualification' => ['required', 'string'],
+            'country' => ['required', 'string'],
+            'state' => ['required', 'string'],
+            'city' => ['required', 'string'],
         ];
     }
 }

@@ -8,7 +8,7 @@
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente, nemo.</p>
         </div>
 
-        <div class="border p-5 radius">
+        <div class="border p-3 py-5 p-md-5 radius">
             <div>
                 <h6 class="mb-0">Select Default Payment Option</h6>
                 <p class="mb-0">Set how you want to receive your payments </p>
@@ -54,16 +54,16 @@
                         <p id="bank_info_error" class="text-danger"></p>
 
                         <div class="single-form">
-                            <select name="bank" class="w-50 radius form-select border py-3 mb-3">
+                            <select name="bank" class="w-md-50 radius form-select border py-3 mb-3">
                                 <option>Select Bank</option>
                             </select>
                         </div>
 
-                        <div class="single-form">
+                        <div class="single-form w-md-50">
                             <input class="input" name='account_number' placeholder="Account Number">
                         </div>
 
-                        <div class="single-form">
+                        <div class="single-form w-md-50">
                             {{-- <p class="">Account Name</p> --}}
                             <h5 id="account_name"></h5>
                             <input class="input" name="account_name" hidden readonly placeholder="Account Name" >
@@ -82,11 +82,11 @@
                         </div>
 
                         <div class="single-form">
-                            <input class="input" name="crypto_address" placeholder="Paste Wallet Address">
+                            <input class="input w-md-50" name="crypto_address" placeholder="Paste Wallet Address">
                         </div>
 
                         <div class="mt-3">
-                            <button type="button" onclick="getWalletAddress()" class="btn btn-primary" >Connect to your Metamask Wallet</button>
+                            <button type="button" onclick="getWalletAddress()" id="connect-wallet-btn" class="btn btn-primary" >Connect to your Metamask Wallet</button>
                         </div>
                     </div>
                 </div>

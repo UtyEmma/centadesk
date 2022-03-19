@@ -1,7 +1,6 @@
 <script src="{{asset('js/ajax.js')}}"></script>
 
 <script>
-
     const key = "{{env('RAVE_SECRET_KEY')}}"
 
     document.addEventListener('DOMContentLoaded', (event) => {

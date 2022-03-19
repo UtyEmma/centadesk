@@ -2,7 +2,8 @@
 
     <script>
 
-        const formItems = []
+
+        const qualificationArray = []
 
         const __qualificationSchema = {
             rules: {
@@ -25,47 +26,32 @@
             })
         }
 
+
+
         function addItem(){
-            let qualification = document.querySelector('input[name="qualification"]').value
-            let institution = document.querySelector('input[name="institution"]').value
-            let date = document.querySelector('input[name="date"]').value
+            const data = {
+                qualification: document.querySelector('#qualification').value,
+                institution: document.querySelector('#institution').value,
+                date: document.querySelector('#date').value,
+            }
 
-            const validation = new Validator({
-                qualification: qualification,
-                institution: institution,
-                date: date
-            }, __qualificationSchema.rules)
-
-            validation.setAttributeNames(__qualificationSchema.attributes)
+            const validation = validator.init(data, __qualificationSchema)
 
             if(validation.fails()){
                 const errors = validation.errors.errors
                 return parseErrors(errors)
             }
 
-            formItems.push({
-                qualification: qualification,
-                institution: institution,
-                date: date,
-            })
+            qualificationArray.push(data)
 
-            const experience = `<div class="d-flex justify-content-between my-2" id="experience-${formItems.length - 1}">
-                    <div>
-                        <h6 class="mb-0 mt-0">${qualification}  - <span class="mb-0">${date}</span> </h6>
-                        <p class="mt-0">${institution}</p>
-                    </div>
+            $('#qualification-input').val(JSON.stringify(qualificationArray))
 
-                    <div>
-                        <button class="" onclick="deleteItem(${formItems.length - 1})" type="button">X</button>
-                    </div>
-                </div>`
+            $('#qualification-section-error').text("")
+            return appendHtml(data)
 
-            clear()
-
-            document.getElementById('experience').insertAdjacentHTML('beforeend', experience)
         }
 
-        function clear(){
+        function clearForms(){
             $('#qualification').val("")
             $('#institution').val("")
             $('#date').val("")
@@ -75,8 +61,35 @@
             $("#date-error").html("")
         }
 
+        function appendHtml(data){
+            const experience = `<div class="d-flex justify-content-between my-2" id="qualification-${qualificationArray.length - 1}">
+                                    <div>
+                                        <h6 class="mb-0 mt-0">${data.qualification}  - <span class="mb-0">${data.date}</span> </h6>
+                                        <p class="mt-0">${data.institution}</p>
+                                    </div>
+
+                                    <div>
+                                        <button class="" onclick="deleteItem(${qualificationArray.length - 1})" type="button">X</button>
+                                        <button class="" onclick="editItem(${qualificationArray.length - 1})" type="button">Edit</button>
+                                    </div>
+                                </div>`
+
+            clearForms()
+
+
+
+            $('#qualificationContainer').append(experience)
+        }
+
+        function handleQualificationNext(){
+            if(qualificationArray.length < 1) return $('#qualification-section-error').text("Please fill in at least one qualification information")
+            next()
+        }
+
+
         function deleteItem(id){
-            const element = document.getElementById(`experience-${id}`)
+            qualificationArray.splice(id, 1)
+            const element = document.getElementById(`qualification-${id}`)
             element.remove()
         }
 
@@ -89,31 +102,35 @@
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente, nemo.</p>
         </div>
 
-        <div class="border p-5 radius">
+        <div class="border p-3 py-5 p-md-5 radius">
             <div>
                 <h6 class="p-0">Skills</h6>
             </div>
 
-            <div id="experience">
+            <small id="qualification-section-error" class="text-danger"></small>
+
+            <div id="qualificationContainer">
 
             </div>
 
-            <div id="experienceItem">
+            <textarea name="qualification" hidden id="qualification-input" cols="30" rows="10"></textarea>
+
+            <div id="qualificationItem">
                 <div class="single-form">
-                    <input type="text" name="qualification" id="qualification" placeholder="Qualification" />
+                    <input type="text" id="qualification" placeholder="Qualification" />
                     <small id="qualification-error" class="text-danger"></small>
                 </div>
 
                 <div class="row">
-                    <div class="col-6 w-full">
+                    <div class="col-md-6 w-full">
                         <div class="single-form">
-                            <input type="text" name="institution" id="institution" placeholder="Institution" />
+                            <input type="text" id="institution" placeholder="Institution" />
                             <small id="institution-error" class="text-danger"></small>
                         </div>
                     </div>
 
-                    <div class="single-form w-full col-6">
-                        <input type="date" name="date" class="form-control" id="date" placeholder="Year Acquired" />
+                    <div class="single-form w-full col-md-6">
+                        <input type="date" class="form-control" id="date" placeholder="Year Acquired" />
                         <small id="date-error" class="text-danger"></small>
                     </div>
                 </div>
@@ -124,11 +141,9 @@
             </div>
         </div>
 
-
-
-
-        <div class="single-form d-flex justify-content-end">
-            <button type="button" class="btn btn-primary" onclick="next()">Next</button>
+        <div class="single-form d-flex justify-content-between px-0">
+            <button type="button" class="btn btn-primary" onclick="previous()">Previous</button>
+            <button type="button" class="btn btn-primary" onclick="handleQualificationNext()">Next</button>
         </div>
     </div>
 </div>

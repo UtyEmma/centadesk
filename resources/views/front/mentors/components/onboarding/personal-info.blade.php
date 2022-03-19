@@ -1,4 +1,4 @@
-<div class="row ">
+<div class="row">
 
     <script>
 
@@ -27,7 +27,7 @@
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente, nemo.</p>
         </div>
 
-        <div class="border p-5 radius">
+        <div class="border p-3 py-5 p-md-5 radius">
             <div>
                 <h6 class="p-0">Personal Information</h6>
             </div>
@@ -60,6 +60,44 @@
                             @enderror
                         </small>
                     </div>
+
+
+                    <div class="row mt-3">
+                        <h6 for="basic-url" class="form-label">Your Location Info </h6>
+                        <div class="col-md-6">
+                            <div class="single-form">
+                                <input class="input" name="city" placeholder="City">
+                                <small class="text-danger text-capitalize" id="error-specialty">
+                                    @error('city')
+                                        {{$message}}
+                                    @enderror
+                                </small>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="single-form">
+                                <input class="input" name="state" placeholder="Region or State">
+                                <small class="text-danger text-capitalize" id="error-specialty">
+                                    @error('specialty')
+                                        {{$message}}
+                                    @enderror
+                                </small>
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <div class="single-form">
+                                <input class="input" name="country" placeholder="Country">
+                                <small class="text-danger text-capitalize" id="error-specialty">
+                                    @error('specialty')
+                                        {{$message}}
+                                    @enderror
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+
 
                     <div class="single-form ">
                         <h6 for="basic-url" class="form-label">Social Media (Please provide only your username) </h6>
@@ -106,7 +144,7 @@
                     </div>
                 </div>
 
-                <div class="col-md-4 mx-auto">
+                <div class="col-md-4 mx-auto ">
                     <div class="position-relative overflow-hidden ratio ratio-1x1 radius">
                         <img class="radius position-absolute h-100" id="avatar_preview" src="{{asset('images/author/author-11.jpg')}}" alt="Shape">
                     </div>
@@ -128,7 +166,7 @@
             </div>
         </div>
 
-        <div class="single-form d-flex justify-content-end">
+        <div class="single-form d-flex justify-content-end px-0">
             <button type="button" class="btn btn-primary" onclick="next()">Next</button>
         </div>
     </div>

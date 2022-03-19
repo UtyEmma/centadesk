@@ -47,11 +47,11 @@ class MentorController extends Controller{
         return view('front.mentors.onboarding');
     }
 
-    public function store(Request $request){
+    public function store(MentorSignupRequest $request){
         $user = $this->user();
 
-        $avatar = $request->file('avatar')->storeAs('users', $user->unique_id);
-        $id_image = $request->file('id_image')->storeAs('kyc', $user->unique_id);
+        $avatar = $request->hasFile('avatar') ? $request->file('avatar')->storeAs('users', $user->unique_id) : "";
+        $id_image = $request->hasFile('avatar') ? $request->file('id_image')->storeAs('kyc', $user->unique_id) : "";
 
         $user->update(array_merge(
             $request->all(),

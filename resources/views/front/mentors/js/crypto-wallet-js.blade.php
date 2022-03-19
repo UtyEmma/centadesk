@@ -1,8 +1,13 @@
 <script>
+
+    $('document').ready(() => {
+        wallet()
+    })
     function wallet(){
         if (typeof window.ethereum !== 'undefined') {
             return window.ethereum
         }
+        document.querySelector('#connect-wallet-btn').remove()
         return null
     }
 

@@ -61,4 +61,14 @@
         return {status, errors}
     }
 
+    function createMentor(e) {
+        e.preventDefault()
+        const formData = new FormData(e.target)
+        formData.append('experience', JSON.stringify(experienceArray))
+        formData.append('qualifications', JSON.stringify(qualificationArray))
+        const data = Object.fromEntries(formData.entries())
+
+        console.log(data)
+    }
+
 </script>

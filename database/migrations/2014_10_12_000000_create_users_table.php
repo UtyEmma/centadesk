@@ -27,6 +27,11 @@ return new class extends Migration
             $table->string('crypto_address')->nullable();
             $table->string('total_batches');
             $table->string('total_courses');
+            $table->string('city')->nullable();
+            $table->string('state')->nullable();
+            $table->string('country')->nullable();
+            $table->text('experience')->nullable();
+            $table->text('qualification')->nullable();
             $table->string('total_reviews');
             $table->string('avg_rating');
             $table->string('interests')->nullable();

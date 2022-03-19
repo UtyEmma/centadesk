@@ -7,7 +7,7 @@
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente, nemo.</p>
         </div>
 
-        <div class="border p-5 radius">
+        <div class="border p-3 py-5 p-md-5 radius">
             <div><h6 class="p-0">Upload KYC Document</h6></div>
             <div class="row">
                 <div class="single-form col-md-7">
@@ -31,7 +31,7 @@
             </div>
         </div>
 
-        <div class="single-form d-flex justify-content-between">
+        <div class="single-form d-flex justify-content-between px-0">
             <button type="button" class="btn btn-primary" onclick="previous()">Previous</button>
             <button type="button" class="btn btn-primary" onclick="next()">Next</button>
         </div>
