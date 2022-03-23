@@ -18,15 +18,25 @@
                         <option>Drivers License</option>
                         <option>Voters Card</option>
                     </select>
+                    <small class="text-danger text-capitalize">
+                        @error('kyc_method')
+                            {{$message}}
+                        @enderror
+                    </small>
                 </div>
 
                 <div class="single-form col-md-7">
-                    <input class="input" name="id_number"  placeholder="Identity Number (The Number written on your card)">
+                    <input class="input" name="id_number" value="{{old('id_number')}}"  placeholder="Identity Number (The Number written on your card)">
                 </div>
 
                 <div class="mt-5 col-md-7">
-                    <label for="formFileMultiple" name="id_image" class="form-label">Upload Document Image</label>
+                    <label for="formFileMultiple" name="id_image" value="{{old('id_image')}}" class="form-label">Upload Document Image</label>
                     <input class="form-control border form-control-lg radius" type="file" name="id_image" id="formFileMultiple">
+                    <small class="text-danger text-capitalize">
+                        @error('id_image')
+                            {{$message}}
+                        @enderror
+                    </small>
                 </div>
             </div>
         </div>

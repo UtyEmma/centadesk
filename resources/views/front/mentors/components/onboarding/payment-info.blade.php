@@ -31,6 +31,12 @@
                     </label>
                 </div>
             </div>
+
+            <small class="text-danger text-capitalize">
+                @error('payment_method')
+                    {{$message}}
+                @enderror
+            </small>
         </div>
 
         <div class="mx-0 px-0">
@@ -57,16 +63,31 @@
                             <select name="bank" class="w-md-50 radius form-select border py-3 mb-3">
                                 <option>Select Bank</option>
                             </select>
+                            <small class="text-danger text-capitalize">
+                                @error('bank')
+                                    {{$message}}
+                                @enderror
+                            </small>
                         </div>
 
                         <div class="single-form w-md-50">
                             <input class="input" name='account_number' placeholder="Account Number">
+                            <small class="text-danger text-capitalize">
+                                @error('account_number')
+                                    {{$message}}
+                                @enderror
+                            </small>
                         </div>
 
                         <div class="single-form w-md-50">
                             {{-- <p class="">Account Name</p> --}}
                             <h5 id="account_name"></h5>
                             <input class="input" name="account_name" hidden readonly placeholder="Account Name" >
+                            <small class="text-danger text-capitalize">
+                                @error('account_name')
+                                    {{$message}}
+                                @enderror
+                            </small>
                         </div>
 
                         <div class="single-form">
@@ -83,6 +104,11 @@
 
                         <div class="single-form">
                             <input class="input w-md-50" name="crypto_address" placeholder="Paste Wallet Address">
+                            <small class="text-danger text-capitalize">
+                                @error('crypto_address')
+                                    {{$message}}
+                                @enderror
+                            </small>
                         </div>
 
                         <div class="mt-3">

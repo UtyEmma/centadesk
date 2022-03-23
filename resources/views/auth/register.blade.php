@@ -43,7 +43,7 @@
                                     <div class="row">
                                         <div class="col-6">
                                             <div class="single-form">
-                                                <input type="text" name="firstname" placeholder="First Name">
+                                                <input type="text" name="firstname" value="{{old('firstname')}}" placeholder="First Name">
                                                 @error('firstname')
                                                     <small class="text-danger">{{$message}}</small>
                                                 @enderror
@@ -51,7 +51,7 @@
                                         </div>
                                         <div class="col-6">
                                             <div class="single-form">
-                                                <input type="text" name="lastname" placeholder="Last Name">
+                                                <input type="text" name="lastname" value="{{old('lastname')}}" placeholder="Last Name">
                                                 @error('lastname')
                                                     <small class="text-danger">{{$message}}</small>
                                                 @enderror
@@ -61,7 +61,7 @@
                                     <!-- Single Form End -->
                                     <!-- Single Form Start -->
                                     <div class="single-form">
-                                        <input type="email" name="email" placeholder="Email">
+                                        <input type="email" name="email" value="{{old('email')}}" placeholder="Email">
                                         @error('email')
                                             <small class="text-danger">{{$message}}</small>
                                         @enderror
@@ -69,7 +69,7 @@
                                     <!-- Single Form End -->
                                     <!-- Single Form Start -->
                                     <div class="single-form">
-                                        <input type="password" name="password" placeholder="Password">
+                                        <input type="password" name="password" value="{{old('password')}}" placeholder="Password">
                                         @error('password')
                                             <small class="text-danger">{{$message}}</small>
                                         @enderror

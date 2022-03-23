@@ -13,8 +13,6 @@
             if(!validator.status) {
                 return displayErrors(validator.errors)
             };
-
-            console.log(validator)
         }
 
         stepper.next()
@@ -22,10 +20,6 @@
 
     function previous(){
         stepper.previous()
-    }
-
-    function connectMetaMask(){
-
     }
 
     function displayErrors(errors) {

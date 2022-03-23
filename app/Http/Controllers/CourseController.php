@@ -50,7 +50,7 @@ class CourseController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CreateCourseRequest $request){
+    public function store(Request $request){
         $course_id = Token::unique('courses');
         $batch_id = Token::unique('batches');
 
@@ -71,6 +71,8 @@ class CourseController extends Controller
         ]);
 
         $user->total_courses = $user->total_courses + 1;
+        $array = [4, 5, 6, 7];
+        $short_code = $request->short_code || Str::random(Arr::random($array));
 
         $batch = Batch::create([
             'unique_id' => $batch_id,
@@ -82,7 +84,20 @@ class CourseController extends Controller
             'current' => true,
             'count' => 1,
             'video' => $request->video,
-            'images' => $images
+            'images' => $images,
+            'startdate' => $request->startdate,
+            'title' => $request->title,
+            'short_code' => $short_code,
+            'enddate' => $request->enddate,
+            'discounts' => $request->discounts || 0 ,
+            'time_discount' => $request->time_discount,
+            'time_discount_rate' => $request->time_discount_rate,
+            'time_discount_price' => $request->time_discount_price,
+            'time_discount_percentage' => $request->time_discount_percentage,
+            'signups_discount' => $request->signups_discount,
+            'signups_discount_rate' => $request->signups_discount_rate,
+            'signups_discount_price' => $request->signups_discount_price,
+            'signups_discount_percentage' => $request->signups_discount_percentage
         ]);
 
         $course->update([
@@ -120,7 +135,8 @@ class CourseController extends Controller
 
         return view('dashboard.course-details', [
             'course' => $course,
-            'batches' => $batches
+            'batches' => $batches,
+            'mentor' => $user
         ]);
     }
 
@@ -166,8 +182,7 @@ class CourseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
+    public function destroy($id){
         //
     }
 }

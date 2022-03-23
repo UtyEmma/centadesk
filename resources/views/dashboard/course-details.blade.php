@@ -66,7 +66,33 @@
 
                         <div class="card radius">
                             <div class="card-body">
+                                <div class="courses-details my-0">
+                                    <div class="courses-details-images">
+                                        <img src="{{asset('images/courses/courses-details.jpg')}}" alt="Courses Details">
+                                        <span class="tags">Finance</span>
 
+                                        <div class="courses-play">
+                                            <img src="{{asset('images/courses/circle-shape.png')}}" alt="Play">
+                                            <a class="play video-popup" href="{{$course->video}}"><i class="flaticon-play"></i></a>
+                                        </div>
+                                    </div>
+
+                                    <div class="courses-details-admin">
+                                        <div class="description-wrapper">
+                                            <h5 class="mb-0">Description</h5>
+                                            <p class="mt-0">
+                                                {!! $course->desc !!}
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        Tags
+
+                                        {{$course->tags}}
+                                    </div>
+
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -74,19 +100,29 @@
                 </div>
 
                 <div class="col-md-5">
-                    <h5 class="mb-3">Batches</h5>
 
-                    @foreach ($batches as $batch)
-                        <div class="card radius  p-3 mb-2">
-                            <div class="row">
+                    <div class="radius border p-3">
+                        <h6 class="mb-2">Course Batches</h6>
+
+                        @foreach ($batches as $batch)
+                            <div class="card radius p-3 border mb-2">
+                                <div class="d-flex justify-content-between">
+                                    <div>
+                                        <a href="/me/courses/{{$course->slug}}/{{$batch->short_code}}" class="title fw-bold" >{{$batch->title}}</a> <br/>
+                                        <small>
+                                            {{$batch->startdate}} - {{$batch->enddate}}
+                                        </small>
+                                    </div>
+
+                                    <div>
+                                        <button class="btn"><i class="fa-regular fa-clone"></i></button>
+                                        <button class="btn"><i class="fa-regular fa-share-nodes"></i></button>
+
+                                    </div>
+                                </div>
                             </div>
-                            <h5 class="title">Mentor Rating</h5>
-                            <div class="count">
-                                Duration
-                                {{$batch->duration}}
-                            </div>
-                        </div>
-                    @endforeach
+                        @endforeach
+                    </div>
                 </div>
             </div>
 

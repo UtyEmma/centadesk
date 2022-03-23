@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Batch;
+use App\Models\Courses;
+use App\Models\ForumMessages;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -20,18 +22,28 @@ class BatchController extends Controller{
         ]);
     }
 
-    function fetchStudents(Request $request){
+    function fetchBatch(Request $request, $slug, $batch_id){
         $user = $this->user();
 
-        $enrollments = DB::table('enrollments')
+        $batch = Batch::where('short_code', $batch_id)->first();
+        $course = Courses::find($batch->course_id);
+
+        $students = DB::table('enrollments')
                             ->where('batch_id', $request->batch_id)
-                            ->join('courses', 'courses.unique_id', 'enrollments.course_id')
                             ->join('users', 'users.unique_id', 'enrollments.student_id')
-                            ->select('courses.*', 'users.*')
+                            ->select('users.*')
                             ->get();
 
-        return view('', [
-            'batches' => $enrollments
+        $messages = DB::table('forum_messages')
+                        ->where('batch_id', $batch->unique_id)
+                        ->join('forum_replies', 'forum_messages.unique_id' ,'forum_replies.message_id')
+                        ->get();
+
+        return view('dashboard.batch-details', [
+            'course' => $course,
+            'batch' => $batch,
+            'students' => $students,
+            'messages' => $messages
         ]);
     }
 

@@ -47,7 +47,7 @@ class MentorController extends Controller{
         return view('front.mentors.onboarding');
     }
 
-    public function store(MentorSignupRequest $request){
+    public function store(Request $request){
         $user = $this->user();
 
         $avatar = $request->hasFile('avatar') ? $request->file('avatar')->storeAs('users', $user->unique_id) : "";

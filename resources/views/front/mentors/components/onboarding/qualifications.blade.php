@@ -89,8 +89,8 @@
 
         function deleteItem(id){
             qualificationArray.splice(id, 1)
-            const element = document.getElementById(`qualification-${id}`)
-            element.remove()
+            const element = document.getElementById(`qualification-${id}`).remove()
+            $('#qualification-input').val(JSON.stringify(qualificationArray))
         }
 
 
@@ -107,7 +107,11 @@
                 <h6 class="p-0">Skills</h6>
             </div>
 
-            <small id="qualification-section-error" class="text-danger"></small>
+            <small id="qualification-section-error" class="text-danger text-capitalize">
+                @error('payment_method')
+                    {{$message}}
+                @enderror
+            </small>
 
             <div id="qualificationContainer">
 

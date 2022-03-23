@@ -3,6 +3,7 @@
 use App\Http\Controllers\BatchController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\EnrollmentController;
+use App\Http\Controllers\ForumController;
 use App\Http\Controllers\TransactionsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -32,4 +33,9 @@ Route::get('enroll/{batch_id}/{reference}', [EnrollmentController::class, 'enrol
 Route::prefix('banks')->group(function(){
     Route::get('/', [TransactionsController::class, 'fetchBanks']);
     Route::post('/verify', [TransactionsController::class, 'verifyBankDetails']);
+});
+
+Route::prefix('forum')->group(function(){
+    Route::post('/send', [ForumController::class, 'storeMessage']);
+    Route::post('/reply/{message_id}', [ForumController::class, 'storeReplies']);
 });

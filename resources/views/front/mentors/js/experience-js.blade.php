@@ -61,7 +61,7 @@ function addExperience(){
 
     const experience = `<div class="d-flex justify-content-between my-2" id="experience-${experienceArray.length - 1}">
             <div>
-                <h6 class="mb-0 mt-0">${role}   </h6>
+                <h6 class="mb-0 mt-0">${company}</h6>
                 <p class="mt-0">${role} - <span class="mb-0">${startdate} ${enddate && '- '+enddate}</span></p>
             </div>
 
@@ -99,6 +99,7 @@ function clear(){
 function deleteItem(id){
     experienceArray.splice(id, 1)
     const element = document.getElementById(`experience-${id}`)
+    $('#experience-input').val(JSON.stringify(experienceArray))
     element.remove()
 }
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Auth\RegisterRequest;
 use App\Library\Token;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
@@ -32,7 +33,7 @@ class RegisteredUserController extends Controller
      *
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function store(Request $request){
+    public function store(RegisterRequest $request){
         $unique_id = Token::unique('users');
 
         $user = User::create([

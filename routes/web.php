@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BatchController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\ForumController;
 use App\Http\Controllers\MentorController;
@@ -43,7 +44,7 @@ Route::middleware(['auth'])->group(function(){
             Route::post('/new', [CourseController::class, 'store']);
             Route::get('/{slug}', [CourseController::class, 'single']);
             Route::prefix('/{slug}/{batch_id}')->group(function(){
-                Route::get('/', [CourseController::class, 'fetchStudents']);
+                Route::get('/', [BatchController::class, 'fetchBatch']);
                 Route::get('/forum', [ForumController::class, 'show']);
             });
         });

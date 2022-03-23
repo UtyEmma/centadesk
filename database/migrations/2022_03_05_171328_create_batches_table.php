@@ -17,7 +17,10 @@ return new class extends Migration
             $table->id();
             $table->string('unique_id')->unique();
             $table->string('course_id');
-            $table->string('duration');
+            $table->string('startdate');
+            $table->string('enddate');
+            $table->string('title')->nullable();
+            $table->string('short_code')->nullable();
             $table->string('video')->nullable();
             $table->string('images')->nullable();
             $table->integer('attendees')->nullable();
@@ -26,6 +29,15 @@ return new class extends Migration
             $table->string('class_link')->nullable();
             $table->string('status');
             $table->boolean('current');
+            $table->boolean('discounts');
+            $table->string('time_discount')->nullable();
+            $table->string('time_discount_rate')->nullable();
+            $table->integer('time_discount_price')->nullable();
+            $table->string('time_discount_percentage')->nullable();
+            $table->string('signups_discount')->nullable();
+            $table->string('signups_discount_rate')->nullable();
+            $table->integer('signups_discount_price')->nullable();
+            $table->integer('signups_discount_percentage')->nullable();
             $table->integer('count');
             $table->timestamps();
         });

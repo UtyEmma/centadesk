@@ -26,6 +26,7 @@
         <div class="container">
             <form action="/mentor/create" method="POST" enctype="multipart/form-data" class="card border-0">
                 @csrf
+
                 <div class="bs-stepper">
                     <div class="bs-stepper-header d-none" role="tablist">
                         <!-- your steps here -->

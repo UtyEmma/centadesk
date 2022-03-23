@@ -27,6 +27,22 @@
         <!-- JS
         ============================================ -->
 
+        <!-- Modernizer & jQuery JS -->
+        <script src="{{asset('js/vendor/modernizr-3.11.2.min.js')}}" ></script>
+        <script src="{{asset('js/vendor/jquery-3.5.1.min.js')}}" ></script>
+
+        <!-- Bootstrap JS -->
+        <script src="{{asset('js/plugins/popper.min.js')}}" ></script>
+        <script src="{{asset('js/plugins/bootstrap.min.js')}}" ></script>
+        <script src="{{asset('js/plugins/tagify/tagify.min.js')}}" ></script>
+        <script src="{{asset('js/plugins/tagify/tagify.polyfills.min.js')}}" ></script>
+
+        <!--====== Use the minified version files listed below for better performance and remove the files listed above ======-->
+        <script src="{{asset('js/plugins.min.js')}}" ></script>
+
+        <!-- Main JS -->
+        <script src="{{asset('js/main.js')}}" ></script>
+        <script src="{{asset('js/ajax.js')}}"></script>
     </head>
     <body>
         @include('layouts.guest.guest-header')
@@ -40,20 +56,5 @@
 
         @include('layouts.guest.guest-footer')
 
-        <!-- Modernizer & jQuery JS -->
-        <script src="{{asset('js/vendor/modernizr-3.11.2.min.js')}}" defer></script>
-        <script src="{{asset('js/vendor/jquery-3.5.1.min.js')}}" defer></script>
-
-        <!-- Bootstrap JS -->
-        <script src="{{asset('js/plugins/popper.min.js')}}" defer></script>
-        <script src="{{asset('js/plugins/bootstrap.min.js')}}" defer></script>
-        <script src="{{asset('js/plugins/tagify/tagify.min.js')}}" defer></script>
-        <script src="{{asset('js/plugins/tagify/tagify.polyfills.min.js')}}" defer></script>
-
-        <!--====== Use the minified version files listed below for better performance and remove the files listed above ======-->
-        <script src="{{asset('js/plugins.min.js')}}" defer></script>
-
-        <!-- Main JS -->
-        <script src="{{asset('js/main.js')}}" defer></script>
     </body>
 </html>

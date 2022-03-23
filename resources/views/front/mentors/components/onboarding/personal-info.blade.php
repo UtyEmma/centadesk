@@ -117,12 +117,13 @@
                         </div>
 
                         <div class="mb-3">
-                            <div class="position-relative d-flex align-items-center">
-                                <div class="position-absolute h-100 bg-transparent d-flex align-items-center">
-                                    <p style="margin-left: 15px">Facebook</p>
+                            <div class="d-flex align-items-center border px-3 radius">
+                                <div class="h-100 d-flex align-items-center">
+                                    <p class="h-100">Facebook</p>
                                 </div>
-                                <input type="text" name="facebook" class="form-control" style="padding-left: 22%" id="basic-url" aria-describedby="basic-addon3">
+                                <input type="text" name="facebook" class="form-control border-0" id="basic-url" aria-describedby="basic-addon3">
                             </div>
+
                             <small class="text-danger text-capitalize" id="error-facebook">
                                 @error('facebook')
                                     {{$message}}
@@ -146,7 +147,7 @@
 
                 <div class="col-md-4 mx-auto ">
                     <div class="position-relative overflow-hidden ratio ratio-1x1 radius">
-                        <img class="radius position-absolute h-100" id="avatar_preview" src="{{asset('images/author/author-11.jpg')}}" alt="Shape">
+                        <img class="radius position-absolute" id="avatar_preview" src="{{asset('images/author/author-11.jpg')}}" alt="Shape">
                     </div>
 
                     <div class="mt-2">

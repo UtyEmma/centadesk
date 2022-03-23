@@ -13,6 +13,12 @@
                 <h6 class="p-0">Experience Information</h6>
             </div>
 
+            <small class="text-danger text-capitalize">
+                @error('experience')
+                    {{$message}}
+                @enderror
+            </small>
+
             <small id="experience-error" class="text-danger"></small>
 
 
