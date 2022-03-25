@@ -50,6 +50,7 @@ class MentorController extends Controller{
     public function store(Request $request){
         $user = $this->user();
 
+
         $avatar = $request->hasFile('avatar') ? $request->file('avatar')->storeAs('users', $user->unique_id) : "";
         $id_image = $request->hasFile('avatar') ? $request->file('id_image')->storeAs('kyc', $user->unique_id) : "";
 

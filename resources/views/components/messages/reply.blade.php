@@ -10,9 +10,9 @@
                     <h6 class="name"><strong>Ashley Reeves</strong> <span class="instructor">Instructor</span></h6>
                     <span class="time">Asked: March 28, 2021</span>
                 </div>
-                {{-- <div class="meta">
+                <div class="meta">
                     <a class="answer" href="#"><i class="icofont-ui-messaging"></i> Answer</a>
-                </div> --}}
+                </div>
             </div>
             <p>{{$reply['message']}}</p>
         </div>

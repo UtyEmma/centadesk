@@ -168,7 +168,7 @@
         </div>
 
         <div class="single-form d-flex justify-content-end px-0">
-            <button type="button" class="btn btn-primary" onclick="next()">Next</button>
+            <button type="button" class="btn btn-primary" onclick="handleNext()">Next</button>
         </div>
     </div>
 </div>

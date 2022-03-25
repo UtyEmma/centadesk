@@ -1,25 +1,29 @@
 <script>
     var stepper
 
-    document.addEventListener('DOMContentLoaded', function () {
+    $(document).ready(function () {
         stepper = new Stepper(document.querySelector('.bs-stepper'))
+        setStepProgress()
     })
 
-    function next(names){
+    function setStepProgress(){
+        const {_steps, _currentIndex} = stepper
+        const progress = 100 / _steps.length * (_currentIndex + 1)
+        $('#onboarding-progress')[0].style.width = `${progress}%`
+    }
 
-        if(names){
-            const validator = validate(names)
+    function handleNext(callback){
+        const validate = callback ? callback() : true
 
-            if(!validator.status) {
-                return displayErrors(validator.errors)
-            };
+        if(validate){
+            stepper.next()
+            setStepProgress()
         }
-
-        stepper.next()
     }
 
     function previous(){
         stepper.previous()
+        setStepProgress()
     }
 
     function displayErrors(errors) {
@@ -29,40 +33,12 @@
         })
     }
 
-    function validate(names){
-        let errors = {}
-        let status = true
-
-        names.map((name) => {
-            const element = document.getElementsByName(name)
-            if(element[0].value === '') {
-                status = false
-                return errors[name] = name+" is required"
-            }
-            if(element[0].name === 'username') if(element[0].value.length > 10) {
-                return errors[name] = `${name} must be less than 10 characters`
-            }
-
-            if(element[0].type === 'file') {
-                if(element[0].files.length < 0){
-                    return errors[name] = `Please upload a valid file`
-                }
-            }
-
-            document.getElementById('error-'+name).innerHTML = ""
-        });
-
-        return {status, errors}
-    }
-
     function createMentor(e) {
         e.preventDefault()
         const formData = new FormData(e.target)
         formData.append('experience', JSON.stringify(experienceArray))
         formData.append('qualifications', JSON.stringify(qualificationArray))
         const data = Object.fromEntries(formData.entries())
-
-        console.log(data)
     }
 
 </script>

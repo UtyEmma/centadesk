@@ -1,9 +1,11 @@
 <?php
 
 use App\Http\Controllers\BatchController;
+use App\Http\Controllers\ChatController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\ForumController;
 use App\Http\Controllers\MentorController;
+use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -28,7 +30,13 @@ Route::middleware(['auth'])->group(function(){
         Route::get('/', [StudentController::class, 'show']);
         Route::get('/courses', [StudentController::class, 'enrolledCourses']);
         Route::get('/courses/{slug}', [StudentController::class, 'enrolledCourse']);
+        Route::get('/courses/{slug}/forum', [StudentController::class, 'courseForum']);
+        Route::post('/forum/send/{batch_id}', [ForumController::class, 'storeMessage']);
         Route::get('/mentors', [StudentController::class, 'fetchMentors']);
+    });
+
+    Route::prefix('/reviews')->group(function(){
+        Route::post('/submit/{batch_id}', [ReviewController::class, 'submitReview']);
     });
 
     Route::prefix('/mentor')->group(function(){

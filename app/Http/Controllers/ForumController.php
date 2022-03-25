@@ -2,34 +2,38 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Traits\CourseActions;
 use App\Library\Token;
 use App\Models\Batch;
+use App\Models\Courses;
 use App\Models\ForumMessages;
 use App\Models\ForumReplies;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class ForumController extends Controller{
+    use CourseActions;
 
-    function storeMessage(Request $request) {
+    function storeMessage(Request $request, $batch_id) {
         try {
-            $batch_id = $request->batch_id;
+            $user = $this->user();
             $unique_id = Token::unique('forum_messages');
+
+            $batch = Batch::find($batch_id);
+            $course = Courses::find($batch->course_id);
 
             $message = ForumMessages::create([
                 'unique_id' => $unique_id,
                 'batch_id' => $batch_id,
-                'sender_id' => $request->user_id,
-                'message' => $request->message
+                'sender_id' => $user->unique_id,
+                'message' => $request->message,
+                'title' => $request->title
             ]);
 
-            return response()->json([
-                'message' => $message
-            ]);
+            return redirect()->back()->with('success', "Your Question has been sent");
+
         } catch (\Throwable $th) {
-            return response()->json([
-                'message' => $th->getMessage()
-            ], 400);
+            return redirect()->back();
         }
     }
 

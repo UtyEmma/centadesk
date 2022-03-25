@@ -43,7 +43,7 @@
 
         <div class="single-form d-flex justify-content-between px-0">
             <button type="button" class="btn btn-primary" onclick="previous()">Previous</button>
-            <button type="button" class="btn btn-primary" onclick="next()">Next</button>
+            <button type="button" class="btn btn-primary" onclick="handleNext()">Next</button>
         </div>
     </div>
 </div>

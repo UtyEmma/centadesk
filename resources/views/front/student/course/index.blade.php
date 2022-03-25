@@ -1,0 +1,65 @@
+<x-student-layout>
+    <!-- Courses Start -->
+    <div class="section section-padding mt-n10">
+        <div class="container">
+            <div class="row gx-10">
+                <div class="col-lg-8">
+
+                    <!-- Courses Enroll Content Start -->
+                    <div class="courses-enroll-content px-0">
+
+                        <!-- Courses Enroll Title Start -->
+                        <div class="courses-enroll-title">
+                            <div>
+                                <h2 class="title mb-0">{{$course->name}}</h2>
+                                <p class="mt-0">
+                                    <i class="icofont-eye-alt"></i>
+                                    <span>8,350</span> Students
+                                </p>
+                            </div>
+
+                            <div>
+                                <p class="mb-0 text-end">Current Batch</p>
+                                <h5 class="text-end">{{$batch->title}}</h5>
+                            </div>
+                        </div>
+                        <!-- Courses Enroll Title End -->
+
+                        <!-- Courses Enroll Tab Content Start -->
+                        <div class="courses-enroll-tab-content p-0 border-0">
+                            {{$slot}}
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-lg-4">
+                    <!-- Courses Details Sidebar Start -->
+                    <div class="sidebar">
+
+                        <!-- Sidebar Widget Information Start -->
+                        <x-mentor-card :mentor="$mentor" :class="''" />
+                        <!-- Sidebar Widget Information End -->
+
+                        <!-- Sidebar Widget Share Start -->
+                        <div class="sidebar-widget">
+                            <h4 class="widget-title">Share Course:</h4>
+
+                            <ul class="social">
+                                <li><a href="#"><i class="flaticon-facebook"></i></a></li>
+                                <li><a href="#"><i class="flaticon-linkedin"></i></a></li>
+                                <li><a href="#"><i class="flaticon-twitter"></i></a></li>
+                                <li><a href="#"><i class="flaticon-skype"></i></a></li>
+                                <li><a href="#"><i class="flaticon-instagram"></i></a></li>
+                            </ul>
+                        </div>
+                        <!-- Sidebar Widget Share End -->
+
+                    </div>
+                    <!-- Courses Details Sidebar End -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Courses End -->
+</x-student-layout>

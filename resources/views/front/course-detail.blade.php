@@ -392,7 +392,7 @@
                         <!-- Sidebar Widget Information Start -->
                         <div class="sidebar-widget widget-information">
                             <div class="info-price">
-                                <span class="price">$ {{$batch->price}}</span>
+                                <span class="price">$ {{number_format($batch->price)}}</span>
                             </div>
                             <div class="info-list">
                                 <ul>

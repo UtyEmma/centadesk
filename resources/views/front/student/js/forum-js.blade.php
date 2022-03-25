@@ -1,8 +1,8 @@
 <script>
-
-    function sendMessage(e, user_id, type){
+    async function sendMessage(e, user_id, type){
         e.preventDefault()
-        const formData = new FormData(e.target)
+        const form = e.target
+        const formData = new FormData(form)
 
         formData.append('user_id', user_id)
         formData.append('type', 'message')
@@ -10,17 +10,15 @@
 
         const data = Object.fromEntries(formData.entries())
 
-        const request = Request.post('{{env('MAIN_APP_URL')}}/api/forum/send/', data)
+        const request = await Request.post('{{env('MAIN_APP_URL')}}/api/forum/send/', data)
         if(!request.status) return console.log("Request Failed")
-        console.log(request.data)
+
+        form.reset()
     }
 
     function setMessages(){
-
-    }
-
-    function showReplyForm(id){
-        $(`#${id}`).show()
+        const container = $('#message-container')
+        const message = ``;
     }
 
     function sendResponse(e, user_id, message_id) {
@@ -34,9 +32,13 @@
         console.log(request.data)
 
     }
+
+    function showReplyForm(id){
+        $(`#${id}`)[0].style.display = 'block'
+    }
+
     function hideReplyForm(id){
-        $(`#${id}`).hide()
-        // $(`#${id} textarea`).val('')
+        $(`#${id}`)[0].style.display = 'none'
     }
 
 </script>

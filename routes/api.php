@@ -36,6 +36,5 @@ Route::prefix('banks')->group(function(){
 });
 
 Route::prefix('forum')->group(function(){
-    Route::post('/send', [ForumController::class, 'storeMessage']);
     Route::post('/reply/{message_id}', [ForumController::class, 'storeReplies']);
 });

@@ -50,7 +50,7 @@ class CourseController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request){
+    public function store(CreateCourseRequest $request){
         $course_id = Token::unique('courses');
         $batch_id = Token::unique('batches');
 
@@ -145,6 +145,7 @@ class CourseController extends Controller
         $course = Courses::where('slug', $slug)->first();
         $mentor = User::find($course->mentor_id);
         $batch = Batch::find($course->active_batch);
+
         return view('front.course-detail', [
             'course' => $course,
             'mentor' => $mentor,
