@@ -1,13 +1,36 @@
 <!-- Sidebar Wrapper Start -->
-<div class="sidebar-wrapper col-md-2">
-    <div class="menu-list">
-        <a class="active" href="/me">
-            <img src="{{asset('images/menu-icon/icon-1.png')}}" alt="Icon">
-        </a>
-        <a href="/me/forum"><img src="{{asset('images/menu-icon/icon-2.png')}}" alt="Icon"></a>
-        <a href="/me/courses"><img src="{{asset('images/menu-icon/icon-3.png')}}" alt="Icon"></a>
-        <a href="engagement.html"><img src="{{asset('images/menu-icon/icon-4.png')}}" alt="Icon"></a>
-        <a href="traffic-conversion.html"><img src="{{asset('images/menu-icon/icon-5.png')}}" alt="Icon"></a>
-    </div>
+<div class="bg-primary h-100 position-fixed col-md-2 d-none d-md-block">
+    <ul class="mt-3 app-menu text-white">
+        <li class="w-100 app-menu-item">
+            <a class="active d-flex align-items-center w-100 p-3" href="/me">
+                <i class="icofont-ui-home fs-4 me-3"></i>
+                <span>Overview</span>
+            </a>
+        </li>
+        <li>
+            <a class="active d-flex align-items-center w-100 p-3" href="/me/classes">
+                <i class="icofont-book-alt fs-4 me-3"></i>
+                <span>Courses</span>
+            </a>
+        </li>
+        <li>
+            <a class="active d-flex align-items-center w-100 p-3" href="/me/wallet">
+                <i class="icofont-wallet fs-4 me-3"></i>
+                <span>Wallet</span>
+            </a>
+        </li>
+        <li>
+            <a class="active d-flex align-items-center w-100 p-3" href="/me/profile">
+                <i class="icofont-user-alt-3 fs-4 me-3"></i>
+                <span>Profile</span>
+            </a>
+        </li>
+        <li>
+            <a class="active d-flex align-items-center w-100 p-3" href="/me/wallet">
+                <i class="icofont-settings fs-4 me-3"></i>
+                <span>Settings</span>
+            </a>
+        </li>
+    </ul>
 </div>
 <!-- Sidebar Wrapper End -->

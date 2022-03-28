@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Library\Token;
 use App\Models\Batch;
+use App\Models\Courses;
 use App\Models\Review;
+use Exception;
 use Illuminate\Http\Request;
 
 class ReviewController extends Controller{
@@ -28,6 +30,33 @@ class ReviewController extends Controller{
         } catch (\Throwable $th) {
             return redirect()->back()->with('error', $th->getMessage());
         }
+    }
+
+    function fetchCourseReviews(Request $request, $slug){
+        try {
+            $user = $this->user();
+
+            $course = Courses::where([
+                'slug' => $slug,
+                'mentor_id' => $user->unique_id
+            ])->first();
+
+            if(!$course) return throw new Exception("The course was not found", 404);
+
+            $batches = Courses::find($course->unique_id)->batches;
+
+            return view('dashboard.course-details.reviews', [
+                'course' => $course,
+                'mentor' => $user,
+                'batches' => $batches
+            ]);
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('error', $th->getMessage());
+        }
+    }
+
+    function fetchMentorReviews(Request $request){
+
     }
 
 }

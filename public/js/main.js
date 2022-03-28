@@ -230,7 +230,6 @@
     /*--
 		Rating Script
 	-----------------------------------*/
-
 	$("#rating li").on('mouseover', function(){
 		var onStar = parseInt($(this).data('value'), 10);
 		var siblings = $(this).parent().children('li.star');

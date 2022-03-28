@@ -95,3 +95,33 @@ input::-webkit-inner-spin-button {
     font-size: 0.9rem;
     color: #999;
   }
+
+  .tag-badge{
+    background-color: #ffba00;
+    font-size: 14px;
+    font-family: "Gordita";
+    font-weight: 400;
+    padding: 0 25px;
+    border-radius: 5px;
+    height: 35px;
+    line-height: 35px;
+    display: inline-block;
+    color: #fff;
+}
+
+.bg-soft-primary{
+    background-color: #e5f4eb;
+}
+
+.app-menu{
+
+}
+
+.app-menu .app-menu-item{
+    transition: all 500s ease-in-out ;
+}
+
+.app-menu .app-menu-item:hover{
+    background-color: white !important;
+    color: #309255 !important;
+}

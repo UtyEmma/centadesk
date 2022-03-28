@@ -2,13 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Traits\BatchActions;
 use App\Models\Batch;
 use App\Models\Courses;
 use App\Models\ForumMessages;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
+use function PHPUnit\Framework\throwException;
+
 class BatchController extends Controller{
+    use BatchActions;
 
     function fetch(Request $request, $batch_id){
         $batch = DB::table('batches')
@@ -22,10 +27,19 @@ class BatchController extends Controller{
         ]);
     }
 
-    function fetchBatch(Request $request, $slug, $batch_id){
+    function fetchBatchStudents(Request $request, $slug, $shortcode){
+        try {
+            $details = $this->mentorBatchDetails($shortcode, true);
+            return response()->view('dashboard.course-details.batch.students', $details);
+        } catch (\Throwable $th) {
+            throw new Exception($th->getMessage(), $th->getCode());
+        }
+    }
+
+    function fetchBatch(Request $request, $slug, $shortcode){
         $user = $this->user();
 
-        $batch = Batch::where('short_code', $batch_id)->first();
+        $batch = Batch::where('short_code', $shortcode)->first();
         $course = Courses::find($batch->course_id);
 
         $students = DB::table('enrollments')
@@ -34,16 +48,14 @@ class BatchController extends Controller{
                             ->select('users.*')
                             ->get();
 
-        $messages = DB::table('forum_messages')
-                        ->where('batch_id', $batch->unique_id)
-                        ->join('forum_replies', 'forum_messages.unique_id' ,'forum_replies.message_id')
-                        ->get();
+        $batches = Courses::find($batch->course_id)->batches;
 
-        return view('dashboard.batch-details', [
+        return view('dashboard.course-details.batch.overview', [
             'course' => $course,
+            'batches' => $batches,
             'batch' => $batch,
             'students' => $students,
-            'messages' => $messages
+            'mentor' => $user
         ]);
     }
 

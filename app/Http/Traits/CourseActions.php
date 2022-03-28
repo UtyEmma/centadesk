@@ -11,6 +11,7 @@ use App\Models\ForumReplies;
 use App\Models\User;
 
 trait CourseActions {
+
     public function fetchCourse ($request, $slug){
         $user = $this->user();
         $course = Courses::where('slug', $slug)->first();

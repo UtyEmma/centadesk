@@ -12,6 +12,7 @@
         <!-- Fonts -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
         <link rel="stylesheet" href="{{asset('css/vendor/plugins.min.css')}}">
+        <link rel="stylesheet" href="{{asset('css/plugins/swiper-bundle.min.css')}}">
 
 
         <!-- Icon Font CSS -->
@@ -20,9 +21,13 @@
         <link rel="stylesheet" href="{{ asset('css/plugins/font-awesome.min.css')}} ">
         <link rel="stylesheet" href="{{ asset('css/plugins/tagify.min.css')}} ">
         <link rel="stylesheet" href="{{ asset('css/plugins/date-range-picker.css')}} ">
+        <link rel="stylesheet" href="{{ asset('css/plugins/jqvmap.min.css')}} ">
         <link rel="stylesheet" href="{{ asset('vendor/summernote-0.8.18-dist/summernote-lite.min.css')}} ">
 
-        <script src="{{asset('css/plugins/bs-stepper.min.css')}}" defer></script>
+        <script src="{{asset('css/plugins/bs-stepper.min.css')}}"></script>
+
+        <link rel="stylesheet" href="{{asset('css/plugins/animate.min.css')}}">
+        <link rel="stylesheet" href="{{asset('css/plugins/swiper-bundle.min.css')}}">
 
         <!-- Main Style CSS -->
         <link rel="stylesheet" href="{{asset('css/style.css')}}">
@@ -39,8 +44,7 @@
         <script src="{{asset('js/plugins/popper.min.js')}}" ></script>
 
         <!--====== Use the minified version files listed below for better performance and remove the files listed above ======-->
-        <script src="{{asset('js/plugins.min.js')}}" ></script>
-
+        <script src="{{asset('js/plugins.min.js')}}"></script>
 
         <script src="{{asset('js/plugins/bs-stepper.min.js')}}" ></script>
         <script src="{{asset('js/plugins/tagify/tagify.min.js')}}"></script>

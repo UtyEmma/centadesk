@@ -133,7 +133,7 @@ class CourseController extends Controller
 
         if(!$course) return redirect('/404');
 
-        return view('dashboard.course-details', [
+        return view('dashboard.course-details.overview', [
             'course' => $course,
             'batches' => $batches,
             'mentor' => $user

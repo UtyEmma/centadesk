@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\BatchController;
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\CourseController;
@@ -51,8 +52,10 @@ Route::middleware(['auth'])->group(function(){
             Route::get('/create', [CourseController::class, 'create']);
             Route::post('/new', [CourseController::class, 'store']);
             Route::get('/{slug}', [CourseController::class, 'single']);
-            Route::prefix('/{slug}/{batch_id}')->group(function(){
+            Route::get('/{slug}/reviews', [ReviewController::class, 'fetchCourseReviews']);
+            Route::prefix('/{slug}/{shortcode}')->group(function(){
                 Route::get('/', [BatchController::class, 'fetchBatch']);
+                Route::get('/students', [BatchController::class, 'fetchBatchStudents']);
                 Route::get('/forum', [ForumController::class, 'show']);
             });
         });
@@ -68,6 +71,9 @@ Route::prefix('classes')->group(function(){
     Route::get('/', [CourseController::class, 'all']);
     Route::get('/{slug}', [CourseController::class, 'show']);
 });
+
+
+
 
 
 require __DIR__.'/auth.php';

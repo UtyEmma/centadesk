@@ -20,4 +20,8 @@ class Batch extends Model{
         'status' => 'ongoing'
     ];
 
+    public function course (){
+        return $this->belongsTo(Courses::class, 'course_id', 'unique_id');
+    }
+
 }
