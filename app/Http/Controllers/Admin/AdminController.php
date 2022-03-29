@@ -13,11 +13,16 @@ class AdminController extends Controller{
     }
 
     function authenticate(Request $request){
-        if(!Auth::guard('admin')->attempt($request->all())){
+        if(!Auth::guard('admin')->attempt([
+            'email' => $request->email,
+            'password' => $request->password
+        ])){
             return redirect()->back()->with('error', 'Invalid Email or Password');
         }
 
-        return redirect('/')->with('success', 'Login Successful');
+        $request->session()->regenerate();
+
+        return redirect()->intended('/')->with('success', 'Login Successful');
     }
 
     function home(){

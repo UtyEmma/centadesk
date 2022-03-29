@@ -31,6 +31,14 @@ class DateTime {
         ]));
     }
 
+    static function createFromFormat($format, $date){
+        $dt = Date::createFromFormat($format, $date);
+        return json_decode(json_encode([
+            'date' => $dt->format('jS F Y'),
+            'time' => $dt->format('g:i A')
+        ]));
+    }
+
     static function timeDiffInHours($first, $second){
         $first = Date::createFromFormat('Y-m-d H:i:s', $first);
         $second = Date::create($second);
