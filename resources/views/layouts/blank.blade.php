@@ -37,7 +37,7 @@
         <script src="{{asset('js/plugins/bs-stepper.min.js')}}" ></script>
         <script src="{{asset('js/plugins/tagify/tagify.min.js')}}" ></script>
         <script src="{{asset('js/plugins/tagify/tagify.polyfills.min.js')}}" ></script>
-
+        <script src="{{asset('js/plugins/moment.min.js')}}" ></script>
         <script src="{{asset('js/plugins/validator.js')}}"></script>
 
         <!--====== Use the minified version files listed below for better performance and remove the files listed above ======-->
@@ -48,6 +48,7 @@
         <script src="{{asset('js/validation.js')}}" ></script>
         <script src="{{asset('js/ajax.js')}}"></script>
 
+        @stack('scripts')
     </head>
     <body>
 

@@ -43,6 +43,8 @@
         <!-- Main JS -->
         <script src="{{asset('js/main.js')}}" ></script>
         <script src="{{asset('js/ajax.js')}}"></script>
+
+        @stack('scripts')
     </head>
     <body>
         @include('layouts.guest.guest-header')

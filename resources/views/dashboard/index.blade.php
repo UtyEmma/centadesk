@@ -2,7 +2,6 @@
     <!-- Page Content Wrapper Start -->
     <div class="my-5">
         <div class="container-fluid">
-
             <div class="row">
                 <div class="col-md-7">
                     <div>
@@ -36,18 +35,29 @@
                     </div>
                 </div>
 
-                <div class="col-md-5 new-courses px-8 mt-0" style="background-image: url({{asset('images/new-courses-banner.jpg')}});">
-                    <div class="row">
-                        <div class="new-courses-title">
-                            <h3 class="title">Your students want to learn more. <br> Consider creating new courses to meet that demand.</h3>
-                        </div>
-
-                        <div class="new-courses-btn mt-6">
-                            <a href="/me/courses/create" class="btn">Create a new Course<i class="icofont-rounded-right"></i></a>
+                @if ($user->kyc_status === 'pending')
+                    <div class="col-md-5 new-courses px-8 mt-0" style="background-image: url({{asset('images/new-courses-banner.jpg')}});">
+                        <div class="row">
+                            <div class="new-courses-title">
+                                <h3 class="title">Your Mentor account is under review. <br> You will be able to start creating courses after your account is approved.</h3>
+                                <p class="text-white">This should take between a few hours to a few days.</p>
+                            </div>
                         </div>
                     </div>
-                    {{-- <img class="shape d-none d-xl-block" src="{{asset('images/shape/shape-27.png')}}" alt="Shape"> --}}
-                </div>
+                @elseif ($user->kyc_status === 'approved')
+                    <div class="col-md-5 new-courses px-8 mt-0" style="background-image: url({{asset('images/new-courses-banner.jpg')}});">
+                        <div class="row">
+                            <div class="new-courses-title">
+                                <h3 class="title">Your students want to learn more. <br> Consider creating new courses to meet that demand.</h3>
+                            </div>
+
+                            <div class="new-courses-btn mt-6">
+                                <a href="/me/courses/create" class="btn">Create a new Course<i class="icofont-rounded-right"></i></a>
+                            </div>
+                        </div>
+                        {{-- <img class="shape d-none d-xl-block" src="{{asset('images/shape/shape-27.png')}}" alt="Shape"> --}}
+                    </div>
+                @endif
             </div>
             <!-- Overview Top Start -->
             <div class="admin-top-bar flex-wrap">

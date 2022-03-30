@@ -13,6 +13,10 @@ class Response {
         return redirect($to)->with($type, $message);
     }
 
+    static function intended($default, $key = null, $value = null){
+        return redirect()->intended($default)->with($key, $value);
+    }
+
     static function view($blade, $data = []){
         return response()->view($blade, $data);
     }

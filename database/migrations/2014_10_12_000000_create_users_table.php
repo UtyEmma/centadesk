@@ -48,9 +48,10 @@ return new class extends Migration
             $table->string('twitter')->nullable();
             $table->string('role');
             $table->boolean('is_verified');
+            $table->boolean('approved');
             $table->string('status');
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
+            $table->string('password')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

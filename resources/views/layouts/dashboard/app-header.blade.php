@@ -9,6 +9,21 @@
             </div>
             <!-- Header Logo End -->
 
+            <div>
+                <script>
+
+                    function toggleMenu() {
+                        const element = $('#app-sidebar')
+                        element.toggle()
+                    }
+
+                </script>
+
+                <button class="text-primary btn px-2 d-md-none" type="button" onclick="toggleMenu()">
+                    <span class="icofont-navigation-menu fs-2"></span>
+                </button>
+            </div>
+
             <!-- Header Search Start -->
             <div class="login-header-search dropdown">
                 <button class="search-toggle" data-bs-toggle="dropdown"><i class="flaticon-loupe"></i></button>
@@ -87,19 +102,6 @@
                 <a class="action author" href="#">
                     <img src="{{asset('images/author/author-07.jpg')}}" alt="Author">
                 </a>
-
-                <div class="dropdown">
-                    <button class="action more" data-bs-toggle="dropdown">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li><a class="" href="#"><i class="icofont-user"></i> Profile</a></li>
-                        <li><a class="" href="#"><i class="icofont-inbox"></i> Inbox</a></li>
-                        <li><a class="" href="#"><i class="icofont-logout"></i> Sign Out</a></li>
-                    </ul>
-                </div>
             </div>
             <!-- Header Action End -->
 

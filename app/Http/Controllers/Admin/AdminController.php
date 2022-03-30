@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -26,7 +27,15 @@ class AdminController extends Controller{
     }
 
     function home(){
-        return view('admin.overview');
+        $mentor_requests = User::where([
+            'role' => 'mentor',
+            'kyc_status' => 'pending',
+            'approved' => false
+        ])->get();
+
+        return view('admin.overview', [
+            'mentor_requests' => $mentor_requests
+        ]);
     }
 
 }

@@ -9,18 +9,13 @@ use Illuminate\Support\Facades\Storage;
 
 class FileHandler {
 
-    public function handleFiles($file, $update = false, $old_files = []){
-        !is_array($file) ? $newFile = [$file] : $newFile = $file;
-        $files = $this->upload($newFile);
-        !is_array($files) ? $files = json_encode([$file]) : $files = json_encode($files);
-        return $files;
-    }
+    static function upload($files){
+        if(!$files) return false;
 
-    public function upload($files){
         if(is_array($files)){
             for($i=0; $i < count($files); $i++) {
                 $file = $files[$i];
-                if(!file_exists($file)){ throw new Exception("No files Selected"); }
+                if(!file_exists($file)) throw new Exception("No files Selected");
                 $url = cloudinary()->upload($file->getRealPath())->getSecurePath();
                 $file_array[$i] = $url;
             }
@@ -31,14 +26,14 @@ class FileHandler {
         return $url;
     }
 
-    public function deleteFile($file){
+    static function deleteFile($file){
         if ($file) {
-            $cloudinary_id = $this->extractFileId($file);
+            $cloudinary_id = self::extractFileId($file);
             cloudinary()->destroy($cloudinary_id);
         }
     }
 
-    private function extractFileId($file){
+    private static function extractFileId($file){
         $ext = pathinfo($file, PATHINFO_EXTENSION);
         return basename($file, $ext);
     }

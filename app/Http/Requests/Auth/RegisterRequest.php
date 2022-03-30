@@ -2,7 +2,10 @@
 
 namespace App\Http\Requests\Auth;
 
+use App\Library\Token;
+use App\Models\User;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 
 class RegisterRequest extends FormRequest
@@ -30,5 +33,20 @@ class RegisterRequest extends FormRequest
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', Rules\Password::defaults()],
         ];
+    }
+
+
+    public function register(){
+        $unique_id = Token::unique('users');
+
+        $user = User::create([
+            'unique_id' => $unique_id,
+            'firstname' => $this->firstname,
+            'lastname' => $this->lastname,
+            'email' => $this->email,
+            'password' => Hash::make($this->password),
+        ]);
+
+        return $user;
     }
 }

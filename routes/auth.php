@@ -7,6 +7,7 @@ use App\Http\Controllers\Auth\EmailVerificationPromptController;
 use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\Auth\SocialAuthController;
 use App\Http\Controllers\Auth\VerifyEmailController;
 use Illuminate\Support\Facades\Route;
 
@@ -32,6 +33,18 @@ Route::middleware('guest')->group(function () {
 
     Route::post('reset-password', [NewPasswordController::class, 'store'])
                 ->name('password.update');
+
+    Route::prefix('facebook')->name('facebook.')->group( function(){
+        Route::get('auth', [SocialAuthController::class, 'facebookLogin'])->name('login');
+        Route::get('callback', [SocialAuthController::class, 'facebookCallback'])->name('callback');
+    });
+
+    Route::prefix('google')->name('google.')->group( function(){
+        Route::get('auth', [SocialAuthController::class, 'googleLogin'])->name('login');
+        Route::get('callback', [SocialAuthController::class, 'googleCallback'])->name('callback');
+    });
+
+
 });
 
 Route::middleware('auth')->group(function () {

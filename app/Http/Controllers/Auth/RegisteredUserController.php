@@ -34,15 +34,7 @@ class RegisteredUserController extends Controller
      * @throws \Illuminate\Validation\ValidationException
      */
     public function store(RegisterRequest $request){
-        $unique_id = Token::unique('users');
-
-        $user = User::create([
-            'unique_id' => $unique_id,
-            'firstname' => $request->firstname,
-            'lastname' => $request->lastname,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
+        $user = $request->register();
 
         event(new Registered($user));
 

@@ -44,4 +44,20 @@
     }
 
 
+    var stepper
+
+    $(document).ready(function () {
+        stepper = new Stepper(document.querySelector('.bs-stepper'))
+    })
+
+
+    function handlePrevious(){
+        stepper.previous()
+    }
+
+    function handleNext(){
+        stepper.next()
+    }
+
+
 </script>

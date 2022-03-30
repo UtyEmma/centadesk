@@ -13,7 +13,7 @@
                     <th>Name</th>
                     <th>Email</th>
                     <th>Role</th>
-                    <th>Amount</th>
+                    <th>Status</th>
                     <th></th>
                   </tr>
                 </thead>
@@ -28,12 +28,17 @@
                                 {{$user->email}}
                             </td>
                             <td>
-                                <p class="text-capitalize">
-                                    {{$user->role}}
-                                </p>
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <span class="text-capitalize lh-1">
+                                        {{$user->role}}
+                                    </span>
+                                    @if ($user->role === 'mentor' && $user->kyc_status === 'pending')
+                                        <span class="badge badge-warning">{{$user->kyc_status}} approval</span>
+                                    @endif
+                                </div>
                             </td>
                             <td>
-                                $ 77.99
+                                <span class="badge {{$user->status ? 'badge-success' : 'badge-warning' }}">{{$user->status ? 'active' : 'inactive'}}</span>
                             </td>
                             <td>
                                 <div class="btn-group">

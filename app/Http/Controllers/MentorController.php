@@ -50,13 +50,16 @@ class MentorController extends Controller{
     public function store(Request $request){
         $user = $this->user();
 
-
-        $avatar = $request->hasFile('avatar') ? $request->file('avatar')->storeAs('users', $user->unique_id) : "";
-        $id_image = $request->hasFile('avatar') ? $request->file('id_image')->storeAs('kyc', $user->unique_id) : "";
+        $avatar = FileHandler::upload($request->file('avatar')) ?? "";
+        $id_image = FileHandler::upload($request->file('id_image')) ?? "";
 
         $user->update(array_merge(
-            $request->all(),
-            [
+            $request->all(), [
+                'account_no' => $request->account_number,
+                'instagram' => $request->instagram,
+                'facebook' => $request->facebook,
+                'twitter' => $request->twitter,
+                'desc' => $request->desc,
                 'role' => 'mentor',
                 'avatar' => $avatar,
                 'id_image' => $id_image

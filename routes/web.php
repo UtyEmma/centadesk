@@ -50,13 +50,16 @@ Route::middleware(['auth'])->group(function(){
         Route::prefix('courses')->group(function(){
             Route::get('/', [CourseController::class, 'fetch']);
             Route::get('/create', [CourseController::class, 'create']);
-            Route::post('/new', [CourseController::class, 'store']);
-            Route::get('/{slug}', [CourseController::class, 'single']);
-            Route::get('/{slug}/reviews', [ReviewController::class, 'fetchCourseReviews']);
-            Route::prefix('/{slug}/{shortcode}')->group(function(){
-                Route::get('/', [BatchController::class, 'fetchBatch']);
-                Route::get('/students', [BatchController::class, 'fetchBatchStudents']);
-                Route::get('/forum', [ForumController::class, 'show']);
+
+            Route::middleware('is.approved')->group(function(){
+                Route::post('/new', [CourseController::class, 'store']);
+                Route::get('/{slug}', [CourseController::class, 'single']);
+                Route::get('/{slug}/reviews', [ReviewController::class, 'fetchCourseReviews']);
+                Route::prefix('/{slug}/{shortcode}')->group(function(){
+                    Route::get('/', [BatchController::class, 'fetchBatch']);
+                    Route::get('/students', [BatchController::class, 'fetchBatchStudents']);
+                    Route::get('/forum', [ForumController::class, 'show']);
+                });
             });
         });
     });

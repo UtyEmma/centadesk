@@ -17524,7 +17524,7 @@ img {
 }
 
 .login-header-logo {
-  padding: 25px 25px;
+  padding: 20px 25px;
   background-color: #28313d;
 }
 
@@ -17614,7 +17614,7 @@ img {
 
 .login-header-search .search-input input {
   width: 100%;
-  height: 60px;
+  height: 50px;
   border: 0;
   border-radius: 50px;
   padding: 0 30px;
@@ -17642,12 +17642,11 @@ img {
   position: absolute;
   width: 50px;
   height: 50px;
-  line-height: 53px;
   text-align: center;
   border-radius: 10px;
   background-color: transparent;
   border: 0;
-  top: 5px;
+  top: 2px;
   right: 5px;
   font-size: 16px;
   color: #309255;
@@ -17734,7 +17733,7 @@ img {
 }
 
 .login-header-action .notification {
-  font-size: 36px;
+  font-size: 30px;
   color: #309255;
   position: relative;
   padding-top: 3px;
@@ -17778,7 +17777,7 @@ img {
 }
 
 .login-header-action .author img {
-  width: 60px;
+  width: 50px;
   border-radius: 50%;
 }
 

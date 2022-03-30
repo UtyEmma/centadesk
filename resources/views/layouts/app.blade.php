@@ -14,7 +14,6 @@
         <link rel="stylesheet" href="{{asset('css/vendor/plugins.min.css')}}">
         <link rel="stylesheet" href="{{asset('css/plugins/swiper-bundle.min.css')}}">
 
-
         <!-- Icon Font CSS -->
         <link rel="stylesheet" href="{{ asset('css/plugins/icofont.min.css')}} ">
         <link rel="stylesheet" href="{{ asset('css/plugins/flaticon.css')}} ">
@@ -24,20 +23,23 @@
         <link rel="stylesheet" href="{{ asset('css/plugins/jqvmap.min.css')}} ">
         <link rel="stylesheet" href="{{ asset('vendor/summernote-0.8.18-dist/summernote-lite.min.css')}} ">
 
-        <script src="{{asset('css/plugins/bs-stepper.min.css')}}"></script>
-
         <link rel="stylesheet" href="{{asset('css/plugins/animate.min.css')}}">
         <link rel="stylesheet" href="{{asset('css/plugins/swiper-bundle.min.css')}}">
 
+        <link rel="stylesheet" href="{{ asset('css/plugins/bs-stepper.min.css')}} ">
+
+        <link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css"/>
         <!-- Main Style CSS -->
         <link rel="stylesheet" href="{{asset('css/style.css')}}">
         <link rel="stylesheet" href="{{ asset('css/custom.css')}} ">
 
-        <!-- JS
-        ============================================ -->
+        @stack('styles')
+
+        <!-- JS ============================================ -->
         <!-- Modernizer & jQuery JS -->
         <script src="{{asset('js/vendor/modernizr-3.11.2.min.js')}}" ></script>
         <script src="{{asset('js/vendor/jquery-3.5.1.min.js')}}" ></script>
+
 
         <!-- Bootstrap JS -->
         <script src="{{asset('js/plugins/bootstrap.min.js')}}" ></script>
@@ -53,21 +55,24 @@
         <script src="{{asset('js/plugins/date-range-picker.min.js')}}" ></script>
         <script src="{{asset('vendor/summernote-0.8.18-dist/summernote-lite.min.js')}}" ></script>
 
+        <script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
+
+
         <!-- Main JS -->
         <script src="{{asset('js/main.js')}}" ></script>
         <script src="{{asset('js/ajax.js')}}"></script>
 
-
+        @stack('scripts')
     </head>
     <body>
 
-        <div class="main-wrapper main-wrapper-02">
+        <div class="main-wrapper">
             @include('layouts.dashboard.app-header')
 
-            <div class="section overflow-hidden position-relative row" id="wrapper">
+            <div class="section overflow-hidden position-relative row px-0 mx-0" id="wrapper">
                 @include('layouts.dashboard.app-sidebar')
 
-                <div class="py-4 col-md-10 offset-md-2">
+                <div class="col-md-10 offset-md-2 px-0">
                     {{$slot}}
                 </div>
             </div>

@@ -1,5 +1,4 @@
 <x-blank-layout>
-
     @include('front.mentors.js.onboarding-js')
 
     <section class="flex flex-column justify-content-center">
@@ -45,7 +44,7 @@
 
                         <div class="step" data-target="#experience-item">
                             <button type="button" class="step-trigger" role="tab" aria-controls="experience-item" id="experience-trigger">
-                            <span class="bs-stepper-label">Qualifications</span>
+                            <span class="bs-stepper-label">Experience</span>
                             </button>
                         </div>
 

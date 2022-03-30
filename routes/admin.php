@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\AnalyticsController;
+use App\Http\Controllers\Admin\MentorController;
 use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -35,6 +36,7 @@ Route::middleware('auth:admin')->group(function(){
             Route::prefix('/actions')->group(function(){
                 Route::get('/status', [UserController::class, 'status']);
                 Route::get('/delete', [UserController::class, 'delete']);
+                Route::get('/approve', [MentorController::class, 'approve']);
             });
         });
     });

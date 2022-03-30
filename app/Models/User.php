@@ -12,7 +12,7 @@ class User extends Authenticatable
     use HasApiTokens, HasFactory, Notifiable;
 
 
-    protected $fillable = [ 'unique_id', 'email', 'firstname', 'lastname', 'account_name', 'account_no', 'bank', 'payment_method', 'crypto_address', 'specialties', 'interests', 'role', 'status', 'password', 'kyc_status', 'kyc_method', 'balance', 'affiliate_id', 'city', 'state', 'country', 'experience','qualification'];
+    protected $fillable = [ 'unique_id', 'email', 'firstname', 'lastname', 'username', 'account_name', 'account_no', 'bank', 'payment_method', 'crypto_address', 'specialty', 'id_number', 'id_image', 'interests', 'role', 'status', 'password', 'kyc_status', 'kyc_method', 'balance', 'affiliate_id', 'city', 'state', 'country', 'experience','qualification', 'approved'];
 
     protected $primaryKey = 'unique_id';
     protected $keyType = 'string';
@@ -32,7 +32,8 @@ class User extends Authenticatable
         'kyc_status' => 'pending',
         'role' => 'user',
         'is_verified' => false,
-        'status' => true
+        'status' => true,
+        'approved' => false
     ];
 
     protected $casts = [
