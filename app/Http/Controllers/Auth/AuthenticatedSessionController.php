@@ -17,7 +17,9 @@ class AuthenticatedSessionController extends Controller
      */
     public function create()
     {
-        return view('auth.login');
+        return view('auth.login', [
+            'data' => $this->app_data()
+        ]);
     }
 
     /**
@@ -31,7 +33,9 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(RouteServiceProvider::LEARNING_CENTER);
+        $user = Auth::user();
+
+        return redirect()->intended(RouteServiceProvider::LEARNING_CENTER)->withCookie(cookie('currency', $user->currency));
     }
 
     /**

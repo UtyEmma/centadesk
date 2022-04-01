@@ -1,7 +1,7 @@
 <div class="main-wrapper">
-
     <!-- Header Section Start -->
     <div class="header-section">
+
 
         <!-- Header Top Start -->
         <div class="header-top d-none d-lg-block">
@@ -59,7 +59,9 @@
                     <!-- Header Menu Start -->
                     <div class="header-menu d-none d-lg-block">
                         <ul class="nav-menu">
-                            <li><a href="/">Home</a></li>
+                            <li>
+                                <a href="/">Home</a>
+                            </li>
                             <li>
                                 <a href="/classes">Courses</a>
                             </li>

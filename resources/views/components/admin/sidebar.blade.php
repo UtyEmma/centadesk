@@ -26,6 +26,12 @@
         </a>
       </li>
       <li class="nav-item">
+        <a class="nav-link" href="/currencies">
+          <i class="mdi mdi-currency-usd menu-icon"></i>
+          <span class="menu-title">Currencies</span>
+        </a>
+      </li>
+      <li class="nav-item">
         <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
           <i class="mdi mdi-account menu-icon"></i>
           <span class="menu-title">User Pages</span>

@@ -24,14 +24,15 @@ class CourseController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function all(){
-
+        return print_r(cookie('currency'));
         $courses =  DB::table('courses')
                         ->join('users', 'users.unique_id', '=', 'courses.mentor_id')
                         ->select('courses.*', 'users.firstname', 'users.lastname', 'users.avatar')
                         ->get();
 
         return view('front.courses', [
-            'courses' => $courses
+            'courses' => $courses,
+            'data' => $this->app_data()
         ]);
     }
 
@@ -51,65 +52,68 @@ class CourseController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(CreateCourseRequest $request){
-        $course_id = Token::unique('courses');
-        $batch_id = Token::unique('batches');
+        try {
+            $course_id = Token::unique('courses');
+            $batch_id = Token::unique('batches');
 
-        $user = $this->user();
+            $user = $this->user();
 
-        $images = FileHandler::uploadMultiple($request->file('images'), 'courses');
-        $slug = Str::slug($request->name, '-');
+            $images = FileHandler::upload($request->file('images'));
+            $slug = Str::slug($request->name, '-');
 
-        $course = Courses::create([
-            'unique_id' => $course_id,
-            'mentor_id' => $user->unique_id,
-            'name' => $request->name,
-            'slug' => $slug,
-            'desc' => $request->desc,
-            'tags' => $request->tags,
-            'video' => $request->video,
-            'images' => $images
-        ]);
+            $course = Courses::create([
+                'unique_id' => $course_id,
+                'mentor_id' => $user->unique_id,
+                'name' => $request->name,
+                'slug' => $slug,
+                'desc' => $request->desc,
+                'tags' => $request->tags,
+                'video' => $request->video,
+                'images' => $images
+            ]);
 
-        $user->total_courses = $user->total_courses + 1;
-        $array = [4, 5, 6, 7];
-        $short_code = $request->short_code || Str::random(Arr::random($array));
+            $user->total_courses = $user->total_courses + 1;
+            $array = [4, 5, 6, 7];
+            $short_code = $request->short_code || Str::random(Arr::random($array));
 
-        $batch = Batch::create([
-            'unique_id' => $batch_id,
-            'course_id' => $course_id,
-            'duration' => $request->duration,
-            'class_link' => $request->class_link,
-            'attendees' => $request->attendees,
-            'price' => $request->price,
-            'current' => true,
-            'count' => 1,
-            'video' => $request->video,
-            'images' => $images,
-            'startdate' => $request->startdate,
-            'title' => $request->title,
-            'short_code' => $short_code,
-            'enddate' => $request->enddate,
-            'discounts' => $request->discounts || 0 ,
-            'time_discount' => $request->time_discount,
-            'time_discount_rate' => $request->time_discount_rate,
-            'time_discount_price' => $request->time_discount_price,
-            'time_discount_percentage' => $request->time_discount_percentage,
-            'signups_discount' => $request->signups_discount,
-            'signups_discount_rate' => $request->signups_discount_rate,
-            'signups_discount_price' => $request->signups_discount_price,
-            'signups_discount_percentage' => $request->signups_discount_percentage
-        ]);
+            $batch = Batch::create([
+                'unique_id' => $batch_id,
+                'course_id' => $course_id,
+                'duration' => $request->duration,
+                'class_link' => $request->class_link,
+                'attendees' => $request->attendees,
+                'price' => $request->price,
+                'current' => true,
+                'count' => 1,
+                'video' => $request->video,
+                'images' => $images,
+                'startdate' => $request->startdate,
+                'title' => $request->title,
+                'short_code' => $short_code,
+                'enddate' => $request->enddate,
+                'discounts' => $request->discounts || 0 ,
+                'time_discount' => $request->time_discount,
+                'time_discount_rate' => $request->time_discount_rate,
+                'time_discount_price' => $request->time_discount_price,
+                'time_discount_percentage' => $request->time_discount_percentage,
+                'signups_discount' => $request->signups_discount,
+                'signups_discount_rate' => $request->signups_discount_rate,
+                'signups_discount_price' => $request->signups_discount_price,
+                'signups_discount_percentage' => $request->signups_discount_percentage
+            ]);
 
-        $course->update([
-            'total_batches' => $course->total_batches + 1,
-            'active_batch' => $batch->unique_id
-        ]);
+            $course->update([
+                'total_batches' => $course->total_batches + 1,
+                'active_batch' => $batch->unique_id
+            ]);
 
-        $user->total_batches = $user->total_batches + 1;
+            $user->total_batches = $user->total_batches + 1;
+            $user->save();
 
-        $user->save();
-
-        return redirect()->back()->with('message', 'Course Created Successfully');
+            return redirect()->back()->with('message', 'Course Created Successfully');
+        } catch (\Throwable $th) {
+            throw $th;
+        }
     }
 
     public function fetch(){
@@ -117,7 +121,8 @@ class CourseController extends Controller
         $courses = User::find($user->unique_id)->courses;
 
         return view('dashboard.courses', [
-            'courses' => $courses
+            'courses' => $courses,
+            'data' => $this->app_data()
         ]);
     }
 
@@ -136,7 +141,8 @@ class CourseController extends Controller
         return view('dashboard.course-details.overview', [
             'course' => $course,
             'batches' => $batches,
-            'mentor' => $user
+            'mentor' => $user,
+            'data' => $this->app_data()
         ]);
     }
 
@@ -150,7 +156,8 @@ class CourseController extends Controller
             'course' => $course,
             'mentor' => $mentor,
             'batch' => $batch,
-            'user' => $user
+            'user' => $user,
+            'data' => $this->app_data()
         ]);
     }
 

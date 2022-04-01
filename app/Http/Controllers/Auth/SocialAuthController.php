@@ -42,9 +42,10 @@ class SocialAuthController extends Controller{
                 $user = $this->findOrCreate($user);
 
                 Auth::login($user);
-                return Response::intended(RouteServiceProvider::LEARNING_CENTER);
+
+                return response()->redirectToIntended(RouteServiceProvider::LEARNING_CENTER)->withCookie(cookie('currency', $user->currency));
             }else{
-                throw new Exception("There was an Error");
+                throw new Exception("This user does not exist");
             }
         } catch (\Throwable $th) {
             return Response::redirectBack('error', $th->getMessage());

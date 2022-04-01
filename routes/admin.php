@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\AnalyticsController;
+use App\Http\Controllers\Admin\CurrencyController;
 use App\Http\Controllers\Admin\MentorController;
 use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
@@ -22,6 +23,7 @@ Route::middleware('auth:admin')->group(function(){
     Route::prefix('/analytics')->group(function(){
         Route::get('/', [AnalyticsController::class, 'all']);
     });
+
     Route::prefix('/users')->group(function(){
         Route::get('/', [UserController::class, 'all']);
         Route::prefix('/{id}')->group(function(){
@@ -39,5 +41,13 @@ Route::middleware('auth:admin')->group(function(){
                 Route::get('/approve', [MentorController::class, 'approve']);
             });
         });
+    });
+
+    Route::get('/countries', [CurrencyController::class, 'getCountries']);
+    Route::prefix('/currencies')->group(function(){
+        Route::get('/', [CurrencyController::class, 'currencies']);
+        Route::get('/set', [CurrencyController::class, 'setCurrencies']);
+        Route::get('/update-rates', [CurrencyController::class, 'updateRates']);
+        Route::get('/{id}', [CurrencyController::class, 'singleCurrency']);
     });
 });

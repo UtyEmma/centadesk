@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('title')->nullable();
             $table->string('short_code')->nullable();
             $table->string('video')->nullable();
-            $table->string('images')->nullable();
+            $table->longText('images')->nullable();
             $table->integer('attendees')->nullable();
             $table->integer('price')->nullable();
             $table->integer('total_students');

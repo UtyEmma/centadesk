@@ -1,11 +1,5 @@
 <script>
 
-    // $(function() {
-        //     $('input[name="duration"]').daterangepicker({
-    //         startDate: moment().startOf('hour')
-    //     });
-    // })
-
     $(document).ready(function() {
         $('#summernote').summernote({
             placeholder: 'Write a compelling description of your class here',

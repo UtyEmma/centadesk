@@ -42,6 +42,7 @@ return new class extends Migration
             $table->string('id_number')->nullable();
             $table->string('id_image')->nullable();
             $table->string('specialty')->nullable();
+            $table->string('currency')->nullable();
             $table->string('desc')->nullable();
             $table->string('instagram')->nullable();
             $table->string('facebook')->nullable();

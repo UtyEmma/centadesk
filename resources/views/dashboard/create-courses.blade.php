@@ -1,15 +1,6 @@
 <x-app-layout>
     @include('dashboard.js.create-courses-js')
 
-    <script>
-        $(document).ready(function(){
-            // Dropzone has been added as a global variable.
-            const element = document.querySelector('#dropzone')
-            console.log(element)
-            const dropzone = new Dropzone("#dropzone", { url: "/file/post" });
-        })
-      </script>
-
     <div class="container-fluid my-5">
         <div>
             <h4 class="my-0">Create a New Course</h4>
@@ -79,6 +70,9 @@
                                         <div class="pt-0">
                                             <div class="single-form">
                                                 <label>Promotional Video Link</label>
+                                                <div class="w-100">
+                                                    <x-video-player />
+                                                </div>
                                                 <input type="text" name="video" value="{{old('video')}}" placeholder="Class Title, Topic or Subject">
                                                 @error('video')
                                                     <small class="text-danger">{{$message}}</small>
@@ -87,8 +81,12 @@
 
                                             <div class="mt-3">
                                                 <label class="mb-2">Upload Class Images</label>
-                                                <div id="dropzone" class="p-4 mt-4 alert alert-primary">
-
+                                                <div>
+                                                    <x-dropzone
+                                                        :multiple="'true'"
+                                                        :name="'images[]'"
+                                                    />
+                                                    {{-- <input type="file" name="images" multiple /> --}}
                                                 </div>
                                                 @error('images')
                                                     <small class="text-danger">{{$message}}</small>

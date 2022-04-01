@@ -24,6 +24,8 @@
         <link rel="stylesheet" href="{{ asset('css/custom.css')}} ">
         <link rel="stylesheet" href="{{asset('css/vendor/plugins.min.css')}}">
 
+        @stack('styles')
+
         <!-- JS
         ============================================ -->
 

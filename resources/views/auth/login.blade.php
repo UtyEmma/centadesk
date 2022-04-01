@@ -1,4 +1,4 @@
-<x-guest-layout>
+<x-guest-layout :data="$data">
 
     <x-page-banner>
         <x-slot name="current">

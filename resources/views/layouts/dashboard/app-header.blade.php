@@ -12,6 +12,11 @@
             <div>
                 <script>
 
+                    $(document).ready(() => {
+                        const element = $('#app-sidebar')
+                        element.hide()
+                    })
+
                     function toggleMenu() {
                         const element = $('#app-sidebar')
                         element.toggle()

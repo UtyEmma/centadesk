@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('desc');
             $table->string('tags');
             $table->string('video');
-            $table->text('images');
+            $table->longText('images');
             $table->integer('total_batches');
             $table->integer('total_students');
             $table->integer('reviews');

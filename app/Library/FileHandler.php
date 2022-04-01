@@ -19,7 +19,7 @@ class FileHandler {
                 $url = cloudinary()->upload($file->getRealPath())->getSecurePath();
                 $file_array[$i] = $url;
             }
-            return $file_array;
+            return json_encode($file_array);
         }
 
         $url = cloudinary()->upload($files->getRealPath())->getSecurePath();
