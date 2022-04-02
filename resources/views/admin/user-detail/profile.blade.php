@@ -12,7 +12,12 @@
                             <div class="col-12 mb-3">
                                 <span class="badge badge-primary">{{$user->role}}</span>
                                 @if ($user->role === 'mentor')
+                                    @if ($user->kyc_status === 'pending')
+                                        <span class="badge badge-info">Pending Approval</span>
+                                    @endif
+
                                     <span class="badge {{$user->is_verified ? 'badge-success' : 'badge-warning' }}">{{$user->is_verified ? 'Verified' : 'Not Verified'}}</span>
+
                                 @endif
                             </div>
                             <div class="col-6">

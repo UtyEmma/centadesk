@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateCourseRequest;
+use App\Http\Traits\AppActions;
 use App\Library\FileHandler;
 use App\Library\Token;
 use App\Models\Batch;
@@ -16,15 +17,14 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Nette\Utils\Arrays;
 
-class CourseController extends Controller
-{
+class CourseController extends Controller{
+    use AppActions;
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function all(){
-        return print_r(cookie('currency'));
         $courses =  DB::table('courses')
                         ->join('users', 'users.unique_id', '=', 'courses.mentor_id')
                         ->select('courses.*', 'users.firstname', 'users.lastname', 'users.avatar')
@@ -41,8 +41,10 @@ class CourseController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(){
-        return view('dashboard.create-courses');
+    public function create(Request $request){
+        return view('dashboard.create-courses', [
+            'data' => $this->appData($request)
+        ]);
     }
 
     /**
@@ -52,7 +54,7 @@ class CourseController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(CreateCourseRequest $request){
-        try {
+        // try {
             $course_id = Token::unique('courses');
             $batch_id = Token::unique('batches');
 
@@ -69,7 +71,8 @@ class CourseController extends Controller
                 'desc' => $request->desc,
                 'tags' => $request->tags,
                 'video' => $request->video,
-                'images' => $images
+                'images' => $images,
+                'currency' => $user->currency,
             ]);
 
             $user->total_courses = $user->total_courses + 1;
@@ -88,18 +91,15 @@ class CourseController extends Controller
                 'video' => $request->video,
                 'images' => $images,
                 'startdate' => $request->startdate,
+                'enddate' => $request->enddate,
                 'title' => $request->title,
                 'short_code' => $short_code,
-                'enddate' => $request->enddate,
-                'discounts' => $request->discounts || 0 ,
-                'time_discount' => $request->time_discount,
-                'time_discount_rate' => $request->time_discount_rate,
-                'time_discount_price' => $request->time_discount_price,
-                'time_discount_percentage' => $request->time_discount_percentage,
-                'signups_discount' => $request->signups_discount,
-                'signups_discount_rate' => $request->signups_discount_rate,
-                'signups_discount_price' => $request->signups_discount_price,
-                'signups_discount_percentage' => $request->signups_discount_percentage
+                'discount' => $request->discount,
+                'fixed' => $request->fixed,
+                'percent' => $request->percent,
+                'time_limit' => $request->time_limit,
+                'signup_limit' => $request->signup_limit,
+                'currency' => $user->currency,
             ]);
 
             $course->update([
@@ -111,9 +111,9 @@ class CourseController extends Controller
             $user->save();
 
             return redirect()->back()->with('message', 'Course Created Successfully');
-        } catch (\Throwable $th) {
-            throw $th;
-        }
+        // } catch (\Throwable $th) {
+        //     throw $th;
+        // }
     }
 
     public function fetch(){

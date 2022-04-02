@@ -2,15 +2,7 @@
     <link href="https://vjs.zencdn.net/7.18.1/video-js.css" rel="stylesheet" />
 @endpush
 
-<video
-    id="my-video"
-    class="video-js"
-    controls
-    width="auto"
-    height="264"
-    poster="MY_VIDEO_POSTER.jpg"
-    data-setup="{}"
-    class="mx-auto"
+<video id="my-video" class="video-js" controls width="auto" height="264" poster="{{asset('images/about.jpg')}}" data-setup="{}" class="mx-auto"
   >
     <source src="" type="video/mp4" />
     <source src="" type="video/webm" />

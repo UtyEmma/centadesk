@@ -1,7 +1,7 @@
     <!-- Single Team Start -->
     <div class="single-team py-5 mt-0 radius border {{$class}}">
         <div class="team-thumb">
-            <img src="{{asset('images/author/author-04.jpg')}}" alt="Author">
+            <img src="{{$mentor->avatar ?? asset('images/author/author-04.jpg')}}" alt="Author">
         </div>
         <div class="team-content">
             <div class="rating">

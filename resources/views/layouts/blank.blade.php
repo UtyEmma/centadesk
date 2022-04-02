@@ -25,6 +25,8 @@
         <link rel="stylesheet" href="{{asset('css/style.min.css')}}">
         <link rel="stylesheet" href="{{ asset('css/custom.css')}} ">
 
+        <link rel="stylesheet" href="{{ asset('css/plugins/bs-select.min.css')}}">
+
         <!-- JS
         ============================================ -->
         <!-- Modernizer & jQuery JS -->
@@ -37,6 +39,7 @@
         <script src="{{asset('js/plugins/bs-stepper.min.js')}}" ></script>
         <script src="{{asset('js/plugins/tagify/tagify.min.js')}}" ></script>
         <script src="{{asset('js/plugins/tagify/tagify.polyfills.min.js')}}" ></script>
+        <script src="{{asset('js/plugins/bs-select.min.js')}}" ></script>
         <script src="{{asset('js/plugins/moment.min.js')}}" ></script>
         <script src="{{asset('js/plugins/validator.js')}}"></script>
 

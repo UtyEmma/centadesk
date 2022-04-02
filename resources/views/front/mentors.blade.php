@@ -14,12 +14,12 @@
         <div class="container">
 
             <!-- Courses Category Wrapper Start  -->
-            {{-- <div class="courses-category-wrapper"> --}}
+            <div class="courses-category-wrapper">
                 <div class="courses-search search-2">
                     <input type="text" placeholder="Search here">
                     <button><i class="icofont-search"></i></button>
                 </div>
-            {{-- </div> --}}
+            </div>
             <!-- Courses Category Wrapper End  -->
 
             <!-- Courses Wrapper Start  -->
@@ -27,7 +27,7 @@
                 <div class="row">
                     @foreach ($mentors as $mentor)
                         <div class="col-md-4">
-                            <x-mentor-card :mentor="$mentor" :class="" />
+                            <x-mentor-card :mentor="$mentor" :class="''" />
                         </div>
                     @endforeach
                 </div>

@@ -18,6 +18,7 @@
         <link rel="stylesheet" href="{{ asset('css/plugins/flaticon.css')}} ">
         <link rel="stylesheet" href="{{ asset('css/plugins/font-awesome.min.css')}} ">
         <link rel="stylesheet" href="{{ asset('css/plugins/tagify.min.css')}} ">
+        <link rel="stylesheet" href="{{ asset('css/plugins/bs-select.min.css')}}">
 
         <!-- Main Style CSS -->
         <link rel="stylesheet" href="{{asset('css/style.css')}}">
@@ -27,8 +28,9 @@
         @stack('styles')
 
         <!-- JS
-        ============================================ -->
+            ============================================ -->
 
+        <script src="{{asset('js/plugins/bs-select.min.js')}}" ></script>
         <!-- Modernizer & jQuery JS -->
         <script src="{{asset('js/vendor/modernizr-3.11.2.min.js')}}" ></script>
         <script src="{{asset('js/vendor/jquery-3.5.1.min.js')}}" ></script>

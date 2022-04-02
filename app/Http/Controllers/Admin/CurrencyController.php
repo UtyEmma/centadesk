@@ -11,34 +11,6 @@ use Illuminate\Support\Facades\Http;
 
 class CurrencyController extends Controller{
 
-    function getCountries(Request $request){
-        try {
-            $response = Http::get(env('COUNTRY_LAYER_API_URL').'/all?access_key='.env('COUNTRY_LAYER_API_KEY'));
-            // if(!$response->ok()) throw new Exception('Exchange Rate update Failed');
-            echo(env('COUNTRY_LAYER_API_URL').'/all?access_key='.env('COUNTRY_LAYER_API_KEY'));
-
-            $response = $response->json();
-            return print_r($response);
-            // $symbols = $response['symbols'];
-
-            // foreach ($symbols as $symbol) {
-            //     $unique_id = Token::unique('currencies');
-            //     $base = $symbol['code'] === "USD";
-
-            //     Currencies::create([
-            //         'unique_id' => $unique_id,
-            //         'symbol' => $symbol['code'],
-            //         'name' => $symbol['description'],
-            //         'base' => $base
-            //     ]);
-            // }
-
-            return redirect()->back()->with('success', 'Exchange Rates updated');
-        } catch (\Throwable $th) {
-            throw $th;
-        }
-    }
-
     function setCurrencies(Request $request){
         try {
             $response = Http::get(env('EXCHANGERATE_API_URL').'/symbols');
@@ -76,7 +48,7 @@ class CurrencyController extends Controller{
 
             foreach ($rates as $key => $rate) {
                 Currencies::where('symbol', $key)->update([
-                    'rate' => $rate
+                    'rate' => ceil($rate)
                 ]);
             }
 
@@ -94,6 +66,11 @@ class CurrencyController extends Controller{
             'currencies' => $currencies,
             'base' => $base
         ]);
+    }
+
+    function update(Request $request){
+        $user = $this->user();
+
     }
 
 }

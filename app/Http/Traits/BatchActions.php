@@ -45,6 +45,12 @@ trait BatchActions {
         return $course->batches;
     }
 
+    function applyDiscount($price, $discount, $type){
+        if($type === 'fixed') return $discount;
+        if($type === 'percent') return $price - ($discount / 100 * $price);
+        if($type === 'none') return $price;
+    }
+
     function students($batch_id){
         $students = DB::table('enrollments')
                             ->where('batch_id', $batch_id)

@@ -90,14 +90,7 @@
                             <p>Lorem Ipsum has been them an industry printer took a galley make book.</p>
 
                             <div class="widget-form">
-                                <form action="#">
-                                    <div class="w-100">
-                                        <label for="d-currency">Select Default Currency</label>
-                                        <x-currency-select :name="'currency'" :currency="$currency" :data="$data" />
-                                    </div>
-                                    {{-- <input type="text" placeholder="Email here"> --}}
-                                    {{-- <button class="btn btn-primary btn-hover-dark">Subscribe Now</button> --}}
-                                </form>
+                                <x-currency-select :name="'currency'" :currency="$currency" :data="$data" class="" />
                             </div>
                         </div>
                     </div>

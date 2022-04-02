@@ -9,7 +9,7 @@ class Courses extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['unique_id', 'mentor_id', 'name', 'slug', 'desc', 'tags', 'video', 'images', 'total_batches', 'total_students', 'active_batch', 'status'];
+    protected $fillable = ['unique_id', 'mentor_id', 'name', 'slug', 'desc', 'tags', 'video', 'images', 'total_batches', 'total_students', 'active_batch', 'status','currency'];
 
     protected $primaryKey = 'unique_id';
     protected $keyType = 'string';

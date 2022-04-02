@@ -9,7 +9,7 @@
             </div>
             <!-- Header Logo End -->
 
-            <div>
+            <div class="header-toggle d-lg-none ml-5">
                 <script>
 
                     $(document).ready(() => {
@@ -17,16 +17,21 @@
                         element.hide()
                     })
 
-                    function toggleMenu() {
+                    function toggleMenuShow(){
                         const element = $('#app-sidebar')
-                        element.toggle()
+                        element.removeClass('animate__slideOutLeft')
+                        element.addClass('animate__slideInLeft')
+                        element.show()
                     }
-
                 </script>
 
-                <button class="text-primary btn px-2 d-md-none" type="button" onclick="toggleMenu()">
-                    <span class="icofont-navigation-menu fs-2"></span>
-                </button>
+                <div>
+                    <button onclick="toggleMenuShow()" class="menu-toggle text-white" href="javascript:void(0)">
+                        <span class="bg-white"></span>
+                        <span class="bg-white"></span>
+                        <span class="bg-white"></span>
+                    </button>
+                </div>
             </div>
 
             <!-- Header Search Start -->

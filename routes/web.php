@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\CurrencyController;
 use App\Http\Controllers\AppController;
 use App\Http\Controllers\BatchController;
 use App\Http\Controllers\ChatController;
@@ -33,6 +34,10 @@ Route::middleware(['auth'])->group(function(){
         Route::get('/courses/{slug}/forum', [StudentController::class, 'courseForum']);
         Route::post('/forum/send/{batch_id}', [ForumController::class, 'storeMessage']);
         Route::get('/mentors', [StudentController::class, 'fetchMentors']);
+    });
+
+    Route::prefix('/currency')->group(function(){
+        Route::post('/update', [CurrencyController::class, 'update']);
     });
 
     Route::prefix('/reviews')->group(function(){

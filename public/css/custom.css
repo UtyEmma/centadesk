@@ -6,6 +6,19 @@
     border-radius: 10px 10px 0 0 !important;
 }
 
+.radius-right{
+    border-radius: 0 10px 10px 0 !important;
+}
+
+.radius-left{
+    border-radius: 10px 0 0 10px !important;
+}
+
+.radius-left-0{
+    border-top-left-radius: 0 !important;
+    border-bottom-left-radius: 0 !important;
+}
+
 .radius-bottom{
     border-radius: 0 0 10px 10px !important;
 }

@@ -50,6 +50,7 @@
         if(moment(data.startdate).isAfter(data.enddate)) return $(`#startdate-error`).text("Your work Start date should not fall after your work end date")
 
         id ? experienceArray[id] = data : experienceArray.push(data)
+        $('#experience-container').html('')
 
         experienceArray.map(experience => appendExperienceHtml(experience))
         $('#experience-input').val(JSON.stringify(experienceArray))
@@ -60,8 +61,6 @@
     }
 
     function appendExperienceHtml(data){
-        $('#experience-container').html('')
-
         const markup = `<div class="d-flex justify-content-between my-2" id="experience-${experienceArray.length - 1}">
                             <div>
                                 <h6 class="mb-0 mt-0">${data.company}</h6>

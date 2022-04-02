@@ -10,20 +10,24 @@ use Illuminate\Support\Facades\Storage;
 class FileHandler {
 
     static function upload($files){
-        if(!$files) return false;
+        try {
+            if(!$files) return false;
 
-        if(is_array($files)){
-            for($i=0; $i < count($files); $i++) {
-                $file = $files[$i];
-                if(!file_exists($file)) throw new Exception("No files Selected");
-                $url = cloudinary()->upload($file->getRealPath())->getSecurePath();
-                $file_array[$i] = $url;
+            if(is_array($files)){
+                for($i=0; $i < count($files); $i++) {
+                    $file = $files[$i];
+                    if(!file_exists($file)) throw new Exception("No files Selected");
+                    $url = cloudinary()->upload($file->getRealPath())->getSecurePath();
+                    $file_array[$i] = $url;
+                }
+                return json_encode($file_array);
             }
-            return json_encode($file_array);
-        }
 
-        $url = cloudinary()->upload($files->getRealPath())->getSecurePath();
+            $url = cloudinary()->upload($files->getRealPath())->getSecurePath();
         return $url;
+        } catch (\Throwable $th) {
+            throw $th;
+        }
     }
 
     static function deleteFile($file){

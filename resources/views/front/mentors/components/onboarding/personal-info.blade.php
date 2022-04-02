@@ -135,7 +135,7 @@
                         <label class="w-100 btn btn-primary " for="avatar">
                             Upload
                         </label>
-                        <input name="avatar" onblur="validateInput(event, __personalInfoSchema)" accept="image/*" onchange="setPreview(event)" type="file" class="form-control" hidden id="avatar">
+                        <input name="avatar" onblur="validateInput(event, __personalInfoSchema)" onchange="setPreview(event)" type="file" class="form-control" hidden id="avatar">
                     </div>
 
                     <button type="button" onclick="removeImg()" class="btn btn-secondary mt-3 w-100">Remove Image</button>

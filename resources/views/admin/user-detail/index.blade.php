@@ -6,7 +6,7 @@
                 <div class="card">
                   <div class="card-body">
                     <div class="text-center">
-                        <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" class="rounded-circle" width="150">
+                        <img src="{{$user->avatar ?? 'https://bootdey.com/img/Content/avatar/avatar7.png'}}" alt="Admin" class="rounded-circle" width="150">
                         <div class="mt-3">
                             <h4>{{$user->firstname}} {{$user->lastname}}</h4>
                             <p class="text-secondary mb-1 text-capitalize">{{$user->role}}</p>
@@ -56,6 +56,12 @@
                                 <div class="col-6">
                                     <button type="button" class="btn btn-primary">Verify User</button>
                                 </div>
+
+                                @if ($user->kyc_status === 'pending')
+                                    <div class="col-6">
+                                        <a href="/users/{{$user->unique_id}}/actions/approve?action=true" class="btn btn-primary">Approve</a>
+                                    </div>
+                                @endif
                             @endif
                         </div>
                     </div>
