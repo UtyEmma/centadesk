@@ -16,7 +16,7 @@ class Controller extends BaseController{
 
     protected function user (){
         $user = Auth::user();
-        return User::find($user->unique_id);
+        return $user ? User::find($user->unique_id) : null;
     }
 
     protected function app_data(){

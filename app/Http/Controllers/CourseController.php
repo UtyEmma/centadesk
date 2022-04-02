@@ -54,7 +54,7 @@ class CourseController extends Controller{
      * @return \Illuminate\Http\Response
      */
     public function store(CreateCourseRequest $request){
-        // try {
+        try {
             $course_id = Token::unique('courses');
             $batch_id = Token::unique('batches');
 
@@ -111,9 +111,9 @@ class CourseController extends Controller{
             $user->save();
 
             return redirect()->back()->with('message', 'Course Created Successfully');
-        // } catch (\Throwable $th) {
-        //     throw $th;
-        // }
+        } catch (\Throwable $th) {
+            throw $th;
+        }
     }
 
     public function fetch(){
@@ -148,9 +148,12 @@ class CourseController extends Controller{
 
     public function show($slug){
         $user = $this->user();
+
         $course = Courses::where('slug', $slug)->first();
         $mentor = User::find($course->mentor_id);
         $batch = Batch::find($course->active_batch);
+
+        // return print_r($mentor);
 
         return view('front.course-detail', [
             'course' => $course,

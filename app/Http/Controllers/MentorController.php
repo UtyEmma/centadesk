@@ -8,6 +8,7 @@ use App\Models\Enrollment;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class MentorController extends Controller{
 
@@ -59,6 +60,7 @@ class MentorController extends Controller{
                 'instagram' => $request->instagram,
                 'facebook' => $request->facebook,
                 'twitter' => $request->twitter,
+                'kyc_method' => Str::slug($request->kyc_method),
                 'desc' => $request->desc,
                 'role' => 'mentor',
                 'avatar' => $avatar,

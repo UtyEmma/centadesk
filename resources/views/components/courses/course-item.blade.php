@@ -2,7 +2,7 @@
     <!-- Single Courses Start -->
     <div class="single-courses">
         <div class="courses-images">
-            <a href="classes/{{$course->slug}}"><img src="{{asset('images/courses/courses-01.jpg')}}" alt="Courses"></a>
+            <a href="classes/{{$course->slug}}"><img src="{{json_decode($course->images)[0]}}" alt="Courses"></a>
 
             <div class="courses-option dropdown">
                 <button class="option-toggle" data-bs-toggle="dropdown" aria-expanded="false">

@@ -1,6 +1,8 @@
 <x-guest-layout>
 
-    @include('front.student.js.enrollment-js')
+    @auth
+        @include('front.student.js.enrollment-js')
+    @endauth
 
     <x-page-banner>
         <x-slot name="current">
@@ -21,7 +23,7 @@
                     <div class="courses-details">
 
                         <div class="courses-details-images">
-                            <img src="{{asset('images/courses/courses-details.jpg')}}" alt="Courses Details">
+                            <img src="{{json_decode($batch->images)[0] ?? asset('images/courses/courses-details.jpg')}}" alt="Courses Details">
                             <span class="tags">Finance</span>
 
                             <div class="courses-play">
@@ -392,7 +394,7 @@
                         <!-- Sidebar Widget Information Start -->
                         <div class="sidebar-widget widget-information">
                             <div class="info-price">
-                                <span class="price">$ {{number_format($batch->price)}}</span>
+                                <span class="price">{{request()->cookie('currency')}} {{number_format($batch->price)}}</span>
                             </div>
                             <div class="info-list">
                                 <ul>

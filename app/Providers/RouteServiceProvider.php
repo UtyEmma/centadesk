@@ -31,7 +31,7 @@ class RouteServiceProvider extends ServiceProvider
         $this->configureRateLimiting();
 
         $this->routes(function () {
-            Route::domain('admin.' . env('APP_HOST'))
+            Route::prefix('admin' . env('APP_HOST'))
                         ->middleware('web')
                         ->namespace($this->namespace)
                         ->group(base_path('routes/admin.php'));
