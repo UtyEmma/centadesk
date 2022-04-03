@@ -9,6 +9,7 @@ use App\Http\Controllers\CourseController;
 use App\Http\Controllers\ForumController;
 use App\Http\Controllers\MentorController;
 use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -25,6 +26,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [AppController::class, 'index']);
+Route::post('/settings/update', [SettingsController::class, 'updateCurrency']);
 
 Route::middleware('auth')->group(function(){
     Route::prefix('/profile')->group(function(){

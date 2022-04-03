@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CreateCourseRequest;
 use App\Http\Traits\AppActions;
 use App\Library\FileHandler;
+use App\Library\Number;
 use App\Library\Token;
 use App\Models\Batch;
 use App\Models\Courses;
@@ -25,8 +26,7 @@ class CourseController extends Controller{
      * @return \Illuminate\Http\Response
      */
     public function all(){
-        $courses =  DB::table('courses')
-                        ->join('users', 'users.unique_id', '=', 'courses.mentor_id')
+        $courses =  Courses::join('users', 'users.unique_id', '=', 'courses.mentor_id')
                         ->select('courses.*', 'users.firstname', 'users.lastname', 'users.avatar')
                         ->get();
 
@@ -77,7 +77,13 @@ class CourseController extends Controller{
 
             $user->total_courses = $user->total_courses + 1;
             $array = [4, 5, 6, 7];
-            $short_code = $request->short_code || Str::random(Arr::random($array));
+            $short_code = $request->short_code ?? Str::random(Arr::random($array));
+
+            if($request->discount === 'fixed'){
+                $discount_price = $request->fixed;
+            }else if($request->discount === 'percent'){
+                $discount_price = Number::percentageDecrease($request->percent, $request->price);
+            }
 
             $batch = Batch::create([
                 'unique_id' => $batch_id,
@@ -95,6 +101,7 @@ class CourseController extends Controller{
                 'title' => $request->title,
                 'short_code' => $short_code,
                 'discount' => $request->discount,
+                'discount_price' => $discount_price,
                 'fixed' => $request->fixed,
                 'percent' => $request->percent,
                 'time_limit' => $request->time_limit,
@@ -152,8 +159,6 @@ class CourseController extends Controller{
         $course = Courses::where('slug', $slug)->first();
         $mentor = User::find($course->mentor_id);
         $batch = Batch::find($course->active_batch);
-
-        // return print_r($mentor);
 
         return view('front.course-detail', [
             'course' => $course,

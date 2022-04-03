@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Library\Number;
 use App\Library\Token;
 use App\Models\Batch;
 use App\Models\Courses;
 use App\Models\Enrollment;
+use App\Models\Setting;
 use App\Models\Transaction;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -66,7 +68,6 @@ class EnrollmentController extends Controller{
         $user = User::find($transaction->user_id);
         $unique_id = Token::unique('enrollments');
 
-
         if(!$transaction || $transaction->status !== 'completed'){
             return redirect("/classes/$course->slug")->with('error', 'Enrollment Failed');
         }
@@ -80,10 +81,17 @@ class EnrollmentController extends Controller{
             'transaction_id' => $transaction->unique_id
         ]);
 
+        $charge = Setting::first()->charge ?? env('DEFAULT_CHARGE');
+        $mentor_amount = Number::percentageValue($charge, $transaction['amount']);
+
+        $mentor->earnings += $mentor_amount;
+
         $course->total_students += 1;
+        $course->revenue += $mentor_amount;
         $course->save();
 
         $batch->attendees += 1;
+        $course->earnings += $mentor_amount;
         $batch->save();
 
         $user->total_courses += 1;

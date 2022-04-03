@@ -2,13 +2,14 @@
 
 namespace App\Models;
 
+use App\Casts\Currency;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Batch extends Model{
     use HasFactory;
 
-    protected $fillable = ['unique_id', 'course_id' ,'startdate', 'short_code', 'title', 'enddate', 'current', 'class_link', 'attendees', 'price' ,'count', 'video', 'images', 'discount', 'fixed', 'percent', 'time_limit', 'signup_limit', 'currency'];
+    protected $fillable = ['unique_id', 'course_id' ,'startdate', 'short_code', 'title', 'enddate', 'current', 'class_link', 'attendees', 'price' ,'count', 'video', 'images', 'discount', 'fixed', 'percent', 'time_limit', 'signup_limit', 'currency', 'discount_price'];
 
     protected $primaryKey = 'unique_id';
     protected $keyType = 'string';
@@ -17,7 +18,13 @@ class Batch extends Model{
     protected $attributes = [
         'total_students' => 0,
         'current' => true,
-        'status' => 'ongoing'
+        'status' => 'ongoing',
+        'earnings' => 0
+    ];
+
+    protected $casts = [
+        'price' => Currency::class,
+        'discount_price'=> Currency::class
     ];
 
     public function course (){

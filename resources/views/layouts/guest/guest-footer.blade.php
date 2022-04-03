@@ -90,7 +90,12 @@
                             <p>Lorem Ipsum has been them an industry printer took a galley make book.</p>
 
                             <div class="widget-form">
-                                <x-currency-select :name="'currency'" :currency="$currency" :data="$data" class="" />
+                                <form action="/settings/update" method="POST">
+                                    @csrf
+                                    <x-currency-select :name="'currency'" :currency="$currency" :data="$data" class="form-select border radius py-2 ps-1" />
+
+                                    <button type="submit" class="btn btn-primary">Update</button>
+                                </form>
                             </div>
                         </div>
                     </div>

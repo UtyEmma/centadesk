@@ -8,9 +8,11 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 
-class DefaultAdminSeeder extends Seeder
-{
+class DefaultAdminSeeder extends Seeder{
 
+    public function __construct(){
+        return $this->run();
+    }
 
     public function run() {
         $this->createDefaultAdmin();

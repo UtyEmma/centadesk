@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Traits\CurrencyActions;
+use App\Library\Response;
 use App\Library\Token;
 use App\Models\Currencies;
 use Exception;
@@ -10,27 +12,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 
 class CurrencyController extends Controller{
+    use CurrencyActions;
 
     function setCurrencies(Request $request){
         try {
-            $response = Http::get(env('EXCHANGERATE_API_URL').'/symbols');
-            if(!$response->ok()) throw new Exception('Exchange Rate update Failed');
-
-            $response = $response->json();
-            $symbols = $response['symbols'];
-
-            foreach ($symbols as $symbol) {
-                $unique_id = Token::unique('currencies');
-                $base = $symbol['code'] === "USD";
-
-                Currencies::create([
-                    'unique_id' => $unique_id,
-                    'symbol' => $symbol['code'],
-                    'name' => $symbol['description'],
-                    'base' => $base
-                ]);
-            }
-
+            $this->createCurrencies();
             return redirect()->back()->with('success', 'Exchange Rates updated');
         } catch (\Throwable $th) {
             throw $th;
@@ -66,11 +52,6 @@ class CurrencyController extends Controller{
             'currencies' => $currencies,
             'base' => $base
         ]);
-    }
-
-    function update(Request $request){
-        $user = $this->user();
-
     }
 
 }

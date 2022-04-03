@@ -394,7 +394,11 @@
                         <!-- Sidebar Widget Information Start -->
                         <div class="sidebar-widget widget-information">
                             <div class="info-price">
-                                <span class="price">{{request()->cookie('currency')}} {{number_format($batch->price)}}</span>
+                                <span class="price @if ($batch->discount !== 'none') {{'text-decoration-line-through'}} @endif">{{request()->cookie('currency')}} {{number_format($batch->price)}}</span>
+
+                                @if ($batch->discount !== 'none')
+                                    <span class="price">{{request()->cookie('currency')}} {{number_format($batch->discount_price)}}</span>
+                                @endif
                             </div>
                             <div class="info-list">
                                 <ul>
