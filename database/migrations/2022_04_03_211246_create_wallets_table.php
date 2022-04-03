@@ -18,6 +18,10 @@ return new class extends Migration
             $table->string('unique_id')->unique();
             $table->string('user_id')->unique();
             $table->integer('balance');
+            $table->integer('escrow');
+            $table->integer('available');
+            $table->integer('earnings');
+            $table->integer('referrals');
             $table->integer('withdrawals');
             $table->integer('deposits');
             $table->timestamps();

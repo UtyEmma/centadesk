@@ -39,8 +39,20 @@ class AppConfig extends Command
      * @return int
      */
     public function handle(){
-        new DefaultAdminSeeder();
+        $bar = $this->output->createProgressBar(3);
+        $bar->start();
+        $details = new DefaultAdminSeeder();
+        $this->info('Default Administrator Account Created');
+        $bar->advance();
         new AppConfigSeeder();
+        $this->info('App Configuration set up complete');
+        $bar->advance();
         new CurrenciesSeeder();
+        $this->info('Currencies and Exchange rates set successfully');
+        $bar->finish();
+
+        $this->info('App Setup Completed Successfully!');
+        $this->info('Admin Email: '.$details->admin->email);
+        $this->info('Admin Password: '.$details->admin->plain_password);
     }
 }

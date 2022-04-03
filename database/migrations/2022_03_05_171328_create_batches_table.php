@@ -30,7 +30,9 @@ return new class extends Migration
             $table->string('status');
             $table->boolean('current');
             $table->string('currency');
+            $table->string('earnings');
             $table->string('discount');
+            $table->integer('discount_price')->nullable();
             $table->string('fixed')->nullable();
             $table->string('percent')->nullable();
             $table->string('time_limit')->nullable();

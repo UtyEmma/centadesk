@@ -10,12 +10,14 @@ use Illuminate\Support\Facades\Hash;
 
 class DefaultAdminSeeder extends Seeder{
 
+    public $admin;
+
     public function __construct(){
-        return $this->run();
+        $this->admin = $this->run();
     }
 
     public function run() {
-        $this->createDefaultAdmin();
+        return $this->createDefaultAdmin();
     }
 
     private function createDefaultAdmin(){
@@ -23,8 +25,8 @@ class DefaultAdminSeeder extends Seeder{
         $password = "admin@1234";
         $email = 'admin@centadesk.com';
         $name = 'John Grisham';
-        if(!Admin::where('email', $email)->first()){
-            Admin::create([
+        if(!$admin = Admin::where('email', $email)->first()){
+            $admin = Admin::create([
                 'unique_id' => $unique_id,
                 'name' => $name,
                 'email' => $email,
@@ -32,5 +34,8 @@ class DefaultAdminSeeder extends Seeder{
                 'password' => Hash::make($password),
             ]);
         }
+
+        $admin->plain_password = $password;
+        return $admin;
     }
 }

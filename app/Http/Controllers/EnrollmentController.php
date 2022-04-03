@@ -10,6 +10,7 @@ use App\Models\Enrollment;
 use App\Models\Setting;
 use App\Models\Transaction;
 use App\Models\User;
+use App\Models\Wallet;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 
@@ -84,7 +85,11 @@ class EnrollmentController extends Controller{
         $charge = Setting::first()->charge ?? env('DEFAULT_CHARGE');
         $mentor_amount = Number::percentageValue($charge, $transaction['amount']);
 
+
         $mentor->earnings += $mentor_amount;
+        $mentor->save();
+
+        $this->updateMentorWallet($mentor, $mentor_amount);
 
         $course->total_students += 1;
         $course->revenue += $mentor_amount;
@@ -101,5 +106,12 @@ class EnrollmentController extends Controller{
         return response()->json([
             'course' => $course->slug
         ]);
+    }
+
+    function updateMentorWallet($mentor, $amount){
+        $wallet = Wallet::where('user_id', $mentor->unique_id)->first();
+        $wallet->escrow += $amount;
+        $wallet->balance += $amount;
+        $wallet->save();
     }
 }

@@ -11,7 +11,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class Admin extends Authenticatable{
     use HasFactory, Notifiable;
 
-    protected $fillable = ['unique_id', 'name', 'role', 'avatar', 'status', 'password'];
+    protected $fillable = ['unique_id', 'name', 'email', 'role', 'avatar', 'status', 'password'];
 
     protected $primaryKey = 'unique_id';
     protected $keyType = 'string';
