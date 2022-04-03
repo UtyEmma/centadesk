@@ -40,9 +40,14 @@ class DateTime {
     }
 
     static function timeDiffInHours($first, $second){
-        $first = Date::createFromFormat('Y-m-d H:i:s', $first);
+        $first = Date::create($first);
         $second = Date::create($second);
         return $first->diffInHours($second);
+    }
+
+    static function timeInterval($first, $second){
+        $second = Date::parse($second);
+        return $second->diffForHumans($first);
     }
 
 }

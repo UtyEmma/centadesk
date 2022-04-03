@@ -63,7 +63,7 @@
                                 <a href="/">Home</a>
                             </li>
                             <li>
-                                <a href="/classes">Courses</a>
+                                <a href="/courses">Courses</a>
                             </li>
                             <li><a href="/mentor">Mentors</a></li>
                         </ul>
@@ -143,10 +143,10 @@
             <ul class="nav-menu">
                 <li><a href="/">Home</a></li>
                 <li>
-                    <a href="/classes">Courses</a>
+                    <a href="/courses">Courses</a>
                 </li>
                 <li>
-                    <a href="#">Mentors</a>
+                    <a href="/mentors">Mentors</a>
                 </li>
             </ul>
 

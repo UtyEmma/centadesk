@@ -28,7 +28,8 @@
 
                             <div class="single-form">
                                 <label>Class Description</label>
-                                <textarea id="summernote" type="text" value="{{old('desc')}}" class="bg-white" name="desc" placeholder="Write a compelling description of your class here" ></textarea>
+                                <x-rich-text placeholder="Write a compelling description of your class here" name="desc" />
+                                {{-- <textarea id="summernote" type="text" value="{{old('desc')}}" class="bg-white" name="desc" placeholder="" ></textarea> --}}
                                 <x-errors name="desc" />
                             </div>
 
@@ -57,6 +58,7 @@
                                 <x-dropzone multiple="true" name="images[]" />
                                 <x-errors name="images" />
                             </div>
+
                         </div>
 
                     </div>

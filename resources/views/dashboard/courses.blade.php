@@ -43,9 +43,9 @@
                             @foreach ($courses as $course)
                                 <!-- Courses Item Start -->
                                 <div class="courses-item">
-                                    <div class="item-thumb">
-                                        <a href="#">
-                                            <img src="{{asset('images/courses/admin-courses-01.jpg')}}" alt="Courses">
+                                    <div class="item-thumb col-md-2">
+                                        <a href="/me/courses/{{$course->slug}}">
+                                            <img src="{{json_decode($course->images)[0]}}" alt="Courses">
                                         </a>
                                     </div>
 
@@ -56,19 +56,13 @@
                                             <a href="#" class="action">Public</a>
                                         </div>
 
-                                        {{-- <div class="d-flex mb-0 align-items-center">
-                                            <span class="count">Current Batch</span>
-                                            <div class="meta ms-2">
-                                                <a href="#" class="action">{{$course->total_batches}}</a>
-                                            </div>
-                                        </div> --}}
                                         <h3 class="title mt-0"><a href="/me/courses/{{$course->slug}}">{{$course->name}}</a></h3>
                                     </div>
 
                                     <div class="content-wrapper">
                                         <div class="content-box">
                                             <p>Earned</p>
-                                            <span class="count">${{$course->earnings}}.00</span>
+                                            <span class="count">{{$course->currency}} {{$course->earnings}}.00</span>
                                         </div>
 
                                         <div class="content-box">

@@ -2,7 +2,8 @@
     <!-- Single Courses Start -->
     <div class="single-courses">
         <div class="courses-images">
-            <a href="classes/{{$course->slug}}"><img src="{{json_decode($course->images)[0]}}" alt="Courses"></a>
+
+            <a href="courses/{{$course->slug}}"><img src="{{json_decode($course->images)[0]}}" alt="Courses" class="img-fluid"></a>
 
             <div class="courses-option dropdown">
                 <button class="option-toggle" data-bs-toggle="dropdown" aria-expanded="false">
@@ -30,7 +31,7 @@
                 </div>
             </div>
 
-            <h4 class="title"><a href="classes/{{$course->slug}}">{{$course->name}}</a></h4>
+            <h4 class="title"><a href="courses/{{$course->slug}}">{{$course->name}}</a></h4>
 
             <div class="courses-rating">
                 <p>Starts in 2 days</p>

@@ -2,36 +2,26 @@
 
     <!-- Admin Courses Tab Start -->
     <div >
-        <div class="d-flex justify-content-between align-items-center mb-0 mt-0">
-            <h5>{{$batch->title}}</h5>
+        <div style="background-color: #def2e6;" class="d-flex radius p-3 justify-content-between align-items-center">
+            <div>
+                <h6 class="lh-0 mb-0">Batch</h6>
+                <h4>{{$batch->title}}</h4>
+            </div>
 
-            <div class="mb-0">
-                <span>{{env('MAIN_APP_DOMAIN')}}/{{$batch->short_code}}</span>
-                <button class="btn p-0"><i class="icofont-ui-copy"></i></button>
-                <button class="btn p-0"><i class="icofont-share"></i></button>
+            <div class="mb-0 ">
+                <div class="d-flex align-items-center">
+                    <small class="mb-0 me-3 fw-bold">{{env('MAIN_APP_DOMAIN')}}/{{$batch->short_code}}</small>
+                    <div>
+                        <button class="p-0 ml-2 mr-1 bg-transparent border-0 outline-0"><i class="icofont-ui-copy"></i></button>
+                        <button class="p-0 mx-1 bg-transparent border-0 outline-0"><i class="icofont-share"></i></button>
+                    </div>
+                </div>
+
+                <div class="text-end mt-2 w-100">
+                    <a href="forum" class="">Batch Forum</a>
+                </div>
             </div>
         </div>
-
-       <div class="overview-box mt-0">
-           <div class="single-box mb-2">
-               <h5 class="title">Enrolled Students</h5>
-               <div class="count">
-                   {{$course->rating}}.0
-               </div>
-               <p><span>58</span> This months</p>
-           </div>
-           <div class="single-box mb-2">
-               <h5 class="title">Enrolled Students</h5>
-               <div class="count">
-                   {{$course->rating}}.0
-
-                   <span class="rating-star">
-                           <span class="rating-bar" style="width: {{$course->rating * 20}}%;"></span>
-                   </span>
-               </div>
-               <p><span>58</span> This months</p>
-           </div>
-       </div>
 
         {{$slot}}
    </div>

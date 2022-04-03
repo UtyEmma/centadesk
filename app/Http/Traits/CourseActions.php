@@ -9,6 +9,7 @@ use App\Models\Enrollment;
 use App\Models\ForumMessages;
 use App\Models\ForumReplies;
 use App\Models\User;
+use Illuminate\Support\Facades\Date;
 
 trait CourseActions {
 
@@ -22,15 +23,11 @@ trait CourseActions {
         ])->first();
 
         $forum_messages = ForumMessages::where('batch_id', $enrollment->batch_id)
-        ->join('users', 'users.unique_id', 'forum_messages.sender_id')
-        ->select('forum_messages.*', 'users.firstname', 'users.lastname', 'users.avatar')
-        ->get();
+                                ->join('users', 'users.unique_id', 'forum_messages.sender_id')
+                                ->select('forum_messages.*', 'users.firstname', 'users.lastname', 'users.avatar')
+                                ->get();
 
         $messages = array_map(function($message){
-            $message['replies'] = ForumReplies::where('message_id', $message['unique_id'])
-                            ->join('users', 'users.unique_id', 'forum_replies.sender_id')
-                            ->select('forum_replies.*', 'users.firstname', 'users.lastname', 'users.avatar')
-                            ->get()->toArray();
             $message['created_at'] = DateTime::getDateInterval($message['created_at']);
             return $message;
         }, $forum_messages->toArray());
@@ -38,6 +35,7 @@ trait CourseActions {
         $mentor = User::find($enrollment->mentor_id);
         $batch = Batch::find($enrollment->batch_id);
 
+        $batch->begins = DateTime::getDateInterval($batch->startdate);
 
         return [
             'batch' => $batch,

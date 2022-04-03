@@ -24,11 +24,6 @@
                         <td><a class="" href="#">View Details</a></td>
                     </tr>
                 @endforeach
-                <tr>
-                    <td>Firstname Lastname</td>
-                    <td>25th July 2021</td>
-                    <td><a class="" href="#">View Details</a></td>
-                </tr>
             </tbody>
         </table>
     </div>

@@ -22,51 +22,45 @@
 
                     <!-- Overview Start -->
                     <div class="overview">
-                        <div class="row">
-                            <div class="col-lg-4">
-                                <div class="enroll-tab-title">
-                                    <h3 class="title">Course Details</h3>
-                                </div>
-                            </div>
-                            <div class="col-lg-8">
-                                <div class="enroll-tab-content">
-                                    {{$course->desc}}
+                        <div class="enroll-tab-title">
+                            <h3 class="title">Course Details</h3>
+                        </div>
+                        <div class="enroll-tab-content">
+                            {!! $course->desc !!}
 
-                                    <table class="table">
-                                        <tbody>
-                                            <tr>
-                                                <th>Instructor <span>:</span></th>
-                                                <td>Pamela Foster</td>
-                                            </tr>
-                                            <tr>
-                                                <th>Duration <span>:</span></th>
-                                                <td>08 hr 15 mins</td>
-                                            </tr>
-                                            <tr>
-                                                <th>Lectures <span>:</span></th>
-                                                <td>2,16</td>
-                                            </tr>
-                                            <tr>
-                                                <th>Level <span>:</span></th>
-                                                <td>Secondary</td>
-                                            </tr>
-                                            <tr>
-                                                <th>Language <span>:</span></th>
-                                                <td>English</td>
-                                            </tr>
-                                            <tr>
-                                                <th>Caption’s <span>:</span></th>
-                                                <td>Yes</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                            <table class="table">
+                                <tbody>
+                                    <tr>
+                                        <th>Instructor <span>:</span></th>
+                                        <td>{{$mentor->firstname}} {{$mentor->lastname}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Duration <span>:</span></th>
+                                        <td>08 hr 15 mins</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Lectures <span>:</span></th>
+                                        <td>2,16</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Level <span>:</span></th>
+                                        <td>Secondary</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Language <span>:</span></th>
+                                        <td>English</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Caption’s <span>:</span></th>
+                                        <td>Yes</td>
+                                    </tr>
+                                </tbody>
+                            </table>
 
-                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been industry's standard dummy text ever since the 1500s when andom unknown printer took a galley of type scrambled it to make a type specimen book.</p>
+                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been industry's standard dummy text ever since the 1500s when andom unknown printer took a galley of type scrambled it to make a type specimen book.</p>
 
-                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been industry's standard dummy text ever since the 1500s when andom unknown printer took a galley of type scrambled it to make a type specimen book.</p>
+                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been industry's standard dummy text ever since the 1500s when andom unknown printer took a galley of type scrambled it to make a type specimen book.</p>
 
-                                </div>
-                            </div>
                         </div>
                     </div>
                     <!-- Overview End -->

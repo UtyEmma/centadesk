@@ -26,19 +26,26 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [AppController::class, 'index']);
 
-Route::middleware(['auth'])->group(function(){
+Route::middleware('auth')->group(function(){
     Route::prefix('/profile')->group(function(){
         Route::get('/', [StudentController::class, 'show']);
         Route::get('/courses', [StudentController::class, 'enrolledCourses']);
         Route::get('/courses/{slug}', [StudentController::class, 'enrolledCourse']);
         Route::get('/courses/{slug}/forum', [StudentController::class, 'courseForum']);
+        Route::get('/courses/{slug}/forum/{message_id}', [StudentController::class, 'courseForumDetails']);
         Route::post('/forum/send/{batch_id}', [ForumController::class, 'storeMessage']);
         Route::get('/mentors', [StudentController::class, 'fetchMentors']);
     });
 
+    Route::prefix('forum')->group(function(){
+        Route::post('/reply/{message_id}', [ForumController::class, 'storeReplies']);
+    });
+
+
     Route::prefix('/currency')->group(function(){
         Route::post('/update', [CurrencyController::class, 'update']);
     });
+
 
     Route::prefix('/reviews')->group(function(){
         Route::post('/submit/{batch_id}', [ReviewController::class, 'submitReview']);
@@ -62,19 +69,20 @@ Route::middleware(['auth'])->group(function(){
                 Route::prefix('/{slug}/{shortcode}')->group(function(){
                     Route::get('/', [BatchController::class, 'fetchBatch']);
                     Route::get('/students', [BatchController::class, 'fetchBatchStudents']);
-                    Route::get('/forum', [ForumController::class, 'show']);
+                    Route::get('/forum', [ForumController::class, 'fetchMentorBatchForum']);
+                    Route::get('/forum/{unique_id}', [ForumController::class, 'fetchMentorBatchForumReplies']);
                 });
             });
         });
     });
 });
 
-Route::prefix('mentor')->group(function(){
+Route::prefix('/mentor')->group(function(){
     Route::get('/', [MentorController::class, 'index']);
     Route::get('/{slug}', [MentorController::class, 'show']);
 });
 
-Route::prefix('classes')->group(function(){
+Route::prefix('/courses')->group(function(){
     Route::get('/', [CourseController::class, 'all']);
     Route::get('/{slug}', [CourseController::class, 'show']);
 });

@@ -35,9 +35,9 @@
         <div class="card radius">
             <div class="card-body">
                 <div class="courses-details my-0">
-                    <div class="courses-details-images">
-                        <img src="{{asset('images/courses/courses-details.jpg')}}" alt="Courses Details">
-                        <span class="tags">Finance</span>
+                    <div class="courses-details-images position-relative" style="height: 400px;">
+                        <img class="position-absolute " style="object-fit: cover; object-position: center;" src="{{ json_decode($course->images)[0] ?? asset('images/courses/courses-details.jpg')}}" alt="Courses Details">
+                        {{-- <span class="tags">Finance</span> --}}
 
                         <div class="courses-play">
                             <img src="{{asset('images/courses/circle-shape.png')}}" alt="Play">
@@ -49,10 +49,10 @@
                         <x-tags :element="'tags'" :tags="$course->tags"  />
                     </div>
 
-                    <div class="courses-details-admin">
-                        <div class="description-wrapper">
+                    <div class="courses-details-admin mt-3">
+                        <div class="description-wrapper text-truncate" style="max-height: 200px;">
                             <h5 class="mb-0">Description</h5>
-                            <p class="mt-0">
+                            <p class="mt-0 lh-0">
                                 {!! $course->desc !!}
                             </p>
                         </div>

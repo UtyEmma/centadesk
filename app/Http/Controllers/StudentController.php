@@ -52,7 +52,30 @@ class StudentController extends Controller{
 
     function courseForum(Request $request, $slug){
         return view('front.student.course.forum', $this->fetchCourse($request, $slug));
+    }
 
+    function courseForumDetails(Request $request, $slug, $message_id){
+        $user = $this->user();
+        $message = ForumMessages::find($message_id);
+        $sender = User::find($message->sender_id);
+
+        $course = $this->fetchCourse($request, $slug);
+
+        $replies = ForumReplies::where('message_id', $message_id)
+                                    ->join('users', 'users.unique_id', 'forum_replies.sender_id')
+                                    ->select('forum_replies.*', 'users.firstname', 'users.lastname', 'users.avatar')
+                                    ->get();
+
+        $message->firstname = $sender->firstname;
+        $message->lastname = $sender->lastname;
+
+        $message->created_at = DateTime::getDateInterval($message->created_at);
+
+        return view('front.student.course.question', array_merge($course, [
+                'message' => $message,
+                'replies' => $replies
+            ]
+        ));
     }
 
     public function enrolledCourse(Request $request, $slug){

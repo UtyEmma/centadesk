@@ -23,7 +23,7 @@ class AdminController extends Controller{
 
         $request->session()->regenerate();
 
-        return redirect()->intended('/')->with('success', 'Login Successful');
+        return redirect()->intended('/admin')->with('success', 'Login Successful');
     }
 
     function home(){

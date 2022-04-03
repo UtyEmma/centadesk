@@ -16,11 +16,13 @@
                                     <i class="icofont-eye-alt"></i>
                                     <span>8,350</span> Students
                                 </p>
+
                             </div>
 
                             <div>
                                 <p class="mb-0 text-end">Current Batch</p>
                                 <h5 class="text-end">{{$batch->title}}</h5>
+                                <strong>Begins {{$batch->begins}}</strong>
                             </div>
                         </div>
                         <!-- Courses Enroll Title End -->

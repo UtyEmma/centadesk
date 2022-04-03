@@ -9,12 +9,7 @@
                 <h3 class="title">{{$course->name}}</h3>
 
                 <div class="courses-tab-wrapper">
-                    {{-- <div class="courses-select">
-                        <select>
-                            <option data-display="Newest First">Newest First</option>
-                            <option value="1">Oldest First</option>
-                        </select>
-                    </div> --}}
+
                 </div>
             </div>
 

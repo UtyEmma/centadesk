@@ -31,10 +31,10 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta2/dist/css/bootstrap-select.min.css">
 
 
-        <link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css"/>
-        <!-- Main Style CSS -->
+        <link rel="stylesheet" href="{{asset('css/plugins/quill-snow.css')}}">
         <link rel="stylesheet" href="{{asset('css/style.css')}}">
         <link rel="stylesheet" href="{{ asset('css/custom.css')}} ">
+        <!-- Theme included stylesheets -->
 
         @stack('styles')
 
@@ -56,12 +56,11 @@
         <script src="{{asset('js/plugins/tagify/tagify.polyfills.min.js')}}" ></script>
         <script src="{{asset('js/plugins/moment.min.js')}}" ></script>
         <script src="{{asset('js/plugins/date-range-picker.min.js')}}" ></script>
+        <script src="{{asset('js/plugins/quill.js')}}" ></script>
         {{-- <script src="{{asset('js/plugins/bs-select.min.js')}}" ></script> --}}
         <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta2/dist/js/bootstrap-select.min.js"></script>
 
         <script src="{{asset('vendor/summernote-0.8.18-dist/summernote-lite.min.js')}}" ></script>
-
-        <script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
 
 
         <!-- Main JS -->

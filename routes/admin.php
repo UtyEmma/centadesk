@@ -17,9 +17,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/login', [AdminController::class, 'login']);
 Route::post('/login', [AdminController::class, 'authenticate']);
 
-
 Route::middleware('auth:admin')->group(function(){
     Route::get('/', [AdminController::class, 'home']);
+
     Route::prefix('/analytics')->group(function(){
         Route::get('/', [AnalyticsController::class, 'all']);
     });
