@@ -6,6 +6,7 @@ use App\Http\Requests\CreateCourseRequest;
 use App\Http\Traits\AppActions;
 use App\Library\FileHandler;
 use App\Library\Number;
+use App\Library\Response;
 use App\Library\Token;
 use App\Models\Batch;
 use App\Models\Courses;
@@ -155,8 +156,7 @@ class CourseController extends Controller{
 
     public function show($slug){
         $user = $this->user();
-
-        $course = Courses::where('slug', $slug)->first();
+        if(!$course = Courses::where('slug', $slug)->first()) return Response::redirect('/courses', 'errors', 'Course Was not Found');
         $mentor = User::find($course->mentor_id);
         $batch = Batch::find($course->active_batch);
 

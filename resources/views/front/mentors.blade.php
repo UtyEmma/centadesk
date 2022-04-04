@@ -25,11 +25,20 @@
             <!-- Courses Wrapper Start  -->
             <div class="courses-wrapper-02">
                 <div class="row">
-                    @foreach ($mentors as $mentor)
-                        <div class="col-md-4">
-                            <x-mentor-card :mentor="$mentor" :class="''" />
+                    @if (count($mentors) > 0)
+                        @foreach ($mentors as $mentor)
+                            <div class="col-md-4">
+                                <x-mentor-card :mentor="$mentor" :class="''" />
+                            </div>
+                        @endforeach
+                    @else
+                        <div class="text-center">
+                            <h4>There are no mentors available at this time</h4>
+                            <p>You can start earning money teaching the things you love</p>
+
+                            <a href="{{Auth::user() ? '/mentor/onboarding' : '/register'}}" class="btn btn-primary w-auto">Become a Mentor</a>
                         </div>
-                    @endforeach
+                    @endif
                 </div>
             </div>
             <!-- Courses Wrapper End  -->

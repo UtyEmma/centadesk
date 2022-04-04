@@ -38,6 +38,7 @@ class RegisterRequest extends FormRequest
 
     public function register(){
         $unique_id = Token::unique('users');
+        $affiliate_id = Token::text(6);
 
         $user = User::create([
             'unique_id' => $unique_id,
@@ -45,6 +46,7 @@ class RegisterRequest extends FormRequest
             'lastname' => $this->lastname,
             'email' => $this->email,
             'password' => Hash::make($this->password),
+            'affiliate_id' => $affiliate_id
         ]);
 
         return $user;

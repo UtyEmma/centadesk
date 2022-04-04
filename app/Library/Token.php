@@ -24,7 +24,7 @@ class Token {
         return $random;
     }
 
-    static function text(int $len){
-        // $random = range();
+    static function text(int $len = 5){
+        return Str::random($len);
     }
 }

@@ -10,10 +10,6 @@
                             <a href="/"><img src="{{asset('images/logo.png')}}" alt="Logo"></a>
                         </div>
                     </div>
-
-                    <div class="border-start col-auto">
-                        <a class="navbar-brand" href="#">Signup to your new Mentor's account</a>
-                    </div>
                 </div>
             </div>
         </nav>
