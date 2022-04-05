@@ -19,6 +19,7 @@ class CurrenciesSeeder extends Seeder{
      * @return void
      */
     public function run(){
-        return $this->createCurrencies();
+        $this->createCurrencies();
+        $this->updateCurrencyRates();
     }
 }

@@ -22,11 +22,12 @@
         <div class="courses-content">
             <div class="courses-author">
                 <div class="author">
-                    <div class="author-thumb">
-                        <a href="#"><img src="{{asset('images/author/author-01.jpg')}}" alt="Author"></a>
+                    <div class="rounded-img">
+                        <a href="#"><img src="{{$mentor->avatar ?? asset('images/author/author-01.jpg')}}" alt="Author"></a>
                     </div>
                     <div class="author-name">
-                        <a class="name" href="#">{{$course->firstname}} {{$course->lastname}}</a>
+                        <a class="name lh-0 mb-0" style="font-weight: 500; margin-bottom: 0;" href="/mentor/{{$mentor->username}}">{{$mentor->firstname}} {{$mentor->lastname}}</a>
+                        <p class="my-0 lh-0" style="font-size: 12px; margin-top: 0;">{{$mentor->specialty}}</p>
                     </div>
                 </div>
             </div>

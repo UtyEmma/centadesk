@@ -10,6 +10,7 @@ use App\Models\ForumMessages;
 use App\Models\ForumReplies;
 use App\Models\User;
 use Illuminate\Support\Facades\Date;
+use stdClass;
 
 trait CourseActions {
 
@@ -45,5 +46,13 @@ trait CourseActions {
             'forum' => $messages,
             'user' => $user
         ];
+    }
+
+    function singleCourse($course){
+        $obj = new stdClass();
+        $obj->mentor = User::find($course->mentor_id);
+        $obj->batch = Batch::find($course->active_batch);
+        $obj->reviews = $course->allReviews;
+        return $obj;
     }
 }

@@ -34,7 +34,7 @@
                 <div class="row">
                     @if (count($courses) > 0)
                         @foreach ($courses as $course)
-                            <x-courses.course-item :course="$course" />
+                            <x-courses.course-item :course="$course" :mentor="$course->mentor" />
                         @endforeach
                     @else
                         <div class="text-center">

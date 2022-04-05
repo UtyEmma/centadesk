@@ -3,10 +3,10 @@
         $(document).ready(() => {
             const tagifyElement = document.querySelector('input[name=tags]')
             new Tagify(tagifyElement, {
-                placeholder: 'Separate Tags with a Comma'
+                placeholder: 'Click Enter to Seperate tags'
             })
         })
     </script>
 @endpush
 
-<input class="form-control border radius px-0 py-1 fs-6" value="{{old('tags')}}" name="tags" type="text">
+<input class="border radius p-1" value="{{old('tags')}}" name="tags" type="text">

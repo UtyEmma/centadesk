@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateCourseRequest;
 use App\Http\Traits\AppActions;
+use App\Http\Traits\CourseActions;
 use App\Library\FileHandler;
 use App\Library\Number;
 use App\Library\Response;
@@ -11,25 +12,28 @@ use App\Library\Token;
 use App\Models\Batch;
 use App\Models\Courses;
 use App\Models\Enrollment;
+use App\Models\Review;
 use App\Models\User;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
-use Nette\Utils\Arrays;
 
 class CourseController extends Controller{
-    use AppActions;
+    use AppActions, CourseActions;
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function all(){
-        $courses =  Courses::join('users', 'users.unique_id', '=', 'courses.mentor_id')
-                        ->select('courses.*', 'users.firstname', 'users.lastname', 'users.avatar')
-                        ->get();
+        $courses =  Courses::all();
+
+        $courses = $courses->map(function($course){
+            $course->course_reviews = Review::where('course_id', $course->unique_id)->get();
+            $course->mentor = User::where('unique_id', $course->mentor_id)->first();
+            return $course;
+        });
 
         return view('front.courses', [
             'courses' => $courses,
@@ -56,10 +60,12 @@ class CourseController extends Controller{
      */
     public function store(CreateCourseRequest $request){
         try {
+            $user = $this->user();
+
+            if ($user->kyc_status === 'pending') redirect()->back()->with('error', 'You cannot create courses because your mentor application has not been approved.');
+
             $course_id = Token::unique('courses');
             $batch_id = Token::unique('batches');
-
-            $user = $this->user();
 
             $images = FileHandler::upload($request->file('images'));
             $slug = Str::slug($request->name, '-');
@@ -77,8 +83,8 @@ class CourseController extends Controller{
             ]);
 
             $user->total_courses = $user->total_courses + 1;
-            $array = [4, 5, 6, 7];
-            $short_code = $request->short_code ?? Str::random(Arr::random($array));
+            $array = [4, 5, 6];
+            $short_code = $request->short_code ?? Token::uniqueText(Arr::random($array), 'batches', 'short_code');
 
             if($request->discount === 'fixed'){
                 $discount_price = $request->fixed;
@@ -118,7 +124,7 @@ class CourseController extends Controller{
             $user->total_batches = $user->total_batches + 1;
             $user->save();
 
-            return redirect()->back()->with('message', 'Course Created Successfully');
+            return redirect()->back()->with('success', 'Course Created Successfully');
         } catch (\Throwable $th) {
             throw $th;
         }
@@ -142,7 +148,8 @@ class CourseController extends Controller{
             'mentor_id' => $user->unique_id
         ])->first();
 
-        $batches = Courses::find($course->unique_id)->batches;
+        $batches = $course->batches;
+        $reviews = $course->reviews;
 
         if(!$course) return redirect('/404');
 
@@ -150,6 +157,7 @@ class CourseController extends Controller{
             'course' => $course,
             'batches' => $batches,
             'mentor' => $user,
+            'reviews' => $reviews,
             'data' => $this->app_data()
         ]);
     }
@@ -157,14 +165,38 @@ class CourseController extends Controller{
     public function show($slug){
         $user = $this->user();
         if(!$course = Courses::where('slug', $slug)->first()) return Response::redirect('/courses', 'errors', 'Course Was not Found');
-        $mentor = User::find($course->mentor_id);
-        $batch = Batch::find($course->active_batch);
+        $obj = $this->singleCourse($course);
+
+        if($user){
+            $course->user_enrolled = !!Enrollment::where([
+                'course_id' => $course->unique_id,
+                'student_id' => $user->unique_id
+            ])->first();
+        }else{
+            $course->user_enrolled =  false;
+        }
 
         return view('front.course-detail', [
             'course' => $course,
-            'mentor' => $mentor,
-            'batch' => $batch,
+            'mentor' => $obj->mentor,
+            'batch' => $obj->batch,
             'user' => $user,
+            'reviews' => $obj->reviews,
+            'data' => $this->app_data()
+        ]);
+    }
+
+    public function enrollment($slug){
+        $user = $this->user();
+        if(!$course = Courses::where('slug', $slug)->first()) return Response::redirect('/courses', 'errors', 'Course Was not Found');
+        $obj = $this->singleCourse($course);
+
+        return view('front.enroll', [
+            'course' => $course,
+            'mentor' => $obj->mentor,
+            'batch' => $obj->batch,
+            'user' => $user,
+            'reviews' => $obj->reviews,
             'data' => $this->app_data()
         ]);
     }

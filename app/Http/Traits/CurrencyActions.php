@@ -33,4 +33,20 @@ trait CurrencyActions {
         }
         return true;
     }
+
+
+    function updateCurrencyRates(){
+        $response = Http::get(env('EXCHANGERATE_API_URL').'/latest');
+
+        if(!$response->ok()) throw new Exception('Exchange Rate update Failed');
+
+        $response = $response->json();
+        $rates = $response['rates'];
+
+        foreach ($rates as $key => $rate) {
+            Currencies::where('symbol', $key)->update([
+                'rate' => ceil($rate)
+            ]);
+        }
+    }
 }

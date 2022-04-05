@@ -44,17 +44,13 @@
                                         <div class="col-6">
                                             <div class="single-form">
                                                 <input type="text" name="firstname" value="{{old('firstname')}}" placeholder="First Name">
-                                                @error('firstname')
-                                                    <small class="text-danger">{{$message}}</small>
-                                                @enderror
+                                                <x-errors name="firstname" />
                                             </div>
                                         </div>
                                         <div class="col-6">
                                             <div class="single-form">
                                                 <input type="text" name="lastname" value="{{old('lastname')}}" placeholder="Last Name">
-                                                @error('lastname')
-                                                    <small class="text-danger">{{$message}}</small>
-                                                @enderror
+                                                <x-errors name="lastname" />
                                             </div>
                                         </div>
                                     </div>
@@ -62,24 +58,20 @@
                                     <!-- Single Form Start -->
                                     <div class="single-form">
                                         <input type="email" name="email" value="{{old('email')}}" placeholder="Email">
-                                        @error('email')
-                                            <small class="text-danger">{{$message}}</small>
-                                        @enderror
+                                        <x-errors name="email" />
                                     </div>
                                     <!-- Single Form End -->
                                     <!-- Single Form Start -->
                                     <div class="single-form">
                                         <input type="password" name="password" value="{{old('password')}}" placeholder="Password">
-                                        @error('password')
-                                            <small class="text-danger">{{$message}}</small>
-                                        @enderror
+                                        <x-errors name="email" />
                                     </div>
                                     <!-- Single Form End -->
                                     <!-- Single Form End -->
                                     <!-- Single Form Start -->
                                     <div class="single-form">
                                         <button type="submit" class="btn btn-primary btn-hover-dark w-100">Create an account</button>
-                                        <a class="btn btn-secondary btn-outline w-100" href="#">Sign up with Google</a>
+                                        <a class="btn btn-secondary btn-outline w-100" href="{{route('google.login')}}">Sign up with Google</a>
                                     </div>
                                     <!-- Single Form End -->
                                 </form>

@@ -34,5 +34,9 @@ class Courses extends Model
         return $this->hasMany(Batch::class, 'course_id', 'unique_id');
     }
 
+    public function allReviews(){
+        return $this->hasMany(Review::class, 'course_id', 'unique_id');
+    }
+
 
 }

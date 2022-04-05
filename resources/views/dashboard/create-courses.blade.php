@@ -199,7 +199,7 @@
 
                         </div>
 
-                        <div class="mt-5 float-left w-100">
+                        <div class="mt-5 d-flex justify-content-end">
                             <button type="submit" class="btn float-right btn-primary radius">Create Class</button>
                         </div>
 

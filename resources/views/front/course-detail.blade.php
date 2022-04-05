@@ -1,9 +1,5 @@
 <x-guest-layout>
 
-    @auth
-        @include('front.student.js.enrollment-js')
-    @endauth
-
     <x-page-banner>
         <x-slot name="current">
             Courses
@@ -24,7 +20,6 @@
 
                         <div class="courses-details-images">
                             <img src="{{json_decode($batch->images)[0] ?? asset('images/courses/courses-details.jpg')}}" alt="Courses Details">
-                            <span class="tags">Finance</span>
 
                             <div class="courses-play">
                                 <img src="{{asset('images/courses/circle-shape.png')}}" alt="Play">
@@ -32,11 +27,19 @@
                             </div>
                         </div>
 
-                        <h2 class="title">{{$course->name}}</h2>
+                        <div class="w-100 mt-4 mb-0">
+                            @if ($course->tags)
+                                @foreach (json_decode($course->tags) as $tag)
+                                    <span class="tag-item">{{$tag->value}}</span>
+                                @endforeach
+                            @endif
+                        </div>
+
+                        <h2 class="title mt-2">{{$course->name}}</h2>
 
                         <div class="courses-details-admin">
                             <div class="admin-author">
-                                <div class="author-thumb">
+                                <div class="rounded-img">
                                     <img src="{{asset($mentor->avatar)}}" alt="Author">
                                 </div>
                                 <div class="author-content">
@@ -90,11 +93,11 @@
                                             <h3 class="tab-title">Course Instructor:</h3>
 
                                             <div class="row">
-                                                <div class="col-md-3 col-6">
+                                                <div class="col-md-6 col-6">
                                                     <!-- Single Team Start -->
-                                                    <div class="single-team">
-                                                        <div class="team-thumb">
-                                                            <img src="assets/images/author/author-01.jpg" alt="Author">
+                                                    <div class="single-team border p-5 radius">
+                                                        <div class="rounded-img-lg border mx-auto items-center">
+                                                            <img src="{{$mentor->avatar ?? assets('images/author/author-01.jpg')}}" alt="Author">
                                                         </div>
                                                         <div class="team-content">
                                                             <div class="rating">
@@ -102,62 +105,8 @@
                                                                 <i class="icofont-star"></i>
                                                                 <span class="text">(rating)</span>
                                                             </div>
-                                                            <h4 class="name">Margarita James</h4>
-                                                            <span class="designation">MSC, Instructor</span>
-                                                        </div>
-                                                    </div>
-                                                    <!-- Single Team End -->
-                                                </div>
-                                                <div class="col-md-3 col-6">
-                                                    <!-- Single Team Start -->
-                                                    <div class="single-team">
-                                                        <div class="team-thumb">
-                                                            <img src="assets/images/author/author-02.jpg" alt="Author">
-                                                        </div>
-                                                        <div class="team-content">
-                                                            <div class="rating">
-                                                                <span class="count">4.9</span>
-                                                                <i class="icofont-star"></i>
-                                                                <span class="text">(rating)</span>
-                                                            </div>
-                                                            <h4 class="name">Mitchell Colon</h4>
-                                                            <span class="designation">BBA, Instructor</span>
-                                                        </div>
-                                                    </div>
-                                                    <!-- Single Team End -->
-                                                </div>
-                                                <div class="col-md-3 col-6">
-                                                    <!-- Single Team Start -->
-                                                    <div class="single-team">
-                                                        <div class="team-thumb">
-                                                            <img src="assets/images/author/author-03.jpg" alt="Author">
-                                                        </div>
-                                                        <div class="team-content">
-                                                            <div class="rating">
-                                                                <span class="count">4.9</span>
-                                                                <i class="icofont-star"></i>
-                                                                <span class="text">(rating)</span>
-                                                            </div>
-                                                            <h4 class="name">Sonya Gordon</h4>
-                                                            <span class="designation">MBA, Instructor</span>
-                                                        </div>
-                                                    </div>
-                                                    <!-- Single Team End -->
-                                                </div>
-                                                <div class="col-md-3 col-6">
-                                                    <!-- Single Team Start -->
-                                                    <div class="single-team">
-                                                        <div class="team-thumb">
-                                                            <img src="assets/images/author/author-04.jpg" alt="Author">
-                                                        </div>
-                                                        <div class="team-content">
-                                                            <div class="rating">
-                                                                <span class="count">4.9</span>
-                                                                <i class="icofont-star"></i>
-                                                                <span class="text">(rating)</span>
-                                                            </div>
-                                                            <h4 class="name">Archie Neal</h4>
-                                                            <span class="designation">BBS, Instructor</span>
+                                                            <h4 class="name">{{$mentor->firstname}} {{$mentor->lastname}}</h4>
+                                                            <span class="designation">{{$mentor->specialty}}</span>
                                                         </div>
                                                     </div>
                                                     <!-- Single Team End -->
@@ -165,14 +114,6 @@
                                             </div>
 
                                             <div class="row gx-10">
-                                                <div class="col-lg-6">
-                                                    <div class="tab-rating-content">
-                                                        <h3 class="tab-title">Rating:</h3>
-                                                        <p>Lorem Ipsum is simply dummy text of printing and typesetting industry. Lorem Ipsum has been the i dustry's standard dummy text ever since the 1500 unknown printer took a galley of type.</p>
-                                                        <p>Lorem Ipsum is simply dummy text of printing and typesetting industry text ever since</p>
-                                                        <p>Lorem Ipsum is simply dummy text of printing and dustry's standard dummy text ever since the 1500 unknown printer took a galley of type.</p>
-                                                    </div>
-                                                </div>
                                                 <div class="col-lg-6">
                                                     <div class="tab-rating-box">
                                                         <span class="count">4.8 <i class="icofont-star"></i></span>
@@ -235,143 +176,26 @@
 
                                         <!-- Tab Reviews Start -->
                                         <div class="tab-reviews">
-                                            <h3 class="tab-title">Student Reviews:</h3>
+                                            <h4 class="tab-title">Student Reviews:</h4>
 
                                             <div class="reviews-wrapper reviews-active">
                                                 <div class="swiper-container">
                                                     <div class="swiper-wrapper">
-
-                                                        <!-- Single Reviews Start -->
-                                                        <div class="single-review swiper-slide">
-                                                            <div class="review-author">
-                                                                <div class="author-thumb">
-                                                                    <img src="{{asset('images/author/author-06.jpg')}}" alt="Author">
-                                                                    <i class="icofont-quote-left"></i>
-                                                                </div>
-                                                                <div class="author-content">
-                                                                    <h4 class="name">Sara Alexander</h4>
-                                                                    <span class="designation">Product Designer, USA</span>
-                                                                    <span class="rating-star">
-                                                                            <span class="rating-bar" style="width: 100%;"></span>
-                                                                    </span>
-                                                                </div>
+                                                        @if (count($reviews) > 0)
+                                                            @foreach ($reviews as $review)
+                                                                <x-reviews.item :review="$review" />
+                                                            @endforeach
+                                                        @else
+                                                            <div class="text-center w-100 p-5 border radius">
+                                                                <h4>There are no Reviews</h4>
+                                                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam, ea.</p>
                                                             </div>
-                                                            <p>Lorem Ipsum has been the industry's standard dummy text since the 1500 when unknown printer took a galley of type and scrambled to make type specimen book has survived not five centuries but also the leap into electronic type and book.</p>
-                                                        </div>
-                                                        <!-- Single Reviews End -->
-
-                                                        <!-- Single Reviews Start -->
-                                                        <div class="single-review swiper-slide">
-                                                            <div class="review-author">
-                                                                <div class="author-thumb">
-                                                                    <img src="{{asset('images/author/author-07.jpg')}}" alt="Author">
-                                                                    <i class="icofont-quote-left"></i>
-                                                                </div>
-                                                                <div class="author-content">
-                                                                    <h4 class="name">Karol Bachman</h4>
-                                                                    <span class="designation">Product Designer, USA</span>
-                                                                    <span class="rating-star">
-                                                                            <span class="rating-bar" style="width: 100%;"></span>
-                                                                    </span>
-                                                                </div>
-                                                            </div>
-                                                            <p>Lorem Ipsum has been the industry's standard dummy text since the 1500 when unknown printer took a galley of type and scrambled to make type specimen book has survived not five centuries but also the leap into electronic type and book.</p>
-                                                        </div>
-                                                        <!-- Single Reviews End -->
-
-                                                        <!-- Single Reviews Start -->
-                                                        <div class="single-review swiper-slide">
-                                                            <div class="review-author">
-                                                                <div class="author-thumb">
-                                                                    <img src="{{asset('images/author/author-03.jpg')}}" alt="Author">
-                                                                    <i class="icofont-quote-left"></i>
-                                                                </div>
-                                                                <div class="author-content">
-                                                                    <h4 class="name">Gertude Culbertson</h4>
-                                                                    <span class="designation">Product Designer, USA</span>
-                                                                    <span class="rating-star">
-                                                                            <span class="rating-bar" style="width: 100%;"></span>
-                                                                    </span>
-                                                                </div>
-                                                            </div>
-                                                            <p>Lorem Ipsum has been the industry's standard dummy text since the 1500 when unknown printer took a galley of type and scrambled to make type specimen book has survived not five centuries but also the leap into electronic type and book.</p>
-                                                        </div>
-                                                        <!-- Single Reviews End -->
-
+                                                        @endif
                                                     </div>
                                                     <!-- Add Pagination -->
                                                     <div class="swiper-pagination"></div>
                                                 </div>
                                             </div>
-
-                                            <div class="reviews-btn">
-                                                <button type="button" class="btn btn-primary btn-hover-dark" data-bs-toggle="modal" data-bs-target="#reviewsModal">Write A Review</button>
-                                            </div>
-
-                                            <!-- Reviews Form Modal Start -->
-                                            <div class="modal fade" id="reviewsModal">
-                                                <div class="modal-dialog modal-dialog-centered">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title">Add a Review</h5>
-                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                        </div>
-
-                                                        <!-- Reviews Form Start -->
-                                                        <div class="modal-body reviews-form">
-                                                            <form action="#">
-                                                                <div class="row">
-                                                                    <div class="col-md-6">
-                                                                        <!-- Single Form Start -->
-                                                                        <div class="single-form">
-                                                                            <input type="text" placeholder="Enter your name">
-                                                                        </div>
-                                                                        <!-- Single Form End -->
-                                                                    </div>
-                                                                    <div class="col-md-6">
-                                                                        <!-- Single Form Start -->
-                                                                        <div class="single-form">
-                                                                            <input type="text" placeholder="Enter your Email">
-                                                                        </div>
-                                                                        <!-- Single Form End -->
-                                                                    </div>
-                                                                    <div class="col-md-12">
-                                                                        <!-- Single Form Start -->
-                                                                        <div class="reviews-rating">
-                                                                            <label>Rating</label>
-                                                                            <ul id="rating" class="rating">
-                                                                                <li class="star" title='Poor' data-value='1'><i class="icofont-star"></i></li>
-                                                                                <li class="star" title='Poor' data-value='2'><i class="icofont-star"></i></li>
-                                                                                <li class="star" title='Poor' data-value='3'><i class="icofont-star"></i></li>
-                                                                                <li class="star" title='Poor' data-value='4'><i class="icofont-star"></i></li>
-                                                                                <li class="star" title='Poor' data-value='5'><i class="icofont-star"></i></li>
-                                                                            </ul>
-                                                                        </div>
-                                                                        <!-- Single Form End -->
-                                                                    </div>
-                                                                    <div class="col-md-12">
-                                                                        <!-- Single Form Start -->
-                                                                        <div class="single-form">
-                                                                            <textarea placeholder="Write your comments here"></textarea>
-                                                                        </div>
-                                                                        <!-- Single Form End -->
-                                                                    </div>
-                                                                    <div class="col-md-12">
-                                                                        <!-- Single Form Start -->
-                                                                        <div class="single-form">
-                                                                            <button class="btn btn-primary btn-hover-dark">Submit Review</button>
-                                                                        </div>
-                                                                        <!-- Single Form End -->
-                                                                    </div>
-                                                                </div>
-                                                            </form>
-                                                        </div>
-                                                        <!-- Reviews Form End -->
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- Reviews Form Modal End -->
-
                                         </div>
                                         <!-- Tab Reviews End -->
 
@@ -411,7 +235,12 @@
                                 </ul>
                             </div>
                             <div class="info-btn">
-                                <button onclick="createTransaction()" class="btn btn-primary btn-hover-dark">Enroll for Batch {{$batch->count}}</b>
+                                @if ($course->user_enrolled)
+                                    <a href="/profile/courses/{{$course->slug}}" class="btn btn-primary btn-hover-dark">Go to Course</a>
+                                @else
+                                    <a href="{{$course->slug}}/enroll" class="btn btn-primary btn-hover-dark">Enroll for {{$batch->title}}</a>
+                                @endif
+                                {{-- <button onclick="createTransaction()" class="btn btn-primary btn-hover-dark">Enroll for Batch {{$batch->count}}</b> --}}
                             </div>
                         </div>
                         <!-- Sidebar Widget Information End -->

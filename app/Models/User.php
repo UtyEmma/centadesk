@@ -12,7 +12,7 @@ class User extends Authenticatable
     use HasApiTokens, HasFactory, Notifiable;
 
 
-    protected $fillable = [ 'unique_id', 'email', 'firstname', 'lastname', 'username', 'account_name', 'account_no', 'bank', 'payment_method', 'crypto_address', 'specialty', 'id_number', 'id_image', 'interests', 'role', 'status', 'password', 'kyc_status', 'kyc_method', 'affiliate_id', 'city', 'state', 'country', 'experience','qualification', 'approved', 'currency'];
+    protected $fillable = [ 'unique_id', 'email', 'firstname', 'lastname', 'username', 'account_name', 'account_no', 'bank', 'payment_method', 'crypto_address', 'specialty', 'id_number', 'id_image', 'interests', 'role', 'status', 'password', 'kyc_status', 'kyc_method', 'avatar', 'affiliate_id', 'city', 'state', 'country', 'experience','qualification', 'approved', 'currency'];
 
     protected $primaryKey = 'unique_id';
     protected $keyType = 'string';
@@ -43,5 +43,13 @@ class User extends Authenticatable
 
     public function courses (){
         return $this->hasMany(Courses::class, 'mentor_id', 'unique_id');
+    }
+
+    public function wallet(){
+        return $this->hasOne(Wallet::class, 'user_id', 'unique_id');
+    }
+
+    public function withdrawals(){
+        return $this->hasMany(Withdrawal::class, 'user_id', 'unique_id');
     }
 }

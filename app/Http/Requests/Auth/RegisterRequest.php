@@ -4,6 +4,7 @@ namespace App\Http\Requests\Auth;
 
 use App\Library\Token;
 use App\Models\User;
+use App\Models\Wallet;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;

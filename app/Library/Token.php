@@ -27,4 +27,11 @@ class Token {
     static function text(int $len = 5){
         return Str::random($len);
     }
+
+    static function uniqueText(int $len = 5, $table, $column){
+        $str = Str::random($len);
+        $status = DB::table($table)->where($column, '===', $str)->first() ?? false;
+        if ($status) { return static::uniqueText($len, $table, $column); }
+        return $status;
+    }
 }

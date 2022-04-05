@@ -1,33 +1,29 @@
 <x-app-layout>
     <!-- Page Content Wrapper Start -->
-    <div class="main-content-wrapper">
+    <div class="page-content-wrapper">
         <div class="container-fluid">
+
+            <x-mentor.kyc-warning :user="$user" />
 
             <!-- Overview Top Start -->
             <div class="admin-top-bar flex-wrap">
                 <div class="overview-box">
                     <div class="single-box">
-                        <h5 class="title">Total Revenue</h5>
-                        <div class="count">$568.00</div>
+                        <h5 class="title">Lifetime Earnings</h5>
+                        <div class="count">$ {{number_format($wallet->earnings)}}</div>
                         <p><span>$235.00</span> This months</p>
                     </div>
 
                     <div class="single-box">
-                        <h5 class="title">Total Enrollment’s</h5>
-                        <div class="count">2,570</div>
+                        <h5 class="title">Available Balance</h5>
+                        <div class="count">$ {{number_format($wallet->available)}}</div>
                         <p><span>345</span> This months</p>
                     </div>
 
                     <div class="single-box">
-                        <h5 class="title">Instgructor Rating</h5>
-                        <div class="count">
-                            4.5
-
-                            <span class="rating-star">
-                                    <span class="rating-bar" style="width: 80%;"></span>
-                            </span>
-                        </div>
-                        <p><span>58</span> This months</p>
+                        <h5 class="title">Pending Balance</h5>
+                        <div class="count">$ {{number_format($wallet->escrow)}}</div>
+                        <p><span>345</span> This months</p>
                     </div>
                 </div>
             </div>
@@ -35,27 +31,54 @@
 
             <!-- Graph Top Start -->
             <div class="graph">
-                <div class="graph-title">
-                    <h4 class="title">Get top insights about your performance</h4>
+                <div class="graph-title mb-3">
+                    <h4 class="title">Withdrawals</h4>
 
-                    <div class="months-select">
-                        <select>
-                            <option data-display="Last 12 months">Last 12 months</option>
-                            <option value="1">Last 6 months</option>
-                            <option value="1">Last 3 months</option>
-                            <option value="1">Last 2 months</option>
-                            <option value="1">Last 1 months</option>
-                            <option value="1">Last 1 week</option>
-                        </select>
+                    <div class="graph-btn">
+                        <a class="btn btn-primary btn-hover-dark" href="#">Withdraw</i></a>
                     </div>
                 </div>
 
-                <div class="graph-content">
-                    <div id="uniqueReport"></div>
-                </div>
+                <div class="card radius p-4">
+                    <table class="table-responsive w-100">
+                        <thead>
+                            <th>Amount</th>
+                            <th>Payment Method</th>
+                            <th>Account</th>
+                            <th>Status</th>
+                            <th>Withdrawal Date</th>
+                        </thead>
 
-                <div class="graph-btn">
-                    <a class="btn btn-primary btn-hover-dark" href="#">Revenue Report <i class="icofont-rounded-down"></i></a>
+                        <tbody>
+                            @if (count($withdrawals) > 0)
+                                @foreach ($withdrawals as $withdrawal)
+                                    <tr>
+                                        <td>{{$withdrawal->amount}}</td>
+                                        <td> {{$withdrawal->type}} </td>
+                                        <td>
+                                            @if ($withdrawal->type === 'crypto')
+                                                {{$withdrawal->wallet_id}}
+                                            @elseif ($withdrawal->type === 'bank')
+                                                {{$withdrawal->account_name}}
+                                            @endif
+                                        </td>
+                                        <td>
+                                            {{$withdrawal->status}}
+                                        </td>
+                                        <td>
+                                            {{$withdrawal->created_at}}
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            @else
+                                <tr>
+                                    <td colspan="5" class="text-center pt-5 ">
+                                        <h4>You have not made any withdrawals</h4>
+                                    </td>
+                                </tr>
+                            @endif
+                        </tbody>
+                    </table>
                 </div>
             </div>
             <!-- Graph Top End -->

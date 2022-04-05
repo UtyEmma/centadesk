@@ -1,5 +1,8 @@
 <!-- Login Header Start -->
     <div class="section login-header position-sticky top-0">
+        @php
+            $user = Auth::user();
+        @endphp
         <!-- Login Header Wrapper Start -->
         <div class="login-header-wrapper navbar navbar-expand">
 
@@ -109,8 +112,8 @@
                     </div>
                 </div>
 
-                <a class="action author" href="#">
-                    <img src="{{asset('images/author/author-07.jpg')}}" alt="Author">
+                <a class="action rounded-img" href="/me/profile" style="">
+                    <img src="{{$user->avatar ?? asset('images/author/author-07.jpg')}}" alt="Author">
                 </a>
             </div>
             <!-- Header Action End -->

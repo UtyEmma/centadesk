@@ -18,19 +18,17 @@
         <link rel="stylesheet" href="{{ asset('css/plugins/flaticon.css')}} ">
         <link rel="stylesheet" href="{{ asset('css/plugins/font-awesome.min.css')}} ">
         <link rel="stylesheet" href="{{ asset('css/plugins/tagify.min.css')}} ">
-        <link rel="stylesheet" href="{{ asset('css/plugins/bs-select.min.css')}}">
 
         <!-- Main Style CSS -->
         <link rel="stylesheet" href="{{asset('css/style.css')}}">
         <link rel="stylesheet" href="{{ asset('css/custom.css')}} ">
         <link rel="stylesheet" href="{{asset('css/vendor/plugins.min.css')}}">
+        <link rel="stylesheet" href="{{asset('css/plugins/simple-notify.min.css')}}">
 
         @stack('styles')
 
         <!-- JS
             ============================================ -->
-
-        <script src="{{asset('js/plugins/bs-select.min.js')}}" ></script>
         <!-- Modernizer & jQuery JS -->
         <script src="{{asset('js/vendor/modernizr-3.11.2.min.js')}}" ></script>
         <script src="{{asset('js/vendor/jquery-3.5.1.min.js')}}" ></script>
@@ -40,6 +38,8 @@
         <script src="{{asset('js/plugins/bootstrap.min.js')}}" ></script>
         <script src="{{asset('js/plugins/tagify/tagify.min.js')}}" ></script>
         <script src="{{asset('js/plugins/tagify/tagify.polyfills.min.js')}}" ></script>
+
+        <script src="{{asset('js/plugins/simple-notify.min.js')}}"></script>
 
         <!--====== Use the minified version files listed below for better performance and remove the files listed above ======-->
         <script src="{{asset('js/plugins.min.js')}}" ></script>
@@ -61,6 +61,28 @@
 
 
         @include('layouts.guest.guest-footer')
+
+        <script>
+            function toast(type, message){
+                new Notify ({
+                    text: message,
+                    effect: 'slide',
+                    status: type,autoclose: true,
+                    autotimeout: 3000,
+                    speed: 300 // animation speed
+                })
+            }
+
+            $(document).ready(() => {
+                @if(Session::has('error'))
+                    toast('error', "{{Session::get('error')}}")
+                @elseif (Session::has('success'))
+                    toast('success', "{{Session::get('success')}}")
+                @elseif(count($errors->all()) > 0)
+                    toast('error', "Invalid Input fields")
+                @endif
+            })
+        </script>
 
     </body>
 </html>

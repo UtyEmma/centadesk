@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('account_name');
             $table->string('bank');
             $table->string('type');
-            $table->string('wallet_id');
+            $table->string('wallet_key');
             $table->string('status');
             $table->timestamps();
         });

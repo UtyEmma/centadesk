@@ -6,6 +6,7 @@ use App\Http\Controllers\AppController;
 use App\Http\Controllers\BatchController;
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\CryptoPaymentController;
 use App\Http\Controllers\ForumController;
 use App\Http\Controllers\MentorController;
 use App\Http\Controllers\ReviewController;
@@ -49,6 +50,10 @@ Route::middleware('auth')->group(function(){
         Route::post('/update', [CurrencyController::class, 'update']);
     });
 
+    Route::prefix('enroll')->group(function(){
+        Route::get('/crypto/pay/{batch_id}', [CryptoPaymentController::class, 'initiate']);
+    });
+
 
     Route::prefix('/reviews')->group(function(){
         Route::post('/submit/{batch_id}', [ReviewController::class, 'submitReview']);
@@ -89,7 +94,10 @@ Route::prefix('/mentor')->group(function(){
 Route::prefix('/courses')->group(function(){
     Route::get('/', [CourseController::class, 'all']);
     Route::get('/{slug}', [CourseController::class, 'show']);
+    Route::get('/{slug}/enroll', [CourseController::class, 'enrollment']);
 });
+
+
 
 
 

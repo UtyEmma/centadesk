@@ -10,7 +10,7 @@ use Illuminate\Contracts\Database\Eloquent\CastsAttributes;
 class Currency implements CastsAttributes{
 
     function get($model, string $key, $value, array $attributes){
-        $currency = request()->cookie('currency');
+        $currency = request()->cookie('currency') ?? env('DEFAULT_CURRENCY');
         $converted = $value ? LibraryCurrency::convert($value, $model->currency, $currency) : $value;
         return $converted;
     }

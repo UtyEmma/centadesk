@@ -1,11 +1,32 @@
 <script src="https://checkout.flutterwave.com/v3.js"></script>
 
 <script>
+
+    async function handlePayment(){
+        const type = $("input[name='method']").val()
+        let transaction;
+
+        if(type === 'bank'){
+            transaction = await createTransaction()
+        }else if(type === 'crypto'){
+            transaction = await createCryptoTransaction()
+        }
+        return window.location.href = `{{env('MAIN_APP_URL')}}/profile/courses/${transaction.course}`;
+    }
+
+    function handleCryptoPayment(){
+
+    }
+
+    async function createCryptoTransaction(){
+
+    }
+
     async function createTransaction(){
         const data = {
             course: '{{$course->slug}}',
             batch: '{{$batch->unique_id}}',
-            amount: '{{$batch->price}}',
+            amount: "{{$batch->discount === 'percent' || $batch->discount === 'fixed' ? $batch->discount_price : $batch->price}}",
             name: "{{$user->firstname.' '.$user->lastname}}",
             email: "{{$user->email}}",
             user_id: "{{$user->unique_id}}"
@@ -35,8 +56,6 @@
     async function enrollUser(payment){
         const response = await fetch('{{env('MAIN_APP_URL')}}/api/enroll/'+'{{$batch->unique_id}}/'+payment.transaction_id, {
             method: 'GET',
-            // mode: 'same-origin',
-            // credentials: 'same-origin', // include, *same-origin, omit
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json'
@@ -44,9 +63,7 @@
         })
 
         if(response.status !== 200) return false
-        const res = await response.json()
-        console.log(res)
-        return window.location.href = `{{env('MAIN_APP_URL')}}/profile/courses/${res.course}`;
+        return await response.json()
     }
 
     async function handleCheckout(transaction){
