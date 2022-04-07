@@ -34,7 +34,10 @@
                 <div class="row">
                     @if (count($courses) > 0)
                         @foreach ($courses as $course)
-                            <x-courses.course-item :course="$course" :mentor="$course->mentor" />
+                            <div class="col-lg-4 col-md-6">
+                                <x-courses.single-course-card :course="$course" :mentor="$course->mentor" />
+                            </div>
+                                {{-- <x-courses.course-item  /> --}}
                         @endforeach
                     @else
                         <div class="text-center">

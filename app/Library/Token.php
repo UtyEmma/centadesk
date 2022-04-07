@@ -24,14 +24,13 @@ class Token {
         return $random;
     }
 
-    static function text(int $len = 5){
-        return Str::random($len);
-    }
 
-    static function uniqueText(int $len = 5, $table, $column){
+    static function text(int $len = 5, $table = null, $column = null){
         $str = Str::random($len);
-        $status = DB::table($table)->where($column, '===', $str)->first() ?? false;
-        if ($status) { return static::uniqueText($len, $table, $column); }
-        return $status;
+        if($table && $column){
+            $status = DB::table($table)->where($column, '===', $str)->first() ?? false;
+            if ($status) { return static::text($len, $table, $column); }
+        }
+        return $str;
     }
 }

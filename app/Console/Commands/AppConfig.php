@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use Database\Seeders\AppConfigSeeder;
+use Database\Seeders\CategoriesSeeder;
 use Database\Seeders\CurrenciesSeeder;
 use Database\Seeders\DefaultAdminSeeder;
 use Illuminate\Console\Command;
@@ -39,14 +40,21 @@ class AppConfig extends Command
      * @return int
      */
     public function handle(){
-        $bar = $this->output->createProgressBar(3);
+        $bar = $this->output->createProgressBar(4);
         $bar->start();
+
         $details = new DefaultAdminSeeder();
         $this->info('Default Administrator Account Created');
         $bar->advance();
+
         new AppConfigSeeder();
-        $this->info('App Configuration set up complete');
+        $this->info('App Configuration set up completed');
         $bar->advance();
+
+        new CategoriesSeeder();
+        $this->info('Categories Seeded');
+        $bar->advance();
+
         new CurrenciesSeeder();
         $this->info('Currencies and Exchange rates set successfully');
         $bar->finish();

@@ -1,31 +1,30 @@
-<x-mentor-course-detail :course="$course" :batches="$batches" :mentor="$mentor">
-    <div>
-        <h5 class="mb-3">Class Overview</h5>
-
-        <div class="overview-box mt-0">
-            <div class="single-box mt-0">
-                <h5 class="title">Total Earnings</h5>
-                <div class="count">${{$course->earnings}}</div>
-                <p><span>$235.00</span> This months</p>
+<x-mentor-course-detail :course="$course" :batches="$batches" :mentor="$mentor" title="Course Overview">
+    <div class="overview-box mt-0">
+        <div class="single-box mt-0">
+            <h5 class="title">Total Earnings</h5>
+            <div class="count">
+                <span class="fs-5">{{Auth::user()->currency}}</span>
+                {{$course->earnings}}
             </div>
+            <p><span>$235.00</span> This months</p>
+        </div>
 
-            <div class="single-box mt-0">
-                <h5 class="title">Total Enrollment’s</h5>
-                <div class="count">{{$course->total_students}}</div>
-                <p><span>345</span> This months</p>
+        <div class="single-box mt-0">
+            <h5 class="title">Total Enrollment’s</h5>
+            <div class="count">{{$course->total_students}}</div>
+            <p><span>345</span> This months</p>
+        </div>
+
+        <div class="single-box mt-0">
+            <h5 class="title">Mentor Rating</h5>
+            <div class="count">
+                {{$course->rating}}.0
+
+                <span class="rating-star">
+                        <span class="rating-bar" style="width: {{$course->rating * 20}}%;"></span>
+                </span>
             </div>
-
-            <div class="single-box mt-0">
-                <h5 class="title">Mentor Rating</h5>
-                <div class="count">
-                    {{$course->rating}}.0
-
-                    <span class="rating-star">
-                            <span class="rating-bar" style="width: {{$course->rating * 20}}%;"></span>
-                    </span>
-                </div>
-                <p><span>58</span> This months</p>
-            </div>
+            <p><span>58</span> This months</p>
         </div>
     </div>
 

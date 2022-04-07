@@ -19,7 +19,10 @@ class MentorController extends Controller{
      * @return \Illuminate\Http\Response
      */
     public function index(){
-        $mentors = User::where('role', 'mentor')->get();
+        $mentors = User::where([
+            'role' => 'mentor',
+            'kyc_status' => 'approved'
+        ])->get();
 
         return view('front.mentors', [
             'mentors' => $mentors

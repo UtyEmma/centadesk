@@ -27,6 +27,7 @@ return new class extends Migration
             $table->integer('total_students');
             $table->integer('reviews');
             $table->string('currency');
+            $table->string('category');
             $table->integer('rating');
             $table->integer('revenue');
             $table->string('active_batch')->nullable();

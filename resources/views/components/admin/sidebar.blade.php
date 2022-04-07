@@ -26,6 +26,12 @@
         </a>
       </li>
       <li class="nav-item">
+        <a class="nav-link" href="/categories">
+          <i class="mdi mdi-forum menu-icon"></i>
+          <span class="menu-title">Categories</span>
+        </a>
+      </li>
+      <li class="nav-item">
         <a class="nav-link" href="/currencies">
           <i class="mdi mdi-currency-usd menu-icon"></i>
           <span class="menu-title">Currencies</span>

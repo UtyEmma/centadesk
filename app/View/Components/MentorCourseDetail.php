@@ -14,11 +14,13 @@ class MentorCourseDetail extends Component
     public $course;
     public $batches;
     public $mentor;
+    public $title;
 
-    public function __construct($course, $batches, $mentor){
+    public function __construct($course, $batches, $mentor, $title){
         $this->course = $course;
         $this->batches = $batches;
         $this->mentor = $mentor;
+        $this->title = $title;
     }
 
     /**

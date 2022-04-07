@@ -114,13 +114,10 @@ $(document).ready(() => {
                     slidesPerView: 2,
                 },
                 768: {
-                    slidesPerView: 3,
+                    slidesPerView: 2,
                 },
                 992: {
                     slidesPerView: 4,
-                },
-                1200: {
-                    slidesPerView: 5,
                 }
             },
         });

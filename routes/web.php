@@ -74,6 +74,10 @@ Route::middleware('auth')->group(function(){
                 Route::post('/new', [CourseController::class, 'store']);
                 Route::get('/{slug}', [CourseController::class, 'single']);
                 Route::get('/{slug}/reviews', [ReviewController::class, 'fetchCourseReviews']);
+                Route::prefix('/{slug}/batch')->group(function(){
+                    Route::get('/new', [BatchController::class, 'newBatchPage']);
+                    Route::post('/create', [BatchController::class, 'newBatch']);
+                });
                 Route::prefix('/{slug}/{shortcode}')->group(function(){
                     Route::get('/', [BatchController::class, 'fetchBatch']);
                     Route::get('/students', [BatchController::class, 'fetchBatchStudents']);

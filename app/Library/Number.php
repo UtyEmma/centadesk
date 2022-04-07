@@ -5,7 +5,7 @@ namespace App\Library;
 class Number {
 
     static function percentageDecrease($percent, $value){
-        $subtraction = $percent / 100 * $value;
+        $subtraction = ceil($percent) / 100 * ceil($value);
         return $value - $subtraction;
     }
 

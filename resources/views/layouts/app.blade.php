@@ -55,10 +55,12 @@
         <script src="{{asset('js/plugins/tagify/tagify.min.js')}}"></script>
         <script src="{{asset('js/plugins/tagify/tagify.polyfills.min.js')}}" ></script>
         <script src="{{asset('js/plugins/moment.min.js')}}" ></script>
-        <script src="{{asset('js/plugins/date-range-picker.min.js')}}" ></script>
+        <script src="{{asset('js/plugins/jquery.inputmask.min.js')}}" ></script>
         <script src="{{asset('js/plugins/quill.js')}}" ></script>
 
         <script src="{{asset('vendor/summernote-0.8.18-dist/summernote-lite.min.js')}}" ></script>
+
+        <script src="https://cdn.jsdelivr.net/npm/@easepick/bundle@1.1.3/dist/index.umd.min.js"></script>
 
 
         <!-- Main JS -->

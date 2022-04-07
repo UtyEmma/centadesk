@@ -10,6 +10,7 @@ use App\Models\ForumMessages;
 use App\Models\ForumReplies;
 use Exception;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 trait BatchActions {
@@ -82,6 +83,12 @@ trait BatchActions {
                     }, $forum_messages->toArray());
 
         return $messages;
+    }
+
+    function getCourseBatches($course){
+        return Batch::where([
+            'course_id' => $course->unique_id
+        ])->get();
     }
 
 }

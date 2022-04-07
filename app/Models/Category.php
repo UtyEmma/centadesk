@@ -8,10 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class Category extends Model{
     use HasFactory;
 
-    protected $fillable = ['unique_id', 'name', 'slug', 'courses'];
+    protected $fillable = ['unique_id', 'name', 'slug', 'courses', 'status'];
 
     protected $primayKey = 'unique_id';
     protected $keyType = 'string';
     public $incrementing = false;
+
+    protected $attributes = [
+        'courses' => 0,
+        'status' => true
+    ];
 
 }

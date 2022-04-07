@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Traits\BatchActions;
+use App\Http\Traits\CourseActions;
 use App\Library\FileHandler;
 use App\Library\Number;
+use App\Library\Response;
 use App\Library\Token;
 use App\Models\Batch;
 use App\Models\Courses;
@@ -13,11 +15,12 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
 
 use function PHPUnit\Framework\throwException;
 
 class BatchController extends Controller{
-    use BatchActions;
+    use BatchActions, CourseActions;
 
     function fetch(Request $request, $batch_id){
         $batch = DB::table('batches')
@@ -63,6 +66,17 @@ class BatchController extends Controller{
         ]);
     }
 
+    function newBatchPage(Request $request, $slug){
+        $user = $this->user();
+        $course = $this->getCourseBySlug($slug, $user);
+        $batches = $this->getCourseBatches($course);
+        return Response::view('dashboard.course-details.new-batch', [
+            'mentor' => $user,
+            'course' => $course,
+            'batches' => $batches
+        ]);
+    }
+
     function newBatch(Request $request, $course_id){
         $course = Courses::find($course_id);
         $batch_id = Token::unique('batches');
@@ -70,8 +84,7 @@ class BatchController extends Controller{
         $images = FileHandler::upload($request->file('images'));
 
         $user = $this->user();
-        $array = [4, 5, 6];
-        $short_code = $request->short_code ?? Token::uniqueText(Arr::random($array), 'batches', 'short_code');
+        $short_code = strtolower(Token::text(5, 'batches', 'short_code'));
 
         if($request->discount === 'fixed'){
             $discount_price = $request->fixed;
@@ -84,6 +97,7 @@ class BatchController extends Controller{
             'course_id' => $course_id,
             'duration' => $request->duration,
             'class_link' => $request->class_link,
+            'access_link' => $request->access_link,
             'attendees' => $request->attendees,
             'price' => $request->price,
             'current' => true,
@@ -110,6 +124,8 @@ class BatchController extends Controller{
 
         $user->total_batches = $user->total_batches + 1;
         $user->save();
+
+        return Response::redirectBack('success', 'Batch Created Successfully');
     }
 
 }

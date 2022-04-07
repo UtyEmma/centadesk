@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\AnalyticsController;
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\CurrencyController;
 use App\Http\Controllers\Admin\MentorController;
 use App\Http\Controllers\Admin\SettingsController;
@@ -45,6 +46,16 @@ Route::middleware('auth:admin')->group(function(){
     });
 
     Route::get('/countries', [CurrencyController::class, 'getCountries']);
+
+    Route::prefix('/categories')->group(function(){
+        Route::get('/', [CategoryController::class, 'fetchAll']);
+        Route::post('/create', [CategoryController::class, 'create']);
+        Route::prefix('{category_id}')->group(function(){
+            Route::post('/update', [CategoryController::class, 'update']);
+            Route::get('/status', [CategoryController::class, 'setStatus']);
+            Route::get('/delete', [CategoryController::class, 'delete']);
+        });
+    });
 
     Route::prefix('/currencies')->group(function(){
         Route::get('/', [CurrencyController::class, 'currencies']);

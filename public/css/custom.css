@@ -175,3 +175,36 @@ input::-webkit-inner-spin-button {
     display: inline-block;
     color: #fff;
 }
+
+.img-cover{
+    position: absolute;
+    object-fit: cover;
+    object-position: center;
+    overflow: hidden;
+    min-height: 100%;
+}
+
+.light-tag {
+    width: auto;
+    height: 35px;
+    line-height: 35px;
+    background-color: #e7f8ee;
+    border-radius: 5px;
+    font-size: 14px;
+    color: #309255;
+    text-align: center;
+    border-radius: 5px;
+    padding: 0 10px;
+}
+
+.img-height{
+    height: 230px !important;
+}
+
+@media screen and (min-width: 425) {
+    .img-height{
+        height: 100% !important;
+    }
+}
+
+

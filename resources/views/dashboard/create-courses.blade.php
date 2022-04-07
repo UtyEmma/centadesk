@@ -33,6 +33,19 @@
                                 <x-errors name="desc" />
                             </div>
 
+
+                            <div class="single-form">
+                                <label>Category</label>
+                                <select name="category" class="select border radius w-100 py-3 px-2">
+                                    <option value="">Select Category</option>
+                                    @foreach ($categories as $category)
+                                        <option value="{{$category->slug}}">{{$category->name}}</option>
+                                    @endforeach
+                                </select>
+                                {{-- <textarea id="summernote" type="text" value="{{old('desc')}}" class="bg-white" name="desc" placeholder="" ></textarea> --}}
+                                <x-errors name="desc" />
+                            </div>
+
                             <div class="single-form">
                                 <label>Tags</label>
                                 <x-tag-input />
