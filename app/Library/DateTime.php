@@ -50,4 +50,9 @@ class DateTime {
         return $second->diffForHumans($first);
     }
 
+    static function dateDiff($first, $second = null, $format = "Y-m-d H:i:s"){
+        $first = Date::create($first);
+        $second = Date::create($second ?? now());
+        return $first->diffInDays($second);
+    }
 }

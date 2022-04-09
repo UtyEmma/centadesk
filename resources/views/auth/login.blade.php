@@ -69,8 +69,12 @@
                                     <div class="single-form">
                                         <button type="submit" class="btn btn-primary btn-hover-dark w-100">Login</button>
 
-                                        <a class="btn btn-secondary btn-outline w-100" href="{{route('google.login')}}">Login with Google</a>
-                                        <a class="btn btn-secondary btn-outline w-100" href="{{route('facebook.login')}}">Login with Facebook</a>
+                                        <p class="text-center my-3">
+                                            or
+                                        </p>
+
+                                        <x-google-btn>Login with Google</x-google-btn>
+                                        <x-facebook-btn>Login with Facebook</x-facebook-btn>
                                     </div>
                                     <!-- Single Form End -->
                                 </form>

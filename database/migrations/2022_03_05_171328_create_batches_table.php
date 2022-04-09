@@ -37,6 +37,8 @@ return new class extends Migration
             $table->string('percent')->nullable();
             $table->string('time_limit')->nullable();
             $table->string('signup_limit')->nullable();
+            $table->boolean('paid');
+            $table->boolean('payable');
             $table->integer('count');
             $table->timestamps();
         });

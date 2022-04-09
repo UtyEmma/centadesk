@@ -35,7 +35,7 @@
                     <h4 class="title">Withdrawals</h4>
 
                     <div class="graph-btn">
-                        <a class="btn btn-primary btn-hover-dark" href="#">Withdraw</i></a>
+                        <a class="btn btn-primary btn-hover-dark" href="./wallet/withdraw">Withdraw</i></a>
                     </div>
                 </div>
 

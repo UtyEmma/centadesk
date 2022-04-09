@@ -71,7 +71,13 @@
                                     <!-- Single Form Start -->
                                     <div class="single-form">
                                         <button type="submit" class="btn btn-primary btn-hover-dark w-100">Create an account</button>
-                                        <a class="btn btn-secondary btn-outline w-100" href="{{route('google.login')}}">Sign up with Google</a>
+
+                                        <p class="text-center my-3">
+                                            or
+                                        </p>
+
+                                        <x-google-btn>Register with Google</x-google-btn>
+                                        <x-facebook-btn>Register with Facebook</x-facebook-btn>
                                     </div>
                                     <!-- Single Form End -->
                                 </form>

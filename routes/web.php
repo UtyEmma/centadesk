@@ -14,6 +14,7 @@ use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WalletController;
+use App\Http\Controllers\WithdrawalController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -87,7 +88,11 @@ Route::middleware('set.referrals')->group(function(){
                     });
                 });
             });
-            Route::get('/wallet', [WalletController::class, 'mentorWallet']);
+
+            Route::prefix('/wallet')->group(function(){
+                Route::get('/', [WalletController::class, 'mentorWallet']);
+                Route::get('/withdraw', [WithdrawalController::class, 'initiate']);
+            });
         });
     });
 

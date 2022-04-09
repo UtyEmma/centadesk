@@ -8,13 +8,14 @@ use App\Models\Courses;
 use App\Models\Enrollment;
 use App\Models\ForumMessages;
 use App\Models\ForumReplies;
+use App\Models\Report;
 use Exception;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 trait BatchActions {
-    use StudentActions;
+    use StudentActions, MentorActions;
 
     function mentorBatchDetails($shortcode, bool $getStudents = false, bool $getForum = false){
         $user = $this->user();
@@ -89,6 +90,17 @@ trait BatchActions {
         return Batch::where([
             'course_id' => $course->unique_id
         ])->get();
+    }
+
+    function getUnpaidBatches($user){
+        return Batch::where([
+            'mentor_id' => $user->unique_id,
+            'paid', false
+        ])->get();
+    }
+
+    function getBatchReports($batch){
+        return Report::where('batch_id', $batch->unique_id)->where('status', 'pending')->get();
     }
 
 }

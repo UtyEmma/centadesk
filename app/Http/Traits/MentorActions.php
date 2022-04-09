@@ -22,4 +22,11 @@ trait MentorActions {
         return $verifiedMentors;
     }
 
+    function getApprovedMentors(){
+        return User::where([
+            'role' => 'mentor',
+            'kyc_status' => 'approved'
+        ])->get();
+    }
+
 }
