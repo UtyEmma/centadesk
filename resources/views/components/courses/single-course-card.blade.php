@@ -23,21 +23,16 @@
         <h4 class="title"><a href="/courses/{{$course->slug}}">{{$course->name}}</a></h4>
         <div class="courses-meta">
             <span>
-                <i class="icofont-read-book"></i>{{$course->total_batches}} {{$course->no_batches}}
-            </span>
-            <span>
-                <i class="icofont-comment"></i>{{$course->reviews}} {{$course->no_reviews}}
+                <i class="icofont-read-book"></i> {{$course->total_batches}} {{$course->no_batches}}
             </span>
         </div>
         <div class="courses-price-review">
-            <div class="courses-price">
-                <span class="sale-parice">
-                    $385.00
-                </span>
-                <span class="old-parice">
-                    $440.00
-                </span>
-            </div>
+            <span>
+                <i class="icofont-comment"></i>
+                <small>
+                    {{$course->reviews}} {{$course->no_reviews}}
+                </small>
+            </span>
             <div class="courses-review">
                 <span class="rating-count">4.9</span>
                 <span class="rating-star">

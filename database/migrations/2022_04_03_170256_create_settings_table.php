@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('base_currency')->unique();
             $table->integer('charges')->unique();
             $table->string('app_name')->unique();
+            $table->string('referal_bonus')->unique();
             $table->string('rave_public_key')->unique();
             $table->string('rave_secret_key')->unique();
             $table->string('rave_api_base_url')->unique();

@@ -198,13 +198,10 @@ input::-webkit-inner-spin-button {
 }
 
 .img-height{
-    height: 230px !important;
+    height: 150px !important;
+    position: relative;
+    overflow: hidden;
 }
 
-@media screen and (min-width: 425) {
-    .img-height{
-        height: 100% !important;
-    }
-}
 
 

@@ -3,6 +3,7 @@
 namespace App\Http;
 
 use App\Http\Middleware\MentorIsApproved;
+use App\Http\Middleware\ParseAffiliateIdToSession;
 use App\Http\Middleware\UserIsMentor;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
@@ -66,6 +67,7 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'is.mentor' => UserIsMentor::class,
-        'is.approved' => MentorIsApproved::class
+        'is.approved' => MentorIsApproved::class,
+        'set.referrals' => ParseAffiliateIdToSession::class
     ];
 }

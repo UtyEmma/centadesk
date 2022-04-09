@@ -18,6 +18,7 @@ use stdClass;
 use Illuminate\Support\Str;
 
 trait CourseActions {
+    use MentorActions;
 
     public function getCoursesData($courses){
         return $courses->map(function($course){
@@ -35,16 +36,10 @@ trait CourseActions {
         $course->active_batch = Batch::find($course->active_batch);
         $course->no_batches = Pluralizer::plural('Batch', $course->total_batches);
         $course->no_reviews = Pluralizer::plural('Review', $course->reviews);
-
-        if($user){
-            $course->user_enrolled = !!Enrollment::where([
-                'course_id' => $course->unique_id,
-                'student_id' => $user->unique_id
-            ])->first();
-        }else{
-            $course->user_enrolled =  false;
-        }
-
+        $course->user_enrolled = !!Enrollment::where([
+            'course_id' => $course->unique_id,
+            'student_id' => $user->unique_id
+        ])->first();
 
         return $course;
     }
@@ -105,5 +100,30 @@ trait CourseActions {
             $courses_collection->put($category->slug, $courses);
         });
         return $courses_collection;
+    }
+
+    function getActiveCourses(){
+        $courses = Courses::where('status', 'published')->get();
+        return $courses;
+    }
+
+    function getSuggestedCourses(){
+        $query = Courses::query();
+
+    }
+
+    function verifiedMentorCourses(){
+        $mentors = $this->getVerifiedMentors(10);
+        $courses = [];
+        $mentors->map(function($mentor) use ($courses) {
+            $course = Courses::where('mentor_id', $mentor->unique_id)->get();
+            return  [ ...$courses, $course];
+        });
+        return collect($courses);
+    }
+
+    function getBestSellingCourses(){
+        $courses = $this->getActiveCourses();
+        $courses->sortBy('total_students')->pull(10);
     }
 }

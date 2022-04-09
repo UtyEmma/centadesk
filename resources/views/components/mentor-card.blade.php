@@ -6,14 +6,16 @@
             </div>
         </div>
         <div class="team-content mb-0">
-            <h4 class="name">{{$mentor->firstname}} {{$mentor->lastname}}</h4>
-            <span class="designation">{{$mentor->specialty}}</span>
+            <h4 class="name">
+                <a href="/mentor/{{$mentor->username}}">{{$mentor->firstname}} {{$mentor->lastname}}</a>
+            </h4>
+            <span class="designation mt-0">{{$mentor->specialty}}</span>
         </div>
         <div class="single-courses border-0 py-0 mt-0">
             <div class="courses-content py-0">
                 <div class="courses-meta">
-                    <span> <i class="icofont-clock-time"></i> 29 Courses</span>
-                    <span> <i class="icofont-read-book"></i> 29 Batches </span>
+                    <span> <i class="icofont-clock-time"></i> {{$mentor->total_courses}} Courses</span>
+                    <span> <i class="icofont-read-book"></i> {{$mentor->total_batches}} Batches </span>
                 </div>
                 <div class="courses-price-review ">
                     <div class="courses-review d-flex justify-content-between w-100 align-items-center">

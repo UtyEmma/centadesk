@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\MentorSignupRequest;
+use App\Http\Traits\MentorActions;
 use App\Library\FileHandler;
+use App\Library\Response;
 use App\Models\Enrollment;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -11,6 +13,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
 class MentorController extends Controller{
+    use MentorActions;
 
     const HOME = '/me';
     /**
@@ -21,7 +24,7 @@ class MentorController extends Controller{
     public function index(){
         $mentors = User::where([
             'role' => 'mentor',
-            'kyc_status' => 'approved'
+            // 'kyc_status' => 'approved'
         ])->get();
 
         return view('front.mentors', [
@@ -75,8 +78,14 @@ class MentorController extends Controller{
     }
 
 
-    public function show($id)
-    {
-        //
+    public function show($username){
+        if(!$mentor = User::where('username', $username)->first())
+                    return Response::redirect('/404', 'error', 'The requested mentor does not exist');
+
+        $mentor = $this->getMentorDetails($mentor);
+
+        return Response::view('front.mentor-details', [
+            'mentor' => $mentor
+        ]);
     }
 }

@@ -51,6 +51,7 @@ return new class extends Migration
             $table->string('role');
             $table->boolean('is_verified');
             $table->boolean('approved');
+            $table->string('referrer_id')->nullable();
             $table->string('status');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password')->nullable();

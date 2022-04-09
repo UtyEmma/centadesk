@@ -4,6 +4,9 @@ namespace App\Http\Traits;
 
 use App\Library\DateTime;
 use App\Library\Token;
+use App\Models\Batch;
+use App\Models\Courses;
+use App\Models\Review;
 use App\Models\User;
 use Exception;
 use Illuminate\Support\Facades\Date;

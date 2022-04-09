@@ -41,7 +41,8 @@ class AppConfigSeeder extends Seeder{
                 'google_client_id' => env('GOOGLE_CLIENT_ID'),
                 'google_client_secret' => env('GOOGLE_CLIENT_SECRET'),
                 'google_redirect_uri' => env('GOOGLE_REDIRECT_URI'),
-                'exchangerate_api_url' => env('EXCHANGERATE_API_URL')
+                'exchangerate_api_url' => env('EXCHANGERATE_API_URL'),
+                'referal_bonus' => env('REFERAL_BONUS')
             ]);
         };
     }

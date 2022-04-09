@@ -12,11 +12,11 @@
     <!-- Courses Start -->
     <div class="section section-padding mt-n10">
         <div class="container">
-            <div class="row gx-10">
+            <div class="row">
                 <div class="col-lg-8">
                     <!-- Courses Details Start -->
-                    <div class="courses-details">
-                        <div class="courses-details-images">
+                    <div class="courses-details mt-0">
+                        <div class="courses-details-images mt-0">
                             <img src="{{json_decode($batch->images)[0] ?? asset('images/courses/courses-details.jpg')}}" alt="Courses Details">
 
                             <div class="courses-play">
@@ -76,18 +76,19 @@
                         <!-- Details Tab Menu Start -->
                         <h5 class="tab-title">Course Batches</h5>
 
-                        {{-- <div class="row"> --}}
+                        <div class="row">
                             @foreach ($course->batches as $batch)
-                                {{-- <div class="col-md-6"> --}}
-                                    <x-batch.batch-item :course="$course" :user="Auth::user()" :batch="$batch" :mentor="$course->mentor" />
-                                {{-- </div> --}}
-                            @endforeach
-                        {{-- </div> --}}
-                        <!-- Details Tab Menu End -->
-                    </div>
+                            <div class="col-md-6">
+                                <x-batch.batch-item :course="$course" :user="Auth::user()" :batch="$batch" :mentor="$course->mentor" />
+                                </div>
+                                @endforeach
+                            </div>
+                            <!-- Details Tab Menu End -->
+                        </div>
 
                 </div>
                 <div class="col-lg-4">
+                    <h5 class="tab-title">Suggested for you</h5>
 
                 </div>
             </div>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Traits\TransactionActions;
 use App\Library\Number;
 use App\Library\Token;
 use App\Models\Batch;
@@ -15,6 +16,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 
 class EnrollmentController extends Controller{
+    use TransactionActions;
 
     public function verify($reference){
         $response = Http::withHeaders([
@@ -32,6 +34,9 @@ class EnrollmentController extends Controller{
             if($status === 'successful'){
                 $transaction->status = 'completed';
                 $transaction->save();
+
+                $user = User::find($transaction->unique_id);
+                $this->handleReferrerPayout($user, $transaction->amount);
 
                 return [
                     'status' => true,
