@@ -35,12 +35,14 @@ Route::middleware('set.referrals')->group(function(){
     Route::middleware('auth')->group(function(){
         Route::prefix('/profile')->group(function(){
             Route::get('/', [StudentController::class, 'show']);
+            Route::post('/update', [StudentController::class, 'update']);
             Route::get('/courses', [StudentController::class, 'enrolledCourses']);
             Route::get('/courses/{slug}', [StudentController::class, 'enrolledCourse']);
             Route::get('/courses/{slug}/forum', [StudentController::class, 'courseForum']);
             Route::get('/courses/{slug}/forum/{message_id}', [StudentController::class, 'courseForumDetails']);
             Route::post('/forum/send/{batch_id}', [ForumController::class, 'storeMessage']);
             Route::get('/mentors', [StudentController::class, 'fetchMentors']);
+            Route::get('/wallet', [WalletController::class, 'studentWallet']);
         });
 
         Route::prefix('forum')->group(function(){

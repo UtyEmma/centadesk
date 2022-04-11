@@ -1,5 +1,8 @@
     <!-- Page Banner Start -->
     <div class="section pt-10 bg-secondary ">
+        @php
+            $user = Auth::user();
+        @endphp
 
         <img class="shape-1 animation-round" src="{{asset('images/shape/shape-8.png')}}" alt="Shape">
 
@@ -58,21 +61,32 @@
 
             <div class="row py-4">
                 <!-- All Courses Tabs Menu Start -->
-                <div class="bg-transparent bg-primary px-0">
+                <div class="bg-transparent bg-primary px-0 d-md-flex justify-content-between align-items-center">
                     <ul class="nav">
                         <li class="nav-item">
-                            <a class="nav-link {{ (request()->is('profile/courses*')) ? 'text-primary fw-bold' : '' }}" aria-current="page" href="/profile/courses">My Courses</a>
+                            <a class="nav-link {{ (request()->is('profile/courses')) ? 'text-primary fw-bold' : '' }}" aria-current="page" href="/profile/courses">My Courses</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link {{ (request()->is('profile/mentors*')) ? 'text-primary fw-bold' : '' }}" href="/profile/mentors">My Mentors</a>
+                            <a class="nav-link {{ (request()->is('profile/mentors')) ? 'text-primary fw-bold' : '' }}" href="/profile/mentors">My Mentors</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link {{ (request()->is('profile')) ? 'text-primary fw-bold' : '' }}" href="/profile">My Profile</a>
                         </li>
-                        {{-- <li class="nav-item">
-                            <a class="nav-link {{ (request()->is('profile/messages*')) ? 'text-primary fw-bold' : '' }}" href="/profile/messages">Messages</a>
-                        </li> --}}
+                        <li class="nav-item">
+                            <a class="nav-link {{ (request()->is('profile/wallet')) ? 'text-primary fw-bold' : '' }}" href="/profile/wallet">My Wallet</a>
+                        </li>
                     </ul>
+
+
+                    <div class="d-md-flex justify-content-end align-items-center">
+                        <x-affiliate-link :user="$user" />
+
+                        <a class="nav-link" href="/logout">
+                            <i class="icofont-logout"></i>
+                            Logout
+                        </a>
+                    </div>
+
                 </div>
             </div>
         </div>

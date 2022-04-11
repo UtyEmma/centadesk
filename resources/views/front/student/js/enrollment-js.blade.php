@@ -84,6 +84,5 @@
             onClose: handleOnClose,
             callback: enrollUser
         });
-
     }
 </script>

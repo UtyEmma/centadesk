@@ -4,24 +4,29 @@ namespace App\Http\Controllers;
 
 use App\Casts\Currency;
 use App\Http\Traits\CourseActions;
+use App\Http\Traits\UserActions;
 use App\Library\DateTime;
+use App\Library\Response;
 use App\Models\Batch;
 use App\Models\Courses;
 use App\Models\Enrollment;
 use App\Models\ForumMessages;
 use App\Models\ForumReplies;
 use App\Models\User;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 
 class StudentController extends Controller{
-    use CourseActions;
+    use CourseActions, UserActions;
 
     public function show(Request $request){
         $user = $this->user();
 
-        return view('front.student.profile');
+        return view('front.student.profile', [
+            'user' => $user
+        ]);
     }
 
     public function fetchMentors(Request $request){
@@ -48,6 +53,16 @@ class StudentController extends Controller{
         return view('front.student.enrolled-courses', [
             'courses' => $courses
         ]);
+    }
+
+    public function update(Request $request){
+        try {
+            $user = $this->updateUser($request, $this->user());
+            if(!$user) throw new Exception("Your Profile could not be updated");
+            return Response::redirectBack('success', 'Your Profile has been updated successfully');
+        } catch (\Throwable $th) {
+            return Response::redirectBack('error', $th->getMessage());
+        }
     }
 
 

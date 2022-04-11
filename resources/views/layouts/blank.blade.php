@@ -57,5 +57,7 @@
 
         {{$slot}}
 
+        <x-toasts />
+
     </body>
 </html>

@@ -14,7 +14,7 @@ class Kernel extends ConsoleKernel
      * @return void
      */
     protected function schedule(Schedule $schedule){
-        $schedule->command('escrow:update')->everyMinute();
+        $schedule->command('escrow:update')->everyFiveMinutes();
     }
 
     /**

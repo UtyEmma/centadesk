@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Traits\UserActions;
 use App\Library\Response;
+use App\Library\Str;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Exception;
@@ -20,9 +21,27 @@ class SocialAuthController extends Controller{
     }
 
     function facebookCallback(){
-        $user = Socialite::driver('facebook')->user();
+        try {
+            $data = Socialite::driver('facebook')->user();
+            $user = collect([]);
+            $nameArray = Str::of($data->getName())->explode(' ');
 
-        return print_r($user);
+            if($data){
+                $user->firstname = $nameArray[0];
+                $user->lastname = $nameArray[1];
+                $user->avatar = $data->getAvatar();
+                $user->email = $data->getEmail();
+
+                $user = $this->findOrCreate($user);
+
+                Auth::login($user, true);
+
+                return response()->redirectToIntended(RouteServiceProvider::LEARNING_CENTER)
+                                ->withCookie(cookie('currency', $user->currency));
+            }
+        } catch (\Throwable $th) {
+            return Response::redirect('/login', 'error', $th->getMessage());
+        }
     }
 
     function googleLogin(){
@@ -40,15 +59,15 @@ class SocialAuthController extends Controller{
                 $user->avatar = $data['picture'];
 
                 $user = $this->findOrCreate($user);
-
                 Auth::login($user);
 
-                return response()->redirectToIntended(RouteServiceProvider::LEARNING_CENTER)->withCookie(cookie('currency', $user->currency));
+                return response()->redirectToIntended(RouteServiceProvider::LEARNING_CENTER)
+                                ->withCookie(cookie('currency', $user->currency));
             }else{
                 throw new Exception("This user does not exist");
             }
         } catch (\Throwable $th) {
-            return Response::redirectBack('error', $th->getMessage());
+            return Response::redirect('/login', 'error', $th->getMessage());
         }
     }
 

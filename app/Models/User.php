@@ -52,4 +52,8 @@ class User extends Authenticatable
     public function withdrawals(){
         return $this->hasMany(Withdrawal::class, 'user_id', 'unique_id');
     }
+
+    public function deposits(){
+        return $this->hasMany(Deposit::class, 'user_id', 'unique_id');
+    }
 }

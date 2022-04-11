@@ -69,9 +69,7 @@
                                     <div class="single-form">
                                         <button type="submit" class="btn btn-primary btn-hover-dark w-100">Login</button>
 
-                                        <p class="text-center my-3">
-                                            or
-                                        </p>
+                                        <hr class="my-5" />
 
                                         <x-google-btn>Login with Google</x-google-btn>
                                         <x-facebook-btn>Login with Facebook</x-facebook-btn>

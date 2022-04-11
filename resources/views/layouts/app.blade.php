@@ -83,8 +83,6 @@
             </div>
         </div>
 
-        <script>
-
-        </script>
+        <x-toasts />
     </body>
 </html>

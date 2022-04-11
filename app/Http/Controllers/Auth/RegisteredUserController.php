@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\RegisterRequest;
+use App\Http\Traits\UserActions;
 use App\Library\Token;
 use App\Models\User;
 use App\Models\Wallet;
@@ -14,8 +15,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 
-class RegisteredUserController extends Controller
-{
+class RegisteredUserController extends Controller{
+    use UserActions;
     /**
      * Display the registration view.
      *
@@ -37,17 +38,9 @@ class RegisteredUserController extends Controller
      * @throws \Illuminate\Validation\ValidationException
      */
     public function store(RegisterRequest $request){
-        $user = $request->register();
-        $wallet_id = Token::unique('wallets');
-
+        $user = $this->newUser($request);
         event(new Registered($user));
-
         Auth::login($user);
-
-        Wallet::create([
-            'unique_id' => $wallet_id,
-            'user_id' => $user->unique_id
-        ]);
 
         return redirect(RouteServiceProvider::LEARNING_CENTER);
     }
