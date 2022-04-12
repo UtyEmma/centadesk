@@ -18,7 +18,7 @@ class ParseAffiliateIdToSession
      */
     public function handle(Request $request, Closure $next){
         if($request->has('ref') && User::where('affiliate_id', $request->ref)->first())
-                    Session::push('ref', $request->ref);
+            $request->session()->put('ref', $request->ref);
         return $next($request);
     }
 }

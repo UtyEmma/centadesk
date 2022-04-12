@@ -19,16 +19,10 @@
                 <span>Wallet</span>
             </a>
         </li>
-        <li class="{{request()->is('me/profile*') ? 'bg-white text-primary' : ''}}">
-            <a class="active d-flex align-items-center w-100 p-3" href="/me/profile">
+        <li class="{{request()->is('me/account*') ? 'bg-white text-primary' : ''}}">
+            <a class="active d-flex align-items-center w-100 p-3" href="/me/account">
                 <i class="icofont-user-alt-3 fs-4 me-3"></i>
-                <span>Profile</span>
-            </a>
-        </li>
-        <li class="{{request()->is('me/settings*') ? 'bg-white text-primary' : ''}}">
-            <a class="active d-flex align-items-center w-100 p-3" href="/me/settings">
-                <i class="icofont-settings fs-4 me-3"></i>
-                <span>Settings</span>
+                <span>Account</span>
             </a>
         </li>
     </ul>

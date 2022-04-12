@@ -16,15 +16,11 @@ class MentorController extends Controller{
     use MentorActions;
 
     const HOME = '/me';
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index(){
         $mentors = User::where([
             'role' => 'mentor',
-            // 'kyc_status' => 'approved'
+            'kyc_status' => 'approved'
         ])->get();
 
         return view('front.mentors', [
@@ -39,15 +35,6 @@ class MentorController extends Controller{
             'user' => $mentor,
             'enrollments' => $enrollments->count()
         ]);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create(){
-        return view('front.mentors.onboarding');
     }
 
     public function onboarding(){
@@ -77,7 +64,6 @@ class MentorController extends Controller{
         return redirect(self::HOME);
     }
 
-
     public function show($username){
         if(!$mentor = User::where('username', $username)->first())
                     return Response::redirect('/404', 'error', 'The requested mentor does not exist');
@@ -86,6 +72,24 @@ class MentorController extends Controller{
 
         return Response::view('front.mentor-details', [
             'mentor' => $mentor
+        ]);
+    }
+
+    public function profile(){
+        return Response::view('dashboard.profile.details', [
+            'user' => $this->user()
+        ]);
+    }
+
+    public function settings(){
+        return Response::view('dashboard.profile.settings', [
+            'user' => $this->user()
+        ]);
+    }
+
+    public function payments(){
+        return Response::view('dashboard.profile.payment', [
+            'user' => $this->user()
         ]);
     }
 }

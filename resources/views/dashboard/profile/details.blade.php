@@ -1,75 +1,172 @@
-<div class="col-xl-4">
-    <!-- Profile picture card-->
-    <div class="card mb-4 mb-xl-0">
-        <div class="card-header">Profile Picture</div>
-        <div class="card-body text-center">
-            <!-- Profile picture image-->
-            <img class="img-account-profile rounded-circle mb-2" src="http://bootdey.com/img/Content/avatar/avatar1.png" alt="">
-            <!-- Profile picture help block-->
-            <div class="small font-italic text-muted mb-4">JPG or PNG no larger than 5 MB</div>
-            <!-- Profile picture upload button-->
-            <button class="btn btn-primary" type="button">Upload new image</button>
+<x-mentor-profile>
+    <div class="col-xl-4">
+        <!-- Profile picture card-->
+        <h5 class="mb-3">Profile Picture</h5>
+        <div class="card mb-4 mb-xl-0 radius p-4">
+            <div class="card-body text-center">
+                <div class="col-md-9 col-8 mx-auto ">
+                    <div class="position-relative overflow-hidden ratio ratio-1x1 rounded-circle mb-5">
+                        <img class="radius position-absolute" style="object-fit: cover; object-position: center;" id="avatar_preview" src="{{asset('images/icon/user.png')}}" alt="Shape">
+                    </div>
+
+                    <div class="mt-5">
+                        <label class="w-100 btn btn-primary " for="avatar">
+                            Upload New Image
+                        </label>
+                        <input name="avatar" onblur="validateInput(event, __personalInfoSchema)" onchange="setPreview(event)" type="file" class="form-control" hidden id="avatar">
+                    </div>
+                    <small class="text-danger text-capitalize" id="avatar-error">
+                        @error('avatar')
+                            {{$message}}
+                        @enderror
+                    </small>
+                </div>
+            </div>
         </div>
     </div>
-</div>
-<div class="col-xl-8">
-    <!-- Account details card-->
-    <div class="card mb-4">
-        <div class="card-header">Account Details</div>
-        <div class="card-body">
-            <form>
-                <!-- Form Group (username)-->
-                <div class="mb-3">
-                    <label class="small mb-1" for="inputUsername">Username (how your name will appear to other users on the site)</label>
-                    <input class="form-control" id="inputUsername" type="text" placeholder="Enter your username" value="username">
-                </div>
-                <!-- Form Row-->
-                <div class="row gx-3 mb-3">
-                    <!-- Form Group (first name)-->
-                    <div class="col-md-6">
-                        <label class="small mb-1" for="inputFirstName">First name</label>
-                        <input class="form-control" id="inputFirstName" type="text" placeholder="Enter your first name" value="Valerie">
+    <div class="col-xl-8">
+        <!-- Account details card-->
+        <h5 class="mb-3">Account Details</h5>
+                <form>
+                    <div>
+                        <h6 class="p-0">Personal Information</h6>
                     </div>
-                    <!-- Form Group (last name)-->
-                    <div class="col-md-6">
-                        <label class="small mb-1" for="inputLastName">Last name</label>
-                        <input class="form-control" id="inputLastName" type="text" placeholder="Enter your last name" value="Luna">
+                    <div class="card mb-4 radius">
+                        <div class="card-body row">
+                            <div class="single-form col-md-6">
+                                <label for="">Username</label>
+                                <input class="input" onblur="validateInput(event, __personalInfoSchema)" value="{{$user->username}}" name="username" placeholder="Mentor Username">
+                                <small class="text-danger text-capitalize" id="username-error">
+                                    @error('username')
+                                        {{$message}}
+                                    @enderror
+                                </small>
+                            </div>
+
+                            <div class="single-form col-md-6">
+                                <label for="">Specialty</label>
+                                <input class="input" onblur="validateInput(event, __personalInfoSchema)" value="{{$user->specialty}}" name="specialty" placeholder="What do you do?">
+                                <small class="text-danger text-capitalize" id="specialty-error">
+                                    @error('specialty')
+                                        {{$message}}
+                                    @enderror
+                                </small>
+                            </div>
+
+                            <div class="single-form">
+                                <label for="">Personal Bio</label>
+                                <textarea class="textarea" onblur="validateInput(event, __personalInfoSchema)" value="{{$user->desc}}" name="desc" placeholder="Describe yourself briefly"></textarea>
+                                <small class="text-danger text-capitalize" id="desc-error">
+                                    @error('desc')
+                                        {{$message}}
+                                    @enderror
+                                </small>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <!-- Form Row        -->
-                <div class="row gx-3 mb-3">
-                    <!-- Form Group (organization name)-->
-                    <div class="col-md-6">
-                        <label class="small mb-1" for="inputOrgName">Organization name</label>
-                        <input class="form-control" id="inputOrgName" type="text" placeholder="Enter your organization name" value="Start Bootstrap">
+
+
+                    <div class="card mb-4 radius">
+                        <div class="card-body row">
+                            <h6 for="basic-url" class="form-label">Your Location Info </h6>
+                            <div class="col-md-4">
+                                <div class="single-form">
+                                    <label for="">City</label>
+                                    <input class="input" onblur="validateInput(event, __personalInfoSchema)" value="{{$user->city}}" name="city" placeholder="City">
+                                    <small class="text-danger text-capitalize" id="city-error">
+                                        @error('city')
+                                            {{$message}}
+                                        @enderror
+                                    </small>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="single-form">
+                                    <label for="">State</label>
+                                    <input class="input" onblur="validateInput(event, __personalInfoSchema)" value="{{$user->state}}" name="state" placeholder="Region or State">
+                                    <small class="text-danger text-capitalize" id="state-error">
+                                        @error('state')
+                                            {{$message}}
+                                        @enderror
+                                    </small>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="single-form">
+                                    <label for="">Country</label>
+                                    <input class="input" onblur="validateInput(event, __personalInfoSchema)" value="{{$user->country}}" name="country" placeholder="Country">
+                                    <small class="text-danger text-capitalize" id="country-error">
+                                        @error('country')
+                                            {{$message}}
+                                        @enderror
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <!-- Form Group (location)-->
-                    <div class="col-md-6">
-                        <label class="small mb-1" for="inputLocation">Location</label>
-                        <input class="form-control" id="inputLocation" type="text" placeholder="Enter your location" value="San Francisco, CA">
+
+
+                    <div class="single-form ">
+                        <h6 for="basic-url" class="form-label">Social Media (Please provide only your username) </h6>
+
+                        <div class="card mb-4 radius">
+                            <div class="card-body row">
+                                <div class="col-md-6">
+                                    <div class="single-form">
+                                        <label for="">Instagram</label>
+                                        <div class="input-group mb-3">
+                                            <span  class="input-group-text px-3 fs-6 radius-left bg-white border border-end-0" id="instagram">Instagram</span>
+                                            <input type="text" class="form-control w-auto border-start-0" id="facebook-input" onblur="validateInput(event, __personalInfoSchema)" name="instagram" placeholder="Username" value="{{$user->instagram}}" aria-describedby="instagram" value="">
+                                        </div>
+                                    </div>
+                                    <small class="text-danger text-capitalize" id="instagram-error">
+                                        @error('instagram')
+                                            {{$message}}
+                                        @enderror
+                                    </small>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="single-form">
+                                        <label for="">Facebook</label>
+                                        <div class="input-group mb-3">
+                                            <span  class="input-group-text px-3 fs-6 radius-left bg-white border border-end-0" id="facebook">Facebook</span>
+                                            <input type="text" class="form-control w-auto border-start-0" id="facebook-input" onblur="validateInput(event, __personalInfoSchema)" name="facebook" placeholder="Username" value="{{$user->facebook}}" aria-describedby="facebook" value="">
+                                        </div>
+                                    </div>
+                                    <small class="text-danger text-capitalize" id="facebook-error">
+                                        @error('facebook')
+                                            {{$message}}
+                                        @enderror
+                                    </small>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="single-form">
+                                        <label for="">Twitter</label>
+                                        <div class="input-group mb-3">
+                                            <span  class="input-group-text px-3 fs-6 radius-left bg-white border border-end-0" id="twitter">Twitter</span>
+                                            <input type="text" class="form-control w-auto border-start-0" id="twitter-input" onblur="validateInput(event, __personalInfoSchema)" name="twitter" placeholder="Username" value="{{$user->twitter}}" aria-describedby="twitter" value="">
+                                        </div>
+                                    </div>
+                                    <small class="text-danger text-capitalize" id="twitter-error">
+                                        @error('twitter')
+                                            {{$message}}
+                                        @enderror
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <!-- Form Group (email address)-->
-                <div class="mb-3">
-                    <label class="small mb-1" for="inputEmailAddress">Email address</label>
-                    <input class="form-control" id="inputEmailAddress" type="email" placeholder="Enter your email address" value="name@example.com">
-                </div>
-                <!-- Form Row-->
-                <div class="row gx-3 mb-3">
-                    <!-- Form Group (phone number)-->
-                    <div class="col-md-6">
-                        <label class="small mb-1" for="inputPhone">Phone number</label>
-                        <input class="form-control" id="inputPhone" type="tel" placeholder="Enter your phone number" value="555-123-4567">
+
+                    <div class="text-end">
+                        <button class="btn btn-primary" type="button">Save changes</button>
                     </div>
-                    <!-- Form Group (birthday)-->
-                    <div class="col-md-6">
-                        <label class="small mb-1" for="inputBirthday">Birthday</label>
-                        <input class="form-control" id="inputBirthday" type="text" name="birthday" placeholder="Enter your birthday" value="06/10/1988">
-                    </div>
-                </div>
-                <!-- Save changes button-->
-                <button class="btn btn-primary" type="button">Save changes</button>
-            </form>
+                </form>
+            </div>
         </div>
     </div>
-</div>
+
+</x-mentor-profile>

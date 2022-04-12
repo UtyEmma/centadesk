@@ -4,7 +4,7 @@
             var copyText = document.getElementById("aff_link_input");
             copyText.select();
             copyText.setSelectionRange(0, 99999);
-            navigator.clipboard.writeText("{{env('MAIN_APP_URL')}}/login?ref={{$user->affiliate_id}}");
+            navigator.clipboard.writeText("{{env('MAIN_APP_URL')}}/register?ref={{$user->affiliate_id}}");
 
             new Notify ({
                 text: "Copied",

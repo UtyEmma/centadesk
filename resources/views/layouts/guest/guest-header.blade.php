@@ -129,17 +129,8 @@
         </div>
         <!-- Mobile Top Medal End -->
 
-        <!-- Mobile Sing In & Up Start -->
-        <div class="mobile-sign-in-up">
-            <ul>
-                <li><a class="sign-in" href="/login">Sign In</a></li>
-                <li><a class="sign-up" href="/register">Sign Up</a></li>
-            </ul>
-        </div>
-        <!-- Mobile Sing In & Up End -->
-
         <!-- Mobile Menu Start -->
-        <div class="mobile-menu-items">
+        <div class="mobile-menu-items mb-1">
             <ul class="nav-menu">
                 <li><a href="/">Home</a></li>
                 <li>
@@ -153,8 +144,33 @@
         </div>
         <!-- Mobile Menu End -->
 
+        <!-- Mobile Sing In & Up Start -->
+        <div class="mobile-sign-in-up px-3 py-0 mb-2">
+            @if ($user = Auth::user())
+                <ul class="d-block ">
+                    <li class="w-100 text-center mb-2"><a class="sign-in" href="/profile/courses">My Learning</a></li>
+                    @if ($user->role === 'mentor')
+                        <li class="w-100 text-center mb-2"><a class="sign-in text-primary" href="/me">Mentor Dashboard</a></li>
+                    @else
+                        <li class="w-100 text-center">
+                            <a class="sign-up" href="/mentor/onboarding">Become a Mentor</a>
+                        </li>
+                    @endif
+                </ul>
+
+                @else
+
+                <ul>
+                    <li><a class="sign-in" href="/login">Sign In</a></li>
+                    <li><a class="sign-up" href="/register">Sign Up</a></li>
+                </ul>
+            @endif
+        </div>
+        <!-- Mobile Sing In & Up End -->
+
+
         <!-- Mobile Menu End -->
-        <div class="mobile-social">
+        <div class="mobile-social mt-3">
             <ul class="social">
                 <li><a href="#"><i class="flaticon-facebook"></i></a></li>
                 <li><a href="#"><i class="flaticon-twitter"></i></a></li>

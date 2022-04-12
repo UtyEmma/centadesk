@@ -1,4 +1,6 @@
-<script src="https://checkout.flutterwave.com/v3.js"></script>
+@push('scripts')
+    <script src="https://checkout.flutterwave.com/v3.js"></script>
+@endpush
 
 <script>
 

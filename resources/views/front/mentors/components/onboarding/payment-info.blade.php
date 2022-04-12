@@ -80,8 +80,10 @@
                         </div>
 
                         <div class="single-form w-md-50">
+
                             {{-- <p class="">Account Name</p> --}}
                             <h5 id="account_name"></h5>
+                            <input class="input" name="account_name" id='accountRequestFailed' hidden disabled placeholder="Account Name" >
                             <input class="input" name="account_name" hidden readonly placeholder="Account Name" >
                             <small class="text-danger text-capitalize">
                                 @error('account_name')
@@ -91,7 +93,7 @@
                         </div>
 
                         <div class="single-form">
-                            <button type="button"  onclick="verifyBankDetails()" class="btn btn-outline btn-primary">Verify Bank Details</button>
+                            <button type="button"  onclick="verifyBankDetails()" id="verifyDetails" class="btn btn-outline btn-primary">Verify Bank Details</button>
                         </div>
                     </div>
                 </div>

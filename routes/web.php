@@ -70,6 +70,7 @@ Route::middleware('set.referrals')->group(function(){
 
         Route::prefix('/me')->middleware('is.mentor')->group(function(){
             Route::get('/', [MentorController::class, 'home'])->name('dashboard');
+
             Route::prefix('courses')->group(function(){
                 Route::get('/', [CourseController::class, 'fetch']);
                 Route::get('/create', [CourseController::class, 'create']);
@@ -89,6 +90,12 @@ Route::middleware('set.referrals')->group(function(){
                         Route::get('/forum/{unique_id}', [ForumController::class, 'fetchMentorBatchForumReplies']);
                     });
                 });
+            });
+
+            Route::prefix('account')->group(function(){
+                Route::get('/', [MentorController::class, 'profile']);
+                Route::get('/settings', [MentorController::class, 'settings']);
+                Route::get('/payments', [MentorController::class, 'payments']);
             });
 
             Route::prefix('/wallet')->group(function(){

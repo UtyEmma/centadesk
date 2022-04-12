@@ -48,7 +48,12 @@
         const request = await Request.post(url, data, key)
 
         if(!request.status){
-            const message = request.code === 400 ? request.data.error.message : "Your Bank Information could not be confirmed at the moment! Please retry later"
+            if(request.code === 400) return err.innerHTML = request.data.error.message
+            const message = "Your Bank Information could not be confirmed at the moment! Please input your account name below"
+            $('#accountRequestFailed').hidden = false;
+            $('#accountRequestFailed').disabled = false;
+            $('#accountRequestFailed').disabled = false;
+            $('#verifyDetails').hide()
             return err.innerHTML = message
         }
 

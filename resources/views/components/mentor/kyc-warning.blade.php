@@ -1,4 +1,4 @@
-@if ($user->kyc_status === 'pending')
+@if (Auth::user()->kyc_status === 'pending')
     <!-- Message Start -->
     <div class="message">
         <div class="message-icon">

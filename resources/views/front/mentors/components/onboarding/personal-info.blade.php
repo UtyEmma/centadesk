@@ -84,11 +84,11 @@
                         <h6 for="basic-url" class="form-label">Social Media (Please provide only your username) </h6>
 
                         <div class="mb-3">
-                            <div class="position-relative d-flex align-items-center">
-                                <div class="position-absolute h-100 bg-transparent d-flex align-items-center">
-                                    <p style="margin-left: 15px">Instagram</p>
+                            <div class="single-form">
+                                <div class="input-group mb-3">
+                                    <span  class="input-group-text px-3 fs-6 radius-left bg-white border border-end-0" id="instagram">Instagram</span>
+                                    <input type="text" class="form-control w-auto border-start-0" id="facebook-input" onblur="validateInput(event, __personalInfoSchema)" name="instagram" placeholder="Username" aria-describedby="instagram" value="">
                                 </div>
-                                <input type="text" onblur="validateInput(event, __personalInfoSchema)" name="instagram" class="form-control" style="padding-left: 22%" id="basic-url" aria-describedby="basic-addon3">
                             </div>
                             <small class="text-danger text-capitalize" id="instagram-error">
                                 @error('instagram')
@@ -98,11 +98,11 @@
                         </div>
 
                         <div class="mb-3">
-                            <div class="d-flex align-items-center border px-3 radius">
-                                <div class="h-100 d-flex align-items-center">
-                                    <p class="h-100">Facebook</p>
+                            <div class="single-form">
+                                <div class="input-group mb-3">
+                                    <span  class="input-group-text px-3 fs-6 radius-left bg-white border border-end-0" id="facebook">Facebook</span>
+                                    <input type="text" class="form-control w-auto border-start-0" id="facebook-input" onblur="validateInput(event, __personalInfoSchema)" name="facebook" placeholder="Username" aria-describedby="facebook" value="">
                                 </div>
-                                <input type="text" onblur="validateInput(event, __personalInfoSchema)" name="facebook" class="form-control border-0" id="basic-url" aria-describedby="basic-addon3">
                             </div>
 
                             <small class="text-danger text-capitalize" id="facebook-error">
@@ -112,11 +112,12 @@
                             </small>
                         </div>
 
-                        <div class="position-relative mb-3 d-flex align-items-center">
-                            <div class="position-absolute h-100 bg-transparent d-flex align-items-center">
-                                <p style="margin-left: 15px">Twitter</p>
+
+                        <div class="single-form">
+                            <div class="input-group mb-3">
+                                <span  class="input-group-text px-3 fs-6 radius-left bg-white border border-end-0" id="twitter">Twitter</span>
+                                <input type="text" class="form-control w-auto border-start-0" id="twitter-input" onblur="validateInput(event, __personalInfoSchema)" name="twitter" placeholder="Username" aria-describedby="twitter" value="">
                             </div>
-                            <input type="text" onblur="validateInput(event, __personalInfoSchema)" name="twitter" class="form-control" style="padding-left: 17%" id="basic-url" aria-describedby="basic-addon3">
                         </div>
                         <small class="text-danger text-capitalize" id="twitter-error">
                             @error('twitter')
@@ -127,7 +128,7 @@
                 </div>
 
                 <div class="col-md-4 mx-auto ">
-                    <div class="position-relative overflow-hidden ratio ratio-1x1 radius">
+                    <div class="position-relative overflow-hidden ratio ratio-1x1 rounded-circle">
                         <img class="radius position-absolute" style="object-fit: cover; object-position: center;" id="avatar_preview" src="{{asset('images/icon/user.png')}}" alt="Shape">
                     </div>
 

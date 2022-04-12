@@ -20,7 +20,7 @@ trait UserActions{
     function newUser($request){
         $unique_id = Token::unique('users');
         $affiliate_id = Token::text(6, 'users', 'affiliate_id');
-        $ref = $this->ref ?? session('ref');
+        $ref = $request->query('ref') ?? session('ref');
         $referrer_id = User::where('affiliate_id', $ref)->first() ? $ref : null;
 
         $user = User::create([

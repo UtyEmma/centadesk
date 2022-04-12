@@ -26,7 +26,7 @@
                         <button type="button" data-bs-toggle="modal" data-bs-target="#depositModal" class="btn btn-primary btn-hover-dark">Add Deposit</i></a>
                     </div>
 
-                    <x-deposit-modal />
+                    <x-deposit-modal :user="$user" />
 
                 </div>
 
