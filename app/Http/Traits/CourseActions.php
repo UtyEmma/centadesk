@@ -9,6 +9,7 @@ use App\Models\Courses;
 use App\Models\Enrollment;
 use App\Models\ForumMessages;
 use App\Models\ForumReplies;
+use App\Models\Report;
 use App\Models\Review;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -18,7 +19,7 @@ use stdClass;
 use Illuminate\Support\Str;
 
 trait CourseActions {
-    use MentorActions;
+    use MentorActions, BatchActions, ReviewActions;
 
     public function getCoursesData($courses){
         return $courses->map(function($course){
@@ -36,9 +37,10 @@ trait CourseActions {
         $course->active_batch = Batch::find($course->active_batch);
         $course->no_batches = Pluralizer::plural('Batch', $course->total_batches);
         $course->no_reviews = Pluralizer::plural('Review', $course->reviews);
+
         $course->user_enrolled = !!Enrollment::where([
             'course_id' => $course->unique_id,
-            'student_id' => $user->unique_id
+            'student_id' => $user->unique_id ?? null
         ])->first();
 
         return $course;
@@ -48,33 +50,16 @@ trait CourseActions {
         $user = $this->user();
         $course = Courses::where('slug', $slug)->first();
 
-        $enrollment = Enrollment::where([
-            'student_id' => $user->unique_id,
-            'course_id' => $course->unique_id
-        ])->first();
-
-        $forum_messages = ForumMessages::where('batch_id', $enrollment->batch_id)
-                                ->join('users', 'users.unique_id', 'forum_messages.sender_id')
-                                ->select('forum_messages.*', 'users.firstname', 'users.lastname', 'users.avatar')
-                                ->get();
-
-        $messages = array_map(function($message){
-            $message['created_at'] = DateTime::getDateInterval($message['created_at']);
-            return $message;
-        }, $forum_messages->toArray());
-
-        $mentor = User::find($enrollment->mentor_id);
-        $batch = Batch::find($enrollment->batch_id);
-
-        $batch->begins = DateTime::getDateInterval($batch->startdate);
+        $mentor = User::find($course->mentor_id);
+        $batches = $this->getCourseBatches($course);
+        $reviews = $this->getCourseReviews($course);
 
         return [
-            'batch' => $batch,
+            'batches' => $batches,
             'course' => $course,
-            'enrollment' => $enrollment,
             'mentor' => $mentor,
-            'forum' => $messages,
-            'user' => $user
+            'reviews' => $reviews,
+            'user' => $user,
         ];
     }
 

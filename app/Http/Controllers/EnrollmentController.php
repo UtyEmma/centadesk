@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Traits\TransactionActions;
 use App\Library\Number;
+use App\Library\Response;
 use App\Library\Token;
 use App\Models\Batch;
 use App\Models\Courses;
@@ -17,6 +18,21 @@ use Illuminate\Support\Facades\Http;
 
 class EnrollmentController extends Controller{
     use TransactionActions;
+
+    public function initiate(Request $request){
+        if(!$batch = Batch::where('short_code', $request->short_code)->first())
+                            return Response::json(400, "The requested batch does not exist");
+
+        $previousEnrollments = Enrollment::where([
+            'user_id' => $request->user_id,
+            'batch_id' => $batch->unique_id
+        ])->get();
+
+        if($previousEnrollments->isNotEmpty()){
+
+        }
+        $transaction = $this->createTransaction($request);
+    }
 
     public function verify($reference){
         $response = Http::withHeaders([
@@ -35,7 +51,7 @@ class EnrollmentController extends Controller{
                 $transaction->status = 'completed';
                 $transaction->save();
 
-                $user = User::find($transaction->unique_id);
+                $user = User::find($transaction->user_id);
                 $this->handleReferrerPayout($user, $transaction->amount);
 
                 return [
@@ -71,7 +87,7 @@ class EnrollmentController extends Controller{
         ], $transaction['code']);
 
         $transaction = $transaction['transaction'];
-        $user = User::find($transaction->user_id);
+        $student = User::find($transaction->user_id);
         $unique_id = Token::unique('enrollments');
 
         if(!$transaction || $transaction->status !== 'completed'){
@@ -82,13 +98,13 @@ class EnrollmentController extends Controller{
             'unique_id' => $unique_id,
             'batch_id' => $batch->unique_id,
             'course_id' => $batch->course_id,
-            'student_id' => $user->unique_id,
+            'student_id' => $student->unique_id,
             'mentor_id' => $course->mentor_id,
             'transaction_id' => $transaction->unique_id
         ]);
 
         $charge = Setting::first()->charge ?? env('DEFAULT_CHARGE');
-        $mentor_amount = Number::percentageValue($charge, $transaction['amount']);
+        $mentor_amount = Number::percentageDecrease($charge, $transaction['amount']);
 
 
         $mentor->earnings += $mentor_amount;
@@ -100,13 +116,9 @@ class EnrollmentController extends Controller{
         $course->revenue += $mentor_amount;
         $course->save();
 
-        $batch->attendees += 1;
+        $batch->total_students += 1;
         $course->earnings += $mentor_amount;
         $batch->save();
-
-        $user->total_courses += 1;
-        $user->total_batches += 1;
-        $user->save();
 
         return response()->json([
             'course' => $course->slug

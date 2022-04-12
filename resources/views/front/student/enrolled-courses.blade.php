@@ -29,7 +29,7 @@
                                 <!-- Single Courses Start -->
                                 <div class="single-courses">
                                     <div class="courses-images">
-                                        <a href="/profile/courses/{{$course->slug}}"><img src="{{json_decode($course->images)[0] ?? asset('images/courses/courses-01.jpg')}}" alt="Courses"></a>
+                                        <a href="/profile/courses/{{$course->slug}}/{{$course->short_code}}"><img src="{{json_decode($course->images)[0] ?? asset('images/courses/courses-01.jpg')}}" alt="Courses"></a>
 
                                         <div class="courses-option dropdown">
                                             <button class="option-toggle" data-bs-toggle="dropdown" aria-expanded="false">
@@ -57,7 +57,7 @@
                                             </div>
                                         </div>
 
-                                        <h4 class="title"><a href="/profile/courses/{{$course->slug}}">{{$course->name}}</a></h4>
+                                        <h4 class="title"><a href="/profile/courses/{{$course->slug}}/{{$course->short_code}}">{{$course->name}}</a></h4>
 
                                         <div class="courses-rating">
                                             <p>38% Complete</p>

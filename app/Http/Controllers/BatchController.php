@@ -95,6 +95,7 @@ class BatchController extends Controller{
         $batch = Batch::create([
             'unique_id' => $batch_id,
             'course_id' => $course_id,
+            'mentor_id' => $user->unique_id,
             'duration' => $request->duration,
             'class_link' => $request->class_link,
             'access_link' => $request->access_link,

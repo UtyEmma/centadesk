@@ -3,6 +3,7 @@
 namespace App\Jobs;
 
 use App\Http\Traits\MentorActions;
+use App\Http\Traits\WalletActions;
 use App\Library\DateTime;
 use App\Models\Batch;
 use App\Models\Enrollment;
@@ -19,15 +20,14 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 
 class UpdateEscrowFunds implements ShouldQueue{
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels, MentorActions;
+    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels, MentorActions, WalletActions;
 
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct()
-    {
+    public function __construct(){
         //
     }
 
@@ -37,7 +37,6 @@ class UpdateEscrowFunds implements ShouldQueue{
      * @return void
      */
     public function handle(){
-
-
+        $this->updateEscrowFunds();
     }
 }

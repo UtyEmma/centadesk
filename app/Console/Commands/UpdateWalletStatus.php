@@ -2,11 +2,12 @@
 
 namespace App\Console\Commands;
 
+use App\Http\Traits\WalletActions;
 use App\Jobs\UpdateEscrowFunds;
 use Illuminate\Console\Command;
 
-class UpdateWalletStatus extends Command
-{
+class UpdateWalletStatus extends Command{
+    use WalletActions;
     /**
      * The name and signature of the console command.
      *
@@ -36,6 +37,7 @@ class UpdateWalletStatus extends Command
      * @return int
      */
     public function handle(){
-        return UpdateEscrowFunds::dispatch();
+        $updatedWallets = $this->updateEscrowFunds();
+        $message = "$updatedWallets were updated";
     }
 }

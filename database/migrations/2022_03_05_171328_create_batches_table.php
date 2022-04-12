@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('course_id');
             $table->string('startdate');
             $table->string('enddate');
+            $table->string('mentor_id');
             $table->string('title')->nullable();
             $table->string('short_code')->nullable();
             $table->string('video')->nullable();

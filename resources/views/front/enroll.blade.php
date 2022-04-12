@@ -15,10 +15,10 @@
 
     <div class="section section-padding">
         <div class="container">
-            <div class="card radius p-5">
+            <div class="card radius p-4">
                 <div class="card-body">
-                    <div class="container row">
-                        <div class="col-md-6 bg-light user">
+                    <div class="row">
+                        <div class="col-md-6 bg-light radius p-2 ">
                             <div class="mb-3">
                                 <p class="dis fw-bold mb-0">Full Name</p>
                                 <p>{{$user->firstname}} {{$user->lastname}}</p>
@@ -28,27 +28,13 @@
                                 <p>{{$user->email}}</p>
                             </div>
                         </div>
-                        <div class="col-md-6">
+
+                        <div class="col-md-6 p-md-4">
                             <div >
                                 <div>
-                                    <p class="fw-bold mb-0">Payment Details</p>
+                                    <h5>Payment Details</h5>
                                     <p class="dis mb-3 mt-0">Complete your purchase by providing your payment details</p>
                                 </div>
-                                <div class="row">
-                                    <div class="col-md-12 mt-4">
-                                        <x-custom-radio name="method" :default="true" value="bank">
-                                            Pay with Flutterwave
-                                        </x-custom-radio>
-                                    </div>
-
-                                    <div class="col-md-12 mt-2">
-                                        <x-custom-radio name="method" :default="false" value="crypto">
-                                            Pay with Crypto
-                                        </x-custom-radio>
-                                    </div>
-                                </div>
-
-                                <hr />
 
                                 <div>
                                     <div class="address">
@@ -70,7 +56,7 @@
                                                     </span></p>
                                                 <p><span class="fas fa-dollar-sign"></span>
                                                     @if ($batch->discount === 'percent')
-                                                        - {{$user->currency}} {{ceil($batch->percent / 100 * $batch->price)}}
+                                                        - {{$user->currency}} {{number_format(ceil($batch->percent / 100 * $batch->price))}}
                                                     @elseif ($batch->discount === 'fixed')
                                                         {{$batch->fixed}}
                                                     @else
@@ -83,18 +69,15 @@
                                                 <p class="fw-bold"><span class="fas fa-dollar-sign"></span>{{$user->currency}} {{number_format($batch->discount_price)}}</p>
                                             </div>
 
-                                            <button type="button" onclick="handlePayment()" class="btn btn-primary mt-2">Proceed with payment</button>
-                                            <a href="/enroll/crypto/pay/{{$batch->unique_id}}" type="button" class="btn btn-primary mt-2">Pay with Crypto</a>
+                                            <div class="d-flex ">
+                                                {{-- <div class="col-md-6"> --}}
+                                                    <button type="button" onclick="handlePayment()" class="btn btn-primary mt-2 me-3">Pay with Flutterwave</button>
+                                                {{-- </div> --}}
 
-
-                                            {{-- <div>
-                                                <a class="donate-with-crypto"
-                                                href="https://commerce.coinbase.com/checkout/42020482-bc91-4b3e-bc80-ffd7e0e55e50">
-                                                Pay with Crypto
-                                                </a>
-                                                <script src="https://commerce.coinbase.com/v1/checkout.js?version=201807">
-                                                </script>
-                                            </div> --}}
+                                                {{-- <div class="col-md-6"> --}}
+                                                    <a href="/enroll/crypto/pay/{{$batch->unique_id}}" type="button" class="btn btn-primary mt-2">Pay with Crypto</a>
+                                                {{-- </div> --}}
+                                            </div>
 
                                         </div>
                                     </div>

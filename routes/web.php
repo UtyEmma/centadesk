@@ -9,6 +9,7 @@ use App\Http\Controllers\CourseController;
 use App\Http\Controllers\CryptoPaymentController;
 use App\Http\Controllers\ForumController;
 use App\Http\Controllers\MentorController;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\StudentController;
@@ -37,9 +38,9 @@ Route::middleware('set.referrals')->group(function(){
             Route::get('/', [StudentController::class, 'show']);
             Route::post('/update', [StudentController::class, 'update']);
             Route::get('/courses', [StudentController::class, 'enrolledCourses']);
-            Route::get('/courses/{slug}', [StudentController::class, 'enrolledCourse']);
-            Route::get('/courses/{slug}/forum', [StudentController::class, 'courseForum']);
-            Route::get('/courses/{slug}/forum/{message_id}', [StudentController::class, 'courseForumDetails']);
+            Route::get('/courses/{slug}/{shortcode}', [StudentController::class, 'enrolledCourse']);
+            Route::get('/courses/{slug}/{shortcode}/forum', [StudentController::class, 'courseForum']);
+            Route::get('/courses/{slug}/{shortcode}/forum/{message_id}', [StudentController::class, 'courseForumDetails']);
             Route::post('/forum/send/{batch_id}', [ForumController::class, 'storeMessage']);
             Route::get('/mentors', [StudentController::class, 'fetchMentors']);
             Route::get('/wallet', [WalletController::class, 'studentWallet']);
@@ -47,6 +48,11 @@ Route::middleware('set.referrals')->group(function(){
 
         Route::prefix('forum')->group(function(){
             Route::post('/reply/{message_id}', [ForumController::class, 'storeReplies']);
+        });
+
+        Route::prefix('reports')->group(function(){
+            Route::post('/create/{batch_id}', [ReportController::class, 'create']);
+            Route::get('/resolve/{batch_id}', [ReportController::class, 'resolve']);
         });
 
 
@@ -89,7 +95,13 @@ Route::middleware('set.referrals')->group(function(){
                         Route::get('/forum', [ForumController::class, 'fetchMentorBatchForum']);
                         Route::get('/forum/{unique_id}', [ForumController::class, 'fetchMentorBatchForumReplies']);
                     });
+
+
                 });
+            });
+
+            Route::middleware('is.approved')->group(function(){
+                Route::get('/verify', [MentorController::class, 'requestVerification']);
             });
 
             Route::prefix('account')->group(function(){
@@ -113,7 +125,7 @@ Route::middleware('set.referrals')->group(function(){
     Route::prefix('/courses')->group(function(){
         Route::get('/', [CourseController::class, 'all']);
         Route::get('/{slug}', [CourseController::class, 'show']);
-        Route::get('/{slug}/enroll', [CourseController::class, 'enrollment']);
+        Route::get('/{slug}/{shortcode}/enroll', [CourseController::class, 'enrollment']);
     });
 
 

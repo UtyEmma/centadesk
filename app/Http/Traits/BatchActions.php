@@ -9,13 +9,16 @@ use App\Models\Enrollment;
 use App\Models\ForumMessages;
 use App\Models\ForumReplies;
 use App\Models\Report;
+use App\Models\Setting;
+use App\Models\User;
 use Exception;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\DB;
 
 trait BatchActions {
-    use StudentActions, MentorActions;
+    use StudentActions, MentorActions, ReviewActions;
 
     function mentorBatchDetails($shortcode, bool $getStudents = false, bool $getForum = false){
         $user = $this->user();
@@ -95,12 +98,58 @@ trait BatchActions {
     function getUnpaidBatches($user){
         return Batch::where([
             'mentor_id' => $user->unique_id,
-            'paid', false
+            'paid' => false
         ])->get();
     }
 
     function getBatchReports($batch){
         return Report::where('batch_id', $batch->unique_id)->where('status', 'pending')->get();
+    }
+
+    function setReportabilityStatus($enddate){
+        $endDate = Date::parse($enddate);
+        $withdrawalDate = $endDate->addDays(Setting::first()->withdrawal_day_count);
+        $isPastWithdrawalDate = now()->greaterThan($withdrawalDate);
+        return  $isPastWithdrawalDate;
+    }
+
+    function getEnrolledBatch($batch, $user){
+        $enrollment = Enrollment::where([
+            'student_id' => $user->unique_id,
+            'batch_id' => $batch->unique_id
+        ])->first();
+
+        $forum_messages = ForumMessages::where('batch_id', $batch->unique_id)
+                                ->join('users', 'users.unique_id', 'forum_messages.sender_id')
+                                ->select('forum_messages.*', 'users.firstname', 'users.lastname', 'users.avatar')
+                                ->get();
+
+        $messages = array_map(function($message){
+            $message['created_at'] = DateTime::getDateInterval($message['created_at']);
+            return $message;
+        }, $forum_messages->toArray());
+
+        $batch->begins = DateTime::getDateInterval($batch->startdate);
+        $batch->reportable = $this->setReportabilityStatus($batch->enddate);
+
+        $reviews = $this->getBatchReviews($batch);
+
+        $mentor = User::where('unique_id', $enrollment->mentor_id)->first();
+
+        $report = Report::where([
+            'student_id'=> $user->unique_id,
+            'batch_id' => $batch->unique_id
+        ])->first() ?? null;
+
+        return [
+            'enrollment' => $enrollment,
+            'mentor' => $mentor,
+            'report' => $report,
+            'reviews' => $reviews,
+            'batch' => $batch,
+            'forum' => $messages,
+            'user' => $user
+        ];
     }
 
 }

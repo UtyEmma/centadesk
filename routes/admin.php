@@ -41,7 +41,11 @@ Route::middleware('auth:admin')->group(function(){
                 Route::get('/status', [UserController::class, 'status']);
                 Route::get('/delete', [UserController::class, 'delete']);
                 Route::get('/approve', [MentorController::class, 'approve']);
+                Route::get('/verify', [MentorController::class, 'verify']);
+
             });
+
+
         });
     });
 

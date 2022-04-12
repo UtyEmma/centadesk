@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Casts\Currency;
+use App\Http\Traits\BatchActions;
 use App\Http\Traits\CourseActions;
 use App\Http\Traits\UserActions;
 use App\Library\DateTime;
@@ -19,7 +20,7 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 
 class StudentController extends Controller{
-    use CourseActions, UserActions;
+    use CourseActions, UserActions, BatchActions;
 
     public function show(Request $request){
         $user = $this->user();
@@ -48,8 +49,9 @@ class StudentController extends Controller{
                         ->join('courses', 'courses.unique_id', 'enrollments.course_id')
                         ->join('batches', 'batches.unique_id', 'enrollments.batch_id')
                         ->join('users', 'users.unique_id', 'enrollments.mentor_id')
-                        ->select('courses.name', 'courses.slug', 'courses.tags', 'users.firstname', 'users.lastname', 'users.username', 'batches.images', 'batches.video', 'batches.status', 'batches.attendees')
+                        ->select('courses.name', 'courses.slug', 'courses.tags', 'users.firstname', 'users.lastname', 'users.username', 'batches.images', 'batches.video', 'batches.status', 'batches.attendees', 'batches.short_code')
                         ->get();
+
         return view('front.student.enrolled-courses', [
             'courses' => $courses
         ]);
@@ -94,8 +96,16 @@ class StudentController extends Controller{
         ));
     }
 
-    public function enrolledCourse(Request $request, $slug){
-        return view('front.student.course.overview', $this->fetchCourse($request, $slug));
+    public function enrolledCourse(Request $request, $slug, $shortcode){
+        if(!$course = Courses::where('slug', $slug)->first()) return Response::redirectBack('error', 'Course Does Not Exist');
+        if(!$batch = Batch::where('short_code', $shortcode)->first()) return Response::redirectBack('error', 'Batch Does Not Exist');
+        $user = $this->user();
+
+        $data = array_merge([
+            'course' => $course
+        ], $this->getEnrolledBatch($batch, $user));
+
+        return view('front.student.course.overview', $data);
     }
 
 }

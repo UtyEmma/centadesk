@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('unique_id')->unique();
             $table->string('batch_id');
             $table->string('student_id');
-            $table->string('message');
+            $table->longText('message');
             $table->string('status');
             $table->timestamps();
         });

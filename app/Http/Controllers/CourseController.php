@@ -96,6 +96,7 @@ class CourseController extends Controller{
                 'unique_id' => $batch_id,
                 'course_id' => $course_id,
                 'duration' => $request->duration,
+                'mentor_id' => $user->unique_id,
                 'class_link' => $request->class_link,
                 'attendees' => $request->attendees,
                 'price' => $request->price,
@@ -180,15 +181,17 @@ class CourseController extends Controller{
         ]);
     }
 
-    public function enrollment($slug){
+    public function enrollment($slug, $short_code){
         $user = $this->user();
         if(!$course = Courses::where('slug', $slug)->first()) return Response::redirect('/courses', 'errors', 'Course Was not Found');
+        if(!$batch = Batch::where('short_code', $short_code)->first()) return Response::redirect('/courses', 'errors', 'The Requested Batch Was not Found');
         $obj = $this->singleCourse($course);
+
 
         return view('front.enroll', [
             'course' => $course,
             'mentor' => $obj->mentor,
-            'batch' => $obj->batch,
+            'batch' => $batch,
             'user' => $user,
             'reviews' => $obj->reviews,
             'data' => $this->app_data()

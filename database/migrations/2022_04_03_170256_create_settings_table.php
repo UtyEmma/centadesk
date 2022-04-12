@@ -34,6 +34,7 @@ return new class extends Migration
             $table->string('google_client_secret')->unique();
             $table->string('google_redirect_uri')->unique();
             $table->string('exchangerate_api_url')->unique();
+            $table->integer('withdrawal_day_count')->default(env('WITHDRAWAL_DAY_COUNT'));
             $table->timestamps();
         });
     }

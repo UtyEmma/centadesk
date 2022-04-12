@@ -31,7 +31,7 @@ class User extends Authenticatable
         'avg_rating' => 1,
         'kyc_status' => 'pending',
         'role' => 'user',
-        'is_verified' => false,
+        'is_verified' => 'not_verified',
         'status' => true,
         'approved' => false,
         'currency' => 'NGN'

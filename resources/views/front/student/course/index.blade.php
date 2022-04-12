@@ -14,7 +14,7 @@
                                 <h2 class="title mb-0">{{$course->name}}</h2>
                                 <p class="mt-0">
                                     <i class="icofont-eye-alt"></i>
-                                    <span>8,350</span> Students
+                                    <span>{{$batch->total_students}}</span> Students
                                 </p>
 
                             </div>
@@ -42,6 +42,14 @@
                         <!-- Sidebar Widget Information Start -->
                         <x-mentor-card :mentor="$mentor" :class="''" />
                         <!-- Sidebar Widget Information End -->
+
+                        <div class="w-100 mt-4">
+                            @if (!$report)
+                            <x-reports.modal :batch="$batch" />
+                            @else
+                            <x-reports.view :report="$report" :batch="$batch" />
+                            @endif
+                        </div>
 
                         <!-- Sidebar Widget Share Start -->
                         <div class="sidebar-widget">

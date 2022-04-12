@@ -1,4 +1,4 @@
-<x-enrolled-course :course="$course" :batch="$batch" :messages="$forum" :mentor="$mentor" :user="$user" :enrollment="$enrollment">
+<x-enrolled-course :course="$course" :batch="$batch" :messages="$forum" :mentor="$mentor" :user="$user" :enrollment="$enrollment" :report="$report">
 
         <!-- Courses Enroll Tab Start -->
         <div class="courses-enroll-tab">
@@ -56,212 +56,42 @@
                                     </tr>
                                 </tbody>
                             </table>
-
-                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been industry's standard dummy text ever since the 1500s when andom unknown printer took a galley of type scrambled it to make a type specimen book.</p>
-
-                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been industry's standard dummy text ever since the 1500s when andom unknown printer took a galley of type scrambled it to make a type specimen book.</p>
-
                         </div>
                     </div>
                     <!-- Overview End -->
 
                 </div>
-                <div class="tab-pane fade" id="reviews">
 
-                    <!-- Tab Reviews Start -->
-                    <div class="tab-reviews">
-                        <h3 class="tab-title">Student Reviews:</h3>
+                <x-courses.review-tab :reviews="$reviews" :can="true" />
 
-                        <div class="reviews-wrapper reviews-active">
-                            <div class="swiper-container">
-                                <div class="swiper-wrapper">
-
-                                    <!-- Single Reviews Start -->
-                                    <div class="single-review swiper-slide">
-                                        <div class="review-author">
-                                            <div class="author-thumb">
-                                                <img src="{{asset('images/author/author-06.jpg')}}" alt="Author">
-                                                <i class="icofont-quote-left"></i>
-                                            </div>
-                                            <div class="author-content">
-                                                <h4 class="name">Sara Alexander</h4>
-                                                <span class="designation">Product Designer, USA</span>
-                                                <span class="rating-star">
-                                                        <span class="rating-bar" style="width: 100%;"></span>
-                                                </span>
-                                            </div>
-                                        </div>
-                                        <p>Lorem Ipsum has been the industry's standard dummy text since the 1500 when unknown printer took a galley of type and scrambled to make type specimen book has survived not five centuries but also the leap into electronic type and book.</p>
-                                    </div>
-                                    <!-- Single Reviews End -->
-
-                                    <!-- Single Reviews Start -->
-                                    <div class="single-review swiper-slide">
-                                        <div class="review-author">
-                                            <div class="author-thumb">
-                                                <img src="{{asset('images/author/author-07.jpg')}}" alt="Author">
-                                                <i class="icofont-quote-left"></i>
-                                            </div>
-                                            <div class="author-content">
-                                                <h4 class="name">Karol Bachman</h4>
-                                                <span class="designation">Product Designer, USA</span>
-                                                <span class="rating-star">
-                                                        <span class="rating-bar" style="width: 100%;"></span>
-                                                </span>
-                                            </div>
-                                        </div>
-                                        <p>Lorem Ipsum has been the industry's standard dummy text since the 1500 when unknown printer took a galley of type and scrambled to make type specimen book has survived not five centuries but also the leap into electronic type and book.</p>
-                                    </div>
-                                    <!-- Single Reviews End -->
-
-                                    <!-- Single Reviews Start -->
-                                    <div class="single-review swiper-slide">
-                                        <div class="review-author">
-                                            <div class="author-thumb">
-                                                <img src="{{asset('images/author/author-03.jpg')}}" alt="Author">
-                                                <i class="icofont-quote-left"></i>
-                                            </div>
-                                            <div class="author-content">
-                                                <h4 class="name">Gertude Culbertson</h4>
-                                                <span class="designation">Product Designer, USA</span>
-                                                <span class="rating-star">
-                                                        <span class="rating-bar" style="width: 100%;"></span>
-                                                </span>
-                                            </div>
-                                        </div>
-                                        <p>Lorem Ipsum has been the industry's standard dummy text since the 1500 when unknown printer took a galley of type and scrambled to make type specimen book has survived not five centuries but also the leap into electronic type and book.</p>
-                                    </div>
-                                    <!-- Single Reviews End -->
-
-                                </div>
-                                <!-- Add Pagination -->
-                                <div class="swiper-pagination"></div>
-                            </div>
-                        </div>
-
-                        <div class="reviews-btn">
-                            <button type="button" class="btn btn-primary btn-hover-dark" data-bs-toggle="modal" data-bs-target="#reviewsModal">Write A Review</button>
-                        </div>
-
-                        <!-- Reviews Form Modal Start -->
-                        <div class="modal fade" id="reviewsModal">
-                            <div class="modal-dialog modal-dialog-centered">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title">Add a Review</h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                    </div>
-
-                                    <!-- Reviews Form Start -->
-                                    <div class="modal-body reviews-form">
-                                        <form action="/reviews/submit" method="POST">
-                                            @csrf
-
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <!-- Single Form Start -->
-                                                    <div class="reviews-rating">
-                                                        <label>Rating</label>
-                                                        <x-rating-select :name="'rating'" />
-                                                    </div>
-                                                    <!-- Single Form End -->
-                                                </div>
-                                                <div class="col-md-12">
-                                                    <!-- Single Form Start -->
-                                                    <div class="single-form">
-                                                        <textarea name="review" placeholder="Write your comments here"></textarea>
-                                                    </div>
-                                                    <!-- Single Form End -->
-                                                </div>
-                                                <div class="col-md-12">
-                                                    <!-- Single Form Start -->
-                                                    <div class="single-form">
-                                                        <button class="btn btn-primary btn-hover-dark">Submit Review</button>
-                                                    </div>
-                                                    <!-- Single Form End -->
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
-                                    <!-- Reviews Form End -->
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Reviews Form Modal End -->
-
-                    </div>
-                    <!-- Tab Reviews End -->
-
-                </div>
                 <div class="tab-pane fade" id="tab3">
-
                     <!-- Instructor Start -->
                     <div class="instructor">
-                        <div class="row">
-                            <div class="col-lg-4">
-                                <div class="enroll-tab-title">
-                                    <h3 class="title">Instructor</h3>
+                        <div class="enroll-tab-title">
+                            <h3 class="title">Instructor</h3>
+                        </div>
+
+                        <div class="enroll-tab-content p-0">
+                            <!-- Single Instructor Start -->
+                            <div class="single-instructor">
+                                <div class="review-author">
+                                    <div class="single-team">
+                                        <div class="team-thumb ratio ratio-1x1" style="position: relative; width: 150px; ">
+                                            <img src="{{$mentor->avatar ?? asset('images/author/author-04.jpg')}}" class="ratio ratio-1x1 img-cover" alt="Author">
+                                        </div>
+                                    </div>
+                                    <div class="author-content text-left">
+                                        <h4 class="name">{{$mentor->firstname}} {{$mentor->lastname}}</h4>
+                                        <span class="designation">{{$mentor->specialty}}</span>
+                                        <span class="rating-star">
+                                                <span class="rating-bar" style="width: 80%;"></span>
+                                        </span>
+                                    </div>
                                 </div>
+                                <p>{{$mentor->desc}}</p>
                             </div>
-                            <div class="col-lg-8">
-                                <div class="enroll-tab-content">
+                            <!-- Single Instructor End -->
 
-                                    <!-- Single Instructor Start -->
-                                    <div class="single-instructor">
-                                        <div class="review-author">
-                                            <div class="author-thumb">
-                                                <img src="assets/images/author/author-06.jpg" alt="Author">
-                                            </div>
-                                            <div class="author-content">
-                                                <h4 class="name">Sara Alexander</h4>
-                                                <span class="designation">Product Designer, USA</span>
-                                                <span class="rating-star">
-                                                        <span class="rating-bar" style="width: 80%;"></span>
-                                                </span>
-                                            </div>
-                                        </div>
-                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been industry's standard dummy text ever since the 1500s when andom unknown printer took a galley of type scrambled it to make a type specimen book.</p>
-                                    </div>
-                                    <!-- Single Instructor End -->
-
-                                    <!-- Single Instructor Start -->
-                                    <div class="single-instructor">
-                                        <div class="review-author">
-                                            <div class="author-thumb">
-                                                <img src="assets/images/author/author-07.jpg" alt="Author">
-                                            </div>
-                                            <div class="author-content">
-                                                <h4 class="name">Karol Bachman</h4>
-                                                <span class="designation">Product Designer, USA</span>
-                                                <span class="rating-star">
-                                                        <span class="rating-bar" style="width: 80%;"></span>
-                                                </span>
-                                            </div>
-                                        </div>
-                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been industry's standard dummy text ever since the 1500s when andom unknown printer took a galley of type scrambled it to make a type specimen book.</p>
-                                    </div>
-                                    <!-- Single Instructor End -->
-
-                                    <!-- Single Instructor Start -->
-                                    <div class="single-instructor">
-                                        <div class="review-author">
-                                            <div class="author-thumb">
-                                                <img src="assets/images/author/author-03.jpg" alt="Author">
-                                            </div>
-                                            <div class="author-content">
-                                                <h4 class="name">Gertude Culbertson</h4>
-                                                <span class="designation">Product Designer, USA</span>
-                                                <span class="rating-star">
-                                                        <span class="rating-bar" style="width: 80%;"></span>
-                                                </span>
-                                            </div>
-                                        </div>
-                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been industry's standard dummy text ever since the 1500s when andom unknown printer took a galley of type scrambled it to make a type specimen book.</p>
-                                    </div>
-                                    <!-- Single Instructor End -->
-
-                                </div>
-                            </div>
                         </div>
                     </div>
                     <!-- Instructor End -->

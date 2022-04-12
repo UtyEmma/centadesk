@@ -23,7 +23,29 @@
                 </div>
             </div>
         </div>
+
+        <div class="message mt-3">
+            <div>
+                <div>
+                    <div class="message-icon">
+                        <img src="{{asset('images/menu-icon/icon-6.png')}}" alt="">
+                    </div>
+
+                    <div class="message-content mb-3">
+                        <p class="my-0">Verification Status</p>
+                        <span class="badge rounded-pill bg-primary me-2 my-0 text-center">{{$user->is_verified}}</span>
+                    </div>
+                </div>
+
+                @if ($user->is_verified === 'verified')
+                <a href="/me/verify" class="btn btn-outline-primary">Request Verification</a>
+                @endif
+            </div>
+        </div>
+        <!-- Message End -->
     </div>
+
+
     <div class="col-xl-8">
         <!-- Account details card-->
         <h5 class="mb-3">Account Details</h5>

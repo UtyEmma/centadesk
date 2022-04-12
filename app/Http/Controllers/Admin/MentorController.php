@@ -23,4 +23,11 @@ class MentorController extends Controller{
             return Response::redirectBack('error', $th->getMessage());
         }
     }
+
+    function verify($id){
+        if(!$user = User::find($id)) return Response::redirectBack('error', 'User does not exist');
+        if($user->role !== 'mentor') return Response::redirectBack('error', 'User is not a Mentor and cannot be verified');
+        $user->is_verified = 'verified';
+        return Response::redirectBack('success', 'User Verified Successfully');
+    }
 }

@@ -6,6 +6,8 @@
                 <p class="my-0">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laudantium, aliquam.</p>
             </div>
 
+            <x-mentor.kyc-warning />
+
             <!-- Account page navigation-->
             <nav class="nav nav-borders bg-light p-2 radius mb-4">
                 <a class="nav-link active ms-0" href="/me/account">Profile</a>

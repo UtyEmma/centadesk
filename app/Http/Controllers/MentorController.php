@@ -92,4 +92,15 @@ class MentorController extends Controller{
             'user' => $this->user()
         ]);
     }
+
+    function requestVerification(){
+        $user = $this->user();
+        if($user->is_verifided === 'verified') return Response::redirectBack('error', 'Your Account is already verified');
+
+        $user->is_verified = 'requested';
+        $user->save();
+
+        return Response::redirectBack('success', 'Your Verification request has been sent');
+
+    }
 }

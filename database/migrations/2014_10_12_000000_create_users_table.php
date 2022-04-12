@@ -49,7 +49,7 @@ return new class extends Migration
             $table->string('facebook')->nullable();
             $table->string('twitter')->nullable();
             $table->string('role');
-            $table->boolean('is_verified');
+            $table->string('is_verified');
             $table->boolean('approved');
             $table->string('referrer_id')->nullable();
             $table->string('status');
