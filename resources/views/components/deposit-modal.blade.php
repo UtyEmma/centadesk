@@ -2,26 +2,49 @@
     <script src="https://checkout.flutterwave.com/v3.js"></script>
 
     <script>
+        function toast(type, message){
+            new Notify ({
+                text: message,
+                effect: 'slide',
+                status: type,autoclose: true,
+                autotimeout: 3000,
+                speed: 300 // animation speed
+            })
+        }
+
         async function handleDeposit(e){
             e.preventDefault();
-            const transaction = {}
-            transaction.amount = $('input[name="amount"]').val()
-            handleCheckout(transaction)
+            const amount = $('input[name="amount"]').val()
+            const payment_method = $('input[name="payment_method"]:checked').val()
+
+            const request = await Request.post('{{env("MAIN_APP_URL")}}/api/deposit/initiate', {
+                user_id: "{{$user->unique_id}}",
+                amount: amount,
+                currency: "{{$user->currency}}",
+                type: payment_method
+            });
+
+            if(!request.status && request.code !== 200){
+                toast('error', request.data.message ?? "Your Deposit request could not be completed at the moment")
+            }
+
+            return handleCheckout(request.data.deposit)
         }
 
         async function handleCheckout(transaction){
             FlutterwaveCheckout({
                 public_key: "{{env('RAVE_PUBLIC_KEY')}}",
                 amount: transaction.amount,
+                tx_ref: transaction.reference,
                 currency: "{{$user->currency}}",
                 payment_options: "card, mobilemoneyghana, ussd",
                 customer: {
                     email: "{{$user->email}}",
-                    name: '{{$user->firstname}} {{$user->lastname}}',
+                    name: '{{$user->firstname}} {{$user->lastname}}'
                 },
                 customizations: {
-                title: "{{env('APP_NAME')}}",
-                description: "Deposit to LibraClass",
+                    title: "{{env('APP_NAME')}}",
+                    description: "Deposit to LibraClass"
                 },
                 onClose: handleOnClose,
                 callback: completeTransaction
@@ -32,9 +55,11 @@
             console.log(response)
         }
 
-        function completeTransaction(response){
-
-            console.log(response)
+        async function completeTransaction(response){
+            const ref = response.transaction_id
+            const request = await Request.get('{{env("MAIN_APP_URL")}}/api/deposit/verify/'+ref);
+            if(request.status !== 200) return toast('error', request.data.message)
+            window.reload()
         }
     </script>
 @endpush
@@ -52,10 +77,10 @@
 
                     <div class="row">
                         <div class="col-6">
-                            <x-custom-radio default="true" name="payment_method" value="crypto">Crypto</x-custom-radio>
+                            <x-custom-radio :default="true" name="payment_method" value="bank">Card</x-custom-radio>
                         </div>
                         <div class="col-6">
-                            <x-custom-radio :default="false" name="payment_method" value="bank">Card</x-custom-radio>
+                            <x-custom-radio :default="false" name="payment_method" value="crypto">Crypto</x-custom-radio>
                         </div>
                     </div>
                 </div>

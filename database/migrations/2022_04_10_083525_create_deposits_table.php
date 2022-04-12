@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('user_id');
             $table->integer('amount');
             $table->string('currency');
+            $table->string('reference');
             $table->string('type');
             $table->string('status');
             $table->timestamps();

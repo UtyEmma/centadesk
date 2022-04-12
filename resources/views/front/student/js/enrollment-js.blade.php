@@ -4,6 +4,16 @@
 
 <script>
 
+    function toast(type, message){
+        new Notify ({
+            text: message,
+            effect: 'slide',
+            status: type,autoclose: true,
+            autotimeout: 3000,
+            speed: 300 // animation speed
+        })
+    }
+
     async function handlePayment(){
         const type = $("input[name='method']").val()
         let transaction;
@@ -36,8 +46,6 @@
 
         const response = await fetch('{{env('MAIN_APP_URL')}}/api/transaction/initialize', {
             method: 'POST',
-            // mode: 'same-origin',
-            // credentials: 'same-origin', // include, *same-origin, omit
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json'

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BatchController;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\DepositController;
 use App\Http\Controllers\EnrollmentController;
 use App\Http\Controllers\ForumController;
 use App\Http\Controllers\TransactionsController;
@@ -26,6 +27,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::prefix('transaction')->group(function(){
     Route::post('initialize', [TransactionsController::class, 'create']);
+});
+
+Route::prefix('deposit')->group(function(){
+    Route::post('/initiate', [DepositController::class, 'initiate']);
+    Route::get('/verify/{reference}', [DepositController::class, 'verify']);
 });
 
 Route::get('enroll/{batch_id}/{reference}', [EnrollmentController::class, 'enroll']);

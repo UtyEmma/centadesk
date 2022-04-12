@@ -24,7 +24,10 @@ class WalletController extends Controller{
         return Response::view('front.student.wallet', [
             'user' => $user,
             'wallet' => $user->wallet,
-            'deposits' => Deposit::where('user_id', $user->unique_id)->get()
+            'deposits' => Deposit::where([
+                'user_id' => $user->unique_id,
+                'status' => 'completed'
+            ])->get()
         ]);
 
     }

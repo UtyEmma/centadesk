@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Deposit extends Model{
     use HasFactory;
 
-    protected $fillable = ['unique_id', 'user_id', 'amount', 'type', 'status'];
+    protected $fillable = ['unique_id', 'user_id', 'amount', 'type', 'currency', 'reference', 'status'];
 
     protected $primaryKey = 'unique_id';
     protected $keyType = 'string';

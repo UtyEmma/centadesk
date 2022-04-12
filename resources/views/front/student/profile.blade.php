@@ -1,5 +1,5 @@
 <x-student-layout>
-    <div class="section section-padding">
+    <div class="section section-padding py-3">
         <div class="container">
             <form action="/profile/update" enctype="multipart/form-data" method="post">
                 @csrf
@@ -12,9 +12,11 @@
                         <div class="p-3 py-5">
 
                             <div class="row align-items-center">
-                                <div class="col-md-5 col-8 mx-auto mx-md-0">
-                                    <div class="rounded-circle position-relative overflow-hidden" style="height: 200px; width: 200px;">
-                                        <img class="rounded-circle img-fluid position-absolute" style="object-fit: cover; min-width: 100%;" src="{{$user->avatar ?? 'https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg'}}">
+                                <div class="col-md-5 col-8 mx-auto mx-md-0 mb-3">
+                                    <div class="rounded-circle border-primary mx-auto p-1" style="height: 200px; width: 200px; border: 3px solid;">
+                                        <div class="rounded-circle position-relative overflow-hidden h-100 w-100" >
+                                            <img class="img-fluid position-absolute" style="object-fit: cover; object-position: center; min-width: 100%; min-height: 100%;" src="{{$user->avatar ?? 'https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg'}}">
+                                        </div>
                                     </div>
                                 </div>
 
