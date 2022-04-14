@@ -9,11 +9,29 @@
         </div>
 
         <div class="border p-3 py-5 p-md-5 radius">
-            <div>
-                <h6 class="p-0">Personal Information</h6>
-            </div>
-
             <div class="row">
+                <div class="col-md-4 mx-auto ">
+                    <div class="rounded-circle p-1 border border-3 border-primary">
+                        <div class="position-relative overflow-hidden ratio ratio-1x1 rounded-circle">
+                            <img class="radius position-absolute" style="object-fit: cover; object-position: center;" id="avatar_preview" src="{{asset('images/icon/user.png')}}" alt="Shape">
+                        </div>
+                    </div>
+
+                    <div class="mt-2">
+                        <label class="w-100 btn btn-primary " for="avatar">
+                            Upload
+                        </label>
+                        <input name="avatar" onblur="validateInput(event, __personalInfoSchema)" onchange="setPreview(event)" type="file" class="form-control" hidden id="avatar">
+                    </div>
+
+                    <button type="button" onclick="removeImg()" class="btn btn-secondary mt-3 w-100">Remove Image</button>
+                    <small class="text-danger text-capitalize" id="avatar-error">
+                        @error('avatar')
+                            {{$message}}
+                        @enderror
+                    </small>
+                </div>
+
                 <div class="col-md-7">
                     <div class="single-form">
                         <input class="input" onblur="validateInput(event, __personalInfoSchema)" name="username" placeholder="Mentor Username">
@@ -127,25 +145,6 @@
                     </div>
                 </div>
 
-                <div class="col-md-4 mx-auto ">
-                    <div class="position-relative overflow-hidden ratio ratio-1x1 rounded-circle">
-                        <img class="radius position-absolute" style="object-fit: cover; object-position: center;" id="avatar_preview" src="{{asset('images/icon/user.png')}}" alt="Shape">
-                    </div>
-
-                    <div class="mt-2">
-                        <label class="w-100 btn btn-primary " for="avatar">
-                            Upload
-                        </label>
-                        <input name="avatar" onblur="validateInput(event, __personalInfoSchema)" onchange="setPreview(event)" type="file" class="form-control" hidden id="avatar">
-                    </div>
-
-                    <button type="button" onclick="removeImg()" class="btn btn-secondary mt-3 w-100">Remove Image</button>
-                    <small class="text-danger text-capitalize" id="avatar-error">
-                        @error('avatar')
-                            {{$message}}
-                        @enderror
-                    </small>
-                </div>
             </div>
         </div>
 

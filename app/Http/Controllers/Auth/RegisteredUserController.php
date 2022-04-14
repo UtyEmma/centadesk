@@ -40,8 +40,8 @@ class RegisteredUserController extends Controller{
     public function store(RegisterRequest $request){
         $user = $this->newUser($request);
         event(new Registered($user));
-        Auth::login($user);
 
+        Auth::login($user);
         return redirect(RouteServiceProvider::LEARNING_CENTER);
     }
 }

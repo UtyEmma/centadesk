@@ -7,12 +7,17 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class NewSignupNotification extends Notification
+class MentorAccountDisapprovedNotification extends Notification
 {
     use Queueable;
 
     private $data;
 
+    /**
+     * Create a new notification instance.
+     *
+     * @return void
+     */
     public function __construct($data){
         $this->data = $data;
     }
@@ -37,10 +42,8 @@ class NewSignupNotification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->subject("Welcome to Libraclass")
-                    ->view('emails.welcome', [
-                        'data' => $this->data
-                    ]);
+                    ->subject($this->data['subject'])
+                    ->view('emails.mentor.disapproved', $this->data);
     }
 
     /**

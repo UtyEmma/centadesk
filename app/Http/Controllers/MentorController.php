@@ -11,8 +11,10 @@ use App\Models\Bank;
 use App\Models\Courses;
 use App\Models\Enrollment;
 use App\Models\User;
+use App\Notifications\NewMentorAccountRequestNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Str;
 
 class MentorController extends Controller{
@@ -68,6 +70,12 @@ class MentorController extends Controller{
             ]
         ));
 
+        $notification = [
+            'subject' => "Your Mentor Signup Request is being reviewed",
+            'dashboard' => self::HOME
+        ];
+
+        Notification::send($user, new NewMentorAccountRequestNotification($notification));
         return redirect(self::HOME);
     }
 

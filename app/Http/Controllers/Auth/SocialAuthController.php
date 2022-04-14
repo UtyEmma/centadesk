@@ -40,7 +40,7 @@ class SocialAuthController extends Controller{
                                 ->withCookie(cookie('currency', $user->currency));
             }
         } catch (\Throwable $th) {
-            return Response::redirect('/login', 'error', $th->getMessage());
+            return Response::redirectBack('error', $th->getMessage());
         }
     }
 
@@ -58,16 +58,16 @@ class SocialAuthController extends Controller{
                 $user->lastname = $data['family_name'];
                 $user->avatar = $data['picture'];
 
-                $user = $this->findOrCreate($user);
+                $user = $this->findOrCreate($user, 'social');
                 Auth::login($user);
 
                 return response()->redirectToIntended(RouteServiceProvider::LEARNING_CENTER)
                                 ->withCookie(cookie('currency', $user->currency));
             }else{
-                throw new Exception("This user does not exist");
+                throw new Exception("Could not fetch any user data from Google");
             }
         } catch (\Throwable $th) {
-            return Response::redirect('/login', 'error', $th->getMessage());
+            return Response::redirectBack('error', $th->getMessage());
         }
     }
 

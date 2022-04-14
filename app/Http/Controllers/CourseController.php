@@ -16,9 +16,11 @@ use App\Models\Enrollment;
 use App\Models\Review;
 use App\Models\User;
 use App\Models\Wallet;
+use App\Notifications\CoursePublishedNotification;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Str;
 
 class CourseController extends Controller{
@@ -28,6 +30,7 @@ class CourseController extends Controller{
     public function all(){
         $data =  Courses::paginate(9);
         $courses = $this->getCoursesData($data);
+
         return view('front.courses', [
             'courses' => $courses,
             'data' => $this->app_data()
@@ -47,7 +50,8 @@ class CourseController extends Controller{
         try {
             $user = $this->user();
 
-            if ($user->kyc_status !== 'approved') return redirect()->back()->with('error', 'You cannot create courses because your mentor application has not been approved.');
+            if ($user->kyc_status !== 'approved')
+                    return Response::redirectBack('error', 'You cannot create courses because your mentor application has not been approved yet!');
 
             $course_id = Token::unique('courses');
             $batch_id = Token::unique('batches');
@@ -114,9 +118,17 @@ class CourseController extends Controller{
             $user->total_batches += 1;
             $user->save();
 
-            return redirect()->back()->with('success', 'Course Created Successfully');
+            $notification = [
+                'subject' => 'Your course has been created successfully',
+                'course' => $course,
+                'batch' => $batch
+            ];
+
+            Notification::send($user, new CoursePublishedNotification($notification));
+
+            return Response::redirectBack('success', 'Course Created Successfully');
         } catch (\Throwable $th) {
-            throw $th;
+            return Response::redirectBack('error', $th->getMessage());
         }
     }
 

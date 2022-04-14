@@ -31,7 +31,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('set.referrals')->group(function(){
+Route::middleware(['set.currency', 'set.referrals'])->group(function(){
     Route::get('/', [AppController::class, 'index']);
     Route::post('/settings/update', [SettingsController::class, 'updateCurrency']);
 

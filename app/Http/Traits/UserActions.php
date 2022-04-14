@@ -10,17 +10,18 @@ use App\Models\Courses;
 use App\Models\Review;
 use App\Models\User;
 use App\Models\Wallet;
+use App\Notifications\NewSignupNotification;
+use App\Providers\RouteServiceProvider;
 use Exception;
-use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Notification;
 
 trait UserActions{
 
     function newUser($request){
         $unique_id = Token::unique('users');
         $affiliate_id = Token::text(6, 'users', 'affiliate_id');
-        $ref = $request->query('ref') ?? session('ref');
+        $ref = request()->query('ref') ?? session('ref');
         $referrer_id = User::where('affiliate_id', $ref)->first() ? $ref : null;
 
         $user = User::create([
@@ -40,6 +41,11 @@ trait UserActions{
             'user_id' => $user->unique_id
         ]);
 
+        $notification = [
+            'profile' => env('MAIN_APP_URL').RouteServiceProvider::LEARNING_CENTER
+        ];
+
+        Notification::send($user, new NewSignupNotification($notification));
         return $user;
     }
 

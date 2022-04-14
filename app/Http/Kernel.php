@@ -4,6 +4,7 @@ namespace App\Http;
 
 use App\Http\Middleware\MentorIsApproved;
 use App\Http\Middleware\ParseAffiliateIdToSession;
+use App\Http\Middleware\ParseCurrencyToSession;
 use App\Http\Middleware\UserIsMentor;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
@@ -68,6 +69,7 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'is.mentor' => UserIsMentor::class,
         'is.approved' => MentorIsApproved::class,
-        'set.referrals' => ParseAffiliateIdToSession::class
+        'set.referrals' => ParseAffiliateIdToSession::class,
+        'set.currency' => ParseCurrencyToSession::class
     ];
 }

@@ -11,14 +11,10 @@ class NewMentorAccountRequestNotification extends Notification
 {
     use Queueable;
 
-    /**
-     * Create a new notification instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        //
+    private $data;
+
+    public function __construct($data){
+        $this->data = $data;
     }
 
     /**
@@ -41,9 +37,8 @@ class NewMentorAccountRequestNotification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
+                    ->subject($this->data['subject'])
+                    ->view('emails.mentor.onboarding', $this->data);
     }
 
     /**
