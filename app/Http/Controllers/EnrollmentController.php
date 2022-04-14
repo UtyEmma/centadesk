@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Traits\BatchActions;
+use App\Http\Traits\CryptoActions;
+use App\Http\Traits\EnrollmentActions;
 use App\Http\Traits\TransactionActions;
+use App\Http\Traits\WalletActions;
 use App\Library\Number;
 use App\Library\Response;
 use App\Library\Token;
@@ -13,122 +17,76 @@ use App\Models\Setting;
 use App\Models\Transaction;
 use App\Models\User;
 use App\Models\Wallet;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Redirect;
 
 class EnrollmentController extends Controller{
-    use TransactionActions;
+    use TransactionActions, BatchActions, EnrollmentActions, WalletActions, CryptoActions;
 
-    public function initiate(Request $request){
-        if(!$batch = Batch::where('short_code', $request->short_code)->first())
-                            return Response::json(400, "The requested batch does not exist");
+    public function initiate(Request $request, $batch_id){
+        if(!$batch = Batch::find($batch_id))
+                    return Response::redirectBack('error', "The requested batch does not exist");
 
-        $previousEnrollments = Enrollment::where([
-            'user_id' => $request->user_id,
-            'batch_id' => $batch->unique_id
-        ])->get();
+        $user = $this->user();
+        if($this->checkEnrollmentStatus($batch, $user))
+                    return Response::redirectBack('error', 'You are already enrolled for this batch');
 
-        if($previousEnrollments->isNotEmpty()){
+        $amount = $this->getPayableAmount($batch->unique_id);
 
-        }
-        $transaction = $this->createTransaction($request);
-    }
+        $transaction = $this->createTransaction([
+            'amount' => $amount,
+            'user_id' => $user->unique_id,
+            'currency' => $user->currency,
+            'type' => $request->payment
+        ]);
 
-    public function verify($reference){
-        $response = Http::withHeaders([
-            'Authorization' => env('RAVE_SECRET_KEY')
-        ])->get("https://api.flutterwave.com/v3/transactions/".$reference."/verify");
+        $redirect_url = env('MAIN_APP_URL')."/enroll/complete/$request->payment/$batch->unique_id";
 
-        if($response->ok() && $response->status() === 200) {
-            $res = $response->json();
-
-            $status = $res['data']['status'];
-            $tx_ref = $res['data']['tx_ref'];
-
-            $transaction = Transaction::where('reference', $tx_ref)->first();
-
-            if($status === 'successful'){
-                $transaction->status = 'completed';
-                $transaction->save();
-
-                $user = User::find($transaction->user_id);
-                $this->handleReferrerPayout($user, $transaction->amount);
-
-                return [
-                    'status' => true,
-                    'transaction' => $transaction,
-                    'code' => 200
-                ];
-            }
-
-            return [
-                'status' => false,
-                'message' => 'Your Transaction was not Successful',
-                'code' => 400
-            ];
-        }
-
-        return [
-            'status' => false,
-            'message' => "We could not confirm your transaction status at the moment",
-            'code' => 500
+        $transactions = [
+            'crypto' => $this->payWithCrypto($transaction, $user, $redirect_url),
+            'card' => $this->payWithCard($transaction, $user, $redirect_url),
+            'wallet' => $this->payFromWallet($transaction, $batch, $user)
         ];
+
+        return $transactions[$request->payment];
     }
 
-    function enroll(Request $request, $batch_id, $reference){
-        $batch = Batch::find($batch_id);
+    function payWithCard($transaction, $user, $redirect_url){
+        $rave_link = $this->initializeFlutterwave($transaction, $user, $redirect_url);
+        return Response::redirect($rave_link);
+    }
+
+    function payFromWallet($transaction, $batch, $user){
+        $wallet = Wallet::where('user_id', $user->unique_id)->first();
+        $mentor = User::where('unique_id', $batch->mentor_id)->first();
         $course = Courses::find($batch->course_id);
-        $mentor = User::find($course->mentor_id);
 
-        $transaction = $this->verify($reference);
-
-        if(!$transaction['status']) return response()->json([
-            'message' => $transaction['message']
-        ], $transaction['code']);
-
-        $transaction = $transaction['transaction'];
-        $student = User::find($transaction->user_id);
-        $unique_id = Token::unique('enrollments');
-
-        if(!$transaction || $transaction->status !== 'completed'){
-            return redirect("/classes/$course->slug")->with('error', 'Enrollment Failed');
+        if($transaction->amount > 0){
+            if(!$this->handleWalletPayment($wallet, $transaction->amount)) return Response::redirectBack('error', 'You do not have sufficient funds in your wallet to complete this transaction. Please fund your wallet!');
         }
 
-        Enrollment::create([
-            'unique_id' => $unique_id,
-            'batch_id' => $batch->unique_id,
-            'course_id' => $batch->course_id,
-            'student_id' => $student->unique_id,
-            'mentor_id' => $course->mentor_id,
-            'transaction_id' => $transaction->unique_id
-        ]);
+        $this->enrollUser($user, $mentor, $batch, $course, $transaction);
 
-        $charge = Setting::first()->charge ?? env('DEFAULT_CHARGE');
-        $mentor_amount = Number::percentageDecrease($charge, $transaction['amount']);
+        $transaction->type = 'wallet';
+        $transaction->status = 'completed';
+        $transaction->save();
 
+        // Send Enrollment Notification
 
-        $mentor->earnings += $mentor_amount;
-        $mentor->save();
-
-        $this->updateMentorWallet($mentor, $mentor_amount);
-
-        $course->total_students += 1;
-        $course->revenue += $mentor_amount;
-        $course->save();
-
-        $batch->total_students += 1;
-        $course->earnings += $mentor_amount;
-        $batch->save();
-
-        return response()->json([
-            'course' => $course->slug
-        ]);
+        return Response::redirect("/profile/courses/$course->slug/$batch->short_code", 'success', 'You have successfully enrolled for this course');
     }
 
-    function updateMentorWallet($mentor, $amount){
-        $wallet = Wallet::where('user_id', $mentor->unique_id)->first();
-        $wallet->escrow += $amount;
-        $wallet->balance += $amount;
-        $wallet->save();
+
+    public function complete(Request $request, $type, $batch_id){
+        $transactions = [
+            'crypto' => $this->verifyCryptoPayment($request, $batch_id),
+            'card' => $this->verifyCardPayment($request, $batch_id)
+        ];
+
+        return $transactions[$type];
     }
+
+
 }

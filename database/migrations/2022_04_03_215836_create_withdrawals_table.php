@@ -18,11 +18,12 @@ return new class extends Migration
             $table->string('unique_id');
             $table->string('user_id');
             $table->integer('amount');
-            $table->string('account_no');
-            $table->string('account_name');
-            $table->string('bank');
+            $table->string('account_no')->nullable();
+            $table->string('account_name')->nullable();
+            $table->string('bank')->nullable();
             $table->string('type');
-            $table->string('wallet_key');
+            $table->string('wallet_key')->nullable();
+            $table->string('reference');
             $table->string('status');
             $table->timestamps();
         });

@@ -56,4 +56,30 @@ trait WalletActions {
         $mentor->notify(new EarningsUpdatedNotification());
     }
 
+    function updateMentorWallet($mentor, $amount){
+        $wallet = Wallet::where('user_id', $mentor->unique_id)->first();
+        $wallet->escrow += $amount;
+        $wallet->balance += $amount;
+        $wallet->save();
+    }
+
+    function handleWalletPayment($wallet, $amount){
+        if($wallet->referrals >= $amount){
+            $wallet->referrals -= $amount;
+            $wallet->save();
+            return true;
+        }
+
+        $referral = $amount - $wallet->referrals;
+        $deposit = $amount - $referral;
+
+        if($wallet->deposits >= $referral){
+            $wallet->referrals -= $referral;
+            $wallet->deposits -= $deposit;
+            $wallet->save();
+            return true;
+        }
+        return false;
+    }
+
 }

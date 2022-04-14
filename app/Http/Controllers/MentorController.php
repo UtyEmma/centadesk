@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\MentorSignupRequest;
+use App\Http\Traits\CourseActions;
 use App\Http\Traits\MentorActions;
 use App\Library\FileHandler;
 use App\Library\Response;
+use App\Models\Courses;
 use App\Models\Enrollment;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -13,7 +15,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
 class MentorController extends Controller{
-    use MentorActions;
+    use MentorActions, CourseActions;
 
     const HOME = '/me';
 
@@ -69,9 +71,11 @@ class MentorController extends Controller{
                     return Response::redirect('/404', 'error', 'The requested mentor does not exist');
 
         $mentor = $this->getMentorDetails($mentor);
+        $courses = Courses::where('mentor_id', $mentor->unique_id)->get();
 
         return Response::view('front.mentor-details', [
-            'mentor' => $mentor
+            'mentor' => $mentor,
+            'courses' => $courses
         ]);
     }
 

@@ -20,11 +20,28 @@ use Illuminate\Support\Facades\DB;
 trait BatchActions {
     use StudentActions, MentorActions, ReviewActions;
 
+    function getBatchDetails($shortcode){
+        if(!$batch = Batch::where('short_code', $shortcode)->first())
+        throw new Exception("No Batch was found with the shortcode: '$shortcode'", 404);
+
+        if(!$course = Courses::find($batch->course_id))
+            throw new Exception("Invalid Request: The requested course does not exist", 404);
+
+        if(!$mentor = User::find($course->mentor_id))
+            throw new Exception("Could not get the Mentor for this Course", 404);
+
+        return [
+            'batch' => $batch,
+            'course' => $course,
+            'mentor' => $mentor
+        ];
+    }
+
     function mentorBatchDetails($shortcode, bool $getStudents = false, bool $getForum = false){
         $user = $this->user();
 
         if(!$batch = Batch::where(['short_code' => $shortcode])->first())
-            throw new Exception("No Batch was found with the shortcode: '$shortcode'", 404);
+        throw new Exception("No Batch was found with the shortcode: '$shortcode'", 404);
 
         if(!$course = Batch::find($batch->unique_id)->course)
             throw new Exception("Invalid Request: The requested course does not exist", 404);
@@ -150,6 +167,12 @@ trait BatchActions {
             'forum' => $messages,
             'user' => $user
         ];
+    }
+
+    function getPayableAmount($batch_id){
+        $batch = Batch::find($batch_id);
+        if($batch->discount === 'none') return $batch->price;
+        return $batch->discount_price;
     }
 
 }

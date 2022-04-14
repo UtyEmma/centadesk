@@ -15,8 +15,7 @@ class Transaction extends Model{
     public $incrementing = false;
 
     protected $attributes = [
-        'status' => 'pending',
-        'currency' => 'NGN'
+        'status' => 'pending'
     ];
 
 }

@@ -8,21 +8,30 @@
             <!-- Overview Top Start -->
             <div class="admin-top-bar flex-wrap">
                 <div class="overview-box">
-                    <div class="single-box">
+                    <div class="single-box w-auto">
                         <h5 class="title">Lifetime Earnings</h5>
-                        <div class="count">$ {{number_format($wallet->earnings)}}</div>
+                        <div class="count">
+                            <span style="font-size: 1rem;">{{request()->cookie('currency') ?? $user->currency}}</span>
+                            {{number_format($wallet->earnings)}}
+                        </div>
                         <p><span>$235.00</span> This months</p>
                     </div>
 
-                    <div class="single-box">
+                    <div class="single-box w-auto">
                         <h5 class="title">Available Balance</h5>
-                        <div class="count">$ {{number_format($wallet->available)}}</div>
+                        <div class="count">
+                            <span style="font-size: 1rem;">{{request()->cookie('currency') ?? $user->currency}}</span>
+                            {{number_format($wallet->available)}}
+                        </div>
                         <p><span>345</span> This months</p>
                     </div>
 
-                    <div class="single-box">
+                    <div class="single-box w-auto">
                         <h5 class="title">Pending Balance</h5>
-                        <div class="count">$ {{number_format($wallet->escrow)}}</div>
+                        <div class="count">
+                            <span style="font-size: 1rem;">{{request()->cookie('currency') ?? $user->currency}}</span>
+                            {{number_format($wallet->escrow)}}
+                        </div>
                         <p><span>345</span> This months</p>
                     </div>
                 </div>
@@ -35,7 +44,7 @@
                     <h4 class="title">Withdrawals</h4>
 
                     <div class="graph-btn">
-                        <a class="btn btn-primary btn-hover-dark" href="./wallet/withdraw">Withdraw</i></a>
+                        <x-withdrawal-modal />
                     </div>
                 </div>
 
@@ -57,7 +66,7 @@
                                         <td> {{$withdrawal->type}} </td>
                                         <td>
                                             @if ($withdrawal->type === 'crypto')
-                                                {{$withdrawal->wallet_id}}
+                                                {{$withdrawal->wallet_key}}
                                             @elseif ($withdrawal->type === 'bank')
                                                 {{$withdrawal->account_name}}
                                             @endif

@@ -39,19 +39,17 @@
         <script src="{{asset('js/plugins/tagify/tagify.min.js')}}" ></script>
         <script src="{{asset('js/plugins/tagify/tagify.polyfills.min.js')}}" ></script>
 
-        <script src="{{asset('js/plugins/simple-notify.min.js')}}"></script>
-
         <!--====== Use the minified version files listed below for better performance and remove the files listed above ======-->
         <script src="{{asset('js/plugins.min.js')}}" ></script>
 
         <!-- Main JS -->
         <script src="{{asset('js/main.js')}}" ></script>
         <script src="{{asset('js/ajax.js')}}"></script>
+        <script src="{{asset('js/plugins/simple-notify.min.js')}}"></script>
 
         @stack('scripts')
     </head>
     <body>
-        <x-toasts />
 
         @include('layouts.guest.guest-header')
 
@@ -64,6 +62,7 @@
 
         @include('layouts.guest.guest-footer')
 
+        <x-toasts />
 
     </body>
 </html>

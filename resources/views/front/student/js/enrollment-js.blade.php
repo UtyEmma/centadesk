@@ -14,18 +14,6 @@
         })
     }
 
-    async function handlePayment(){
-        const type = $("input[name='method']").val()
-        let transaction;
-
-        if(type === 'bank'){
-            transaction = await createTransaction()
-        }else if(type === 'crypto'){
-            transaction = await createCryptoTransaction()
-        }
-        return window.location.href = `{{env('MAIN_APP_URL')}}/profile/courses/${transaction.course}`;
-    }
-
     function handleCryptoPayment(){
 
     }
@@ -55,8 +43,9 @@
 
         if(!response.status === 200) return false
         const res = await response.json()
-        const transaction = res.transaction
-        return handleCheckout(transaction)
+        const transaction = await handleCheckout(res.transaction)
+
+        return window.location.href = `{{env('MAIN_APP_URL')}}/profile/courses/${transaction.course}`;
     }
 
     async function handleOnClose (transaction){

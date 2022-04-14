@@ -33,8 +33,7 @@
 
 
     <div class="d-flex justify-content-end mt-3">
-        <button class="btn" style="font-size: 14px">Batch Details</button>
-        <a href="{{$course->slug}}/{{$batch->short_code}}/enroll" class="btn btn-primary ms-3" style="font-size: 14px">Enroll</a>
+        <a href="{{$course->slug}}/{{$batch->short_code}}" class="btn btn-primary ms-3" style="font-size: 14px">View Batch</a>
     </div>
 </div>
 <!-- Single Courses End -->

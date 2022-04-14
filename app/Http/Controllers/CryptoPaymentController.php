@@ -35,6 +35,7 @@ class CryptoPaymentController extends Controller{
         if($response->status() !== 201) return Response::redirectBack('error', 'Could not initiate Crypto Payment transaction');
         $res = $response->json();
         $data = $res['data'];
+
         return redirect()->away($data['hosted_url']);
     }
 

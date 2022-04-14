@@ -27,7 +27,7 @@
         <link rel="stylesheet" href="{{asset('css/plugins/swiper-bundle.min.css')}}">
 
         <link rel="stylesheet" href="{{ asset('css/plugins/bs-stepper.min.css')}}">
-        <link rel="stylesheet" href="{{ asset('css/plugins/toast.min.css')}}">
+        <link rel="stylesheet" href="{{asset('css/plugins/simple-notify.min.css')}}">
 
 
         <link rel="stylesheet" href="{{asset('css/plugins/quill-snow.css')}}">
@@ -49,7 +49,6 @@
 
         <!--====== Use the minified version files listed below for better performance and remove the files listed above ======-->
         <script src="{{asset('js/plugins.min.js')}}"></script>
-        <script src="{{asset('js/plugins/toast.min.js')}}"></script>
 
         <script src="{{asset('js/plugins/bs-stepper.min.js')}}" ></script>
         <script src="{{asset('js/plugins/tagify/tagify.min.js')}}"></script>
@@ -66,6 +65,8 @@
         <!-- Main JS -->
         <script src="{{asset('js/main.js')}}" ></script>
         <script src="{{asset('js/ajax.js')}}"></script>
+
+        <script src="{{asset('js/plugins/simple-notify.min.js')}}"></script>
 
         @stack('scripts')
     </head>

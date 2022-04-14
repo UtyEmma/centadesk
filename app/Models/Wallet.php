@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Casts\Currency;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -21,6 +22,16 @@ class Wallet extends Model{
         'referrals' => 0,
         'withdrawals' => 0,
         'deposits' => 0
+    ];
+
+    protected $casts = [
+        'balance' => Currency::class,
+        'escrow' => Currency::class,
+        'available' => Currency::class,
+        'earnings' => Currency::class,
+        'referrals' => Currency::class,
+        'withdrawals' =>Currency::class,
+        'deposits' => Currency::class
     ];
 
 }

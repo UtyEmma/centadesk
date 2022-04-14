@@ -18,6 +18,7 @@
         <link rel="stylesheet" href="{{ asset('css/plugins/flaticon.css')}} ">
         <link rel="stylesheet" href="{{ asset('css/plugins/font-awesome.min.css')}} ">
         <link rel="stylesheet" href="{{ asset('css/plugins/tagify.min.css')}} ">
+        <link rel="stylesheet" href="{{asset('css/plugins/simple-notify.min.css')}}">
 
         <!-- Main Style CSS -->
         <link rel="stylesheet" href="{{asset('css/vendor/plugins.min.css')}}">
@@ -50,6 +51,8 @@
         <script src="{{asset('js/main.js')}}" ></script>
         <script src="{{asset('js/validation.js')}}" ></script>
         <script src="{{asset('js/ajax.js')}}"></script>
+
+        <script src="{{asset('js/plugins/simple-notify.min.js')}}"></script>
 
         @stack('scripts')
     </head>

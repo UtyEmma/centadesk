@@ -15,6 +15,7 @@ use App\Models\Courses;
 use App\Models\Enrollment;
 use App\Models\Review;
 use App\Models\User;
+use App\Models\Wallet;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
@@ -22,11 +23,8 @@ use Illuminate\Support\Str;
 
 class CourseController extends Controller{
     use AppActions, CourseActions;
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
+
     public function all(){
         $data =  Courses::paginate(9);
         $courses = $this->getCoursesData($data);
@@ -36,11 +34,6 @@ class CourseController extends Controller{
         ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create(Request $request){
         $categories = Category::where('status', true)->get();
 
@@ -50,12 +43,6 @@ class CourseController extends Controller{
         ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(CreateCourseRequest $request){
         try {
             $user = $this->user();
@@ -186,6 +173,7 @@ class CourseController extends Controller{
         if(!$course = Courses::where('slug', $slug)->first()) return Response::redirect('/courses', 'errors', 'Course Was not Found');
         if(!$batch = Batch::where('short_code', $short_code)->first()) return Response::redirect('/courses', 'errors', 'The Requested Batch Was not Found');
         $obj = $this->singleCourse($course);
+        $wallet = $user->wallet;
 
 
         return view('front.enroll', [
@@ -194,16 +182,12 @@ class CourseController extends Controller{
             'batch' => $batch,
             'user' => $user,
             'reviews' => $obj->reviews,
-            'data' => $this->app_data()
+            'data' => $this->app_data(),
+            'wallet' => $wallet
         ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function edit($id)
     {
         //

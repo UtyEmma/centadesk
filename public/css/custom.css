@@ -203,5 +203,9 @@ input::-webkit-inner-spin-button {
     overflow: hidden;
 }
 
+.bg-light-primary{
+    background-color: #e7f8ee;
+}
+
 
 

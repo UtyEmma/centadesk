@@ -129,4 +129,14 @@ class BatchController extends Controller{
         return Response::redirectBack('success', 'Batch Created Successfully');
     }
 
+    function batchDetails(Request $request, $slug, $shortcode){
+        // try {
+            $details = $this->getBatchDetails($shortcode);
+
+            return Response::view('front.batch-details', $details);
+        // } catch (\Throwable $th) {
+        //     return Response::redirectBack('error', $th->getMessage());
+        // }
+    }
+
 }

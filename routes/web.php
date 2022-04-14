@@ -7,12 +7,14 @@ use App\Http\Controllers\BatchController;
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\CryptoPaymentController;
+use App\Http\Controllers\EnrollmentController;
 use App\Http\Controllers\ForumController;
 use App\Http\Controllers\MentorController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\TransactionsController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WalletController;
 use App\Http\Controllers\WithdrawalController;
@@ -37,10 +39,12 @@ Route::middleware('set.referrals')->group(function(){
         Route::prefix('/profile')->group(function(){
             Route::get('/', [StudentController::class, 'show']);
             Route::post('/update', [StudentController::class, 'update']);
-            Route::get('/courses', [StudentController::class, 'enrolledCourses']);
-            Route::get('/courses/{slug}/{shortcode}', [StudentController::class, 'enrolledCourse']);
-            Route::get('/courses/{slug}/{shortcode}/forum', [StudentController::class, 'courseForum']);
-            Route::get('/courses/{slug}/{shortcode}/forum/{message_id}', [StudentController::class, 'courseForumDetails']);
+            Route::prefix('/courses')->group(function(){
+                Route::get('/', [StudentController::class, 'enrolledCourses']);
+                Route::get('/{slug}/{shortcode}', [StudentController::class, 'enrolledCourse']);
+                Route::get('/{slug}/{shortcode}/forum', [StudentController::class, 'courseForum']);
+                Route::get('/{slug}/{shortcode}/forum/{message_id}', [StudentController::class, 'courseForumDetails']);
+            });
             Route::post('/forum/send/{batch_id}', [ForumController::class, 'storeMessage']);
             Route::get('/mentors', [StudentController::class, 'fetchMentors']);
             Route::get('/wallet', [WalletController::class, 'studentWallet']);
@@ -60,8 +64,13 @@ Route::middleware('set.referrals')->group(function(){
             Route::post('/update', [CurrencyController::class, 'update']);
         });
 
-        Route::prefix('enroll')->group(function(){
-            Route::get('/crypto/pay/{batch_id}', [CryptoPaymentController::class, 'initiate']);
+        Route::prefix('/transaction')->group(function(){
+            Route::get('/verify', [TransactionsController::class, 'verify']);
+        });
+
+        Route::prefix('/enroll')->group(function(){
+            Route::post('/{batch_id}', [EnrollmentController::class, 'initiate']);
+            Route::get('/complete/{type}/{batch_id}', [EnrollmentController::class, 'complete']);
         });
 
 
@@ -85,18 +94,18 @@ Route::middleware('set.referrals')->group(function(){
                     Route::post('/new', [CourseController::class, 'store']);
                     Route::get('/{slug}', [CourseController::class, 'single']);
                     Route::get('/{slug}/reviews', [ReviewController::class, 'fetchCourseReviews']);
+
                     Route::prefix('/{slug}/batch')->group(function(){
                         Route::get('/new', [BatchController::class, 'newBatchPage']);
                         Route::post('/create', [BatchController::class, 'newBatch']);
                     });
+
                     Route::prefix('/{slug}/{shortcode}')->group(function(){
                         Route::get('/', [BatchController::class, 'fetchBatch']);
                         Route::get('/students', [BatchController::class, 'fetchBatchStudents']);
                         Route::get('/forum', [ForumController::class, 'fetchMentorBatchForum']);
                         Route::get('/forum/{unique_id}', [ForumController::class, 'fetchMentorBatchForumReplies']);
                     });
-
-
                 });
             });
 
@@ -112,20 +121,20 @@ Route::middleware('set.referrals')->group(function(){
 
             Route::prefix('/wallet')->group(function(){
                 Route::get('/', [WalletController::class, 'mentorWallet']);
-                Route::get('/withdraw', [WithdrawalController::class, 'initiate']);
+                Route::post('/withdraw', [WithdrawalController::class, 'initiate']);
             });
         });
     });
 
     Route::prefix('/mentor')->group(function(){
         Route::get('/', [MentorController::class, 'index']);
-        Route::get('/{slug}', [MentorController::class, 'show']);
+        Route::get('/{username}', [MentorController::class, 'show']);
     });
 
     Route::prefix('/courses')->group(function(){
         Route::get('/', [CourseController::class, 'all']);
         Route::get('/{slug}', [CourseController::class, 'show']);
-        Route::get('/{slug}/{shortcode}/enroll', [CourseController::class, 'enrollment']);
+        Route::get('/{slug}/{shortcode}', [BatchController::class, 'batchDetails']);
     });
 
 

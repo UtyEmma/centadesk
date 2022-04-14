@@ -13,10 +13,10 @@
     <div class="section section-padding mt-n10">
         <div class="container">
             <div class="row gx-10">
-                <div class="col-lg-6">
+                <div class="col-lg-8">
                     <!-- Courses Details Start -->
-                    <div class="courses-details">
-                        <div class="courses-details-images">
+                    <div class="courses-details mt-0">
+                        <div class="courses-details-images mt-0">
                             <img src="{{json_decode($batch->images)[0] ?? asset('images/courses/courses-details.jpg')}}" alt="Courses Details">
 
                             <div class="courses-play">
@@ -28,17 +28,15 @@
                         <div class="w-100 mt-4 mb-0">
                             @if ($course->tags)
                                 @foreach (json_decode($course->tags) as $tag)
-                                    <span class="tag-item">{{$tag->value}}</span>
+                                    <span class="tag-item text-capitalize">{{$tag->value}}</span>
                                 @endforeach
                             @endif
                         </div>
-                    </div>
-                    <!-- Courses Details End -->
-                </div>
-                <div class="col-lg-5">
-                    <!-- Courses Details Start -->
-                    <div class="courses-details">
-                        <h2 class="title mt-2">{{$course->name}}</h2>
+
+                        <div class="w-100 d-flex justify-content-between">
+                            <h3 class="title mt-2">{{$course->name}}</h3>
+
+                        </div>
 
                         <div class="courses-details-admin">
                             <div class="admin-author">
@@ -61,20 +59,72 @@
 
                         <!-- Courses Details Tab Start -->
                         <div class="courses-details-tab">
-
                             <!-- Details Tab Menu Start -->
                             <h5 class="tab-title">Course Description</h5>
                             <div class="details-tab-menu">
                                 <p>
-                                    {!! $course->excerpt !!}
+                                    {!! $course->desc !!}
                                 </p>
                             </div>
                             <!-- Details Tab Menu End -->
                         </div>
                         <!-- Courses Details Tab End -->
-
                     </div>
                     <!-- Courses Details End -->
+                </div>
+                <div class="col-lg-4">
+                    <!-- Courses Details Sidebar Start -->
+                    <div class="sidebar mt-0 p-0">
+
+                        <!-- Sidebar Widget Information Start -->
+                        <div class="sidebar-widget widget-information mt-0">
+                            <div class="info-price text-start">
+                                <h5 class="text-decoration-line-through">
+                                    {{request()->cookie('currency')}}
+
+                                    {{number_format($batch->price)}}
+                                </h5>
+                                <span class="price text-left">
+                                    <span style="font-size: 1rem;">
+                                        {{request()->cookie('currency')}}
+                                    </span>
+                                    {{number_format($batch->discount_price)}}
+                                </span>
+                            </div>
+                            <div class="info-list">
+                                <ul>
+                                    <li><i class="icofont-man-in-glasses"></i> <strong>Instructor</strong> <span>{{$mentor->firstname}} {{$mentor->lastname}}</span></li>
+                                    <li><i class="icofont-clock-time"></i> <strong>Duration</strong> <span>08 hr 15 mins</span></li>
+                                </ul>
+                            </div>
+
+                            @if ($user = Auth::user())
+                                <x-payment-modal :user="$user" :batch="$batch" :wallet="$user->wallet" />
+                            @else
+                                <h4 class="mb-5">Log into your account to enroll for this batch</h4>
+
+                                <div class="info-btn">
+                                    <a href="/login" class="btn btn-primary btn-hover-dark">Login</a>
+                                </div>
+                            @endif
+                        </div>
+                        <!-- Sidebar Widget Information End -->
+
+                        <!-- Sidebar Widget Share Start -->
+                        <div class="sidebar-widget">
+                            <h4 class="widget-title">Share Course:</h4>
+
+                            <ul class="social">
+                                <li><a href="#"><i class="flaticon-facebook"></i></a></li>
+                                <li><a href="#"><i class="flaticon-linkedin"></i></a></li>
+                                <li><a href="#"><i class="flaticon-twitter"></i></a></li>
+                                <li><a href="#"><i class="flaticon-skype"></i></a></li>
+                                <li><a href="#"><i class="flaticon-instagram"></i></a></li>
+                            </ul>
+                        </div>
+                        <!-- Sidebar Widget Share End -->
+
+                    </div>
                 </div>
             </div>
         </div>

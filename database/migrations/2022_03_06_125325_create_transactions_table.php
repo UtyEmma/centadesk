@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('unique_id');
             $table->string('reference');
             $table->string('user_id');
+            $table->string('type');
             $table->string('status');
             $table->integer('amount');
             $table->string('currency');
