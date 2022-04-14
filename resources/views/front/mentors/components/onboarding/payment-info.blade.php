@@ -62,6 +62,9 @@
                         <div class="single-form">
                             <select name="bank" class="w-md-50 radius form-select border py-3 mb-3">
                                 <option>Select Bank</option>
+                                @foreach ($banks as $bank)
+                                    <option value="{{$bank->code}}">{{$bank->name}}</option>
+                                @endforeach
                             </select>
                             <small class="text-danger text-capitalize">
                                 @error('bank')

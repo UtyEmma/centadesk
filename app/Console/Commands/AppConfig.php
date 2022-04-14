@@ -6,6 +6,7 @@ use Database\Seeders\AppConfigSeeder;
 use Database\Seeders\CategoriesSeeder;
 use Database\Seeders\CurrenciesSeeder;
 use Database\Seeders\DefaultAdminSeeder;
+use Database\Seeders\GetBanksSeeder;
 use Illuminate\Console\Command;
 
 class AppConfig extends Command
@@ -40,25 +41,36 @@ class AppConfig extends Command
      * @return int
      */
     public function handle(){
-        $bar = $this->output->createProgressBar(4);
+        $bar = $this->output->createProgressBar(5);
+        echo "\r\n";
         $bar->start();
 
         $details = new DefaultAdminSeeder();
         $this->info('Default Administrator Account Created');
+        echo "\r\n";
         $bar->advance();
 
         new AppConfigSeeder();
         $this->info('App Configuration set up completed');
+        echo "\r\n";
         $bar->advance();
 
         new CategoriesSeeder();
         $this->info('Categories Seeded');
+        echo "\r\n";
         $bar->advance();
 
         new CurrenciesSeeder();
         $this->info('Currencies and Exchange rates set successfully');
+        echo "\r\n";
         $bar->finish();
 
+        new GetBanksSeeder();
+        $this->info('Bank Info retrieved successfully');
+        echo "\r\n";
+        $bar->finish();
+
+        echo "\r\n";
         $this->info('App Setup Completed Successfully!');
         $this->info('Admin Email: '.$details->admin->email);
         $this->info('Admin Password: '.$details->admin->plain_password);

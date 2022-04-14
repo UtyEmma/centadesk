@@ -2,7 +2,7 @@
     const key = "{{env('RAVE_SECRET_KEY')}}"
 
     document.addEventListener('DOMContentLoaded', (event) => {
-        fetchBanks()
+        // fetchBanks()
     });
 
     async function fetchBanks(){

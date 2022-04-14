@@ -145,9 +145,9 @@
             <!-- Call to Action Wrapper Start -->
             <div class="call-to-action-wrapper">
 
-                <img class="cat-shape-01 animation-round" src="assets/images/shape/shape-12.png" alt="Shape">
-                <img class="cat-shape-02" src="assets/images/shape/shape-13.svg" alt="Shape">
-                <img class="cat-shape-03 animation-round" src="assets/images/shape/shape-12.png" alt="Shape">
+                <img class="cat-shape-01 animation-round" src="{{asset('images/shape/shape-12.png')}}" alt="Shape">
+                <img class="cat-shape-02" src="{{asset('images/shape/shape-13.svg')}}" alt="Shape">
+                <img class="cat-shape-03 animation-round" src="{{asset('images/shape/shape-12.png')}}" alt="Shape">
 
                 <div class="row align-items-center">
                     <div class="col-md-6">
@@ -189,7 +189,7 @@
 
                 <!-- Single Work Start -->
                 <div class="single-work">
-                    <img class="shape-1" src="assets/images/shape/shape-15.png" alt="Shape">
+                    <img class="shape-1" src="{{asset('images/shape/shape-15.png')}}" alt="Shape">
 
                     <div class="work-icon">
                         <i class="flaticon-transparency"></i>
@@ -203,13 +203,13 @@
 
                 <!-- Single Work Start -->
                 <div class="work-arrow">
-                    <img class="arrow" src="assets/images/shape/shape-17.png" alt="Shape">
+                    <img class="arrow" src="{{asset('images/shape/shape-17.png')}}" alt="Shape">
                 </div>
                 <!-- Single Work End -->
 
                 <!-- Single Work Start -->
                 <div class="single-work">
-                    <img class="shape-2" src="assets/images/shape/shape-15.png" alt="Shape">
+                    <img class="shape-2" src="{{asset('images/shape/shape-15.png')}}" alt="Shape">
 
                     <div class="work-icon">
                         <i class="flaticon-forms"></i>
@@ -223,13 +223,13 @@
 
                 <!-- Single Work Start -->
                 <div class="work-arrow">
-                    <img class="arrow" src="assets/images/shape/shape-17.png" alt="Shape">
+                    <img class="arrow" src="{{asset('images/shape/shape-17.png')}}" alt="Shape">
                 </div>
                 <!-- Single Work End -->
 
                 <!-- Single Work Start -->
                 <div class="single-work">
-                    <img class="shape-3" src="assets/images/shape/shape-16.png" alt="Shape">
+                    <img class="shape-3" src="{{asset('images/shape/shape-16.png')}}" alt="Shape">
 
                     <div class="work-icon">
                         <i class="flaticon-badge"></i>
@@ -267,13 +267,13 @@
                 </div>
                 <!-- Section Title End -->
 
-                <img class="shape-1 animation-right" src="assets/images/shape/shape-14.png" alt="Shape">
+                <img class="shape-1 animation-right" src="{{asset('images/shape/shape-14.png')}}" alt="Shape">
 
                 <!-- Download App Button End -->
                 <div class="download-app-btn">
                     <ul class="app-btn">
-                        <li><a href="#"><img src="assets/images/google-play.png" alt="Google Play"></a></li>
-                        <li><a href="#"><img src="assets/images/app-store.png" alt="App Store"></a></li>
+                        <li><a href="#"><img src="{{asset('images/google-play.png')}}" alt="Google Play"></a></li>
+                        <li><a href="#"><img src="{{asset('images/app-store.png')}}" alt="App Store"></a></li>
                     </ul>
                 </div>
                 <!-- Download App Button End -->
@@ -304,7 +304,7 @@
                         <div class="single-testimonial swiper-slide">
                             <div class="testimonial-author">
                                 <div class="author-thumb">
-                                    <img src="assets/images/author/author-06.jpg" alt="Author">
+                                    <img src="{{asset('images/author/author-06.jpg')}}" alt="Author">
 
                                     <i class="icofont-quote-left"></i>
                                 </div>
@@ -325,7 +325,7 @@
                         <div class="single-testimonial swiper-slide">
                             <div class="testimonial-author">
                                 <div class="author-thumb">
-                                    <img src="assets/images/author/author-07.jpg" alt="Author">
+                                    <img src="{{asset('images/author/author-07.jpg')}}" alt="Author">
 
                                     <i class="icofont-quote-left"></i>
                                 </div>
@@ -346,7 +346,7 @@
                         <div class="single-testimonial swiper-slide">
                             <div class="testimonial-author">
                                 <div class="author-thumb">
-                                    <img src="assets/images/author/author-03.jpg" alt="Author">
+                                    <img src="{{asset('images/author/author-03.jpg')}}" alt="Author">
 
                                     <i class="icofont-quote-left"></i>
                                 </div>
@@ -381,9 +381,9 @@
             <!-- Brand Logo Wrapper Start -->
             <div class="brand-logo-wrapper">
 
-                <img class="shape-1" src="assets/images/shape/shape-19.png" alt="Shape">
+                <img class="shape-1" src="{{asset('images/shape/shape-19.png')}}" alt="Shape">
 
-                <img class="shape-2 animation-round" src="assets/images/shape/shape-20.png" alt="Shape">
+                <img class="shape-2 animation-round" src="{{asset('images/shape/shape-20.png')}}" alt="Shape">
 
                 <!-- Section Title Start -->
                 <div class="section-title shape-03">
@@ -398,37 +398,37 @@
 
                             <!-- Single Brand Start -->
                             <div class="single-brand swiper-slide">
-                                <img src="assets/images/brand/brand-01.png" alt="Brand">
+                                <img src="{{asset('images/brand/brand-01.png')}}" alt="Brand">
                             </div>
                             <!-- Single Brand End -->
 
                             <!-- Single Brand Start -->
                             <div class="single-brand swiper-slide">
-                                <img src="assets/images/brand/brand-02.png" alt="Brand">
+                                <img src="{{asset('images/brand/brand-02.png')}}" alt="Brand">
                             </div>
                             <!-- Single Brand End -->
 
                             <!-- Single Brand Start -->
                             <div class="single-brand swiper-slide">
-                                <img src="assets/images/brand/brand-03.png" alt="Brand">
+                                <img src="{{asset('images/brand/brand-03.png')}}" alt="Brand">
                             </div>
                             <!-- Single Brand End -->
 
                             <!-- Single Brand Start -->
                             <div class="single-brand swiper-slide">
-                                <img src="assets/images/brand/brand-04.png" alt="Brand">
+                                <img src="{{asset('images/brand/brand-04.png')}}" alt="Brand">
                             </div>
                             <!-- Single Brand End -->
 
                             <!-- Single Brand Start -->
                             <div class="single-brand swiper-slide">
-                                <img src="assets/images/brand/brand-05.png" alt="Brand">
+                                <img src="{{asset('images/brand/brand-05.png')}}" alt="Brand">
                             </div>
                             <!-- Single Brand End -->
 
                             <!-- Single Brand Start -->
                             <div class="single-brand swiper-slide">
-                                <img src="assets/images/brand/brand-06.png" alt="Brand">
+                                <img src="{{asset('images/brand/brand-06.png')}}" alt="Brand">
                             </div>
                             <!-- Single Brand End -->
 
@@ -463,13 +463,13 @@
                         <!-- Single Blog Start -->
                         <div class="single-blog">
                             <div class="blog-image">
-                                <a href="blog-details-left-sidebar.html"><img src="assets/images/blog/blog-01.jpg" alt="Blog"></a>
+                                <a href="blog-details-left-sidebar.html"><img src="{{asset('images/blog/blog-01.jpg')}}" alt="Blog"></a>
                             </div>
                             <div class="blog-content">
                                 <div class="blog-author">
                                     <div class="author">
                                         <div class="author-thumb">
-                                            <a href="#"><img src="assets/images/author/author-01.jpg" alt="Author"></a>
+                                            <a href="#"><img src="{{asset('images/author/author-01.jpg')}}" alt="Author"></a>
                                         </div>
                                         <div class="author-name">
                                             <a class="name" href="#">Jason Williams</a>
@@ -498,13 +498,13 @@
                         <!-- Single Blog Start -->
                         <div class="single-blog">
                             <div class="blog-image">
-                                <a href="blog-details-left-sidebar.html"><img src="assets/images/blog/blog-02.jpg" alt="Blog"></a>
+                                <a href="blog-details-left-sidebar.html"><img src="{{asset('images/blog/blog-02.jpg')}}" alt="Blog"></a>
                             </div>
                             <div class="blog-content">
                                 <div class="blog-author">
                                     <div class="author">
                                         <div class="author-thumb">
-                                            <a href="#"><img src="assets/images/author/author-02.jpg" alt="Author"></a>
+                                            <a href="#"><img src="{{asset('images/author/author-02.jpg')}}" alt="Author"></a>
                                         </div>
                                         <div class="author-name">
                                             <a class="name" href="#">Pamela Foster</a>
@@ -533,13 +533,13 @@
                         <!-- Single Blog Start -->
                         <div class="single-blog">
                             <div class="blog-image">
-                                <a href="blog-details-left-sidebar.html"><img src="assets/images/blog/blog-03.jpg" alt="Blog"></a>
+                                <a href="blog-details-left-sidebar.html"><img src="{{asset('images/blog/blog-03.jpg')}}" alt="Blog"></a>
                             </div>
                             <div class="blog-content">
                                 <div class="blog-author">
                                     <div class="author">
                                         <div class="author-thumb">
-                                            <a href="#"><img src="assets/images/author/author-03.jpg" alt="Author"></a>
+                                            <a href="#"><img src="{{asset('images/author/author-03.jpg')}}" alt="Author"></a>
                                         </div>
                                         <div class="author-name">
                                             <a class="name" href="#">Patricia Collins</a>

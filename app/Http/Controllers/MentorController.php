@@ -7,6 +7,7 @@ use App\Http\Traits\CourseActions;
 use App\Http\Traits\MentorActions;
 use App\Library\FileHandler;
 use App\Library\Response;
+use App\Models\Bank;
 use App\Models\Courses;
 use App\Models\Enrollment;
 use App\Models\User;
@@ -40,7 +41,11 @@ class MentorController extends Controller{
     }
 
     public function onboarding(){
-        return view('front.mentors.onboarding');
+        $banks = Bank::all();
+
+        return view('front.mentors.onboarding', [
+            'banks' => $banks
+        ]);
     }
 
     public function store(Request $request){

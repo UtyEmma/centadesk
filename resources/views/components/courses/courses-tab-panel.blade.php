@@ -1,6 +1,5 @@
 <div class="tab-pane fade {{$active}}" id="{{$id}}">
     <!-- All Courses Wrapper Start -->
-    {{$id}}
     <div class="courses-wrapper">
         <div class="row">
             @if (count($courses) > 0)

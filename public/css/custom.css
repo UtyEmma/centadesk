@@ -207,5 +207,23 @@ input::-webkit-inner-spin-button {
     background-color: #e7f8ee;
 }
 
+.btn-light{
+    padding: 0 20px;
+    height: 45px;
+    line-height: 39px;
+    border: 1px solid rgba(48, 146, 85, 0.2);
+    font-size: 15px;
+    margin-top: 30px;
+    width: auto;
+}
+
+.btn-light:hover{
+    border-color: #309255;
+}
+
+.btn-main{
+
+}
+
 
 
