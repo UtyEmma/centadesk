@@ -6,6 +6,9 @@ use App\Library\Number;
 use App\Library\Token;
 use App\Models\Enrollment;
 use App\Models\Setting;
+use App\Notifications\EnrollmentCompletedNotification;
+use App\Notifications\NewEnrollmentNotification;
+use Illuminate\Support\Facades\Notification;
 
 trait EnrollmentActions {
     use WalletActions;
@@ -38,6 +41,19 @@ trait EnrollmentActions {
         $batch->total_students += 1;
         $course->earnings += $mentor_amount;
         $batch->save();
+
+        $notification = [
+            'subject' => [
+                'student' => "Congratulations! Your enrollment was successfully completed",
+                'mentor' => 'You have a new Enrollment on your Course'
+            ],
+            'course' => $course,
+            'batch' => $batch
+        ];
+
+        Notification::send($student, new EnrollmentCompletedNotification($notification));
+        Notification::send($student, new NewEnrollmentNotification($notification));
+
     }
 
     function checkEnrollmentStatus($batch, $user){

@@ -11,10 +11,12 @@ use App\Library\Token;
 use App\Models\Batch;
 use App\Models\Courses;
 use App\Models\ForumMessages;
+use App\Notifications\NewBatchPublishedNotification;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Redirect;
 
 use function PHPUnit\Framework\throwException;
@@ -125,6 +127,14 @@ class BatchController extends Controller{
 
         $user->total_batches = $user->total_batches + 1;
         $user->save();
+
+        $notification = [
+            'subject' => 'You have successfully created a new batch',
+            'batch' => $batch,
+            'course' => $course
+        ];
+
+        Notification::send($user, new NewBatchPublishedNotification($notification));
 
         return Response::redirectBack('success', 'Batch Created Successfully');
     }

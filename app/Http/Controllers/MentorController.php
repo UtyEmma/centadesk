@@ -59,6 +59,7 @@ class MentorController extends Controller{
         $user->update(array_merge(
             $request->all(), [
                 'account_no' => $request->account_number,
+                'account_name' => $request->account_name,
                 'instagram' => $request->instagram,
                 'facebook' => $request->facebook,
                 'twitter' => $request->twitter,
@@ -105,8 +106,11 @@ class MentorController extends Controller{
     }
 
     public function payments(){
+        $user = $this->user();
+        $bank = Bank::where('code', $user->bank)->first();
+        $user->bank = $bank->name;
         return Response::view('dashboard.profile.payment', [
-            'user' => $this->user()
+            'user' => $user
         ]);
     }
 

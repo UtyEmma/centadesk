@@ -14,11 +14,13 @@ use App\Models\ForumReplies;
 use App\Models\Report;
 use App\Models\Setting;
 use App\Models\User;
+use App\Notifications\NewBatchPublishedNotification;
 use Exception;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Notification;
 
 trait BatchActions {
     use StudentActions, MentorActions, ReviewActions;
@@ -225,6 +227,14 @@ trait BatchActions {
 
         $user->total_batches = $user->total_batches + 1;
         $user->save();
+
+        $notification = [
+            'subject' => 'You have successfully created a new batch',
+            'batch' => $batch,
+            'course' => $course
+        ];
+
+        Notification::send($user, new NewBatchPublishedNotification($notification));
 
         return $batch;
     }

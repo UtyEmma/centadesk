@@ -35,8 +35,7 @@ class CoursePublishedNotification extends Notification
      * @param  mixed  $notifiable
      * @return \Illuminate\Notifications\Messages\MailMessage
      */
-    public function toMail($notifiable)
-    {
+    public function toMail($notifiable) {
         return (new MailMessage)
                     ->subject($this->data['subject'])
                     ->view('emails.courses.created', $this->data);
@@ -48,10 +47,12 @@ class CoursePublishedNotification extends Notification
      * @param  mixed  $notifiable
      * @return array
      */
-    public function toArray($notifiable)
-    {
+    public function toArray($notifiable){
         return [
-            //
+            'course' => $this->data['course'],
+            'batch' => $this->data['batch'],
+            'title' => $this->data['subject'],
+            'type' => 'course'
         ];
     }
 }
