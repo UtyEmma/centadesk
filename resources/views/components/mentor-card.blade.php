@@ -31,9 +31,11 @@
                 </div>
             </div>
 
-            <div class="mt-2">
-                <a href="/mentors/{{$mentor->username}}" class="btn btn-primary btn-hover-dark w-100">Visit Profile</a>
-            </div>
+            @if ($btn)
+                <div class="mt-2">
+                    <a href="/mentors/{{$mentor->username}}" class="btn btn-primary btn-hover-dark w-100">Visit Profile</a>
+                </div>
+            @endif
         </div>
     </div>
     <!-- Single Team End -->

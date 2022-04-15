@@ -18,7 +18,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-4">
-                    <x-mentor-card :mentor="$mentor" :class="''" />
+                    <x-mentor-card :mentor="$mentor" :class="''" :btn="false" />
                 </div>
 
                 <div class="col-md-8 mt-3 mt-md-0">

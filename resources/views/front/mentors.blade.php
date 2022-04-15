@@ -41,7 +41,7 @@
                     @if (count($mentors) > 0)
                         @foreach ($mentors as $mentor)
                             <div class="col-md-4">
-                                <x-mentor-card :mentor="$mentor" :class="''" />
+                                <x-mentor-card :mentor="$mentor" :class="''" :btn="true" />
                             </div>
                         @endforeach
                     @else

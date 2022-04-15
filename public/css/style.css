@@ -20341,7 +20341,7 @@ img {
 }
 
 .page-banner .title {
-  font-size: 40px;
+  font-size: 30px;
   font-weight: 500;
   margin-bottom: 0;
   margin-top: 15px;
@@ -22045,7 +22045,7 @@ img {
 }
 
 .register-login-form {
-  max-width: 400px;
+  /* max-width: 400px; */
   margin-left: auto;
   margin-top: 45px;
 }

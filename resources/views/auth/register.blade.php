@@ -1,45 +1,66 @@
 <x-guest-layout>
-    <x-page-banner>
-        <x-slot name="current">
-            Register
-        </x-slot>
-        <x-slot name="title">
-            Create your <span>Account</span>
-        </x-slot>
-    </x-page-banner>
+    <!-- Page Banner Start -->
+    <div class="section page-banner py-0 bg-transparent my-0">
+        <img class="shape-1 animation-round" src="{{asset('images/shape/shape-8.png')}}" alt="Shape">
+
+        {{-- <img class="shape-2" src="{{asset('images/shape/shape-23.png')}}" alt="Shape"> --}}
+        <div class="page-banner-content container pt-3 mt-5">
+            <div class="container p-0 mx-0 pt-5 page-banner-content"></div>
+
+            <!-- Page Banner Start -->
+            <div class="m-0">
+                <ul class="breadcrumb mb-0">
+                    <li><a href="/">Home</a></li>
+                    <li class="active">Register</li>
+                </ul>
+            </div>
+            <!-- Page Banner End -->
+            {{-- <img class="shape-3" src="{{asset('images/shape/shape-24.png')}}" alt="Shape"> --}}
+        </div>
+    </div>
+    <!-- Page Banner End -->
 
     <!-- Register & Login Start -->
-    <div class="section section-padding">
+    <div class="section section-padding pt-md-3 pt-lg-0 pt-0 mt-0">
         <div class="container">
-
             <!-- Register & Login Wrapper Start -->
-            <div class="register-login-wrapper">
-                <div class="row align-items-center">
-                    <div class="col-lg-6">
-
+            {{-- <div class="register-login-wrapper"> --}}
+                <div class="row align-items-center ">
+                    <div class="col-lg-7 d-lg-block d-none h-100 ">
                         <!-- Register & Login Images Start -->
-                        <div class="register-login-images">
+                        <div class="register-login-images h-100 my-0">
                             <div class="shape-1">
                                 <img src="{{asset('images/shape/shape-26.png')}}" alt="Shape">
                             </div>
 
-                            <div class="images">
+
+                            <div class="images h-100">
                                 <img src="{{asset('images/register-login.png')}}" alt="Register Login">
                             </div>
                         </div>
                         <!-- Register & Login Images End -->
-
                     </div>
-                    <div class="col-lg-6">
+                    <div class="col-lg-5 col-md-7 mx-auto mt-0">
 
                         <!-- Register & Login Form Start -->
-                        <div class="register-login-form">
-                            <h3 class="title">Registration <span>Now</span></h3>
+                        <div class="register-login-form mx-0 mt-0 mt-lg-5 pb-lg-5">
+                            <h3 class="title pb-0">Lets get you <span>Started</span></h3>
 
-                            <div class="form-wrapper">
+                            <div class="form-wrapper w-100 pb-lg-5 pt-3 px-2">
                                 <form action="/register" method="POST">
                                     @csrf
                                     <!-- Single Form Start -->
+                                    <div class="row mt-3">
+                                        <div class="col-12">
+                                            <x-google-btn>Continue with Google</x-google-btn>
+                                        </div>
+                                        <div class="col-12 mt-3">
+                                            <x-facebook-btn>Continue with Facebook</x-facebook-btn>
+                                        </div>
+                                    </div>
+
+                                    <p class="text-center mt-3 mb-0">or Sign Up with your details</p>
+
                                     <div class="row">
                                         <div class="col-6">
                                             <div class="single-form">
@@ -71,15 +92,9 @@
                                     <!-- Single Form Start -->
                                     <div class="single-form">
                                         <button type="submit" class="btn btn-primary btn-hover-dark w-100">Create an account</button>
-
-                                        <p class="text-center my-3">
-                                            or
-                                        </p>
-
-                                        <x-google-btn>Register with Google</x-google-btn>
-                                        <x-facebook-btn>Register with Facebook</x-facebook-btn>
                                     </div>
                                     <!-- Single Form End -->
+                                    <p class="mt-5 text-center">Already have an account? <a href="/login" class="text-primary" style="font-weight: 500;">Login Here</a></p>
                                 </form>
                             </div>
                         </div>
@@ -87,7 +102,7 @@
 
                     </div>
                 </div>
-            </div>
+            {{-- </div> --}}
             <!-- Register & Login Wrapper End -->
 
         </div>

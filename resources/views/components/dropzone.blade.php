@@ -6,9 +6,7 @@
     <script src="https://unpkg.com/filepond@^4/dist/filepond.js"></script>
     <script>
         $(document).ready(() => {
-            // Get a reference to the file input element
             const inputElement = document.querySelector('#fileupload');
-            // Create a FilePond instance
             const pond = FilePond.create(inputElement, {
                 storeAsFile: true
             });
