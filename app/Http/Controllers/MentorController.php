@@ -22,14 +22,24 @@ class MentorController extends Controller{
 
     const HOME = '/me';
 
-    public function index(){
-        $mentors = User::where([
-            'role' => 'mentor',
-            'kyc_status' => 'approved'
-        ])->get();
+    public function index(Request $request){
+        $type = 'page';
+
+        if($request->keyword){
+            $mentors = User::search($request->keyword)
+                                ->where('role', 'mentor')
+                                ->where('kyc_status', 'approved')->paginate(env('PAGINATION_COUNT'));
+            $type = 'search';
+        }else{
+            $mentors = User::where([
+                                'role' => 'mentor',
+                                'kyc_status' => 'approved'
+                            ])->paginate(env('PAGINATION_COUNT'));
+        }
 
         return view('front.mentors', [
-            'mentors' => $mentors
+            'mentors' => $mentors,
+            'type' => $type
         ]);
     }
 

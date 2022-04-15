@@ -25,7 +25,7 @@
                         </p>
 
                         <div>
-                            <p class="mb-0">Connect on Social Media</p>
+                            <strong class="mb-0">Connect on Social Media</strong>
                             <div class="d-flex fs-4 mt-0">
                                 <a href="" class="me-3">
                                     <i class="icofont-facebook"></i>
@@ -47,7 +47,7 @@
                         <h5>Educational Background</h5>
                         <div class="mt-5">
                             @foreach (json_decode($mentor->qualification) as $education)
-                                <div class="bg-white border radius p-3">
+                                <div class="bg-white border radius p-3 my-2">
                                     <div class="d-flex justify-content-between">
                                         <div>
                                             <div>
@@ -74,7 +74,7 @@
                         <h5>Work Experience</h5>
                         <div class="mt-5">
                             @foreach (json_decode($mentor->experience) as $experience)
-                                <div class="bg-white border radius p-3">
+                                <div class="bg-white border radius p-3 my-2">
                                     <div class="d-flex justify-content-between">
                                         <div>
                                             <div>

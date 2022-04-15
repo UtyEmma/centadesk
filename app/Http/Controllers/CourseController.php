@@ -27,13 +27,22 @@ class CourseController extends Controller{
     use AppActions, CourseActions;
 
 
-    public function all(){
-        $data =  Courses::paginate(9);
-        $courses = $this->getCoursesData($data);
+    public function all(Request $request){
+        $type = 'page';
+
+        if($request->keyword){
+            $type = 'search';
+            $results = Courses::search($request->keyword)->where('status', 'published')->paginate(env('PAGINATION_COUNT'));
+            $courses = $this->getCoursesData($results);
+        }else{
+            $data =  Courses::paginate(env('PAGINATION_COUNT'));
+            $courses = $this->getCoursesData($data);
+        }
 
         return view('front.courses', [
             'courses' => $courses,
-            'data' => $this->app_data()
+            'data' => $this->app_data(),
+            'type' => $type
         ]);
     }
 
@@ -70,7 +79,7 @@ class CourseController extends Controller{
                 'video' => $request->video,
                 'images' => $images,
                 'currency' => $user->currency,
-                'category' => $request->category
+                'category' => $category->name
             ]);
 
             $user->total_courses = $user->total_courses + 1;
@@ -167,7 +176,8 @@ class CourseController extends Controller{
 
     public function show($slug){
         $user = $this->user();
-        if(!$course = Courses::where('slug', $slug)->first()) return Response::redirect('/courses', 'errors', 'Course Was not Found');
+        if(!$course = Courses::where('slug', $slug)->first())
+                    return Response::redirectBack('errors', 'Course Was not Found');
         $obj = $this->getCourseData($course, $user);
 
         return view('front.course-detail', [
@@ -200,30 +210,44 @@ class CourseController extends Controller{
     }
 
 
-    public function edit($id)
-    {
-        //
+    public function edit($slug){
+        $user = $this->user();
+        $course = Courses::where('slug', $slug)->first();
+        $data = $this->getCourseData($course, $user);
+        return Response::view('dashboard.course-details.edit', $data);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
+    public function update(Request $request, $slug){
+        try {
+            $user = $this->user();
+            $course = Courses::where('slug', $slug)->first();
+
+            $images = FileHandler::upload($request->file('images'));
+            FileHandler::deleteFiles(json_decode($course->images));
+
+            $category = Category::where('slug', $request->category)->first();
+            $slug = Str::slug($request->name, '-');
+
+            $course->update([
+                'name' => $request->name,
+                'slug' => $slug,
+                'desc' => $request->desc,
+                'tags' => $request->tags,
+                'video' => $request->video,
+                'images' => $images,
+                'currency' => $user->currency,
+                'category' => $category->name
+            ]);
+
+            return Response::redirectBack('success', "You course has been updated");
+        } catch (\Throwable $th) {
+            return Response::redirectBack('error', $th->getMessage());
+        }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id){
-        //
+        $course = Courses::find($id);
+        if($course) $course->delete();
+        return Response::redirect('/me/courses', 'success', 'Your course was deleted successfully');
     }
 }

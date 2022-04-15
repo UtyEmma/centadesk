@@ -11,6 +11,7 @@ use App\Library\Token;
 use App\Models\Batch;
 use App\Models\Courses;
 use App\Models\ForumMessages;
+use App\Models\User;
 use App\Notifications\NewBatchPublishedNotification;
 use Exception;
 use Illuminate\Http\Request;
@@ -86,7 +87,9 @@ class BatchController extends Controller{
         $images = FileHandler::upload($request->file('images'));
 
         $user = $this->user();
+
         $short_code = strtolower(Token::text(5, 'batches', 'short_code'));
+        $discount_price = 0;
 
         if($request->discount === 'fixed'){
             $discount_price = $request->fixed;
@@ -140,13 +143,62 @@ class BatchController extends Controller{
     }
 
     function batchDetails(Request $request, $slug, $shortcode){
-        // try {
+        try {
             $details = $this->getBatchDetails($shortcode);
 
             return Response::view('front.batch-details', $details);
-        // } catch (\Throwable $th) {
-        //     return Response::redirectBack('error', $th->getMessage());
-        // }
+        } catch (\Throwable $th) {
+            return Response::redirectBack('error', $th->getMessage());
+        }
+    }
+
+    function update(Request $request, $slug, $shortcode){
+        try {
+            $user = $this->user();
+
+            $batch = Batch::where('short_code', $shortcode)->first();
+
+            $images = FileHandler::upload($request->file('images'));
+            FileHandler::deleteFiles(json_decode($batch->images));
+
+            $discount_price = 0;
+
+            if($request->discount === 'fixed'){
+                $discount_price = $request->fixed;
+            }else if($request->discount === 'percent'){
+                $discount_price = Number::percentageDecrease($request->percent, $request->price);
+            }
+
+            $batch->update([
+                'duration' => $request->duration,
+                'class_link' => $request->class_link,
+                'access_link' => $request->access_link,
+                'attendees' => $request->attendees,
+                'price' => $request->price,
+                'current' => true,
+                'count' => 1,
+                'video' => $request->video,
+                'images' => $images,
+                'startdate' => $request->startdate,
+                'enddate' => $request->enddate,
+                'title' => $request->title,
+                'discount' => $request->discount,
+                'discount_price' => $discount_price,
+                'fixed' => $request->fixed,
+                'percent' => $request->percent,
+                'time_limit' => $request->time_limit,
+                'signup_limit' => $request->signup_limit,
+                'currency' => $user->currency,
+            ]);
+
+            return Response::redirectBack("success", "Batch Updated Successfully!");
+        } catch (\Throwable $th) {
+            return Response::redirectBack('error', $th->getMessage());
+        }
+    }
+
+    function deleteBatch ($id){
+
     }
 
 }

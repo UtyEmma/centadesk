@@ -15,10 +15,11 @@
 
             <!-- Courses Category Wrapper Start  -->
             <div class="courses-category-wrapper">
-                <div class="courses-search search-2">
-                    <input type="text" placeholder="Search here">
-                    <button><i class="icofont-search"></i></button>
-                </div>
+                <form action="/mentors" method="GET" class="courses-search search-2">
+                    @csrf
+                    <input type="text" name="keyword" placeholder="Search for Mentors...">
+                    <button type="submit"><i class="icofont-search"></i></button>
+                </form>
             </div>
             <!-- Courses Category Wrapper End  -->
 

@@ -30,6 +30,12 @@ class FileHandler {
         }
     }
 
+    static function deleteFiles(array $files){
+        foreach ($files as $file) {
+            self::deleteFile($file);
+        }
+    }
+
     static function deleteFile($file){
         if ($file) {
             $cloudinary_id = self::extractFileId($file);

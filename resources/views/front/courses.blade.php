@@ -15,10 +15,10 @@
 
             <!-- Courses Category Wrapper Start  -->
             <div class="courses-category-wrapper">
-                <div class="courses-search search-2">
-                    <input type="text" placeholder="Search here">
-                    <button><i class="icofont-search"></i></button>
-                </div>
+                <form action="/courses" method="GET" class="courses-search search-2">
+                    <input name="keyword" type="text" placeholder="Search here">
+                    <button type="submit"><i class="icofont-search"></i></button>
+                </form>
 
                 <ul class="category-menu">
                     <li><a class="active" href="#">All Courses</a></li>

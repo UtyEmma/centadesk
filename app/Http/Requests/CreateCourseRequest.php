@@ -25,7 +25,7 @@ class CreateCourseRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['required','string', 'unique:courses,name'],
+            // 'name' => ['required','string', 'unique:courses,name'],
             // 'desc' => 'required|string',
             // 'tags' => 'required|string',
             // 'video' => 'required|string|url',

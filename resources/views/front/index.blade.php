@@ -93,9 +93,10 @@
 
                     <!-- Courses Search Start -->
                     <div class="courses-search">
-                        <form action="#">
-                            <input type="text" placeholder="Search your course">
-                            <button><i class="flaticon-magnifying-glass"></i></button>
+                        <form action="/courses" type="GET">
+                            @csrf
+                            <input type="text" name="keyword" placeholder="Search for Courses or Mentors...">
+                            <button type="submit"><i class="flaticon-magnifying-glass"></i></button>
                         </form>
                     </div>
                     <!-- Courses Search End -->

@@ -12,6 +12,7 @@ use App\Http\Controllers\ForumController;
 use App\Http\Controllers\MentorController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\SearchController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TransactionsController;
@@ -94,6 +95,9 @@ Route::middleware(['set.currency', 'set.referrals'])->group(function(){
                     Route::post('/new', [CourseController::class, 'store']);
                     Route::get('/{slug}', [CourseController::class, 'single']);
                     Route::get('/{slug}/reviews', [ReviewController::class, 'fetchCourseReviews']);
+                    Route::get('/{slug}/edit', [CourseController::class, 'edit']);
+                    Route::post('/{slug}/update', [CourseController::class, 'update']);
+
 
                     Route::prefix('/{slug}/batch')->group(function(){
                         Route::get('/new', [BatchController::class, 'newBatchPage']);
@@ -105,6 +109,8 @@ Route::middleware(['set.currency', 'set.referrals'])->group(function(){
                         Route::get('/students', [BatchController::class, 'fetchBatchStudents']);
                         Route::get('/forum', [ForumController::class, 'fetchMentorBatchForum']);
                         Route::get('/forum/{unique_id}', [ForumController::class, 'fetchMentorBatchForumReplies']);
+                        Route::get('/edit', [BatchController::class, 'edit']);
+                        Route::post('/update', [BatchController::class, 'update']);
                     });
                 });
             });
@@ -136,6 +142,7 @@ Route::middleware(['set.currency', 'set.referrals'])->group(function(){
         Route::get('/{slug}', [CourseController::class, 'show']);
         Route::get('/{slug}/{shortcode}', [BatchController::class, 'batchDetails']);
     });
+
 
 
     require __DIR__.'/auth.php';
