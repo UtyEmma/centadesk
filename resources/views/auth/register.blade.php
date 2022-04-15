@@ -46,7 +46,7 @@
                         <div class="register-login-form mx-0 mt-0 mt-lg-5 pb-lg-5">
                             <h3 class="title pb-0">Lets get you <span>Started</span></h3>
 
-                            <div class="form-wrapper w-100 pb-lg-5 pt-3 px-2">
+                            <div class="form-wrapper w-100 pb-lg-5 pt-3 px-2 px-lg-0">
                                 <form action="/register" method="POST">
                                     @csrf
                                     <!-- Single Form Start -->
