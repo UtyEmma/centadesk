@@ -33,7 +33,7 @@ class CurrencyController extends Controller{
     }
 
     function currencies(Request $request){
-        $currencies = Currencies::all();
+        $currencies = Currencies::paginate(env('ADMIN_PAGINATION_COUNT'));
         $base = Currencies::where('base', true)->first();
 
         return view('admin.currencies.index', [

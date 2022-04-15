@@ -48,6 +48,7 @@ return new class extends Migration
             $table->string('instagram')->nullable();
             $table->string('facebook')->nullable();
             $table->string('twitter')->nullable();
+            $table->string('linkedin')->nullable();
             $table->string('role');
             $table->string('is_verified');
             $table->boolean('approved');

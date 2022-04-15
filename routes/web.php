@@ -132,7 +132,7 @@ Route::middleware(['set.currency', 'set.referrals'])->group(function(){
         });
     });
 
-    Route::prefix('/mentor')->group(function(){
+    Route::prefix('/mentors')->group(function(){
         Route::get('/', [MentorController::class, 'index']);
         Route::get('/{username}', [MentorController::class, 'show']);
     });

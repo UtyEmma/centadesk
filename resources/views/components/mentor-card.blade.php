@@ -7,7 +7,7 @@
         </div>
         <div class="team-content mb-0">
             <h4 class="name">
-                <a href="/mentor/{{$mentor->username}}">{{$mentor->firstname}} {{$mentor->lastname}}</a>
+                <a href="/mentors/{{$mentor->username}}">{{$mentor->firstname}} {{$mentor->lastname}}</a>
             </h4>
             <span class="designation mt-0">{{$mentor->specialty}}</span>
         </div>
@@ -29,6 +29,10 @@
                         <small class="text">({{$mentor->total_reviews}} reviews)</small>
                     </div>
                 </div>
+            </div>
+
+            <div class="mt-2">
+                <a href="/mentors/{{$mentor->username}}" class="btn btn-primary btn-hover-dark w-100">Visit Profile</a>
             </div>
         </div>
     </div>

@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Category extends Model{
     use HasFactory;
 
-    protected $fillable = ['unique_id', 'name', 'slug', 'courses', 'status'];
+    protected $fillable = ['unique_id', 'name', 'slug', 'courses', 'status', 'students'];
 
     protected $primayKey = 'unique_id';
     protected $keyType = 'string';
@@ -16,6 +16,7 @@ class Category extends Model{
 
     protected $attributes = [
         'courses' => 0,
+        'students' => 0,
         'status' => true
     ];
 

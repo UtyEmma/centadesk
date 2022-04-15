@@ -65,7 +65,7 @@
                             <li>
                                 <a href="/courses">Courses</a>
                             </li>
-                            <li><a href="/mentor">Mentors</a></li>
+                            <li><a href="/mentors">Mentors</a></li>
                         </ul>
 
                     </div>

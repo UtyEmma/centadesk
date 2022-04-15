@@ -12,6 +12,10 @@ use Illuminate\Support\Facades\Notification;
 
 class MentorController extends Controller{
 
+    function mentors(Request $request){
+
+    }
+
     function approve(Request $request, $unique_id){
         try {
             $action = (bool) $request->input('action');

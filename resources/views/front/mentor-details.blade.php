@@ -1,12 +1,16 @@
 <x-guest-layout>
 
     <x-page-banner>
-        <x-slot name="current">
-            Mentors
-        </x-slot>
-        <x-slot name="title">
-            Available <span>Mentors</span>
-        </x-slot>
+            <!-- Page Banner Start -->
+            <div class="m-0">
+                <ul class="breadcrumb mb-0">
+                    <li><a href="/">Home</a></li>
+                    <li class="/mentors">Mentors</li>
+                    <li class="active">{{$mentor->firstname}} {{$mentor->lastname}}</li>
+                </ul>
+                <h4 class="title mt-0">Mentor Profile</h4>
+            </div>
+            <!-- Page Banner End -->
     </x-page-banner>
 
     <!-- Courses Start -->
@@ -27,18 +31,26 @@
                         <div>
                             <strong class="mb-0">Connect on Social Media</strong>
                             <div class="d-flex fs-4 mt-0">
-                                <a href="" class="me-3">
-                                    <i class="icofont-facebook"></i>
-                                </a>
-                                <a href="" class="me-3">
-                                    <i class="icofont-twitter"></i>
-                                </a>
-                                <a href="" class="me-3">
-                                    <i class="icofont-instagram"></i>
-                                </a>
-                                <a href="" class="me-3">
-                                    <i class="icofont-linkedin"></i>
-                                </a>
+                                @if ($mentor->facebook)
+                                    <a href="{{env('FACEBOOK_PROFILE_URL')}}{{$mentor->facebook}}" class="me-3">
+                                        <i class="icofont-facebook"></i>
+                                    </a>
+                                @endif
+                                @if ($mentor->twitter)
+                                    <a href="{{env('TWITTER_PROFILE_URL')}}{{$mentor->twitter}}" class="me-3">
+                                        <i class="icofont-twitter"></i>
+                                    </a>
+                                @endif
+                                @if ($mentor->instagram)
+                                    <a href="{{env('INSTAGRAM_PROFILE_URL')}}{{$mentor->instagram}}" class="me-3">
+                                        <i class="icofont-instagram"></i>
+                                    </a>
+                                @endif
+                                {{-- @if ($mentor->linkedin)
+                                    <a href="" class="me-3">
+                                        <i class="icofont-linkedin"></i>
+                                    </a>
+                                @endif --}}
                             </div>
                         </div>
                     </div>

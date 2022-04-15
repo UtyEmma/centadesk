@@ -41,6 +41,10 @@ class Courses extends Model{
         return $this->belongsTo(User::class, 'user_id', 'unique_id');
     }
 
+    public function mentor(){
+        return $this->belongsTo(User::class, 'user_id', 'unique_id');
+    }
+
     public function batches(){
         return $this->hasMany(Batch::class, 'course_id', 'unique_id');
     }

@@ -47,15 +47,12 @@
 
                         <!-- Footer Widget Start -->
                         <div class="footer-widget">
-                            <h4 class="footer-widget-title">Category</h4>
+                            <h4 class="footer-widget-title">Popular Categories</h4>
 
                             <ul class="widget-link">
-                                <li><a href="#">Creative Writing</a></li>
-                                <li><a href="#">Film & Video</a></li>
-                                <li><a href="#">Graphic Design</a></li>
-                                <li><a href="#">UI/UX Design</a></li>
-                                <li><a href="#">Business Analytics</a></li>
-                                <li><a href="#">Marketing</a></li>
+                                @foreach ($data['categories'] as $category)
+                                    <li><a href="/courses?category={{$category->slug}}">{{$category->name}}</a></li>
+                                @endforeach
                             </ul>
 
                         </div>
@@ -93,7 +90,6 @@
                                 <form action="/settings/update" method="POST">
                                     @csrf
                                     <x-currency-select :name="'currency'" :currency="$currency" :data="$data" class="form-select border radius py-2 ps-1" />
-
                                     <button type="submit" class="btn btn-primary">Update</button>
                                 </form>
                             </div>

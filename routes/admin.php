@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\AnalyticsController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\CourseController;
 use App\Http\Controllers\Admin\CurrencyController;
 use App\Http\Controllers\Admin\MentorController;
 use App\Http\Controllers\Admin\SettingsController;
@@ -49,6 +50,14 @@ Route::middleware('auth:admin')->group(function(){
         });
     });
 
+    Route::prefix('/courses')->group(function(){
+        Route::get('/', [CourseController::class, 'courses']);
+    });
+
+    Route::prefix('/mentors')->group(function(){
+        Route::get('/', [MentorController::class, 'mentors']);
+    });
+
     Route::get('/countries', [CurrencyController::class, 'getCountries']);
 
     Route::prefix('/categories')->group(function(){
@@ -70,4 +79,8 @@ Route::middleware('auth:admin')->group(function(){
 
     Route::get('/app-settings', [SettingsController::class, 'appSettings']);
     Route::post('/update-settings', [SettingsController::class, 'updateSettings']);
+
+    Route::get('*', function(){
+        return print_r("Route not found");
+    });
 });

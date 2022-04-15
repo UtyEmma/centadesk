@@ -1,26 +1,22 @@
 <x-admin.app-layout>
     <div class="row">
-        <div class="col-md-4">
-            <div class="p-4 bg-white">
-                <h4>Create Category</h4>
+        <div class="col-md-4 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <h4>Create Category</h4>
 
-                <div class="mt-4">
-                    <form action="/categories/create" method="POST">
-                        @csrf
-                        <div>
-                            <label for="name">Category Name</label>
-                            <input name="name" id="name" placeholder="Category Name" class="form-control" type="text" />
-                            <x-errors name="name" />
-                        </div>
+                    <div class="mt-4">
+                        <form action="/categories/create" method="POST">
+                            @csrf
+                            <div>
+                                <label for="name">Category Name</label>
+                                <input name="name" id="name" placeholder="Category Name" class="form-control" type="text" />
+                                <x-errors name="name" />
+                            </div>
 
-                        <button class="btn btn-primary mt-3" type="submit">Create Category</button>
-                    </form>
-                </div>
-
-                <hr class="mt-4" />
-
-                <div>
-                    <button class="btn btn-primary mt-3">Fetch Categories</button>
+                            <button class="btn btn-primary mt-3" type="submit">Create Category</button>
+                        </form>
+                    </div>
                 </div>
             </div>
 
@@ -33,22 +29,21 @@
                   {{-- Add class <code>.table-striped</code> --}}
                 </p>
                 <div>
-                  <table class="table table-bordered">
+                  <table class="table table-bordered  table-responsive">
                     <thead>
                       <tr>
+                        <th></th>
                         <th>Name</th>
                         <th>Status</th>
                         <th></th>
                       </tr>
                     </thead>
                     <tbody>
-                        @if (count($categories) > 0)
-
-                        @else
-
-                        @endif
-                        @foreach ($categories as $category)
+                        @forelse ($categories as $category)
                             <tr>
+                                <td>
+                                    {{$category->id}}
+                                </td>
                                 <td>
                                     {{$category->name}}
                                 </td>
@@ -70,7 +65,9 @@
                                     </div>
                                 </td>
                             </tr>
-                        @endforeach
+                        @empty
+                            <p>No Categories</p>
+                        @endforelse
                     </tbody>
                   </table>
                 </div>

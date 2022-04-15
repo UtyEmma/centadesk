@@ -1,12 +1,15 @@
 <x-guest-layout>
 
     <x-page-banner>
-        <x-slot name="current">
-            Courses
-        </x-slot>
-        <x-slot name="title">
-            {{$course->name}}
-        </x-slot>
+        <!-- Page Banner Start -->
+        <div class="m-0">
+            <ul class="breadcrumb mb-0">
+                <li><a href="/">Home</a></li>
+                <li class="/courses">Courses</li>
+                <li class="active">{{$course->name}}</li>
+            </ul>
+        </div>
+        <!-- Page Banner End -->
     </x-page-banner>
 
     <!-- Courses Start -->

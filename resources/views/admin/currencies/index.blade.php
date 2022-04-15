@@ -1,21 +1,33 @@
 <x-admin.app-layout>
     <div class="row">
-        <div class="col-md-3">
-            <div class="p-4 bg-white">
-                <h4>Base Currency</h4>
-                <p>{{$base->name ?? ""}}</p>
+        <div class="col-md-4 grid-margin ">
+            <div class="card">
+                <div class="card-body">
 
-            </div>
+                    <div class="input-group mb-5">
+                        <input type="text" class="form-control" placeholder="Search Currencies" aria-label="search" aria-describedby="search">
+                        <div class="input-group-append">
+                            <span class="input-group-text" id="search">
+                            <i class="mdi mdi-magnify"></i>
+                            </span>
+                        </div>
+                    </div>
 
-            <div  class="mt-4">
-                @if (count($currencies) < 1)
-                    <a class="btn btn-primary" href="/currencies/set">Set Currencies</a>
-                @endif
-                <a class="btn btn-primary" href="/currencies/update-rates">Update Exchange Rates</a>
-                <a class="btn btn-primary" href="/countries">Fetch Countries</a>
+                    <h4>Base Currency</h4>
+                    <p style="font-size: 18px;">{{$base->name ?? ""}} <span class="font-weight-bold">({{$base->symbol}})</span></p>
+
+
+                    <div  class="mt-4">
+                        @if (count($currencies) < 1)
+                            <a class="btn btn-primary" href="/currencies/set">Set Currencies</a>
+                        @endif
+                        <a class="btn btn-primary" href="/currencies/update-rates">Update Rates</a>
+                        <a class="btn btn-primary" href="/countries">Fetch Countries</a>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="col-lg-9 grid-margin stretch-card">
+        <div class="col-lg-8 grid-margin stretch-card">
             <div class="card">
               <div class="card-body">
                 <h4 class="card-title">Currencies</h4>
@@ -23,9 +35,10 @@
                   {{-- Add class <code>.table-striped</code> --}}
                 </p>
                 <div>
-                  <table class="table table-bordered">
-                    <thead>
-                      <tr>
+                  <table class="table table-bordered table-responsive">
+                    <thead >
+                      <tr >
+                        <th></th>
                         <th>Name</th>
                         <th>Symbol</th>
                         <th>Rate</th>
@@ -36,6 +49,9 @@
                     <tbody>
                         @foreach ($currencies as $currency)
                             <tr>
+                                <td>
+                                    {{$currency->id}}
+                                </td>
                                 <td>
                                     {{$currency->name}}
                                 </td>

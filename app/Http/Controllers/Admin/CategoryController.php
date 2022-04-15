@@ -12,7 +12,7 @@ use Illuminate\Support\Str;
 class CategoryController extends Controller{
 
     function fetchAll (Request $request){
-        $categories = Category::all();
+        $categories = Category::paginate(env('ADMIN_PAGINATION_COUNT'));
         return Response::view('admin.categories', [
             'categories' => $categories
         ]);
