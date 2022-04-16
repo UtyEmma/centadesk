@@ -14,21 +14,37 @@
 
             <div class="courses-category-wrapper p-0 m-0" style="z-index: 11;">
                 <form action="/mentors" method="GET" class="courses-search search-2 m-0" >
-                    <input name="keyword" type="text" placeholder="Search here">
+                    <input name="keyword" type="text" placeholder="Search for Mentors">
                     <button type="submit"><i class="icofont-search"></i></button>
                 </form>
             </div>
         </div>
 
-
-        <div class="courses-category-wrapper w-100 d-block p-0">
-            <div class="w-100">
-                <ul class="category-menu p-0">
-                    <li><a class="active" href="#">All Mentors</a></li>
-                    <li><a href="#">Top Mentors</a></li>
-                    <li><a href="#">Suggested</a></li>
+        <!-- All Courses Tabs Menu Start -->
+        <div class="courses-tabs-menu courses-active mt-2">
+            <div class="swiper-container">
+                <ul class="swiper-wrapper nav">
+                    <li class="swiper-slide">
+                        <a href="#">
+                            <button class="active w-100 btn btn-hover-light" >All Mentors</button>
+                        </a>
+                    </li>
+                    <li class="swiper-slide">
+                        <a href="#">
+                            <button class="w-100 btn btn-hover-light" >Top Mentors</button>
+                        </a>
+                    </li>
+                    <li class="swiper-slide">
+                        <a href="#">
+                            <button class="w-100 btn btn-hover-light" >Suggested for You</button>
+                        </a>
+                    </li>
                 </ul>
             </div>
+
+            <!-- Add Pagination -->
+            <div class="swiper-button-next"><i class="icofont-rounded-right"></i></div>
+            <div class="swiper-button-prev"><i class="icofont-rounded-left"></i></div>
         </div>
     </x-page-banner>
 
@@ -38,20 +54,19 @@
             <!-- Courses Wrapper Start  -->
             <div class="courses-wrapper-02 px-md-0 px-4">
                 <div class="row">
-                    @if (count($mentors) > 0)
-                        @foreach ($mentors as $mentor)
-                            <div class="col-md-4">
-                                <x-mentor-card :mentor="$mentor" :class="''" :btn="true" />
-                            </div>
-                        @endforeach
-                    @else
+                    @forelse ($mentors as $mentor)
+                        <div class="col-md-4">
+                            <x-mentor-card :mentor="$mentor" :class="''" :btn="true" />
+                        </div>
+                    @empty
                         <div class="text-center">
-                            <h4>There are no mentors available at this time</h4>
-                            <p>You can start earning money teaching the things you love</p>
+                            <img src="{{asset('images/states/empty-mentors.svg')}}" />
+                            <h4>There are no mentors found at the moment</h4>
+                            <p>Sign up as a Mentor to start earning money teaching the things you love</p>
 
                             <a href="{{Auth::user() ? '/mentor/onboarding' : '/register'}}" class="btn btn-primary w-auto">Become a Mentor</a>
                         </div>
-                    @endif
+                    @endforelse
                 </div>
             </div>
             <!-- Courses Wrapper End  -->

@@ -5,8 +5,8 @@
         <div class="m-0">
             <ul class="breadcrumb mb-0">
                 <li><a href="/">Home</a></li>
-                <li class="/courses">Courses</li>
-                <li class="/courses/{{$course->slug}}">{{$course->name}}</li>
+                <li><a href="/courses">Courses</a></li>
+                <li><a href="/courses/{{$course->slug}}">{{$course->name}}</a></li>
                 <li class="active">{{$batch->title}}</li>
             </ul>
         </div>
@@ -21,7 +21,7 @@
                     <!-- Courses Details Start -->
                     <div class="courses-details mt-0">
                         <div class="courses-details-images mt-0">
-                            <img src="{{json_decode($batch->images)[0] ?? asset('images/courses/courses-details.jpg')}}" alt="Courses Details">
+                            <x-course-images :images="json_decode($batch->images)" :video="$batch->video" :alt="$course->name" />
 
                             <div class="courses-play">
                                 <img src="{{asset('images/courses/circle-shape.png')}}" alt="Play">

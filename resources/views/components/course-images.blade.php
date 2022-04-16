@@ -1,47 +1,40 @@
 <script>
-    var edule = new Swiper('.course-images .swiper-container', {
-        speed: 600,
-        spaceBetween: 30,
-        navigation: {
-            nextEl: '.students-active .swiper-button-next',
-            prevEl: '.students-active .swiper-button-prev',
-        },
-        breakpoints: {
-            0: {
-                slidesPerView: 1,
+    $(document).ready(() => {
+        new Swiper('#course-images', {
+            speed: 600,
+            spaceBetween: 30,
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
             },
-            768: {
-                slidesPerView: 1,
+            breakpoints: {
+                0: {
+                    slidesPerView: 1,
+                }
             },
-            1600: {
-                slidesPerView: 1,
-            }
-        },
-    });
+        });
+    })
 </script>
 
-
-
-<div class="course-images mt-0">
-    <div class="swiper-container">
-        <div class="swiper-wrapper">
-            <!-- Single Reviews Start -->
+<div id="course-images" class="w-100 courses-active courses-details-images overflow-hidden radius position-relative">
+    <div class="swiper-wrapper">
+        @foreach ($images as $key => $image)
             <div class="swiper-slide">
-                @foreach ($images as $key => $image)
-                    <img src="{{json_decode($images)}}" alt="{{$alt ?? ''}}">
+                <img src="{{$image}}" alt="{{$alt ?? ''}}" />
 
-                    @if ($key === 0)
-                        <div class="courses-play">
-                            <img src="{{asset('images/courses/circle-shape.png')}}" alt="Play">
-                            <a class="play video-popup" href="{{$video}}"><i class="flaticon-play"></i></a>
-                        </div>
-                    @endif
-                @endforeach
+                @if ($key === 0)
+                    <div class="courses-play">
+                        <img src="{{asset('images/courses/circle-shape.png')}}" class="" alt="Play">
+                        <a class="play video-popup" href="{{$video}}"><i class="flaticon-play"></i></a>
+                    </div>
+                @endif
             </div>
-            <!-- Single Images -->
-
-        </div>
-        <!-- Add Pagination -->
-        <div class="swiper-pagination"></div>
+        @endforeach
+    </div>
+    <div class="swiper-button-next">
+        <i class="icofont-rounded-right"></i>
+    </div>
+    <div class="swiper-button-prev">
+        <i class="icofont-rounded-left"></i>
     </div>
 </div>

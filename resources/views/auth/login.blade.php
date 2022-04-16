@@ -47,7 +47,7 @@
                         <div class="register-login-form mx-0 mt-0 mt-lg-5 pb-lg-5 ">
                             <h3 class="title pb-0">Log into your <span>account</span></h3>
 
-                            <div class="form-wrapper w-100 pb-lg-5 pt-3 px-2 px-lg-0">
+                            <div class="form-wrapper w-100 pb-lg-5 pt-3">
                                 <form method="POST" action="{{ route('login') }}">
                                     @csrf
                                     <!-- Single Form Start -->

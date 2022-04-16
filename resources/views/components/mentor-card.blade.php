@@ -33,7 +33,7 @@
 
             @if ($btn)
                 <div class="mt-2">
-                    <a href="/mentors/{{$mentor->username}}" class="btn btn-primary btn-hover-dark w-100">Visit Profile</a>
+                    <a href="/mentors/{{$mentor->username}}" class="btn btn-primary w-100 btn-hover-dark">Visit Profile</a>
                 </div>
             @endif
         </div>

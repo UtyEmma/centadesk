@@ -1,5 +1,5 @@
-<x-email-index>
-    <x-email-header />
+<x-email.index>
+    <x-email.header />
 
     <tr>
         <td align="center" valign="top" width="100%" style="background-color: #f7f7f7;" class="content-padding">
@@ -122,5 +122,5 @@
         </td>
       </tr>
 
-    <x-email-footer />
-</x-email-index>
+    <x-email.footer />
+</x-email.index>

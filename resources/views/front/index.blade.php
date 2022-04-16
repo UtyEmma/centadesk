@@ -100,7 +100,6 @@
                         </form>
                     </div>
                     <!-- Courses Search End -->
-
                 </div>
                 <!-- All Courses Top End -->
 
@@ -121,6 +120,7 @@
                     <div class="swiper-button-prev"><i class="icofont-rounded-left"></i></div>
                 </div>
                 <!-- All Courses Tabs Menu End -->
+
                 <!-- All Courses tab content Start -->
                 <div class="tab-content courses-tab-content">
                     @foreach ($courses as $key => $course )

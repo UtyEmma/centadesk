@@ -1,7 +1,7 @@
-<x-email-index>
+<x-email.index>
     <table align="center" cellpadding="0" cellspacing="0" class="container-for-gmail-android" width="100%">
 
-    <x-email-header />
+    <x-email.header />
 
     <tr>
         <td align="center" valign="top" width="100%" style="background-color: #f7f7f7;" class="content-padding">
@@ -124,6 +124,6 @@
         </td>
     </tr>
 
-    <x-email-footer />
+    <x-email.footer />
     </table>
-</x-email-index>
+</x-email.index>
