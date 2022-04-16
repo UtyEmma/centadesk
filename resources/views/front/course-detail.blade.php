@@ -1,13 +1,4 @@
 <x-guest-layout>
-{{--
-    <x-page-banner>
-        <!-- Page Banner Start -->
-        <div class="m-0">
-
-        </div>
-        <!-- Page Banner End -->
-    </x-page-banner> --}}
-       <!-- Page Banner Start -->
     <div class="section page-banner py-0 my-0">
         <img class="shape-1 animation-round" src="{{asset('images/shape/shape-8.png')}}" alt="Shape">
 
