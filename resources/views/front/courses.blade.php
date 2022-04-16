@@ -1,7 +1,7 @@
 <x-guest-layout>
 
     <x-page-banner>
-        <div class="d-md-flex justify-content-between align-items-center px-0">
+        <div class="d-md-flex justify-content-between align-items-center px-0 mx-0">
             <!-- Page Banner Start -->
             <div class="m-0">
                 <ul class="breadcrumb mb-0">
@@ -21,7 +21,7 @@
         </div>
 
          <!-- All Courses Tabs Menu Start -->
-         <div class="courses-tabs-menu courses-active mt-2">
+         <div class="courses-tabs-menu courses-active mt-2 mx-0">
             <div class="swiper-container">
                 <ul class="swiper-wrapper nav">
                     <li class="swiper-slide">
@@ -46,13 +46,6 @@
             <div class="swiper-button-next"><i class="icofont-rounded-right"></i></div>
             <div class="swiper-button-prev"><i class="icofont-rounded-left"></i></div>
         </div>
-
-        {{-- <div class="courses-category-wrapper w-100 d-block p-0">
-            <div class="w-100">
-                <ul class="category-menu p-0">
-                </ul>
-            </div>
-        </div> --}}
     </x-page-banner>
 
     <!-- Courses Start -->
