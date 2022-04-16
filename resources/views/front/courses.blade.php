@@ -1,7 +1,7 @@
 <x-guest-layout>
 
     <x-page-banner>
-        <div class="d-md-flex justify-content-between align-items-center px-0">
+        <div class="d-md-flex justify-content-between align-items-center px-0 ">
             <!-- Page Banner Start -->
             <div class="m-0">
                 <ul class="breadcrumb mb-0">

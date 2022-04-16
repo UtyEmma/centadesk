@@ -20185,7 +20185,6 @@ img {
 /*  4.9 - Page Banner CSS
 /*----------------------------------------*/
 .page-banner {
-  height: auto;
   background-color: #e7f8ee;
   position: relative;
 }
