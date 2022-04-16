@@ -3,7 +3,7 @@
     <x-page-banner>
         <div class="d-md-flex justify-content-between align-items-center">
             <!-- Page Banner Start -->
-            <div class="m-0">
+            <div class="page-banner-content m-0">
                 <ul class="breadcrumb mb-0">
                     <li><a href="/">Home</a></li>
                     <li class="active">Mentors</li>

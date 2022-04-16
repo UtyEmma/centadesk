@@ -1,10 +1,10 @@
 <x-guest-layout>
 
     <x-page-banner>
-        <div class="d-md-flex justify-content-between align-items-center px-0 w-100">
+        <div class="d-md-flex justify-content-between align-items-center">
             <!-- Page Banner Start -->
-            <div class="m-0">
-                <ul class="breadcrumb mb-0">
+            <div class="m-0 page-banner-content">
+                <ul class="breadcrumb  mb-0">
                     <li><a href="/">Home</a></li>
                     <li class="active">Courses</li>
                 </ul>
@@ -12,7 +12,7 @@
             </div>
             <!-- Page Banner End -->
 
-            <div class="courses-category-wrapper p-0 m-0 w-100" style="z-index: 11;">
+            <div class="courses-category-wrapper p-0 m-0" style="z-index: 11;">
                 <form action="/courses" method="GET" class="courses-search search-2 m-0" >
                     <input name="keyword" type="text" placeholder="Search for courses...">
                     <button type="submit"><i class="icofont-search"></i></button>
@@ -21,7 +21,7 @@
         </div>
 
          <!-- All Courses Tabs Menu Start -->
-         <div class="courses-tabs-menu courses-active mt-2 mx-0 w-100">
+         <div class="courses-tabs-menu courses-active mt-2 mx-0">
             <div class="swiper-container">
                 <ul class="swiper-wrapper nav">
                     <li class="swiper-slide">

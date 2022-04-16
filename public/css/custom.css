@@ -221,8 +221,10 @@ input::-webkit-inner-spin-button {
     border-color: #309255;
 }
 
-.btn-main{
-
+@media only screen and (min-width: 1024px){
+    .banner-header{
+        margin-top: 100px;
+    }
 }
 
 
