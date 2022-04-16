@@ -20189,11 +20189,6 @@ img {
   position: relative;
 }
 
-@media only screen and (min-width: 768px) and (max-width: 991px), only screen and (max-width: 767px) {
-  .page-banner {
-    /* height: 400px; */
-  }
-}
 
 .page-banner-content {
     margin-top: 170px;
@@ -24783,18 +24778,6 @@ img {
 .main-content-wrapper {
   padding-top: 40px;
   padding-bottom: 80px;
-}
-
-@media only screen and (min-width: 1200px) and (max-width: 1599px) {
-  .main-content-wrapper {
-    /* padding-left: 289px; */
-  }
-}
-
-@media only screen and (min-width: 992px) and (max-width: 1199px) {
-  .main-content-wrapper {
-    /* padding-left: 266px; */
-  }
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px), only screen and (max-width: 767px) {
