@@ -42,7 +42,10 @@ class AppConfigSeeder extends Seeder{
                 'google_client_secret' => env('GOOGLE_CLIENT_SECRET'),
                 'google_redirect_uri' => env('GOOGLE_REDIRECT_URI'),
                 'exchangerate_api_url' => env('EXCHANGERATE_API_URL'),
-                'referal_bonus' => env('REFERAL_BONUS')
+                'referal_bonus' => env('REFERAL_BONUS'),
+                'default_currency' => env('DEFAULT_CURRENCY'),
+                'rave_webhook_secret' => env('RAVE_WEBHOOK_SECRET'),
+                'coinbase_webhook_secret' => env('COINBASE_WEBHOOK_SECRET')
             ]);
         };
     }

@@ -1,7 +1,7 @@
     <!-- Single Team Start -->
     <div class="single-team py-5 mt-0 radius border {{$class}}">
         <div class="col-5 mx-auto">
-            <div class="team-thumb ratio ratio-1x1" style="position: relative; ">
+            <div class="team-thumb ratio ratio-1x1" style="position: relative;">
                 <img src="{{$mentor->avatar ?? asset('images/author/author-04.jpg')}}" class="ratio ratio-1x1 img-cover" alt="Author">
             </div>
         </div>

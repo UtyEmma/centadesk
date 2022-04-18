@@ -5,9 +5,14 @@ namespace App\Http\Controllers;
 use App\Library\Flutterwave;
 use App\Library\Response;
 use App\Library\Token;
+use App\Models\Transaction;
+use App\Models\User;
 use App\Models\Wallet;
 use App\Models\Withdrawal;
+use App\Notifications\WithdrawalCompletedNotification;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Notification;
 
 class WithdrawalController extends Controller{
 
@@ -17,6 +22,8 @@ class WithdrawalController extends Controller{
             $user = $this->user();
             $withdrawal = $this->createWithdrawal($user, $request->amount, $request->type ?? 'bank');
             $withdraw = $flutterwave->initiateWithdrawal($withdrawal, $user, $request->amount);
+
+            return print_r($withdraw);
 
             if(!$withdraw || $withdraw['status'] === 'success') {
                 $withdrawal->delete();
@@ -28,8 +35,6 @@ class WithdrawalController extends Controller{
             $wallet->save();
 
             $withdrawal->status = 'ongoing';
-
-            // Handle Webhooks
 
             return Response::redirectBack('success', "Your Withdrawal process has been initiated! You will be notified once its completed");
         } catch (\Throwable $th) {
@@ -54,5 +59,40 @@ class WithdrawalController extends Controller{
         ]);
 
         return $withdrawal;
+    }
+
+    function updateStatus(Request $request){
+        $data = $request->data['tx_ref'];
+        $ref = $data['tx_ref'];
+
+        $withdrawal = Withdrawal::where('reference', $ref)->first();
+
+        if($data['status'] === 'successful'){
+
+            $response = Http::withHeaders([
+                'Authorization' => env('RAVE_SECRET_KEY')
+            ])->get("https://api.flutterwave.com/v3/transactions/".$data['id']."/verify");
+
+            if($response->ok() && $response->status() === 200) {
+                $res = $response->json();
+                $status = $res['data']['status'];
+                $tx_ref = $res['data']['tx_ref'];
+
+                if($status === 'successful'){
+                    $withdrawal->status = 'successful';
+                    $withdrawal->save();
+
+                    $user = User::find($withdrawal->user_id);
+                    $notification = [
+                        'subject' => "Your withdrawal has been completed successfully"
+                    ];
+
+                    Notification::send($user, new WithdrawalCompletedNotification($notification));
+
+                    return Response::json(200, 'Withdrawal Completed');
+                }
+            }
+        }
+        return Response::json(400);
     }
 }

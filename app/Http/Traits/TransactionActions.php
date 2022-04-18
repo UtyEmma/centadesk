@@ -21,7 +21,8 @@ trait TransactionActions {
 
         $transaction = Transaction::create(array_merge($data, [
             'unique_id' => $unique_id,
-            'reference' => $reference
+            'reference' => $reference,
+            'type' => $data['type']
         ]));
 
         return $transaction;

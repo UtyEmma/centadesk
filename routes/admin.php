@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\AnalyticsController;
+use App\Http\Controllers\Admin\BatchController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\CourseController;
 use App\Http\Controllers\Admin\CurrencyController;
@@ -52,6 +53,12 @@ Route::middleware('auth:admin')->group(function(){
 
     Route::prefix('/courses')->group(function(){
         Route::get('/', [CourseController::class, 'courses']);
+        Route::prefix('/{id}')->group(function(){
+            Route::get('/', [CourseController::class, 'show']);
+            Route::prefix('/{shortcode}')->group(function(){
+                Route::get('/', [BatchController::class, 'show']);
+            });
+        });
     });
 
     Route::prefix('/mentors')->group(function(){

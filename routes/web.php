@@ -146,5 +146,6 @@ Route::middleware(['set.currency', 'set.referrals'])->group(function(){
 
 
     require __DIR__.'/auth.php';
+
 });
 

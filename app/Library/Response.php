@@ -21,7 +21,7 @@ class Response {
         return response()->view($blade, $data);
     }
 
-    static function json($code, $message, $data = []){
+    static function json($code, $message = '', $data = []){
         return response()->json(array_merge([
             'message' => $message,
         ], $data), $code ?? 200);

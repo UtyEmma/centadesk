@@ -2,6 +2,7 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\CheckWebhookSecret;
 use App\Http\Middleware\MentorIsApproved;
 use App\Http\Middleware\ParseAffiliateIdToSession;
 use App\Http\Middleware\ParseCurrencyToSession;
@@ -70,6 +71,7 @@ class Kernel extends HttpKernel
         'is.mentor' => UserIsMentor::class,
         'is.approved' => MentorIsApproved::class,
         'set.referrals' => ParseAffiliateIdToSession::class,
-        'set.currency' => ParseCurrencyToSession::class
+        'set.currency' => ParseCurrencyToSession::class,
+        'webhooks' => CheckWebhookSecret::class
     ];
 }

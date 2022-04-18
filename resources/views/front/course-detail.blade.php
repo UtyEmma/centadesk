@@ -2,31 +2,20 @@
     <div class="section page-banner py-0 my-0">
         <img class="shape-1 animation-round" src="{{asset('images/shape/shape-8.png')}}" alt="Shape">
 
-        {{-- <img class="shape-2" src="{{asset('images/shape/shape-23.png')}}" alt="Shape"> --}}
-        <div class="page-banner-content container pt-3 mt-5">
-            <div class="container p-0 mx-0 pt-5 page-banner-content"></div>
-
-            <ul class="breadcrumb mb-0">
-                <li><a href="/">Home</a></li>
-                <li > <a href="/courses">Courses</a></li>
-                <li class="active">{{$course->name}}</li>
-            </ul>
+        <div class="container pt-3 mt-5">
+            <div class="page-banner-content">
+                <ul class="breadcrumb mb-0">
+                    <li><a href="/">Home</a></li>
+                    <li > <a href="/courses">Courses</a></li>
+                    <li class="active">{{$course->name}}</li>
+                </ul>
+            </div>
 
             <div class="courses-details">
                 <h3 class="mt-4 mb-1">{{$course->name}}</h3>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo, temporibus.</p>
                 <div class="courses-details-admin mb-4 mt-0 p-0">
                     <div class="mb-0 p-0">
-                        {{-- <div class="author-content ms-0 p-0">
-                            <p class="mb-0 p-1 bg-white radius border d-flex align-items-center">
-                                <span class="p-1 bg-light-primary radius px-2">
-                                    <i class="icofont-user-suited me-1"></i>
-                                    <small class="lh-0 me-1">Mentor</small>
-                                </span>
-
-                                <a style="font-weight: 500" class=" ps-2" href="/mentors/{{$mentor->username}}">{{$mentor->firstname}} {{$mentor->lastname}}</a>
-                            </p>
-                        </div> --}}
                         <div class="author-content ms-0 p-0 d-flex align-items-center">
                             <i class="icofont-user-suited me-2"></i>
                             <a style="font-weight: 500" class="" href="/mentors/{{$mentor->username}}">{{$mentor->firstname}} {{$mentor->lastname}}</a>

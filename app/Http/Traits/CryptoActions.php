@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Http;
 
 trait CryptoActions{
 
-    function payWithCrypto($transaction, $user, $redirect_url){
+    function payWithCrypto($transaction, $user, $redirect_url, $batch, $course){
         $url = env('COINBASE_API_URL').'/charges';
 
         $response = Http::withHeaders([
@@ -15,8 +15,8 @@ trait CryptoActions{
             'Content-Type' => 'application/json',
             'X-CC-Version' => '2018-03-22'
         ])->post($url, [
-            'name' => 'Libraclass Payment',
-            'description' => 'Payment for Batch Enrollment',
+            'name' => "Libraclass Course Payment",
+            'description' => "Enrollment for $batch->title of $course->name",
             'pricing_type' => 'fixed_price',
             "local_price" => [
                 "amount" => $transaction->amount,
@@ -31,7 +31,9 @@ trait CryptoActions{
         ]);
 
 
-        if($response->status() !== 201) return Response::redirectBack('error', 'Could not initiate Crypto Payment transaction');
+        if($response->status() !== 201)
+                return Response::redirectBack('error', 'Could not initiate Crypto Payment transaction');
+
         $res = $response->json();
         $transaction->reference = $res['data']['code'];
         $transaction->save();
@@ -40,16 +42,7 @@ trait CryptoActions{
     }
 
     function verifyCryptoPayment($request, $batch_id){
-        if(!$transaction = Transaction::find($request->ref)) return Response::redirectBack('error', 'Transaction Not Found');
-        $url = env('COINBASE_API_URL')."/charges/$transaction->reference/resolve";
-
-        $response = Http::withHeaders([
-            'X-CC-Api-Key' => env('COINBASE_API_KEY'),
-            'Content-Type' => 'application/json',
-            'X-CC-Version' => '2018-03-22'
-        ])->post($url);
-
-        print_r($response->json());
+        return print_r($request);
     }
 
 }

@@ -38,10 +38,12 @@ trait CourseActions {
         $course->no_batches = Pluralizer::plural('Batch', $course->total_batches);
         $course->no_reviews = Pluralizer::plural('Review', $course->reviews);
 
-        $course->user_enrolled = !!Enrollment::where([
-            'course_id' => $course->unique_id,
-            'student_id' => $user->unique_id ?? null
-        ])->first();
+        if($user){
+            $course->user_enrolled = !!Enrollment::where([
+                'course_id' => $course->unique_id,
+                'student_id' => $user->unique_id ?? null
+            ])->first();
+        }
 
         return $course;
     }

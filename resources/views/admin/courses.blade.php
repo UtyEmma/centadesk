@@ -7,7 +7,7 @@
               {{-- Add class <code>.table-striped</code> --}}
             </p>
             <div class="w-100">
-              <table class="table table-bordered">
+              <table class="table table-bordered table-responsive-md">
                 <thead>
                   <tr>
                     <th>Title</th>
@@ -34,6 +34,9 @@
                             </td>
                             <td>
                                 {{$course->total_students}}
+                            </td>
+                            <td>
+                                {{$course->revenue}}
                             </td>
                             <td>
                                 <span class="badge {{$course->status === 'published' ? 'badge-success' : 'badge-warning' }}">{{$course->status ? 'active' : 'inactive'}}</span>

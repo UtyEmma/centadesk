@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use App\Models\Setting;
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Session;
 
 class ParseCurrencyToSession
@@ -17,11 +18,11 @@ class ParseCurrencyToSession
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
     public function handle(Request $request, Closure $next){
-        if(!Session::exists('currency') && Session::get('currency')){
-            $user = $request->user();
-            $currency = $user ? $user->currency : env('DEFAULT_CURRENCY');
-            Session::put('currency', $currency);
+        if(!$request->hasCookie('currency')){
+            $currency = $request->user()->currency ?? Setting::first()->default_currency ?? env('DEFAULT_CURRENCY');
+            setcookie('currency', $currency);
         }
+
         return $next($request);
     }
 }

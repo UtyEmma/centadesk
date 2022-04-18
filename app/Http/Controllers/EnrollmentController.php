@@ -33,6 +33,7 @@ class EnrollmentController extends Controller{
         if($this->checkEnrollmentStatus($batch, $user))
                     return Response::redirectBack('error', 'You are already enrolled for this batch');
 
+        $course = Courses::find($batch->course_id);
         $amount = $this->getPayableAmount($batch->unique_id);
 
         $transaction = $this->createTransaction([
@@ -45,12 +46,12 @@ class EnrollmentController extends Controller{
         $redirect_url = env('MAIN_APP_URL')."/enroll/complete/$request->payment/$batch->unique_id";
 
         $transactions = [
-            'crypto' => $this->payWithCrypto($transaction, $user, $redirect_url),
+            'crypto' => $this->payWithCrypto($transaction, $user, $redirect_url, $batch, $course),
             'card' => $this->payWithCard($transaction, $user, $redirect_url),
             'wallet' => $this->payFromWallet($transaction, $batch, $user)
         ];
 
-        return $transactions[$request->payment];
+        return $transactions["$request->payment"];
     }
 
     function payWithCard($transaction, $user, $redirect_url){

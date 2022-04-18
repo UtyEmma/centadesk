@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('unique_id')->unique();
             $table->string('base_currency')->unique();
+            $table->string('default_currency');
             $table->integer('charges')->unique();
             $table->string('app_name')->unique();
             $table->string('referal_bonus')->unique();
@@ -29,6 +30,8 @@ return new class extends Migration
             $table->string('cloudinary_url')->unique();
             $table->string('facebook_client_id')->unique();
             $table->string('facebook_client_secret')->unique();
+            $table->string('rave_webhook_secret')->unique();
+            $table->string('coinbase_webhook_secret')->unique();
             $table->string('facebook_redirect_uri')->unique();
             $table->string('google_client_id')->unique();
             $table->string('google_client_secret')->unique();
