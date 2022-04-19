@@ -38,7 +38,8 @@ Route::middleware(['set.currency', 'set.referrals'])->group(function(){
 
     Route::middleware('auth')->group(function(){
         Route::prefix('/profile')->group(function(){
-            Route::get('/', [StudentController::class, 'show']);
+            Route::get('/', [StudentController::class, 'overview']);
+            Route::get('/info', [StudentController::class, 'show']);
             Route::post('/update', [StudentController::class, 'update']);
             Route::prefix('/courses')->group(function(){
                 Route::get('/', [StudentController::class, 'enrolledCourses']);

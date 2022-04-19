@@ -19,6 +19,10 @@
         <link rel="stylesheet" href="{{ asset('css/plugins/font-awesome.min.css')}} ">
         <link rel="stylesheet" href="{{ asset('css/plugins/tagify.min.css')}} ">
 
+        <link rel="stylesheet" href="{{asset('css/plugins/apexcharts.css')}}">
+        <link rel="stylesheet" href="{{asset('css/plugins/jqvmap.min.css')}}">
+
+
         <!-- Main Style CSS -->
         <link rel="stylesheet" href="{{asset('css/style.css')}}">
         <link rel="stylesheet" href="{{ asset('css/custom.css')}} ">
@@ -26,6 +30,7 @@
         <link rel="stylesheet" href="{{asset('css/plugins/simple-notify.min.css')}}">
 
         @stack('styles')
+
 
         <!-- JS
             ============================================ -->
@@ -40,14 +45,22 @@
         <script src="{{asset('js/plugins/tagify/tagify.polyfills.min.js')}}" ></script>
 
         <!--====== Use the minified version files listed below for better performance and remove the files listed above ======-->
-        <script src="{{asset('js/plugins.min.js')}}" ></script>
+        {{-- <script src="{{asset('js/plugins.min.js')}}" ></script> --}}
+        <script src="{{asset('js/plugins/swiper-bundle.min.js')}}"></script>
+        <script src="{{asset('js/plugins/jquery.magnific-popup.min.js')}}"></script>
+        <script src="{{asset('js/plugins/video-playlist.js')}}"></script>
+        <script src="{{asset('js/plugins/jquery.nice-select.min.js')}}"></script>
+        <script src="{{asset('js/plugins/ajax-contact.js')}}"></script>
 
         <!-- Main JS -->
         <script src="{{asset('js/main.js')}}" ></script>
+            <!-- Charts JS -->
+        <script src="{{asset('js/plugins/apexcharts.min.js')}}"></script>
         <script src="{{asset('js/ajax.js')}}"></script>
         <script src="{{asset('js/plugins/simple-notify.min.js')}}"></script>
 
         @stack('scripts')
+
     </head>
     <body>
 

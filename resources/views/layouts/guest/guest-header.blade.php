@@ -76,15 +76,9 @@
                         @if ($user = Auth::user())
                             <ul>
                                 <li><a class="sign-in" href="/profile/courses">My Learning</a></li>
-                                @if ($user->role === 'mentor')
-                                    <li><a class="sign-in text-primary" href="/me">Mentor Dashboard</a></li>
-                                @else
-                                    <li><a class="sign-up" href="/mentor/onboarding">Become a Mentor</a></li>
-                                @endif
+                                <x-avatar :user="$user" />
                             </ul>
-
-                            @else
-
+                        @else
                             <ul>
                                 <li><a class="sign-in" href="/login">Sign In</a></li>
                                 <li><a class="sign-up" href="/register">Sign Up</a></li>
@@ -93,15 +87,21 @@
                     </div>
                     <!-- Header Sing In & Up End -->
 
-                    <!-- Header Mobile Toggle Start -->
-                    <div class="header-toggle d-lg-none">
-                        <a class="menu-toggle" href="javascript:void(0)">
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                        </a>
+                    <div class="d-flex d-lg-none align-items-center me-0">
+                        <div class="me-3">
+                            <x-avatar :user="$user" />
+                        </div>
+
+                        <!-- Header Mobile Toggle Start -->
+                        <div class="header-toggle d-lg-none">
+                            <a class="menu-toggle" href="javascript:void(0)">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </a>
+                        </div>
+                        <!-- Header Mobile Toggle End -->
                     </div>
-                    <!-- Header Mobile Toggle End -->
 
                 </div>
                 <!-- Header Main End -->

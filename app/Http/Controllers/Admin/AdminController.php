@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Library\Response;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -23,7 +24,7 @@ class AdminController extends Controller{
 
         $request->session()->regenerate();
 
-        return redirect()->intended('/admin')->with('success', 'Login Successful');
+        return Response::intended('/', 'success', 'Login Successful');
     }
 
     function home(){
@@ -36,6 +37,16 @@ class AdminController extends Controller{
         return view('admin.overview', [
             'mentor_requests' => $mentor_requests
         ]);
+    }
+
+    function logout(Request $request){
+        Auth::guard('admin')->logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return Response::redirect('/login', 'success', 'Logout Successful');
     }
 
 }

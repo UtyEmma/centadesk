@@ -28,41 +28,15 @@
                         </ul>
                     </div>
                 </div>
-
-                <div class="col-md-6">
-
-                    @if (Auth::user()->role === 'mentor')
-                        <div class="new-courses px-8 mt-0" style="background-image: url({{asset('images/new-courses-banner.jpg')}});">
-                            <div class="row">
-                                <div class="new-courses-title">
-                                    <h3 class="title">Your students are waiting for you.</h3>
-                                </div>
-                                <div class="new-courses-btn mt-3">
-                                    <a href="/me" class="btn">Visit Mentor Dashboard<i class="icofont-rounded-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    @else
-                        <div class="new-courses px-8 mt-0" style="background-image: url({{asset('images/new-courses-banner.jpg')}});">
-                            <div class="row">
-                                <div class="new-courses-title">
-                                    <h3 class="title">Start earning Money by publishing your courses on Centadesk.</h3>
-                                </div>
-
-                                <div class="new-courses-btn mt-3">
-                                    <a href="/mentor/onboarding" class="btn">Create Mentor Account<i class="icofont-rounded-right"></i></a>
-                                </div>
-                            </div>
-                            {{-- <img class="shape d-none d-xl-block" src="{{asset('images/shape/shape-27.png')}}" alt="Shape"> --}}
-                        </div>
-                    @endif
-                </div>
             </div>
 
             <div class="row py-4">
                 <!-- All Courses Tabs Menu Start -->
                 <div class="bg-transparent bg-primary px-0 d-md-flex justify-content-between align-items-center">
                     <ul class="nav">
+                        <li class="nav-item">
+                            <a class="nav-link {{ (request()->is('profile/courses')) ? 'text-primary fw-bold' : '' }}" aria-current="page" href="/profile">Overview</a>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link {{ (request()->is('profile/courses')) ? 'text-primary fw-bold' : '' }}" aria-current="page" href="/profile/courses">My Courses</a>
                         </li>

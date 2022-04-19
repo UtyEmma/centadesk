@@ -7,7 +7,7 @@
               {{-- Add class <code>.table-striped</code> --}}
             </p>
             <div>
-              <table class="table table-bordered table-responsive">
+              <table class="table table-bordered table-responsive-md">
                 <thead>
                   <tr>
                     <th>Name</th>

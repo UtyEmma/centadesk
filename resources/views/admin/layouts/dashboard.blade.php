@@ -3,7 +3,7 @@
         $admin = Auth::guard('admin')->user();
     @endphp
 
-    <x-admin.navbar :admin="$admin"></x-admin.navbar>
+    <x-admin.navbar :admin="$admin" />
 
     <div class="container-fluid page-body-wrapper">
         <x-admin.sidebar />

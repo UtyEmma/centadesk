@@ -87,6 +87,8 @@ Route::middleware('auth:admin')->group(function(){
     Route::get('/app-settings', [SettingsController::class, 'appSettings']);
     Route::post('/update-settings', [SettingsController::class, 'updateSettings']);
 
+    Route::get('/logout', [AdminController::class, 'logout']);
+
     Route::get('*', function(){
         return print_r("Route not found");
     });
