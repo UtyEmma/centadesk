@@ -11,7 +11,7 @@
                     <button><i class="icofont-search"></i></button>
                 </div>
 
-                <ul class="category-menu">
+                <ul class="category-menu overflow-x-scroll w-100 ">
                     <li><a class="active" href="#">All Courses</a></li>
                     <li><a href="#">Collections</a></li>
                     <li><a href="#">Wishlist</a></li>

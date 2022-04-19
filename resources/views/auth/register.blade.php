@@ -1,21 +1,23 @@
 <x-guest-layout>
     <!-- Page Banner Start -->
-    <div class="section page-banner py-0 bg-transparent my-0">
-        <img class="shape-1 animation-round" src="{{asset('images/shape/shape-8.png')}}" alt="Shape">
+    <div class="section page-banner py-0 pt-5 pb-0 px-0 w-100 bg-transparent">
+        <div class="container mt-5 pt-5 w-100">
+            <img class="shape-1 animation-round" src="{{asset('images/shape/shape-8.png')}}" alt="Shape">
 
-        {{-- <img class="shape-2" src="{{asset('images/shape/shape-23.png')}}" alt="Shape"> --}}
-        <div class="page-banner-content container pt-3 mt-5">
-            <div class="container p-0 mx-0 pt-5 page-banner-content"></div>
+            <img class="shape-2" src="{{asset('images/shape/shape-23.png')}}" alt="Shape">
+            <div class="pt-5 px-0 banner-header">
 
-            <!-- Page Banner Start -->
-            <div class="m-0">
-                <ul class="breadcrumb mb-0">
-                    <li><a href="/">Home</a></li>
-                    <li class="active">Register</li>
-                </ul>
+                <div class="m-0 page-banner-content pb-0">
+                    <ul class="breadcrumb  mb-0">
+                        <li><a href="/">Home</a></li>
+                        <li class="active">Register</li>
+                    </ul>
+                </div>
+                <!-- Page Banner End -->
+                <h4 class="title fs-5 pb-0 d-md-none mt-0">Create your <span>account</span></h4>
+
+                <img class="shape-3" src="{{asset('images/shape/shape-24.png')}}" alt="Shape">
             </div>
-            <!-- Page Banner End -->
-            {{-- <img class="shape-3" src="{{asset('images/shape/shape-24.png')}}" alt="Shape"> --}}
         </div>
     </div>
     <!-- Page Banner End -->
@@ -43,8 +45,8 @@
                     <div class="col-lg-5 col-md-7 mx-auto mt-0">
 
                         <!-- Register & Login Form Start -->
-                        <div class="register-login-form mx-0 mt-0 mt-lg-5 pb-lg-5">
-                            <h3 class="title pb-0">Lets get you <span>Started</span></h3>
+                        <div class="register-login-form mx-0 pb-lg-5 mt-5">
+                            <h3 class="title pb-0 d-md-block d-none">Lets get you <span>Started</span></h3>
 
                             <div class="form-wrapper w-100 pb-lg-5 pt-3">
                                 <form action="/register" method="POST">
@@ -59,7 +61,7 @@
                                         </div>
                                     </div>
 
-                                    <p class="text-center mt-3 mb-0">or Sign Up with your details</p>
+                                    <p class="text-center mt-3 mb-0" style="font-weight: 500;">or Sign Up with your details</p>
 
                                     <div class="row">
                                         <div class="col-6">

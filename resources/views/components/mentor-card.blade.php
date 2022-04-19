@@ -13,10 +13,6 @@
         </div>
         <div class="single-courses border-0 py-0 mt-0">
             <div class="courses-content py-0">
-                <div class="courses-meta">
-                    <span> <i class="icofont-clock-time"></i> {{$mentor->total_courses}} Courses</span>
-                    <span> <i class="icofont-read-book"></i> {{$mentor->total_batches}} Batches </span>
-                </div>
                 <div class="courses-price-review ">
                     <div class="courses-review d-flex justify-content-between w-100 align-items-center">
                         <div>

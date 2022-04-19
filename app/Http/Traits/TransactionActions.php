@@ -13,6 +13,7 @@ use App\Models\Wallet;
 use Illuminate\Support\Facades\Http;
 
 trait TransactionActions {
+    use EnrollmentActions;
 
     function createTransaction($data){
         $unique_id = Token::unique('transactions');
@@ -56,10 +57,10 @@ trait TransactionActions {
             ]
         ]);
 
-        if(!$response->ok()) return false;
-        $res = $response->json();
-
-        if($res['status'] === 'success') return $res['data']['link'];
+        if($response->ok() && $response->status() === 200) {
+            $res = $response->collect();
+            if($res['status'] === 'success') return $res['data']['link'];
+        }
 
         return false;
     }
@@ -86,20 +87,16 @@ trait TransactionActions {
             $this->handleReferrerPayout($user, $transaction->amount);
 
             $this->enrollUser($user, $mentor, $batch, $course, $transaction);
-            // Send Enrollment Notification
 
             return Response::redirect($enrollment_success_link, 'success', 'You have successfully enrolled for this course');
         }
 
-        if($request->status === 'cancelled') {
-            if($transaction = Transaction::where('reference', $tx_ref)->first()) $transaction->delete();
-            // Send a comeback notification
-            Response::redirect($enrollment_failed_link, 'error', "Your Payment attempt was cancelled");
-        }
+        if($transaction = Transaction::where('reference', $tx_ref)->first()) $transaction->delete();
+
+        return Response::redirect($enrollment_failed_link, 'error', "Your Payment attempt was cancelled");
     }
 
     function verifyTransaction($transaction_id, $tx_ref){
-
         $transaction = Transaction::where('reference', $tx_ref)->first();
 
         $response = Http::withHeaders([

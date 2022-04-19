@@ -95,7 +95,7 @@
                     <div class="courses-search">
                         <form action="/courses" type="GET">
                             @csrf
-                            <input type="text" name="keyword" placeholder="Search for Courses or Mentors...">
+                            <input type="text" name="keyword" placeholder="Search for Courses...">
                             <button type="submit"><i class="flaticon-magnifying-glass"></i></button>
                         </form>
                     </div>

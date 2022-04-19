@@ -1,20 +1,5 @@
 <x-enrolled-course :course="$course" :batch="$batch" :messages="$forum" :mentor="$mentor" :user="$user" :enrollment="$enrollment" :report="$report">
 
-        <!-- Courses Enroll Tab Start -->
-        <div class="courses-enroll-tab">
-            <div class="enroll-tab-menu">
-                <ul class="nav">
-                    <li><button class="active" data-bs-toggle="tab" data-bs-target="#tab1">Overview</button></li>
-                    <li><button data-bs-toggle="tab" data-bs-target="#reviews">Reviews</button></li>
-                    <li><button data-bs-toggle="tab" data-bs-target="#tab3">Instructor</button></li>
-                </ul>
-            </div>
-            <div class="enroll-share">
-                <a href="{{$course->slug}}/forum"><i class="icofont-share-alt"></i> Go to Forum</a>
-            </div>
-        </div>
-        <!-- Courses Enroll Tab End -->
-
         <!-- Courses Enroll Tab Content Start -->
         <div class="courses-enroll-tab-content">
             <div class="tab-content">
@@ -62,7 +47,7 @@
 
                 </div>
 
-                <x-courses.review-tab :reviews="$reviews" :can="true" />
+                <x-courses.review-tab :reviews="$reviews" :batch="$batch" :can="true" />
 
                 <div class="tab-pane fade" id="tab3">
                     <!-- Instructor Start -->

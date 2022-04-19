@@ -52,7 +52,7 @@
 
                     <!-- Header Logo Start -->
                     <div class="header-logo">
-                        <a href="/"><img src="{{asset('images/logo.png')}}" alt="Logo"></a>
+                        <a href="/"><img src="{{asset('images/libra-main.png')}}" class="img-fluid" alt="Logo"></a>
                     </div>
                     <!-- Header Logo End -->
 

@@ -44,8 +44,11 @@ trait UserActions{
         $notification = [
             'profile' => env('MAIN_APP_URL').RouteServiceProvider::LEARNING_CENTER
         ];
-
-        Notification::send($user, new NewSignupNotification($notification));
+        try {
+            Notification::send($user, new NewSignupNotification($notification));
+        } catch (\Throwable $th) {
+            return $user;
+        }
         return $user;
     }
 

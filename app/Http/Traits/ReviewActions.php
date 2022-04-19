@@ -20,4 +20,9 @@ trait ReviewActions {
                         ->get();
     }
 
+    function calculateRatings($model_id, $value){
+        $ratings = Review::select('rating')->where($model_id, $value)->get();
+        return $ratings->sum() / $ratings->count();
+    }
+
 }

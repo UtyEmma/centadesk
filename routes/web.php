@@ -49,6 +49,9 @@ Route::middleware(['set.currency', 'set.referrals'])->group(function(){
             Route::post('/forum/send/{batch_id}', [ForumController::class, 'storeMessage']);
             Route::get('/mentors', [StudentController::class, 'fetchMentors']);
             Route::get('/wallet', [WalletController::class, 'studentWallet']);
+            Route::prefix('/reviews')->group(function(){
+                Route::post('/submit/{batch_id}', [ReviewController::class, 'submitReview']);
+            });
         });
 
         Route::prefix('forum')->group(function(){
@@ -72,11 +75,6 @@ Route::middleware(['set.currency', 'set.referrals'])->group(function(){
         Route::prefix('/enroll')->group(function(){
             Route::post('/{batch_id}', [EnrollmentController::class, 'initiate']);
             Route::get('/complete/{type}/{batch_id}', [EnrollmentController::class, 'complete']);
-        });
-
-
-        Route::prefix('/reviews')->group(function(){
-            Route::post('/submit/{batch_id}', [ReviewController::class, 'submitReview']);
         });
 
         Route::prefix('/mentor')->group(function(){

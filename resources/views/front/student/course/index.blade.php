@@ -4,7 +4,6 @@
         <div class="container">
             <div class="row gx-10">
                 <div class="col-lg-8">
-
                     <!-- Courses Enroll Content Start -->
                     <div class="courses-enroll-content px-0">
 
@@ -27,6 +26,25 @@
                         </div>
                         <!-- Courses Enroll Title End -->
 
+                        <!-- Courses Enroll Tab Start -->
+                        <div class="courses-enroll-tab">
+                            <div class="enroll-tab-menu">
+                                <ul class="nav">
+                                    <li><button class="active" data-bs-toggle="tab" data-bs-target="#tab1">Overview</button></li>
+                                    <li><button data-bs-toggle="tab" data-bs-target="#reviews">Reviews</button></li>
+                                    <li><button data-bs-toggle="tab" data-bs-target="#tab3">Instructor</button></li>
+                                    <li>
+                                        <button>
+                                            <a href="{{$batch->short_code}}/forum">Forum</a>
+                                        </button>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="enroll-share">
+                            </div>
+                        </div>
+                        <!-- Courses Enroll Tab End -->
+
                         <!-- Courses Enroll Tab Content Start -->
                         <div class="courses-enroll-tab-content p-0 border-0">
                             {{$slot}}
@@ -40,7 +58,7 @@
                     <div class="sidebar">
 
                         <!-- Sidebar Widget Information Start -->
-                        <x-mentor-card :mentor="$mentor" :class="''" />
+                        <x-mentor-card :mentor="$mentor" :class="''" :btn="false" />
                         <!-- Sidebar Widget Information End -->
 
                         <div class="w-100 mt-4">

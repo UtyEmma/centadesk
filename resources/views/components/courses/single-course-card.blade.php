@@ -4,6 +4,21 @@
         <a href="courses/{{$course->slug}}">
             <img class="img-cover" src="{{json_decode($course->images)[0] ?? asset('images/courses/courses-01.jpg')}}" alt="Courses">
         </a>
+        <div class="courses-option dropdown">
+            <button class="option-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <ul class="dropdown-menu">
+                <li><a href="#"><i class="icofont-share-alt"></i> Share</a></li>
+                <li><a href="#"><i class="icofont-plus"></i> Create Collection</a></li>
+                <li><a href="#"><i class="icofont-star"></i> Favorite</a></li>
+                <li><a href="#"><i class="icofont-archive"></i> Archive</a></li>
+            </ul>
+        </div>
+
         <div class="light-tag position-absolute" style="right: 15px; bottom: 0px;">
             <a href="#">{{$course->category}}</a>
         </div>

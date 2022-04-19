@@ -14,8 +14,8 @@
     </x-page-banner>
 
     <!-- Courses Start -->
-    <div class="section section-padding mt-n10">
-        <div class="container">
+    <div class="section section-padding mt-0">
+        <div class="container mt-5">
             <div class="row gx-10">
                 <div class="col-lg-8">
                     <!-- Courses Details Start -->
@@ -76,7 +76,7 @@
                     </div>
                     <!-- Courses Details End -->
                 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-4 mt-5 mt-md-0">
                     <!-- Courses Details Sidebar Start -->
                     <div class="sidebar mt-0 p-0">
 
@@ -105,10 +105,8 @@
                             @if ($user = Auth::user())
                                 <x-payment-modal :user="$user" :batch="$batch" :wallet="$user->wallet" />
                             @else
-                                <h4 class="mb-5">Log into your account to enroll for this batch</h4>
-
                                 <div class="info-btn">
-                                    <a href="/login" class="btn btn-primary btn-hover-dark">Login</a>
+                                    <a href="/login" class="btn btn-primary btn-hover-dark">Login to Enroll</a>
                                 </div>
                             @endif
                         </div>

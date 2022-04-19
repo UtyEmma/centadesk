@@ -20,31 +20,16 @@
             </div>
         </div>
 
-        <!-- All Courses Tabs Menu Start -->
-        <div class="courses-tabs-menu courses-active mt-2">
-            <div class="swiper-container">
-                <ul class="swiper-wrapper nav">
-                    <li class="swiper-slide">
-                        <a href="#">
-                            <button class="active w-100 btn btn-hover-light" >All Mentors</button>
-                        </a>
-                    </li>
-                    <li class="swiper-slide">
-                        <a href="#">
-                            <button class="w-100 btn btn-hover-light" >Top Mentors</button>
-                        </a>
-                    </li>
-                    <li class="swiper-slide">
-                        <a href="#">
-                            <button class="w-100 btn btn-hover-light" >Suggested for You</button>
-                        </a>
-                    </li>
+        <!-- Courses Category Wrapper Start  -->
+        <div class="d-inline-block">
+            <div class="courses-category-wrapper  px-0 overflow-x-scroll w-100">
+                <ul class="category-menu overflow-x-scroll w-auto">
+                    <li><a class="active" href="/mentors">All Mentors</a></li>
+                    <li><a href="#">Top Mentors</a></li>
+                    <li><a href="#">Suggested for you</a></li>
                 </ul>
             </div>
-
-            <!-- Add Pagination -->
-            <div class="swiper-button-next"><i class="icofont-rounded-right"></i></div>
-            <div class="swiper-button-prev"><i class="icofont-rounded-left"></i></div>
+            <!-- Courses Category Wrapper End  -->
         </div>
     </x-page-banner>
 

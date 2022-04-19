@@ -26,10 +26,11 @@ class EnrollmentController extends Controller{
     use TransactionActions, BatchActions, EnrollmentActions, WalletActions, CryptoActions;
 
     public function initiate(Request $request, $batch_id){
+        $user = $this->user();
+
         if(!$batch = Batch::find($batch_id))
                     return Response::redirectBack('error', "The requested batch does not exist");
 
-        $user = $this->user();
         if($this->checkEnrollmentStatus($batch, $user))
                     return Response::redirectBack('error', 'You are already enrolled for this batch');
 
@@ -45,13 +46,9 @@ class EnrollmentController extends Controller{
 
         $redirect_url = env('MAIN_APP_URL')."/enroll/complete/$request->payment/$batch->unique_id";
 
-        $transactions = [
-            'crypto' => $this->payWithCrypto($transaction, $user, $redirect_url, $batch, $course),
-            'card' => $this->payWithCard($transaction, $user, $redirect_url),
-            'wallet' => $this->payFromWallet($transaction, $batch, $user)
-        ];
-
-        return $transactions["$request->payment"];
+        if($request->payment === 'crypto') return $this->payWithCrypto($transaction, $user, $redirect_url, $batch, $course);
+        if($request->payment === 'card') return $this->payWithCard($transaction, $user, $redirect_url);
+        if($request->payment === 'card') return $this->payFromWallet($transaction, $batch, $user);
     }
 
     function payWithCard($transaction, $user, $redirect_url){
@@ -74,19 +71,13 @@ class EnrollmentController extends Controller{
         $transaction->status = 'completed';
         $transaction->save();
 
-        // Send Enrollment Notification
-
         return Response::redirect("/profile/courses/$course->slug/$batch->short_code", 'success', 'You have successfully enrolled for this course');
     }
 
 
     public function complete(Request $request, $type, $batch_id){
-        $transactions = [
-            'crypto' => $this->verifyCryptoPayment($request, $batch_id),
-            'card' => $this->verifyCardPayment($request, $batch_id)
-        ];
-
-        return $transactions[$type];
+        if($type === 'crypto') return $this->verifyCryptoPayment($request, $batch_id);
+        if($type === 'card') return $this->verifyCardPayment($request, $batch_id);
     }
 
 

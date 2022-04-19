@@ -68,8 +68,14 @@ class StudentController extends Controller{
     }
 
 
-    function courseForum(Request $request, $slug){
-        return view('front.student.course.forum', $this->fetchCourse($request, $slug));
+    function courseForum(Request $request, $slug, $shortcode){
+        try {
+            if(!$batch = Batch::where('short_code', $shortcode)->first()) throw new Exception("The requested batch does not exist");
+            $data = $this->getEnrolledBatch($batch, $this->user());
+            return view('front.student.course.forum', $data);
+        } catch (\Throwable $th) {
+            return Response::redirectBack('error', $th->getMessage());
+        }
     }
 
     function courseForumDetails(Request $request, $slug, $message_id){

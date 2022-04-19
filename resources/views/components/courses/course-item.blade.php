@@ -11,6 +11,7 @@
                     <span></span>
                     <span></span>
                 </button>
+
                 <ul class="dropdown-menu">
                     <li><a href="#"><i class="icofont-share-alt"></i> Share</a></li>
                     <li><a href="#"><i class="icofont-plus"></i> Create Collection</a></li>

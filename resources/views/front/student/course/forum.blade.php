@@ -1,4 +1,4 @@
-<x-enrolled-course :course="$course" :batch="$batch" :messages="$forum" :mentor="$mentor" :user="$user" :enrollment="$enrollment">
+<x-enrolled-course :course="$course" :batch="$batch" :messages="$forum" :mentor="$mentor" :user="$user" :enrollment="$enrollment" :report="$report">
     <!-- Question & Answer End -->
     <div class="question-answe">
 
@@ -60,8 +60,6 @@
                             </form>
                         </div>
                     </div>
-
-
                 </div>
                 <!-- Answer Message Wrapper End -->
             </div>
