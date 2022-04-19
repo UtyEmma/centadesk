@@ -4,13 +4,13 @@
 
     <div class="col-md-9 mx-auto px-0 row row-cols-1 gy-3">
         <div class="px-0">
-            <h4>Personal Information</h4>
+            <h5 class="mb-0">Personal Information</h5>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente, nemo.</p>
         </div>
 
         <div class="border p-3 py-5 p-md-5 radius">
             <div class="row">
-                <div class="col-md-4 mx-auto ">
+                <div class="col-8 col-md-4 mx-auto">
                     <div class="rounded-circle p-1 border border-3 border-primary">
                         <div class="position-relative overflow-hidden ratio ratio-1x1 rounded-circle">
                             <img class="radius position-absolute" style="object-fit: cover; object-position: center;" id="avatar_preview" src="{{asset('images/icon/user.png')}}" alt="Shape">
@@ -28,11 +28,12 @@
                     <small class="text-danger text-capitalize" id="avatar-error">
                         @error('avatar')
                             {{$message}}
-                        @enderror
+                            @enderror
                     </small>
                 </div>
 
                 <div class="col-md-7">
+                    <h6 for="basic-url" class="form-label mt-3 mt-md-0">Your Personal Information </h6>
                     <div class="single-form">
                         <input class="input" onblur="validateInput(event, __personalInfoSchema)" name="username" placeholder="Mentor Username">
                         <small class="text-danger text-capitalize" id="username-error">
@@ -61,7 +62,7 @@
                     </div>
 
 
-                    <div class="row mt-3">
+                    {{-- <div class="row mt-3">
                         <h6 for="basic-url" class="form-label">Your Location Info </h6>
                         <div class="col-md-6">
                             <div class="single-form">
@@ -97,7 +98,6 @@
                         </div>
                     </div>
 
-
                     <div class="single-form ">
                         <h6 for="basic-url" class="form-label">Social Media (Please provide only your username) </h6>
 
@@ -131,18 +131,34 @@
                         </div>
 
 
-                        <div class="single-form">
-                            <div class="input-group mb-3">
-                                <span  class="input-group-text px-3 fs-6 radius-left bg-white border border-end-0" id="twitter">Twitter</span>
-                                <input type="text" class="form-control w-auto border-start-0" id="twitter-input" onblur="validateInput(event, __personalInfoSchema)" name="twitter" placeholder="Username" aria-describedby="twitter" value="">
+                        <div class="mb-3">
+                            <div class="single-form">
+                                <div class="input-group mb-3">
+                                    <span  class="input-group-text px-3 fs-6 radius-left bg-white border border-end-0" id="twitter">Twitter</span>
+                                    <input type="text" class="form-control w-auto border-start-0" id="twitter-input" onblur="validateInput(event, __personalInfoSchema)" name="twitter" placeholder="Username" aria-describedby="twitter" value="">
+                                </div>
                             </div>
+                            <small class="text-danger text-capitalize" id="twitter-error">
+                                @error('twitter')
+                                    {{$message}}
+                                @enderror
+                            </small>
                         </div>
-                        <small class="text-danger text-capitalize" id="twitter-error">
-                            @error('twitter')
-                                {{$message}}
-                            @enderror
-                        </small>
-                    </div>
+
+                        <div class="mb-3">
+                            <div class="single-form">
+                                <div class="input-group mb-3">
+                                    <span  class="input-group-text px-3 fs-6 radius-left bg-white border border-end-0" id="linkedin">LinkedIn</span>
+                                    <input type="text" class="form-control w-auto border-start-0" id="twitter-input" onblur="validateInput(event, __personalInfoSchema)" name="linkedin" placeholder="Username" aria-describedby="linkedin" value="">
+                                </div>
+                            </div>
+                            <small class="text-danger text-capitalize" id="linkedin-error">
+                                @error('linkedin')
+                                    {{$message}}
+                                @enderror
+                            </small>
+                        </div>
+                    </div> --}}
                 </div>
 
             </div>

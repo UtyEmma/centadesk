@@ -37,19 +37,22 @@ Route::middleware(['set.currency', 'set.referrals'])->group(function(){
     Route::post('/settings/update', [SettingsController::class, 'updateCurrency']);
 
     Route::middleware('auth')->group(function(){
-        Route::prefix('/profile')->group(function(){
-            Route::get('/', [StudentController::class, 'overview']);
-            Route::get('/info', [StudentController::class, 'show']);
-            Route::post('/update', [StudentController::class, 'update']);
+        Route::prefix('learning')->group(function(){
             Route::prefix('/courses')->group(function(){
                 Route::get('/', [StudentController::class, 'enrolledCourses']);
                 Route::get('/{slug}/{shortcode}', [StudentController::class, 'enrolledCourse']);
                 Route::get('/{slug}/{shortcode}/forum', [StudentController::class, 'courseForum']);
                 Route::get('/{slug}/{shortcode}/forum/{message_id}', [StudentController::class, 'courseForumDetails']);
             });
-            Route::post('/forum/send/{batch_id}', [ForumController::class, 'storeMessage']);
             Route::get('/mentors', [StudentController::class, 'fetchMentors']);
-            Route::get('/wallet', [WalletController::class, 'studentWallet']);
+        });
+
+        Route::get('/wallet', [WalletController::class, 'studentWallet']);
+
+        Route::prefix('/profile')->group(function(){
+            Route::get('/', [StudentController::class, 'show']);
+            Route::post('/update', [StudentController::class, 'update']);
+            Route::post('/forum/send/{batch_id}', [ForumController::class, 'storeMessage']);
             Route::prefix('/reviews')->group(function(){
                 Route::post('/submit/{batch_id}', [ReviewController::class, 'submitReview']);
             });

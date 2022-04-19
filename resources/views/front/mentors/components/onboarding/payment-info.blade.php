@@ -4,7 +4,7 @@
 <div class="row">
     <div class="col-md-9 mx-auto row row-cols-1 gy-3 px-0">
         <div class="p-0">
-            <h4>Payment Information</h4>
+            <h5 class="mb-0">Payment Information</h5>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente, nemo.</p>
         </div>
 

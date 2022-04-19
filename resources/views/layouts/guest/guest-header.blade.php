@@ -76,6 +76,7 @@
                         @if ($user = Auth::user())
                             <ul>
                                 <li><a class="sign-in" href="/profile/courses">My Learning</a></li>
+                                <li><a class="sign-in" href="{{$user->role === 'mentor' ? '/me' :'/mentor/onboarding'}}">Become a Mentor</a></li>
                                 <x-avatar :user="$user" />
                             </ul>
                         @else

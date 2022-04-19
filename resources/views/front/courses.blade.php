@@ -4,11 +4,11 @@
         <div class="d-md-flex justify-content-between align-items-center">
             <!-- Page Banner Start -->
             <div class="m-0 page-banner-content">
+                <h4 class="title mt-0 pb-0">Courses</h4>
                 <ul class="breadcrumb  mb-0">
                     <li><a href="/">Home</a></li>
                     <li class="active">Courses</li>
                 </ul>
-                <h4 class="title mt-0">Courses</h4>
             </div>
             <!-- Page Banner End -->
 

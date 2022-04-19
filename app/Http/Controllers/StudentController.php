@@ -114,4 +114,11 @@ class StudentController extends Controller{
         return view('front.student.course.overview', $data);
     }
 
+    function overview(Request $request){
+        $user = $this->user();
+        return Response::view('front.student.overview', [
+            'user' => $user
+        ]);
+    }
+
 }

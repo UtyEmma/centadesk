@@ -3,23 +3,6 @@
     <!-- Courses Start -->
     <div class="section section-padding">
         <div class="container">
-
-            <!-- Courses Category Wrapper Start  -->
-            <div class="courses-category-wrapper">
-                <div class="courses-search search-2">
-                    <input type="text" placeholder="Search here">
-                    <button><i class="icofont-search"></i></button>
-                </div>
-
-                <ul class="category-menu overflow-x-scroll w-100 ">
-                    <li><a class="active" href="#">All Courses</a></li>
-                    <li><a href="#">Collections</a></li>
-                    <li><a href="#">Wishlist</a></li>
-                    <li><a href="#">Archived</a></li>
-                </ul>
-            </div>
-            <!-- Courses Category Wrapper End  -->
-
             <!-- Courses Wrapper Start  -->
             <div class="courses-wrapper-02">
                 <div class="row">

@@ -58,10 +58,6 @@ input::-webkit-inner-spin-button {
     text-transform: uppercase !important;
 }
 
-.custom-scrollbar{
-    scrollbar-track-color: rgb(221, 221, 221);
-    scrollbar-width: 5px;
-}
 
 
 .forum-container{
@@ -70,21 +66,21 @@ input::-webkit-inner-spin-button {
     overflow-x: hidden;
 }
 
-::-webkit-scrollbar {
+.custom-scrollbar::-webkit-scrollbar {
     width: 5px;
-  }
+}
 
-  ::-webkit-scrollbar-track {
+.custom-scrollbar::-webkit-scrollbar-track {
     width: 5px;
     background: #f5f5f5;
-  }
+}
 
-  ::-webkit-scrollbar-thumb {
+.custom-scrollbar::-webkit-scrollbar-thumb {
     width: 1em;
     background-color: #ddd;
     outline: 1px solid slategrey;
     border-radius: 1rem;
-  }
+}
 
   .text-small {
     font-size: 0.9rem;

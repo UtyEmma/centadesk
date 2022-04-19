@@ -1,5 +1,6 @@
 <x-student-layout>
     <div class="section section-padding py-3">
+        <x-affiliate-link :user="$user" />
         <div class="container">
             <form action="/profile/update" enctype="multipart/form-data" method="post">
                 @csrf

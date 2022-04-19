@@ -4,7 +4,7 @@
 
     <div class="col-md-9 mx-auto px-0 row row-cols-1 gy-3">
         <div class="px-0">
-            <h4>Experience Information</h4>
+            <h5 class="mb-0">Experience Information</h5>
             <p>Share your experience to prove your expertise.</p>
         </div>
 

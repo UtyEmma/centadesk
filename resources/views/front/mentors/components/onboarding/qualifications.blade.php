@@ -4,7 +4,7 @@
 
     <div class="col-md-9 mx-auto px-0 row row-cols-1 gy-3">
         <div class="px-0">
-            <h4>Your Qualifications</h4>
+            <h5 class="mb-0">Your Qualifications</h5>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente, nemo.</p>
         </div>
 

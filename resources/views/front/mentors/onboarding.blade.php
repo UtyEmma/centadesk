@@ -3,11 +3,11 @@
 
     <section class="flex flex-column justify-content-center">
         <nav class="navbar navbar-expand-lg navbar-light bg-light py-3">
-            <div class="container-fluid">
+            <div class="container py-1">
                 <div class="row align-items-center">
                     <div class="col-auto">
                         <div class="header-logo">
-                            <a href="/"><img src="{{asset('images/logo.png')}}" alt="Logo"></a>
+                            <a href="/"><img src="{{asset('images/libra-main.png')}}" alt="Logo"></a>
                         </div>
                     </div>
                 </div>
