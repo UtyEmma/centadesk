@@ -33,9 +33,6 @@
         <link rel="stylesheet" href="{{asset('css/plugins/quill-snow.css')}}">
         <link rel="stylesheet" href="{{asset('css/style.css')}}">
         <link rel="stylesheet" href="{{ asset('css/custom.css')}} ">
-
-        <link rel="stylesheet" href="{{ asset('css/plugins/bootstrap-select.css')}} ">
-
         <!-- Theme included stylesheets -->
 
         @stack('styles')
@@ -47,8 +44,8 @@
 
 
         <!-- Bootstrap JS -->
-        {{-- <script src="{{asset('js/plugins/bootstrap.min.js')}}" ></script>
-        <script src="{{asset('js/plugins/popper.min.js')}}" ></script> --}}
+        <script src="{{asset('js/plugins/bootstrap.min.js')}}" ></script>
+        <script src="{{asset('js/plugins/popper.min.js')}}" ></script>
 
         <!--====== Use the minified version files listed below for better performance and remove the files listed above ======-->
         <script src="{{asset('js/plugins.min.js')}}"></script>
@@ -64,15 +61,12 @@
 
         <script src="https://cdn.jsdelivr.net/npm/@easepick/bundle@1.1.3/dist/index.umd.min.js"></script>
 
-        <script src="{{asset('js/plugins/bootstrap-select.js')}}"></script>
 
         <!-- Main JS -->
         <script src="{{asset('js/main.js')}}" ></script>
         <script src="{{asset('js/ajax.js')}}"></script>
 
         <script src="{{asset('js/plugins/simple-notify.min.js')}}"></script>
-
-
 
         @stack('scripts')
     </head>

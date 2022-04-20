@@ -3,6 +3,24 @@
     <!-- Courses Start -->
     <div class="section section-padding">
         <div class="container">
+            <div>
+                <!-- Courses Wrapper Start  -->
+                @if (count($courses) > 0)
+                    <h3>Suggested for you</h3>
+                    <div class="courses-wrapper-02">
+                        <div class="row">
+                            @foreach ($courses as $course)
+                                <x-courses.single-course-card :course="$course" :mentor="$course->mentor" />
+                            @endforeach
+                        </div>
+                    </div>
+                @else
+
+                @endif
+            <!-- Courses Wrapper End  -->
+            </div>
+
+
             <!-- Courses Wrapper Start  -->
             <div class="courses-wrapper-02">
                 <div class="row">

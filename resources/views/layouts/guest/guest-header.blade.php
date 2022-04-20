@@ -75,8 +75,12 @@
                     <div class="header-sign-in-up d-none d-lg-block">
                         @if ($user = Auth::user())
                             <ul>
-                                <li><a class="sign-in" href="/profile/courses">My Learning</a></li>
-                                <li><a class="sign-in" href="{{$user->role === 'mentor' ? '/me' :'/mentor/onboarding'}}">Become a Mentor</a></li>
+                                <li><a class="sign-in" href="/learning/courses">My Learning</a></li>
+                                @if ($user->role === 'mentor')
+                                    <li><a class="sign-in py-2 " href="/me">Mentor</a></li>
+                                @else
+                                    <li><a class="sign-in py-2" href="/mentor/onboarding">Become a Mentor</a></li>
+                                @endif
                                 <x-avatar :user="$user" />
                             </ul>
                         @else
@@ -89,9 +93,11 @@
                     <!-- Header Sing In & Up End -->
 
                     <div class="d-flex d-lg-none align-items-center me-0">
-                        <div class="me-3">
-                            <x-avatar :user="$user" />
-                        </div>
+                        @if ($user = Auth::user())
+                            <div class="me-3">
+                                <x-avatar :user="$user" />
+                            </div>
+                        @endif
 
                         <!-- Header Mobile Toggle Start -->
                         <div class="header-toggle d-lg-none">

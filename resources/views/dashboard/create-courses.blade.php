@@ -38,14 +38,13 @@
 
                                 <div class="single-form">
                                     <label>Category</label>
-                                    <select name="category" class="select border radius w-100 py-3 px-2">
-                                        <option value="">Select Category</option>
+
+                                    <select name="category" class="selectpicker w-100" data-live-search="true" title="Select Category" data-style="border radius py-0 px-2">
                                         @foreach ($categories as $category)
                                             <option value="{{$category->slug}}">{{$category->name}}</option>
                                         @endforeach
                                     </select>
-                                    {{-- <textarea id="summernote" type="text" value="{{old('desc')}}" class="bg-white" name="desc" placeholder="" ></textarea> --}}
-                                    <x-errors name="desc" />
+                                    <x-errors name="category" />
                                 </div>
 
                                 <div class="single-form">
@@ -54,8 +53,10 @@
                                     <x-errors name="tags" />
                                 </div>
                             </div>
+                        </div>
 
-                            <div class="mt-5 bg-transparent border-0">
+                        <div class="col-md-6 mt-5 mt-md-0">
+                            <div class="bg-transparent border-0">
                                 <h5 class="mb-0">Promotional Media</h5>
                                 <p>Lorem ipsum dolor sit amet consectetur adipisicing.</p>
                             </div>
@@ -73,12 +74,22 @@
                                     <x-dropzone multiple="true" name="images[]" />
                                     <x-errors name="images" />
                                 </div>
-
                             </div>
 
+                            @if (Auth::user()->kyc_status !== 'approved')
+                                <div class="text-end mt-3">
+                                    <p style="font-size: 14px;">You cannot create any classes until your Mentor Request is approved</p>
+                                </div>
+                            @endif
+
+                            <div class="mt-3 d-flex justify-content-end">
+                                <button type="submit" class="btn float-right btn-primary radius" @disabled(Auth::user()->kyc_status === 'approved' ? false : true)>Create Class</button>
+                            </div>
                         </div>
 
-                        <div class="col-md-6">
+
+
+                        {{-- <div class="col-md-6">
                             <div class=" bg-transparent border-0">
                                 <h5 class="mb-0">Batch Details</h5>
                                 <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit</p>
@@ -211,20 +222,8 @@
                                         </div>
                                     </div>
                                 </div>
-
-
                             </div>
-
-                            @if (Auth::user()->kyc_status !== 'approved')
-                                <div class="text-end mt-3">
-                                    <p style="font-size: 14px;">You cannot create any classes until your Mentor Request is approved</p>
-                                </div>
-                            @endif
-                            <div class="mt-3 d-flex justify-content-end">
-                                <button type="submit" class="btn float-right btn-primary radius" @disabled(Auth::user()->kyc_status === 'approved' ? false : true)>Create Class</button>
-                            </div>
-
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
 

@@ -63,7 +63,6 @@ class CourseController extends Controller{
                     return Response::redirectBack('error', 'You cannot create courses because your mentor application has not been approved yet!');
 
             $course_id = Token::unique('courses');
-            $batch_id = Token::unique('batches');
             $category = Category::where('slug', $request->category)->first();
 
             $images = FileHandler::upload($request->file('images'));
@@ -83,54 +82,13 @@ class CourseController extends Controller{
             ]);
 
             $user->total_courses = $user->total_courses + 1;
-            $array = [4, 5, 6];
-            $short_code = strtolower(Token::text(Arr::random($array), 'batches', 'short_code'));
-
-            if($request->discount === 'fixed'){
-                $discount_price = $request->fixed;
-            }else if($request->discount === 'percent'){
-                $discount_price = Number::percentageDecrease($request->percent, $request->price);
-            }
-
-            $batch = Batch::create([
-                'unique_id' => $batch_id,
-                'course_id' => $course_id,
-                'duration' => $request->duration,
-                'mentor_id' => $user->unique_id,
-                'class_link' => $request->class_link,
-                'attendees' => $request->attendees,
-                'price' => $request->price,
-                'current' => true,
-                'count' => 1,
-                'video' => $request->video,
-                'images' => $images,
-                'startdate' => $request->startdate,
-                'enddate' => $request->enddate,
-                'title' => $request->title,
-                'short_code' => $short_code,
-                'discount' => $request->discount,
-                'discount_price' => $discount_price,
-                'fixed' => $request->fixed,
-                'percent' => $request->percent,
-                'time_limit' => $request->time_limit,
-                'signup_limit' => $request->signup_limit,
-                'currency' => $user->currency,
-            ]);
 
             $category->courses += 1;
             $category->save();
 
-            $course->total_batches += 1;
-            $course->active_batch = $batch->unique_id;
-            $course->save();
-
-            $user->total_batches += 1;
-            $user->save();
-
             $notification = [
                 'subject' => 'Your course has been created successfully',
-                'course' => $course,
-                'batch' => $batch
+                'course' => $course
             ];
 
             Notification::send($user, new CoursePublishedNotification($notification));

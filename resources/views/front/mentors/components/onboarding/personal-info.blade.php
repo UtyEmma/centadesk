@@ -62,7 +62,7 @@
                     </div>
 
 
-                    {{-- <div class="row mt-3">
+                    <div class="row mt-3">
                         <h6 for="basic-url" class="form-label">Your Location Info </h6>
                         <div class="col-md-6">
                             <div class="single-form">
@@ -158,7 +158,7 @@
                                 @enderror
                             </small>
                         </div>
-                    </div> --}}
+                    </div>
                 </div>
 
             </div>

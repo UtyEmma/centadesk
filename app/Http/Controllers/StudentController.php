@@ -45,6 +45,8 @@ class StudentController extends Controller{
     public function enrolledCourses(Request $request){
         $user = $this->user();
 
+        $suggestedCourses = $this->getSuggestedCourses($user);
+
         $courses = Enrollment::where('student_id', $user->unique_id)
                         ->join('courses', 'courses.unique_id', 'enrollments.course_id')
                         ->join('batches', 'batches.unique_id', 'enrollments.batch_id')
@@ -53,7 +55,8 @@ class StudentController extends Controller{
                         ->get();
 
         return view('front.student.enrolled-courses', [
-            'courses' => $courses
+            'courses' => $courses,
+            'suggested' => $suggestedCourses
         ]);
     }
 

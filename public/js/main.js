@@ -236,7 +236,9 @@ $(document).ready(() => {
         /*--
             Nice Select
         -----------------------------------*/
-        $('.nice-select').niceSelect();
+        // $('.nice-select').niceSelect();
+
+        $('.selectpicker').selectpicker()
 
 
         /*--

@@ -97,6 +97,13 @@ trait CourseActions {
     function getSuggestedCourses(){
         $query = Courses::query();
 
+
+        $verifiedMentors = $this->verifiedMentorCourses();
+        $bestselling = $this->getBestSellingCourses();
+
+        // collect([...$verifiedMentors, $bestselling]);
+        $courses = $verifiedMentors->merge($bestselling);
+        return $this->getCoursesData($courses);
     }
 
     function verifiedMentorCourses(){

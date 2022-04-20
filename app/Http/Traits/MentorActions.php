@@ -16,7 +16,7 @@ trait MentorActions {
     function getVerifiedMentors($limit = 0){
         $verifiedMentors = User::where([
             'role' => 'mentor',
-            'isVerified' => true
+            'is_verified' => 'verified'
         ])->limit($limit)->get();
 
         return $verifiedMentors;
