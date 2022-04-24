@@ -39,7 +39,7 @@
             <!-- Overview Top End -->
 
             <!-- Graph Top Start -->
-            <div class="graph">
+            <div class="graph p-0 border-0">
                 <div class="graph-title mb-3">
                     <h4 class="title">Withdrawals</h4>
 
@@ -49,7 +49,7 @@
                 </div>
 
                 <div class="card radius p-4">
-                    <table class="table-responsive w-100">
+                    <table class="table-responsive w-100 table-striped">
                         <thead>
                             <th>Amount</th>
                             <th>Payment Method</th>

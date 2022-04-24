@@ -1,29 +1,46 @@
-<x-mentor-course-detail :course="$course" :batches="$batches" :mentor="$mentor">
+<x-app-layout>
 
-    <!-- Admin Courses Tab Start -->
-    <div >
-        <div style="background-color: #def2e6;" class="d-flex radius p-3 justify-content-between align-items-center">
-            <div>
-                <h6 class="lh-0 mb-0">Batch</h6>
-                <h4>{{$batch->title}}</h4>
-            </div>
-
-            <div class="mb-0 ">
-                <div class="d-flex align-items-center">
-                    <small class="mb-0 me-3 fw-bold">{{env('MAIN_APP_DOMAIN')}}/{{$batch->short_code}}</small>
+    <!-- Page Content Wrapper Start -->
+    <div class="page-content-wrapper">
+        <div class="container-fluid custom-container">
+            <!-- Admin Courses Tab Start -->
+            <div class="admin-courses-tab mt-0 w-100">
+                <div class="w-100 d-md-flex justify-content-between">
                     <div>
-                        <button class="p-0 ml-2 mr-1 bg-transparent border-0 outline-0"><i class="icofont-ui-copy"></i></button>
-                        <button class="p-0 mx-1 bg-transparent border-0 outline-0"><i class="icofont-share"></i></button>
+                        <h3 class="mb-1">{{$course->name}}</h3>
+                        <h4>{{$batch->title}}</h4>
+                    </div>
+
+                    <div class="mt-2 mt-md-0">
+                        <x-batch-share :batch="$batch" />
                     </div>
                 </div>
+            </div>
 
-                <div class="text-end mt-2 w-100">
-                    <a href="forum" class="">Batch Forum</a>
+            <div class="courses-details-tab">
+                <div class="details-tab-menu">
+                    <ul class="nav">
+                        <li>
+                            <a href="/me/courses/{{$course->slug}}/{{$batch->short_code}}">
+                                <button class="{{request()->routeIs('mentor_batch') ? 'active' : ''}}">Overview</button>
+                            </a>
+                        </li>
+                        <li >
+                            <a href="/me/courses/{{$course->slug}}/{{$batch->short_code}}/students">
+                                <button class="{{request()->routeIs('mentor_batch_students') ? 'active' : ''}}">Students</button>
+                            </a>
+                        </li>
+                        <li ">
+                            <a href="/me/courses/{{$course->slug}}/{{$batch->short_code}}/forum">
+                                <button class="{{request()->routeIs('mentor_batch_forum') ? 'active' : ''}}">Forum</button>
+                            </a>
+                        </li>
+                    </ul>
                 </div>
             </div>
-        </div>
 
-        {{$slot}}
+            {{$slot}}
+        </div>
    </div>
 
-</x-mentor-course-detail>
+</x-app-layout>

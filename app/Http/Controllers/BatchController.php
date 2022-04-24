@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\NewBatchRequest;
 use App\Http\Traits\BatchActions;
 use App\Http\Traits\CourseActions;
 use App\Library\FileHandler;
@@ -40,7 +41,7 @@ class BatchController extends Controller{
     function fetchBatchStudents(Request $request, $slug, $shortcode){
         try {
             $details = $this->mentorBatchDetails($shortcode, true);
-            return response()->view('dashboard.course-details.batch.students', $details);
+            return Response::view('dashboard.course-details.batch.students', $details);
         } catch (\Throwable $th) {
             throw new Exception($th->getMessage(), $th->getCode());
         }
@@ -80,7 +81,7 @@ class BatchController extends Controller{
         ]);
     }
 
-    function newBatch(Request $request, $course_id){
+    function newBatch(NewBatchRequest $request, $course_id){
         $course = Courses::find($course_id);
         $batch_id = Token::unique('batches');
 
@@ -88,7 +89,7 @@ class BatchController extends Controller{
 
         $user = $this->user();
 
-        $short_code = strtolower(Token::text(5, 'batches', 'short_code'));
+        $short_code = strtolower(Token::text(7, 'batches', 'short_code'));
         $discount_price = 0;
 
         if($request->discount === 'fixed'){

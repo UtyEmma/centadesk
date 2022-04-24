@@ -1,4 +1,4 @@
-<x-mentor-course-detail :course="$course" :batches="$batches" :mentor="$mentor">
+<x-mentor-course-detail :course="$course" :batches="$batches" :mentor="$mentor" title="Batch">
 
      <!-- Admin Courses Tab Start -->
      <div >
@@ -32,8 +32,6 @@
                 <p><span>58</span> This months</p>
             </div>
         </div>
-
-
 
     </div>
 

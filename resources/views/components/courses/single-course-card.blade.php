@@ -36,11 +36,7 @@
         </div>
 
         <h4 class="title"><a href="/courses/{{$course->slug}}">{{$course->name}}</a></h4>
-        <div class="courses-meta">
-            <span>
-                <i class="icofont-read-book"></i> {{$course->total_batches}} {{$course->no_batches}}
-            </span>
-        </div>
+
         <div class="courses-price-review">
             <span>
                 <i class="icofont-comment"></i>

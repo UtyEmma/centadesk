@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Traits\BatchActions;
 use App\Http\Traits\ReviewActions;
 use App\Library\Response;
 use App\Library\Token;
@@ -13,7 +14,7 @@ use Exception;
 use Illuminate\Http\Request;
 
 class ReviewController extends Controller{
-    use ReviewActions;
+    use ReviewActions, BatchActions;
 
     function submitReview(Request $request, $batch_id){
         try {
@@ -64,6 +65,21 @@ class ReviewController extends Controller{
                 'mentor' => $user,
                 'batches' => $batches
             ]);
+        } catch (\Throwable $th) {
+            return Response::redirectBack('error', $th->getMessage());
+        }
+    }
+
+    function fetchBatchReviews(Request $request, $slug, $shortcode){
+        try {
+            $user = $this->user();
+            if(!Batch::where([
+                'short_code' => $shortcode,
+                'mentor_id' => $user->unique_id
+                ])->get()) return Response::redirectBack('error', 'The requested batch does not exist');
+
+            $batchDetails = $this->mentorBatchDetails($shortcode);
+            return Response::view('dashboard.course-details.batch.reviews', $batchDetails);
         } catch (\Throwable $th) {
             return Response::redirectBack('error', $th->getMessage());
         }

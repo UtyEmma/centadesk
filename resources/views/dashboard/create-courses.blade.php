@@ -1,8 +1,8 @@
 <x-app-layout>
     @include('dashboard.js.create-courses-js')
 
-    <div class="page-content-wrapper">
-        <div class="container-fluid my-5 px-3 px-md-5">
+    <div class="page-content-wrapper mt-3">
+        <div class="container-fluid px-3 px-md-5">
             <div class="mb-3">
                 <h4 class="my-0">Create a New Course</h4>
                 <p class="my-0">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laudantium, aliquam.</p>
@@ -39,7 +39,7 @@
                                 <div class="single-form">
                                     <label>Category</label>
 
-                                    <select name="category" class="selectpicker w-100" data-live-search="true" title="Select Category" data-style="border radius py-0 px-2">
+                                    <select name="category" class="selectpicker w-100" data-live-search="true" title="Select Category" data-style="border radius py-0 px-2 fw-normal">
                                         @foreach ($categories as $category)
                                             <option value="{{$category->slug}}">{{$category->name}}</option>
                                         @endforeach
@@ -65,6 +65,9 @@
 
                                 <div class="single-form">
                                     <label>Promotional Video Link</label>
+                                    <p>
+                                        <small>This is a short introductory video that introduces the course. It is recommended that specific details like date, venue etc should not be included in this video.</small>
+                                    </p>
                                     <input type="text" name="video" value="{{old('video')}}" placeholder="Link to promotional video" />
                                     <x-errors name="video" />
                                 </div>

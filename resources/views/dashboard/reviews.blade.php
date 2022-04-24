@@ -2,7 +2,6 @@
     <!-- Page Content Wrapper Start -->
     <div class="main-content-wrapper">
         <div class="container-fluid">
-
             <!-- Admin Top Bar Start -->
             <div class="admin-top-bar flex-wrap">
 

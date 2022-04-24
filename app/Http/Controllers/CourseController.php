@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CreateCourseRequest;
 use App\Http\Traits\AppActions;
 use App\Http\Traits\CourseActions;
+use App\Http\Traits\ReviewActions;
 use App\Library\FileHandler;
 use App\Library\Number;
 use App\Library\Response;
@@ -24,7 +25,7 @@ use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Str;
 
 class CourseController extends Controller{
-    use AppActions, CourseActions;
+    use AppActions, CourseActions, ReviewActions;
 
 
     public function all(Request $request){
@@ -63,7 +64,8 @@ class CourseController extends Controller{
                     return Response::redirectBack('error', 'You cannot create courses because your mentor application has not been approved yet!');
 
             $course_id = Token::unique('courses');
-            $category = Category::where('slug', $request->category)->first();
+            if(!$category = Category::where('slug', $request->category)->first())
+                        return Response::redirectBack('error', 'The selected category does not exist.');
 
             $images = FileHandler::upload($request->file('images'));
             $slug = Str::slug($request->name, '-');
@@ -93,7 +95,7 @@ class CourseController extends Controller{
 
             Notification::send($user, new CoursePublishedNotification($notification));
 
-            return Response::redirectBack('success', 'Course Created Successfully');
+            return Response::redirect("/me/courses/$course->slug/batch/new", 'success', 'Course Created Successfully');
         } catch (\Throwable $th) {
             return Response::redirectBack('error', $th->getMessage());
         }
@@ -120,8 +122,7 @@ class CourseController extends Controller{
         if(!$course) return redirect('/404');
 
         $batches = $course->batches;
-        $reviews = $course->reviews;
-
+        $reviews = $this->getCourseReviews($course);
 
         return view('dashboard.course-details.overview', [
             'course' => $course,

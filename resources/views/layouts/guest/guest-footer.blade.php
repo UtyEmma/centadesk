@@ -89,7 +89,7 @@
                             <div class="widget-form">
                                 <form action="/settings/update" method="POST">
                                     @csrf
-                                    <x-currency-select :name="'currency'" :currency="$currency" :data="$data" class="form-select border radius py-2 ps-1" />
+                                    <x-currency-select :name="'currency'" :currency="$currency" :data="$data" class="" />
                                     <button type="submit" class="btn btn-primary">Update</button>
                                 </form>
                             </div>

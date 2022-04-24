@@ -56,7 +56,7 @@ trait BatchActions {
 
         $students = $getStudents ? $this->students($batch->unique_id) : [];
         $forum = $getForum ? $this->forum($batch->unique_id) : [];
-        $batches = $this->batches($course);
+        $reviews = $this->getBatchReviews($batch);
 
         return [
             'batch' => $batch,
@@ -64,7 +64,7 @@ trait BatchActions {
             'students' => $students,
             'course' => $course,
             'mentor' => $user,
-            'batches' => $batches
+            'reviews' => $reviews
         ];
     }
 

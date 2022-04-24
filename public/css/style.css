@@ -21255,7 +21255,7 @@ img {
   margin-top: 30px;
 }
 
-.courses-details-tab .details-tab-content .tab-reviews .single-review {
+.single-review {
   border: 1px solid rgba(48, 146, 85, 0.2);
   border-radius: 10px;
   padding: 30px;
@@ -21263,7 +21263,7 @@ img {
   overflow: hidden;
 }
 
-.courses-details-tab .details-tab-content .tab-reviews .single-review::before {
+.single-review::before {
   position: absolute;
   content: '';
   background-image: url(../images/shape/shape-18.png);
@@ -21277,12 +21277,12 @@ img {
 }
 
 @media only screen and (max-width: 575px) {
-  .courses-details-tab .details-tab-content .tab-reviews .single-review::before {
+  .single-review::before {
     right: 50px;
   }
 }
 
-.courses-details-tab .details-tab-content .tab-reviews .single-review .review-author {
+.single-review .review-author {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -21294,17 +21294,17 @@ img {
 }
 
 @media only screen and (max-width: 575px) {
-  .courses-details-tab .details-tab-content .tab-reviews .single-review .review-author {
+  .single-review .review-author {
     display: block;
   }
 }
 
-.courses-details-tab .details-tab-content .tab-reviews .single-review .review-author .author-thumb {
+.single-review .review-author .author-thumb {
   position: relative;
   display: inline-block;
 }
 
-.courses-details-tab .details-tab-content .tab-reviews .single-review .review-author .author-thumb img {
+.single-review .review-author .author-thumb img {
   display: block;
   width: 90px;
   border: 1px solid rgba(48, 146, 85, 0.2);
@@ -21312,7 +21312,7 @@ img {
   padding: 8px;
 }
 
-.courses-details-tab .details-tab-content .tab-reviews .single-review .review-author .author-thumb i {
+.single-review .review-author .author-thumb i {
   width: 35px;
   height: 35px;
   line-height: 35px;
@@ -21329,7 +21329,7 @@ img {
   margin: 0 auto;
 }
 
-.courses-details-tab .details-tab-content .tab-reviews .single-review .review-author .author-content {
+.single-review .review-author .author-content {
   -webkit-box-flex: 1;
   -webkit-flex: 1;
       -ms-flex: 1;
@@ -21338,19 +21338,19 @@ img {
 }
 
 @media only screen and (max-width: 575px) {
-  .courses-details-tab .details-tab-content .tab-reviews .single-review .review-author .author-content {
+  .single-review .review-author .author-content {
     padding-left: 0;
     padding-top: 20px;
   }
 }
 
-.courses-details-tab .details-tab-content .tab-reviews .single-review .review-author .author-content .name {
+.single-review .review-author .author-content .name {
   font-size: 22px;
   font-weight: 500;
   margin-bottom: 0;
 }
 
-.courses-details-tab .details-tab-content .tab-reviews .single-review .review-author .author-content .designation {
+.single-review .review-author .author-content .designation {
   font-size: 14px;
   font-weight: 400;
   color: #309255;
@@ -21358,13 +21358,13 @@ img {
   display: block;
 }
 
-.courses-details-tab .details-tab-content .tab-reviews .single-review .review-author .author-content .rating-star {
+.single-review .review-author .author-content .rating-star {
   position: relative;
   margin-top: 5px;
   display: inline-block;
 }
 
-.courses-details-tab .details-tab-content .tab-reviews .single-review .review-author .author-content .rating-star::before {
+.single-review .review-author .author-content .rating-star::before {
   content: '\f000 \f000 \f000 \f000 \f000';
   font-family: IcoFont;
   color: #d0d0d0;
@@ -21373,13 +21373,13 @@ img {
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
-  .courses-details-tab .details-tab-content .tab-reviews .single-review .review-author .author-content .rating-star::before {
+  .single-review .review-author .author-content .rating-star::before {
     font-size: 13px;
     letter-spacing: 1px;
   }
 }
 
-.courses-details-tab .details-tab-content .tab-reviews .single-review .review-author .author-content .rating-star .rating-bar {
+.single-review .review-author .author-content .rating-star .rating-bar {
   position: absolute;
   top: 0;
   left: 0;
@@ -21388,7 +21388,7 @@ img {
   display: inline-block;
 }
 
-.courses-details-tab .details-tab-content .tab-reviews .single-review .review-author .author-content .rating-star .rating-bar::before {
+.single-review .review-author .author-content .rating-star .rating-bar::before {
   content: '\f000 \f000 \f000 \f000 \f000';
   font-family: IcoFont;
   color: #ffba00;
@@ -21397,13 +21397,13 @@ img {
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
-  .courses-details-tab .details-tab-content .tab-reviews .single-review .review-author .author-content .rating-star .rating-bar::before {
+  .single-review .review-author .author-content .rating-star .rating-bar::before {
     font-size: 13px;
     letter-spacing: 1px;
   }
 }
 
-.courses-details-tab .details-tab-content .tab-reviews .single-review p {
+.single-review p {
   margin-top: 30px;
   margin-bottom: 0;
   font-size: 15px;
@@ -21411,7 +21411,7 @@ img {
   color: #52565b;
 }
 
-.courses-details-tab .details-tab-content .tab-reviews .reviews-btn {
+.reviews-btn {
   padding-top: 30px;
   text-align: center;
 }

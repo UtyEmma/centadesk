@@ -1,22 +1,25 @@
-<x-mentor-course-detail :course="$course" :batches="$batches" :mentor="$mentor" title="Course Overview">
+<x-mentor-course-detail :course="$course" :batches="$batches" :mentor="$mentor" title="Course Batches">
     <div class="overview-box mt-0">
-        <div class="single-box mt-0">
-            <h5 class="title">Total Earnings</h5>
+        <div class="single-box mb-2">
+            <h5 class="title">Enrolled Students</h5>
             <div class="count">
-                <span class="fs-5">{{Auth::user()->currency}}</span>
-                {{$course->earnings}}
+                {{$course->total_students}}
             </div>
-            <p><span>$235.00</span> This months</p>
+            <p><span>58</span> This months</p>
         </div>
+        <div class="single-box mb-2">
+            <h5 class="title">Batch Earnings</h5>
+            <div class="count">
+                {{$course->rating}}.0
 
-        <div class="single-box mt-0">
-            <h5 class="title">Total Enrollment’s</h5>
-            <div class="count">{{$course->total_students}}</div>
-            <p><span>345</span> This months</p>
+                <span class="rating-star">
+                        <span class="rating-bar" style="width: {{$course->rating * 20}}%;"></span>
+                </span>
+            </div>
+            <p><span>58</span> This months</p>
         </div>
-
-        <div class="single-box mt-0">
-            <h5 class="title">Mentor Rating</h5>
+        <div class="single-box mb-2">
+            <h5 class="title">Batch Earnings</h5>
             <div class="count">
                 {{$course->rating}}.0
 
@@ -28,122 +31,64 @@
         </div>
     </div>
 
-    <div class="mt-3">
-        <h5 class="mb-3">Course Info</h5>
+    <div class="admin-courses-tab d-flex align-items-center">
+        <h4 class="mb-0">Course Batches</h4>
 
-        <div class="card radius">
-            <div class="card-body">
-                <div class="courses-details my-0">
-                    <div class="courses-details-images position-relative" style="height: 400px;">
-                        <img class="position-absolute " style="object-fit: cover; object-position: center;" src="{{ json_decode($course->images)[0] ?? asset('images/courses/courses-details.jpg')}}" alt="Courses Details">
-                        {{-- <span class="tags">Finance</span> --}}
-
-                        <div class="courses-play">
-                            <img src="{{asset('images/courses/circle-shape.png')}}" alt="Play">
-                            <a class="play video-popup" href="{{$course->video}}"><i class="flaticon-play"></i></a>
-                        </div>
-                    </div>
-
-                    <div class="mt-2">
-                        <x-tags :element="'tags'" :tags="$course->tags"  />
-                    </div>
-
-                    <div class="courses-details-admin mt-3">
-                        <div class="description-wrapper text-truncate" style="max-height: 200px;">
-                            <h5 class="mb-0">Description</h5>
-                            <p class="mt-0 lh-0">
-                                {!! $course->desc !!}
-                            </p>
-                        </div>
-                    </div>
-
-                </div>
+        <div class="courses-tab-wrapper">
+            <div class="tab-btn py-0">
+                <a href="{{$course->slug}}/batch/new" class="btn btn-primary btn-hover-dark">New Batch</a>
             </div>
         </div>
     </div>
+    <!-- Admin Courses Tab End -->
 
-    <div class="mt-3">
-        <h5>Top Reviews</h5>
 
-        <div class="courses-details-tab m-0 p-0">
-            <!-- Tab Reviews Start -->
-            <div class="details-tab-content p-0 m-0">
-                <div id="reviews">
-                    <div class="tab-reviews">
-                        <div class="reviews-wrapper reviews-active mb-0">
-                            <div class="swiper-container">
-                                <div class="swiper-wrapper">
-                                    <!-- Single Reviews Start -->
-                                    <div class="single-review swiper-slide">
-                                        <div class="review-author">
-                                            <div class="author-thumb">
-                                                <img src="assets/images/author/author-06.jpg" alt="Author">
-                                                <i class="icofont-quote-left"></i>
-                                            </div>
-                                            <div class="author-content">
-                                                <h4 class="name">Sara Alexander</h4>
-                                                <span class="designation">Product Designer, USA</span>
-                                                <span class="rating-star">
-                                                        <span class="rating-bar" style="width: 100%;"></span>
-                                                </span>
-                                            </div>
-                                        </div>
-                                        <p>Lorem Ipsum has been the industry's standard dummy text since the 1500 when unknown printer took a galley of type and scrambled to make type specimen book has survived not five centuries but also the leap into electronic type and book.</p>
-                                    </div>
-                                    <!-- Single Reviews End -->
-
-                                    <!-- Single Reviews Start -->
-                                    <div class="single-review swiper-slide">
-                                        <div class="review-author">
-                                            <div class="author-thumb">
-                                                <img src="assets/images/author/author-07.jpg" alt="Author">
-                                                <i class="icofont-quote-left"></i>
-                                            </div>
-                                            <div class="author-content">
-                                                <h4 class="name">Karol Bachman</h4>
-                                                <span class="designation">Product Designer, USA</span>
-                                                <span class="rating-star">
-                                                        <span class="rating-bar" style="width: 100%;"></span>
-                                                </span>
-                                            </div>
-                                        </div>
-                                        <p>Lorem Ipsum has been the industry's standard dummy text since the 1500 when unknown printer took a galley of type and scrambled to make type specimen book has survived not five centuries but also the leap into electronic type and book.</p>
-                                    </div>
-                                    <!-- Single Reviews End -->
-
-                                    <!-- Single Reviews Start -->
-                                    <div class="single-review swiper-slide">
-                                        <div class="review-author">
-                                            <div class="author-thumb">
-                                                <img src="assets/images/author/author-03.jpg" alt="Author">
-                                                <i class="icofont-quote-left"></i>
-                                            </div>
-                                            <div class="author-content">
-                                                <h4 class="name">Gertude Culbertson</h4>
-                                                <span class="designation">Product Designer, USA</span>
-                                                <span class="rating-star">
-                                                        <span class="rating-bar" style="width: 100%;"></span>
-                                                </span>
-                                            </div>
-                                        </div>
-                                        <p>Lorem Ipsum has been the industry's standard dummy text since the 1500 when unknown printer took a galley of type and scrambled to make type specimen book has survived not five centuries but also the leap into electronic type and book.</p>
-                                    </div>
-                                    <!-- Single Reviews End -->
-
-                                </div>
-                                <!-- Add Pagination -->
-                                <div class="swiper-pagination"></div>
-                            </div>
-                        </div>
-
-                        <div class="reviews-btn mt-0">
-                            <a href="{{$course->slug}}/reviews" class="btn btn-primary btn-hover-dark">View All Reviews</a>
-                        </div>
+    <div class="mt-4">
+            @forelse ($batches as $batch)
+                <div class="courses-item mt-2">
+                    <div class="item-thumb col-md-2">
+                        <a href="/me/courses/{{$course->slug}}/edit">
+                            <img src="{{$batch->images && json_decode($batch->images)[0]}}" alt="Courses">
+                        </a>
                     </div>
 
-                </div>
-            </div>
-        </div>
+                    <div class="content-title">
+                        <div class="meta">
+                            <a href="#" class="lh-0 action text-capitalize">{{$batch->status}}</a>
+                            <a href="#" class="lh-0 action">{{$batch->price > 0 ? 'Paid' : 'Free'}}</a>
+                            <a href="#" class="action text-capitalize">{{$batch->discount !== 'none' ? 'Discounted' : 'No Discount'}}</a>
+                        </div>
 
+                        <h3 class="title mt-0 mb-2"><a href="/me/courses/{{$course->slug}}/{{$batch->short_code}}">{{$batch->title}}</a></h3>
+
+                        <x-batch-share :batch="$batch" />
+                    </div>
+
+                    <div class="content-wrapper">
+                        <a href="{{$course->slug}}/{{$batch->short_code}}">
+                            <x-btn classes="btn-secondary btn-hover-primary px-4">View Details</x-btn>
+                        </a>
+
+                        <div class="dropdown">
+                            <button class="btn btn-primary btn-hover-dark dropdown-toggle  px-4 border-0 rounded-full" style="font-size: 14px; line-height: 3.5;" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                              Options
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                              <li><a class="dropdown-item" href="{{$course->slug}}/{{$batch->short_code}}/edit">Edit</a></li>
+                              <li><a class="dropdown-item" href="{{$course->slug}}/{{$batch->short_code}}">Details</a></li>
+                              <li><a class="dropdown-item" href="/courses/{{$course->slug}}/{{$batch->short_code}}">Preview</a></li>
+                              <li><hr class="dropdown-divider"></li>
+                              <li><a class="dropdown-item" href="{{$course->slug}}/{{$batch->short_code}}/cancel">Cancel</a></li>
+                            </ul>
+                          </div>
+
+                    </div>
+                </div>
+            @empty
+
+            @endforelse
+
+        </div>
     </div>
+
 </x-mentor-course-detail>

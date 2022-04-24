@@ -9,18 +9,16 @@ class MentorBatchDetail extends Component
     public $course;
     public $batch;
     public $mentor;
-    public $batches;
 
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($course, $batch, $mentor, $batches){
+    public function __construct($course, $batch, $mentor){
         $this->course = $course;
         $this->batch = $batch;
         $this->mentor = $mentor;
-        $this->batches = $batches;
     }
 
     /**

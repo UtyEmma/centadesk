@@ -19,7 +19,6 @@
         <link rel="stylesheet" href="{{ asset('css/plugins/flaticon.css')}} ">
         <link rel="stylesheet" href="{{ asset('css/plugins/font-awesome.min.css')}} ">
         <link rel="stylesheet" href="{{ asset('css/plugins/tagify.min.css')}} ">
-        <link rel="stylesheet" href="{{ asset('css/plugins/date-range-picker.css')}} ">
         <link rel="stylesheet" href="{{ asset('css/plugins/jqvmap.min.css')}} ">
         <link rel="stylesheet" href="{{ asset('vendor/summernote-0.8.18-dist/summernote-lite.min.css')}} ">
 
@@ -62,7 +61,7 @@
 
         <script src="{{asset('vendor/summernote-0.8.18-dist/summernote-lite.min.js')}}" ></script>
 
-        <script src="https://cdn.jsdelivr.net/npm/@easepick/bundle@1.1.3/dist/index.umd.min.js"></script>
+        <script src="{{asset('js/plugins/easepick.min.js')}}" defer></script>
 
         <script src="{{asset('js/plugins/bootstrap-select.js')}}"></script>
 

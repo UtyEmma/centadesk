@@ -90,8 +90,9 @@ class ForumController extends Controller{
 
         $message->firstname = $sender->firstname;
         $message->lastname = $sender->lastname;
+        $message->avatar = $sender->avatar;
 
-        $message->created_at = DateTime::getDateInterval($message->created_at);
+        $message->time_interval = DateTime::getDateInterval($message->updated_at);
 
         return view('front.student.course.question', array_merge($course, [
                 'message' => $message,
@@ -106,15 +107,18 @@ class ForumController extends Controller{
 
         $batch = Batch::where('short_code', $shortcode)->first();
         $batches = Batch::where('course_id', $course->unique_id)->get();
-        $forum_messages = ForumMessages::where('batch_id', $batch->unique_id)
+        $messages = ForumMessages::where('batch_id', $batch->unique_id)
                                 ->join('users', 'users.unique_id', 'forum_messages.sender_id')
-                                ->select('forum_messages.*', 'users.firstname', 'users.lastname', 'users.avatar')
+                                ->select('forum_messages.*', 'users.firstname', 'users.lastname', 'users.avatar', 'users.unique_id as user_id')
                                 ->get();
 
-        $messages = array_map(function($message){
-            $message['created_at'] = DateTime::getDateInterval($message['created_at']);
+        $mentor = User::find($batch->mentor_id);
+
+        $messages->map(function($message) use ($mentor){
+            $message->time_interval = DateTime::getDateInterval($message->created_at);
+            $message->is_mentor = $mentor->unique_id === $message->user_id;
             return $message;
-        }, $forum_messages->toArray());
+        });
 
         $batch->begins = DateTime::getDateInterval($batch->startdate);
 
@@ -134,9 +138,7 @@ class ForumController extends Controller{
         $sender = User::find($message->sender_id);
 
         $course = Courses::where('slug', $slug)->first();
-
         $batch = Batch::where('short_code', $shortcode)->first();
-        $batches = Batch::where('course_id', $course->unique_id)->get();
 
         $forum_messages = ForumMessages::where('batch_id', $batch->unique_id)
                                 ->join('users', 'users.unique_id', 'forum_messages.sender_id')
@@ -157,8 +159,9 @@ class ForumController extends Controller{
 
         $message->firstname = $sender->firstname;
         $message->lastname = $sender->lastname;
+        $message->avatar = $sender->avatar;
 
-        $message->created_at = DateTime::getDateInterval($message->created_at);
+        $message->time_interval = DateTime::getDateInterval($message->updated_at);
 
         return view('dashboard.course-details.batch.forum-replies', [
             'batch' => $batch,
@@ -166,7 +169,6 @@ class ForumController extends Controller{
             'mentor' => $user,
             'forum' => $messages,
             'user' => $user,
-            'batches' => $batches,
             'message' => $message,
             'replies' => $replies
         ]);

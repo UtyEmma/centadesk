@@ -107,9 +107,9 @@ Route::middleware(['set.currency', 'set.referrals'])->group(function(){
                     });
 
                     Route::prefix('/{slug}/{shortcode}')->group(function(){
-                        Route::get('/', [BatchController::class, 'fetchBatch']);
-                        Route::get('/students', [BatchController::class, 'fetchBatchStudents']);
-                        Route::get('/forum', [ForumController::class, 'fetchMentorBatchForum']);
+                        Route::get('/', [BatchController::class, 'fetchBatch'])->name('mentor_batch');
+                        Route::get('/students', [BatchController::class, 'fetchBatchStudents'])->name('mentor_batch_students');
+                        Route::get('/forum', [ForumController::class, 'fetchMentorBatchForum'])->name('mentor_batch_forum');
                         Route::get('/forum/{unique_id}', [ForumController::class, 'fetchMentorBatchForumReplies']);
                         Route::get('/edit', [BatchController::class, 'edit']);
                         Route::post('/update', [BatchController::class, 'update']);

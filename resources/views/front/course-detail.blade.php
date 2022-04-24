@@ -13,7 +13,7 @@
 
             <div class="courses-details">
                 <h3 class="mt-4 mb-1">{{$course->name}}</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo, temporibus.</p>
+                {{-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo, temporibus.</p> --}}
                 <div class="courses-details-admin mb-4 mt-0 p-0">
                     <div class="mb-0 p-0">
                         <div class="author-content ms-0 p-0 d-flex align-items-center">
@@ -67,7 +67,7 @@
 
                                 <div class="row">
                                     @foreach ($course->batches as $batch)
-                                        <div class="col-md-6" >
+                                        <div class="col-md-12" >
                                             <x-batch.batch-item :course="$course" :user="Auth::user()" :batch="$batch" :mentor="$course->mentor" />
                                         </div>
                                     @endforeach
@@ -75,15 +75,6 @@
                             </div>
                         </div>
                         <!-- Courses Details Tab End -->
-
-                        <div class="w-100 mt-4 mb-0">
-                            <h6>Tags</h6>
-                            @if ($course->tags)
-                                @foreach (json_decode($course->tags) as $tag)
-                                    <span class="tag-item text-capitalize">{{$tag->value}}</span>
-                                @endforeach
-                            @endif
-                        </div>
                     </div>
                     <!-- Courses Details End -->
                 </div>
@@ -91,6 +82,22 @@
                     <div class="courses-details mb-3 mt-0">
                         <x-course-images :images="json_decode($course->images)" :video="$course->video" :alt="$course->name" />
                     </div>
+
+                    <!-- Sidebar Widget Tags Start -->
+                    <div class="sidebar-widget">
+                        <h4 class="widget-title">Course Tags</h4>
+
+                        <div class="widget-tags p-4">
+                            <ul class="tags-list">
+                                @forelse (json_decode($course->tags) as $tag)
+                                    <li class="text-capitalize"><a href="#">{{$tag->value}}</a></li>
+                                @empty
+
+                                @endforelse
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Sidebar Widget Tags End -->
 
                     <!-- Sidebar Widget Share Start -->
                     <div class="sidebar-widget">
@@ -110,7 +117,7 @@
             </div>
 
             <div class="row mt-5">
-                <h4>Suggested Courses:</h4>
+                <h4>Suggested for you:</h4>
                 <div class="col-md-4">
 
                 </div>

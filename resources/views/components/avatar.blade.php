@@ -32,12 +32,13 @@
 </style>
 
 <div class="position-relative avatar-toggle">
-    <button onclick="toggleAvatarMenu()" class="bg-transparent rounded-none rounded-circle border border-2 border-primary">
+    <button onclick="toggleAvatarMenu()" class="bg-transparent border-0 p-0" >
         @if ($user->avatar)
-                {{-- <img src="{{$user->avatar}}" alt="Image" /> --}}
-                <x-rounded-img :img="$user->avatar" :circle="false" />
+            <x-rounded-img :img="$user->avatar" :circle="false" />
         @else
-            <x-avatar-initials :firstname="$user->firstname" :lastname="$user->lastname" />
+            <div class="bg-transparent rounded-none rounded-circle border border-2 border-primary">
+                <x-avatar-initials :firstname="$user->firstname" :lastname="$user->lastname" />
+            </div>
         @endif
     </button>
 
