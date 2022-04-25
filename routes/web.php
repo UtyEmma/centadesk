@@ -111,7 +111,7 @@ Route::middleware(['set.currency', 'set.referrals'])->group(function(){
                         Route::get('/students', [BatchController::class, 'fetchBatchStudents'])->name('mentor_batch_students');
                         Route::get('/forum', [ForumController::class, 'fetchMentorBatchForum'])->name('mentor_batch_forum');
                         Route::get('/forum/{unique_id}', [ForumController::class, 'fetchMentorBatchForumReplies']);
-                        Route::get('/edit', [BatchController::class, 'edit']);
+                        Route::get('/edit', [BatchController::class, 'edit'])->name('mentor_batch_edit');
                         Route::post('/update', [BatchController::class, 'update']);
                     });
                 });

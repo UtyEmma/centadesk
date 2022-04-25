@@ -198,6 +198,11 @@ class BatchController extends Controller{
         }
     }
 
+    function edit(Request $request, $slug, $shortcode){
+        $details = $this->getBatchDetails($shortcode);
+        return Response::view('dashboard.course-details.batch.edit', $details);
+    }
+
     function deleteBatch ($id){
 
     }

@@ -13,7 +13,7 @@
                     <!-- Footer Widget Start -->
                     <div class="footer-widget">
                         <div class="widget-logo">
-                            <a href="#"><img src="{{asset('images/logo.png')}}" alt="Logo"></a>
+                            <a href="#"><img src="{{asset('images/libra-main.png')}}" alt="Logo"></a>
                         </div>
 
                         <div class="widget-address">
@@ -90,7 +90,7 @@
                                 <form action="/settings/update" method="POST">
                                     @csrf
                                     <x-currency-select :name="'currency'" :currency="$currency" :data="$data" class="" />
-                                    <button type="submit" class="btn btn-primary">Update</button>
+                                    <button type="submit" class="btn btn-primary mt-2">Update</button>
                                 </form>
                             </div>
                         </div>

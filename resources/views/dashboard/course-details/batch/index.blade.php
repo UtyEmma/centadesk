@@ -20,19 +20,19 @@
             <div class="courses-details-tab">
                 <div class="details-tab-menu">
                     <ul class="nav">
-                        <li>
-                            <a href="/me/courses/{{$course->slug}}/{{$batch->short_code}}">
-                                <button class="{{request()->routeIs('mentor_batch') ? 'active' : ''}}">Overview</button>
-                            </a>
-                        </li>
                         <li >
                             <a href="/me/courses/{{$course->slug}}/{{$batch->short_code}}/students">
                                 <button class="{{request()->routeIs('mentor_batch_students') ? 'active' : ''}}">Students</button>
                             </a>
                         </li>
-                        <li ">
+                        <li>
                             <a href="/me/courses/{{$course->slug}}/{{$batch->short_code}}/forum">
                                 <button class="{{request()->routeIs('mentor_batch_forum') ? 'active' : ''}}">Forum</button>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/me/courses/{{$course->slug}}/{{$batch->short_code}}/edit">
+                                <button class="{{request()->routeIs('mentor_batch_edit') ? 'active' : ''}}">Edit</button>
                             </a>
                         </li>
                     </ul>
@@ -40,6 +40,8 @@
             </div>
 
             {{$slot}}
+
+            <x-new-course />
         </div>
    </div>
 

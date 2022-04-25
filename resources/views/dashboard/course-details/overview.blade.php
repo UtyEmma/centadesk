@@ -65,10 +65,6 @@
                     </div>
 
                     <div class="content-wrapper">
-                        <a href="{{$course->slug}}/{{$batch->short_code}}">
-                            <x-btn classes="btn-secondary btn-hover-primary px-4">View Details</x-btn>
-                        </a>
-
                         <div class="dropdown">
                             <button class="btn btn-primary btn-hover-dark dropdown-toggle  px-4 border-0 rounded-full" style="font-size: 14px; line-height: 3.5;" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                               Options
