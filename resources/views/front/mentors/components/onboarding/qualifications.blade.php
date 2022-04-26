@@ -10,7 +10,7 @@
 
         <div class="border p-3 py-5 p-md-5 radius">
             <div>
-                <h6 class="p-0">Skills</h6>
+                <h6 class="p-0">Qualifications</h6>
             </div>
 
             <small id="qualification-section-error" class="text-danger text-capitalize">
@@ -47,13 +47,13 @@
             </div>
 
             <div class="mt-3">
-                <button class="btn btn-primary" type="button" onclick="addQualificationItem()" >Add</button>
+                <button class="btn btn-primary btn-hover-dark" type="button" onclick="addQualificationItem()" >Add</button>
             </div>
         </div>
 
         <div class="single-form d-flex justify-content-between px-0">
-            <button type="button" class="btn btn-primary" onclick="previous()">Previous</button>
-            <button type="button" class="btn btn-primary" onclick="handleNext(checkForQualifications)">Next</button>
+            <button type="button" class="btn btn-primary btn-hover-dark" onclick="previous()">Previous</button>
+            <button type="button" class="btn btn-primary btn-hover-dark" onclick="handleNext(checkForQualifications)">Next</button>
         </div>
     </div>
 </div>

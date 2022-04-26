@@ -59,13 +59,32 @@
                             <a href="#" class="action text-capitalize">{{$batch->discount !== 'none' ? 'Discounted' : 'No Discount'}}</a>
                         </div>
 
-                        <h3 class="title mt-0 mb-2"><a href="/me/courses/{{$course->slug}}/{{$batch->short_code}}">{{$batch->title}}</a></h3>
+                        <h3 class="title mt-0 mb-2">
+                            <a href="/me/courses/{{$course->slug}}/{{$batch->short_code}}">{{$batch->title}}</a>
+                        </h3>
 
                         <x-batch-share :batch="$batch" />
                     </div>
 
                     <div class="content-wrapper">
-                        <div class="dropdown">
+                        <a href="{{$course->slug}}/{{$batch->short_code}}">
+                            <button class="btn btn-primary btn-hover-dark  px-4 border-0 rounded-full" style="font-size: 14px; line-height: 3.5;" type="button">
+                              Details
+                            </button>
+                        </a>
+                        <a href="{{$course->slug}}/{{$batch->short_code}}/edit">
+                            <button class="btn btn-secondary btn-hover-primary  px-4 border-0 rounded-full" style="font-size: 14px; line-height: 3.5;" type="button">
+                              Edit
+                              <i class="icofont-edit" ></i>
+                            </button>
+                        </a>
+                        <a href="{{$course->slug}}/{{$batch->short_code}}/delete">
+                            <button class="btn btn-danger btn-hover-dark  px-4 border-0 rounded-full" style="font-size: 14px; line-height: 3.5;" type="button">
+                              Delete
+                              <i class="icofont-trash" ></i>
+                            </button>
+                        </a>
+                        {{-- <div class="dropdown">
                             <button class="btn btn-primary btn-hover-dark dropdown-toggle  px-4 border-0 rounded-full" style="font-size: 14px; line-height: 3.5;" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                               Options
                             </button>
@@ -76,8 +95,7 @@
                               <li><hr class="dropdown-divider"></li>
                               <li><a class="dropdown-item" href="{{$course->slug}}/{{$batch->short_code}}/cancel">Cancel</a></li>
                             </ul>
-                          </div>
-
+                        </div> --}}
                     </div>
                 </div>
             @empty

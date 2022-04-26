@@ -112,7 +112,7 @@
                     </div>
                 </div>
 
-                <a class="action rounded-img" href="/me/profile" style="">
+                <a class="action rounded-img" href="/me/account" style="">
                     <img src="{{$user->avatar ?? asset('images/author/author-07.jpg')}}" alt="Author">
                 </a>
             </div>

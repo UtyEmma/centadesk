@@ -20,17 +20,17 @@ class WithdrawalController extends Controller{
         try {
             $flutterwave = new Flutterwave();
             $user = $this->user();
+            $wallet = Wallet::where('user_id', $user->unique_id)->first();
+            if($wallet->available < $request->amount) return Response::redirectBack('error', 'You do not have sufficient funds for this transaction.');
+
             $withdrawal = $this->createWithdrawal($user, $request->amount, $request->type ?? 'bank');
             $withdraw = $flutterwave->initiateWithdrawal($withdrawal, $user, $request->amount);
-
-            return print_r($withdraw);
 
             if(!$withdraw || $withdraw['status'] === 'success') {
                 $withdrawal->delete();
                 return Response::redirectBack('error', 'Your withdrawal could not be initiated');
             }
 
-            $wallet = Wallet::where('user_id', $user->unique_id)->first();
             $wallet->available -= $request->amount;
             $wallet->save();
 

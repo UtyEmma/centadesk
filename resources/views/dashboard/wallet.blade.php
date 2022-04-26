@@ -3,6 +3,10 @@
     <div class="page-content-wrapper">
         <div class="container-fluid">
 
+            <div class="mb-3">
+                <h4 class="my-0">Wallet</h4>
+            </div>
+
             <x-mentor.kyc-warning :user="$user" />
 
             <!-- Overview Top Start -->

@@ -6,6 +6,22 @@
     border-radius: 10px 10px 0 0 !important;
 }
 
+.radius-top-left{
+    border-radius: 1px 0 0 0 !important;
+}
+
+.radius-top-right{
+    border-radius: 0 0 10px 0 !important;
+}
+
+.radius-bottom-right{
+    border-radius: 0 0 10px 0 !important;
+}
+
+.radius-bottom-left{
+    border-radius: 0 0 0 10px !important;
+}
+
 .radius-right{
     border-radius: 0 10px 10px 0 !important;
 }

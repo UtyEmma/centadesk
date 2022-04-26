@@ -49,6 +49,8 @@
 
         if(moment(data.startdate).isAfter(data.enddate)) return $(`#startdate-error`).text("Your work Start date should not fall after your work end date")
 
+        data.startdate = moment(data.startdate).format("Do MMM, YYYY")
+        data.enddate = moment(data.enddate).format("Do MMM, YYYY")
         id ? experienceArray[id] = data : experienceArray.push(data)
         $('#experience-container').html('')
 
@@ -68,8 +70,12 @@
                             </div>
 
                             <div>
-                                <button class="" onclick="deleteExperienceItem(${experienceArray.length - 1})" type="button">X</button>
-                                <button class="" onclick="editExperience(${experienceArray.length - 1})" type="button">Edit</button>
+                                <button class="p-0 mx-2 bg-transparent border-0 text-link" onclick="editExperience(${experienceArray.length - 1})" type="button">
+                                    <i class="icofont-edit"></i>
+                                </button>
+                                <button class="p-0 mx-2 bg-transparent border-0 text-link" onclick="deleteExperienceItem(${experienceArray.length - 1})" type="button">
+                                    <i class="icofont-close-squared-alt"></i>
+                                </button>
                             </div>
                         </div>`
         $('#experience-container').append(markup)

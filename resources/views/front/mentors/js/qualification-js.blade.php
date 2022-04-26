@@ -27,7 +27,7 @@
             const data = {
                 qualification: document.querySelector('#qualification').value,
                 institution: document.querySelector('#institution').value,
-                date: document.querySelector('#date').value,
+                date: document.querySelector('#date').value ,
             }
 
             const validation = validator.init(data, __qualificationSchema)
@@ -37,9 +37,12 @@
                 return parseErrors(errors)
             }
 
+
             if(moment(data.date).isAfter(new Date())){
                 return $(`#date-error`).text("Qualification date cannot fall after today")
             }
+
+            data.date = moment(data.date).format("Do MMM, YYYY")
 
             id ? qualificationArray[id] = data : qualificationArray.push(data)
 
@@ -72,8 +75,10 @@
                                 </div>
 
                                 <div>
-                                    <button class="" onclick="deleteQualification(${qualificationArray.length - 1})" type="button">X</button>
-                                    <button class="" onclick="editQualification(${qualificationArray.length - 1})" type="button">Edit</button>
+                                    <button class="p-0 mx-2 bg-transparent border-0 text-link" onclick="deleteQualification(${qualificationArray.length - 1})" type="button">
+                                        <i class="icofont-close-squared-alt"></i>
+                                    </button>
+                                    <button class="p-0 mx-2 bg-transparent border-0 text-link" onclick="editQualification(${qualificationArray.length - 1})" type="button"><i class="icofont-edit"></i></button>
                                 </div>
                             </div>`
             $('#qualificationContainer').append(markup)

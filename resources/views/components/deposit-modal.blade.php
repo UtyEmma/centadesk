@@ -63,24 +63,26 @@
         }
     </script>
 @endpush
+
 <div class="modal fade" id="depositModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content w-75-md mx-auto">
+    <div class="modal-dialog  modal-dialog-centered">
+      <div class="modal-content w-50-md  mx-auto">
         <div class="modal-header border-0 pt-5">
           <h5 class="modal-title" id="exampleModalLabel">Deposit Funds</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <form onsubmit="handleDeposit(event)">
+        <form action="/wallet/deposit" method="POST">
+            @csrf
             <div class="modal-body">
                 <div class="single-form">
                     <label for="">Select Payment Method</label>
 
                     <div class="row">
-                        <div class="col-6">
-                            <x-custom-radio :default="true" name="payment_method" value="bank">Card</x-custom-radio>
+                        <div class="col-md-6">
+                            <x-custom-radio :default="true" name="type" value="bank">Card</x-custom-radio>
                         </div>
-                        <div class="col-6">
-                            <x-custom-radio :default="false" name="payment_method" value="crypto">Crypto</x-custom-radio>
+                        <div class="col-md-6">
+                            <x-custom-radio :default="false" name="type" value="crypto">Crypto</x-custom-radio>
                         </div>
                     </div>
                 </div>
@@ -95,8 +97,8 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary">Proceed to payment</button>
+                <button type="button" class="btn btn-secondary btn-hover-primary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary btn-hover-dark">Proceed to payment</button>
             </div>
         </form>
       </div>

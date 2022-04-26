@@ -34,13 +34,10 @@
                         </div>
                     </div>
                 </div>
-
-                <div class="col-md-5 mt-2 mt-md-0">
-                </div>
             </div>
 
             @if ($user->kyc_status === 'pending')
-                <div class="new-courses px-8 mt-2 mt-md-0" style="background-image: url({{asset('images/new-courses-banner.jpg')}});">
+                <div class="new-courses px-8 " style="background-image: url({{asset('images/new-courses-banner.jpg')}});">
                     <div class="row">
                         <div class="new-courses-title">
                             <h3 class="title">Your Mentor account is under review. <br> You will be able to start creating courses after your account is approved.</h3>

@@ -75,11 +75,17 @@
                                         </div>
 
                                         <div class="courses-select mx-1">
-                                            <select class="selectpicker w-auto" data-title="Options" >
-                                                <option data-display="This Month">Preview</option>
-                                                <option data-display="This Month">Edit</option>
-                                                <option value="1">Delete</option>
-                                            </select>
+                                            <div class="dropdown">
+                                                <button class="btn btn-primary btn-hover-dark dropdown-toggle  px-4 border-0 rounded-full" style="font-size: 14px; line-height: 3.5;" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                                  Options
+                                                </button>
+                                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                                  <li><a class="dropdown-item" href="{{$course->slug}}/edit">Edit</a></li>
+                                                  <li><a class="dropdown-item" href="{{$course->slug}}">Details</a></li>
+                                                  <li><a class="dropdown-item" href="/courses/{{$course->slug}}">Preview</a></li>
+                                                  <li><a class="dropdown-item text-danger" href="{{$course->slug}}/delete">Cancel</a></li>
+                                                </ul>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

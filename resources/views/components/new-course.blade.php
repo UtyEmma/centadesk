@@ -1,7 +1,7 @@
 <!-- New Courses Start -->
 <div class="new-courses" style="background-image: url({{asset('images/new-courses-banner.jpg')}});">
     <div class="new-courses-title">
-        <h3 class="title">Your students want to learn more. <br> Consider creating new courses to meet that deman.</h3>
+        <h3 class="title">Your students want to learn more. <br> Consider creating new courses to meet that demand.</h3>
     </div>
     <img class="shape d-none d-xl-block" src="{{asset('images/shape/shape-27.png')}}" alt="Shape">
     <div class="new-courses-btn">

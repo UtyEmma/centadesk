@@ -68,8 +68,12 @@ trait UserActions{
 
     function updateUser($request, $user){
         if(!$user = User::find($user->unique_id)) return false;
-        FileHandler::deleteFile($user->avatar);
-        $avatar = FileHandler::upload($request->avatar);
+        $avatar = $user->avatar;
+
+        if($request->avatar){
+            FileHandler::deleteFile($user->avatar);
+            $avatar = FileHandler::upload($request->avatar);
+        }
 
         $user->update(array_merge($request->all(), [
             'avatar' => $avatar

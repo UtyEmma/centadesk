@@ -166,7 +166,7 @@
                                 </div>
 
                                 <div class="mt-5 d-flex justify-content-end">
-                                    <button type="submit" class="btn float-right btn-primary radius">Create new Batch</button>
+                                    <button type="submit" class="btn float-right btn-primary btn-hover-dark radius">Create new Batch</button>
                                 </div>
                             </div>
                         </div>

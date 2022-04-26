@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Http;
 
 trait CryptoActions{
 
-    function payWithCrypto($transaction, $user, $redirect_url, $batch, $course){
+    function payWithCrypto($transaction, $user, $redirect_url, $desc = ''){
         $url = env('COINBASE_API_URL').'/charges';
 
         $response = Http::withHeaders([
@@ -16,7 +16,7 @@ trait CryptoActions{
             'X-CC-Version' => '2018-03-22'
         ])->post($url, [
             'name' => "Libraclass Course Payment",
-            'description' => "Enrollment for $batch->title of $course->name",
+            'description' => $desc,
             'pricing_type' => 'fixed_price',
             "local_price" => [
                 "amount" => $transaction->amount,
@@ -26,8 +26,8 @@ trait CryptoActions{
                 "reference" => $transaction->reference,
                 "customer_name" => "$user->firstname $user->lastname"
             ],
-              "redirect_url" => "$redirect_url?ref=$transaction->unique_id",
-              "cancel_url" => "$redirect_url?ref=$transaction->unique_id"
+              "redirect_url" => $redirect_url."&status=initialized",
+              "cancel_url" => $redirect_url."&status=cancelled"
         ]);
 
 
@@ -41,8 +41,10 @@ trait CryptoActions{
         return Response::redirect($res['data']['hosted_url']);
     }
 
-    function verifyCryptoPayment($request, $batch_id){
-        return print_r($request);
+    function verifyCryptoPayment($request){
+        if($request->status === 'initialized') return Response::redirectBack('/wallet', 'Your Payment has been initiated is pending');
+        if($request->status === 'cancelled') return Response::redirect('/wallet', 'error', 'Your Payment was cancelled');
+        return Response::redirectBack('error', 'Your Payment status could not be determined please contact Support');
     }
 
 }

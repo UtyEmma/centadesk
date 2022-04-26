@@ -63,6 +63,9 @@
 
         <script src="{{asset('js/plugins/easepick.min.js')}}" defer></script>
 
+        <script src="{{asset('js/plugins/validator.js')}}"></script>
+        <script src="{{asset('js/validation.js')}}"></script>
+
         <script src="{{asset('js/plugins/bootstrap-select.js')}}"></script>
 
         <!-- Main JS -->

@@ -42,4 +42,6 @@ class NewBatchRequest extends FormRequest
             'signup_limit' => 'nullable|numeric'
         ];
     }
+
+
 }

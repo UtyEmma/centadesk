@@ -7,6 +7,7 @@ use App\Http\Controllers\BatchController;
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\CryptoPaymentController;
+use App\Http\Controllers\DepositController;
 use App\Http\Controllers\EnrollmentController;
 use App\Http\Controllers\ForumController;
 use App\Http\Controllers\MentorController;
@@ -47,7 +48,12 @@ Route::middleware(['set.currency', 'set.referrals'])->group(function(){
             Route::get('/mentors', [StudentController::class, 'fetchMentors']);
         });
 
-        Route::get('/wallet', [WalletController::class, 'studentWallet']);
+        Route::prefix('wallet')->group(function(){
+            Route::get('/', [WalletController::class, 'studentWallet']);
+            Route::post('/deposit', [DepositController::class, 'initiate']);
+            Route::get('/verify', [DepositController::class, 'verify']);
+        });
+
 
         Route::prefix('/profile')->group(function(){
             Route::get('/', [StudentController::class, 'show']);
@@ -100,7 +106,6 @@ Route::middleware(['set.currency', 'set.referrals'])->group(function(){
                     Route::get('/{slug}/edit', [CourseController::class, 'edit']);
                     Route::post('/{slug}/update', [CourseController::class, 'update']);
 
-
                     Route::prefix('/{slug}/batch')->group(function(){
                         Route::get('/new', [BatchController::class, 'newBatchPage']);
                         Route::post('/create', [BatchController::class, 'newBatch']);
@@ -123,7 +128,6 @@ Route::middleware(['set.currency', 'set.referrals'])->group(function(){
 
             Route::prefix('account')->group(function(){
                 Route::get('/', [MentorController::class, 'profile']);
-                Route::get('/settings', [MentorController::class, 'settings']);
                 Route::get('/payments', [MentorController::class, 'payments']);
             });
 

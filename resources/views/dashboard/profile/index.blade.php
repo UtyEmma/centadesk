@@ -9,10 +9,10 @@
             <x-mentor.kyc-warning />
 
             <!-- Account page navigation-->
-            <nav class="nav nav-borders bg-light p-2 radius mb-4">
-                <a class="nav-link active ms-0" href="/me/account">Profile</a>
-                <a class="nav-link" href="/me/account/payments" >Payments</a>
-                <a class="nav-link" href="/me/account/settings" >Settings</a>
+            <nav class="nav nav-borders bg-light p-2 radius my-4">
+                <a class="nav-link {{request()->is('me/account') ? 'fw-bold text-primary' : ''}} ms-0" href="/me/account">Profile</a>
+                <a class="nav-link {{request()->is('me/account/payments') ? 'fw-bold text-primary' : ''}}" href="/me/account/payments" >Payments</a>
+                {{-- <a class="nav-link" href="/me/account/settings" >Settings</a> --}}
             </nav>
 
             <div class="row">

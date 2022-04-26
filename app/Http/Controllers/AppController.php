@@ -12,8 +12,7 @@ class AppController extends Controller {
 
     function index(Request $request){
         $categories = $this->getTopCategories();
-        $courses = $this->getCoursesByCategories($categories);
-        // return print_r($courses);
+        $courses = $this->getCoursesByCategories($categories, 6);
         return view('front.index', [
             'data' => $this->app_data($request),
             'categories' => $categories,

@@ -7,7 +7,7 @@
                 {{$name}}
             @endif
         </span>
-        <input type="text" class="form-control border-start-0 w-auto" id="{{strtolower($name)}}-input" placeholder="@isset($placeholder){{$placeholder}}@else{{'Username'}}@endif
+        <input type="text" class="form-control border-start-0 w-auto" name="{{strtolower($name)}}" id="{{strtolower($name)}}-input" placeholder="@isset($placeholder){{$placeholder}}@else{{'Username'}}@endif
         " aria-describedby="{{strtolower($name)}}" value="{{$value ?? ''}}">
     </div>
 </div>

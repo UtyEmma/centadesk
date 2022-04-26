@@ -14,12 +14,6 @@
             font-size: 24px;
             position: relative;
         }
-
-        @media only screen and (max-width: 1023px) {
-            .initials {
-                font-size: 20px;
-            }
-        }
     </style>
 {{-- @endpush --}}
 

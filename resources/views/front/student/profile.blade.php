@@ -1,29 +1,37 @@
 <x-student-layout>
     <div class="section section-padding py-3">
-        <x-affiliate-link :user="$user" />
         <div class="container">
             <form action="/profile/update" enctype="multipart/form-data" method="post">
                 @csrf
                 <div class="row">
                     <div class="mt-5">
-                        <h4 class="text-right">Profile Settings</h4>
+                        <h4 class="text-right">Profile</h4>
                     </div>
 
                     <div class="col-md-6 border-right">
                         <div class="p-3 py-5">
 
+                            @push('scripts')
+                                <script>
+                                    function setPreview(e){
+                                        const preview = document.querySelector("#profile_img_preview");
+                                        preview.src = URL.createObjectURL(e.target.files[0])
+                                    }
+                                </script>
+                            @endpush
+
                             <div class="row align-items-center">
                                 <div class="col-md-5 col-8 mx-auto mx-md-0 mb-3">
-                                    <div class="rounded-circle border-primary mx-auto p-1" style="height: 200px; width: 200px; border: 3px solid;">
-                                        <div class="rounded-circle position-relative overflow-hidden h-100 w-100" >
-                                            <img class="img-fluid position-absolute" style="object-fit: cover; object-position: center; min-width: 100%; min-height: 100%;" src="{{$user->avatar ?? 'https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg'}}">
+                                    <div class="rounded-circle border-primary border border-2 mx-auto p-1" style="height: 200px; width: 200px;">
+                                        <div class="rounded-circle position-relative overflow-hidden h-100 w-100 p-0" >
+                                            <img id="profile_img_preview" class="position-absolute w-100 h-100" style="object-fit: cover; object-position: center;" src="{{$user->avatar ?? 'https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg'}}">
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="col-md-5 text-center">
-                                    <label class="btn  btn-primary" for="avatarSelect">
-                                        <input type="file" name="avatar" hidden id="avatarSelect">
+                                    <label class="btn  btn-primary btn-hover-dark" for="avatarSelect">
+                                        <input type="file" onchange="setPreview(event)" value="{{$user->avatar}}" name="avatar" hidden id="avatarSelect">
                                         Select Image
                                     </label>
                                 </div>
@@ -53,7 +61,7 @@
 
                                 <div class="single-form">
                                     <label class="labels">Bio</label>
-                                    <textarea type="text" class="form-control" placeholder="Write a short description of your self" name="desc" value="{{$user->desc}}"></textarea>
+                                    <textarea type="text" class="form-control" placeholder="Write a short description of your self" name="desc">{{$user->desc}}</textarea>
                                 </div>
 
                             </div>
@@ -66,7 +74,7 @@
                         <x-social-media-input name="Instagram" placeholder="Username" value="{{$user->instagram}}" />
 
                         <div class="mt-5 text-end">
-                            <button type="submit" href="/profile/update" class="btn btn-primary profile-button">Update Profile</button>
+                            <button type="submit" href="/profile/update" class="btn btn-primary btn-hover-dark profile-button">Update Profile</button>
                         </div>
                     </div>
                 </div>

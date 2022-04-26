@@ -1,18 +1,24 @@
 <x-student-layout>
-    <div class="section section-padding">
+    <div class="section section-padding pt-3">
         <div class="container">
             <h4 class="title">Wallet Overview</h4>
 
             <div class="overview-box ">
-                <div class="single-box">
+                <div class="single-box w-auto">
                     <h5 class="title">Deposits</h5>
-                    <div class="count">$ {{number_format($wallet->deposits)}}</div>
+                    <div class="count">
+                        <span style="font-size: 16px;">
+                            {{request()->cookie('currency')}}
+                        </span>
+                        {{number_format($wallet->deposits)}}</div>
                     <p><span>$235.00</span> This months</p>
                 </div>
 
-                <div class="single-box">
+                <div class="single-box w-auto">
                     <h5 class="title">Referral Earnings</h5>
-                    <div class="count">$ {{number_format($wallet->referrals)}}</div>
+                    <div class="count">
+                        <span style="font-size: 16px;">{{request()->cookie('currency')}}</span>
+                        {{number_format($wallet->referrals)}}</div>
                     <p><span>345</span> This months</p>
                 </div>
             </div>

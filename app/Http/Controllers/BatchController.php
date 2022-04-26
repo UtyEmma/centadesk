@@ -73,11 +73,9 @@ class BatchController extends Controller{
     function newBatchPage(Request $request, $slug){
         $user = $this->user();
         $course = $this->getCourseBySlug($slug, $user);
-        $batches = $this->getCourseBatches($course);
         return Response::view('dashboard.course-details.new-batch', [
             'mentor' => $user,
-            'course' => $course,
-            'batches' => $batches
+            'course' => $course
         ]);
     }
 

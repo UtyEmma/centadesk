@@ -19,7 +19,7 @@
                     <form action="/profile/forum/send/{{$batch->unique_id}}" method="POST">
                         @csrf
                         <div class="message-form row">
-                            <div class="auhtor col-3 col-md-2 ps-0">
+                            <div class="auhtor col-3 col-md-1 ps-0">
                                 <x-avatar-img :circle="true" :user="$user" />
                             </div>
                             <div class="message-input">

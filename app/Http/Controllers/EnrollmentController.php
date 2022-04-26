@@ -48,7 +48,7 @@ class EnrollmentController extends Controller{
 
         if($request->payment === 'crypto') return $this->payWithCrypto($transaction, $user, $redirect_url, $batch, $course);
         if($request->payment === 'card') return $this->payWithCard($transaction, $user, $redirect_url);
-        if($request->payment === 'card') return $this->payFromWallet($transaction, $batch, $user);
+        if($request->payment === 'wallet') return $this->payFromWallet($transaction, $batch, $user);
     }
 
     function payWithCard($transaction, $user, $redirect_url){

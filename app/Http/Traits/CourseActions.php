@@ -82,10 +82,13 @@ trait CourseActions {
 
     function getCoursesByCategories($categories, $limit = 0){
         $courses_collection = collect([]);
+
         $categories->map(function($category, $key) use ($limit, $courses_collection){
             $courses = Courses::where('category', $category->slug)->limit($limit)->get();
-            $courses_collection->put($category->slug, $courses);
+            $courses_data = $this->getCoursesData($courses);
+            $courses_collection->put($category->slug, $courses_data);
         });
+
         return $courses_collection;
     }
 
@@ -95,13 +98,9 @@ trait CourseActions {
     }
 
     function getSuggestedCourses(){
-        $query = Courses::query();
-
-
         $verifiedMentors = $this->verifiedMentorCourses();
         $bestselling = $this->getBestSellingCourses();
 
-        // collect([...$verifiedMentors, $bestselling]);
         $courses = $verifiedMentors->merge($bestselling);
         return $this->getCoursesData($courses);
     }
