@@ -43,7 +43,6 @@ Route::middleware(['set.currency', 'set.referrals'])->group(function(){
                 Route::get('/', [StudentController::class, 'enrolledCourses']);
                 Route::get('/{slug}/{shortcode}', [StudentController::class, 'enrolledCourse']);
                 Route::get('/{slug}/{shortcode}/forum', [StudentController::class, 'courseForum']);
-                Route::get('/{slug}/{shortcode}/forum/{message_id}', [StudentController::class, 'courseForumDetails']);
             });
             Route::get('/mentors', [StudentController::class, 'fetchMentors']);
         });
@@ -58,14 +57,13 @@ Route::middleware(['set.currency', 'set.referrals'])->group(function(){
         Route::prefix('/profile')->group(function(){
             Route::get('/', [StudentController::class, 'show']);
             Route::post('/update', [StudentController::class, 'update']);
-            Route::post('/forum/send/{batch_id}', [ForumController::class, 'storeMessage']);
             Route::prefix('/reviews')->group(function(){
                 Route::post('/submit/{batch_id}', [ReviewController::class, 'submitReview']);
             });
         });
 
         Route::prefix('forum')->group(function(){
-            Route::post('/reply/{message_id}', [ForumController::class, 'storeReplies']);
+            Route::post('/send/{batch_id}', [ForumController::class, 'sendMessage']);
         });
 
         Route::prefix('reports')->group(function(){
@@ -115,7 +113,6 @@ Route::middleware(['set.currency', 'set.referrals'])->group(function(){
                         Route::get('/', [BatchController::class, 'fetchBatch'])->name('mentor_batch');
                         Route::get('/students', [BatchController::class, 'fetchBatchStudents'])->name('mentor_batch_students');
                         Route::get('/forum', [ForumController::class, 'fetchMentorBatchForum'])->name('mentor_batch_forum');
-                        Route::get('/forum/{unique_id}', [ForumController::class, 'fetchMentorBatchForumReplies']);
                         Route::get('/edit', [BatchController::class, 'edit'])->name('mentor_batch_edit');
                         Route::post('/update', [BatchController::class, 'update']);
                     });

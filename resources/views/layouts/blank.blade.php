@@ -58,6 +58,7 @@
         <script src="{{asset('js/plugins/moment.min.js')}}" ></script>
         <script src="{{asset('js/plugins/jquery.inputmask.min.js')}}" ></script>
         <script src="{{asset('js/plugins/quill.js')}}" ></script>
+        <script src="{{asset('js/plugins/jquery.countdown.js')}}" ></script>
 
         <script src="{{asset('vendor/summernote-0.8.18-dist/summernote-lite.min.js')}}" ></script>
 

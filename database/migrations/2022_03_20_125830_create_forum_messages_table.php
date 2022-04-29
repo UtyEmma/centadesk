@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string('unique_id')->unique();
             $table->string('batch_id');
             $table->string('sender_id');
-            $table->string('title')->nullable();
             $table->text('message');
             $table->timestamps();
         });

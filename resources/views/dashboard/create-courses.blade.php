@@ -1,8 +1,8 @@
 <x-app-layout>
     @include('dashboard.js.create-courses-js')
 
-    <div class="page-content-wrapper mt-3">
-        <div class="container-fluid px-3 px-md-5">
+    <div class="page-content-wrapper">
+        <div class="container px-3 px-md-0">
             <div class="mb-3">
                 <h4 class="my-0">Create a New Course</h4>
                 <p class="my-0">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laudantium, aliquam.</p>
@@ -17,21 +17,26 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="bg-transparent border-0">
-                                <h5 class="mb-0">Class Details</h5>
+                                <h5 class="mb-0">Course Details</h5>
                                 <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit</p>
                             </div>
 
                             <div class="card radius p-3 p-md-5 mt-1">
-                                <div class="single-form">
-                                    <label>Class Title</label>
+                                <div class="single-form mt-0">
+                                    <label>Title</label>
                                     <input type="text" name="name" value="{{old('name')}}" placeholder="Class Title, Topic or Subject">
                                     <x-errors name="name" />
                                 </div>
 
                                 <div class="single-form">
-                                    <label>Class Description</label>
+                                    <label>Short Description </label>
+                                    <input type="text" name="excerpt" maxlength="120" value="{{old('name')}}" placeholder="Write a precise description - (Maximum 120 Characters)">
+                                    <x-errors name="excerpt" />
+                                </div>
+
+                                <div class="single-form">
+                                    <label>Description</label>
                                     <x-rich-text placeholder="Write a compelling description of your class here" name="desc" />
-                                    {{-- <textarea id="summernote" type="text" value="{{old('desc')}}" class="bg-white" name="desc" placeholder="" ></textarea> --}}
                                     <x-errors name="desc" />
                                 </div>
 
@@ -62,21 +67,30 @@
                             </div>
 
                             <div class="card radius p-3 p-md-5 mt-1">
-
-                                <div class="single-form">
-                                    <label>Promotional Video Link</label>
-                                    <p>
-                                        <small>This is a short introductory video that introduces the course. It is recommended that specific details like date, venue etc should not be included in this video.</small>
-                                    </p>
-                                    <input type="text" name="video" value="{{old('video')}}" placeholder="Link to promotional video" />
-                                    <x-errors name="video" />
-                                </div>
-
-                                <div class="mt-3">
-                                    <label class="mb-2">Upload Class Images</label>
-                                    <x-dropzone multiple="true" name="images[]" />
+                                <div class="single-form my-2">
+                                    <x-img-upload name="images">Upload Image</x-img-upload>
                                     <x-errors name="images" />
                                 </div>
+
+                                <hr>
+
+                                <div class="single-form my-2">
+                                    <div class="row gx-3">
+                                        <div class="col-md-6">
+                                            <label class="mb-1" style="font-weight: 500;">Promotional Video Link</label>
+                                            <input type="text" name="video" class="px-2 mt-1" value="{{old('video')}}" placeholder="Link to promotional video" />
+                                            <x-errors name="video" />
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <div class="position-relative overflow-hidden radius mt-2" style="height: 180px;">
+                                                <img src="{{asset('images/add_video.jpg')}}" id="avatar_preview" style="width: 100%;" class="img-cover radius" alt="">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
                             </div>
 
                             @if (Auth::user()->kyc_status !== 'approved')

@@ -10,4 +10,8 @@ trait StudentActions{
             $student->created_at = DateTime::parseTimestamp($student->created_at);
             return $student;
     }
+
+    static function getEnrolledBatches(){
+
+    }
 }

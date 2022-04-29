@@ -11,11 +11,9 @@ class AppController extends Controller {
     use CategoryActions, CourseActions;
 
     function index(Request $request){
-        $categories = $this->getTopCategories();
-        $courses = $this->getCoursesByCategories($categories, 6);
+        $courses = $this->topCourses();
         return view('front.index', [
             'data' => $this->app_data($request),
-            'categories' => $categories,
             'courses' => $courses
         ]);
     }

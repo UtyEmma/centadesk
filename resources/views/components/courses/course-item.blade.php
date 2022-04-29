@@ -2,23 +2,7 @@
     <!-- Single Courses Start -->
     <div class="single-courses">
         <div class="courses-images">
-
             <a href="courses/{{$course->slug}}"><img src="{{json_decode($course->images)[0]}}" alt="Courses" class="img-fluid"></a>
-
-            <div class="courses-option dropdown">
-                <button class="option-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-
-                <ul class="dropdown-menu">
-                    <li><a href="#"><i class="icofont-share-alt"></i> Share</a></li>
-                    <li><a href="#"><i class="icofont-plus"></i> Create Collection</a></li>
-                    <li><a href="#"><i class="icofont-star"></i> Favorite</a></li>
-                    <li><a href="#"><i class="icofont-archive"></i> Archive</a></li>
-                </ul>
-            </div>
         </div>
         <div class="courses-content">
             <div class="courses-author">

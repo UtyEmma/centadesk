@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class ForumMessages extends Model{
     use HasFactory;
 
-    protected $fillable = ['unique_id', 'batch_id', 'sender_id', 'title', 'message' ];
+    protected $fillable = ['unique_id', 'batch_id', 'sender_id', 'message' ];
 
     protected $primaryKey = 'unique_id';
     protected $keyType = 'string';

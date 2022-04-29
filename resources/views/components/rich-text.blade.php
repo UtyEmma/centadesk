@@ -32,7 +32,7 @@
                 $('#text-content').val(quill.root.innerHTML)
             });
 
-            $('.ql-toolbar').addClass('border radius mb-2 p-2')
+            $('.ql-toolbar').addClass('border radius mb-3 p-2 py-3')
         })
     </script>
 @endpush

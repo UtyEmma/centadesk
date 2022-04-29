@@ -74,8 +74,6 @@ input::-webkit-inner-spin-button {
     text-transform: uppercase !important;
 }
 
-
-
 .forum-container{
     height: 600px;
     overflow-y: scroll;
@@ -237,6 +235,11 @@ input::-webkit-inner-spin-button {
     .banner-header{
         margin-top: 100px;
     }
+}
+
+.btn-custom{
+    font-size: 14px;
+    line-height: 3.5;
 }
 
 

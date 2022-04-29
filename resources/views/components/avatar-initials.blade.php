@@ -11,7 +11,7 @@
         }
 
         .initials {
-            font-size: 24px;
+            font-size: 100%;
             position: relative;
         }
     </style>

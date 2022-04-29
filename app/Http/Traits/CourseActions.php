@@ -93,8 +93,7 @@ trait CourseActions {
     }
 
     function getActiveCourses(){
-        $courses = Courses::where('status', 'published')->get();
-        return $courses;
+        return Courses::where('status', 'published')->get();
     }
 
     function getSuggestedCourses(){
@@ -117,6 +116,13 @@ trait CourseActions {
 
     function getBestSellingCourses(){
         $courses = $this->getActiveCourses();
-        $courses->sortBy('total_students')->pull(10);
+        return $courses->sortBy('total_students')->pull(10);
     }
+
+    function topCourses(){
+        $courses = $this->getActiveCourses()->sortBy('total_students');
+        return $this->getCoursesData($courses);
+    }
+
+
 }

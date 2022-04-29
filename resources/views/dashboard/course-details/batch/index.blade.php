@@ -4,7 +4,7 @@
     <div class="page-content-wrapper">
         <div class="container-fluid custom-container">
             <!-- Admin Courses Tab Start -->
-            <div class="admin-courses-tab mt-0 w-100">
+            {{-- <div class="admin-courses-tab mt-0 w-100">
                 <div class="w-100 d-md-flex justify-content-between">
                     <div>
                         <h3 class="mb-1">{{$course->name}}</h3>
@@ -15,9 +15,9 @@
                         <x-batch-share :batch="$batch" />
                     </div>
                 </div>
-            </div>
+            </div> --}}
 
-            <div class="courses-details-tab">
+            {{-- <div class="courses-details-tab">
                 <div class="details-tab-menu">
                     <ul class="nav">
                         <li >
@@ -42,7 +42,7 @@
                         </li>
                     </ul>
                 </div>
-            </div>
+            </div> --}}
 
             {{$slot}}
 

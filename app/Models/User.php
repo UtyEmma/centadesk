@@ -2,9 +2,11 @@
 
 namespace App\Models;
 
+use App\Library\DateTime;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Date;
 use Laravel\Sanctum\HasApiTokens;
 use Laravel\Scout\Searchable;
 
@@ -56,5 +58,39 @@ class User extends Authenticatable
 
     public function deposits(){
         return $this->hasMany(Deposit::class, 'user_id', 'unique_id');
+    }
+
+    public function enrolledBatches(){
+        return Enrollment::where('student_id', $this->unique_id)
+                            ->join('courses', 'courses.unique_id', 'enrollments.course_id')
+                            ->join('batches', 'batches.unique_id', 'enrollments.batch_id')
+                            ->join('users', 'users.unique_id', 'enrollments.mentor_id')
+                            ->select('courses.name', 'courses.slug', 'courses.tags', 'users.firstname', 'users.lastname', 'users.username', 'batches.*')->get();
+    }
+
+    public function batches(){
+        $enrolledBatches = $this->enrolledBatches();
+
+        $ongoingBatches = $enrolledBatches->filter(function($value, $key){
+                                return Date::parse($value->startdate)->lessThanOrEqualTo(Date::now()) && Date::parse($value->enddate)->greaterThanOrEqualTo(Date::now());
+                            });
+
+        $upcomingBatches = $enrolledBatches->filter(function($value, $key){
+                                return Date::parse($value->startdate)->greaterThan(Date::now());
+                            });
+
+        $previousBatches = $enrolledBatches->filter(function($value, $key){
+                                return Date::parse($value->enddate)->lessThan(Date::now());
+                            });
+
+        return [
+            'upcoming' => $upcomingBatches->all(),
+            'ongoing' => $ongoingBatches->all(),
+            'previous' => $previousBatches->all()
+        ];
+    }
+
+    public function previousClasses(){
+
     }
 }

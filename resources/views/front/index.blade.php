@@ -81,60 +81,41 @@
     <div class="section section-padding-02">
         <div class="container">
 
-            @if(count($categories) > 0)
-                <!-- All Courses Top Start -->
-                <div class="courses-top">
+            <!-- All Courses Top Start -->
+            <div class="courses-top">
 
-                    <!-- Section Title Start -->
-                    <div class="section-title shape-01">
-                        <h2 class="main-title">All <span>Courses</span> of Edule</h2>
+                <!-- Section Title Start -->
+                <div class="section-title shape-01">
+                    <h2 class="main-title">All <span>Courses</span> of Edule</h2>
+                </div>
+                <!-- Section Title End -->
+
+                <!-- Courses Search Start -->
+                <div class="courses-search">
+                    <form action="/courses" type="GET">
+                        @csrf
+                        <input type="text" name="keyword" placeholder="Search for Courses...">
+                        <button type="submit"><i class="flaticon-magnifying-glass"></i></button>
+                    </form>
+                </div>
+                <!-- Courses Search End -->
+            </div>
+            <!-- All Courses Top End -->
+
+            <!-- All Courses tab content Start -->
+            <div class="row">
+                @foreach ($courses as  $course )
+                    <div class="col-lg-4 col-md-6">
+                        <x-courses.single-course-card :course="$course" :mentor="$course->mentor" />
                     </div>
-                    <!-- Section Title End -->
+                @endforeach
+            </div>
+            <!-- All Courses tab content End -->
 
-                    <!-- Courses Search Start -->
-                    <div class="courses-search">
-                        <form action="/courses" type="GET">
-                            @csrf
-                            <input type="text" name="keyword" placeholder="Search for Courses...">
-                            <button type="submit"><i class="flaticon-magnifying-glass"></i></button>
-                        </form>
-                    </div>
-                    <!-- Courses Search End -->
-                </div>
-                <!-- All Courses Top End -->
-
-                <!-- All Courses Tabs Menu Start -->
-                <div class="courses-tabs-menu courses-active">
-                    <div class="swiper-container">
-                        <ul class="swiper-wrapper nav">
-                            @foreach ($categories as $key => $category)
-                                <li class="swiper-slide">
-                                    <button class="{{$key === 0 ? 'active' : ''}} w-100" data-bs-toggle="tab" data-bs-target="#{{$category->slug}}">{{$category->name}}</button>
-                                </li>
-                            @endforeach
-                        </ul>
-                    </div>
-
-                    <!-- Add Pagination -->
-                    <div class="swiper-button-next"><i class="icofont-rounded-right"></i></div>
-                    <div class="swiper-button-prev"><i class="icofont-rounded-left"></i></div>
-                </div>
-                <!-- All Courses Tabs Menu End -->
-
-                <!-- All Courses tab content Start -->
-                <div class="tab-content courses-tab-content">
-                    @foreach ($courses as $key => $course )
-                        <x-courses.courses-tab-panel :active="$key === 0 ? 'show active' : ''" :id="$key" :courses="$course" />
-                    @endforeach
-                </div>
-                <!-- All Courses tab content End -->
-
-                <!-- All Courses BUtton Start -->
-                <div class="courses-btn text-center">
-                    <a href="courses.html" class="btn btn-secondary btn-hover-primary">Other Course</a>
-                </div>
-                <!-- All Courses BUtton End -->
-            @endif
+            <!-- All Courses BUtton Start -->
+            <div class="courses-btn text-center">
+                <a href="/courses" class="btn btn-secondary btn-hover-primary">View Courses</a>
+            </div>
         </div>
     </div>
     <!-- All Courses End -->

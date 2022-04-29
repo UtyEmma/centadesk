@@ -1,8 +1,6 @@
 <div class="main-wrapper">
     <!-- Header Section Start -->
     <div class="header-section">
-
-
         <!-- Header Top Start -->
         <div class="header-top d-none d-lg-block">
             <div class="container">

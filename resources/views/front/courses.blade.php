@@ -19,39 +19,29 @@
                 </form>
             </div>
         </div>
-
-        <!-- Courses Category Wrapper Start  -->
-        <div class="d-inline-block">
-            <div class="courses-category-wrapper  px-0 overflow-x-scroll w-100">
-                <ul class="category-menu overflow-x-scroll w-auto">
-                    <li><a class="active" href="/">All Courses</a></li>
-                    <li><a href="#">Top Courses</a></li>
-                    <li><a href="#">Suggested for you</a></li>
-                </ul>
-            </div>
-            <!-- Courses Category Wrapper End  -->
-        </div>
     </x-page-banner>
 
     <!-- Courses Start -->
     <div class="section section-padding pt-0">
         <div class="container">
             <!-- Courses Wrapper Start  -->
-            <div class="courses-wrapper-02">
+            <div class="courses-wrapper-02 mt-0 py-0">
                 <div class="row">
-                    @forelse ($courses as $course)
-                        <div class="col-lg-4 col-md-6">
-                            <x-courses.single-course-card :course="$course" :mentor="$course->mentor" />
-                        </div>
-                    @empty
-                        <div class="text-center">
-                            <img src="{{asset('images/states/empty-courses.svg')}}" />
-                            <h4>There are no courses available at this time</h4>
-                            <p class="px-5">Sign up as a Mentor to start earning money teaching the things you love</p>
+                            @forelse ($courses as $course)
+                                <div class="col-md-4">
+                                    <x-courses.single-course-card :course="$course" :mentor="$course->mentor" />
+                                </div>
+                            @empty
+                                <div class="text-center">
+                                    <img src="{{asset('images/states/empty-courses.svg')}}" />
+                                    <h4>There are no courses available at this time</h4>
+                                    <p class="px-5">Sign up as a Mentor to start earning money teaching the things you love</p>
 
-                            <a href="{{Auth::user() ? '/mentor/onboarding' : '/register'}}" class="btn btn-primary w-auto">Start Creating Courses</a>
+                                    <a href="{{Auth::user() ? '/mentor/onboarding' : '/register'}}" class="btn btn-primary w-auto">Start Creating Courses</a>
+                                </div>
+                            @endforelse
                         </div>
-                    @endforelse
+                    </div>
                 </div>
             </div>
             <!-- Courses Wrapper End  -->

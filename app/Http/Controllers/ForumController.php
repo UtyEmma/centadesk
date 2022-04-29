@@ -17,24 +17,19 @@ use Illuminate\Support\Facades\DB;
 class ForumController extends Controller{
     use CourseActions;
 
-    function storeMessage(Request $request, $batch_id) {
+    function sendMessage(Request $request, $batch_id) {
         try {
             $user = $this->user();
             $unique_id = Token::unique('forum_messages');
 
-            $batch = Batch::find($batch_id);
-            $course = Courses::find($batch->course_id);
-
-            $message = ForumMessages::create([
+            ForumMessages::create([
                 'unique_id' => $unique_id,
                 'batch_id' => $batch_id,
                 'sender_id' => $user->unique_id,
-                'message' => $request->message,
-                'title' => $request->title
+                'message' => $request->message
             ]);
 
-            return redirect()->back()->with('success', "Your Question has been sent");
-
+            return Response::redirectBack();
         } catch (\Throwable $th) {
             return redirect()->back();
         }
@@ -46,67 +41,13 @@ class ForumController extends Controller{
         return $messages;
     }
 
-    function fetchResponses(Request $request, $batch_id, $message_id){
-        $replies = ForumReplies::where([
-            'message_id' => $message_id,
-            'batch_id' => $batch_id
-        ])->get();
-        return Response::view('');
-    }
-
-
-    function storeReplies(Request $request, $message_id){
-        try {
-            $message = ForumMessages::find($message_id);
-            $user = $this->user();
-
-            $unique_id = Token::unique('forum_replies');
-
-            $reply = ForumReplies::create([
-                'unique_id' => $unique_id,
-                'batch_id' => $message->batch_id,
-                'message_id' => $message_id,
-                'sender_id' => $user->unique_id,
-                'message' => $request->message
-            ]);
-
-            return Response::redirectBack('success', 'Reply Submitted');
-        } catch (\Throwable $th) {
-            return Response::redirectBack('error', $th->getMessage());
-        }
-    }
-
-    function fetchMentorForumReplies(Request $request, $slug, $shortcode, $message_id){
-        $user = $this->user();
-        $message = ForumMessages::find($message_id);
-        $sender = User::find($message->sender_id);
-
-        $course = $this->fetchCourse($request, $slug);
-
-        $replies = ForumReplies::where('message_id', $message_id)
-                                    ->join('users', 'users.unique_id', 'forum_replies.sender_id')
-                                    ->select('forum_replies.*', 'users.firstname', 'users.lastname', 'users.avatar')
-                                    ->get();
-
-        $message->firstname = $sender->firstname;
-        $message->lastname = $sender->lastname;
-        $message->avatar = $sender->avatar;
-
-        $message->time_interval = DateTime::getDateInterval($message->updated_at);
-
-        return view('front.student.course.question', array_merge($course, [
-                'message' => $message,
-                'replies' => $replies
-            ]
-        ));
-    }
 
     function fetchMentorBatchForum(Request $request, $slug, $shortcode){
         $user = $this->user();
         $course = Courses::where('slug', $slug)->first();
 
         $batch = Batch::where('short_code', $shortcode)->first();
-        $batches = Batch::where('course_id', $course->unique_id)->get();
+
         $messages = ForumMessages::where('batch_id', $batch->unique_id)
                                 ->join('users', 'users.unique_id', 'forum_messages.sender_id')
                                 ->select('forum_messages.*', 'users.firstname', 'users.lastname', 'users.avatar', 'users.unique_id as user_id')
@@ -126,9 +67,8 @@ class ForumController extends Controller{
             'batch' => $batch,
             'course' => $course,
             'mentor' => $user,
-            'forum' => $messages,
-            'user' => $user,
-            'batches' => $batches
+            'messages' => $messages,
+            'user' => $user
         ]);
     }
 
