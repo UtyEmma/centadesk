@@ -13,9 +13,10 @@ class PasswordResetLinkController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function create()
-    {
-        return view('auth.forgot-password');
+    public function create(){
+        return view('auth.forgot-password', [
+            'data' => $this->app_data()
+        ]);
     }
 
     /**

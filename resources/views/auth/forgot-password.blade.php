@@ -1,36 +1,98 @@
-<x-guest-layout>
-    <x-auth-card>
-        <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
-        </x-slot>
+<x-guest-layout :data="$data">
 
-        <div class="mb-4 text-sm text-gray-600">
-            {{ __('Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.') }}
+    <!-- Page Banner Start -->
+    <div class="section page-banner py-0 pt-5 pb-0 px-0 w-100 bg-transparent">
+        <div class="container mt-5 pt-5 w-100">
+            <div class="pt-5 px-0 banner-header">
+            </div>
         </div>
+    </div>
+    <!-- Page Banner End -->
 
-        <!-- Session Status -->
-        <x-auth-session-status class="mb-4" :status="session('status')" />
+    <!-- Register & Login Start -->
+    <div class="section section-padding pt-md-3 pt-5 pt-md-0 mt-0">
+        <div class="container">
 
-        <!-- Validation Errors -->
-        <x-auth-validation-errors class="mb-4" :errors="$errors" />
+            <!-- Register & Login Wrapper Start -->
+                <div class="row align-items-center">
+                    <div class="col-lg-5 col-md-7 mx-auto mt-0">
 
-        <form method="POST" action="{{ route('password.email') }}">
-            @csrf
+                        <!-- Register & Login Form Start -->
+                        <div class="register-login-form mx-0 mt-0 mt-lg-5 p-5 border radius ">
+                            <h3 class="title">Forgot your <span>Password?</span></h3>
+                            <div class="mt-2">
+                                <p>No problem! Let us know your email address and we will send you a password reset link.</p>
+                            </div>
 
-            <!-- Email Address -->
-            <div>
-                <x-label for="email" :value="__('Email')" />
+                            <div class="form-wrapper w-100 pb-lg-5 pt-3">
+                                <form method="POST" action="{{ route('password.email') }}">
+                                    @csrf
 
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
+                                    <!-- Single Form Start -->
+                                    <div class="single-form">
+                                        <input type="email" name="email" placeholder="Email Address" value="{{old('email')}}" required autofocus>
+                                        @error('email')
+                                            <small class="text-danger">{{$message}}</small>
+                                        @enderror
+                                    </div>
+                                    <!-- Single Form End -->
+
+                                    <!-- Single Form Start -->
+                                    <div class="single-form mt-2">
+                                        <button type="submit" class="btn btn-primary btn-hover-dark w-100">Email Password Reset Link</button>
+                                    </div>
+                                    <!-- Single Form End -->
+
+                                    <p class="mt-5 text-center">Do not have an account? <a href="/register" class="text-primary" style="font-weight: 500;">Sign up here</a></p>
+                                </form>
+                            </div>
+                        </div>
+                        <!-- Register & Login Form End -->
+
+                    </div>
+                </div>
+            <!-- Register & Login Wrapper End -->
+
+        </div>
+    </div>
+    <!-- Register & Login End -->
+
+    <!-- Download App Start -->
+    <div class="section section-padding download-section">
+
+        <div class="app-shape-1"></div>
+        <div class="app-shape-2"></div>
+        <div class="app-shape-3"></div>
+        <div class="app-shape-4"></div>
+
+        <div class="container">
+
+            <!-- Download App Wrapper Start -->
+            <div class="download-app-wrapper mt-n6">
+
+                <!-- Section Title Start -->
+                <div class="section-title section-title-white">
+                    <h5 class="sub-title">Ready to start?</h5>
+                    <h2 class="main-title">Download our mobile app. for easy to start your course.</h2>
+                </div>
+                <!-- Section Title End -->
+
+                <img class="shape-1 animation-right" src="{{asset('images/shape/shape-14.png')}}" alt="Shape">
+
+                <!-- Download App Button End -->
+                <div class="download-app-btn">
+                    <ul class="app-btn">
+                        <li><a href="#"><img src="{{asset('images/google-play.png')}}" alt="Google Play"></a></li>
+                        <li><a href="#"><img src="{{asset('images/app-store.png')}}" alt="App Store"></a></li>
+                    </ul>
+                </div>
+                <!-- Download App Button End -->
+
             </div>
+            <!-- Download App Wrapper End -->
 
-            <div class="flex items-center justify-end mt-4">
-                <x-button>
-                    {{ __('Email Password Reset Link') }}
-                </x-button>
-            </div>
-        </form>
-    </x-auth-card>
+        </div>
+    </div>
+    <!-- Download App End -->
+
 </x-guest-layout>
