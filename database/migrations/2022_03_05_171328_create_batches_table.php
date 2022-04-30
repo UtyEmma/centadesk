@@ -20,10 +20,11 @@ return new class extends Migration
             $table->string('startdate');
             $table->string('enddate');
             $table->string('mentor_id');
-            $table->string('title')->nullable();
-            $table->string('short_code')->nullable();
+            $table->string('title');
+            $table->string('excerpt');
+            $table->longText('objectives')->nullable();
             $table->string('video')->nullable();
-            $table->longText('images')->nullable();
+            $table->string('images')->nullable();
             $table->integer('attendees')->nullable();
             $table->integer('price')->nullable();
             $table->integer('total_students');

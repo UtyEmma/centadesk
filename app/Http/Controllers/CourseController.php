@@ -78,6 +78,8 @@ class CourseController extends Controller{
                 'desc' => $request->desc,
                 'tags' => $request->tags,
                 'video' => $request->video,
+                'excerpt' => $request->excerpt,
+                'objectives' => $request->objectives,
                 'images' => $images,
                 'currency' => $user->currency,
                 'category' => $category->name

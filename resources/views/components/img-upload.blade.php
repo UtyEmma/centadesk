@@ -30,7 +30,8 @@
     <div class="col-md-6">
         <div class="position-relative overflow-hidden radius " style="height: 180px;">
             <img src="{{asset('images/add_img.jpg')}}" id="avatar_preview" style="width: 100%;" class="img-cover radius" alt="">
-            <button type="button" onclick="removeImg()" id="del-btn" class="position-absolute border-primary border p-1 px-2 radius btn-secondary hover-primary" style="top: 10px; right: 10px;"><i class="icofont-trash"></i></button>
+
+            <button type="button" onclick="removeImg()" id="del-btn" class="position-absolute btn btn-danger btn-hover-dark  py-2 px-1 radius hover-primary" style="top: 10px; right: 10px; line-height: 0;"><i class="icofont-trash mx-1"></i></button>
         </div>
     </div>
 </div>

@@ -2,9 +2,9 @@
     <div class="single-post">
         <div class="post-content p-0">
             <div class="d-flex justify-content-between">
-                <h5 class="title"><a href="blog-details-left-sidebar.html">{{$batch->title}}</a></h5>
+                <h5 class="title"><a href="./{{$course->slug}}/{{$batch->short_code}}">{{$batch->title}}</a></h5>
             </div>
-            <p class="date mb-1 mt-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium, quo?</p>
+            <p class="date mb-1 mt-0">{{$batch->description}}</p>
             <div class="d-flex justify-content-between align-items-start">
                 <div>
                     <p class="date my-0" style="font-weight: 500;">Begins</p>

@@ -92,7 +92,7 @@
                         <div class="widget-post mt-2 py-5">
                             <ul class="post-items">
                                 @foreach ($course->batches as $batch)
-                                    <x-batch.list-item :batch="$batch" />
+                                    <x-batch.list-item :course="$course" :batch="$batch" />
                                 @endforeach
                             </ul>
                         </div>

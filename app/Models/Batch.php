@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 class Batch extends Model{
     use HasFactory;
 
-    protected $fillable = ['unique_id', 'course_id', 'mentor_id' ,'startdate', 'short_code', 'title', 'enddate', 'current', 'class_link', 'access_link', 'attendees', 'price' ,'count', 'video', 'images', 'discount', 'fixed', 'percent', 'time_limit', 'signup_limit', 'currency', 'discount_price'];
+    protected $fillable = ['unique_id', 'course_id', 'mentor_id' ,'startdate', 'short_code', 'title', 'enddate', 'current', 'class_link', 'access_link', 'attendees', 'price' ,'count', 'video', 'description', 'images', 'discount', 'fixed', 'percent', 'time_limit', 'signup_limit', 'currency', 'discount_price'];
 
     protected $primaryKey = 'unique_id';
     protected $keyType = 'string';

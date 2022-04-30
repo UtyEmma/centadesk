@@ -20,6 +20,8 @@ return new class extends Migration
             $table->string('name');
             $table->string('slug');
             $table->longText('desc');
+            $table->string('excerpt');
+            $table->longText('objectives')->nullable();
             $table->string('tags');
             $table->string('video');
             $table->longText('images');

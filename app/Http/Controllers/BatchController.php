@@ -101,6 +101,8 @@ class BatchController extends Controller{
             'course_id' => $course_id,
             'mentor_id' => $user->unique_id,
             'duration' => $request->duration,
+            'excerpt' => $request->excerpt,
+            'objectives' => $request->objectives,
             'class_link' => $request->class_link,
             'access_link' => $request->access_link,
             'attendees' => $request->attendees,

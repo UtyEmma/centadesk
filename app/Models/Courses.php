@@ -11,7 +11,7 @@ class Courses extends Model{
 
     public $asYouType = true;
 
-    protected $fillable = ['unique_id', 'mentor_id', 'name', 'slug', 'desc', 'tags', 'video', 'images', 'total_batches', 'total_students', 'active_batch', 'status','currency', 'category'];
+    protected $fillable = ['unique_id', 'mentor_id', 'name', 'slug', 'desc', 'tags', 'video', 'images', 'total_batches', 'total_students', 'active_batch', 'status','currency', 'category', 'excerpt', 'objectives'];
 
     protected $primaryKey = 'unique_id';
     protected $keyType = 'string';

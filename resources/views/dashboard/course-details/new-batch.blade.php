@@ -33,6 +33,12 @@
                                     <x-errors name="excerpt" />
                                 </div>
 
+                                <div class="single-form">
+                                    <label class="mb-1" style="font-weight: 500;">What will your student's gain from this batch:</label>
+                                    <x-form-repeater />
+                                </div>
+
+
                                 <div class="row">
                                     <div class="single-form col-md-6">
                                         <label>Start Date</label>

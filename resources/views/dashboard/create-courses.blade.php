@@ -23,26 +23,30 @@
 
                             <div class="card radius p-3 p-md-5 mt-1">
                                 <div class="single-form mt-0">
-                                    <label>Title</label>
-                                    <input type="text" name="name" value="{{old('name')}}" placeholder="Class Title, Topic or Subject">
+                                    <label class="mb-1" style="font-weight: 500;">Course Title</label>
+                                    <input type="text" name="name" maxlength="60" value="{{old('name')}}" placeholder="Class Title, Topic or Subject">
                                     <x-errors name="name" />
                                 </div>
 
                                 <div class="single-form">
-                                    <label>Short Description </label>
-                                    <input type="text" name="excerpt" maxlength="120" value="{{old('name')}}" placeholder="Write a precise description - (Maximum 120 Characters)">
+                                    <label class="mb-1" style="font-weight: 500;">Write a short catchy description of the course <small>(max 120 characters)</small></label>
+                                    <input type="text" name="excerpt" maxlength="120" value="{{old('excerpt')}}" placeholder="Write a brief description - (Maximum 120 Characters)">
                                     <x-errors name="excerpt" />
                                 </div>
 
                                 <div class="single-form">
-                                    <label>Description</label>
+                                    <label class="mb-1" style="font-weight: 500;">Write a more detailed description of the course here.</label>
                                     <x-rich-text placeholder="Write a compelling description of your class here" name="desc" />
                                     <x-errors name="desc" />
                                 </div>
 
+                                <div class="single-form">
+                                    <label class="mb-1" style="font-weight: 500;">What will your student's gain from this course:</label>
+                                    <x-form-repeater />
+                                </div>
 
                                 <div class="single-form">
-                                    <label>Category</label>
+                                    <label class="mb-1" style="font-weight: 500;">Category</label>
 
                                     <select name="category" class="selectpicker w-100" data-live-search="true" title="Select Category" data-style="border radius py-0 px-2 fw-normal">
                                         @foreach ($categories as $category)
@@ -53,7 +57,7 @@
                                 </div>
 
                                 <div class="single-form">
-                                    <label>Tags</label>
+                                    <label class="mb-1" style="font-weight: 500;">Tags</label>
                                     <x-tag-input />
                                     <x-errors name="tags" />
                                 </div>
@@ -88,7 +92,6 @@
                                             </div>
                                         </div>
                                     </div>
-
                                 </div>
 
                             </div>
