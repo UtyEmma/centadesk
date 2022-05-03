@@ -3,15 +3,16 @@
         <small>Enjoy <span>{{$batch->percent}}% off</span></small>
 
         <x-countdown.hours id="countdown-discount" :date="$batch->time_limit">
-            <small>Time Left: <span id="countdown-discount"></span></small>
+            <small>Time Left: <span id="countdown-discount">00h : 00m : 00s</span></small>
         </x-countdown.hours>
     </div>
 
     <div class="card-body">
         <div class="d-flex align-items-center ">
             <h5 class="fw-bold">
-                {{request()->cookie('currency')}}
-
+                <span style="font-size: 0.8rem;">
+                    {{request()->cookie('currency')}}
+                </span>
                 {{number_format($batch->discount_price)}}
             </h5>
             <h6 style="font-size: 13px;" class="ms-1 price text-decoration-line-through text-left">

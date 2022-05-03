@@ -90,7 +90,7 @@
                                 <form action="/settings/update" method="POST">
                                     @csrf
                                     <x-currency-select :name="'currency'" :currency="$currency" :data="$data" class="" />
-                                    <button type="submit" class="btn btn-primary mt-2">Update</button>
+                                    <x-btn type="submit" classes="btn-primary btn-hover-dark mt-2">Update</x-btn>
                                 </form>
                             </div>
                         </div>

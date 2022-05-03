@@ -17,16 +17,13 @@
 @endpush
 
 <div class="d-flex align-items-center">
-    <small id="aff_link_input" class="p-2 bg-light radius border m-0 me-2 w-auto">
+    <p id="aff_link_input" class="p-2 bg-light radius border m-0 me-2 w-auto">
         {{env('MAIN_APP_DOMAIN')}}/{{$batch->short_code}}
-    </small>
+    </p>
 
     <div>
         <button onclick="copyLink()" class="me-1 bg-transparent border-0 outline-0">
             <i class="icofont-ui-copy"></i>
         </button>
-        {{-- <button class="bg-transparent border-0 outline-0">
-            <i class="icofont-share"></i>
-        </button> --}}
     </div>
 </div>

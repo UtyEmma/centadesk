@@ -16,9 +16,8 @@ class MentorCourseDetail extends Component
     public $mentor;
     public $title;
 
-    public function __construct($course, $batches, $mentor, $title){
+    public function __construct($course, $mentor, $title){
         $this->course = $course;
-        $this->batches = $batches;
         $this->mentor = $mentor;
         $this->title = $title;
     }

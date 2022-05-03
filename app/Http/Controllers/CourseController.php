@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateCourseRequest;
 use App\Http\Traits\AppActions;
+use App\Http\Traits\CategoryActions;
 use App\Http\Traits\CourseActions;
 use App\Http\Traits\ReviewActions;
 use App\Library\FileHandler;
@@ -25,7 +26,7 @@ use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Str;
 
 class CourseController extends Controller{
-    use AppActions, CourseActions, ReviewActions;
+    use AppActions, CourseActions, ReviewActions, CategoryActions;
 
 
     public function all(Request $request){
@@ -175,7 +176,13 @@ class CourseController extends Controller{
         $user = $this->user();
         $course = Courses::where('slug', $slug)->first();
         $data = $this->getCourseData($course, $user);
-        return Response::view('dashboard.course-details.edit', $data);
+        $categories = $this->getActiveCategories();
+
+        return Response::view('dashboard.course-details.edit', [
+            'course' => $data,
+            'data' => $this->app_data(),
+            'categories' => $categories
+        ]);
     }
 
     public function update(Request $request, $slug){

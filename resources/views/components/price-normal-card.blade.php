@@ -2,7 +2,10 @@
     <div class="info-price text-start">
         <div class="d-flex align-items-center ">
             <h5 class="fw-bold">
-                {{request()->cookie('currency')}} {{number_format($batch->discount_price)}}
+                <span style="font-size: 0.8rem;">
+                    {{request()->cookie('currency')}}
+                </span>
+                {{number_format($batch->discount_price)}}
             </h5>
             <h6 style="font-size: 13px;" class="ms-1 price text-decoration-line-through text-left">
                 {{request()->cookie('currency')}} {{number_format($batch->price)}}

@@ -6,7 +6,7 @@
 
                 <div class="courses-tab-wrapper">
                     <div class="tab-btn py-0">
-                        <a href="{{$course->slug}}/edit" class="btn btn-secondary btn-hover-primary">View Details</a>
+                        <a href="{{$course->slug}}/edit" class="btn btn-secondary btn-hover-primary">Edit Course</a>
                     </div>
                 </div>
             </div>
