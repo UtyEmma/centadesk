@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('enddate');
             $table->string('mentor_id');
             $table->string('title');
+            $table->string('short_code');
             $table->string('excerpt');
             $table->longText('objectives')->nullable();
             $table->string('video')->nullable();

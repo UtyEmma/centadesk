@@ -77,48 +77,47 @@
     </div>
     <!-- Slider End -->
 
-    <!-- All Courses Start -->
-    <div class="section section-padding-02">
-        <div class="container">
-
-            <!-- All Courses Top Start -->
-            <div class="courses-top">
-
-                <!-- Section Title Start -->
-                <div class="section-title shape-01">
-                    <h2 class="main-title">All <span>Courses</span> of Edule</h2>
-                </div>
-                <!-- Section Title End -->
-
-                <!-- Courses Search Start -->
-                <div class="courses-search">
-                    <form action="/courses" type="GET">
-                        @csrf
-                        <input type="text" name="keyword" placeholder="Search for Courses...">
-                        <button type="submit"><i class="flaticon-magnifying-glass"></i></button>
-                    </form>
-                </div>
-                <!-- Courses Search End -->
-            </div>
-            <!-- All Courses Top End -->
-
-            <!-- All Courses tab content Start -->
-            <div class="row">
-                @foreach ($courses as  $course )
-                    <div class="col-lg-4 col-md-6">
-                        <x-courses.single-course-card :course="$course" :mentor="$course->mentor" />
+    @if (count($courses) > 0)
+        <!-- All Courses Start -->
+        <div class="section section-padding-02">
+            <div class="container">
+                <!-- All Courses Top Start -->
+                <div class="courses-top">
+                    <!-- Section Title Start -->
+                    <div class="section-title shape-01">
+                        <h2 class="main-title">All <span>Courses</span> of Edule</h2>
                     </div>
-                @endforeach
-            </div>
-            <!-- All Courses tab content End -->
+                    <!-- Section Title End -->
 
-            <!-- All Courses BUtton Start -->
-            <div class="courses-btn text-center">
-                <a href="/courses" class="btn btn-secondary btn-hover-primary">View Courses</a>
+                    <!-- Courses Search Start -->
+                    <div class="courses-search">
+                        <form action="/courses" type="GET">
+                            @csrf
+                            <input type="text" name="keyword" placeholder="Search for Courses...">
+                            <button type="submit"><i class="flaticon-magnifying-glass"></i></button>
+                        </form>
+                    </div>
+                    <!-- Courses Search End -->
+                </div>
+                <!-- All Courses Top End -->
+                <!-- All Courses tab content Start -->
+                <div class="row mt-5">
+                    @foreach ($courses as  $course )
+                        <div class="col-lg-4 col-md-6">
+                            <x-courses.single-course-card :course="$course" :mentor="$course->mentor" />
+                        </div>
+                    @endforeach
+                </div>
+                <!-- All Courses tab content End -->
+
+                <!-- All Courses BUtton Start -->
+                <div class="courses-btn text-center">
+                    <a href="/courses" class="btn btn-secondary btn-hover-primary">View Courses</a>
+                </div>
             </div>
         </div>
-    </div>
-    <!-- All Courses End -->
+        <!-- All Courses End -->
+    @endif
 
     <!-- Call to Action Start -->
     <div class="section section-padding-02">

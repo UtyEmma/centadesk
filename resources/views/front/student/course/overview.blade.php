@@ -11,17 +11,25 @@
                     <div class="blog-meta">
                         <span> <i class="icofont-calendar"></i> 21 March, 2021</span>
                         <span> <i class="icofont-heart"></i> 2,568+ </span>
-                        <span class="tag"><a href="#">Science</a></span>
+                        {{-- <span class="tag"><a href="#">Science</a></span> --}}
                     </div>
                 </div>
             </div>
 
             <div class="overview">
-                <div class="enroll-tab-title">
-                    <h5 >Course Details</h5>
-                </div>
                 <div class="enroll-tab-content">
-                    {!! $course->desc !!}
+                    {{ $course->excerpt }}
+                </div>
+
+                <div class="enroll-tab-title mt-4">
+                    <h5 >What you will learn in this class:</h5>
+                    {{-- <ul>
+                        @forelse (json_decode($course->objectives) as $objective)
+                            <li>{{$objective}}</li>
+                        @empty
+
+                        @endforelse
+                    </ul> --}}
                 </div>
             </div>
 

@@ -24,7 +24,7 @@
                                 <div class="col-md-5 col-8 mx-auto mx-md-0 mb-3">
                                     <div class="rounded-circle border-primary border border-2 mx-auto p-1" style="height: 200px; width: 200px;">
                                         <div class="rounded-circle position-relative overflow-hidden h-100 w-100 p-0" >
-                                            <img id="profile_img_preview" class="position-absolute w-100 h-100" style="object-fit: cover; object-position: center;" src="{{$user->avatar ?? 'https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg'}}">
+                                            <img id="profile_img_preview" class="position-absolute w-100 h-100" style="object-fit: cover; object-position: center;" src="{{$user->avatar ?? asset('images/icon/avatar.png')}}">
                                         </div>
                                     </div>
                                 </div>

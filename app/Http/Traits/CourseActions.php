@@ -30,10 +30,9 @@ trait CourseActions {
     public function getCourseData($course, $user = null){
         $category = Category::where('slug', $course->category)->first();
         $course->category = $category->name ?? 'Uncategorized';
-        $course->course_reviews = Review::where('course_id', $course->unique_id)->get();
+        $course->course_reviews = $this->getCourseReviews($course);
         $course->mentor = User::where('unique_id', $course->mentor_id)->first();
         $course->batches = Batch::where('course_id', $course->unique_id)->get();
-        $course->excerpt = Str::words($course->desc, 50);
         $course->active_batch = Batch::find($course->active_batch);
         $course->no_batches = Pluralizer::plural('Batch', $course->total_batches);
         $course->no_reviews = Pluralizer::plural('Review', $course->reviews);

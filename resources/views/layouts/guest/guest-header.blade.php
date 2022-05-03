@@ -32,11 +32,7 @@
                             <li><a href="#"><i class="flaticon-instagram"></i></a></li>
                         </ul>
                     </div>
-                    <!-- Header Top Right End -->
-
                 </div>
-                <!-- Header Top Wrapper End -->
-
             </div>
         </div>
         <!-- Header Top End -->
@@ -61,6 +57,9 @@
                                 <a href="/">Home</a>
                             </li>
                             <li>
+                                <a href="/about">About</a>
+                            </li>
+                            <li>
                                 <a href="/courses">Courses</a>
                             </li>
                             <li><a href="/mentors">Mentors</a></li>
@@ -73,12 +72,13 @@
                     <div class="header-sign-in-up d-none d-lg-block">
                         @if ($user = Auth::user())
                             <ul>
-                                <li><a class="sign-in" href="/learning/courses">My Learning</a></li>
+                                <li ><a class="sign-in fs-6 fw-normal" href="/learning/courses">My Learning</a></li>
                                 @if ($user->role === 'mentor')
-                                    <li><a class="sign-in py-2 " href="/me">Mentor</a></li>
+                                    <li ><a class="sign-in py-2 fs-6 fw-normal" href="/me">Mentor</a></li>
                                 @else
-                                    <li><a class="sign-in py-2" href="/mentor/onboarding">Become a Mentor</a></li>
+                                    <li ><a class="sign-in py-2 fs-6 fw-normal" href="/mentor/onboarding">Mentor</a></li>
                                 @endif
+
                                 <x-avatar :user="$user" />
                             </ul>
                         @else

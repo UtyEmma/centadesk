@@ -2,12 +2,8 @@
 
 namespace App\Http\Traits;
 
-use App\Library\DateTime;
 use App\Library\FileHandler;
 use App\Library\Token;
-use App\Models\Batch;
-use App\Models\Courses;
-use App\Models\Review;
 use App\Models\User;
 use App\Models\Wallet;
 use App\Notifications\NewSignupNotification;
@@ -44,6 +40,7 @@ trait UserActions{
         $notification = [
             'profile' => env('MAIN_APP_URL').RouteServiceProvider::LEARNING_CENTER
         ];
+
         try {
             Notification::send($user, new NewSignupNotification($notification));
         } catch (\Throwable $th) {
@@ -53,9 +50,8 @@ trait UserActions{
     }
 
     function findOrFail($id, $column = 'unique_id'){
-        if(!$user = User::where($column, $id)->first()){
-            throw new Exception("The requested user does not exist");
-        }
+        if(!$user = User::where($column, $id)->first())
+                            throw new Exception("The requested user does not exist");
 
         $user->experience = json_decode($user->experience);
         $user->qualification = json_decode($user->qualification);

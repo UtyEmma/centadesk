@@ -35,10 +35,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware(['set.currency', 'set.referrals'])->group(function(){
     Route::get('/', [AppController::class, 'index']);
+    Route::get('/about', [AppController::class, 'about']);
+    Route::get('/contact', [AppController::class, 'contact']);
     Route::post('/settings/update', [SettingsController::class, 'updateCurrency']);
 
     Route::middleware('auth')->group(function(){
         Route::prefix('learning')->group(function(){
+            Route::get('/', [StudentController::class, 'overview']);
             Route::prefix('/courses')->group(function(){
                 Route::get('/', [StudentController::class, 'enrolledCourses']);
                 Route::get('/{slug}/{shortcode}', [StudentController::class, 'enrolledCourse']);
@@ -145,8 +148,6 @@ Route::middleware(['set.currency', 'set.referrals'])->group(function(){
         Route::get('/{slug}', [CourseController::class, 'show']);
         Route::get('/{slug}/{shortcode}', [BatchController::class, 'batchDetails']);
     });
-
-
 
     require __DIR__.'/auth.php';
 

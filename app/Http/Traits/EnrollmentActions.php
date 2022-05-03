@@ -28,7 +28,6 @@ trait EnrollmentActions {
         $charge = Setting::first()->charge ?? env('DEFAULT_CHARGE');
         $mentor_amount = Number::percentageDecrease($charge, $transaction['amount']);
 
-
         $mentor->earnings += $mentor_amount;
         $mentor->save();
 
@@ -51,9 +50,10 @@ trait EnrollmentActions {
             'batch' => $batch
         ];
 
-        Notification::send($student, new EnrollmentCompletedNotification($notification));
-        Notification::send($student, new NewEnrollmentNotification($notification));
-
+        try {
+            Notification::send($student, new EnrollmentCompletedNotification($notification));
+            Notification::send($student, new NewEnrollmentNotification($notification));
+        } catch (\Throwable $th) {}
     }
 
     function checkEnrollmentStatus($batch, $user){

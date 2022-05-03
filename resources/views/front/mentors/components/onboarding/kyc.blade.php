@@ -19,8 +19,6 @@
                 id_image : $('[name="id_image"]').val()
             }
 
-            console.log($('[name="id_image"]').val())
-
             const __kycSchema = {
                 rules: {
                     kyc_method: `required|string`,

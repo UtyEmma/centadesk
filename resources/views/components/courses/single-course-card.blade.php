@@ -2,7 +2,7 @@
 <div class="single-courses mt-0 mb-4">
     <div class="courses-images position-relative overflow-hidden radius" style="height: 200px">
         <a href="courses/{{$course->slug}}">
-            <img class="img-cover" src="{{json_decode($course->images)[0] ?? asset('images/courses/courses-01.jpg')}}" alt="Courses">
+            <img class="img-cover" src="{{$course->images}}" alt="Courses">
         </a>
 
         <div class="light-tag position-absolute" style="right: 15px; bottom: 0px;">

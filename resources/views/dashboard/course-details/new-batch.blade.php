@@ -12,7 +12,7 @@
                     <h5 class="mt-1 lh-0">Create a New Batch</h5>
                 </div>
 
-                <form class="mt-5" action="/me/courses/{{$course->unique_id}}/batch/create" method="post">
+                <form class="mt-5" action="/me/courses/{{$course->unique_id}}/batch/create" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="row">
                         <div class="col-md-6">
@@ -97,7 +97,7 @@
 
                             <div class="card radius p-3 p-md-5 mt-1">
                                 <div class="single-form my-2">
-                                    <x-img-upload name="images">Upload Image</x-img-upload>
+                                    <x-img-upload name="images" :image="old('images')">Upload Image</x-img-upload>
                                     <x-errors name="images" />
                                 </div>
 

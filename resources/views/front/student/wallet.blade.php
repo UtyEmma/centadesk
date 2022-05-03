@@ -37,11 +37,10 @@
                 </div>
 
                 <div class="card radius p-4 w-100">
-                    <table class="table-responsive w-100">
+                    <table class="w-100">
                         <thead>
                             <th>Amount</th>
                             <th>Payment Method</th>
-                            <th>Account</th>
                             <th>Status</th>
                             <th>Deposit Date</th>
                         </thead>
@@ -52,13 +51,6 @@
                                     <tr>
                                         <td>{{$deposit->amount}}</td>
                                         <td> {{$deposit->type}} </td>
-                                        <td>
-                                            @if ($deposit->type === 'crypto')
-                                                {{$deposit->wallet_id}}
-                                            @elseif ($deposit->type === 'bank')
-                                                {{$deposit->account_name}}
-                                            @endif
-                                        </td>
                                         <td>
                                             {{$deposit->status}}
                                         </td>

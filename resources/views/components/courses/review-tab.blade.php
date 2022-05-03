@@ -17,49 +17,35 @@
 </div>
 
 @if ($can)
-    <div class="reviews-btn">
-        <button type="button" class="btn btn-primary btn-hover-dark" data-bs-toggle="modal" data-bs-target="#reviewsModal">Write A Review</button>
+    <div>
+        <h5 class="modal-title">Write your Review</h5>
     </div>
 
-    <!-- Reviews Form Modal Start -->
-    <div class="modal fade" id="reviewsModal">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Add a Review</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    <!-- Reviews Form Start -->
+    <div class="reviews-form">
+        <form action="/profile/reviews/submit/{{$batch->unique_id}}" method="POST">
+            @csrf
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- Single Form Start -->
+                    <div class="reviews-rating">
+                        <label>Rating</label>
+                        <x-rating-select name="rating" />
+                    </div>
                 </div>
-
-                <!-- Reviews Form Start -->
-                <div class="modal-body reviews-form">
-                    <form action="/profile/reviews/submit/{{$batch->unique_id}}" method="POST">
-                        @csrf
-                        <div class="row">
-                            <div class="col-md-12">
-                                <!-- Single Form Start -->
-                                <div class="reviews-rating">
-                                    <label>Rating</label>
-                                    <x-rating-select name="rating" />
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <!-- Single Form Start -->
-                                <div class="single-form">
-                                    <textarea name="review" placeholder="Write your comments here"></textarea>
-                                </div>
-                                <!-- Single Form End -->
-                            </div>
-                            <div class="col-md-12">
-                                <div class="single-form">
-                                    <button class="btn btn-primary btn-hover-dark">Submit Review</button>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
+                <div class="col-md-12">
+                    <!-- Single Form Start -->
+                    <div class="single-form">
+                        <textarea name="review" placeholder="Write your comments here"></textarea>
+                    </div>
+                    <!-- Single Form End -->
                 </div>
-                <!-- Reviews Form End -->
+                <div class="col-md-12">
+                    <div class="single-form">
+                        <button class="btn btn-primary btn-hover-dark">Submit Review</button>
+                    </div>
+                </div>
             </div>
-        </div>
+        </form>
     </div>
-    <!-- Reviews Form Modal End -->
 @endif

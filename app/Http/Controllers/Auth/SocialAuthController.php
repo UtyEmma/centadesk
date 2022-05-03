@@ -23,21 +23,21 @@ class SocialAuthController extends Controller{
     function facebookCallback(){
         try {
             $data = Socialite::driver('facebook')->user();
-            $user = collect([]);
+            $user = [];
             $nameArray = Str::of($data->getName())->explode(' ');
 
             if($data){
-                $user->firstname = $nameArray[0];
-                $user->lastname = $nameArray[1];
-                $user->avatar = $data->getAvatar();
-                $user->email = $data->getEmail();
+                $user['firstname'] = $nameArray[0];
+                $user['lastname'] = $nameArray[1];
+                $user['avatar'] = $data->getAvatar();
+                $user['email'] = $data->getEmail();
 
                 $user = $this->findOrCreate($user);
 
                 Auth::login($user, true);
 
                 return response()->redirectToIntended(RouteServiceProvider::LEARNING_CENTER)
-                                ->withCookie(cookie('currency', $user->currency));
+                                    ->withCookie(cookie('currency', $user->currency));
             }
         } catch (\Throwable $th) {
             return Response::redirectBack('error', $th->getMessage());
@@ -62,9 +62,9 @@ class SocialAuthController extends Controller{
                 Auth::login($user);
 
                 return response()->redirectToIntended(RouteServiceProvider::LEARNING_CENTER)
-                                ->withCookie(cookie('currency', $user->currency));
+                                    ->withCookie(cookie('currency', $user->currency));
             }else{
-                throw new Exception("Could not fetch any user data from Google");
+                throw new Exception("We could not fetch any user data from Google");
             }
         } catch (\Throwable $th) {
             return Response::redirectBack('error', $th->getMessage());

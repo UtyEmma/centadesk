@@ -48,7 +48,7 @@
                 <div class="courses-item mt-2">
                     <div class="item-thumb col-md-2">
                         <a href="/me/courses/{{$course->slug}}/edit">
-                            <img src="{{$batch->images && json_decode($batch->images)[0]}}" alt="Courses">
+                            <img src="{{$batch->images}}" alt="Courses">
                         </a>
                     </div>
 

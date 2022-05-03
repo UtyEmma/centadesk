@@ -29,7 +29,7 @@
     </div>
     <div class="col-md-6">
         <div class="position-relative overflow-hidden radius " style="height: 180px;">
-            <img src="{{asset('images/add_img.jpg')}}" id="avatar_preview" style="width: 100%;" class="img-cover radius" alt="">
+            <img src="{{$image ?? asset('images/add_img.jpg')}}" id="avatar_preview" style="width: 100%;" class="img-cover radius" alt="">
 
             <button type="button" onclick="removeImg()" id="del-btn" class="position-absolute btn btn-danger btn-hover-dark  py-2 px-1 radius hover-primary" style="top: 10px; right: 10px; line-height: 0;"><i class="icofont-trash mx-1"></i></button>
         </div>

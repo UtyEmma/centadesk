@@ -2,7 +2,7 @@
 
     <!-- Page Banner Start -->
     <div class="section page-banner py-0 pt-5 pb-0 px-0 w-100 bg-transparent">
-        <div class="container mt-5 pt-5 w-100">
+        <div class="container pt-5 w-100">
             <div class="pt-5 px-0 banner-header">
             </div>
         </div>

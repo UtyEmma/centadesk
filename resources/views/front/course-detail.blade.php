@@ -21,13 +21,13 @@
                         <div class="row">
                             <div class="col-md-5">
                                 <div class="courses-details mb-5 mt-0">
-                                    <x-course-images :images="json_decode($course->images)" :video="$course->video" :alt="$course->name" />
+                                    <x-course-images :image="$course->images" :video="$course->video" :alt="$course->name" />
                                 </div>
                             </div>
 
                             <div class="col-md-7">
                                 <h4 class="mb-2">{{$course->name}}</h4>
-                                <p class="mb-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo, temporibus.</p>
+                                <p class="mb-0">{{$course->excerpt}}</p>
 
                                 <div class="courses-details-admin radius mb-4 mt-0">
                                     <div class="mb-0 p-0">
@@ -41,7 +41,7 @@
                                                 <span class="rating-star">
                                                     <span class="rating-bar" style="width: {{$course->rating * 20}}%;"></span>
                                                 </span>
-                                                <span class="rating-text me-1">({{$course->reviews}} Reviews)</span>
+                                                <span class="rating-text me-1">({{$course->reviews}} {{$course->no_reviews}})</span>
                                                 |
                                                 <small class="Enroll ms-1">{{$course->total_students}} Students</small>
                                             </div>
@@ -57,14 +57,19 @@
                     <div class="courses-details mt-0">
                         <!-- Courses Details Tab Start -->
                         <div class="courses-details-tab mt-0 p-0">
-                            <!-- Details Tab Menu Start -->
                             <div>
-                                <h5 class="tab-title">Description</h5>
+                                <h5 class="tab-title">About this Course</h5>
                                 <p>
                                     {!! $course->desc !!}
                                 </p>
                             </div>
-                            <!-- Details Tab Menu End -->
+
+                            <div>
+                                <h5 class="tab-title">What you will learn:</h5>
+                                <p>
+                                    {{ $course->objectives }}
+                                </p>
+                            </div>
 
                             <div class="mt-4">
 
@@ -81,6 +86,8 @@
                                 </div>
                             </div>
                         </div>
+
+                        <x-courses.review-tab :reviews="$course->course_reviews" :batch="$batch" :can="false" />
                         <!-- Courses Details Tab End -->
                     </div>
                     <!-- Courses Details End -->
@@ -96,6 +103,10 @@
                                 @endforeach
                             </ul>
                         </div>
+                    </div>
+
+                    <div class="sidebar-widget mt-5">
+                        <x-mentor-card :mentor="$mentor" :class="''" :btn="true" />
                     </div>
 
                     <!-- Sidebar Widget Share Start -->

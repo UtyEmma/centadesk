@@ -138,19 +138,18 @@ class BatchController extends Controller{
             'course' => $course
         ];
 
-        Notification::send($user, new NewBatchPublishedNotification($notification));
+        try {
+            Notification::send($user, new NewBatchPublishedNotification($notification));
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
 
         return Response::redirectBack('success', 'Batch Created Successfully');
     }
 
     function batchDetails(Request $request, $slug, $shortcode){
-        try {
-            $details = $this->getBatchDetails($shortcode);
-
-            return Response::view('front.batch-details', $details);
-        } catch (\Throwable $th) {
-            return Response::redirectBack('error', $th->getMessage());
-        }
+        $details = $this->getBatchDetails($shortcode);
+        return Response::view('front.batch-details', $details);
     }
 
     function update(Request $request, $slug, $shortcode){

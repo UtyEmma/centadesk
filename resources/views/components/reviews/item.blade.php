@@ -1,34 +1,15 @@
 <!-- Single Reviews Start -->
 <div class="single-review">
-    <div class="review-author">
-        <div class="author-thumb">
-            <img src="{{$review->avatar}}" alt="Author">
-            <i class="icofont-quote-left"></i>
+    <div class="review-author align-items-center">
+        <div >
+            <x-profile-img :user="$review" :size="'60px'" />
         </div>
         <div class="author-content">
-            <h4 class="name">{{$review->firstname}} {{$review->lastname}}</h4>
-            <span class="rating-star">
-                    <span class="rating-bar" style="width: {{$review->rating * 20}}%"></span>
+            <h6 class="mb-0">{{$review->firstname}} {{$review->lastname}}</h6>
+            <span class="rating-star mt-0">
+                <span class="rating-bar" style="width: {{$review->rating * 20}}%"></span>
             </span>
+            <p class="mt-1">{{$review->review}}</p>
         </div>
     </div>
-    <p>{{$review->review}}</p>
 </div>
-<!-- Single Reviews End -->
-
-{{-- <div class="single-review swiper-slide">
-    <div class="review-author">
-        <div class="author-thumb">
-            <img src="assets/images/author/author-06.jpg" alt="Author">
-            <i class="icofont-quote-left"></i>
-        </div>
-        <div class="author-content">
-            <h4 class="name">Sara Alexander</h4>
-            <span class="designation">Product Designer, USA</span>
-            <span class="rating-star">
-                    <span class="rating-bar" style="width: 100%;"></span>
-            </span>
-        </div>
-    </div>
-    <p>Lorem Ipsum has been the industry's standard dummy text since the 1500 when unknown printer took a galley of type and scrambled to make type specimen book has survived not five centuries but also the leap into electronic type and book.</p>
-</div> --}}

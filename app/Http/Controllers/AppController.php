@@ -18,4 +18,12 @@ class AppController extends Controller {
         ]);
     }
 
+    function about(Request $request){
+
+    }
+
+    function contact(Request $request){
+
+    }
+
 }

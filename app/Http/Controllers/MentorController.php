@@ -52,9 +52,11 @@ class MentorController extends Controller{
         ]);
     }
 
-    public function onboarding(){
-        $banks = Bank::all();
+    public function onboarding(Request $request){
+        $user = $this->user();
+        if($user->role === 'mentor') return redirect(self::HOME);
 
+        $banks = Bank::all();
         return view('front.mentors.onboarding', [
             'banks' => $banks
         ]);
@@ -86,7 +88,10 @@ class MentorController extends Controller{
             'dashboard' => self::HOME
         ];
 
-        Notification::send($user, new NewMentorAccountRequestNotification($notification));
+        try {
+            Notification::send($user, new NewMentorAccountRequestNotification($notification));
+        } catch (\Throwable $th) {
+        }
         return redirect(self::HOME);
     }
 

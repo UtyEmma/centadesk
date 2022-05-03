@@ -10,6 +10,7 @@
                 <a href="/mentors/{{$mentor->username}}">{{$mentor->firstname}} {{$mentor->lastname}}</a>
             </h4>
             <span class="designation mt-0">{{$mentor->specialty}}</span>
+            <small class="mt-2">{{$mentor->desc}}</small>
         </div>
         <div class="single-courses border-0 py-0 mt-0">
             <div class="courses-content py-0">
@@ -29,7 +30,11 @@
 
             @if ($btn)
                 <div class="mt-2">
-                    <a href="/mentors/{{$mentor->username}}" class="btn btn-primary w-100 btn-hover-dark">Visit Profile</a>
+                    <a href="/mentors/{{$mentor->username}}" >
+                        <x-btn classes="btn-primary w-100 btn-hover-dark">
+                            Visit Profile
+                        </x-btn>
+                    </a>
                 </div>
             @endif
         </div>

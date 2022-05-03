@@ -17,26 +17,13 @@ use Illuminate\Validation\Rules;
 
 class RegisteredUserController extends Controller{
     use UserActions;
-    /**
-     * Display the registration view.
-     *
-     * @return \Illuminate\View\View
-     */
-    public function create()
-    {
+
+    public function create(){
         return view('auth.register', [
             'data' => $this->app_data()
         ]);
     }
 
-    /**
-     * Handle an incoming registration request.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\RedirectResponse
-     *
-     * @throws \Illuminate\Validation\ValidationException
-     */
     public function store(RegisterRequest $request){
         $user = $this->newUser($request);
         event(new Registered($user));

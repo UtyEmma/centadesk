@@ -36,7 +36,7 @@
                                 <div class="courses-item">
                                     <div class="item-thumb col-md-2">
                                         <a href="/me/courses/{{$course->slug}}">
-                                            <img src="{{json_decode($course->images)[0]}}" alt="Courses">
+                                            <img src="{{$course->images}}" alt="Courses">
                                         </a>
                                     </div>
 

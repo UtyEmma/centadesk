@@ -1,6 +1,6 @@
 <!-- Button trigger modal -->
 <div class="info-btn">
-    <button type="button" class="btn btn-primary btn-hover-dark" data-bs-toggle="modal" data-bs-target="#enrollmentModal">
+    <button type="button" class="btn btn-primary btn-hover-dark w-100" style="font-size: 14px; line-height: 3.5;" data-bs-toggle="modal" data-bs-target="#enrollmentModal">
         Enroll Now
       </button>
 </div>

@@ -1,24 +1,14 @@
 <x-student-layout>
 <!-- Courses Start -->
-<div class="section section-padding">
+<div class="section section-padding pt-0">
     <div class="container">
-
-        <!-- Courses Category Wrapper Start  -->
-        {{-- <div class="courses-category-wrapper"> --}}
-            <div class="courses-search search-2">
-                <input type="text" placeholder="Search here">
-                <button><i class="icofont-search"></i></button>
-            </div>
-        {{-- </div> --}}
-        <!-- Courses Category Wrapper End  -->
-
         <!-- Courses Wrapper Start  -->
-        <div class="courses-wrapper-02">
+        <div class="courses-wrapper-02 pt-0">
             <div class="row">
                 @foreach ($mentors as $mentor)
                     <div class="col-md-4">
                         <!-- Single Team Start -->
-                        <div class="single-team py-5 radius border">
+                        <div class="single-team py-5 radius border mt-0">
                             <div class="team-thumb">
                                 <img src="{{asset('images/author/author-04.jpg')}}" alt="Author">
                             </div>
