@@ -21,6 +21,8 @@
                             <p><i class="flaticon-email"></i> <a href="mailto:address@gmail.com">address@gmail.com</a></p>
                         </div>
                     </div>
+
+                    <x-currency-select :name="'currency'" :currency="$currency" :data="$data" class="text-white" btn_classes="btn bg-white text-white" />
                     <!-- Header Top Medal End -->
 
                     <!-- Header Top Right Start -->

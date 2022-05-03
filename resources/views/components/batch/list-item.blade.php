@@ -1,18 +1,23 @@
 <li>
     <div class="single-post">
         <div class="post-content p-0">
-            <div class="d-flex justify-content-between">
-                <h4 class="title"><a href="./{{$course->slug}}/{{$batch->short_code}}">{{$batch->title}}</a></h4>
-            </div>
-
-            <div class="d-flex justify-content-between align-items-start">
-                <div>
-                    <p class="date my-0" style="font-weight: 500;">Begins</p>
-                    <span class="date my-0"><i class="icofont-calendar"></i> {{$batch->startdate}}</span>
+            <div class="row gx-2">
+                <div class="col-3">
+                    <x-image :image="$batch->images" />
                 </div>
-                <div>
-                    <p class="date my-0" style="font-weight: 500;">{{$batch->currency}} {{$batch->price}}</p>
-                    <span class="date my-0">{{$batch->currency}} {{$batch->discount_price}}</span>
+
+                <div class="col-9">
+                    <h5 class="mb-0"><a href="./{{$course->slug}}/{{$batch->short_code}}">{{$batch->title}}</a></h5>
+                    <small>{{Str::words($batch->excerpt, 10)}}</small>
+                    <div class="mt-2">
+                        <span class="date my-0"><i class="icofont-calendar"></i> {{$batch->startdate}} - {{$batch->enddate}} </span>
+                    </div>
+                    <div class="d-flex align-items-center mt-2 p-2 bg-light-primary radius">
+                        <h5 class="my-0 text-primary fw-bold"><span style="font-size: 13px;">{{$batch->currency}}</span> {{number_format($batch->discount_price)}}</h5>
+                        <small class="date my-0 ms-1 text-decoration-strikethrough" style="text-decoration: line-through; font-size: 12px;">
+                            {{$batch->currency}} {{number_format($batch->price)}}
+                        </small>
+                    </div>
                 </div>
             </div>
         </div>

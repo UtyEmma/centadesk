@@ -41,30 +41,31 @@
                                     </div>
 
                                     <div class="content-title">
-                                        <div class="meta">
+                                        <div class="meta mb-2">
                                             <a href="#" class="action">Live</a>
                                             <a href="#" class="action">Free</a>
                                             <a href="#" class="action">Public</a>
                                         </div>
 
-                                        <h3 class="title mt-0 mb-2"><a href="/me/courses/{{$course->slug}}">{{$course->name}}</a></h3>
-                                        <a href="/me/courses/{{$course->slug}}">
-                                            <x-btn classes="btn-secondary btn-hover-primary px-4">View Batches</x-btn>
+                                        <a class="mb-2" href="/me/courses/{{$course->slug}}">
+                                            <h5 class="title">{{$course->name}}</h5>
                                         </a>
+
+                                        <small>{{$course->excerpt}}</small>
                                     </div>
 
-                                    <div class="content-wrapper">
-                                        <div class="content-box mx-1">
+                                    <div class="content-wrapper h-100">
+                                        {{-- <div class="content-box mx-1 my-0 h-100">
                                             <p>Earned</p>
                                             <span class="count">{{$course->currency}} {{number_format($course->earnings)}}</span>
-                                        </div>
+                                        </div> --}}
 
-                                        <div class="content-box mx-1">
+                                        <div class="content-box my-0 mx-1">
                                             <p>Enrollments</p>
                                             <span class="count">{{$course->total_students}}</span>
                                         </div>
 
-                                        <div class="content-box mx-1">
+                                        <div class="content-box my-0 mx-1">
                                             <p>Course Rating</p>
                                             <span class="count">
                                                     {{$course->rating}}.0
@@ -74,7 +75,7 @@
                                             </span>
                                         </div>
 
-                                        <div class="courses-select mx-1">
+                                        <div class="courses-select mx-1 pt-0">
                                             <div class="dropdown">
                                                 <button class="btn btn-primary btn-hover-dark dropdown-toggle  px-4 border-0 rounded-full" style="font-size: 14px; line-height: 3.5;" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                                                   Options

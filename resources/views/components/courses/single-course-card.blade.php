@@ -5,7 +5,7 @@
             <img class="img-cover" src="{{$course->images}}" alt="Courses">
         </a>
 
-        <div class="light-tag position-absolute" style="right: 15px; bottom: 0px;">
+        <div class="light-tag position-absolute" style="right: 15px; bottom: 10px;">
             <a href="#">{{$course->category}}</a>
         </div>
     </div>

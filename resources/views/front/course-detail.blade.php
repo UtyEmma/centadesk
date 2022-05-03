@@ -96,7 +96,7 @@
                     <div>
                         <h5 class="tab-title mb-2">Course Batches</h5>
 
-                        <div class="widget-post mt-2 py-5">
+                        <div class="widget-post mt-2 p-3">
                             <ul class="post-items">
                                 @foreach ($course->batches as $batch)
                                     <x-batch.list-item :course="$course" :batch="$batch" />
