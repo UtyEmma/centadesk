@@ -72,15 +72,30 @@ class UserController extends Controller{
     function students($id){
         try {
             $user = $this->findOrFail($id);
-            $courses = User::find($id)->courses;
+            $students = User::find($id)->courses;
 
             return Response::view('admin.user-detail.courses', [
-                'students' => $courses,
+                'students' => $students,
                 'user' => $user
             ]);
         } catch (\Throwable $th) {
             return Response::redirectBack('error', $th->getMessage());
         }
+    }
+
+    function withdrawals($id){
+        try {
+            $user = $this->findOrFail($id);
+            $withdrawals = User::find($id)->withdrawals();
+
+            return Response::view('admin.user-detail.withdrawals', [
+                'withdrawals' => $withdrawals,
+                'user' => $user
+            ]);
+        } catch (\Throwable $th) {
+            return Response::redirectBack('error', $th->getMessage());
+        }
+
     }
 
 

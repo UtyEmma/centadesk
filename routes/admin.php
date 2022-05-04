@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\AnalyticsController;
+use App\Http\Controllers\Admin\BanksController;
 use App\Http\Controllers\Admin\BatchController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\CourseController;
@@ -75,6 +76,11 @@ Route::middleware('auth:admin')->group(function(){
             Route::get('/status', [CategoryController::class, 'setStatus']);
             Route::get('/delete', [CategoryController::class, 'delete']);
         });
+    });
+
+    Route::prefix('/banks')->group(function(){
+        Route::get('/', [BanksController::class, 'show']);
+        Route::get('/refresh', [BanksController::class, 'refresh']);
     });
 
     Route::prefix('/currencies')->group(function(){

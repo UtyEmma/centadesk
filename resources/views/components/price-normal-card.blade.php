@@ -13,10 +13,10 @@
         </div>
     </div>
     <div class="mb-3">
-        <small class="mb-0">5 out of {{$batch->signup_limit}} slots left</small>
+        <small class="mb-0">{{$batch->remaining_slots}} out of {{$batch->attendees}} slots left</small>
         <div class="courses-rating">
             <div class="rating-progress-bar mt-1">
-                <div class="rating-line" style="width: 38%;"></div>
+                <div class="rating-line" style="width: {{$batch->remaining_slots_percent}}%;"></div>
             </div>
         </div>
     </div>
@@ -26,7 +26,7 @@
     @else
         <div class="info-btn w-100">
             <a href="/login">
-                <x-btn class="btn-primary w-100 btn-hover-dark">
+                <x-btn classes="btn-primary w-100 btn-hover-dark">
                     Login to Enroll
                 </x-btn>
             </a>

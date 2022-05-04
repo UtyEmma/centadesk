@@ -8,7 +8,7 @@
     <!-- Page Banner End -->
 
     <!-- Register & Login Start -->
-    <div class="section section-padding pt-md-3 pt-0 mt-0">
+    <div class="section section-padding pt-md-3 pt-0 mt-5">
         <div class="container">
             <div class="row">
                 <div class="col-lg-7 d-lg-block d-none">

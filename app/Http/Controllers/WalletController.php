@@ -14,7 +14,7 @@ class WalletController extends Controller{
         $user = $this->user();
         return Response::view('dashboard.wallet', [
             'wallet' => $user->wallet,
-            'withdrawals' => $user->withdrawals,
+            'withdrawals' => $user->withdrawals(),
             'user' => $user
         ]);
     }

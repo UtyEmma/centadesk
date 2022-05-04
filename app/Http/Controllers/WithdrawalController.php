@@ -21,20 +21,21 @@ class WithdrawalController extends Controller{
             $flutterwave = new Flutterwave();
             $user = $this->user();
             $wallet = Wallet::where('user_id', $user->unique_id)->first();
-            if($wallet->available < $request->amount) return Response::redirectBack('error', 'You do not have sufficient funds for this transaction.');
+            // if($wallet->available < $request->amount) return Response::redirectBack('error', 'You do not have sufficient funds for this transaction.');
 
             $withdrawal = $this->createWithdrawal($user, $request->amount, $request->type ?? 'bank');
-            $withdraw = $flutterwave->initiateWithdrawal($withdrawal, $user, $request->amount);
+            $withdraw = env('RAVE_LIVE') ? $flutterwave->initiateWithdrawal($withdrawal, $user, $request->amount) : $flutterwave->initiateTestWithdrawal($withdrawal, $user, $request->amount);
 
-            if(!$withdraw || $withdraw['status'] === 'success') {
+            if(!$withdraw || $withdraw['status'] === 'error') {
                 $withdrawal->delete();
-                return Response::redirectBack('error', 'Your withdrawal could not be initiated');
+                return Response::redirectBack('error', 'Your withdrawal failed! '.$withdraw['data']['complete_message']);
             }
 
             $wallet->available -= $request->amount;
             $wallet->save();
 
-            $withdrawal->status = 'ongoing';
+            $withdrawal->status = 'IN_PROGRESS';
+            $withdrawal->save();
 
             return Response::redirectBack('success', "Your Withdrawal process has been initiated! You will be notified once its completed");
         } catch (\Throwable $th) {
@@ -44,7 +45,7 @@ class WithdrawalController extends Controller{
 
     function createWithdrawal($user, $amount, $type){
         $unique_id = Token::unique('users');
-        $reference = Token::text(7, 'withdrawals', 'reference');
+        $reference = $this->newRef('withdrawals', 'reference');
 
         $withdrawal = Withdrawal::create([
             'unique_id' => $unique_id,
@@ -55,10 +56,15 @@ class WithdrawalController extends Controller{
             'bank' => $user->bank,
             'type' => $type,
             'wallet_key' => '$wallet->unique_id',
-            'reference' => strtolower($reference)
+            'reference' => $reference
         ]);
 
         return $withdrawal;
+    }
+
+    function newRef($table, $column){
+        $reference = strtolower(Token::text(7, $table, $column));
+        return env('RAVE_LIVE') ? $reference : $reference.'_PMCKDU_1';
     }
 
     function updateStatus(Request $request){
@@ -83,11 +89,14 @@ class WithdrawalController extends Controller{
                     $withdrawal->save();
 
                     $user = User::find($withdrawal->user_id);
+
                     $notification = [
                         'subject' => "Your withdrawal has been completed successfully"
                     ];
 
-                    Notification::send($user, new WithdrawalCompletedNotification($notification));
+                    try {
+                        Notification::send($user, new WithdrawalCompletedNotification($notification));
+                    } catch (\Throwable $th) {}
 
                     return Response::json(200, 'Withdrawal Completed');
                 }

@@ -3,13 +3,11 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-7">
-                    <div class="mb-2">
-                        <h4 class="lh-0">Welcome {{$user->firstname}}</h4>
-                        <h6>Here is how you are doing!</h6>
-                    </div>
+                    <h4 class="lh-0">Welcome {{$user->firstname}}</h4>
+                    <h6 class="">Here is how you are doing!</h6>
 
                     <div class="overview-box px-0">
-                        <div class="single-box my-1 px-3">
+                        <div class="single-box my-1 px-3 ">
                             <h5 class="title">Revenue</h5>
                             <div class="count">&#8358; {{$user->earnings}}</div>
                             <p><span>$235.00</span> This months</p>

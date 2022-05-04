@@ -57,7 +57,7 @@
                                     <div class="content-wrapper h-100">
                                         {{-- <div class="content-box mx-1 my-0 h-100">
                                             <p>Earned</p>
-                                            <span class="count">{{$course->currency}} {{number_format($course->earnings)}}</span>
+                                            <span class="count">{{$course->currency}} {{number_format($course->revenue)}}</span>
                                         </div> --}}
 
                                         <div class="content-box my-0 mx-1">

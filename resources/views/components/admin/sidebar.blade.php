@@ -38,6 +38,12 @@
         </a>
       </li>
       <li class="nav-item">
+        <a class="nav-link" href="/banks">
+          <i class="mdi mdi-currency-usd menu-icon"></i>
+          <span class="menu-title">Banks</span>
+        </a>
+      </li>
+      <li class="nav-item">
         <a class="nav-link" href="/app-settings">
           <i class="mdi mdi-tune menu-icon"></i>
           <span class="menu-title">App Settings</span>

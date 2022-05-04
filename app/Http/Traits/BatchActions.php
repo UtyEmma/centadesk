@@ -35,6 +35,14 @@ trait BatchActions {
         if(!$mentor = User::find($course->mentor_id))
             throw new Exception("Could not get the Mentor for this Course", 404);
 
+        $batch->remaining_slots = $batch->attendees - $batch->total_students;
+        $batch->remaining_slots_percent = $batch->total_students * 100 / $batch->remaining_slots;
+
+        if($batch->discount !== 'none'){
+            $batch->discount_slots = $batch->signup_limit - $batch->total_students;
+            $batch->discount_slots_percent = $batch->total_students * 100 / $batch->discount_slots;
+        }
+
         return [
             'batch' => $batch,
             'course' => $course,

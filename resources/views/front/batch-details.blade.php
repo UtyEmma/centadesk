@@ -45,7 +45,17 @@
 
                         <div class="courses-details-tab">
                             <h6 class="tab-title">What you will learn?</h6>
-                            <p></p>
+                            <p>
+                                @if ($batch->objectives)
+                                    @forelse (json_decode($batch->objectives) as $objective)
+                                        <ul>
+                                            <li class="my-2"><i class="icofont-check text-primary fs-4"></i> {{$objective}}</li>
+                                        </ul>
+                                    @empty
+
+                                    @endforelse
+                                @endif
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -69,10 +79,10 @@
                             <x-mentor-card :mentor="$mentor" :class="''" :btn="true" />
                         </div>
 
-                        <div class="sidebar-widget">
-                            <h5>Share to your friends:</h5>
+                        <div class="sidebar-widget mt-5">
+                            <h5 class="mb-0">Share to your friends:</h5>
 
-                            <ul class="social">
+                            <ul class="social mt-0">
                                 <li><a href="#"><i class="flaticon-facebook"></i></a></li>
                                 <li><a href="#"><i class="flaticon-linkedin"></i></a></li>
                                 <li><a href="#"><i class="flaticon-twitter"></i></a></li>

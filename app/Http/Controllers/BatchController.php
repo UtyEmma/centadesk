@@ -140,9 +140,7 @@ class BatchController extends Controller{
 
         try {
             Notification::send($user, new NewBatchPublishedNotification($notification));
-        } catch (\Throwable $th) {
-            //throw $th;
-        }
+        } catch (\Throwable $th) {}
 
         return Response::redirectBack('success', 'Batch Created Successfully');
     }

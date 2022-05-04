@@ -10,7 +10,7 @@
                 <a href="/mentors/{{$mentor->username}}">{{$mentor->firstname}} {{$mentor->lastname}}</a>
             </h4>
             <span class="designation mt-0">{{$mentor->specialty}}</span>
-            <small class="mt-2">{{$mentor->desc}}</small>
+            {{-- <small class="mt-2">{{$mentor->desc}}</small> --}}
         </div>
         <div class="single-courses border-0 py-0 mt-0">
             <div class="courses-content py-0">

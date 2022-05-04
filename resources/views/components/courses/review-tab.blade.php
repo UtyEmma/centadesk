@@ -8,9 +8,14 @@
                 <x-reviews.item :review="$review" />
             @endforeach
         @else
-            <div class="text-center w-100 p-5 border radius">
-                <h4>There are no Reviews</h4>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam, ea.</p>
+            <div class="w-100">
+                @if (Auth::user())
+                    <h6>Be the first to review this Course</h6>
+                    <p>Enroll in any of the active batches and let us know what you think.</p>
+                @else
+                    <h6>There are no reviews yet</h6>
+                    <p>Login and Enroll in any of the active batches and let us know what you think.</p>
+                @endif
             </div>
         @endif
     </div>

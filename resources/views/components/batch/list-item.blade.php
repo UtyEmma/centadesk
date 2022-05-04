@@ -7,8 +7,8 @@
                 </div>
 
                 <div class="col-9">
-                    <h5 class="mb-0"><a href="./{{$course->slug}}/{{$batch->short_code}}">{{$batch->title}}</a></h5>
-                    <small>{{Str::words($batch->excerpt, 10)}}</small>
+                    <h6 class="mb-0"><a href="./{{$course->slug}}/{{$batch->short_code}}">{{$batch->title}}</a></h6>
+                    <small>{{Str::words($batch->excerpt, 7)}} <a class="text-primary" href="./{{$course->slug}}/{{$batch->short_code}}">Read More</a> </small>
                     <div class="mt-2">
                         <span class="date my-0"><i class="icofont-calendar"></i> {{$batch->startdate}} - {{$batch->enddate}} </span>
                     </div>

@@ -30,7 +30,7 @@
 
             <div id="experienceItem">
                 <div class="single-form">
-                    <input type="text" id="company" placeholder="Comany or Organization" />
+                    <input type="text" id="company" placeholder="Company or Organization" />
                     <small id="company-error" class="text-danger"></small>
                 </div>
 
@@ -41,7 +41,6 @@
                 </div>
 
                 <input id="experience_id" hidden />
-
 
                 <div class="row">
                     <div class="single-form w-full col-md-5">

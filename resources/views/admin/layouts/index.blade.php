@@ -12,6 +12,7 @@
         <!-- plugin css for this page -->
         <link rel="stylesheet" href="{{asset('administrator/vendors/datatables.net-bs4/dataTables.bootstrap4.css')}}">
         <!-- End plugin css for this page -->
+        <link rel="stylesheet" href="{{asset('css/plugins/simple-notify.min.css')}}">
         <!-- inject:css -->
         <link rel="stylesheet" href="{{asset('administrator/css/style.css')}}">
         <!-- endinject -->
@@ -37,10 +38,14 @@
         <script src="{{asset('administrator/js/dataTables.bootstrap4.js')}}"></script>
         <!-- End custom js for this page-->
         <script src="{{asset('administrator/js/jquery.cookie.js')}}" type="text/javascript"></script>
+        <script src="{{asset('js/plugins/simple-notify.min.js')}}"></script>
+
     </head>
     <body>
         <div class="container-scroller">
             {{$slot}}
         </div>
+
+        <x-toasts />
     </body>
 </html>

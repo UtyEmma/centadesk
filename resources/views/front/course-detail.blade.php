@@ -67,7 +67,15 @@
                             <div>
                                 <h5 class="tab-title">What you will learn:</h5>
                                 <p>
-                                    {{ $course->objectives }}
+                                    @if ($course->objectives)
+                                        @forelse (json_decode($course->objectives) as $objective)
+                                            <ul>
+                                                <li class="my-2"><i class="icofont-check text-primary fs-4"></i> {{$objective}}</li>
+                                            </ul>
+                                        @empty
+
+                                        @endforelse
+                                    @endif
                                 </p>
                             </div>
 
@@ -106,6 +114,7 @@
                     </div>
 
                     <div class="sidebar-widget mt-5">
+                        <h5>Meet the Mentor</h5>
                         <x-mentor-card :mentor="$mentor" :class="''" :btn="true" />
                     </div>
 

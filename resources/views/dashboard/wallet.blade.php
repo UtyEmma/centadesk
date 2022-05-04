@@ -43,43 +43,49 @@
             <!-- Overview Top End -->
 
             <!-- Graph Top Start -->
-            <div class="graph p-0 border-0">
-                <div class="graph-title mb-3">
+            <div class="mt-4">
+                <div class="d-flex justify-content-between align-items-center mb-3">
                     <h4 class="title">Withdrawals</h4>
-
-                    <div class="graph-btn">
-                        <x-withdrawal-modal />
-                    </div>
+                    <x-withdrawal-modal />
                 </div>
 
                 <div class="card radius p-4">
-                    <table class="table-responsive w-100 table-striped">
-                        <thead>
-                            <th>Amount</th>
+                    <x-data-table id="withdrawal-table">
+                        <thead class="text-center bg-light p-3 radius mb-2">
+                            <th class="p-2 py-3">Amount</th>
                             <th>Payment Method</th>
-                            <th>Account</th>
+                            <th>Account Number</th>
+                            <th>Bank</th>
                             <th>Status</th>
                             <th>Withdrawal Date</th>
                         </thead>
 
-                        <tbody>
+                        <tbody class="text-center">
                             @if (count($withdrawals) > 0)
                                 @foreach ($withdrawals as $withdrawal)
-                                    <tr>
-                                        <td>{{$withdrawal->amount}}</td>
+                                    <tr >
+                                        <td class="py-2">{{request()->cookie('currency')}} {{number_format($withdrawal->amount)}}</td>
                                         <td> {{$withdrawal->type}} </td>
                                         <td>
                                             @if ($withdrawal->type === 'crypto')
                                                 {{$withdrawal->wallet_key}}
                                             @elseif ($withdrawal->type === 'bank')
-                                                {{$withdrawal->account_name}}
+                                                {{$withdrawal->account_no}}
                                             @endif
                                         </td>
                                         <td>
-                                            {{$withdrawal->status}}
+                                            @if ($withdrawal->type === 'crypto')
+                                            @elseif ($withdrawal->type === 'bank')
+                                                {{$withdrawal->bank_name}}
+                                            @endif
                                         </td>
                                         <td>
-                                            {{$withdrawal->created_at}}
+                                            <small class="bg-secondary p-2 py-1 rounded fs-6">
+                                                {{$withdrawal->status}}
+                                            </small>
+                                        </td>
+                                        <td>
+                                            {{$withdrawal->created->date}}
                                         </td>
                                     </tr>
                                 @endforeach
@@ -91,7 +97,7 @@
                                 </tr>
                             @endif
                         </tbody>
-                    </table>
+                    </x-data-table>
                 </div>
             </div>
             <!-- Graph Top End -->

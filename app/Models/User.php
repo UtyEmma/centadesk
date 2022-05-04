@@ -52,10 +52,6 @@ class User extends Authenticatable
         return $this->hasOne(Wallet::class, 'user_id', 'unique_id');
     }
 
-    public function withdrawals(){
-        return $this->hasMany(Withdrawal::class, 'user_id', 'unique_id');
-    }
-
     public function deposits(){
         return $this->hasMany(Deposit::class, 'user_id', 'unique_id');
     }
@@ -90,7 +86,15 @@ class User extends Authenticatable
         ];
     }
 
-    public function previousClasses(){
-
+    public function withdrawals(){
+        $withdrawals = Withdrawal::where('user_id', $this->unique_id)->get();
+        return $withdrawals->map(function($withdrawal){
+            $bank = Bank::where('code', $withdrawal->bank)->first();
+            $withdrawal->bank_name = $bank->name;
+            $withdrawal->created = DateTime::parseTimestamp($withdrawal->created_at);
+            return $withdrawal;
+        });
     }
+
+
 }

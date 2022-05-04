@@ -38,8 +38,10 @@ trait EnrollmentActions {
         $course->save();
 
         $batch->total_students += 1;
-        $course->earnings += $mentor_amount;
+        $batch->earnings += $mentor_amount;
+        $batch->discount = $batch->total_students > $batch->signup_limit && $batch->signup_limit !== 0  ? 'none' : $batch->discount;
         $batch->save();
+
 
         $notification = [
             'subject' => [

@@ -10,7 +10,7 @@
     <!-- Page Banner End -->
 
     <!-- Register & Login Start -->
-    <div class="section section-padding pt-md-3 pt-5 pt-md-0 mt-0">
+    <div class="section section-padding pt-md-3 pt-5 pt-md-0 mt-5">
         <div class="container">
 
             <!-- Register & Login Wrapper Start -->
