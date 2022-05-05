@@ -6,11 +6,12 @@
                 <div class="card">
                   <div class="card-body">
                     <div class="text-center">
-                        <img src="{{$user->avatar ?? 'https://bootdey.com/img/Content/avatar/avatar7.png'}}" alt="Admin" class="rounded-circle" width="150">
+
+                        <img src="{{$user->avatar ?? asset('images/icon/avatar.png')}}" alt="Admin" class="rounded-circle" style="object-fit: cover;" width="100" height="100" >
                         <div class="mt-3">
                             <h4>{{$user->firstname}} {{$user->lastname}}</h4>
                             <p class="text-secondary mb-1 text-capitalize">{{$user->role}}</p>
-                            <p class="text-muted font-size-sm">Bay Area, San Francisco, CA</p>
+                            <p class="text-muted font-size-sm">{{$user->specialty}}</p>
 
                             @if ($user->role === 'mentor')
                                 <div class="w-100 text-left">
@@ -74,11 +75,11 @@
             <div class="col-12 ">
                 <ul class="nav nav-tabs mb-3">
                     <li class="nav-item">
-                        <a class="nav-link active" href="/users/{{$user->unique_id}}">Profile</a>
+                        <a class="nav-link {{request()->is('users/*') ? 'active' : ''}}" href="/users/{{$user->unique_id}}">Profile</a>
                     </li>
                     @if ($user->role === 'mentor')
                         <li class="nav-item">
-                            <a class="nav-link" href="/users/{{$user->unique_id}}/courses">Courses</a>
+                            <a class="nav-link {{request()->is('users/*/courses') ? 'active' : ''}} " href="/users/{{$user->unique_id}}/courses">Courses</a>
                         </li>
                     @endif
                     <li class="nav-item">

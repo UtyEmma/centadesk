@@ -21,7 +21,7 @@
                     @foreach ($users as $user)
                         <tr>
                             <td>
-                                <img src="{{asset('admin/images/faces/face1.jpg')}}" alt="image"/>
+                                <img src="{{$user->avatar ?? asset('images/icon/avatar.png')}}" alt="image"/>
                                 <a href="/users/{{$user->unique_id}}" class="ml-2">{{$user->firstname}} {{$user->lastname}}</a>
                             </td>
                             <td>
