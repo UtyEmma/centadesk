@@ -5,7 +5,8 @@
                 <div class="card-body">
                     <h3>Register Admin</h3>
                     <hr>
-                    <form action="/admins/create" method="POST" class="forms-sample">
+                    <form action="/admin/create" method="POST" class="forms-sample">
+                        @csrf
                         <div class="form-group">
                             <label for="exampleInputUsername1">Name</label>
                             <input type="text" class="form-control" name="name" required id="exampleInputUsername1" placeholder="Name">

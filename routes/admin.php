@@ -31,6 +31,7 @@ Route::middleware('auth:admin')->group(function(){
 
     Route::prefix('/users')->group(function(){
         Route::get('/', [UserController::class, 'all']);
+
         Route::prefix('/{id}')->group(function(){
             Route::get('/', [UserController::class, 'fetch']);
             Route::get('/edit', [UserController::class, 'edit']);
@@ -47,10 +48,7 @@ Route::middleware('auth:admin')->group(function(){
                 Route::get('/delete', [UserController::class, 'delete']);
                 Route::get('/approve', [MentorController::class, 'approve']);
                 Route::get('/verify', [MentorController::class, 'verify']);
-
             });
-
-
         });
     });
 
@@ -68,6 +66,8 @@ Route::middleware('auth:admin')->group(function(){
 
     Route::prefix('/mentors')->group(function(){
         Route::get('/', [MentorController::class, 'mentors']);
+        Route::get('/requests', [MentorController::class, 'requests']);
+        Route::get('/verify', [MentorController::class, 'verificationRequests']);
     });
 
     Route::get('/countries', [CurrencyController::class, 'getCountries']);
@@ -92,9 +92,11 @@ Route::middleware('auth:admin')->group(function(){
         Route::get('/set', [CurrencyController::class, 'setCurrencies']);
         Route::get('/update-rates', [CurrencyController::class, 'updateRates']);
         Route::get('/{id}', [CurrencyController::class, 'singleCurrency']);
+        Route::post('/update/{id}', [CurrencyController::class, 'updateCurrency']);
+        Route::post('/search', [CurrencyController::class, 'searchCurrencies']);
     });
 
-    Route::get('/app-settings', [SettingsController::class, 'appSettings']);
+    Route::get('/settings', [SettingsController::class, 'appSettings']);
     Route::post('/update-settings', [SettingsController::class, 'updateSettings']);
 
     Route::get('/admins', [AdminController::class, 'register']);
@@ -102,8 +104,8 @@ Route::middleware('auth:admin')->group(function(){
 
     Route::prefix('/admin')->middleware('is.super')->group(function(){
         Route::post('/create', [AdminController::class, 'create']);
-        Route::post('/status', [AdminController::class, 'status']);
-        Route::post('/delete', [AdminController::class, 'delete']);
+        Route::get('/status', [AdminController::class, 'status']);
+        Route::get('/delete', [AdminController::class, 'delete']);
     });
 
 });

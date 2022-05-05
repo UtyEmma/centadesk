@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Traits\Analytics;
 use App\Library\Response;
 use App\Library\Token;
 use App\Models\Admin;
+use App\Models\Stat;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -14,6 +16,7 @@ use Illuminate\Support\Facades\Hash;
 use function PHPUnit\Framework\isEmpty;
 
 class AdminController extends Controller{
+    use Analytics;
 
     function login(){
         return view('admin.login');
@@ -39,8 +42,19 @@ class AdminController extends Controller{
             'approved' => false
         ])->get();
 
+        $verification_requests = User::where([
+            'role' => 'mentor',
+            'kyc_status' => 'pending',
+            'approved' => false,
+            'is_verified' => 'pending'
+        ])->get();
+
+        $stats = $this->compileStats();
+
         return view('admin.overview', [
-            'mentor_requests' => $mentor_requests
+            'mentor_requests' => $mentor_requests,
+            'verification_requests' => $verification_requests,
+            'stats' => $stats
         ]);
     }
 

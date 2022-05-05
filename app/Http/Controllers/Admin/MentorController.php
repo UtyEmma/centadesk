@@ -12,8 +12,29 @@ use Illuminate\Support\Facades\Notification;
 
 class MentorController extends Controller{
 
-    function mentors(Request $request){
+    function requests(Request $request){
+        $mentor_requests = User::where([
+            'role' => 'mentor',
+            'kyc_status' => 'pending',
+            'approved' => false
+        ])->get();
 
+        return Response::view('admin.mentor-requests', [
+            'mentor_requests' => $mentor_requests
+        ]);
+    }
+
+    function verificationRequests (){
+        $verification_requests = User::where([
+            'role' => 'mentor',
+            'kyc_status' => 'pending',
+            'approved' => false,
+            'is_verified' => 'pending'
+        ])->get();
+
+        return Response::view('admin.verification-requests', [
+            'verification_requests' => $verification_requests
+        ]);
     }
 
     function approve(Request $request, $unique_id){
@@ -43,10 +64,12 @@ class MentorController extends Controller{
         }
     }
 
-    function verify($id){
+    function verify(Request $request, $id){
         if(!$user = User::find($id)) return Response::redirectBack('error', 'User does not exist');
         if($user->role !== 'mentor') return Response::redirectBack('error', 'User is not a Mentor and cannot be verified');
-        $user->is_verified = 'verified';
-        return Response::redirectBack('success', 'User Verified Successfully');
+        $user->is_verified = $request->status ? 'verified' : 'not_verified';
+        $user->save();
+
+        return Response::redirectBack('success', 'Verification Status Updated');
     }
 }

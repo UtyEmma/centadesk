@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Casts\Currency;
 use App\Http\Controllers\Controller;
 use App\Http\Traits\CurrencyActions;
 use App\Library\Response;
@@ -33,7 +34,13 @@ class CurrencyController extends Controller{
     }
 
     function currencies(Request $request){
-        $currencies = Currencies::paginate(env('ADMIN_PAGINATION_COUNT'));
+        if ($request->has('keyword')) {
+            $currency = Currencies::where('symbol', $request->keyword)->get();
+            $currencies = $currency->isNotEmpty() ? $currency : Currencies::where('name', $request->keyword)->get();
+        }else{
+            $currencies = Currencies::paginate(env('ADMIN_PAGINATION_COUNT'));
+        }
+
         $base = Currencies::where('base', true)->first();
 
         return view('admin.currencies.index', [
@@ -42,4 +49,13 @@ class CurrencyController extends Controller{
         ]);
     }
 
+    function updateCurrency(Request $request, $id){
+        try {
+            $currency = Currencies::find($id);
+            $currency->update($request->all());
+            return Response::redirectBack('success', "Currency Updated Successfully");
+        } catch (\Throwable $th) {
+            return Response::redirectBack('error', $th->getMessage());
+        }
+    }
 }
