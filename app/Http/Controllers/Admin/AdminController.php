@@ -4,9 +4,14 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Library\Response;
+use App\Library\Token;
+use App\Models\Admin;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+
+use function PHPUnit\Framework\isEmpty;
 
 class AdminController extends Controller{
 
@@ -48,5 +53,65 @@ class AdminController extends Controller{
 
         return Response::redirect('/login', 'success', 'Logout Successful');
     }
+
+    function register(){
+        $admins = Admin::all();
+
+        return Response::view('admin.admins', [
+            'admins' => $admins
+        ]);
+    }
+
+    function create(Request $request){
+        $unique_id = Token::unique('admins');
+
+        if(!$admin = Admin::where('email', $request->email)->first()){
+            Admin::create([
+                'unique_id' => $unique_id,
+                'name' => $$request->name,
+                'email' => $request->email,
+                'role' => $request->role,
+                'password' => Hash::make($request->password),
+            ]);
+        }
+
+        return Response::redirectBack('success', "Admin Created");
+    }
+
+    function status($id){
+        try {
+            $admin = Admin::find($id);
+            $user = Auth::guard('admin')->user();
+            if($user->unique_id === $id) return Response::redirectBack('error', 'You cannot change your own account Status');
+            $admin->status = !!$admin->status;
+            $admin->save();
+
+            $status = $admin->status ? 'Unsuspended' : 'Suspended';
+            return redirect()->back()->with('success', "Admin was $status");
+        } catch (\Throwable $th) {
+            return Response::redirectBack('error', $th->getMessage());
+        }
+    }
+
+    function delete($id){
+        try {
+            $admin = Admin::find($id);
+            $user = Auth::guard('admin')->user();
+            $admins = Admin::all();
+            $super_admins = Admin::where('role', 'super-admin')->get();
+
+            if(count($admins) < 2 ||  $super_admins->isEmpty())
+                    return Response::redirectBack('error', 'There must be at least one Super administrator on the App');
+
+            if($user->unique_id === $id)
+                    return Response::redirectBack('error', 'You cannot change your own account Status');
+
+            $admin->delete();
+            return Response::redirectBack('success', 'User was deleted successfully');
+        } catch (\Throwable $th) {
+            return Response::redirectBack('error', $th->getMessage());
+        }
+    }
+
 
 }

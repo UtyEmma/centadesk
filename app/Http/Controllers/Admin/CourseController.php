@@ -20,8 +20,8 @@ class CourseController extends Controller{
         ]);
     }
 
-    function show($id){
-        $course = Courses::find($id);
+    function show($slug){
+        $course = Courses::where('slug', $slug)->first();
         $result = $this->getCourseData($course);
 
         return Response::view('admin.course.info', [

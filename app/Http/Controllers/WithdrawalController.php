@@ -21,7 +21,7 @@ class WithdrawalController extends Controller{
             $flutterwave = new Flutterwave();
             $user = $this->user();
             $wallet = Wallet::where('user_id', $user->unique_id)->first();
-            // if($wallet->available < $request->amount) return Response::redirectBack('error', 'You do not have sufficient funds for this transaction.');
+            if($wallet->available < $request->amount) return Response::redirectBack('error', 'You do not have sufficient funds for this transaction.');
 
             $withdrawal = $this->createWithdrawal($user, $request->amount, $request->type ?? 'bank');
             $withdraw = env('RAVE_LIVE') ? $flutterwave->initiateWithdrawal($withdrawal, $user, $request->amount) : $flutterwave->initiateTestWithdrawal($withdrawal, $user, $request->amount);
@@ -55,6 +55,7 @@ class WithdrawalController extends Controller{
             'account_name' => $user->account_name ?? "$user->firstname $user->lastname",
             'bank' => $user->bank,
             'type' => $type,
+            'currency' => $user->currency,
             'wallet_key' => '$wallet->unique_id',
             'reference' => $reference
         ]);

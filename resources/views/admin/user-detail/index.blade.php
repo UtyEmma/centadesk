@@ -75,25 +75,32 @@
             <div class="col-12 ">
                 <ul class="nav nav-tabs mb-3">
                     <li class="nav-item">
-                        <a class="nav-link {{request()->is('users/*') ? 'active' : ''}}" href="/users/{{$user->unique_id}}">Profile</a>
+                        <a class="nav-link {{request()->is("users/$user->unique_id") ? 'active' : ''}}" href="/users/{{$user->unique_id}}">Profile</a>
                     </li>
-                    @if ($user->role === 'mentor')
+
+                    @if ($user->role === 'mentor' && $user->kyc_status === 'approved')
                         <li class="nav-item">
                             <a class="nav-link {{request()->is('users/*/courses') ? 'active' : ''}} " href="/users/{{$user->unique_id}}/courses">Courses</a>
                         </li>
                     @endif
+
                     <li class="nav-item">
-                        <a class="nav-link" href="/users/{{$user->unique_id}}/students">Students</a>
+                        <a class="nav-link {{request()->is('users/*/enrolled') ? 'active' : ''}}" href="/users/{{$user->unique_id}}/enrolled">Enrollments</a>
                     </li>
+
                     <li class="nav-item">
-                        <a class="nav-link" href="/users/{{$user->unique_id}}/withdrawals">Withdrawals</a>
+                        <a class="nav-link {{request()->is('users/*/payments') ? 'active' : ''}}" href="/users/{{$user->unique_id}}/payments">Payments</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/users/{{$user->unique_id}}/stats">Stats</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/users/{{$user->unique_id}}/preferences">Preferences</a>
-                    </li>
+
+                    @if ($user->role === 'mentor' && $user->kyc_status === 'approved')
+                        <li class="nav-item">
+                            <a class="nav-link {{request()->is('users/*/withdrawals') ? 'active' : ''}}" href="/users/{{$user->unique_id}}/withdrawals">Withdrawals</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{request()->is('users/*/kyc') ? 'active' : ''}}" href="/users/{{$user->unique_id}}/kyc">KYC</a>
+                        </li>
+                    @endif
+
                 </ul>
             </div>
             {{$slot}}

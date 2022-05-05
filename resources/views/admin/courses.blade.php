@@ -23,7 +23,6 @@
                     @foreach ($courses as $course)
                         <tr>
                             <td>
-                                <img src="{{asset('admin/images/faces/face1.jpg')}}" alt="image"/>
                                 <a href="/courses/{{$course->unique_id}}" class="ml-2">{{$course->name}}</a>
                             </td>
                             <td>

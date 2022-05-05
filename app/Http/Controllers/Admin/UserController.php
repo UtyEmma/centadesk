@@ -69,24 +69,10 @@ class UserController extends Controller{
         }
     }
 
-    function students($id){
-        try {
-            $user = $this->findOrFail($id);
-            $students = User::find($id)->courses;
-
-            return Response::view('admin.user-detail.courses', [
-                'students' => $students,
-                'user' => $user
-            ]);
-        } catch (\Throwable $th) {
-            return Response::redirectBack('error', $th->getMessage());
-        }
-    }
-
     function withdrawals($id){
         try {
             $user = $this->findOrFail($id);
-            $withdrawals = User::find($id)->withdrawals();
+            $withdrawals = $user->withdrawals();
 
             return Response::view('admin.user-detail.withdrawals', [
                 'withdrawals' => $withdrawals,
@@ -95,7 +81,45 @@ class UserController extends Controller{
         } catch (\Throwable $th) {
             return Response::redirectBack('error', $th->getMessage());
         }
+    }
 
+    function payments($id){
+        try {
+            $user = $this->findOrFail($id);
+            $transactions = $user->transactions();
+
+            return Response::view('admin.user-detail.payments', [
+                'transactions' => $transactions,
+                'user' => $user
+            ]);
+        } catch (\Throwable $th) {
+            return Response::redirectBack('error', $th->getMessage());
+        }
+    }
+
+    function enrolled($id){
+        try {
+            $user = $this->findOrFail($id);
+            $batches = $user->enrolledBatches();
+
+            return Response::view('admin.user-detail.enrollments', [
+                'batches' => $batches,
+                'user' => $user
+            ]);
+        } catch (\Throwable $th) {
+            return Response::redirectBack('error', $th->getMessage());
+        }
+    }
+
+    function kyc($id){
+        try {
+            $user = $this->findOrFail($id);
+            return Response::view('admin.user-detail.kyc', [
+                'user' => $user
+            ]);
+        } catch (\Throwable $th) {
+            return Response::redirectBack('error', $th->getMessage());
+        }
     }
 
 

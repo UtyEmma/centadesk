@@ -35,10 +35,12 @@ Route::middleware('auth:admin')->group(function(){
             Route::get('/', [UserController::class, 'fetch']);
             Route::get('/edit', [UserController::class, 'edit']);
             Route::get('/courses', [UserController::class, 'courses']);
-            Route::get('/students', [UserController::class, 'students']);
             Route::get('/stats', [UserController::class, 'stats']);
             Route::get('/preferences', [UserController::class, 'preferences']);
             Route::get('/withdrawals', [UserController::class, 'withdrawals']);
+            Route::get('/payments', [UserController::class, 'payments']);
+            Route::get('/enrolled', [UserController::class, 'enrolled']);
+            Route::get('/kyc', [UserController::class, 'kyc']);
 
             Route::prefix('/actions')->group(function(){
                 Route::get('/status', [UserController::class, 'status']);
@@ -54,10 +56,12 @@ Route::middleware('auth:admin')->group(function(){
 
     Route::prefix('/courses')->group(function(){
         Route::get('/', [CourseController::class, 'courses']);
-        Route::prefix('/{id}')->group(function(){
+        Route::prefix('/{slug}')->group(function(){
             Route::get('/', [CourseController::class, 'show']);
             Route::prefix('/{shortcode}')->group(function(){
                 Route::get('/', [BatchController::class, 'show']);
+                Route::get('/students', [BatchController::class, 'batch_students']);
+                Route::get('/forum', [BatchController::class, 'batch_forum']);
             });
         });
     });
@@ -93,9 +97,17 @@ Route::middleware('auth:admin')->group(function(){
     Route::get('/app-settings', [SettingsController::class, 'appSettings']);
     Route::post('/update-settings', [SettingsController::class, 'updateSettings']);
 
+    Route::get('/admins', [AdminController::class, 'register']);
     Route::get('/logout', [AdminController::class, 'logout']);
 
-    Route::get('*', function(){
-        return print_r("Route not found");
+    Route::prefix('/admin')->middleware('is.super')->group(function(){
+        Route::post('/create', [AdminController::class, 'create']);
+        Route::post('/status', [AdminController::class, 'status']);
+        Route::post('/delete', [AdminController::class, 'delete']);
     });
+
+});
+
+Route::get('*', function(){
+    return print_r("Route not found");
 });

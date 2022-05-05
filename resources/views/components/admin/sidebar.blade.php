@@ -9,7 +9,7 @@
       </li>
       <li class="nav-item">
         <a class="nav-link" href="/analytics">
-          <i class="mdi mdi-account menu-icon"></i>
+          <i class="mdi mdi-google-analytics menu-icon"></i>
           <span class="menu-title">Analytics</span>
         </a>
       </li>
@@ -39,7 +39,7 @@
       </li>
       <li class="nav-item">
         <a class="nav-link" href="/banks">
-          <i class="mdi mdi-currency-usd menu-icon"></i>
+          <i class="mdi mdi-bank menu-icon"></i>
           <span class="menu-title">Banks</span>
         </a>
       </li>
@@ -50,9 +50,9 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/register">
-          <i class="mdi mdi-tune menu-icon"></i>
-          <span class="menu-title">Register Admin</span>
+        <a class="nav-link" href="/admins">
+          <i class="mdi mdi-briefcase menu-icon"></i>
+          <span class="menu-title">Manage Admins</span>
         </a>
       </li>
     </ul>

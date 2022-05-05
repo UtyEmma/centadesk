@@ -23,14 +23,14 @@ class DefaultAdminSeeder extends Seeder{
     private function createDefaultAdmin(){
         $unique_id = Token::unique('admins');
         $password = "admin@1234";
-        $email = 'admin@centadesk.com';
+        $email = 'admin@libraclass.com';
         $name = 'John Grisham';
         if(!$admin = Admin::where('email', $email)->first()){
             $admin = Admin::create([
                 'unique_id' => $unique_id,
                 'name' => $name,
                 'email' => $email,
-                'role' => 'administrator',
+                'role' => 'super-admin',
                 'password' => Hash::make($password),
             ]);
         }

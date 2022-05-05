@@ -17,12 +17,12 @@
                 <tbody>
                     @foreach ($courses as $course)
                         <tr>
-                            <td>{{$course->name}}</td>
+                            <td><a href="/courses/{{$course->slug}}">{{$course->name}}</a></td>
                             <td>{{$course->total_batches}}</td>
                             <td> {{$course->total_students}}</td>
                             <td>{{$course->revenue}}</td>
                             <td><label class="badge {{$course->status ? 'badge-success' : 'badge-warning'}}">{{$course->status}}</label></td>
-                            <td><button class="btn btn-sm btn-outline-primary">View Course</button></td>
+                            <td><a href="/courses/{{$course->slug}}" class="btn btn-sm btn-outline-primary">View Course</a></td>
                         </tr>
                     @endforeach
                 </tbody>

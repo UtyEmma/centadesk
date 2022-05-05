@@ -31,9 +31,6 @@
             <div class="card">
               <div class="card-body">
                 <h4 class="card-title">Currencies</h4>
-                <p class="card-description">
-                  {{-- Add class <code>.table-striped</code> --}}
-                </p>
                 <div>
                   <table class="table table-bordered table-responsive">
                     <thead >

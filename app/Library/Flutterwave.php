@@ -22,10 +22,10 @@ class Flutterwave {
             'account_number' => $user->account_no,
             'amount' => $amount,
             'narration' => 'Payout from Libraclass',
-            'currency' => 'NGN',
+            'currency' => $withdrawal->currency,
             'reference' => $withdrawal->reference,
             'callback_url' => env('MAIN_APP_URL')."/bank/withdrawal/status",
-            'debit_currency' => 'NGN'
+            'debit_currency' => $withdrawal->currency
         ]);
         return $response->collect();
     }

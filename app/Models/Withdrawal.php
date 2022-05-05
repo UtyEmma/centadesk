@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Withdrawal extends Model{
     use HasFactory;
 
-    protected $fillable = ['unique_id', 'user_id', 'amount', 'account_no', 'account_name', 'bank', 'type', 'wallet_key', 'reference', 'status'];
+    protected $fillable = ['unique_id', 'user_id', 'amount', 'account_no', 'account_name', 'bank', 'type', 'wallet_key', 'reference', 'status', 'currency'];
 
     protected $primaryKey = 'unique_id';
     protected $keyType = 'string';

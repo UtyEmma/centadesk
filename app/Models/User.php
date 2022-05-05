@@ -96,5 +96,13 @@ class User extends Authenticatable
         });
     }
 
+    public function transactions(){
+        $transactions = Transaction::where('user_id', $this->unique_id)->get();
+        return $transactions->map(function($transaction){
+            $transaction->created = DateTime::parseTimestamp($transaction->created_at);
+            return $transaction;
+        });
+    }
+
 
 }

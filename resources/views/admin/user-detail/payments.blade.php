@@ -2,26 +2,26 @@
     <div class="stretch-card">
         <div class="card">
           <div class="card-body">
-            <h4 class="card-title">Withdrawals</h4>
+            <h4 class="card-title">Payments</h4>
             <div class="table-responsive">
               <table class="table table-hover">
                 <thead>
                   <tr>
                     <th>Amount</th>
-                    <th>Bank</th>
-                    <th>Account No</th>
+                    <th>Reference</th>
+                    <th>Type</th>
                     <th>Status</th>
                     <th>Date</th>
                   </tr>
                 </thead>
                 <tbody>
-                    @foreach ($withdrawals as $withdrawal)
+                    @foreach ($transactions as $transaction)
                         <tr>
-                            <td>{{$withdrawal->currency ?? $user->currency}} {{number_format($withdrawal->amount)}}</td>
-                            <td>{{$withdrawal->bank_name}}</td>
-                            <td> {{$withdrawal->account_no}}</td>
-                            <td><label class="badge {{$withdrawal->status ? 'badge-success' : 'badge-warning'}}">{{$withdrawal->status}}</label></td>
-                            <td>{{$withdrawal->created->date}}</td>
+                            <td>{{$transaction->currency}} {{number_format($transaction->amount)}}</td>
+                            <td>{{$transaction->reference}}</td>
+                            <td> {{$transaction->type}}</td>
+                            <td><label class="badge {{$transaction->status ? 'badge-success' : 'badge-warning'}}">{{$transaction->status}}</label></td>
+                            <td>{{$transaction->created->date}}</td>
                         </tr>
                     @endforeach
                 </tbody>
