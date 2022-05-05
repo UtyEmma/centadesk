@@ -76,7 +76,7 @@ trait TransactionActions {
         if($request->status === 'successful'){
             $transaction_id = $request->transaction_id;
             $transaction = $this->verifyTransaction($transaction_id, $tx_ref);
-            $enrollment_success_link = "/profile/courses/$course->slug/$batch->short_code";
+            $enrollment_success_link = "/learning/courses/$course->slug/$batch->short_code";
 
             if(!$transaction['status'])
                     return Response::redirect($enrollment_failed_link, 'error', $transaction['message']);

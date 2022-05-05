@@ -17,21 +17,21 @@
                 @csrf
                 <div class="row">
                     <div class="col-md-6">
-                        <div class="d-flex flex-column bg-light radius p-4">
+                        <div class="d-flex flex-column bg-light radius p-4 mb-3">
                             <div>
                                 <h6 class="text-primary">Personal Details</h6>
                                 <div class="row">
-                                    <div class="col-6">
+                                    <div class="col-md-6">
                                         <small class="fw-bold mb-0">Firstname</small>
                                         <p class="mt-0">{{$user->firstname}}</p>
                                     </div>
 
-                                    <div class="col-6">
+                                    <div class="col-md-6">
                                         <small class="fw-bold mb-0">Lastname</small>
                                         <p class="mt-0">{{$user->firstname}}</p>
                                     </div>
 
-                                    <div class="col-6 mt-2">
+                                    <div class="col-md-6 mt-2">
                                         <small class="fw-bold mb-0">Email Address</small>
                                         <p class="mt-0">{{$user->email}}</p>
                                     </div>
@@ -91,6 +91,7 @@
                                 <div>
                                     <small>Pay with Card</small>
                                 </div>
+                                {{-- <img src="{{asset('images/logos/flutterwave.png')}}" width="200" class="img-fluid" alt=""> --}}
                             </x-custom-radio>
                         </div>
                         <div class="mb-2">
@@ -115,9 +116,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Proceed with Payment</button>
+                <div class="modal-footer w-100">
+                    <button type="button" class="btn btn-secondary btn-hover-primary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary btn-hover-dark">Proceed with Payment</button>
                 </div>
             </form>
         </div>

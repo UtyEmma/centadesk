@@ -52,7 +52,6 @@
                                             <li class="my-2"><i class="icofont-check text-primary fs-4"></i> {{$objective}}</li>
                                         </ul>
                                     @empty
-
                                     @endforelse
                                 @endif
                             </p>

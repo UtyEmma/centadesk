@@ -8,6 +8,7 @@ use App\Http\Traits\CategoryActions;
 use App\Http\Traits\CourseActions;
 use App\Http\Traits\ReviewActions;
 use App\Library\FileHandler;
+use App\Library\Links;
 use App\Library\Number;
 use App\Library\Response;
 use App\Library\Token;

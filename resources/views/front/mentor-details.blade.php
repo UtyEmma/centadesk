@@ -6,15 +6,15 @@
                 <ul class="breadcrumb mb-0">
                     <li><a href="/">Home</a></li>
                     <li class="/mentors">Mentors</li>
-                    <li class="active">{{$mentor->firstname}} {{$mentor->lastname}}</li>
+                    <li class="active">Profile</li>
                 </ul>
-                <h4 class="title mt-0">Mentor Profile</h4>
+                <h4 class="title mt-0">{{$mentor->firstname}} {{$mentor->lastname}}</h4>
             </div>
             <!-- Page Banner End -->
     </x-page-banner>
 
     <!-- Courses Start -->
-    <div class="section section-padding">
+    <div class="section section-padding pt-0">
         <div class="container">
             <div class="row">
                 <div class="col-md-4">

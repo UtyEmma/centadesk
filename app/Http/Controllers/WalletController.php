@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Library\DateTime;
 use App\Library\Response;
 use App\Models\Deposit;
 use App\Models\Wallet;
@@ -21,13 +22,19 @@ class WalletController extends Controller{
 
     public function studentWallet(Request $request){
         $user = $this->user();
+        $all = Deposit::where([
+            'user_id' => $user->unique_id,
+            'status' => 'completed'
+        ])->get();
+
+        $deposits = $all->map(function($deposit){
+            $deposit->created = DateTime::parseTimestamp($deposit->created_at);
+            return $deposit;
+        });
         return Response::view('front.student.wallet', [
             'user' => $user,
             'wallet' => $user->wallet,
-            'deposits' => Deposit::where([
-                'user_id' => $user->unique_id,
-                'status' => 'completed'
-            ])->get()
+            'deposits' => $deposits
         ]);
 
     }

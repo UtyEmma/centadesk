@@ -71,7 +71,7 @@ class EnrollmentController extends Controller{
         $transaction->status = 'completed';
         $transaction->save();
 
-        return Response::redirect("/profile/courses/$course->slug/$batch->short_code", 'success', 'You have successfully enrolled for this course');
+        return Response::redirect("/learning/courses/$course->slug/$batch->short_code", 'success', 'You have successfully enrolled for this course');
     }
 
 

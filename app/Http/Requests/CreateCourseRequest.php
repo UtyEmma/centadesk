@@ -28,7 +28,7 @@ class CreateCourseRequest extends FormRequest
             'name' => ['required','string', 'unique:courses,name'],
             'desc' => 'required|string',
             'tags' => 'required|string|json',
-            'video' => 'required|string|url',
+            'video' => 'required|string|url|regex:/(youtube.com|youtu.be)\/(watch)?(\?v=)?(\S+)?/',
             'images*' => 'required|image',
             'category' => 'required|string'
         ];

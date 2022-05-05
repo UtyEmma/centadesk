@@ -149,6 +149,8 @@ Route::middleware(['set.currency', 'set.referrals'])->group(function(){
         Route::get('/{slug}/{shortcode}', [BatchController::class, 'batchDetails']);
     });
 
+    Route::get('/about', [AppController::class, 'about']);
+
     require __DIR__.'/auth.php';
 
 });

@@ -36,10 +36,11 @@
 
                 </div>
 
-                <div class="card radius p-4 w-100">
-                    <table class="w-100">
-                        <thead>
-                            <th>Amount</th>
+                <div class="card radius p-4 w-100 text-center">
+                    <table class="w-100 hover table-striped table-active
+                    table-hover table-responsive">
+                        <thead class="bg-light radius" >
+                            <th class="py-3">Amount</th>
                             <th>Payment Method</th>
                             <th>Status</th>
                             <th>Deposit Date</th>
@@ -48,14 +49,14 @@
                         <tbody>
                             @if (count($deposits) > 0)
                                 @foreach ($deposits as $deposit)
-                                    <tr>
-                                        <td>{{$deposit->amount}}</td>
+                                    <tr class="border-top">
+                                        <td class="py-3">{{$deposit->currency}} {{number_format($deposit->amount)}}</td>
                                         <td> {{$deposit->type}} </td>
                                         <td>
                                             {{$deposit->status}}
                                         </td>
                                         <td>
-                                            {{$deposit->created_at}}
+                                            {{$deposit->created->date}}
                                         </td>
                                     </tr>
                                 @endforeach
