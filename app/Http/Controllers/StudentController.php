@@ -91,8 +91,24 @@ class StudentController extends Controller{
 
     function overview(Request $request){
         $user = $this->user();
+        $courses = $user->batches();
+        $events = $user->enrolledBatches();
+
+        $new_event = $events->map(function($event){
+            $startdate = Date::parse($event->startdate);
+            $enddate = Date::parse($event->enddate);
+            return [
+                'title' => $event->title,
+                'start' => $startdate->format('Y-m-d'),
+                'end' => $enddate->format('Y-m-d'),
+            ];
+        });
+
+
         return Response::view('front.student.overview', [
-            'user' => $user
+            'user' => $user,
+            'courses' => $courses,
+            'events' => $new_event->toJson()
         ]);
     }
 

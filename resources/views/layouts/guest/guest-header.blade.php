@@ -74,7 +74,7 @@
                     <div class="header-sign-in-up d-none d-lg-block">
                         @if ($user = Auth::user())
                             <ul>
-                                <li ><a class="sign-in fs-6 fw-normal" href="/learning/courses">My Learning</a></li>
+                                <li ><a class="sign-in fs-6 fw-normal" href="/learning">My Learning</a></li>
                                 @if ($user->role === 'mentor')
                                     <li ><a class="sign-in py-2 fs-6 fw-normal" href="/me">Mentor</a></li>
                                 @else
@@ -155,7 +155,7 @@
         <div class="mobile-sign-in-up px-3 py-0 mb-2">
             @if ($user = Auth::user())
                 <ul class="d-block ">
-                    <li class="w-100 text-center mb-2"><a class="sign-in" href="/profile/courses">My Learning</a></li>
+                    <li class="w-100 text-center mb-2"><a class="sign-in" href="/learning">My Learning</a></li>
                     @if ($user->role === 'mentor')
                         <li class="w-100 text-center mb-2"><a class="sign-in text-primary" href="/me">Mentor Dashboard</a></li>
                     @else

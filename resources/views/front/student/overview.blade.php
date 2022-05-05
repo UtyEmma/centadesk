@@ -17,18 +17,27 @@
                     <div class="py-5">
                         <h5 class="mb-2">Upcoming Classes</h5>
 
-
+                        <div class="row">
+                            @forelse ($courses['upcoming'] as $course)
+                                <div class="col-lg-6 col-md-6">
+                                    <x-batch.upcoming :course="$course" />
+                                </div>
+                            @empty
+                            @endforelse
+                        </div>
                     </div>
                 </div>
 
                 <div class="col-md-4">
-                    <h5 class="mb-2">Upcoming Events</h5>
-                    <div class="bg-light-primary custom-scrollbar p-3 radius border border-primary">
-                        <x-calender />
+                    <h5 class="mb-2">Events</h5>
+                    <div class="custom-scrollbar p-3 radius border border-primary">
+                        <x-calender :events="$events" />
                     </div>
+
                     @php
                         $user = Auth::user();
                     @endphp
+
                     <div class="mt-4">
                         <h6>Earn with your Affiliate link.</h6>
                         <x-affiliate-link :user="$user" />
