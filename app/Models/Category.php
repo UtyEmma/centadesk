@@ -20,4 +20,8 @@ class Category extends Model{
         'status' => true
     ];
 
+    function getCourses (){
+        return $this->hasMany(Courses::class, 'category', 'slug');
+    }
+
 }

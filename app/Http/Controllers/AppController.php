@@ -13,9 +13,12 @@ class AppController extends Controller {
 
     function index(Request $request){
         $courses = $this->topCourses();
+        $categories = $this->getActiveCategories();
+
         return Response::view('front.index', [
             'data' => $this->app_data($request),
-            'courses' => $courses
+            'courses' => $courses,
+            'categories' => $categories
         ]);
     }
 

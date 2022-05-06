@@ -43,11 +43,9 @@
                             <div class="card mb-3">
                                  <div class="card-body">
                                     <div class="p-2 radius text-center">
-                                        <div class="mb-5">
-                                            <x-countdown.hours :date="$batch->startdate" id="time-to-class">
-                                                <h2 class="lh-0 mb-0 text-primary" id="time-to-class"></h2>
-                                            </x-countdown.hours>
-                                        </div>
+                                        <x-countdown.hours :date="$batch->startdate" id="time-to-class">
+                                            <h2 class="lh-0 mb-0 text-primary" id="time-to-class"></h2>
+                                        </x-countdown.hours>
                                     </div>
                                 </div>
 

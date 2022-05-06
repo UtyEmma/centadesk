@@ -6,7 +6,7 @@
         </a>
 
         <div class="light-tag position-absolute" style="right: 15px; bottom: 10px;">
-            <a href="#">{{$course->category}}</a>
+            <a href="/courses?category={{Str::slug($course->category)}}">{{$course->category}}</a>
         </div>
     </div>
     <div class="courses-content">
@@ -14,7 +14,7 @@
             <div class="author">
                 <div class="author-thumb">
                     <a href="/mentors/{{$mentor->username}}" class="rounded-img">
-                        <img src="{{$mentor->avatar ?? asset('images/author/author-01.jpg')}}" alt="Author">
+                        <img src="{{$mentor->avatar ?? asset('images/icon/user.png')}}" alt="Author">
                     </a>
                 </div>
                 <div class="author-name">

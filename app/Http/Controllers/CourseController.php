@@ -33,7 +33,10 @@ class CourseController extends Controller{
     public function all(Request $request){
         $type = 'page';
 
-        if($request->keyword){
+        if($request->category){
+            $results = Courses::where('category', $request->category)->where('status', 'published')->paginate(env('PAGINATION_COUNT'));
+            $courses = $this->getCoursesData($results);
+        }elseif ($request->keyword) {
             $type = 'search';
             $results = Courses::search($request->keyword)->where('status', 'published')->paginate(env('PAGINATION_COUNT'));
             $courses = $this->getCoursesData($results);
