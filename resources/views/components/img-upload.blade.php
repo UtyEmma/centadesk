@@ -20,7 +20,7 @@
 @endpush
 <div class="row gx-3">
     <div class="col-md-6">
-        <label class="mb-1" style="font-weight: 500;">{{$slot}}</label>
+        <label class="mb-1">{{$slot}}</label>
 
         <label for="courseimg" class="btn btn-primary d-block text-white btn-hover-dark btn-custom">
             Upload Image

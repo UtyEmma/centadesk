@@ -41,11 +41,11 @@
                                     </div>
 
                                     <div class="content-title">
-                                        <div class="meta mb-2">
+                                        {{-- <div class="meta mb-2">
                                             <a href="#" class="action">Live</a>
                                             <a href="#" class="action">Free</a>
                                             <a href="#" class="action">Public</a>
-                                        </div>
+                                        </div> --}}
 
                                         <a class="mb-2" href="/me/courses/{{$course->slug}}">
                                             <h5 class="title">{{$course->name}}</h5>

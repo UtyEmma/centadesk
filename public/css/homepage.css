@@ -1,0 +1,176 @@
+.category-section .category-content{
+    margin-bottom: 24px;
+}
+
+.category-content
+{
+display: flex;
+padding: 20px;
+transition: 0.3s;
+}
+
+.category-content:hover
+{
+box-shadow: 0px 12px 32px rgba(29, 32, 38, 0.1);
+background-color: #fff;
+}
+
+.category-content:hover .category-content-left svg path
+{
+stroke: #fff;
+}
+
+.category-content-left
+{
+height: 64px;
+width: 64px;
+line-height: 64px;
+text-align: center;
+margin-right: 20px;
+background-color: #fff;
+transition: 0.3s;
+}
+
+.category-content-left svg
+{
+transition: 0.3s;
+}
+
+.category-content-left svg path
+{
+transition: 0.3s;
+}
+
+.category-content-right
+{
+align-self: center;
+}
+
+.category-content-right h4
+{
+font-weight: 500;
+font-size: 16px;
+line-height: 22px;
+color: #1d2026;
+margin: 0;
+display: block;
+margin-bottom: 5px;
+}
+
+.category-content-right span
+{
+font-size: 14px;
+line-height: 22px;
+letter-spacing: -0.01em;
+color: #6e7485;
+margin-top: 8px;
+    }
+
+    .badge-color-1
+{
+background-color: #ebebff;
+}
+
+.badge-color-1 .category-content-left
+{
+color: #ebebff;
+}
+
+.badge-color-1:hover .category-content-left
+{
+background-color: #564ffd;
+}
+
+.badge-color-2
+{
+background-color: #e1f7e3;
+}
+
+.badge-color-2:hover .category-content-left
+{
+background-color: #23bd33;
+}
+
+.badge-color-3
+{
+background-color: #fff2e5;
+}
+
+.badge-color-3:hover .category-content-left
+{
+background-color: #fd8e1f;
+}
+
+.badge-color-4
+{
+background-color: #fff0f0;
+}
+
+.badge-color-4:hover .category-content-left
+{
+background-color: #e34444;
+}
+
+.badge-color-5
+{
+background-color: #f5f7fa;
+}
+
+.badge-color-5:hover .category-content-left
+{
+background-color: #564ffd;
+}
+
+.badge-color-6
+{
+background-color: #e9eaf0;
+}
+
+.badge-color-6:hover .category-content-left
+{
+background-color: #8c94a3;
+}
+
+.badge-color7
+{
+background-color: #ffeee8;
+}
+
+.badge-color7:hover .category-content-left
+{
+background-color: #564ffd;
+}
+
+.badge-color-8
+{
+background-color: #f5f7fa;
+}
+
+.badge-color-8:hover .category-content-left
+{
+background-color: #564ffd;
+}
+
+.icon-bottom-btn
+{
+text-align: center;
+}
+
+.icon-bottom-btn p
+{
+font-size: 14px;
+letter-spacing: -0.01em;
+color: #4e5566;
+}
+
+.icon-bottom-btn p a
+{
+color: #ff6636;
+font-weight: 500;
+margin-left: 10px;
+}
+
+.icon-bottom-btn p a svg
+{
+margin-left: 5px;
+}

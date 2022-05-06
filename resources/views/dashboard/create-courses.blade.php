@@ -23,13 +23,13 @@
 
                             <div class="card radius p-3 p-md-5 mt-1">
                                 <div class="single-form mt-0">
-                                    <label class="mb-1" style="font-weight: 500;">Course Title</label>
+                                    <label class="mb-1"><small>Course Title</small></label>
                                     <input type="text" name="name" maxlength="60" value="{{old('name')}}" placeholder="Class Title, Topic or Subject">
                                     <x-errors name="name" />
                                 </div>
 
                                 <div class="single-form">
-                                    <label class="mb-1" style="font-weight: 500;">Write a short catchy description of the course <small>(max 120 characters)</small></label>
+                                    <label class="mb-1"><small>Write a short catchy description of the course <small>(max 120 characters)</small></small></label>
                                     <input type="text" name="excerpt" maxlength="120" value="{{old('excerpt')}}" placeholder="Write a brief description - (Maximum 120 Characters)">
                                     <x-errors name="excerpt" />
                                 </div>

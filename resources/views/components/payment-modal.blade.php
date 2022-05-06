@@ -31,7 +31,7 @@
                                         <p class="mt-0">{{$user->firstname}}</p>
                                     </div>
 
-                                    <div class="col-md-6 mt-2">
+                                    <div class="col-md-12 mt-2">
                                         <small class="fw-bold mb-0">Email Address</small>
                                         <p class="mt-0">{{$user->email}}</p>
                                     </div>

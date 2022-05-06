@@ -13,10 +13,12 @@
         <div class="courses-author">
             <div class="author">
                 <div class="author-thumb">
-                    <a href="#" class="rounded-img"><img src="{{$mentor->avatar ?? asset('images/author/author-01.jpg')}}" alt="Author"></a>
+                    <a href="/mentors/{{$mentor->username}}" class="rounded-img">
+                        <img src="{{$mentor->avatar ?? asset('images/author/author-01.jpg')}}" alt="Author">
+                    </a>
                 </div>
                 <div class="author-name">
-                    <a class="name" href="#">{{$mentor->firstname}} {{$mentor->lastname}}</a>
+                    <a class="name" href="/mentors/{{$mentor->username}}">{{$mentor->firstname}} {{$mentor->lastname}}</a>
                 </div>
             </div>
         </div>
@@ -31,9 +33,9 @@
                 </small>
             </span>
             <div class="courses-review">
-                <span class="rating-count">4.9</span>
+                <span class="rating-count">{{$course->rating}}.0</span>
                 <span class="rating-star">
-                        <span class="rating-bar" style="width: 80%;"></span>
+                        <span class="rating-bar" style="width: {{$course->rating * 20}}%;"></span>
                 </span>
             </div>
         </div>

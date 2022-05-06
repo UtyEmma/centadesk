@@ -77,6 +77,8 @@
     </div>
     <!-- Slider End -->
 
+    <x-category />
+
     @if (count($courses) > 0)
         <!-- All Courses Start -->
         <div class="section section-padding-02">

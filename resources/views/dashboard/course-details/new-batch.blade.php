@@ -34,7 +34,7 @@
                                 </div>
 
                                 <div class="single-form">
-                                    <label class="mb-1" style="font-weight: 500;">What will your student's gain from this batch:</label>
+                                    <label class="mb-1">What will your student's gain from this batch:</label>
                                     <x-form-repeater />
                                 </div>
 
@@ -106,7 +106,7 @@
                                 <div class="single-form my-2">
                                     <div class="row gx-3">
                                         <div class="col-md-6">
-                                            <label class="mb-1" style="font-weight: 500;">Promotional Video Link</label>
+                                            <label class="mb-1">Promotional Video Link</label>
                                             <input type="text" name="video" class="px-2 mt-1" value="{{old('video')}}" placeholder="Link to promotional video" />
                                             <x-errors name="video" />
                                         </div>

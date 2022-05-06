@@ -28,7 +28,7 @@ class NewBatchRequest extends FormRequest
             'access_link' => 'nullable|string|url',
             'attendees' => 'nullable|numeric',
             'price' => 'nullable|numeric',
-            'video' => "nullable|string|url|regex:/^(?:http(?:s)?:\/\/)?(?:www\.)?(?:m\.)?(?:youtu\.be\/|youtube\.com\/(?:(?:watch)?\?(?:.*&)?v(?:i)?=|(?:embed|v|vi|user|shorts)\/))([^\?&\"'>]+)/",
+            'video' => "nullable|string|url",
             'images' => 'required|image',
             'startdate' => 'required|string|date',
             'enddate' => 'required|string|date',
