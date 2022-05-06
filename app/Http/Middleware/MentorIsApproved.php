@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Library\Response;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -16,10 +17,9 @@ class MentorIsApproved
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
     public function handle(Request $request, Closure $next){
-        $user = Auth::user();
-
-        if(!$user->kyc_status === 'approved') return redirect()->back()->with('error', 'Your Mentor account has not been approved! You cannot carry out this action.');
-
+        $user = $request->user();
+        if($user->kyc_status !== 'approved')
+            return Response::redirectBack('error', 'Your Mentor account has not been approved! You cannot carry out this action.');
         return $next($request);
     }
 }

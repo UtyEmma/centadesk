@@ -9,7 +9,7 @@
                     <div class="overview-box px-0">
                         <div class="single-box my-1 px-3 ">
                             <h5 class="title">Revenue</h5>
-                            <div class="count">&#8358; {{$user->earnings}}</div>
+                            <div class="count">&#8358; {{number_format($user->earnings)}}</div>
                             <p><span>$235.00</span> This months</p>
                         </div>
 
