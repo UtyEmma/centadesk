@@ -63,11 +63,11 @@
                             <h4 class="footer-widget-title">Quick Links</h4>
 
                             <ul class="widget-link">
-                                <li><a href="#">Privacy Policy</a></li>
+                                <li><a href="/privacy-policy">Privacy Policy</a></li>
                                 <li><a href="#">Discussion</a></li>
-                                <li><a href="#">Terms & Conditions</a></li>
+                                <li><a href="/terms">Terms & Conditions</a></li>
                                 <li><a href="#">Customer Support</a></li>
-                                <li><a href="#">Course FAQ’s</a></li>
+                                <li><a href="/faqs">Course FAQ’s</a></li>
                             </ul>
 
                         </div>
@@ -107,14 +107,14 @@
     <!-- Footer Widget Section End -->
 
     <!-- Footer Copyright Start -->
-    <div class="footer-copyright">
+    <div class="footer-copyright " >
         <div class="container">
 
             <!-- Footer Copyright Start -->
             <div class="copyright-wrapper">
                 <div class="copyright-link">
-                    <a href="#">Terms of Service</a>
-                    <a href="#">Privacy Policy</a>
+                    <a href="/terms">Terms of Service</a>
+                    <a href="/privacy-policy">Privacy Policy</a>
                     <a href="#">Sitemap</a>
                     <a href="#">Security</a>
                 </div>
@@ -132,7 +132,7 @@
 <!-- Footer End -->
 
 <!--Back To Start-->
-<a href="#" class="back-to-top">
+<a href="#" class="back-to-top" style="margin-bottom: 70px !important">
     <i class="icofont-simple-up"></i>
 </a>
 <!--Back To End-->

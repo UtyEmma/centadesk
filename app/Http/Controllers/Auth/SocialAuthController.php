@@ -22,9 +22,7 @@ class SocialAuthController extends Controller{
 
     function facebookCallback(){
         try {
-            $data = Socialite::driver('facebook')->user();
-
-            if($data){
+            if($data = Socialite::driver('facebook')->user()){
                 $nameArray = Str::of($data->getName())->explode(' ');
 
                 $user = [

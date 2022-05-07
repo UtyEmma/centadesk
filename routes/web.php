@@ -150,6 +150,10 @@ Route::middleware(['set.currency', 'set.referrals'])->group(function(){
     });
 
     Route::get('/about', [AppController::class, 'about']);
+    Route::get('/contact', [AppController::class, 'contact']);
+    Route::get('/terms', [AppController::class, 'terms']);
+    Route::get('/privacy-policy', [AppController::class, 'privacyPolicy']);
+    Route::get('/faqs', [AppController::class, 'faqs']);
 
     require __DIR__.'/auth.php';
 

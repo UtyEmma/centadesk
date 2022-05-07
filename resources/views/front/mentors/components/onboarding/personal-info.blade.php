@@ -108,7 +108,7 @@
                         <div class="mb-3">
                             <div class="single-form">
                                 <div class="input-group mb-3">
-                                    <span  class="input-group-text px-3 fs-6 radius-left bg-white border border-end-0" id="instagram">Instagram</span>
+                                    <span  class="input-group-text px-3 fs-6 radius-left bg-white border border-end-0" style="font-size: 13px !important;" id="instagram">Instagram</span>
                                     <input type="text" class="form-control w-auto border-start-0" id="facebook-input" onblur="validateInput(event, __personalInfoSchema)" name="instagram" placeholder="Username" value="{{$user->instagram ?? old('instagram')}}" aria-describedby="instagram" value="">
                                 </div>
                             </div>
@@ -122,7 +122,7 @@
                         <div class="mb-3">
                             <div class="single-form">
                                 <div class="input-group mb-3">
-                                    <span  class="input-group-text px-3 fs-6 radius-left bg-white border border-end-0" id="facebook">Facebook</span>
+                                    <span  class="input-group-text px-3 fs-6 radius-left bg-white border border-end-0" style="font-size: 13px !important;" id="facebook">Facebook</span>
                                     <input type="text" class="form-control w-auto border-start-0" id="facebook-input" value="{{$user->facebook ?? old('facebook')}}"facebook onblur="validateInput(event, __personalInfoSchema)" name="facebook" placeholder="Username" aria-describedby="facebook" value="">
                                 </div>
                             </div>
@@ -138,7 +138,7 @@
                         <div class="mb-3">
                             <div class="single-form">
                                 <div class="input-group mb-3">
-                                    <span  class="input-group-text px-3 fs-6 radius-left bg-white border border-end-0" id="twitter">Twitter</span>
+                                    <span  class="input-group-text px-3 fs-6 radius-left bg-white border border-end-0" style="font-size: 13px !important;" id="twitter">Twitter</span>
                                     <input type="text" class="form-control w-auto border-start-0" id="twitter-input" value="{{$user->twitter ?? old('twitter')}}" onblur="validateInput(event, __personalInfoSchema)" name="twitter" placeholder="Username" aria-describedby="twitter" value="">
                                 </div>
                             </div>

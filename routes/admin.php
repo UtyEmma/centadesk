@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\CurrencyController;
 use App\Http\Controllers\Admin\MentorController;
 use App\Http\Controllers\Admin\SettingsController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\TestimonialController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -101,6 +102,16 @@ Route::middleware('auth:admin')->group(function(){
 
     Route::get('/admins', [AdminController::class, 'register']);
     Route::get('/logout', [AdminController::class, 'logout']);
+
+    Route::prefix('/testimonials')->group(function(){
+        Route::get('/', [TestimonialController::class, 'index']);
+        Route::post('/create', [TestimonialController::class, 'create']);
+        Route::prefix('/{id}')->group(function(){
+            Route::post('/status', [TestimonialController::class, 'status']);
+            Route::post('/edit', [TestimonialController::class, 'update']);
+            Route::get('/delete', [TestimonialController::class, 'destroy']);
+        });
+    });
 
     Route::prefix('/admin')->middleware('is.super')->group(function(){
         Route::post('/create', [AdminController::class, 'create']);

@@ -44,6 +44,12 @@
         </a>
       </li>
       <li class="nav-item">
+        <a class="nav-link" href="/testimonials">
+          <i class="mdi mdi-currency-usd menu-icon"></i>
+          <span class="menu-title">Testimonials</span>
+        </a>
+      </li>
+      <li class="nav-item">
         <a class="nav-link" href="/currencies">
           <i class="mdi mdi-currency-usd menu-icon"></i>
           <span class="menu-title">Currencies</span>

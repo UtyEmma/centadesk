@@ -18,7 +18,7 @@
         <div class="progress-bar" role="progressbar" id="onboarding-progress" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
         </div>
 
-        <div class="container">
+        <div class="container pb-5">
             <form action="/mentor/create" method="POST" enctype="multipart/form-data" class="card border-0">
                 @csrf
 
@@ -94,4 +94,6 @@
             </form>
         </div>
     <section>
+
+        <p class="py-5"></p>
 </x-blank-layout>

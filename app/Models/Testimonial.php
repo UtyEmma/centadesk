@@ -1,0 +1,21 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class Testimonial extends Model{
+    use HasFactory;
+
+    protected $fillable = ['unique_id', 'name', 'feedback', 'image', 'occupation', 'location', 'status', 'showing'];
+
+    protected $primaryKey = 'unique_id';
+    protected $keyType = 'string';
+    public $incrementing = false;
+
+    protected $attributes = [
+        'status' => true,
+        'showing' => false
+    ];
+}

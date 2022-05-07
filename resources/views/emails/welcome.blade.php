@@ -1,33 +1,20 @@
 <x-email.index>
-    <x-email.header />
-    <tr>
-        <td align="center" valign="top" width="100%" style="background-color: #fffff;" class="content-padding">
-        <center>
-            <table cellspacing="0" cellpadding="0" width="600" class="w320">
+    <table style="width:100%;max-width:620px;margin:0 auto;background-color:#ffffff;">
+        <tbody>
             <tr>
-                <td class="header-lg">
-                Welcome to Libraclass!
+                <td style="padding: 30px 30px 20px;" >
+                    <p style="margin-bottom: 10px;">Hi Ishtiyak,</p>
+                    <p style="margin-bottom: 10px;">We are pleased to have you join us on Libraclass.</p>
+                    <p style="margin-bottom: 10px;">We look forward to an amazing journey with you onboard.</p>
+                    <p style="margin-bottom: 25px;">You can proceed to <a style="color: #309255; text-decoration:none;" href="http://libraclass.com/courses">checkout some ongoing courses</a> that fit your area of interest and join in right away.</p>
+
+                    <a href="http://libraclass.com/learning" style="background-color: #309255;border-radius:4px;color:#ffffff;display:inline-block;font-size:13px;font-weight:600;line-height:44px; margin-bottom: 25px; text-align:center;text-decoration:none;text-transform: uppercase; padding: 0 25px">Go to Learning Center</a>
+
+                    <p style="margin-bottom: 15px;">Hope you'll enjoy the experience, we're here if you have any questions, drop us a line at <a style="color: #309255; text-decoration:none;" href="mailto:support@libraclass.com">support@libraclass.com</a> anytime. </p>
+
+                    <p style="margin-top: 25px; margin-bottom: 15px;">---- <br> Regards<br>Libraclass Team</p>
                 </td>
             </tr>
-            <tr>
-                <td class="free-text">
-                Thank you for signing up with Libraclass! We hope you enjoy your time with us. Click the button below to view your new account.
-                </td>
-            </tr>
-            <tr>
-                <td class="button">
-                <div><!--[if mso]>
-                    <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="http://" style="height:45px;v-text-anchor:middle;width:155px;" arcsize="15%" strokecolor="#ffffff" fillcolor="#ff6f6f">
-                    <w:anchorlock/>
-                    <center style="color:#ffffff;font-family:Helvetica, Arial, sans-serif;font-size:14px;font-weight:regular;">My Account</center>
-                    </v:roundrect>
-                <![endif]--><a class="button-mobile" href="{{$data['profile']}}"
-                style="background-color:#309255;border-radius:5px;color:#ffffff;display:inline-block;font-family:'Cabin', Helvetica, Arial, sans-serif;font-size:14px;font-weight:regular;line-height:45px;text-align:center;text-decoration:none;width:155px;-webkit-text-size-adjust:none;mso-hide:all;">Go to my Account</a></div>
-                </td>
-            </tr>
-            </table>
-        </center>
-        </td>
-    </tr>
-    <x-email.footer />
+        </tbody>
+    </table>
 </x-email.index>
