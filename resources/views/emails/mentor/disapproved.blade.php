@@ -1,62 +1,22 @@
 <x-email.index>
-    <x-email.header />
+    <table style="width:100%;max-width:620px;margin:0 auto;background-color:#ffffff;">
+        <tbody>
+            <tr>
+                <td style="text-align:left;padding: 50px 30px;">
+                    <img style="width:88px; margin-bottom:24px;" src="images/kyc-pending.png" alt="Missing">
+                    <h2 style="font-size: 18px; color: #f4bd0e; font-weight: 400; margin-bottom: 8px;">Sorry! Your Mentor Application was not approved.</h2>
+                    <p>Your application did not meet our criteria for Mentors. We recommend that you retry the application whenever you are ready!</p>
+                    <br>
+                    <p>If you have any complaints or questions, please contact our <a style="color: #309255;" href="mailto:support@libraclass.com">Support Team</a></p>
 
-    <td align="center" valign="top" width="100%" style="background-color: #f7f7f7;" class="content-padding">
-      <center>
-        <table cellspacing="0" cellpadding="0" width="600" class="w320">
-          <tr>
-            <td class="header-lg">
-                {{$subject}}
-            </td>
-          </tr>
-          <tr>
-            <td class="free-text">
-              <span><a href="">@JaneDoe</a></span> has invited you to join Awesome inc!
-            </td>
-          </tr>
-          <tr>
-            <td class="mini-block-container">
-              <table cellspacing="0" cellpadding="0" width="100%"  style="border-collapse:separate !important;">
-                <tr>
-                  <td class="mini-block">
-                    <table cellpadding="0" cellspacing="0" width="100%">
-                      <tr>
-                        <td>
-                          <table cellspacing="0" cellpadding="0" width="100%">
-                            <tr>
-                              <td class="user-img">
-                                <a href=""><img class="user-img" src="http://s3.amazonaws.com/swu-filepicker/Ei7o4zRgT561k4rLfzTz_profile_pic.jpg" alt="user img" /></a>
-                                <br /><a href="">@JaneDoe</a>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td class="user-msg">
-                                "Hey Bob,
-                                here's your invite! Come check out my profile page when you have a chance. You'll love it!"
-                              </td>
-                            </tr>
-                          </table>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td class="button">
-                          <div><!--[if mso]>
-                            <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="http://" style="height:45px;v-text-anchor:middle;width:155px;" arcsize="15%" strokecolor="#ffffff" fillcolor="#ff6f6f">
-                              <w:anchorlock/>
-                              <center style="color:#ffffff;font-family:Helvetica, Arial, sans-serif;font-size:14px;font-weight:regular;">Sign Up</center>
-                            </v:roundrect>
-                          <![endif]--><a href="{{$dashboard}}" style="background-color:#ff6f6f;border-radius:5px;color:#ffffff;display:inline-block;font-family:'Cabin', Helvetica, Arial, sans-serif;font-size:14px;font-weight:regular;line-height:45px;text-align:center;text-decoration:none;width:155px;-webkit-text-size-adjust:none;mso-hide:all;">Go to my Mentor Dashboard</a></div>
-                        </td>
-                      </tr>
-                    </table>
-                  </td>
-                </tr>
-              </table>
-            </td>
-          </tr>
-        </table>
-      </center>
-    </td>
+                    <br>
+                    <p >In the meantime, you can proceed to check out some amazing upcoming course that you might be interested in.</p>
 
-    <x-email.footer />
+                    <a href="http://libraclass.com/learning" style="background-color: #309255;border-radius:4px;color:#ffffff;display:inline-block;font-size:13px;font-weight:600;line-height:44px; margin-top: 20px; margin-bottom: 25px; text-align:center;text-decoration:none;text-transform: uppercase; padding: 0 25px">Go to Learning Center</a>
+
+                    <p style="margin-top: 25px; margin-bottom: 15px;">---- <br> Regards<br>Libraclass Team</p>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </x-email.index>

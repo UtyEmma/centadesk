@@ -40,45 +40,50 @@ Route::middleware(['set.currency', 'set.referrals'])->group(function(){
     Route::post('/settings/update', [SettingsController::class, 'updateCurrency']);
 
     Route::middleware('auth')->group(function(){
-        Route::prefix('learning')->group(function(){
-            Route::get('/', [StudentController::class, 'overview']);
-            Route::prefix('/courses')->group(function(){
-                Route::get('/', [StudentController::class, 'enrolledCourses']);
-                Route::get('/{slug}/{shortcode}', [StudentController::class, 'enrolledCourse']);
-                Route::get('/{slug}/{shortcode}/forum', [StudentController::class, 'courseForum']);
+
+        Route::get('/onboarding', [StudentController::class, 'onboarding']);
+
+        Route::prefix('categories')->group(function(){
+            Route::post('/update', [StudentController::class, 'updateCategories']);
+        });
+
+        Route::middleware('is.onboarded')->group(function(){
+            Route::prefix('learning')->group(function(){
+                Route::get('/', [StudentController::class, 'overview']);
+                Route::prefix('/courses')->group(function(){
+                    Route::get('/', [StudentController::class, 'enrolledCourses']);
+                    Route::get('/{slug}/{shortcode}', [StudentController::class, 'enrolledCourse']);
+                    Route::get('/{slug}/{shortcode}/forum', [StudentController::class, 'courseForum']);
+                });
+                Route::get('/mentors', [StudentController::class, 'fetchMentors']);
             });
-            Route::get('/mentors', [StudentController::class, 'fetchMentors']);
-        });
-
-        Route::prefix('wallet')->group(function(){
-            Route::get('/', [WalletController::class, 'studentWallet']);
-            Route::post('/deposit', [DepositController::class, 'initiate']);
-            Route::get('/verify', [DepositController::class, 'verify']);
-        });
 
 
-        Route::prefix('/profile')->group(function(){
-            Route::get('/', [StudentController::class, 'show']);
-            Route::post('/update', [StudentController::class, 'update']);
-            Route::prefix('/reviews')->group(function(){
-                Route::post('/submit/{batch_id}', [ReviewController::class, 'submitReview']);
+            Route::prefix('wallet')->group(function(){
+                Route::get('/', [WalletController::class, 'studentWallet']);
+                Route::post('/deposit', [DepositController::class, 'initiate']);
+                Route::get('/verify', [DepositController::class, 'verify']);
             });
+
+
+            Route::prefix('/profile')->group(function(){
+                Route::get('/', [StudentController::class, 'show']);
+                Route::post('/update', [StudentController::class, 'update']);
+                Route::prefix('/reviews')->group(function(){
+                    Route::post('/submit/{batch_id}', [ReviewController::class, 'submitReview']);
+                });
+            });
+
+            Route::prefix('forum')->group(function(){
+                Route::post('/send/{batch_id}', [ForumController::class, 'sendMessage']);
+            });
+
+            Route::prefix('reports')->group(function(){
+                Route::post('/create/{batch_id}', [ReportController::class, 'create']);
+                Route::get('/resolve/{batch_id}', [ReportController::class, 'resolve']);
+            });
+
         });
-
-        Route::prefix('forum')->group(function(){
-            Route::post('/send/{batch_id}', [ForumController::class, 'sendMessage']);
-        });
-
-        Route::prefix('reports')->group(function(){
-            Route::post('/create/{batch_id}', [ReportController::class, 'create']);
-            Route::get('/resolve/{batch_id}', [ReportController::class, 'resolve']);
-        });
-
-
-        Route::prefix('/currency')->group(function(){
-            Route::post('/update', [CurrencyController::class, 'update']);
-        });
-
         Route::prefix('/transaction')->group(function(){
             Route::get('/verify', [TransactionsController::class, 'verify']);
         });
@@ -87,6 +92,12 @@ Route::middleware(['set.currency', 'set.referrals'])->group(function(){
             Route::post('/{batch_id}', [EnrollmentController::class, 'initiate']);
             Route::get('/complete/{type}/{batch_id}', [EnrollmentController::class, 'complete']);
         });
+
+
+        Route::prefix('/currency')->group(function(){
+            Route::post('/update', [CurrencyController::class, 'update']);
+        });
+
 
         Route::prefix('/mentor')->group(function(){
             Route::get('/onboarding', [MentorController::class, 'onboarding']);

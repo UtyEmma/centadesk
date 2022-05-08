@@ -6,13 +6,13 @@
         }
 
         function setPreview(e){
-            const preview = document.querySelector("#avatar_preview");
+            const preview = document.querySelector("#mentor-avatar");
             preview.src = URL.createObjectURL(e.target.files[0])
         }
 
         function removeImg(){
             $('input[name="avatar"]').val('')
-            const image = document.querySelector("#avatar_preview")
+            const image = document.querySelector("#mentor-avatar")
             image.src = "{{asset('images/icon/user.png')}}"
         }
 

@@ -39,17 +39,6 @@
     border-radius: 0 0 10px 10px !important;
 }
 
-.radio-custom:checked + label{
-    border-width: 1px !important;
-    border-color: #309255 !important;
-    font-weight: 500;
-}
-
-.radio-custom:checked + label i{
-    display: block !important;
-    color: #309255 !important;
-}
-
 .cursor-pointer{
     cursor: pointer !important;
 }

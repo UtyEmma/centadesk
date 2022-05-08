@@ -10,8 +10,7 @@ use Illuminate\Support\Facades\Date;
 use Laravel\Sanctum\HasApiTokens;
 use Laravel\Scout\Searchable;
 
-class User extends Authenticatable
-{
+class User extends Authenticatable{
     use HasApiTokens, HasFactory, Notifiable, Searchable;
 
 
@@ -104,5 +103,14 @@ class User extends Authenticatable
         });
     }
 
+    public function toSearchableArray(){
 
+        $index = [
+            'unique_id' => $this->unique_id,
+            'firstname' => $this->firstname,
+            'lastname' => $this->lastname,
+        ];
+
+        return $index;
+    }
 }

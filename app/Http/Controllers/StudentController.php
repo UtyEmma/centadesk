@@ -3,12 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Casts\Currency;
+use App\Http\Requests\UserCategoryInterestRequest;
 use App\Http\Traits\BatchActions;
 use App\Http\Traits\CourseActions;
 use App\Http\Traits\UserActions;
+use App\Library\Arr as LibraryArr;
 use App\Library\DateTime;
 use App\Library\Response;
 use App\Models\Batch;
+use App\Models\Category;
 use App\Models\Courses;
 use App\Models\Enrollment;
 use App\Models\ForumMessages;
@@ -110,6 +113,27 @@ class StudentController extends Controller{
             'courses' => $courses,
             'events' => $new_event->toJson()
         ]);
+    }
+
+    function onboarding(){
+        $categories = Category::all();
+        return Response::view('front.student.onboarding', [
+            'categories' => $categories,
+            'user' => $this->user()
+        ]);
+    }
+
+    function updateCategories(UserCategoryInterestRequest $request){
+        // try {
+            $user = $this->user();
+
+            $user->interests = LibraryArr::toObject($request->categories);
+            $user->save();
+
+            return Response::intended('/learning', 'success', 'Your Preferences have been updated successfully');
+        // } catch (\Throwable $th) {
+        //     return Response::redirectBack('error', $th->getMessage());
+        // }
     }
 
 }

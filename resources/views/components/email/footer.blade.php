@@ -9,7 +9,7 @@
                     <li style="display: inline-block; list-style: none; padding: 4px;"><a style="display: inline-block; height: 30px; width:30px;border-radius: 50%; background-color: #ffffff" href="#"><img style="width: 30px" src="{{asset('email/brand-d.png')}}" alt="brand"></a></li>
                     <li style="display: inline-block; list-style: none; padding: 4px;"><a style="display: inline-block; height: 30px; width:30px;border-radius: 50%; background-color: #ffffff" href="#"><img style="width: 30px" src="{{asset('email/brand-c.png')}}" alt="brand"></a></li>
                 </ul>
-                <p style="padding-top: 15px; font-size: 12px;">This email was sent to you as a registered user of <a style="color: #309255; text-decoration:none;" href="https://libraclass.com">libraclass.com</a>. To update your emails preferences <a style="color: #309255; text-decoration:none;" href="#">click here</a>.</p>
+                <p style="padding-top: 15px; font-size: 12px;">This email was sent to you as a registered user of <a style="color: #309255; text-decoration:none;" href="https://libraclass.com">libraclass.com</a>. To update your emails preferences <a style="color: #309255; text-decoration:none;" href="https://libraclass.com/profile/settings">click here</a>.</p>
             </td>
         </tr>
     </tbody>
