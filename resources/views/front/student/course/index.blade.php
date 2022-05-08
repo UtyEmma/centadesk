@@ -14,7 +14,7 @@
 
                                 <div class="col-md-7">
                                     <h4 class="mb-1">{{$batch->title}}</h4>
-                                    <h5 class="mt-1 mb-1">{{$course->name}}</h5>
+                                    <h6 class="mt-1 mb-1">{{$course->name}}</h6>
 
                                     <p>
                                         {{ $course->excerpt }}

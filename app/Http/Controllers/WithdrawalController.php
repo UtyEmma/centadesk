@@ -18,20 +18,14 @@ class WithdrawalController extends Controller{
 
     function initiate(Request $request){
         try {
-            $flutterwave = new Flutterwave();
             $user = $this->user();
             $wallet = Wallet::where('user_id', $user->unique_id)->first();
             if($wallet->available < $request->amount) return Response::redirectBack('error', 'You do not have sufficient funds for this transaction.');
 
             $withdrawal = $this->createWithdrawal($user, $request->amount, $request->type ?? 'bank');
-            $withdraw = env('RAVE_LIVE') ? $flutterwave->initiateWithdrawal($withdrawal, $user, $request->amount) : $flutterwave->initiateTestWithdrawal($withdrawal, $user, $request->amount);
-
-            if(!$withdraw || $withdraw['status'] === 'error') {
-                $withdrawal->delete();
-                return Response::redirectBack('error', 'Your withdrawal failed! '.$withdraw['data']['complete_message']);
-            }
 
             $wallet->available -= $request->amount;
+            $wallet->payouts += $request->amount;
             $wallet->save();
 
             $withdrawal->status = 'IN_PROGRESS';
@@ -56,7 +50,7 @@ class WithdrawalController extends Controller{
             'bank' => $user->bank,
             'type' => $type,
             'currency' => $user->currency,
-            'wallet_key' => '$wallet->unique_id',
+            'wallet_key' => $type === 'crypto' ? $user->crypto_address : '',
             'reference' => $reference
         ]);
 

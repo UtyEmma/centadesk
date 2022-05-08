@@ -34,6 +34,12 @@
                                 </div>
 
                                 <div class="single-form">
+                                    <label class="mb-1" style="font-weight: 500;">Write a more detailed description of the course here.</label>
+                                    <x-rich-text placeholder="Write a compelling description of your class here" name="desc" />
+                                    <x-errors name="desc" />
+                                </div>
+
+                                <div class="single-form">
                                     <label class="mb-1">What will your student's gain from this batch:</label>
                                     <x-form-repeater />
                                 </div>

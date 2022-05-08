@@ -21,6 +21,7 @@ return new class extends Migration
             $table->integer('escrow');
             $table->integer('available');
             $table->integer('earnings');
+            $table->integer('payouts');
             $table->integer('referrals');
             $table->integer('withdrawals');
             $table->integer('deposits');

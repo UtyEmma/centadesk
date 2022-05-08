@@ -110,6 +110,7 @@ class BatchController extends Controller{
             'price' => $request->price,
             'current' => true,
             'count' => 1,
+            'desc' => $request->desc,
             'video' => $request->video,
             'images' => $images,
             'startdate' => $request->startdate,
@@ -130,7 +131,7 @@ class BatchController extends Controller{
             'active_batch' => $batch->unique_id
         ]);
 
-        $user->total_batches = $user->total_batches + 1;
+        $user->total_batches += 1;
         $user->save();
 
         $notification = [

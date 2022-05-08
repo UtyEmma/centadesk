@@ -1,4 +1,11 @@
 <x-enrolled-course :course="$course" :batch="$batch" :messages="$forum" :mentor="$mentor" :user="$user" :enrollment="$enrollment" :report="$report">
+    <div>
+        <h5 class="tab-title">About this Batch</h5>
+        <p>
+            {!! $course->desc !!}
+        </p>
+    </div>
+
     <div class="overview">
         <div class="enroll-tab-title mt-4">
             <h6 >What you will learn in this class:</h6>

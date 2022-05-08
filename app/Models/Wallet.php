@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Wallet extends Model{
     use HasFactory;
-    protected $fillable = ['unique_id', 'user_id', 'balance', 'escrow', 'available', 'earnings', 'referrals', 'withdrawals', 'deposits'];
+    protected $fillable = ['unique_id', 'user_id', 'balance', 'escrow', 'available', 'earnings', 'referrals', 'payouts', 'withdrawals', 'deposits'];
 
     protected $primaryKey = 'unique_id';
     protected $keyType = 'string';
@@ -21,6 +21,7 @@ class Wallet extends Model{
         'earnings' => 0,
         'referrals' => 0,
         'withdrawals' => 0,
+        'payouts' => 0,
         'deposits' => 0
     ];
 
@@ -31,6 +32,7 @@ class Wallet extends Model{
         'earnings' => Currency::class,
         'referrals' => Currency::class,
         'withdrawals' =>Currency::class,
+        'payouts' =>Currency::class,
         'deposits' => Currency::class
     ];
 
