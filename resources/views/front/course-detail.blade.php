@@ -1,4 +1,7 @@
 <x-guest-layout>
+
+    <x-metadata :title="$course->name" :image="$course->images" :excerpt="$course->excerpt" />
+
     <div class="section page-banner bg-transparent py-0 my-0" >
         <div class="container pt-5">
             <div class="page-banner-content">

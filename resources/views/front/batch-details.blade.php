@@ -2,6 +2,8 @@
 
     <x-page-banner></x-page-banner>
 
+    <x-metadata :title="$batch->name" :image="$batch->images" :excerpt="$batch->excerpt" />
+
     <!-- Courses Start -->
     <div class="section section-padding mt-0 pt-0">
         <div class="container">

@@ -2,7 +2,7 @@
     <div>
         <h5 class="tab-title">About this Batch</h5>
         <p>
-            {!! $course->desc !!}
+            {!! $batch->desc !!}
         </p>
     </div>
 

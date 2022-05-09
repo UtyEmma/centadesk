@@ -5,7 +5,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name', 'Centadesk') }}</title>
+        @stack('meta')
+
+        <title>{{ config('app.name', 'Libraclass') }}</title>
 
         <link rel="icon" href="{{asset('images/icon.png')}}" />
 
