@@ -1,5 +1,5 @@
 <x-guest-layout>
-
+    @inject('parsedate', 'App\Library\DateTime' )
     <x-page-banner></x-page-banner>
 
     <x-metadata :title="$batch->name" :image="$batch->images" :excerpt="$batch->excerpt" />
@@ -12,7 +12,7 @@
                     <div class="courses-details mt-0">
                         <div class="row">
                             <div class="col-md-5">
-                                <div class="courses-details mb-5 mt-0">
+                                <div class="courses-details h-100 mb-5 mt-0">
                                     <x-course-images :image="$batch->images" :video="$batch->video" :alt="$batch->title" />
                                 </div>
                             </div>
@@ -35,18 +35,23 @@
                                             <i class="text-primary fs-5 icofont-calendar"></i>
                                             {{$batch->startdate}} - {{$batch->enddate}}
                                         </small>
-
-                                        <small class="ms-1">
-                                            <i class="text-primary fs-5 icofont-user"></i>
-                                            {{$course->total_students}} Students
-                                        </small>
                                     </div>
+                                    <small class="ms-1">
+                                        <i class="text-primary fs-5 icofont-user"></i>
+                                        {{$course->total_students}} Students
+                                    </small>
                                 </div>
                             </div>
                         </div>
 
                         <div class="courses-details-tab">
-                            <h6 class="tab-title">What you will learn?</h6>
+                            <h6 class="tab-title">About this batch</h6>
+
+                            {!! $batch->desc !!}
+
+                        </div>
+                        <div class="courses-details-tab">
+                            <h6 class="tab-title">What you will learn in this batch?</h6>
                             <p>
                                 @if ($batch->objectives)
                                     @forelse (json_decode($batch->objectives) as $objective)

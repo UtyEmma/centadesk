@@ -20,6 +20,12 @@
     </script>
 {{-- @endpush --}}
 
+<style>
+    .easepick-wrapper{
+        z-index: 1111 !important;
+    }
+</style>
+
 <label for="startdate" class="w-auto d-flex align-items-center border radius pe-3 ms-0">
     <input  class="form-control flex-1 border-0 radius-left radius-right-0 datepicker" id="{{$name}}"  name="{{$name}}" placeholder="{{$placeholder}}" />
     <small class="h-100 w-auto fw-medium fs-5 text-primary">

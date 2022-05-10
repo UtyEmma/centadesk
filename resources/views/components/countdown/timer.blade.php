@@ -1,10 +1,8 @@
 <script>
     $(() => {
-        const date = moment("{{$date}}").format("YYYY/MM/DD");
-
+        const date = moment("{{$date}}", "HH:mm, DD MMM, YYYY").format("YYYY/MM/DD hh:mm:ss");
         $("#{{$id}}").countdown(date, function(event) {
-            $(this).text(
-                event.strftime('%-Dd : %-Hh : %-Mm : %-Ss'));
+            $(this).text(event.strftime('%-Dd : %-Hh : %-Mm : %-Ss'));
         })
     })
 </script>

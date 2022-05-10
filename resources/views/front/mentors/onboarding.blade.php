@@ -9,7 +9,7 @@
 
         <section class="section section-padding pt-3" >
             <div class="container">
-                <div class="">
+                <div>
                     <h5 class="mb-0">Create your Mentor Account</h5>
                     <p class="my-0">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vel, provident.</p>
                     <div class="progress mt-2" style="height: 3px;">

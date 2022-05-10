@@ -3,24 +3,34 @@
         new easepick.create({
             element: ".date-range-picker",
             css: [
-                "https://cdn.jsdelivr.net/npm/@easepick/bundle@1.1.3/dist/index.css"
+                "{{asset('css/plugins/easepick.min.css')}}"
             ],
-            zIndex: 10,
-            format: "MMMM D, YYYY",
-            header: "Select the Date Range",
+            zIndex: 1111,
+            format: "HH:mm, DD MMM, YYYY",
+            header: "Select the Date and Time Range",
             RangePlugin: {
                 elementEnd: "{{$enddate}}"
             },
             LockPlugin: {
                 minDate: new Date()
             },
+            TimePlugin: {
+                format12: true
+            },
             plugins: [
                 "RangePlugin",
-                "LockPlugin"
+                "LockPlugin",
+                "TimePlugin"
             ]
         })
     })
 </script>
+
+<style>
+    .easepick-wrapper{
+        z-index: 1111 !important;
+    }
+</style>
 
 <label for="startdate" class="w-auto d-flex align-items-center border radius pe-3 ms-0">
     <input  class="form-control flex-1 border-0 radius-left radius-right-0 date-range-picker" id="{{$name}}"  name="{{$name}}" value="{{old('startdate')}}" placeholder="{{$placeholder}}" />

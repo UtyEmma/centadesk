@@ -77,7 +77,9 @@
     </div>
     <!-- Slider End -->
 
-    <x-category :categories="$categories" />
+    @if (count($categories) > 0)
+        <x-category :categories="$categories" />
+    @endif
 
     @if (count($courses) > 0)
         <!-- All Courses Start -->
