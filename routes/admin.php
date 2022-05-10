@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\CurrencyController;
 use App\Http\Controllers\Admin\MentorController;
 use App\Http\Controllers\Admin\SettingsController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\WithdrawalController;
 use App\Http\Controllers\TestimonialController;
 use Illuminate\Support\Facades\Route;
 
@@ -117,6 +118,11 @@ Route::middleware('auth:admin')->group(function(){
         Route::post('/create', [AdminController::class, 'create']);
         Route::get('/status', [AdminController::class, 'status']);
         Route::get('/delete', [AdminController::class, 'delete']);
+    });
+
+    Route::prefix('/withdrawals')->group(function(){
+        Route::get('/', [WithdrawalController::class, 'show']);
+        Route::get('/requests', [WithdrawalController::class, 'withdrawalRequests']);
     });
 
 });

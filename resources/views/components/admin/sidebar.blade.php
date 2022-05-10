@@ -45,8 +45,14 @@
       </li>
       <li class="nav-item">
         <a class="nav-link" href="/testimonials">
-          <i class="mdi mdi-currency-usd menu-icon"></i>
+          <i class="mdi mdi-bullhorn menu-icon"></i>
           <span class="menu-title">Testimonials</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/withdrawals">
+          <i class="mdi mdi-upload menu-icon"></i>
+          <span class="menu-title">Withdrawals</span>
         </a>
       </li>
       <li class="nav-item">
