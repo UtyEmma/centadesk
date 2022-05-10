@@ -5,11 +5,11 @@
     <div class="section page-banner bg-transparent py-0 my-0" >
         <div class="container pt-5">
             <div class="page-banner-content">
-                <ul class="breadcrumb mb-0">
+                {{-- <ul class="breadcrumb mb-0">
                     <li><a href="/">Home</a></li>
                     <li > <a href="/courses">Courses</a></li>
                     <li class="active">{{$course->name}}</li>
-                </ul>
+                </ul> --}}
             </div>
         </div>
     </div>
@@ -61,14 +61,14 @@
                         <!-- Courses Details Tab Start -->
                         <div class="courses-details-tab mt-0 p-0">
                             <div>
-                                <h5 class="tab-title">About this Course</h5>
+                                <h6 class="tab-title">About this Course</h6>
                                 <p>
                                     {!! $course->desc !!}
                                 </p>
                             </div>
 
                             <div>
-                                <h5 class="tab-title">What you will learn:</h5>
+                                <h6 class="tab-title">What you will learn:</h6>
                                 <p>
                                     @if ($course->objectives)
                                         @forelse (json_decode($course->objectives) as $objective)
@@ -84,14 +84,13 @@
 
                             <div class="mt-4">
 
-                                <h5 class="tab-title">Tags</h5>
+                                <h6 class="tab-title">Tags</h6>
 
                                 <div class="widget-tags p-0 border-0 mt-3">
                                     <ul class="tags-list d-flex flex-wrap">
                                         @forelse (json_decode($course->tags) as $tag)
-                                            <li class="text-capitalize"><a class="px-3" href="#">{{$tag->value}}</a></li>
+                                            <li class="text-capitalize"><a class="px-3">{{$tag->value}}</a></li>
                                         @empty
-
                                         @endforelse
                                     </ul>
                                 </div>
@@ -137,12 +136,19 @@
                 </div>
             </div>
 
-            <div class="row mt-5">
-                <h4>Suggested for you:</h4>
-                <div class="col-md-4">
+            @if (count($related) > 0)
+                <div class="mt-5">
+                    <h5 class="mb-4">Related Courses:</h5>
 
+                    <div class="row">
+                        @foreach ($related as $course)
+                            <div class="col-md-4">
+                                <x-courses.single-course-card :course="$course" :mentor="$course->mentor" />
+                            </div>
+                        @endforeach
+                    </div>
                 </div>
-            </div>
+            @endif
         </div>
     </div>
     <!-- Courses End -->

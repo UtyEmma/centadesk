@@ -5,11 +5,11 @@
                 <div class="container mt-5">
                     <!-- Page Banner Start -->
                     <div class="page-banner-content py-5">
-                        <ul class="breadcrumb mt-5">
-                            <li><a href="#">Home</a></li>
+                        <ul class="breadcrumb mt-3">
+                            <li><a href="/">Home</a></li>
                             <li class="active">About</li>
                         </ul>
-                        <h2 class="title">About <span>EduLe.</span></h2>
+                        <h2 class="title mt-0">About <span>EduLe.</span></h2>
                     </div>
                     <!-- Page Banner End -->
                 </div>
@@ -23,9 +23,8 @@
                     <div class="container mt-0">
                         <div class="row">
                             <div class="col-lg-6">
-
                                 <!-- About Images Start -->
-                                <div class="about-images">
+                                <div class="about-images mt-0">
                                     <div class="images">
                                         <img src="{{asset('images/about.jpg')}}" alt="About">
                                     </div>
@@ -43,7 +42,7 @@
                             <div class="col-lg-6">
 
                                 <!-- About Content Start -->
-                                <div class="about-content">
+                                <div class="about-content mt-0">
                                     <h5 class="sub-title">Welcome to Libraclass.</h5>
                                     <h2 class="main-title">You can join with Edule and upgrade your skill for your <span>bright future.</span></h2>
                                     <p>Lorem Ipsum has been the industr’s standard dummy text ever since unknown printer took galley type and scmbled make type specimen book. It has survived not only five centuries.</p>

@@ -122,5 +122,21 @@ trait CourseActions {
         return $this->getCoursesData($courses);
     }
 
+    function fetchRelatedCourses($course){
+        $courses = Courses::where('category', $course->category)->where('unique_id', '!==', $course->unique_id);
+
+        if($courses->count() > 6) {
+            $courses->where(function($query){
+                $query->select('is_verified')
+                    ->from('users')
+                    ->whereColumn('courses.mentor_id', 'users.unique_id')
+                    ->groupBy('is_verified')
+                    ->limit(6);
+            }, 'verified');
+        }
+
+        return $this->getCoursesData($courses->get());
+    }
+
 
 }

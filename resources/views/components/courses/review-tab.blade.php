@@ -1,6 +1,6 @@
 <!-- Tab Reviews Start -->
 <div class="py-4">
-    <h5 class="mb-3 mt-4">Student Reviews:</h5>
+    <h6 class="mb-3 mt-4">Student Reviews:</h6>
 
     <div class="reviews-wrapper reviews-active">
         @if (count($reviews) > 0)
@@ -8,7 +8,7 @@
                 <x-reviews.item :review="$review" />
             @endforeach
         @else
-            <div class="w-100">
+            <div class="w-100 border radius p-3">
                 @if (Auth::user())
                     <h6>Be the first to review this Course</h6>
                     <p>Enroll in any of the active batches and let us know what you think.</p>

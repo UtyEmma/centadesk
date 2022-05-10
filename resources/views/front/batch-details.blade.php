@@ -1,5 +1,11 @@
 <x-guest-layout>
     @inject('parsedate', 'App\Library\DateTime' )
+
+    @php
+        $startdate = Date::parse($batch->startdate);
+        $enddate = Date::parse($batch->enddate);
+    @endphp
+
     <x-page-banner></x-page-banner>
 
     <x-metadata :title="$batch->name" :image="$batch->images" :excerpt="$batch->excerpt" />
@@ -17,7 +23,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-md-7">
+                            <div class="col-md-7 py-2">
                                 <h4 class="mb-2">{{$batch->title}}</h4>
                                 <a href="/courses/{{$course->slug}}">
                                     <h6 class="mb-2">{{$course->name}}</h6>
@@ -25,21 +31,32 @@
 
                                 <p class="mb-0">{{$batch->excerpt}}</p>
 
-                                <div class="mt-2 mb-4 w-100">
+                                <div class="mt-2 w-100">
                                     <div class="author-content ms-0 p-0 d-flex align-items-center w-100">
                                         <x-profile-img :user="$mentor" size="45px" />
                                         <a style="font-weight: 500" class="ms-2" href="/mentors/{{$mentor->username}}">{{$mentor->firstname}} {{$mentor->lastname}}</a>
                                     </div>
-                                    <div class="d-flex justify-content-between mt-2">
-                                        <small class="rating-text me-1">
-                                            <i class="text-primary fs-5 icofont-calendar"></i>
-                                            {{$batch->startdate}} - {{$batch->enddate}}
-                                        </small>
+                                    <div class="mt-2">
+                                        <div class="d-flex justify-content-between">
+                                            <h6><i class="text-primary mr-5 fs-5 icofont-calendar"></i> Class Date</h6>
+
+                                            <small class="ms-1">
+                                                <i class="text-primary fs-5 icofont-user"></i>
+                                                {{$course->total_students}} Students
+                                            </small>
+                                        </div>
+
+                                        <div class="d-flex justify-content-between">
+                                            <div>
+                                                <p style="font-size: 13px; font-weight: 600;" class="mb-0">Begins</p>
+                                                <small>{{$startdate->toDayDateTimeString()}}</small>
+                                            </div>
+                                            <div>
+                                                <p style="font-size: 13px; font-weight: 600;" class="mb-0">End</p>
+                                                <small>{{$enddate->toDayDateTimeString()}}</small>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <small class="ms-1">
-                                        <i class="text-primary fs-5 icofont-user"></i>
-                                        {{$course->total_students}} Students
-                                    </small>
                                 </div>
                             </div>
                         </div>

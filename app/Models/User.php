@@ -33,7 +33,7 @@ class User extends Authenticatable{
         'avg_rating' => 1,
         'kyc_status' => 'pending',
         'role' => 'user',
-        'is_verified' => 'not_verified',
+        'is_verified' => 'unverified', //verified - unverified - pending
         'status' => true,
         'approved' => false,
         'currency' => 'NGN'
@@ -101,6 +101,18 @@ class User extends Authenticatable{
             $transaction->created = DateTime::parseTimestamp($transaction->created_at);
             return $transaction;
         });
+    }
+
+    public function suggestCourses(){
+        $interests = collect(json_decode($this->interests));
+        $courses = Courses::query();
+        $courses->where('status', 'published');
+
+        $interests->map(function($interest) use($courses){
+            $courses->where('category', $interest);
+        });
+
+        // $courses->when();
     }
 
     public function toSearchableArray(){

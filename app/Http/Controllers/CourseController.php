@@ -136,15 +136,16 @@ class CourseController extends Controller{
             'batches' => $batches,
             'mentor' => $user,
             'reviews' => $reviews,
-            'data' => $this->app_data()
+            'data' => $this->app_data(),
         ]);
     }
 
     public function show($slug){
         $user = $this->user();
         if(!$course = Courses::where('slug', $slug)->first())
-                    return Response::redirectBack('errors', 'Course Was not Found');
+        return Response::redirectBack('errors', 'Course Was not Found');
         $obj = $this->getCourseData($course, $user);
+        $related = $this->fetchRelatedCourses($course);
 
         return view('front.course-detail', [
             'course' => $course,
@@ -152,7 +153,8 @@ class CourseController extends Controller{
             'batch' => $obj->active_batch,
             'user' => $user,
             'reviews' => $obj->reviews,
-            'data' => $this->app_data()
+            'data' => $this->app_data(),
+            'related' => $related
         ]);
     }
 
