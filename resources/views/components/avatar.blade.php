@@ -39,8 +39,8 @@
     </button>
 
     <ul class="position-absolute animate__fadeInTopRight flex-column avatar-menu bg-white border radius mt-1 shadow-sm" style="width: auto; display: block; right: 0;">
-        <li class="w-100" ><a class="dropdown-item py-2 fw-normal fs-6" href="#">My Profile</a></li>
-        <li class="w-100"><a class="dropdown-item py-2 fw-normal fs-6" href="#">My Learning</a></li>
+        <li class="w-100" ><a class="dropdown-item py-2 fw-normal fs-6" href="/profile">My Profile</a></li>
+        <li class="w-100"><a class="dropdown-item py-2 fw-normal fs-6" href="/learning">My Learning</a></li>
         @if ($user->role === 'mentor')
         <li class="w-100"><a class="dropdown-item py-2 fw-normal fs-6" href="/me">Mentor Dashboard</a></li>
         @else

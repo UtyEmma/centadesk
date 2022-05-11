@@ -70,15 +70,22 @@ trait WalletActions {
             return true;
         }
 
-        $referral = $amount - $wallet->referrals;
-        $deposit = $amount - $referral;
-
-        if($wallet->deposits >= $referral){
-            $wallet->referrals -= $referral;
-            $wallet->deposits -= $deposit;
+        if($wallet->deposits >= $amount){
+            $wallet->deposits -= $amount;
             $wallet->save();
             return true;
         }
+
+        $total_wallet = $wallet->deposits + $wallet->referrals;
+
+        if($total_wallet >= $amount){
+            $remaining_money = $amount - $wallet->referrals;
+            $wallet->referrals = 0;
+            $wallet->deposits -= $remaining_money;
+            $wallet->save();
+            return true;
+        }
+
         return false;
     }
 

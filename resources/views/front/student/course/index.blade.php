@@ -7,7 +7,7 @@
                         <div class="blog-details-wrapper mb-3 mt-0">
                             <div class="row">
                                 <div class="col-md-5">
-                                    <div class="courses-details mb-5 mt-0">
+                                    <div class="courses-details h-100 mb-5 mt-0">
                                         <x-course-images :image="$batch->images" :video="$batch->video" :alt="$batch->title"/>
                                     </div>
                                 </div>
@@ -43,9 +43,9 @@
                             <div class="card mb-3">
                                  <div class="card-body">
                                     <div class="p-2 radius text-center">
-                                        <x-countdown.hours :date="$batch->startdate" id="time-to-class">
-                                            <h2 class="lh-0 mb-0 text-primary" id="time-to-class"></h2>
-                                        </x-countdown.hours>
+                                        <x-countdown.timer :date="$batch->startdate" id="time-to-class">
+                                            <h3 class="lh-0 mb-0 text-primary" id="time-to-class"></h3>
+                                        </x-countdown.timer>
                                     </div>
                                 </div>
 

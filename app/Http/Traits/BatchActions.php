@@ -167,20 +167,23 @@ trait BatchActions {
         $batch->reportable = $this->setReportabilityStatus($batch->enddate);
 
         $reviews = $this->getBatchReviews($batch);
+        $can_review = $this->checkIfUserCanReview($user->unique_id, $batch);
 
         $mentor = User::where('unique_id', $enrollment->mentor_id)->first();
+
 
         $report = Report::where([
             'student_id'=> $user->unique_id,
             'batch_id' => $batch->unique_id
-        ])->first() ?? null;
+            ])->first() ?? null;
 
-        return [
+            return [
             'enrollment' => $enrollment,
             'mentor' => $mentor,
             'report' => $report,
             'reviews' => $reviews,
             'batch' => $batch,
+            'can_review' => $can_review,
             'forum' => $messages,
             'user' => $user,
             'course' => $course

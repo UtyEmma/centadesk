@@ -25,8 +25,9 @@
 
                             <div class="col-md-7 py-2">
                                 <h4 class="mb-2">{{$batch->title}}</h4>
+
                                 <a href="/courses/{{$course->slug}}">
-                                    <h6 class="mb-2">{{$course->name}}</h6>
+                                    <h6 class="mb-1">{{$course->name}}</h6>
                                 </a>
 
                                 <p class="mb-0">{{$batch->excerpt}}</p>
@@ -103,15 +104,8 @@
                         </div>
 
                         <div class="sidebar-widget mt-5">
-                            <h5 class="mb-0">Share to your friends:</h5>
-
-                            <ul class="social mt-0">
-                                <li><a href="#"><i class="flaticon-facebook"></i></a></li>
-                                <li><a href="#"><i class="flaticon-linkedin"></i></a></li>
-                                <li><a href="#"><i class="flaticon-twitter"></i></a></li>
-                                <li><a href="#"><i class="flaticon-skype"></i></a></li>
-                                <li><a href="#"><i class="flaticon-instagram"></i></a></li>
-                            </ul>
+                            <h5 class="mb-0">Share this batch:</h5>
+                            <x-share-btns :text="$batch->excerpt" :tags="$course->tags" />
                         </div>
                     </div>
                 </div>

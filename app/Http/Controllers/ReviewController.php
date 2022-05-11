@@ -24,11 +24,16 @@ class ReviewController extends Controller{
             $course = Courses::findOrFail($batch->course_id);
             $mentor = User::findOrFail($course->mentor_id);
 
+            if(Review::where('user_id', $user->unique_id)
+                    ->where('course_id', $course->unique_id)
+                    ->first()) return Response::redirectBack('error', 'You have already reviewed this course!');
+
             Review::create([
                 'unique_id' => $unique_id,
                 'user_id' => $user->unique_id,
                 'course_id' => $batch->course_id,
                 'batch_id' => $batch->unique_id,
+                'mentor_id' => $course->mentor_id,
                 'rating' => $request->rating,
                 'review' => $request->review
             ]);

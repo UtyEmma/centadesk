@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Review extends Model{
     use HasFactory;
 
-    protected $fillable = ['unique_id', 'user_id', 'course_id', 'batch_id', 'rating', 'review', 'status'];
+    protected $fillable = ['unique_id', 'user_id', 'mentor_id', 'course_id', 'batch_id', 'rating', 'review', 'status'];
 
     protected $primaryKey = 'unique_id';
     protected $keyType = 'string';

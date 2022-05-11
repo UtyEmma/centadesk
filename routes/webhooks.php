@@ -10,6 +10,8 @@ Route::prefix('/bank')->group(function(){
 });
 
 Route::prefix('/crypto')->group(function(){
-    Route::post('/payment/status', [CryptoPaymentController::class, 'updatePaymentStatus']);
-    Route::post('/withdrawal/status', [CryptoPaymentController::class, 'updateWithdrawalStatus']);
+    Route::prefix('status')->group(function(){
+        Route::post('/payment', [CryptoPaymentController::class, 'updatePaymentStatus']);
+        Route::post('/withdrawal', [CryptoPaymentController::class, 'updateWithdrawalStatus']);
+    });
 });

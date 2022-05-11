@@ -107,7 +107,6 @@
                                 <span></span>
                             </a>
                         </div>
-                        <!-- Header Mobile Toggle End -->
                     </div>
 
                 </div>
@@ -175,15 +174,12 @@
         </div>
         <!-- Mobile Sing In & Up End -->
 
+        <x-currency-select :name="'currency'" :currency="$currency" :data="$data" class="text-white" btn_classes="btn bg-white text-white" />
+
 
         <!-- Mobile Menu End -->
         <div class="mobile-social mt-3">
-            <ul class="social">
-                <li><a href="#"><i class="flaticon-facebook"></i></a></li>
-                <li><a href="#"><i class="flaticon-twitter"></i></a></li>
-                <li><a href="#"><i class="flaticon-skype"></i></a></li>
-                <li><a href="#"><i class="flaticon-instagram"></i></a></li>
-            </ul>
+            <x-share-btns text="Join Libraclass" tags="Libraclass, Online Learning"  />
         </div>
         <!-- Mobile Menu End -->
 

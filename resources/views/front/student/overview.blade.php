@@ -6,7 +6,7 @@
                     <div class="new-courses px-8 my-0 pt-2" style="background-image: url({{asset('images/new-courses-banner.jpg')}});">
                         <div class="row">
                             <div class="new-courses-title">
-                                <h3 class="title">Welcome, Utibe-Abasi</h3>
+                                <h3 class="title">Welcome, {{Auth::user()->firstname}}</h3>
                                 <p class="text-white">You can start enrolling for courses you are interested in.</p>
                                 <x-btn classes="btn-warning btn-hover-dark">Find Courses</x-btn>
                             </div>

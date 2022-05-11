@@ -3,7 +3,7 @@
     <div class="card border radius">
         <div class="card-body">
             <div class="p-1 pt-3 radius text-center bg-light">
-                <h6 class="text-uppercase">Time to Class</h6>
+                <h6 class="text-uppercase fw-bold">Time to Class</h6>
             </div>
             <div class="text-center">
                 <x-countdown.timer id="countdown-timer" :date="$batch->startdate">

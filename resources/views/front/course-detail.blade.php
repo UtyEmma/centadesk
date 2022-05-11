@@ -76,7 +76,6 @@
                                                 <li class="my-2"><i class="icofont-check text-primary fs-4"></i> {{$objective}}</li>
                                             </ul>
                                         @empty
-
                                         @endforelse
                                     @endif
                                 </p>
@@ -97,7 +96,9 @@
                             </div>
                         </div>
 
-                        <x-courses.review-tab :reviews="$course->course_reviews" :batch="$batch" :can="false" />
+                        <div class="py-1">
+                            <x-courses.review-tab :reviews="$course->course_reviews" :batch="$batch" :can="['status' => false, 'message' => '']" />
+                        </div>
                         <!-- Courses Details Tab End -->
                     </div>
                     <!-- Courses Details End -->
@@ -124,13 +125,7 @@
                     <div class="sidebar-widget mt-4">
                         <h5 class="tab-title mb-0">Share Course</h5>
 
-                        <ul class="social mt-0">
-                            <li><a href="#"><i class="flaticon-facebook"></i></a></li>
-                            <li><a href="#"><i class="flaticon-linkedin"></i></a></li>
-                            <li><a href="#"><i class="flaticon-twitter"></i></a></li>
-                            <li><a href="#"><i class="flaticon-skype"></i></a></li>
-                            <li><a href="#"><i class="flaticon-instagram"></i></a></li>
-                        </ul>
+                        <x-share-btns :text="$course->excerpt" :tags="$course->tags" />
                     </div>
                     <!-- Sidebar Widget Share End -->
                 </div>

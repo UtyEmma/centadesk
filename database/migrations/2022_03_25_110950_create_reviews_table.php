@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('user_id');
             $table->string('course_id');
             $table->string('batch_id');
+            $table->string('mentor_id');
             $table->integer('rating');
             $table->string('review');
             $table->boolean('status');

@@ -22,5 +22,5 @@
         </div>
     </div>
 
-    <x-courses.review-tab :reviews="$reviews" :batch="$batch" :can="true" />
+    <x-courses.review-tab :reviews="$reviews" :batch="$batch" :can="$can_review" />
 </x-enrolled-course>

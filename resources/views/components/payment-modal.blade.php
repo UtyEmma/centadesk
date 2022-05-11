@@ -108,7 +108,7 @@
                                     <p >
                                         <small class="fw-bold">{{$user->currency}}</small>
                                         <span class="fs-5">
-                                            {{number_format($wallet->referrals)}}
+                                            {{number_format($wallet->referrals + $wallet->deposits)}}
                                         </span>
                                     </p>
                                 </div>

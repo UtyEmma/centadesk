@@ -16,6 +16,7 @@ use App\Models\Courses;
 use App\Models\Enrollment;
 use App\Models\ForumMessages;
 use App\Models\ForumReplies;
+use App\Models\Review;
 use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
@@ -81,15 +82,19 @@ class StudentController extends Controller{
     }
 
     public function enrolledCourse(Request $request, $slug, $shortcode){
-        if(!$course = Courses::where('slug', $slug)->first()) return Response::redirectBack('error', 'Course Does Not Exist');
-        if(!$batch = Batch::where('short_code', $shortcode)->first()) return Response::redirectBack('error', 'Batch Does Not Exist');
-        $user = $this->user();
+        try {
+            if(!$course = Courses::where('slug', $slug)->first()) return throw new Exception('Course Does Not Exist');
+            if(!$batch = Batch::where('short_code', $shortcode)->first()) return throw new Exception('error', 'Batch Does Not Exist');
+            $user = $this->user();
 
-        $data = array_merge([
-            'course' => $course
-        ], $this->getEnrolledBatch($batch, $user));
+            $data = array_merge([
+                'course' => $course,
+            ], $this->getEnrolledBatch($batch, $user));
 
-        return view('front.student.course.overview', $data);
+            return view('front.student.course.overview', $data);
+        } catch (\Throwable $th) {
+            return Response::redirectBack('error', $th->getMessage());
+        }
     }
 
     function overview(Request $request){

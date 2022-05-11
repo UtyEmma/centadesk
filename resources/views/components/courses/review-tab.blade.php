@@ -1,11 +1,16 @@
-<!-- Tab Reviews Start -->
+@push('scripts')
+    <script src="{{asset('js/plugins/pagination.js')}}"></script>
+@endpush
+
 <div class="py-4">
     <h6 class="mb-3 mt-4">Student Reviews:</h6>
 
     <div class="reviews-wrapper reviews-active">
         @if (count($reviews) > 0)
             @foreach ($reviews as $review)
-                <x-reviews.item :review="$review" />
+                <div class="py-1">
+                    <x-reviews.item :review="$review" />
+                </div>
             @endforeach
         @else
             <div class="w-100 border radius p-3">
@@ -13,15 +18,14 @@
                     <h6>Be the first to review this Course</h6>
                     <p>Enroll in any of the active batches and let us know what you think.</p>
                 @else
-                    <h6>There are no reviews yet</h6>
-                    <p>Login and Enroll in any of the active batches and let us know what you think.</p>
+                    {{$can['message']}}
                 @endif
             </div>
         @endif
     </div>
 </div>
 
-@if ($can)
+@if ($can['status'])
     <div>
         <h5 class="modal-title">Write your Review</h5>
     </div>

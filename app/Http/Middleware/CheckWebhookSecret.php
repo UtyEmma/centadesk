@@ -23,12 +23,12 @@ class CheckWebhookSecret
 
         if($request->hasHeader($coinbaseHeader)){ //Coinbase payment
             $signature = $request->header($coinbaseHeader);
-            if($signature === Setting::first()->coinbase_webhook_secret ?? env('COINBASE_WEBHOOK_SECRET')){
+            if($signature === env('COINBASE_WEBHOOK_SECRET')){
                 return $next($request);
             }
         }elseif ($request->hasHeader($flutterwaveHeader)) { //Flutterwave
             $signature = $request->header($flutterwaveHeader);
-            if($signature === Setting::first()->rave_webhook_secret ?? env('RAVE_WEBHOOK_SECRET')){
+            if($signature === env('RAVE_WEBHOOK_SECRET')){
                 return $next($request);
             }
         }
