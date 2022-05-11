@@ -1,6 +1,10 @@
 @if ($batch->reportable)
-<div class="reviews-btn w-100">
-    <button type="button" class="btn w-100 btn-primary btn-hover-dark" data-bs-toggle="modal" data-bs-target="#reportsModal">Report this Mentor</button>
+
+<h6>Do you have any complaints?</h6>
+<small>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat a excepturi in vitae perspiciatis provident! Recusandae, excepturi? Dicta, ex deserunt.</small>
+
+<div class="reviews-btn w-100 pt-3">
+    <button type="button" class="btn w-100 btn-primary btn-hover-dark" style="font-size: 14px; line-height: 3.5;" data-bs-toggle="modal" data-bs-target="#reportsModal">Report this Batch</button>
 </div>
 
 <!-- Reviews Form Modal Start -->

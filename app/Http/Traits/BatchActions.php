@@ -136,11 +136,10 @@ trait BatchActions {
         return Report::where('batch_id', $batch->unique_id)->where('status', 'pending')->get();
     }
 
-    function setReportabilityStatus($enddate){
-        $endDate = Date::parse($enddate);
-        $withdrawalDate = $endDate->addDays(Setting::first()->withdrawal_day_count);
-        $isPastWithdrawalDate = now()->greaterThan($withdrawalDate);
-        return  $isPastWithdrawalDate;
+    function setReportabilityStatus($batch){
+        if($this->isPastWithdrawalDate($batch)) return false;
+        if($this->isUpcoming($batch)) return false;
+        return true;
     }
 
     function getEnrolledBatch($batch, $user){
@@ -164,7 +163,7 @@ trait BatchActions {
         $course = Courses::find($batch->course_id);
 
         $batch->begins = DateTime::getDateInterval($batch->startdate);
-        $batch->reportable = $this->setReportabilityStatus($batch->enddate);
+        $batch->reportable = $this->setReportabilityStatus($batch);
 
         $reviews = $this->getBatchReviews($batch);
         $can_review = $this->checkIfUserCanReview($user->unique_id, $batch);
@@ -173,9 +172,8 @@ trait BatchActions {
 
 
         $report = Report::where([
-            'student_id'=> $user->unique_id,
-            'batch_id' => $batch->unique_id
-            ])->first() ?? null;
+                    'student_id'=> $user->unique_id,
+                    'batch_id' => $batch->unique_id])->first();
 
             return [
             'enrollment' => $enrollment,
@@ -253,6 +251,23 @@ trait BatchActions {
         Notification::send($user, new NewBatchPublishedNotification($notification));
 
         return $batch;
+    }
+
+    function isOngoing($batch){
+        return Date::parse($batch->startdate)->lessThanOrEqualTo(Date::now()) && Date::parse($batch->enddate)->greaterThanOrEqualTo(Date::now());
+    }
+
+    function isUpcoming($batch){
+        return Date::parse($batch->startdate)->greaterThan(Date::now());
+    }
+
+    function isPrevious($batch){
+        return Date::parse($batch->enddate)->lessThan(Date::now());
+    }
+
+    function isPastWithdrawalDate($batch){
+        $withdrawalDate = Date::parse($batch->enddate)->addDays(Setting::first()->withdrawal_day_count ?? env('WITHDRAWAL_DAY_COUNT'));
+        return now()->greaterThan($withdrawalDate);
     }
 
 }

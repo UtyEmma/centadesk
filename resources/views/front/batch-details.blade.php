@@ -90,11 +90,14 @@
                         </div>
 
                         <div class="sidebar-widget mt-md-0 mb-3">
-                            <h5>Enroll for this Batch</h5>
-                            @if ($batch->discount)
-                                <x-price-discount-card :batch="$batch" />
+                            @if (now() > Date::parse($batch->enddate) || Date::parse($batch->startdate)->lessThanOrEqualTo(Date::now()) && Date::parse($batch->enddate)->greaterThanOrEqualTo(Date::now()))
                             @else
-                                <x-price-normal-card :batch="$batch" />
+                                <h5>Enroll for this Batch</h5>
+                                @if ($batch->discount)
+                                    <x-price-discount-card :batch="$batch" />
+                                @else
+                                    <x-price-normal-card :batch="$batch" />
+                                @endif
                             @endif
                         </div>
 

@@ -12,25 +12,27 @@
             </div>
         </div>
     </div>
-@elseif (Date::parse($batch->enddate) > now())
+@elseif (now() > Date::parse($batch->enddate))
     {{-- The course end date has passed  --}}
     <div class="card border radius">
         <div class="card-body">
             <div class="text-center">
-                <h4 style="font-weight: 500;" class="text-primary mt-2">This Class has been completed</h4>
+                <h4 style="font-weight: 500;" class="text-primary mt-2">This batch has been completed</h4>
 
                 <a href="/courses">
-                    <x-btn>View Upcoming Classes</x-btn>
+                    <x-btn classes="btn-primary btn-hover-dark">View Upcoming Classes</x-btn>
                 </a>
             </div>
         </div>
     </div>
-@elseif (Date::parse($value->startdate)->lessThanOrEqualTo(Date::now()) && Date::parse($value->enddate)->greaterThanOrEqualTo(Date::now()))
+@elseif (Date::parse($batch->startdate)->lessThanOrEqualTo(Date::now()) && Date::parse($batch->enddate)->greaterThanOrEqualTo(Date::now()))
     {{-- The Course is Ongoing --}}
     <div class="card border radius">
         <div class="card-body">
             <div class="text-center">
-                <h4 style="font-weight: 500;" id="countdown-timer" class="text-primary mt-2">This Class is Ongoing</h4>
+                <h4 style="font-weight: 500;" id="countdown-timer" class="text-primary mt-2">
+                    This batch is currently ongoing!
+                </h4>
             </div>
         </div>
     </div>

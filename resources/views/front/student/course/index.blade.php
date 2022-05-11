@@ -39,31 +39,22 @@
 
                     <div class="col-md-4">
                         <div class="sidebar">
-                            <h5 class="">Class Begins in:</h5>
-                            <div class="card mb-3">
-                                 <div class="card-body">
-                                    <div class="p-2 radius text-center">
-                                        <x-countdown.timer :date="$batch->startdate" id="time-to-class">
-                                            <h3 class="lh-0 mb-0 text-primary" id="time-to-class"></h3>
-                                        </x-countdown.timer>
-                                    </div>
-                                </div>
+                            <x-batch-countdown :batch="$batch" />
 
-                                <div class="card-footer bg-transparent">
-                                    <p class="text-center">Join the Class</p>
-                                    <div class="d-flex justify-content-between">
-                                        <div>
-                                            @if ($batch->class_link)
-                                                <a href="{{$batch->class_link}}" target="__blank">
-                                                    <x-btn classes="btn-secondary btn-hover-primary px-4">Waiting Link <i class="icofont-external-link"></i></x-btn>
-                                                </a>
-                                            @endif
-                                        </div>
-                                        <div>
-                                            <a  href="{{$batch->access_link}}" target="__blank">
-                                                <x-btn classes="btn-primary btn-hover-dark px-4">Access Link <i class="icofont-external-link"></i></x-btn>
+                            <div class="my-3">
+                                <h5>Batch Links</h5>
+                                <div class="d-flex">
+                                    <div class="me-4">
+                                        @if ($batch->class_link)
+                                            <a href="{{$batch->class_link}}" target="__blank">
+                                                <x-btn classes="btn-secondary btn-hover-primary px-4">Waiting Link <i class="icofont-external-link"></i></x-btn>
                                             </a>
-                                        </div>
+                                        @endif
+                                    </div>
+                                    <div>
+                                        <a  href="{{$batch->access_link}}" target="__blank">
+                                            <x-btn classes="btn-primary btn-hover-dark px-4">Access Link <i class="icofont-external-link"></i></x-btn>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
@@ -73,11 +64,11 @@
                             <x-mentor-card :mentor="$mentor" :class="''" :btn="true" />
                             <!-- Sidebar Widget Information End -->
 
-                            <div class="w-100 mt-4">
-                                @if (!$report)
-                                <x-reports.modal :batch="$batch" />
+                            <div class="w-100 mt-4 p-3 border radius">
+                                @if ($report)
+                                    <x-reports.view :report="$report" :batch="$batch" />
                                 @else
-                                <x-reports.view :report="$report" :batch="$batch" />
+                                    <x-reports.modal :batch="$batch" />
                                 @endif
                             </div>
 
