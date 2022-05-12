@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\NewBatchRequest;
 use App\Http\Traits\BatchActions;
 use App\Http\Traits\CourseActions;
+use App\Jobs\NewCourseAlert;
 use App\Library\FileHandler;
 use App\Library\Links;
 use App\Library\Number;
@@ -50,19 +51,7 @@ class BatchController extends Controller{
 
     function fetchBatch(Request $request, $slug, $shortcode){
         $user = $this->user();
-
-        // $batch = Batch::where('short_code', $shortcode)->first();
-        // $course = Courses::find($batch->course_id);
-
-        // $students = DB::table('enrollments')
-        //                     ->where('batch_id', $request->batch_id)
-        //                     ->join('users', 'users.unique_id', 'enrollments.student_id')
-        //                     ->select('users.*')
-        //                     ->get();
-
-        // $batches = Courses::find($batch->course_id)->batches;
         $details = $this->mentorBatchDetails($shortcode, true);
-
         return view('dashboard.course-details.batch.overview', $details);
     }
 
@@ -135,9 +124,12 @@ class BatchController extends Controller{
             'course' => $course
         ];
 
+        NewCourseAlert::dispatch($course);
+
         try {
             Notification::send($user, new NewBatchPublishedNotification($notification));
         } catch (\Throwable $th) {}
+
 
         return Response::redirectBack('success', 'Batch Created Successfully');
     }

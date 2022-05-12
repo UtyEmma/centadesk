@@ -8,7 +8,7 @@
             </tr>
             <tr>
                 <td style="text-align:center;padding: 0 30px 20px">
-                    <p style="margin-bottom: 10px;">Hi Ishtiyak,</p>
+                    <p style="margin-bottom: 10px;">Hi {{$user->firstname}},</p>
                     <p style="margin-bottom: 25px;">Click On The link blow to reset your password.</p>
                     <a href="#" style="background-color: #309255;border-radius:4px;color:#ffffff;display:inline-block;font-size:13px;font-weight:600;line-height:44px;text-align:center;text-decoration:none;text-transform: uppercase; padding: 0 25px">Reset Password</a>
                 </td>

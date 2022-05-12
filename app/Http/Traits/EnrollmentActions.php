@@ -42,14 +42,15 @@ trait EnrollmentActions {
         $batch->discount = $batch->total_students > $batch->signup_limit && $batch->signup_limit !== 0  ? 'none' : $batch->discount;
         $batch->save();
 
-
         $notification = [
             'subject' => [
                 'student' => "Congratulations! Your enrollment was successfully completed",
                 'mentor' => 'You have a new Enrollment on your Course'
             ],
             'course' => $course,
-            'batch' => $batch
+            'batch' => $batch,
+            'mentor' => $mentor,
+            'student' => $student
         ];
 
         try {

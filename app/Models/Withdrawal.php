@@ -15,7 +15,7 @@ class Withdrawal extends Model{
     public $incrementing = false;
 
     protected $attributes = [
-        'status' => 'pending'
+        'status' => 'pending' //pending - inprogress - successful
     ];
 
 

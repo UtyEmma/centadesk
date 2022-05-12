@@ -20,15 +20,15 @@ class WithdrawalController extends Controller{
         try {
             $user = $this->user();
             $wallet = Wallet::where('user_id', $user->unique_id)->first();
-            if($wallet->available < $request->amount) return Response::redirectBack('error', 'You do not have sufficient funds for this transaction.');
+            // if($wallet->available < $request->amount) return Response::redirectBack('error', 'You do not have sufficient funds for this transaction.');
 
             $withdrawal = $this->createWithdrawal($user, $request->amount, $request->type ?? 'bank');
 
-            $wallet->available -= $request->amount;
-            $wallet->payouts += $request->amount;
-            $wallet->save();
+            // $wallet->available -= $request->amount;
+            // $wallet->payouts += $request->amount;
+            // $wallet->save();
 
-            $withdrawal->status = 'IN_PROGRESS';
+            $withdrawal->status = 'inprogress';
             $withdrawal->save();
 
             return Response::redirectBack('success', "Your Withdrawal process has been initiated! You will be notified once its completed");

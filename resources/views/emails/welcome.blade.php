@@ -3,7 +3,7 @@
         <tbody>
             <tr>
                 <td style="padding: 30px 30px 20px;" >
-                    <p style="margin-bottom: 10px;">Hi Ishtiyak,</p>
+                    <p style="margin-bottom: 10px;">Hi,</p>
                     <p style="margin-bottom: 10px;">We are pleased to have you join us on Libraclass.</p>
                     <p style="margin-bottom: 10px;">We look forward to an amazing journey with you onboard.</p>
                     <p style="margin-bottom: 25px;">You can proceed to <a style="color: #309255; text-decoration:none;" href="http://libraclass.com/courses">checkout some ongoing courses</a> that fit your area of interest and join in right away.</p>

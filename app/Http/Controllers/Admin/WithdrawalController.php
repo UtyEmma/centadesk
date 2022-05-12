@@ -18,35 +18,27 @@ class WithdrawalController extends Controller{
 
     function sendFunds(Request $request){
         try {
-            if($request->withdrawals && is_array($request->withdrawals)){
-                $withdrawal_ids = $request->withdrawals;
-                ProcessWithdrawals::dispatch($withdrawal_ids);
-            }else if($request->withdrawal_id){
-                $withdrawal_id = $request->withdrawal_id;
-                $this->handleWithdrawal($withdrawal_id);
-            }
+            if(!Withdrawal::find($request->withdrawal_id)) throw new Exception('The Requested withdrawal was not found');
+            $this->handleWithdrawal($request->withdrawal_id);
             return Response::redirectBack('success', 'Withdrawal Completed');
         } catch (\Throwable $th) {
             return Response::redirectBack('error', $th->getMessage());
         }
     }
 
-    function withdrawalRequests(Request $request){
-        $withdrawals = Withdrawal::where('status', 'pending')
-                        ->join('users', 'users.unique_id', 'withdrawals.user_id')
-                        ->join('wallets', 'withdrawals.user_id', 'wallets.user_id')
-                        ->select('withdrawals.*', 'wallets.available', 'users.firstname', 'users.lastname', 'users.avatar')
-                        ->paginate(env('ADMIN_PAGINATION_COUNT'));
-
-        return Response::view('admin.withdrawals', [
-            'withdrawals' => $withdrawals
-        ]);
-    }
-
-    function show(){
-        $withdrawals = Withdrawal::join('users', 'users.unique_id', 'withdrawals.user_id')
-                        ->select('withdrawals.*', 'users.firstname', 'users.lastname', 'users.avatar')
-                        ->paginate(env('ADMIN_PAGINATION_COUNT'));
+    function show(Request $request){
+        if($request->type === 'requests'){
+            $withdrawals = Withdrawal::where('status', 'pending')
+                                        ->join('users', 'users.unique_id', 'withdrawals.user_id')
+                                        ->join('wallets', 'withdrawals.user_id', 'wallets.user_id')
+                                        ->select('withdrawals.*', 'wallets.available', 'users.firstname', 'users.lastname', 'users.avatar', 'users.unique_id as user_id')
+                                        ->paginate(env('ADMIN_PAGINATION_COUNT'));
+        }else{
+            $withdrawals = Withdrawal::join('users', 'users.unique_id', 'withdrawals.user_id')
+                                        ->join('wallets', 'withdrawals.user_id', 'wallets.user_id')
+                                        ->select('withdrawals.*', 'wallets.available', 'users.firstname', 'users.lastname', 'users.avatar')
+                                        ->paginate(env('ADMIN_PAGINATION_COUNT'));
+        }
 
         return Response::view('admin.withdrawals', [
             'withdrawals' => $withdrawals
