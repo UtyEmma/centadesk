@@ -51,24 +51,19 @@ class BatchController extends Controller{
     function fetchBatch(Request $request, $slug, $shortcode){
         $user = $this->user();
 
-        $batch = Batch::where('short_code', $shortcode)->first();
-        $course = Courses::find($batch->course_id);
+        // $batch = Batch::where('short_code', $shortcode)->first();
+        // $course = Courses::find($batch->course_id);
 
-        $students = DB::table('enrollments')
-                            ->where('batch_id', $request->batch_id)
-                            ->join('users', 'users.unique_id', 'enrollments.student_id')
-                            ->select('users.*')
-                            ->get();
+        // $students = DB::table('enrollments')
+        //                     ->where('batch_id', $request->batch_id)
+        //                     ->join('users', 'users.unique_id', 'enrollments.student_id')
+        //                     ->select('users.*')
+        //                     ->get();
 
-        $batches = Courses::find($batch->course_id)->batches;
+        // $batches = Courses::find($batch->course_id)->batches;
+        $details = $this->mentorBatchDetails($shortcode, true);
 
-        return view('dashboard.course-details.batch.overview', [
-            'course' => $course,
-            'batches' => $batches,
-            'batch' => $batch,
-            'students' => $students,
-            'mentor' => $user
-        ]);
+        return view('dashboard.course-details.batch.overview', $details);
     }
 
     function newBatchPage(Request $request, $slug){

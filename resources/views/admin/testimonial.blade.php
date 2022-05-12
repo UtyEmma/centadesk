@@ -6,7 +6,7 @@
                     <h4>Create Testimonials</h4>
 
                     <div class="mt-4">
-                        <form action="/testimonials/create" method="POST">
+                        <form action="/testimonials/create" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="row">
                                 <div class="col-md-6">

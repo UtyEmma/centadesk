@@ -23,7 +23,7 @@
                     @foreach ($courses as $course)
                         <tr>
                             <td>
-                                <a href="/courses/{{$course->unique_id}}" class="ml-2">{{$course->name}}</a>
+                                <a href="/courses/{{$course->slug}}" class="ml-2">{{$course->name}}</a>
                             </td>
                             <td>
                                 {{$course->mentor->firstname}} {{$course->mentor->lastname}}

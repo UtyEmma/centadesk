@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\CourseController;
 use App\Http\Controllers\Admin\CurrencyController;
 use App\Http\Controllers\Admin\MentorController;
+use App\Http\Controllers\Admin\ReportController;
 use App\Http\Controllers\Admin\SettingsController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\WithdrawalController;
@@ -112,6 +113,12 @@ Route::middleware('auth:admin')->group(function(){
             Route::post('/edit', [TestimonialController::class, 'update']);
             Route::get('/delete', [TestimonialController::class, 'destroy']);
         });
+    });
+
+    Route::prefix('/reports')->group(function(){
+        Route::get('/', [ReportController::class, 'viewAllReports']);
+        Route::get('/{id}/resolve', [ReportController::class, 'resolve']);
+
     });
 
     Route::prefix('/admin')->middleware('is.super')->group(function(){

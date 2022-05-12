@@ -4,20 +4,22 @@
     <div class="page-content-wrapper">
         <div class="container-fluid custom-container">
             <!-- Admin Courses Tab Start -->
-            {{-- <div class="admin-courses-tab mt-0 w-100">
+            <div class="admin-courses-tab mt-0 w-100">
                 <div class="w-100 d-md-flex justify-content-between">
                     <div>
-                        <h3 class="mb-1">{{$course->name}}</h3>
                         <h4>{{$batch->title}}</h4>
+                        <a href="/me/courses/{{$course->slug}}">
+                            <h6 class="mb-1">{{$course->name}}</h6>
+                        </a>
                     </div>
 
                     <div class="mt-2 mt-md-0">
                         <x-batch-share :batch="$batch" />
                     </div>
                 </div>
-            </div> --}}
+            </div>
 
-            {{-- <div class="courses-details-tab">
+            <div class="courses-details-tab py-0 my-3">
                 <div class="details-tab-menu">
                     <ul class="nav">
                         <li >
@@ -42,7 +44,7 @@
                         </li>
                     </ul>
                 </div>
-            </div> --}}
+            </div>
 
             {{$slot}}
 

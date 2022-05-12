@@ -8,7 +8,7 @@
             <p><span>58</span> This months</p>
         </div>
         <div class="single-box mb-2">
-            <h5 class="title">Batch Earnings</h5>
+            <h5 class="title">Course Earnings</h5>
             <div class="count">
                 {{$course->rating}}.0
 
@@ -19,7 +19,7 @@
             <p><span>58</span> This months</p>
         </div>
         <div class="single-box mb-2">
-            <h5 class="title">Batch Earnings</h5>
+            <h5 class="title">Course Rating</h5>
             <div class="count">
                 {{$course->rating}}.0
 

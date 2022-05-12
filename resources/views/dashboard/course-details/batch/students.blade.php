@@ -14,7 +14,6 @@
             <ul>
                 <li>Student</li>
                 <li>Enrollment Date</li>
-                {{-- <li>Active Student’s</li> --}}
             </ul>
         </div>
 
@@ -24,14 +23,14 @@
                     <li>
                         <div class="courses">
                             <div class="thumb">
-                                <img src="assets/images/courses/admin-courses-01.jpg" alt="Courses">
+                                <x-profile-img :user="$student" />
                             </div>
                             <div class="content">
-                                <h4 class="title">{{$student->firstname}} {{$student->lastname}}</h4>
+                                <h6 class="title">{{$student->firstname}} {{$student->lastname}}</h6>
                             </div>
                         </div>
                         <div class="taught">
-                            <span>{{$student->enrolled_at}}</span>
+                            <h6>{{$student->enrolled_at}}</h6>
                         </div>
                         {{-- <div class="student">
                             <span>{{$student->}}</span>

@@ -38,6 +38,12 @@
         </a>
       </li>
       <li class="nav-item">
+        <a class="nav-link" href="/reports">
+          <i class="mdi mdi-view-headline menu-icon"></i>
+          <span class="menu-title">Reports</span>
+        </a>
+      </li>
+      <li class="nav-item">
         <a class="nav-link" href="/categories">
           <i class="mdi mdi-forum menu-icon"></i>
           <span class="menu-title">Categories</span>
