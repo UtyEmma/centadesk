@@ -129,6 +129,7 @@ Route::middleware(['set.currency', 'set.referrals'])->group(function(){
                         Route::get('/forum', [ForumController::class, 'fetchMentorBatchForum'])->name('mentor_batch_forum');
                         Route::get('/edit', [BatchController::class, 'edit'])->name('mentor_batch_edit');
                         Route::post('/update', [BatchController::class, 'update']);
+                        Route::post('/delete', [BatchController::class, 'deleteBatch']);
                     });
                 });
             });

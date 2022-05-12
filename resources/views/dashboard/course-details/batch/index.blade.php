@@ -43,6 +43,19 @@
                             </a>
                         </li>
                     </ul>
+
+                    <div class="dropdown mt-0">
+                        <button class="btn btn-primary btn-hover-dark dropdown-toggle  px-4 border-0" style="font-size: 14px; line-height: 3.5;" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                            Options
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            <li><a class="dropdown-item" href="{{$course->slug}}/{{$batch->short_code}}/edit">Edit</a></li>
+                            <li><a class="dropdown-item" href="{{$course->slug}}/{{$batch->short_code}}">Details</a></li>
+                            <li><a class="dropdown-item" href="/courses/{{$course->slug}}/{{$batch->short_code}}">Preview</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item text-danger" href="{{$course->slug}}/{{$batch->short_code}}/delete">Delete</a></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
 

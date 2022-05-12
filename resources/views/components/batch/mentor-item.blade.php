@@ -36,7 +36,7 @@
                             <li><a class="dropdown-item" href="{{$course->slug}}/{{$batch->short_code}}">Details</a></li>
                             <li><a class="dropdown-item" href="/courses/{{$course->slug}}/{{$batch->short_code}}">Preview</a></li>
                             <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item text-danger" href="{{$course->slug}}/{{$batch->short_code}}/cancel">Delete</a></li>
+                            <li><a class="dropdown-item text-danger" href="{{$course->slug}}/{{$batch->short_code}}/delete">Delete</a></li>
                         </ul>
                     </div>
                 </div>

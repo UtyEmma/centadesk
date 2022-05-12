@@ -13,6 +13,7 @@ use App\Library\Response;
 use App\Library\Token;
 use App\Models\Batch;
 use App\Models\Courses;
+use App\Models\Enrollment;
 use App\Models\ForumMessages;
 use App\Models\User;
 use App\Notifications\NewBatchPublishedNotification;
@@ -189,8 +190,26 @@ class BatchController extends Controller{
         return Response::view('dashboard.course-details.batch.edit', $details);
     }
 
-    function deleteBatch ($id){
+    function deleteBatch ($slug, $short_code){
+        if(!$batch = Batch::where('short_code', $short_code)->first())
+                return Response::redirectBack('error', 'The requested batch was not found');
+        $user = $this->user();
+        if($batch->mentor_id !== $user->unique_id)
+                return Response::redirectBack('error', 'This batch does not belong to the logged in user');
+        if($this->isOngoing($batch))
+                return Response::redirectBack('error', 'You cannot delete this batch because it is Ongoing. You can delete it when its done!');
 
+        if($this->isUpcoming($batch)) {
+            $enrollments = Enrollment::where('batch_id', $batch->unique_id)->get();
+            if($enrollments->isNotEmpty()) return Response::redirectBack('error', 'You cannot delete this batch until it is completed');
+        }
+
+        if(!$batch->payable) return Response::redirectBack('error', 'You cannot delete this batch because it has a pending issue.');
+
+        $batch->delete();
+        $course = Courses::find($batch->course_id);
+
+        return Response::redirect("/courses/$course->slug", 'success', 'You have successfully deleted this batch!');
     }
 
 }
