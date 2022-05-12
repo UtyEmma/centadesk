@@ -19,6 +19,7 @@
                 </div>
                 <div class="author-name">
                     <a class="name" href="/mentors/{{$mentor->username}}">{{$mentor->firstname}} {{$mentor->lastname}}</a>
+                    <x-mentor-verified :status="$mentor->is_verified" />
                 </div>
             </div>
         </div>

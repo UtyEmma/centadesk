@@ -6,7 +6,7 @@
               <p class="card-description">
                 <span class="badge badge-light font-weight-bolder">{{count($verification_requests)}}</span> {{Str::plural('request', count($verification_requests))}}
               </p>
-              <div class="table-responsive">
+              <div class="table-responsive-md">
                 <table class="table table-hover">
                   <thead>
                     <tr>
@@ -24,7 +24,8 @@
                                 <td><label class="badge badge-warning">{{$mentor->is_verified}}</label></td>
                                 <td colspan="2">
                                     <a href="/users/{{$mentor->unique_id}}" class="btn btn-outline-warning">View Profile</a>
-                                    <a href="/users/{{$mentor->unique_id}}/actions/verify?action=true" class="btn btn-outline-primary">Verify</a>
+                                    <a href="/users/{{$mentor->unique_id}}/actions/verify?status=true" class="btn btn-outline-primary">Verify</a>
+                                    <a href="/users/{{$mentor->unique_id}}/actions/verify?status=false" class="btn btn-outline-danger">Decline</a>
                                 </td>
                             </tr>
                         @endforeach

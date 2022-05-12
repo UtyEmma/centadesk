@@ -8,6 +8,7 @@
         <div class="team-content mb-0">
             <h4 class="name">
                 <a href="/mentors/{{$mentor->username}}">{{$mentor->firstname}} {{$mentor->lastname}}</a>
+                <x-mentor-verified :status="$mentor->is_verified" />
             </h4>
             <span class="designation mt-0">{{$mentor->specialty}}</span>
             {{-- <small class="mt-2">{{$mentor->desc}}</small> --}}

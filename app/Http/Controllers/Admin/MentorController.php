@@ -27,9 +27,9 @@ class MentorController extends Controller{
     function verificationRequests (){
         $verification_requests = User::where([
             'role' => 'mentor',
-            'kyc_status' => 'pending',
-            'approved' => false,
-            'is_verified' => 'pending'
+            'kyc_status' => 'approved',
+            'approved' => true,
+            'is_verified' => 'requested'
         ])->get();
 
         return Response::view('admin.verification-requests', [
@@ -67,9 +67,8 @@ class MentorController extends Controller{
     function verify(Request $request, $id){
         if(!$user = User::find($id)) return Response::redirectBack('error', 'User does not exist');
         if($user->role !== 'mentor') return Response::redirectBack('error', 'User is not a Mentor and cannot be verified');
-        $user->is_verified = $request->status ? 'verified' : 'not_verified';
+        $user->is_verified = $request->status ? 'verified' : 'unverified';
         $user->save();
-
         return Response::redirectBack('success', 'Verification Status Updated');
     }
 }

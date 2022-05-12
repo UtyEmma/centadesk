@@ -46,11 +46,6 @@
                                         <i class="icofont-instagram"></i>
                                     </a>
                                 @endif
-                                {{-- @if ($mentor->linkedin)
-                                    <a href="" class="me-3">
-                                        <i class="icofont-linkedin"></i>
-                                    </a>
-                                @endif --}}
                             </div>
                         </div>
                     </div>

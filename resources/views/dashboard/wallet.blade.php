@@ -18,7 +18,7 @@
                             <span style="font-size: 1rem;">{{request()->cookie('currency') ?? $user->currency}}</span>
                             {{number_format($wallet->earnings)}}
                         </div>
-                        <p><span>$235.00</span> This months</p>
+                        {{-- <p><span>$235.00</span> This months</p> --}}
                     </div>
 
                     <div class="single-box w-auto">
@@ -27,7 +27,7 @@
                             <span style="font-size: 1rem;">{{request()->cookie('currency') ?? $user->currency}}</span>
                             {{number_format($wallet->available)}}
                         </div>
-                        <p><span>345</span> This months</p>
+                        {{-- <p><span>345</span> This months</p> --}}
                     </div>
 
                     <div class="single-box w-auto">
@@ -36,7 +36,7 @@
                             <span style="font-size: 1rem;">{{request()->cookie('currency') ?? $user->currency}}</span>
                             {{number_format($wallet->escrow)}}
                         </div>
-                        <p><span>345</span> This months</p>
+                        {{-- <p><span>345</span> This months</p> --}}
                     </div>
                 </div>
             </div>

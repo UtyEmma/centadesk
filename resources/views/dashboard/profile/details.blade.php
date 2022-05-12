@@ -27,18 +27,27 @@
         <div class="message mt-3">
             <div>
                 <div>
-                    <div class="message-icon">
+                    <div class="d-flex align-items-center">
                         <img src="{{asset('images/menu-icon/icon-6.png')}}" alt="">
-                    </div>
-
-                    <div class="message-content mb-3">
-                        <p class="my-0">Verification Status</p>
-                        <span class="badge rounded-pill bg-primary me-2 my-0 text-center">{{$user->is_verified}}</span>
+                        <h6 class="my-0 ms-3">Account Verification Status</h6>
                     </div>
                 </div>
 
-                @if ($user->is_verified === 'verified')
-                <a href="/me/verify" class="btn btn-outline-primary">Request Verification</a>
+                @if ($user->is_verified === 'unverified')
+                    <div class="p-3 px-0">
+                        <p>Your Mentor Account has not been verified! <br> Click the button below to request verification.</p>
+                        <a href="/me/verify">
+                            <x-btn classes="btn-primary btn-hover-dark">Request Verification</x-btn>
+                        </a>
+                    </div>
+                @elseif ($user->is_verified === 'requested')
+                    <div class="p-3 px-0">
+                        <p>Your Verification request is Pending!</p>
+                    </div>
+                @elseif ($user->is_verified === 'verified')
+                    <div class="p-3 px-0">
+                        <p>Your Mentor Account has been Verified!</p>
+                    </div>
                 @endif
             </div>
         </div>
