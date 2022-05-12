@@ -43,6 +43,10 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="d-flex justify-content-center">
+                    {{ $results->onEachSide(5)->links() }}
+                </div>
             </div>
             <!-- Courses Wrapper End  -->
 

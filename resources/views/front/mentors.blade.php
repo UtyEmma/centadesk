@@ -37,6 +37,10 @@
                     @endforelse
                 </div>
             </div>
+
+            <div class="d-flex justify-content-center">
+                {{ $mentors->onEachSide(5)->links() }}
+            </div>
         </div>
     </div>
 </x-guest-layout>

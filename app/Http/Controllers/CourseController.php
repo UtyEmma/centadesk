@@ -42,14 +42,15 @@ class CourseController extends Controller{
             $results = Courses::search($request->keyword)->where('status', 'published')->paginate(env('PAGINATION_COUNT'));
             $courses = $this->getCoursesData($results);
         }else{
-            $data =  Courses::paginate(env('PAGINATION_COUNT'));
-            $courses = $this->getCoursesData($data);
+            $results =  Courses::paginate(env('PAGINATION_COUNT'));
+            $courses = $this->getCoursesData($results);
         }
 
         return view('front.courses', [
             'courses' => $courses,
             'data' => $this->app_data(),
-            'type' => $type
+            'type' => $type,
+            'results' => $results
         ]);
     }
 
