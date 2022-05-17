@@ -1,4 +1,5 @@
 <x-guest-layout>
+    <x-page-title title="Mentors - Find experts and professionals in your interested field " />
     <x-page-banner>
         <div class="d-md-flex justify-content-between align-items-center">
             <div class="page-banner-content m-0">

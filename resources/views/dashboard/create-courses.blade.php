@@ -1,6 +1,6 @@
 <x-app-layout>
     @include('dashboard.js.create-courses-js')
-
+    <x-page-title title="Mentor Dashboard - Create Courses" />
     <div class="page-content-wrapper">
         <div class="container px-3 px-md-0">
             <div class="mb-3">

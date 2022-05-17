@@ -1,4 +1,5 @@
 <x-guest-layout>
+    <x-page-title title="Mentor Onboarding" />
     @include('front.mentors.js.onboarding-js')
 
     <div class="section page-banner bg-transparent py-0 my-0" >

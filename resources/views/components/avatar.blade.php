@@ -44,7 +44,7 @@
         @if ($user->role === 'mentor')
         <li class="w-100"><a class="dropdown-item py-2 fw-normal fs-6" href="/me">Mentor Dashboard</a></li>
         @else
-        <li class="w-100"><a class="dropdown-item py-2 fw-normal fs-6" href="/mentor/onboarding">Become a Mentor</a></li>
+        <li class="w-100"><a class="dropdown-item py-2 fw-normal fs-6" href="/mentor/join">Become a Mentor</a></li>
         @endif
         <li class="w-100"><a class="dropdown-item py-2 fw-normal fs-6" href="/logout">Logout</a></li>
     </ul>

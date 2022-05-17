@@ -1,5 +1,5 @@
 <x-guest-layout>
-
+    <x-page-title title="{{$mentor->firstname}} {{$mentor->lastname}} - Mentor on Libraclass" />
     <x-page-banner>
             <!-- Page Banner Start -->
             <div class="m-0">

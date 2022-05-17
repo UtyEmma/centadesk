@@ -18,5 +18,9 @@ class Withdrawal extends Model{
         'status' => 'pending' //pending - inprogress - successful
     ];
 
+    protected $casts = [
+        'amount' => Currency::class
+    ];
+
 
 }

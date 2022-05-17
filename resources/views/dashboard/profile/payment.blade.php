@@ -1,5 +1,6 @@
 <x-mentor-profile>
     <div class="">
+        <x-page-title title="Mentor Dashboard - Payment Details" />
 
         <div class="row">
             <div class="col-md-4">

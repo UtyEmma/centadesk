@@ -13,6 +13,8 @@
         </script>
     @endpush
 
+    <x-page-title title="Mentor Dashboard | Forum - {{$batch->title}} " />
+
     <div class="d-flex">
          <div class="card radius border card-chat-body order-0 w-100 p-0"  style="height: 84vh;">
              <!-- Chat: Header -->

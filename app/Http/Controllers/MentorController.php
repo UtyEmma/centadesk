@@ -22,6 +22,10 @@ class MentorController extends Controller{
 
     const HOME = '/me';
 
+    public function mentorInfo(){
+        return Response::view('front.mentors.mentorship-about');
+    }
+
     public function index(Request $request){
         $type = 'page';
 

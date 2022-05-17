@@ -1,5 +1,6 @@
 <x-mentor-profile>
     <div class="col-xl-4">
+        <x-page-title title="Mentor Dashboard - My Profile" />
         <!-- Profile picture card-->
         <h5 class="mb-3">Profile Picture</h5>
         <div class="card mb-4 mb-xl-0 radius p-4">

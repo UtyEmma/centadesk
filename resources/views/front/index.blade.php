@@ -1,5 +1,7 @@
 <x-guest-layout>
     <!-- Slider Start -->
+    <x-page-title title="Home - Libraclass, Create and sell online courses" />
+
     <div class="section slider-section">
 
 
@@ -147,7 +149,7 @@
                     </div>
                     <div class="col-md-6">
                         <div class="call-to-action-btn">
-                            <a class="btn btn-primary btn-hover-dark" href="/mentors/onboarding">Drop Information</a>
+                            <a class="btn btn-primary btn-hover-dark" href="/mentor/join">Learn More</a>
                         </div>
                     </div>
                 </div>

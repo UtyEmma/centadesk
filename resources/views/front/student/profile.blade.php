@@ -1,4 +1,5 @@
 <x-student-layout>
+    <x-page-title title="My Profile - Learning Center" />
     <div class="section section-padding py-3">
         <div class="container">
             <form action="/profile/update" enctype="multipart/form-data" method="post">

@@ -1,5 +1,5 @@
 <x-mentor-batch-detail :course="$course" :mentor="$mentor" :batch="$batch">
-
+    <x-page-title title="Mentor Dashboard - Edit Batch" />
     <form action="/me/courses/{{$course->slug}}/{{$batch->short_code}}/update" method="post">
         <div class="row mt-5">
             <div class="col-md-6">

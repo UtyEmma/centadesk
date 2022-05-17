@@ -61,24 +61,24 @@ Route::middleware(['set.currency', 'set.referrals'])->group(function(){
 
             Route::prefix('wallet')->group(function(){
                 Route::get('/', [WalletController::class, 'studentWallet']);
-                Route::post('/deposit', [DepositController::class, 'initiate']);
-                Route::get('/verify', [DepositController::class, 'verify']);
+                Route::post('/deposit', [DepositController::class, 'initiate'])->middleware('user.status');
+                Route::get('/verify', [DepositController::class, 'verify'])->middleware('user.status');
             });
 
 
             Route::prefix('/profile')->group(function(){
                 Route::get('/', [StudentController::class, 'show']);
-                Route::post('/update', [StudentController::class, 'update']);
-                Route::prefix('/reviews')->group(function(){
+                Route::post('/update', [StudentController::class, 'update'])->middleware('user.status');
+                Route::prefix('/reviews')->middleware('user.status')->group(function(){
                     Route::post('/submit/{batch_id}', [ReviewController::class, 'submitReview']);
                 });
             });
 
-            Route::prefix('forum')->group(function(){
+            Route::prefix('forum')->middleware('user.status')->group(function(){
                 Route::post('/send/{batch_id}', [ForumController::class, 'sendMessage']);
             });
 
-            Route::prefix('reports')->group(function(){
+            Route::prefix('reports')->middleware('user.status')->group(function(){
                 Route::post('/create/{batch_id}', [ReportController::class, 'create']);
                 Route::get('/resolve/{batch_id}', [ReportController::class, 'resolve']);
             });
@@ -88,7 +88,7 @@ Route::middleware(['set.currency', 'set.referrals'])->group(function(){
             Route::get('/verify', [TransactionsController::class, 'verify']);
         });
 
-        Route::prefix('/enroll')->group(function(){
+        Route::prefix('/enroll')->middleware('user.status')->group(function(){
             Route::post('/{batch_id}', [EnrollmentController::class, 'initiate']);
             Route::get('/complete/{type}/{batch_id}', [EnrollmentController::class, 'complete']);
         });
@@ -99,8 +99,9 @@ Route::middleware(['set.currency', 'set.referrals'])->group(function(){
         });
 
 
-        Route::prefix('/mentor')->group(function(){
+        Route::prefix('/mentor')->middleware('user.status')->group(function(){
             Route::get('/onboarding', [MentorController::class, 'onboarding']);
+            Route::get('/join', [MentorController::class, 'mentorInfo']);
             Route::post('/create', [MentorController::class, 'store']);
         });
 
@@ -109,9 +110,9 @@ Route::middleware(['set.currency', 'set.referrals'])->group(function(){
 
             Route::prefix('courses')->group(function(){
                 Route::get('/', [CourseController::class, 'fetch']);
-                Route::get('/create', [CourseController::class, 'create']);
+                Route::get('/create', [CourseController::class, 'create'])->middleware('user.status');
 
-                Route::middleware('is.approved')->group(function(){
+                Route::middleware(['is.approved', 'user.status'])->group(function(){
                     Route::post('/new', [CourseController::class, 'store']);
                     Route::get('/{slug}', [CourseController::class, 'single']);
                     Route::get('/{slug}/reviews', [ReviewController::class, 'fetchCourseReviews']);
@@ -134,7 +135,7 @@ Route::middleware(['set.currency', 'set.referrals'])->group(function(){
                 });
             });
 
-            Route::middleware('is.approved')->group(function(){
+            Route::middleware(['is.approved', 'user.status'])->group(function(){
                 Route::get('/verify', [MentorController::class, 'requestVerification']);
             });
 
@@ -145,7 +146,7 @@ Route::middleware(['set.currency', 'set.referrals'])->group(function(){
 
             Route::prefix('/wallet')->group(function(){
                 Route::get('/', [WalletController::class, 'mentorWallet']);
-                Route::post('/withdraw', [WithdrawalController::class, 'initiate']);
+                Route::post('/withdraw', [WithdrawalController::class, 'initiate'])->middleware('user.status');
             });
         });
     });

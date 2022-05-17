@@ -3,6 +3,7 @@
         $user = Auth::user();
     @endphp
     <!-- Page Content Wrapper Start -->
+    <x-page-title title="Mentor Dashboard - Courses" />
     <div class="page-content-wrapper pt-0 mt-3">
         <div class="container-fluid custom-container">
 

@@ -1,4 +1,5 @@
 <x-guest-layout>
+    <x-page-title title="Welcome onboard" />
     <!-- Page Banner Start -->
     <div class="section page-banner bg-transparent">
 

@@ -32,6 +32,8 @@ return new class extends Migration
             $table->string('country')->nullable();
             $table->text('experience')->nullable();
             $table->text('qualification')->nullable();
+            $table->string('website')->nullable();
+            $table->string('resume')->nullable();
             $table->string('total_reviews');
             $table->string('avg_rating');
             $table->string('interests')->nullable();

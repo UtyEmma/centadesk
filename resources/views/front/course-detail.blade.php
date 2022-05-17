@@ -1,5 +1,5 @@
 <x-guest-layout>
-
+    <x-page-title title="{{$course->name}} by {{$mentor->firstname}} {{$mentor->lastname}}" />
     <x-metadata :title="$course->name" :image="$course->images" :excerpt="$course->excerpt" />
 
     <div class="section page-banner bg-transparent py-0 my-0" >

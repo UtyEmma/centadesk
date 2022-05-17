@@ -1,4 +1,5 @@
 <x-student-layout>
+    <x-page-title title="My Wallet - Learning Center" />
     <div class="section section-padding pt-3">
         <div class="container">
             <h4 class="title">Wallet Overview</h4>

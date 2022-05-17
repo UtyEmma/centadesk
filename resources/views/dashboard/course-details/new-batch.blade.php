@@ -1,5 +1,5 @@
 <x-app-layout>
-
+    <x-page-title title="Mentor Dashboard - Create a New Batch" />
     <!-- Page Content Wrapper Start -->
     <div class="page-content-wrapper">
         <div class="container-fluid custom-container">

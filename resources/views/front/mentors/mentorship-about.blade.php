@@ -1,7 +1,7 @@
 <x-guest-layout>
-    <x-page-title title="About - We are the next level online classes marketplace" />
-    <!-- Page Banner Start -->
-    <div class="section page-banner bg-transparent">
+    <x-page-title title="Become a Mentor - Join an elite rank of experts that sell their knowledge on Libraclass" />
+     <!-- Page Banner Start -->
+     <div class="section page-banner bg-transparent">
 
         <div class="container mt-5">
             <!-- Page Banner Start -->
@@ -47,7 +47,7 @@
                             <h5 class="sub-title">Welcome to Libraclass.</h5>
                             <h2 class="main-title">You can join with Edule and upgrade your skill for your <span>bright future.</span></h2>
                             <p>Lorem Ipsum has been the industr’s standard dummy text ever since unknown printer took galley type and scmbled make type specimen book. It has survived not only five centuries.</p>
-                            <a href="/courses" class="btn btn-primary btn-hover-dark">Start A Course</a>
+                            <a href="/mentor/onboarding" class="btn btn-primary btn-hover-dark">Start Selling Courses</a>
                         </div>
                         <!-- About Content End -->
 
@@ -139,7 +139,7 @@
                     </div>
                     <div class="col-md-6">
                         <div class="call-to-action-btn">
-                            <a class="btn btn-primary btn-hover-dark" href="/mentor/onboarding">Become a Mentor</a>
+                            <a class="btn btn-primary btn-hover-dark" href="/mentor/onboarding">Start Selling Courses</a>
                         </div>
                     </div>
                 </div>
@@ -346,4 +346,5 @@
         </div>
     </div>
     <!-- Brand Logo End -->
+
 </x-guest-layout>

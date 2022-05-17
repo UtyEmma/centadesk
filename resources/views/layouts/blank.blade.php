@@ -7,7 +7,7 @@
 
         @stack('meta')
 
-        <title>{{ config('app.name', 'Libraclass') }}</title>
+        @stack('title')
 
         <link rel="icon" href="{{asset('images/icon.png')}}" />
 

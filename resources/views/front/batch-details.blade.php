@@ -1,5 +1,6 @@
 <x-guest-layout>
     @inject('parsedate', 'App\Library\DateTime' )
+    <x-page-title title="{{$batch->title}} of {{$course->name}} by {{$mentor->firstname}} {{$mentor->lastname}}" />
 
     @php
         $startdate = Date::parse($batch->startdate);

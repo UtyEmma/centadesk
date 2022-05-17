@@ -22,7 +22,7 @@
                         </div>
                     </div>
 
-                    <x-currency-select :name="'currency'" :currency="$currency" :data="$data" class="text-white" btn_classes="btn bg-white text-white" />
+                    <x-currency-select :name="'currency'" :currency="$currency" :data="$data" btnClasses="text-white text-white fw-normal btn-custom" />
                     <!-- Header Top Medal End -->
 
                     <!-- Header Top Right Start -->
@@ -48,7 +48,7 @@
 
                     <!-- Header Logo Start -->
                     <div class="header-logo">
-                        <a href="/"><img src="{{asset('images/libra-main.png')}}" class="img-fluid" alt="Logo"></a>
+                        <a href="/"><img src="{{asset('images/libra-main.png')}}" width="150" class="img-fluid" alt="Logo"></a>
                     </div>
                     <!-- Header Logo End -->
 
@@ -78,7 +78,7 @@
                                 @if ($user->role === 'mentor')
                                     <li ><a class="sign-in py-2 fs-6 fw-normal" href="/me">Mentor</a></li>
                                 @else
-                                    <li ><a class="sign-in py-2 fs-6 fw-normal" href="/mentor/onboarding">Mentor</a></li>
+                                    <li ><a class="sign-in py-2 fs-6 fw-normal" href="/mentor/join">Mentor</a></li>
                                 @endif
 
                                 <x-avatar :user="$user" />
@@ -108,14 +108,9 @@
                             </a>
                         </div>
                     </div>
-
                 </div>
-                <!-- Header Main End -->
-
             </div>
         </div>
-        <!-- Header Main End -->
-
     </div>
     <!-- Header Section End -->
 
@@ -159,7 +154,7 @@
                         <li class="w-100 text-center mb-2"><a class="sign-in text-primary" href="/me">Mentor Dashboard</a></li>
                     @else
                         <li class="w-100 text-center">
-                            <a class="sign-up" href="/mentor/onboarding">Become a Mentor</a>
+                            <a class="sign-up" href="/mentor/join">Become a Mentor</a>
                         </li>
                     @endif
                 </ul>
@@ -174,12 +169,16 @@
         </div>
         <!-- Mobile Sing In & Up End -->
 
-        <x-currency-select :name="'currency'" :currency="$currency" :data="$data" class="text-white" btn_classes="btn bg-white text-white" />
+        <div class="px-3">
+            <p class="mb-2">Select Currency</p>
+            <x-currency-select :name="'currency'" :currency="$currency" :data="$data" class="text-white" btnClasses="btn bg-secondary btn-hover-primary w-100 border border-primary btn-custom" />
+            <x-btn type="submit" classes="btn-primary btn-hover-dark">Update</x-btn>
+        </div>
 
 
         <!-- Mobile Menu End -->
         <div class="mobile-social mt-3">
-            <x-share-btns text="Join Libraclass" tags="Libraclass, Online Learning"  />
+            {{-- <x-share-btns text="Join Libraclass" tags="Libraclass, Online Learning"  /> --}}
         </div>
         <!-- Mobile Menu End -->
 

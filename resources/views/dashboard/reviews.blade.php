@@ -1,5 +1,6 @@
 <x-app-layout>
     <!-- Page Content Wrapper Start -->
+    <x-page-title title="Mentor Dashboard - Reviews" />
     <div class="main-content-wrapper">
         <div class="container-fluid">
             <!-- Admin Top Bar Start -->

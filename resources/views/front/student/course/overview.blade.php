@@ -1,4 +1,5 @@
 <x-enrolled-course :course="$course" :batch="$batch" :messages="$forum" :mentor="$mentor" :user="$user" :enrollment="$enrollment" :report="$report">
+    <x-page-title title="Enrolled - {{$batch->title}} of {{$course->name}}" />
     <div>
         <h5 class="tab-title">About this Batch</h5>
         <p>

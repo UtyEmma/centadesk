@@ -1,5 +1,5 @@
 <x-guest-layout>
-
+    <x-page-title title="Courses - Find Amazing courses based on what you are interested in" />
     <x-page-banner>
         <div class="d-md-flex justify-content-between align-items-center">
             <!-- Page Banner Start -->

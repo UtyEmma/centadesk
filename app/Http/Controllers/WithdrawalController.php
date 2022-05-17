@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Library\Currency;
 use App\Library\Flutterwave;
 use App\Library\Response;
 use App\Library\Token;
@@ -40,6 +41,7 @@ class WithdrawalController extends Controller{
     function createWithdrawal($user, $amount, $type){
         $unique_id = Token::unique('users');
         $reference = $this->newRef('withdrawals', 'reference');
+        $amount = Currency::convertUserCurrencyToDefault($amount);
 
         $withdrawal = Withdrawal::create([
             'unique_id' => $unique_id,
@@ -49,7 +51,7 @@ class WithdrawalController extends Controller{
             'account_name' => $user->account_name ?? "$user->firstname $user->lastname",
             'bank' => $user->bank,
             'type' => $type,
-            'currency' => $user->currency,
+            'currency' => Currency::user(),
             'wallet_key' => $type === 'crypto' ? $user->crypto_address : '',
             'reference' => $reference
         ]);

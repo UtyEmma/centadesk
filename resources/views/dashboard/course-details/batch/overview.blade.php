@@ -1,4 +1,5 @@
 <x-mentor-batch-detail :course="$course" :mentor="$mentor" :batch="$batch">
+    <x-page-title title="Mentor Dashboard - {{$batch->title}}" />
     <div class="mt-2">
         <div class="mb-2">
             <h5>Overview</h5>

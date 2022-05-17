@@ -1,5 +1,5 @@
 <x-mentor-course-detail :course="$course"  :mentor="$course->mentor" title="Course Batches">
-
+    <x-page-title title="Mentor Dashboard - Edit Course" />
     @include('dashboard.js.create-courses-js')
 
     <div class="page-content-wrapper">

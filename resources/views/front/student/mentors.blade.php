@@ -1,5 +1,6 @@
 <x-student-layout>
-<!-- Courses Start -->
+
+    <x-page-title title="My Mentors - Learning Center" />
 <div class="section section-padding pt-0">
     <div class="container">
         <!-- Courses Wrapper Start  -->

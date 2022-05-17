@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\DepositRequest;
 use App\Http\Traits\CryptoActions;
 use App\Http\Traits\TransactionActions;
+use App\Library\Currency;
 use App\Library\Response;
 use App\Library\Token;
 use App\Models\Deposit;
@@ -23,13 +24,15 @@ class DepositController extends Controller{
             $reference = Token::text(6, 'deposits', 'reference');
             $user = $this->user();
 
+            $amount = Currency::convertUserCurrencyToDefault($request->amount);
+
             $deposit = Deposit::create([
                 'unique_id' => $unique_id,
                 'user_id' => $user->unique_id,
                 'type' => $request->type,
                 'reference' => $reference,
-                'amount' => $request->amount,
-                'currency' => request()->cookie('currency')
+                'amount' => $amount,
+                'currency' => Currency::user()
             ]);
 
             $redirect_url = env('MAIN_APP_URL')."/wallet/verify?method=$request->type&ref=$deposit->unique_id";

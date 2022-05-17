@@ -4,6 +4,7 @@ namespace App\Http;
 
 use App\Http\Middleware\Admin\IsSuperAdmin;
 use App\Http\Middleware\CheckStudentOnboardingStatus;
+use App\Http\Middleware\CheckUserStatus;
 use App\Http\Middleware\CheckWebhookSecret;
 use App\Http\Middleware\MentorIsApproved;
 use App\Http\Middleware\ParseAffiliateIdToSession;
@@ -76,6 +77,7 @@ class Kernel extends HttpKernel
         'set.currency' => ParseCurrencyToSession::class,
         'webhooks' => CheckWebhookSecret::class,
         'is.super' => IsSuperAdmin::class,
-        'is.onboarded' => CheckStudentOnboardingStatus::class
+        'is.onboarded' => CheckStudentOnboardingStatus::class,
+        'user.status' => CheckUserStatus::class
     ];
 }

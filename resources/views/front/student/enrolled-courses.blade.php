@@ -1,5 +1,5 @@
 <x-student-layout>
-
+    <x-page-title title="My Enrolled Courses - Learning Center" />
     <!-- Courses Start -->
     <div class="section section-padding pt-3">
         <div class="container">

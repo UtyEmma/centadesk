@@ -49,9 +49,7 @@
             $('#qualification-input').val(JSON.stringify(qualificationArray))
 
             $('#qualificationContainer').html("")
-
             qualificationArray.map(qualification => appendQualification(qualification))
-
             clearQualificationForms()
         }
 
@@ -68,19 +66,24 @@
 
 
         function appendQualification(data){
-            const markup = `<div class="d-flex justify-content-between my-2" id="qualification-${qualificationArray.length - 1}">
+            const markup = `<div class="d-flex justify-content-between align-items-center mb-2 border border-primary radius p-3" id="qualification-${qualificationArray.length - 1}">
                                 <div>
-                                    <h6 class="mb-0 mt-0">${data.qualification}  - <span class="mb-0">${data.date}</span> </h6>
-                                    <p class="mt-0">${data.institution}</p>
+                                    <h6 class="mb-0 mt-0">${data.qualification}</h6>
+                                    <p class="mt-0 mb-0">${data.institution}</p>
+                                    <small class="mt-0">${data.date}</small>
                                 </div>
 
-                                <div>
-                                    <button class="p-0 mx-2 bg-transparent border-0 text-link" onclick="deleteQualification(${qualificationArray.length - 1})" type="button">
-                                        <i class="icofont-close-squared-alt"></i>
+                                <div class="d-flex align-items-center">
+                                    <button onclick="deleteQualification(${qualificationArray.length - 1})" type="button" class="btn btn-danger btn-hover-dark h-auto btn-custom d-flex align-items-center justify-content-center py-2 px-2 mx-1" >
+                                        <i class="icofont-trash ms-0"></i>
                                     </button>
-                                    <button class="p-0 mx-2 bg-transparent border-0 text-link" onclick="editQualification(${qualificationArray.length - 1})" type="button"><i class="icofont-edit"></i></button>
+                                    <button onclick="editQualification(${qualificationArray.length - 1})" type="button" class="mx-1 btn btn-primary btn-hover-dark btn-hover-dark h-auto btn-custom d-flex align-items-center justify-content-center py-2 px-2" >
+                                        <i class="icofont-edit-alt ms-0"></i>
+                                    </button>
                                 </div>
                             </div>`
+
+
             $('#qualificationContainer').append(markup)
         }
 
@@ -93,7 +96,8 @@
 
         function deleteQualification(id){
             qualificationArray.splice(id, 1)
-            const element = document.getElementById(`qualification-${id}`).remove()
+            $(`#qualification-${qualificationArray.length - 1}`).slideUp()
+            // const element = document.getElementById(`qualification-${id}`).remove()
             $('#qualification-input').val(JSON.stringify(qualificationArray))
         }
 

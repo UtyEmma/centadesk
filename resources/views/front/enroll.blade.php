@@ -1,4 +1,5 @@
 <x-guest-layout>
+    <x-page-title title="Enroll For {{$batch->title}}, {{$course->title}}" />
     <x-page-banner>
         <x-slot name="current">
             Courses

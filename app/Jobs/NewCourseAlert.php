@@ -14,8 +14,7 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Str;
 
-class NewCourseAlert implements ShouldQueue
-{
+class NewCourseAlert implements ShouldQueue{
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     private $batch;

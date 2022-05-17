@@ -1,4 +1,5 @@
 <x-app-layout>
+    <x-page-title title="Mentor Dashboard - My Wallet" />
     <!-- Page Content Wrapper Start -->
     <div class="page-content-wrapper">
         <div class="container-fluid">

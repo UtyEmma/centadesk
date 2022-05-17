@@ -1,4 +1,4 @@
-<div class="row">
+<div>
 
     <script>
 
@@ -44,53 +44,53 @@
 
     </script>
 
-    <div class="row row-cols-1 gy-3 px-0">
+    <div class="mt-3 px-0">
         <div class="p-0">
             <h5 class="mb-0">KYC Confirmation</h5>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente, nemo.</p>
         </div>
 
-        <div class="border p-3 py-5 p-md-5 radius">
-            <div><h6 class="p-0">Upload KYC Document</h6></div>
-            <div class="row">
-                <div class="single-form col-md-7">
-                    <select name="kyc_method" class="radius form-select border py-3 px-3">
-                        <option value="">Select Identification Document</option>
-                        <option>National Identity Card</option>
-                        <option>International Passport</option>
-                        <option>Drivers License</option>
-                    </select>
-                    <small class="text-danger text-capitalize" id="kyc_method-error">
-                        @error('kyc_method')
-                            {{$message}}
-                        @enderror
-                    </small>
-                </div>
+        <div class="col-md-7">
+            <div class="single-form">
+                <label for="" class="mb-1">Identification Document</label>
+                <select name="kyc_method" class="radius form-select  border py-3 px-3">
+                    <option value="">Select Identification Document</option>
+                    <option>National Identity Card</option>
+                    <option>International Passport</option>
+                    <option>Drivers License</option>
+                </select>
+                <small class="text-danger text-capitalize" id="kyc_method-error">
+                    @error('kyc_method')
+                    {{$message}}
+                    @enderror
+                </small>
+            </div>
 
-                <div class="single-form col-md-7">
-                    <input class="input" name="id_number" value="{{old('id_number')}}"  placeholder="Identity Number (The Number written on your card)">
-                    <small class="text-danger text-capitalize" id="id_number-error">
-                        @error('id_number')
-                            {{$message}}
-                        @enderror
-                    </small>
-                </div>
+            <div class="single-form">
+                <label for="" class="mb-1">Identity Number</label>
+                <input class="form-control" name="id_number" value="{{old('id_number')}}"  placeholder="Identity Number">
+                <small class="text-danger text-capitalize" id="id_number-error">
+                    @error('id_number')
+                        {{$message}}
+                    @enderror
+                </small>
+            </div>
 
-                <div class="mt-5 col-md-7">
-                    <label for="formFileMultiple" value="{{old('id_image')}}" class="form-label">Upload Document Image</label>
-                    <input class="form-control border form-control-lg radius" name="id_image" type="file" id="formFileMultiple">
-                    <small class="text-danger text-capitalize" id="id_image-error">
-                        @error('id_image')
-                            {{$message}}
-                        @enderror
-                    </small>
-                </div>
+            <div class="mt-5">
+                <label for="formFileMultiple" value="{{old('id_image')}}" class="form-label">Upload ID Document Image</label>
+                <x-img-upload name="id_image" id="id-card-img" />
+
+                <small class="text-danger text-capitalize" id="id_image-error">
+                    @error('id_image')
+                        {{$message}}
+                    @enderror
+                </small>
             </div>
         </div>
 
         <div class="single-form d-flex justify-content-between px-0">
-            <button type="button" class="btn btn-primary" onclick="previous()">Previous</button>
-            <button type="button" class="btn btn-primary" onclick="handleNext(validateKYC)">Next</button>
+            <button type="button" class="btn btn-primary btn-hover-dark btn-custom" onclick="previous()">Previous</button>
+            <button type="button" class="btn btn-primary btn-hover-dark btn-custom" onclick="handleNext(validateKYC)">Next</button>
         </div>
     </div>
 </div>

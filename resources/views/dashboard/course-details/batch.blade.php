@@ -1,5 +1,5 @@
 <x-mentor-course-detail :course="$course" :batches="$batches" :mentor="$mentor" title="Batch">
-
+    <x-page-title title="Mentor Dashboard - {{$batch->title}}" />
      <!-- Admin Courses Tab Start -->
      <div >
          <div class="d-flex justify-content-between align-items-center mb-0 mt-0">

@@ -1,4 +1,5 @@
 <x-mentor-batch-detail :course="$course" :mentor="$mentor" :batch="$batch">
+    <x-page-title title="Mentor Dashboard - Batch Students" />
     <!-- Student Top Start -->
     <div class="admin-top-bar students-top">
         <div class="courses-select pt-0">

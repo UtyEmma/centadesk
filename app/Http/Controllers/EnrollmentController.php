@@ -7,6 +7,7 @@ use App\Http\Traits\CryptoActions;
 use App\Http\Traits\EnrollmentActions;
 use App\Http\Traits\TransactionActions;
 use App\Http\Traits\WalletActions;
+use App\Library\Currency;
 use App\Library\Number;
 use App\Library\Response;
 use App\Library\Token;
@@ -38,9 +39,9 @@ class EnrollmentController extends Controller{
         $amount = $this->getPayableAmount($batch->unique_id);
 
         $transaction = $this->createTransaction([
-            'amount' => $amount,
+            'amount' => Currency::convertUserCurrencyToDefault($amount),
             'user_id' => $user->unique_id,
-            'currency' => $user->currency,
+            'currency' => Currency::user(),
             'type' => $request->payment
         ]);
 

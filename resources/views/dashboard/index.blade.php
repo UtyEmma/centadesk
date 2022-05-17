@@ -1,4 +1,5 @@
 <x-app-layout>
+    <x-page-title title="Mentor Dashboard - Overview" />
     <div class="my-5">
         <div class="container-fluid">
             <div class="row">

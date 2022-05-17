@@ -1,4 +1,5 @@
 <x-mentor-course-detail :course="$course" :mentor="$mentor" title="Course Batches">
+    <x-page-title title="Mentor Dashboard - {{$course->name}}" />
     <div class="overview-box mt-0">
         <div class="single-box mb-2">
             <h5 class="title">Enrolled Students</h5>

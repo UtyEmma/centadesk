@@ -33,7 +33,8 @@
             role: document.querySelector('#role').value,
             startdate: document.querySelector('#startdate').value,
             enddate: document.querySelector('#enddate').value,
-            current : document.querySelector('#current').checked
+            current : document.querySelector('#current').checked,
+            description : document.querySelector('#description').value
         }
 
         const validation = new Validator(data, __experienceSchema.rules)
@@ -63,21 +64,23 @@
     }
 
     function appendExperienceHtml(data){
-        const markup = `<div class="d-flex justify-content-between my-2" id="experience-${experienceArray.length - 1}">
-                            <div>
-                                <h6 class="mb-0 mt-0">${data.company}</h6>
-                                <p class="mt-0">${data.role} - <span class="mb-0">${data.startdate} ${data.enddate && '- '+data.enddate}</span></p>
-                            </div>
+        console.log(data)
+        const markup = `<div class="d-flex justify-content-between align-items-center mb-2 border border-primary radius p-3" id="qualification-${experienceArray.length - 1}">
+                                <div>
+                                    <h6 class="mb-0 mt-0">${data.role}</h6>
+                                    <p class="mt-0 mb-0">${data.company}</p>
+                                    <small class="mt-0">${data.startdate} - ${data.current ? 'Present' : data.enddate}</small>
+                                </div>
 
-                            <div>
-                                <button class="p-0 mx-2 bg-transparent border-0 text-link" onclick="editExperience(${experienceArray.length - 1})" type="button">
-                                    <i class="icofont-edit"></i>
-                                </button>
-                                <button class="p-0 mx-2 bg-transparent border-0 text-link" onclick="deleteExperienceItem(${experienceArray.length - 1})" type="button">
-                                    <i class="icofont-close-squared-alt"></i>
-                                </button>
-                            </div>
-                        </div>`
+                                <div class="d-flex align-items-center">
+                                    <button onclick="deleteExperienceItem(${experienceArray.length - 1})" type="button" class="btn btn-danger btn-hover-dark h-auto btn-custom d-flex align-items-center justify-content-center py-2 px-2 mx-1" >
+                                        <i class="icofont-trash ms-0"></i>
+                                    </button>
+                                    <button onclick="editExperience(${experienceArray.length - 1})" type="button" class="mx-1 btn btn-primary btn-hover-dark btn-hover-dark h-auto btn-custom d-flex align-items-center justify-content-center py-2 px-2" >
+                                        <i class="icofont-edit-alt ms-0"></i>
+                                    </button>
+                                </div>
+                            </div>`
         $('#experience-container').append(markup)
     }
 
@@ -93,7 +96,7 @@
         $('#role').val("")
         $('#startdate').val("")
         $('#enddate').val("")
-        $('#current').checked = false
+        document.querySelector('#current').checked = false
     }
 
     function deleteExperienceItem(id){

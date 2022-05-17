@@ -6,6 +6,7 @@ use App\Library\Token;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
 use \App\Http\Controllers\EnrollmentController;
+use App\Library\Currency;
 use App\Models\Batch;
 use App\Models\Courses;
 use App\Models\Enrollment;
@@ -14,21 +15,22 @@ use Illuminate\Support\Facades\Http;
 
 class TransactionsController extends Controller{
 
-    public function create(Request $request){
-        $unique_id = Token::unique('transactions');
-        $reference = Token::random();
+    // public function create(Request $request){
+    //     $unique_id = Token::unique('transactions');
+    //     $reference = Token::random();
+    //     $amount = Currency::convertUserCurrencyToDefault($request->amount);
 
-        $transaction = Transaction::create([
-            'unique_id' => $unique_id,
-            'reference' => $reference,
-            'amount' => $request->amount,
-            'user_id' => $request->user_id
-        ]);
+    //     $transaction = Transaction::create([
+    //         'unique_id' => $unique_id,
+    //         'reference' => $reference,
+    //         'amount' => $amount,
+    //         'user_id' => $request->user_id
+    //     ]);
 
-        return response()->json([
-            'transaction' => $transaction
-        ]);
-    }
+    //     return response()->json([
+    //         'transaction' => $transaction
+    //     ]);
+    // }
 
     public function fetchBanks(){
         $base_url = env('RAVE_API_BASE_URL');
