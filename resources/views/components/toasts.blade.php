@@ -1,11 +1,15 @@
 <script>
     function toast(type, message){
         new Notify ({
+            status: type,
             text: message,
+            title: type.charAt(0).toUpperCase() + type.slice(1),
             effect: 'slide',
-            status: type,autoclose: true,
-            autotimeout: 3000,
-            speed: 300 // animation speed
+            autoclose: true,
+            showIcon: false,
+            autotimeout: 4000,
+            speed: 300,
+            type: 1
         })
     }
 

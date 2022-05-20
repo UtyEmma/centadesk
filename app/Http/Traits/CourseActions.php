@@ -28,7 +28,7 @@ trait CourseActions {
     }
 
     public function getCourseData($course, $user = null){
-        $category = Category::where('slug', $course->category)->first();
+        $category = Category::where('name', $course->category)->first();
         $course->category = $category->name ?? 'Uncategorized';
         $course->course_reviews = $this->getCourseReviews($course);
         $course->mentor = User::where('unique_id', $course->mentor_id)->first();

@@ -42,7 +42,7 @@ class Courses extends Model{
     }
 
     public function mentor(){
-        return $this->belongsTo(User::class, 'user_id', 'unique_id');
+        return $this->belongsTo(User::class, 'mentor_id', 'unique_id');
     }
 
     public function batches(){
@@ -51,6 +51,10 @@ class Courses extends Model{
 
     public function allReviews(){
         return $this->hasMany(Review::class, 'course_id', 'unique_id');
+    }
+
+    public function enrollments(){
+        return $this->hasMany(Enrollment::class, 'course_id', 'unique_id');
     }
 
 

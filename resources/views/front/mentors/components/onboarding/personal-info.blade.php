@@ -24,7 +24,7 @@
                                 <label class="w-100 btn btn-primary btn-hover-dark" style="font-size: 14px; line-height: 3.5;" for="avatar">
                                     Upload
                                 </label>
-                                <input name="avatar"  onblur="validateInput(event, __personalInfoSchema)" onchange="setPreview(event)" type="file" class="form-control" hidden id="avatar">
+                                <input name="avatar"  onblur="validateInput(event, __personalInfoSchema)" onchange="setImagePreview(event, 'mentor-avatar')" type="file" class="form-control" hidden id="avatar">
                             </div>
                         </div>
                     </div>
@@ -73,7 +73,7 @@
                         <div class="col-md-6">
                             <div class="single-form">
                                 <label for="" class="mb-1">Portfolio or Website URL</label>
-                                <input class="form-control" onblur="validateInput(event, __personalInfoSchema)" name="website"  placeholder="Your Website Link" value="{{$user->website ?? old('website')}}">
+                                <input class="form-control" onblur="validateInput(event, __personalInfoSchema)" name="website"  placeholder="https://" value="{{$user->website ?? old('website')}}">
                                 <small class="text-danger text-capitalize" id="website-error">
                                     @error('website')
                                         {{$message}}
@@ -85,7 +85,7 @@
                         <div class="col-md-6">
                             <div class="single-form">
                                 <label for="" class="mb-1">Resume or CV URL</label>
-                                <input class="form-control" onblur="validateInput(event, __personalInfoSchema)" name="resume"  placeholder="Link to your CV or Resume" value="{{$user->resume ?? old('resume')}}">
+                                <input class="form-control" onblur="validateInput(event, __personalInfoSchema)" name="resume"  placeholder="https://" value="{{$user->resume ?? old('resume')}}">
                                 <small class="text-danger text-capitalize" id="resume-error">
                                     @error('resume')
                                         {{$message}}
@@ -98,7 +98,7 @@
                     <div class="mt-3">
                         <p for="basic-url" class="form-label">Your Location Info </p>
                         <div class="row">
-                            <div class="col-md-4">
+                            <div class="col-md-4 col-6">
                                 <div class="single-form mt-2">
                                     <label for="" class="mb-1">City</label>
                                     <input class="input form-control" onblur="validateInput(event, __personalInfoSchema)" name="city" placeholder="City">
@@ -110,7 +110,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-md-4">
+                            <div class="col-md-4 col-6">
                                 <div class="single-form mt-2">
                                     <label for="" class="mb-1">Region or State</label>
                                     <input class="input form-control" onblur="validateInput(event, __personalInfoSchema)" name="state" placeholder="Region or State">
@@ -137,7 +137,7 @@
                     </div>
 
                     <div class="single-form ">
-                        <p for="basic-url" class="form-label">Social Media <small>(Please provide only your username)</small> </p>
+                        <p for="basic-url" class="form-label">Social Media </p>
 
                         <div class="row">
                             <div class="col-md-4">

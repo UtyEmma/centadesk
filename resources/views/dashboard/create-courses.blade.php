@@ -1,5 +1,10 @@
 <x-app-layout>
     @include('dashboard.js.create-courses-js')
+
+    @push('scripts')
+        <script src="{{asset('js/pages/createcourse.js')}}"></script>
+    @endpush
+
     <x-page-title title="Mentor Dashboard - Create Courses" />
     <div class="page-content-wrapper">
         <div class="container px-3 px-md-0">
@@ -10,45 +15,50 @@
 
             <x-mentor.kyc-warning />
 
-            <form action="/me/courses/new" method="POST" enctype="multipart/form-data">
+            <form action="/me/courses/new" method="POST" onsubmit="return validateCourseInput(event)" enctype="multipart/form-data">
                 @csrf
 
                 <div class="mt-5">
                     <div class="row">
                         <div class="col-md-6">
-                            <div class="bg-transparent border-0">
-                                <h5 class="mb-0">Course Details</h5>
-                                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit</p>
-                            </div>
+                            <div class="card radius p-3 p-md-5 border mt-1">
+                                <h5 class="mb-3">Course Details</h5>
 
-                            <div class="card radius p-3 p-md-5 mt-1">
-                                <div class="single-form mt-0">
-                                    <label class="mb-1"><small>Course Title</small></label>
-                                    <input type="text" name="name" maxlength="60" value="{{old('name')}}" placeholder="Class Title, Topic or Subject">
+                                <div class="single-form">
+                                    <label class="mb-1">Course Title</label>
+                                    <input type="text" name="name" onblur="validateInput(event, __courseSchema)" maxlength="60" value="{{old('name')}}" placeholder="Class Title, Topic or Subject">
                                     <x-errors name="name" />
                                 </div>
 
                                 <div class="single-form">
-                                    <label class="mb-1"><small>Write a short catchy description of the course <small>(max 120 characters)</small></small></label>
-                                    <input type="text" name="excerpt" maxlength="120" value="{{old('excerpt')}}" placeholder="Write a brief description - (Maximum 120 Characters)">
+                                    <label class="mb-1">Short Description <small>(max 120 characters)</small></label>
+                                    <input type="text" name="excerpt" onblur="validateInput(event, __courseSchema)" maxlength="120" value="{{old('excerpt')}}" placeholder="Write a brief description - (Maximum 120 Characters)">
                                     <x-errors name="excerpt" />
                                 </div>
 
                                 <div class="single-form">
-                                    <label class="mb-1" style="font-weight: 500;">Write a more detailed description of the course here.</label>
+                                    <label class="mb-1">Long Description</label>
                                     <x-rich-text placeholder="Write a compelling description of your class here" name="desc" />
                                     <x-errors name="desc" />
                                 </div>
 
                                 <div class="single-form">
-                                    <label class="mb-1" style="font-weight: 500;">What will your student's gain from this course:</label>
-                                    <x-form-repeater />
+                                    <label class="mb-1">Course Benefits</label>
+                                    <x-form-repeater name="objectives" />
+                                    <x-errors name="objectives" />
                                 </div>
 
-                                <div class="single-form">
-                                    <label class="mb-1" style="font-weight: 500;">Category</label>
+                            </div>
+                        </div>
 
-                                    <select name="category" class="selectpicker w-100" data-live-search="true" title="Select Category" data-style="border radius py-0 px-2 fw-normal">
+                        <div class="col-md-6 mt-5 mt-md-0">
+                            <div class="card border radius p-3 p-md-5">
+                                <h5 class="mb-3">Course Meta</h5>
+
+                                <div class="single-form">
+                                    <label class="mb-1">Category</label>
+
+                                    <select onblur="validateInput(event, __courseSchema)" name="category" class="selectpicker w-100" data-live-search="true" title="Select Category" data-style="border radius py-0 px-2 fw-normal">
                                         @foreach ($categories as $category)
                                             <option value="{{$category->slug}}">{{$category->name}}</option>
                                         @endforeach
@@ -57,50 +67,26 @@
                                 </div>
 
                                 <div class="single-form">
-                                    <label class="mb-1" style="font-weight: 500;">Tags</label>
+                                    <label class="mb-1">Tags</label>
                                     <x-tag-input />
                                     <x-errors name="tags" />
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="col-md-6 mt-5 mt-md-0">
-                            <div class="bg-transparent border-0">
-                                <h5 class="mb-0">Promotional Media</h5>
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing.</p>
-                            </div>
-
-                            <div class="card radius p-3 p-md-5 mt-1">
+                            <div class="card border radius p-3 p-md-5 mt-5">
+                                <h5 class="mb-3">Course Media</h5>
                                 <div class="single-form my-2">
+                                    <label class="mb-1">Course Image</label>
                                     <x-img-upload name="images">Upload Image</x-img-upload>
                                     <x-errors name="images" />
                                 </div>
 
-                                <hr>
-
                                 <div class="single-form my-2">
-                                    <div class="row gx-3">
-                                        <div class="col-md-6">
-                                            <label class="mb-1" style="font-weight: 500;">Promotional Video Link</label>
-                                            <input type="text" name="video" class="px-2 mt-1" value="{{old('video')}}" placeholder="Link to promotional video" />
-                                            <x-errors name="video" />
-                                        </div>
-
-                                        <div class="col-md-6">
-                                            <div class="position-relative overflow-hidden radius mt-2" style="height: 180px;">
-                                                <img src="{{asset('images/add_video.jpg')}}" id="avatar_preview" style="width: 100%;" class="img-cover radius" alt="">
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <label class="mb-1">Course Video Link</label>
+                                    <input onblur="validateInput(event, __courseSchema)" type="text" name="video" class="px-2 mt-1" value="{{old('video')}}" placeholder="Link to promotional video" />
+                                    <x-errors name="video" />
                                 </div>
-
                             </div>
-
-                            @if (Auth::user()->kyc_status !== 'approved')
-                                <div class="text-end mt-3">
-                                    <p style="font-size: 14px;">You cannot create any classes until your Mentor Request is approved</p>
-                                </div>
-                            @endif
 
                             <div class="mt-3 d-flex justify-content-end">
                                 <button type="submit" class="btn float-right btn-primary btn-hover-dark radius" @disabled(Auth::user()->kyc_status === 'approved' ? false : true)>Create Class</button>

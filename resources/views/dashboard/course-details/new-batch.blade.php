@@ -1,6 +1,10 @@
 <x-app-layout>
     <x-page-title title="Mentor Dashboard - Create a New Batch" />
-    <!-- Page Content Wrapper Start -->
+
+    @push('scripts')
+        <script src="{{asset('js/pages/createbatch.js')}}"></script>
+    @endpush
+
     <div class="page-content-wrapper">
         <div class="container-fluid custom-container">
 
@@ -12,7 +16,7 @@
                     <h5 class="mt-1 lh-0">Create a New Batch</h5>
                 </div>
 
-                <form class="mt-5" action="/me/courses/{{$course->unique_id}}/batch/create" method="post" enctype="multipart/form-data">
+                <form class="mt-5" action="/me/courses/{{$course->unique_id}}/batch/create" onsubmit="validateBatchDetails(event)"  method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="row">
                         <div class="col-md-6">

@@ -1,5 +1,5 @@
 <x-guest-layout :data="$data">
-
+    <x-page-title title="Forgot your Password" />
     <!-- Page Banner Start -->
     <div class="section page-banner py-0 pt-5 pb-0 px-0 w-100 bg-transparent">
         <div class="container mt-5 pt-5 w-100">

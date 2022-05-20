@@ -34,7 +34,7 @@
             startdate: document.querySelector('#startdate').value,
             enddate: document.querySelector('#enddate').value,
             current : document.querySelector('#current').checked,
-            description : document.querySelector('#description').value
+            // description : document.querySelector('#description').value
         }
 
         const validation = new Validator(data, __experienceSchema.rules)
@@ -53,19 +53,17 @@
         data.startdate = moment(data.startdate).format("Do MMM, YYYY")
         data.enddate = moment(data.enddate).format("Do MMM, YYYY")
         id ? experienceArray[id] = data : experienceArray.push(data)
-        $('#experience-container').html('')
 
-        experienceArray.map(experience => appendExperienceHtml(experience))
+        displayExperienceItems()
+
         $('#experience-input').val(JSON.stringify(experienceArray))
 
         clearExperienceFormValues()
-
         $('#experience-error').text('');
     }
 
-    function appendExperienceHtml(data){
-        console.log(data)
-        const markup = `<div class="d-flex justify-content-between align-items-center mb-2 border border-primary radius p-3" id="qualification-${experienceArray.length - 1}">
+    function appendExperienceHtml(data, index){
+        const markup = `<div class="d-flex justify-content-between align-items-center mb-2 border bg-white border-primary radius p-3" id="experience-${index}">
                                 <div>
                                     <h6 class="mb-0 mt-0">${data.role}</h6>
                                     <p class="mt-0 mb-0">${data.company}</p>
@@ -73,10 +71,10 @@
                                 </div>
 
                                 <div class="d-flex align-items-center">
-                                    <button onclick="deleteExperienceItem(${experienceArray.length - 1})" type="button" class="btn btn-danger btn-hover-dark h-auto btn-custom d-flex align-items-center justify-content-center py-2 px-2 mx-1" >
+                                    <button onclick="deleteExperienceItem(${index})" type="button" class="btn btn-danger btn-hover-dark h-auto btn-custom d-flex align-items-center justify-content-center py-2 px-2 mx-1" >
                                         <i class="icofont-trash ms-0"></i>
                                     </button>
-                                    <button onclick="editExperience(${experienceArray.length - 1})" type="button" class="mx-1 btn btn-primary btn-hover-dark btn-hover-dark h-auto btn-custom d-flex align-items-center justify-content-center py-2 px-2" >
+                                    <button onclick="editExperience(${index})" type="button" class="mx-1 btn btn-primary btn-hover-dark btn-hover-dark h-auto btn-custom d-flex align-items-center justify-content-center py-2 px-2" >
                                         <i class="icofont-edit-alt ms-0"></i>
                                     </button>
                                 </div>
@@ -104,6 +102,27 @@
         const element = document.getElementById(`experience-${id}`)
         $('#experience-input').val(JSON.stringify(experienceArray))
         element.remove()
+        displayExperienceItems()
+    }
+
+    function displayExperienceItems(){
+        $('#experience-container').html('')
+
+        if(experienceArray.length < 1){
+            return $('#experience-container').html(`<div id="experienceDefault">
+                                    <div class="d-flex justify-content-center align-items-center">
+                                        <div class="mb-2 p-5 text-center">
+                                            <div class="col-6 mx-auto mb-3">
+                                                <img src="{{asset('images/icon/resume.svg')}}" alt="">
+                                            </div>
+
+                                            <h5 class="my-2" >Add Your Work Experience</h5>
+                                            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsam totam commodi odio voluptatibus minus ducimus culpa sed, fugiat.</p>
+                                        </div>
+                                    </div>
+                                </div>`)
+        }
+        experienceArray.map((experience, index) => appendExperienceHtml(experience, index))
     }
 
     function editExperience(id) {

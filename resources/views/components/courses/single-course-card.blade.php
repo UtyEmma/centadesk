@@ -1,4 +1,3 @@
-<!-- Single Courses Start -->
 <div class="single-courses mt-0 mb-4">
     <div class="courses-images position-relative overflow-hidden radius" style="height: 200px">
         <a href="courses/{{$course->slug}}">
@@ -9,28 +8,40 @@
             <a href="/courses?category={{Str::slug($course->category)}}">{{$course->category}}</a>
         </div>
     </div>
-    <div class="courses-content">
+    <div class="courses-content pt-0">
+        <h4 class="title mb-2"><a href="/courses/{{$course->slug}}">{{$course->name}}</a></h4>
+
         <div class="courses-author">
             <div class="author">
                 <div class="author-thumb">
-                    <a href="/mentors/{{$mentor->username}}" class="rounded-img">
-                        <img src="{{$mentor->avatar ?? asset('images/icon/user.png')}}" alt="Author">
+                    <a href="/mentors/{{$course->mentor->username}}" class="rounded-img">
+                        <img src="{{$course->mentor->avatar ?? asset('images/icon/user.png')}}" alt="Author">
                     </a>
                 </div>
                 <div class="author-name">
-                    <a class="name" href="/mentors/{{$mentor->username}}">{{$mentor->firstname}} {{$mentor->lastname}}</a>
-                    <x-mentor-verified :status="$mentor->is_verified" />
+                    <div>
+                        <a class="mb-1 name" style="font-weight: 500; line-height: 2px;"  href="/mentors/{{$course->mentor->username}}">
+                            {{$course->mentor->firstname}} {{$course->mentor->lastname}}
+                            <span class="ms-0"><x-mentor-verified :status="$course->mentor->is_verified" /></span>
+                        </a>
+                        <p style="font-size: 11px; line-height: 1px;" class="mt-1 mb-2">{{$course->mentor->specialty}}</p>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <h4 class="title"><a href="/courses/{{$course->slug}}">{{$course->name}}</a></h4>
+        {{-- @if ($course->enrollments_count > 0) --}}
+            <div class="mt-2 d-flex align-items-center">
+                <x-layered-profile-images :users="$course->enrollments" />
+                <small class="ms-4">{{$course->enrollments_count}} {{Str::plural('Student', $course->enrollments_count)}}</small>
+            </div>
+        {{-- @endif --}}
 
         <div class="courses-price-review">
             <span>
                 <i class="icofont-comment"></i>
                 <small>
-                    {{$course->reviews}} {{$course->no_reviews}}
+                    {{$course->all_reviews_count}} {{Str::plural('review', $course->all_reviews_count) }}
                 </small>
             </span>
             <div class="courses-review">
@@ -42,4 +53,3 @@
         </div>
     </div>
 </div>
-<!-- Single Courses End -->

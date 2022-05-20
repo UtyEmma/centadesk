@@ -55,6 +55,5 @@
         }else if (e.target.value === 'none') {
             $(`#discount_types`).hide()
         }
-
     }
 </script>

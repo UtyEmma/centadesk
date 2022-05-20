@@ -36,38 +36,51 @@
                                     <small id="role-error" class="text-danger"></small>
                                 </div>
 
-                                <div class="single-form w-full col-md-6">
+                                <div class="single-form w-full col-6">
                                     <label for="" class="mb-1">Start Date</label>
                                     <input type="date" class="form-control" id="startdate" placeholder="Start Date" />
                                     <small id="startdate-error" class="text-danger"></small>
                                 </div>
 
-                                <div class="single-form w-full col-md-6">
+                                <div class="single-form w-full col-6">
                                     <label for="" class="mb-1">End date</label>
                                     <input type="date" class="form-control" id="enddate" placeholder="End Date" />
                                     <small id="enddate-error" class="text-danger"></small>
                                 </div>
                             </div>
 
-                            <div class="single-form d-flex align-items-center">
+                            <div class="d-flex align-items-center mt-2">
                                 <input type="checkbox" id="current" class="me-2 checkbox"  />
                                 <label for="current">Current Position</label>
                             </div>
 
-                            <div class="col-md-12">
+                            {{-- <div class="col-md-12">
                                 <div class="single-form">
                                     <label for="" class="mb-1">Description</label>
                                     <textarea id="description" rows="2"></textarea>
                                 </div>
-                            </div>
+                            </div> --}}
 
                             <div class="mt-3">
                                 <button class="btn btn-primary btn-hover-dark btn-custom" type="button" onclick="addExperience()" >Add</button>
                             </div>
                         </div>
 
-                        <div class="col-md-5">
-                            <div id="experience-container"></div>
+                        <div class="col-md-5 mb-4">
+                            <div id="experience-container" class="p-3 mt-5 mt-md-0 bg-light-primary h-100 radius">
+                                <div id="experienceDefault">
+                                    <div class="d-flex justify-content-center align-items-center">
+                                        <div class="mb-2 p-5 text-center">
+                                            <div class="col-6 mx-auto mb-3">
+                                                <img src="{{asset('images/icon/resume.svg')}}" alt="">
+                                            </div>
+
+                                            <h5 class="my-2" >Add Your Work Experience</h5>
+                                            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsam totam commodi odio voluptatibus minus ducimus culpa sed, fugiat.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <textarea name="experience" id="experience-input" hidden cols="30" rows="10"></textarea>
                         </div>
                     </div>

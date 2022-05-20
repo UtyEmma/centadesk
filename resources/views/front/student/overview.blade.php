@@ -1,46 +1,47 @@
 <x-student-layout>
     <x-page-title title="Learning Center" />
+
     <div class="section section-padding pt-0">
         <div class="container">
             <div class="row">
-                <div class="col-md-8">
+                <div class="col-md-8 py-3">
                     <div class="new-courses px-8 my-0 pt-2" style="background-image: url({{asset('images/new-courses-banner.jpg')}});">
                         <div class="row">
                             <div class="new-courses-title">
-                                <h3 class="title">Welcome, {{Auth::user()->firstname}}</h3>
+                                <h3 class="title">Hi, {{Auth::user()->firstname}}</h3>
                                 <p class="text-white">You can start enrolling for courses you are interested in.</p>
-                                <a href="/courses">
-                                    <x-btn classes="btn-warning btn-hover-dark">Find Courses</x-btn>
-                                </a>
+                                <a href="/courses" class="btn btn-custom btn-warning btn-hover-dark">Discover Courses</a>
                             </div>
                         </div>
                     </div>
 
 
-                    <div class="py-5">
-                        <h5 class="mb-2">Upcoming Classes</h5>
+                    @if (count($courses['upcoming']) > 0)
+                        <div class="py-5">
+                            <h5 class="mb-2">Upcoming Classes</h5>
 
-                        <div class="row">
-                            @forelse ($courses['upcoming'] as $course)
-                                <div class="col-lg-6 col-md-6">
-                                    <x-batch.upcoming :course="$course" />
-                                </div>
-                            @empty
-                                <div class="col-md-12">
-                                    <div class="border radius p-4">
-                                        <h5>You have not enrolled for any courses yet!</h5>
-                                        <a href="/courses">
-                                            <x-btn classes="btn-primary btn-hover-dark">Find Courses</x-btn>
-                                        </a>
+                            <div class="row">
+                                @forelse ($courses['upcoming'] as $course)
+                                    <div class="col-lg-6 col-md-6">
+                                        <x-batch.upcoming :course="$course" />
                                     </div>
-                                </div>
-                            @endforelse
+                                @empty
+                                    <div class="col-md-12">
+                                        <div class="border radius p-4">
+                                            <h5>You have not enrolled for any courses yet!</h5>
+                                            <a href="/courses">
+                                                <x-btn classes="btn-primary btn-hover-dark">Find Courses</x-btn>
+                                            </a>
+                                        </div>
+                                    </div>
+                                @endforelse
+                            </div>
                         </div>
-                    </div>
+                    @endif
                 </div>
 
-                <div class="col-md-4">
-                    <h5 class="mb-2">Events</h5>
+                <div class="col-md-4 py-3">
+                    <h5 class="mb-2">Your Calender</h5>
                     <div class="custom-scrollbar p-3 radius border border-primary">
                         <x-calender :events="$events" />
                     </div>
@@ -50,7 +51,7 @@
                     @endphp
 
                     <div class="mt-4">
-                        <h6>Earn with your Affiliate link.</h6>
+                        <h5>Earn with your Affiliate link.</h5>
                         <x-affiliate-link :user="$user" />
                     </div>
                 </div>

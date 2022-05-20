@@ -13,7 +13,6 @@ use App\Models\Enrollment;
 use App\Models\User;
 use App\Notifications\NewMentorAccountRequestNotification;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Str;
 
@@ -58,11 +57,13 @@ class MentorController extends Controller{
 
     public function onboarding(Request $request){
         $user = $this->user();
-        if($user->role === 'mentor') return redirect(self::HOME);
+
+        if($user->role === 'mentor' && $user->kyc_status === 'approved') return redirect(self::HOME);
 
         $banks = Bank::all();
         return view('front.mentors.onboarding', [
-            'banks' => $banks
+            'banks' => $banks,
+            'user' => $user
         ]);
     }
 
@@ -92,11 +93,12 @@ class MentorController extends Controller{
             'dashboard' => self::HOME
         ];
 
+        return Response::redirect('/learning', 'success', 'Your application has been sent! 🎉');
+
         try {
             Notification::send($user, new NewMentorAccountRequestNotification($notification));
         } catch (\Throwable $th) {
         }
-        return redirect(self::HOME);
     }
 
     public function show($username){

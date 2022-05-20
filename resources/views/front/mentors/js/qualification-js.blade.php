@@ -47,9 +47,7 @@
             id ? qualificationArray[id] = data : qualificationArray.push(data)
 
             $('#qualification-input').val(JSON.stringify(qualificationArray))
-
-            $('#qualificationContainer').html("")
-            qualificationArray.map(qualification => appendQualification(qualification))
+            displayQualifications()
             clearQualificationForms()
         }
 
@@ -65,23 +63,27 @@
         }
 
 
-        function appendQualification(data){
-            const markup = `<div class="d-flex justify-content-between align-items-center mb-2 border border-primary radius p-3" id="qualification-${qualificationArray.length - 1}">
-                                <div>
-                                    <h6 class="mb-0 mt-0">${data.qualification}</h6>
-                                    <p class="mt-0 mb-0">${data.institution}</p>
-                                    <small class="mt-0">${data.date}</small>
-                                </div>
+        function appendQualification(data, index){
+            const markup = `<div class="d-flex justify-content-between align-items-center mb-2 bg-light border border-primary radius p-3" id="qualification-${index}">
+                        <div>
+                            <h6 class="mb-0 mt-0">${data.qualification}</h6>
+                            <p class="mt-0 mb-0 lh-0">${data.institution}
+                                <br>
+                                <span style="font-size: 13px;">
+                                    ${data.date}
+                                </span>
+                            </p>
+                        </div>
 
-                                <div class="d-flex align-items-center">
-                                    <button onclick="deleteQualification(${qualificationArray.length - 1})" type="button" class="btn btn-danger btn-hover-dark h-auto btn-custom d-flex align-items-center justify-content-center py-2 px-2 mx-1" >
-                                        <i class="icofont-trash ms-0"></i>
-                                    </button>
-                                    <button onclick="editQualification(${qualificationArray.length - 1})" type="button" class="mx-1 btn btn-primary btn-hover-dark btn-hover-dark h-auto btn-custom d-flex align-items-center justify-content-center py-2 px-2" >
-                                        <i class="icofont-edit-alt ms-0"></i>
-                                    </button>
-                                </div>
-                            </div>`
+                        <div class="d-flex align-items-center">
+                            <button onclick="deleteQualification(${index})" type="button" class="btn btn-danger btn-hover-dark h-auto btn-custom d-flex align-items-center justify-content-center py-2 px-2 mx-1" >
+                                <i class="icofont-trash ms-0"></i>
+                            </button>
+                            <button onclick="editQualification(${index})" type="button" class="mx-1 btn btn-primary btn-hover-dark btn-hover-dark h-auto btn-custom d-flex align-items-center justify-content-center py-2 px-2" >
+                                <i class="icofont-edit-alt ms-0"></i>
+                            </button>
+                        </div>
+                    </div>`
 
 
             $('#qualificationContainer').append(markup)
@@ -96,9 +98,28 @@
 
         function deleteQualification(id){
             qualificationArray.splice(id, 1)
-            $(`#qualification-${qualificationArray.length - 1}`).slideUp()
-            // const element = document.getElementById(`qualification-${id}`).remove()
+            const element = document.getElementById(`qualification-${id}`).remove()
+            displayQualifications()
             $('#qualification-input').val(JSON.stringify(qualificationArray))
+        }
+
+        function displayQualifications(){
+            $('#qualificationContainer').html("")
+            if(qualificationArray.length < 1){
+                return $('#qualificationContainer').html(`<div id="qualificationDefault">
+                                <div class="d-flex justify-content-center align-items-center">
+                                    <div class="mb-2 p-5 text-center">
+                                        <div class="col-6 mx-auto mb-3">
+                                            <img src="{{asset('images/icon/education.svg')}}" alt="">
+                                        </div>
+
+                                        <h5 class="my-2" >Add Your Qualifications</h5>
+                                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsam totam commodi odio voluptatibus minus ducimus culpa sed, fugiat.</p>
+                                    </div>
+                                </div>
+                            </div>`)
+            }
+            qualificationArray.map((qualification, index) => appendQualification(qualification, index))
         }
 
         function editQualification(id) {

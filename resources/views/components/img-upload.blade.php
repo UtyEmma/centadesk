@@ -7,9 +7,9 @@
         }
 
         function removeImg(){
-            $('input[name="avatar"]').val('')
+            $('input[name="{{$id ?? "avatar"}}"]').val('')
             $('#del-btn').hide()
-            const image = document.querySelector("#avatar_preview")
+            const image = document.querySelector("#{{$id ?? 'avatar_preview'}}")
             image.src = "{{asset('images/add_img.jpg')}}"
         }
 

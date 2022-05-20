@@ -22,6 +22,7 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Redirect;
+use PDF;
 
 class EnrollmentController extends Controller{
     use TransactionActions, BatchActions, EnrollmentActions, WalletActions, CryptoActions;
@@ -79,6 +80,27 @@ class EnrollmentController extends Controller{
     public function complete(Request $request, $type, $batch_id){
         if($type === 'crypto') return $this->verifyCryptoPayment($request, $batch_id);
         if($type === 'card') return $this->verifyCardPayment($request, $batch_id);
+    }
+
+    public function downloadCertificate($slug, $shortCode){
+        if(!$batch = Batch::where('short_code', $shortCode)->first()) return Response::redirectBack('error', 'This batch does not exist');
+        $user = $this->user();
+
+        if(!Enrollment::where([
+            'batch_id' => $batch->unique_id,
+            'student_id' => $user->unique_id
+            ])->first()) return Response::redirectBack('error', "You are not enrolled for this batch");
+
+        if(!$batch->isCompleted()) return Response::redirectBack('error', "You cannot download this certificate because the batch has not been completed");
+
+        if(!$batch->certificate) return Response::redirectBack('error', 'There is no certificate for this batch');
+
+        $pdf = PDF::loadview('certificate.template', [
+            'batch' => $batch,
+            'student' => $user
+        ]);
+
+        return $pdf->download();
     }
 
 

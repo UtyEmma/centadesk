@@ -1,4 +1,5 @@
 <x-guest-layout>
+    <x-page-title title="Verify your Email" />
     <x-auth-card>
         <x-slot name="logo">
             <a href="/">

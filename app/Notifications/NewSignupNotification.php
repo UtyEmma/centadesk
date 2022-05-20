@@ -7,14 +7,14 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class NewSignupNotification extends Notification
+class NewSignupNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 
-    private $data;
+    private $details;
 
-    public function __construct($data){
-        $this->data = $data;
+    public function __construct($details){
+        $this->details = $details;
     }
 
     /**
@@ -34,12 +34,15 @@ class NewSignupNotification extends Notification
      * @param  mixed  $notifiable
      * @return \Illuminate\Notifications\Messages\MailMessage
      */
-    public function toMail($notifiable)
-    {
+    public function toMail($notifiable){
+        $details = $this->details;
+        $user = $details['user'];
+
         return (new MailMessage)
-                    ->subject("Welcome to Libraclass")
+                    ->subject("Hi $user->firstname, Welcome to Libraclass")
                     ->view('emails.welcome', [
-                        'data' => $this->data
+                        'user' => $user,
+                        'profile' => $details['profile']
                     ]);
     }
 

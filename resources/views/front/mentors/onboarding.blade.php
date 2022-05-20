@@ -2,16 +2,43 @@
     <x-page-title title="Mentor Onboarding" />
     @include('front.mentors.js.onboarding-js')
 
+    @if ($user->role === 'mentor' && $user->kyc_status === 'pending')
+        <div class="section page-banner bg-transparent py-0 my-0" >
+            <div class="container pt-5">
+                <div class="page-banner-content">
+                </div>
+            </div>
+            <div class="" >
+                <div class="row">
+                    <div style="height: 500px" class="col-md-7 d-flex align-items-center text-center mx-auto mt-5 mb-3">
+                        <div>
+                            <div class="col-md-3 col-6 mx-auto">
+                                <img src="{{asset('images/icon/review.svg')}}" alt="">
+                            </div>
+                            <div class="px-5">
+                                <h2 class="title pb-0 mt-0">Your Mentor application is being reviewed!</h2>
+                                <p class="mt-5">Your application has been received and is being reviewed. This may take up to a week, Your patience is highly appreciated. For now, feel free to check out available courses that you might be interested in.</p>
+                                <div class="mb-5 mt-3">
+                                    <a href="/learning" class="btn btn-primary btn-hover-dark btn-custom">Go to Learning Center</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @else
     <div class="section page-banner bg-transparent py-0 my-0" >
         <div class="container pt-5">
             <div class="page-banner-content">
+                <h2 class="title pb-0 mt-0">Apply to become a Mentor</h2>
             </div>
         </div>
 
-        <section class="section section-padding pt-3" >
+        <section class="section section-padding pt-0" >
             <div class="container">
                 <div>
-                    <h5 class="mb-0">Create your Mentor Account</h5>
+                    {{-- <h5 class="mb-0">Apply to become a Mentor</h5> --}}
                     <p class="my-0">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vel, provident.</p>
                     <div class="progress mt-2" style="height: 3px;">
                     <div class="progress-bar" role="progressbar" id="onboarding-progress" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
@@ -84,4 +111,5 @@
             </div>
         <section>
     </div>
+    @endif
 </x-guest-layout>

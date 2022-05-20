@@ -1,4 +1,5 @@
 <x-guest-layout>
+    <x-page-title title="Confirm your Password" />
     <x-auth-card>
         <x-slot name="logo">
             <a href="/">

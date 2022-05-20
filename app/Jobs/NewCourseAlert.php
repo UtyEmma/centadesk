@@ -37,8 +37,9 @@ class NewCourseAlert implements ShouldQueue{
         $category = $course->category;
         $mentor = User::find($this->course->mentor_id);
 
-        $users = User::where('interests', function($interest) use($category){
-            return Str::contains($interest, $category);
+        $users = User::where(function($query) use($category){
+            $interest = collect($query->get('interests'));
+            return $interest->contains($category);
         })->get();
 
         $notification = [

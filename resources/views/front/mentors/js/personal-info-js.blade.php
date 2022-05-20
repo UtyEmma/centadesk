@@ -5,16 +5,17 @@
             return document.querySelector('#'+name)
         }
 
-        function setPreview(e){
-            const preview = document.querySelector("#mentor-avatar");
+        function setImagePreview(e, id){
+            const preview = document.querySelector("#"+id);
+            console.log(preview)
             preview.src = URL.createObjectURL(e.target.files[0])
         }
 
-        function removeImg(){
-            $('input[name="avatar"]').val('')
-            const image = document.querySelector("#mentor-avatar")
-            image.src = "{{asset('images/icon/user.png')}}"
-        }
+        // function removeImg(){
+        //     $('input[name="avatar"]').val('')
+        //     const image = document.querySelector("#mentor-avatar")
+        //     image.src = "{{asset('images/icon/user.png')}}"
+        // }
 
         const __personalInfoSchema = {
             rules: {
@@ -27,6 +28,8 @@
                 instagram: "string",
                 facebook: "string",
                 twitter: "string",
+                website: "string|url",
+                resume: "string|url"
             },
 
             attributes: {
@@ -40,6 +43,8 @@
                 facebook: "Facebook",
                 twitter: "Twitter",
                 avatar: "Profile Image",
+                website: "Website Link",
+                resume: "Resume Link"
             }
         }
 

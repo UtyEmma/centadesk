@@ -33,6 +33,7 @@ return new class extends Migration
             $table->string('class_link')->nullable();
             $table->string('status');
             $table->boolean('current');
+            $table->boolean('certificates');
             $table->string('currency');
             $table->string('earnings');
             $table->string('discount');

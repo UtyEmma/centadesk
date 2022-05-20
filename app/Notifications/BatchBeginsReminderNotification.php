@@ -7,8 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class BatchBeginsReminderNotification extends Notification
-{
+class BatchBeginsReminderNotification extends Notification implements ShouldQueue {
     use Queueable;
 
     /**

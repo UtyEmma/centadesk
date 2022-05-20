@@ -1,5 +1,5 @@
 <!-- Create the editor container -->
-<div id="editor" class="border radius" style="height: 250px"></div>
+<div id="editor" class="border radius" style="height: 200px"></div>
 <textarea type="text" id="text-content" hidden name="{{$name}}"></textarea>
 
 
@@ -10,18 +10,26 @@
                 modules: {
                     toolbar: [
                         [{ 'header': [1, 2, 3, 4, 5,  false] }],
-                        ['bold', 'italic', 'underline', 'strike'],
-                        ['blockquote', 'code-block'],
+                        [
+                            'bold',
+                            'italic',
+                            'underline',
+                            // 'strike'
+                        ],
+                        [
+                            'blockquote',
+                            'code-block'
+                        ],
 
-                        [{ 'header': 1 }, { 'header': 2 }],
+                        // [{ 'header': 1 }, { 'header': 2 }],
                         [{ 'list': 'ordered'}, { 'list': 'bullet' }],
-                        [{ 'script': 'sub'}, { 'script': 'super' }],
-                        [{ 'indent': '-1'}, { 'indent': '+1' }],
+                        // [{ 'script': 'sub'}, { 'script': 'super' }],
+                        // [{ 'indent': '-1'}, { 'indent': '+1' }],
 
 
-                        [{ 'align': [] }],
+                        // [{ 'align': [] }],
 
-                        ['clean']
+                        // ['clean']
                     ],
                 },
                 placeholder: '{{$placeholder ?? "Compose an epic..."}}',
@@ -32,7 +40,7 @@
                 $('#text-content').val(quill.root.innerHTML)
             });
 
-            $('.ql-toolbar').addClass('border radius mb-3 p-2 py-3')
+            $('.ql-toolbar').addClass('border radius mb-2 p-2 py-3')
         })
     </script>
 @endpush

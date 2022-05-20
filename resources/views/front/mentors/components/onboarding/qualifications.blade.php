@@ -40,13 +40,6 @@
                                     <small id="date-error" class="text-danger"></small>
                                 </div>
                             </div>
-
-                            {{-- <div class="col-md-12">
-                                <div class="single-form">
-                                    <label for="" class="mb-1">Description</label>
-                                    <textarea name="" id="" cols="30" rows="10"></textarea>
-                                </div>
-                            </div> --}}
                         </div>
 
                         <div class="mt-3">
@@ -56,12 +49,20 @@
 
                     <div class="col-md-5">
                         <input hidden  id="qualification_id" />
-                        <div class="mb-2">
-                            <h5 class="mb-0" >Qualifications</h5>
-                            <p>Your qualifications will be displayed here!</p>
-                        </div>
 
-                        <div id="qualificationContainer">
+                        <div id="qualificationContainer" class="p-3 mt-5 mt-md-0 bg-light-primary h-100 radius">
+                            <div id="qualificationDefault">
+                                <div class="d-flex justify-content-center align-items-center">
+                                    <div class="mb-2 p-5 text-center">
+                                        <div class="col-6 mx-auto mb-3">
+                                            <img src="{{asset('images/icon/education.svg')}}" alt="">
+                                        </div>
+
+                                        <h5 class="my-2" >Add Your Qualifications</h5>
+                                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsam totam commodi odio voluptatibus minus ducimus culpa sed, fugiat.</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

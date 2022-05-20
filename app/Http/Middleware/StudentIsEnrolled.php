@@ -2,11 +2,11 @@
 
 namespace App\Http\Middleware;
 
-use App\Library\Response;
+use App\Models\Batch;
 use Closure;
 use Illuminate\Http\Request;
 
-class UserIsMentor
+class StudentIsEnrolled
 {
     /**
      * Handle an incoming request.
@@ -15,9 +15,7 @@ class UserIsMentor
      * @param  \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
-    public function handle(Request $request, Closure $next){
-        $user = $request->user();
-        if($user->role === 'mentor' && $user->kyc_status === 'approved') return $next($request);
-        return Response::redirectBack('error', "You are not yet a Mentor! You are not allowed to access this page.");
+    public function handle(Request $request, Closure $next, $shortCode){
+        return $next($request);
     }
 }

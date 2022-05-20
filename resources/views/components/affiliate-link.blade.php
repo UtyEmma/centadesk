@@ -31,16 +31,16 @@
 <div class="">
     <div class="d-flex w-100 align-items-center">
 
-        <p id="aff_link_input" class="p-2 radius border m-0 me-2 flex-1 bg-light" style="font-size: 14px;">
+        <p id="aff_link_input" class="p-2 radius border m-0 me-2 flex-1 bg-light text-truncate" style="font-size: 14px;">
             {{env('MAIN_APP_DOMAIN')}}/register?ref={{$user->affiliate_id}}
         </p>
 
-        <div class="">
-            <button onclick="copyLink()" title="Copy" class="me-1 bg-transparent border-0 outline-0">
-                <i class="icofont-ui-copy"></i>
+        <div class="d-flex">
+            <button onclick="copyLink()" title="Copy" type="button" class="btn btn-secondary btn-hover-primary h-auto btn-custom d-flex align-items-center justify-content-center py-2 px-2 me-2" >
+                <i class="icofont-ui-copy ms-0 fs-5"></i>
             </button>
-            <button onclick="shareLink()" title="Share" class="bg-transparent border-0 outline-0">
-                <i class="icofont-share"></i>
+            <button onclick="shareLink()" title="Copy" type="button" class="btn btn-secondary btn-hover-primary h-auto btn-custom d-flex align-items-center justify-content-center py-2 px-2" >
+                <i class="icofont-share ms-0 fs-5"></i>
             </button>
         </div>
     </div>

@@ -56,5 +56,16 @@ const validator = {
         const schema = __uniqueSchema(name,  _schema.rules[name], _schema.attributes[name])
         const validator = validate({[name]: value}, schema)
         return validator;
+    },
+
+    validateInput : (e, schema) => {
+        const {name, value} = e.target
+        const validation = validator.validateField(name, value, schema)
+        if(validation.fails()){
+            const errors = validation.errors.errors
+            return $(`#${name}-error`).text(errors[name][0])
+        }
+        return $(`#${name}-error`).text('')
     }
+
 }

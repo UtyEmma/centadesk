@@ -129,16 +129,15 @@ class StudentController extends Controller{
     }
 
     function updateCategories(UserCategoryInterestRequest $request){
-        // try {
+        try {
             $user = $this->user();
-
-            $user->interests = LibraryArr::toObject($request->categories);
+            $user->interests = $request->categories;
             $user->save();
 
             return Response::intended('/learning', 'success', 'Your Preferences have been updated successfully');
-        // } catch (\Throwable $th) {
-        //     return Response::redirectBack('error', $th->getMessage());
-        // }
+        } catch (\Throwable $th) {
+            return Response::redirectBack('error', $th->getMessage());
+        }
     }
 
 }

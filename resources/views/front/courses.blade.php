@@ -22,31 +22,40 @@
     </x-page-banner>
 
     <!-- Courses Start -->
-    <div class="section section-padding pt-0">
+    <div class="section section-padding pt-4">
         <div class="container">
             <!-- Courses Wrapper Start  -->
             <div class="courses-wrapper-02 mt-0 py-0">
                 <div class="row">
-                            @forelse ($courses as $course)
-                                <div class="col-md-4">
-                                    <x-courses.single-course-card :course="$course" :mentor="$course->mentor" />
-                                </div>
-                            @empty
-                                <div class="text-center">
-                                    <img src="{{asset('images/states/empty-courses.svg')}}" />
-                                    <h4>There are no courses available at this time</h4>
-                                    <p class="px-5">Sign up as a Mentor to start earning money teaching the things you love</p>
+                    <div class="col-md-8">
+                        <div class="row">
+                                    @forelse ($courses as $course)
+                                        <div class="col-md-6">
+                                            <x-courses.single-course-card :course="$course" :mentor="$course->mentor" />
+                                        </div>
+                                    @empty
+                                        <div class="text-center">
+                                            <img src="{{asset('images/states/empty-courses.svg')}}" />
+                                            <h4>There are no courses available at this time</h4>
+                                            <p class="px-5">Sign up as a Mentor to start earning money teaching the things you love</p>
 
-                                    <a href="{{Auth::user() ? '/mentor/onboarding' : '/register'}}" class="btn btn-primary w-auto">Start Creating Courses</a>
+                                            <a href="{{Auth::user() ? '/mentor/onboarding' : '/register'}}" class="btn btn-primary w-auto">Start Creating Courses</a>
+                                        </div>
+                                    @endforelse
                                 </div>
-                            @endforelse
+                            </div>
                         </div>
+
+                        <div class="d-flex justify-content-center">
+                            {{ $courses->onEachSide(5)->links() }}
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+
                     </div>
                 </div>
 
-                <div class="d-flex justify-content-center">
-                    {{ $results->onEachSide(5)->links() }}
-                </div>
             </div>
             <!-- Courses Wrapper End  -->
 

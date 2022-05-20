@@ -1,13 +1,12 @@
 <x-guest-layout>
-    <!-- Page Banner Start -->
+    <x-page-title title="Register on Libraclass" />
+
     <div class="section page-banner py-0 pt-5 pb-0 px-0 w-100 bg-transparent">
         <div class="container pt-5 w-100">
             <div class="pt-5 px-0 banner-header"></div>
         </div>
     </div>
-    <!-- Page Banner End -->
 
-    <!-- Register & Login Start -->
     <div class="section section-padding pt-md-3 pt-0 mt-5">
         <div class="container">
             <div class="row">
@@ -69,7 +68,7 @@
                                 <!-- Single Form Start -->
                                 <div class="single-form">
                                     <input type="password" name="password" value="{{old('password')}}" placeholder="Password">
-                                    <x-errors name="email" />
+                                    <x-errors name="password" />
                                 </div>
                                 <!-- Single Form End -->
                                 <!-- Single Form End -->

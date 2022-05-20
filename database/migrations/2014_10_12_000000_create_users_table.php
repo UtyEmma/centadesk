@@ -36,7 +36,7 @@ return new class extends Migration
             $table->string('resume')->nullable();
             $table->string('total_reviews');
             $table->string('avg_rating');
-            $table->string('interests')->nullable();
+            $table->longText('interests')->nullable();
             $table->string('avatar')->nullable();
             $table->integer('earnings');
             $table->string('affiliate_id');

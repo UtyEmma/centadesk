@@ -1,5 +1,5 @@
 @include('front.mentors.js.bank-details-verification-js')
-@include('front.mentors.js.crypto-wallet-js')
+{{-- @include('front.mentors.js.crypto-wallet-js') --}}
 
 <div >
     <div class="px-0">

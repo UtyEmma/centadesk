@@ -22,8 +22,10 @@ use App\Models\User;
 use App\Models\Wallet;
 use App\Notifications\CoursePublishedNotification;
 use Exception;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Str;
 
@@ -33,25 +35,60 @@ class CourseController extends Controller{
 
     public function all(Request $request){
         $type = 'page';
+        $user = $this->user();
 
-        if($request->category){
-            $results = Courses::where('category', $request->category)->where('status', 'published')->paginate(env('PAGINATION_COUNT'));
-            $courses = $this->getCoursesData($results);
-        }elseif ($request->keyword) {
+        $query = Courses::query();
+        // $courses = Courses::where()
+
+        $query->when($request->category, function($query, $category){
+            return $query->where('category', $category);
+        });
+
+        $query->when($request->keyword, function($query, $keyword) use ($type){
             $type = 'search';
-            $results = Courses::search($request->keyword)->where('status', 'published')->paginate(env('PAGINATION_COUNT'));
-            $courses = $this->getCoursesData($results);
-        }else{
-            $results =  Courses::paginate(env('PAGINATION_COUNT'));
-            $courses = $this->getCoursesData($results);
-        }
+            return $query->search($keyword);
+        });
+
+        // $query->where('status', 'published');
+
+        $query->whereRelation('batches', 'startdate', '>', now()); //Courses with upcoming batches
+        // $verificationStatuses = implode(',', ["verified", "requested", "unverified"]);
+
+        // $query->join('users', 'users.unique_id', 'courses.unique_id')
+        //             ->select('courses.*', 'users.is_verified')
+        //             ->orderByRaw("FIELD(is_verified, $verificationStatuses)");
+        // $withVerifiedUsers = $query->whereRelation('mentor', 'is_verified', 'verified');
+
+        $query->orderBy(Batch::select('startdate')->whereColumn('courses.unique_id', 'batches.course_id'));
+
+        $query->with(['mentor', 'enrollments.student'])
+                ->withCount('allReviews')
+                ->withCount('batches')
+                ->withCount('enrollments');
+
+
+        $results = $query->paginate(env('PAGINATION_COUNT'));
 
         return view('front.courses', [
-            'courses' => $courses,
+            'courses' => $results,
             'data' => $this->app_data(),
-            'type' => $type,
-            'results' => $results
+            'type' => $type
         ]);
+    }
+
+    public function coursesByVerifiedUsers($query){
+        return $query->whereRelation('mentor', 'is_verified', 'verified');
+    }
+
+    public function sortCoursesBasedOnUserInterest($query){
+        $user = $this->user();
+
+        return $query->when($user, function($query, $user) {
+            $interest = $user->interests;
+            return $query->whereIn('category', $interest);
+        }, function($query){
+            return $query;
+        });
     }
 
     public function create(Request $request){
@@ -71,6 +108,7 @@ class CourseController extends Controller{
                     return Response::redirectBack('error', 'You cannot create courses because your mentor application has not been approved yet!');
 
             $course_id = Token::unique('courses');
+
             if(!$category = Category::where('slug', $request->category)->first())
                         return Response::redirectBack('error', 'The selected category does not exist.');
 

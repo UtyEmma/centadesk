@@ -9,4 +9,3 @@
 
     <x-student-menu />
 </x-page-banner>
-    <!-- Page Banner End -->

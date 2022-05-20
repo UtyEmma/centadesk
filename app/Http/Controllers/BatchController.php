@@ -6,6 +6,7 @@ use App\Http\Requests\NewBatchRequest;
 use App\Http\Traits\BatchActions;
 use App\Http\Traits\CourseActions;
 use App\Jobs\NewCourseAlert;
+use App\Library\Currency;
 use App\Library\FileHandler;
 use App\Library\Links;
 use App\Library\Number;
@@ -75,11 +76,12 @@ class BatchController extends Controller{
 
         $short_code = strtolower(Token::text(7, 'batches', 'short_code'));
         $discount_price = 0;
+        $price = Currency::convertUserCurrencyToDefault($request->price);
 
         if($request->discount === 'fixed'){
-            $discount_price = $request->fixed;
+            $discount_price = Currency::convertUserCurrencyToDefault($request->fixed);
         }else if($request->discount === 'percent'){
-            $discount_price = Number::percentageDecrease($request->percent, $request->price);
+            $discount_price = Number::percentageDecrease($request->percent, $price);
         }
 
         $batch = Batch::create([
@@ -92,11 +94,12 @@ class BatchController extends Controller{
             'class_link' => $request->class_link,
             'access_link' => $request->access_link,
             'attendees' => $request->attendees,
-            'price' => $request->price,
+            'price' => $price,
             'current' => true,
             'count' => 1,
             'desc' => $request->desc,
             'video' => $request->video,
+            'certificates' => $request->certificates,
             'images' => $images,
             'startdate' => $request->startdate,
             'enddate' => $request->enddate,

@@ -50,12 +50,20 @@ Route::middleware(['set.currency', 'set.referrals'])->group(function(){
         Route::middleware('is.onboarded')->group(function(){
             Route::prefix('learning')->group(function(){
                 Route::get('/', [StudentController::class, 'overview']);
-                Route::prefix('/courses')->group(function(){
+
+                Route::prefix('courses')->group(function(){
+
                     Route::get('/', [StudentController::class, 'enrolledCourses']);
-                    Route::get('/{slug}/{shortcode}', [StudentController::class, 'enrolledCourse']);
-                    Route::get('/{slug}/{shortcode}/forum', [StudentController::class, 'courseForum']);
+
+                    Route::prefix('{slug}')->group(function(){
+                        Route::prefix('{shortcode}')->group(function(){
+                            Route::get('/', [StudentController::class, 'enrolledCourse']);
+                            Route::get('forum', [StudentController::class, 'courseForum']);
+                            Route::get('certificate', [EnrollmentController::class, 'downloadCertificate']);
+                        });
+                    });
                 });
-                Route::get('/mentors', [StudentController::class, 'fetchMentors']);
+                // Route::get('/mentors', [StudentController::class, 'fetchMentors']);
             });
 
 
@@ -82,8 +90,8 @@ Route::middleware(['set.currency', 'set.referrals'])->group(function(){
                 Route::post('/create/{batch_id}', [ReportController::class, 'create']);
                 Route::get('/resolve/{batch_id}', [ReportController::class, 'resolve']);
             });
-
         });
+
         Route::prefix('/transaction')->group(function(){
             Route::get('/verify', [TransactionsController::class, 'verify']);
         });
