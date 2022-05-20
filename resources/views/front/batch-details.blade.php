@@ -86,6 +86,11 @@
                 </div>
                 <div class="col-lg-4 mt-5 mt-md-0">
                     <div class="sidebar mt-0 p-0">
+                        <div class="sidebar-widget mb-4 mt-0">
+                            <h5 class="tab-title mb-2">Invite your friends</h5>
+                            <x-share-link :link="request()->url()" />
+                        </div>
+
                         <div class="sidebar-widget mt-md-0 mb-3">
                             <x-batch-countdown :batch="$batch" />
                         </div>
@@ -107,10 +112,6 @@
                             <x-mentor-card :mentor="$mentor" :class="''" :btn="true" />
                         </div>
 
-                        <div class="sidebar-widget mt-5">
-                            <h5 class="mb-0">Share this batch:</h5>
-                            <x-share-btns :text="$batch->excerpt" :tags="$course->tags" />
-                        </div>
                     </div>
                 </div>
             </div>

@@ -99,7 +99,7 @@ class BatchController extends Controller{
             'count' => 1,
             'desc' => $request->desc,
             'video' => $request->video,
-            'certificates' => $request->certificates,
+            'certificates' => $request->certificates === 'on' ? true : false,
             'images' => $images,
             'startdate' => $request->startdate,
             'enddate' => $request->enddate,
@@ -135,7 +135,7 @@ class BatchController extends Controller{
         } catch (\Throwable $th) {}
 
 
-        return Response::redirectBack('success', 'Batch Created Successfully');
+        return Response::redirect("/me/courses/$course->slug/$batch->short_code", 'success', 'Batch Created Successfully');
     }
 
     function batchDetails(Request $request, $slug, $shortcode){

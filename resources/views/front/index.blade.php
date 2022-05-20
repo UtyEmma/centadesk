@@ -60,7 +60,7 @@
         <!-- Slider Images Start -->
         <div class="slider-images">
             <div class="images">
-                <img src="{{asset('images/slider/slider-1.png')}}" alt="Slider">
+                <img src="{{asset('images/slider/slider-1.png')}}" style="z-index: 0;" alt="Slider">
             </div>
         </div>
         <!-- Slider Images End -->
@@ -258,10 +258,9 @@
 
                 <!-- Download App Button End -->
                 <div class="download-app-btn">
-                    <ul class="app-btn">
-                        <li><a href="#"><img src="{{asset('images/google-play.png')}}" alt="Google Play"></a></li>
-                        <li><a href="#"><img src="{{asset('images/app-store.png')}}" alt="App Store"></a></li>
-                    </ul>
+                    <a href="https://www.youtube.com/watch?v=BRvyWfuxGuU" class="play video-popup btn btn-warning btn-hover-dark d-flex align-items-center">
+                        <span>Watch a Video</span>
+                    </a>
                 </div>
                 <!-- Download App Button End -->
 

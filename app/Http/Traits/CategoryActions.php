@@ -8,7 +8,10 @@ use App\Models\Courses;
 trait CategoryActions {
 
     function getActiveCategories(){
-        return Category::where('status', true)->where('courses', '>', 0)->get();
+        return Category::where('status', true)
+                        ->where('courses', '>', 0)
+                        ->whereRelation('getCourses', 'total_batches', '>', 0)
+                        ->get();
     }
 
     function getTopCategories(){

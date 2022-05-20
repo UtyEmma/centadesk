@@ -12,8 +12,8 @@
                 </div>
 
                 <div class="col-9">
-                    <h6 class="mb-0"><a href="./{{$course->slug}}/{{$batch->short_code}}">{{$batch->title}}</a></h6>
-                    <small>{{Str::words($batch->excerpt, 7)}} <a class="text-primary" href="./{{$course->slug}}/{{$batch->short_code}}">Read More</a> </small>
+                    <h5 class="mb-0"><a href="./{{$course->slug}}/{{$batch->short_code}}">{{$batch->title}}</a></h5>
+                    {{-- <small>{{Str::words($batch->excerpt, 7)}} <a class="text-primary" href="./{{$course->slug}}/{{$batch->short_code}}">Read More</a> </small> --}}
                     <div class="mt-1">
                         <p class="date my-0"><i class="icofont-calendar"></i> <span class="ml-2">{{$startdate->toDayDateTimeString()}}</span></p>
                     </div>

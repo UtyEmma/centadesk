@@ -1,5 +1,6 @@
 <x-app-layout>
     <x-page-title title="Mentor Dashboard - Create a New Batch" />
+    @include('dashboard.js.create-courses-js')
 
     @push('scripts')
         <script src="{{asset('js/pages/createbatch.js')}}"></script>
@@ -8,7 +9,6 @@
     <div class="page-content-wrapper">
         <div class="container-fluid custom-container">
 
-            @include('dashboard.js.create-courses-js')
 
             <div>
                 <div >
@@ -16,7 +16,7 @@
                     <h5 class="mt-1 lh-0">Create a New Batch</h5>
                 </div>
 
-                <form class="mt-5" action="/me/courses/{{$course->unique_id}}/batch/create" onsubmit="validateBatchDetails(event)"  method="post" enctype="multipart/form-data">
+                <form class="mt-5" action="/me/courses/{{$course->unique_id}}/batch/create" onsubmit="return validateBatchDetails(event)"  method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="row">
                         <div class="col-md-6">
@@ -38,14 +38,14 @@
                                 </div>
 
                                 <div class="single-form">
-                                    <label class="mb-1" style="font-weight: 500;">Write a more detailed description of the course here.</label>
+                                    <label class="mb-1">Description</label>
                                     <x-rich-text placeholder="Write a compelling description of your class here" name="desc" />
                                     <x-errors name="desc" />
                                 </div>
 
                                 <div class="single-form">
-                                    <label class="mb-1">What will your student's gain from this batch:</label>
-                                    <x-form-repeater />
+                                    <label class="mb-0">Objectives</label>
+                                    <x-form-repeater name="objectives" />
                                 </div>
 
 
@@ -85,15 +85,25 @@
                                     </div>
                                 </div>
 
+                                <div class="form-check">
+                                    <input class="form-check-input" id="certificates" name="certificates" type="checkbox">
+                                    <label class="form-check-label fs-6" for="certificates">
+                                        Issue a Certificate for this Session
+                                    </label>
+                                    <div>
+                                        <x-errors name="certificates" />
+                                    </div>
+                                </div>
+
                                 <div class="single-form">
                                     <label>Batch Waiting Link</label>
-                                    <input type="text" name="class_link" value="{{old('class_link')}}" class="form-control" placeholder="Paste Class Waiting Forum Link">
+                                    <input type="text" name="class_link" value="{{old('class_link')}}" class="form-control" placeholder="https://">
                                     <x-errors name="link" />
                                 </div>
 
                                 <div class="single-form">
                                     <label>Batch Access Link</label>
-                                    <input type="text" name="access_link" value="{{old('access_link')}}" class="form-control" placeholder="Paste Class Access Link">
+                                    <input type="text" name="access_link" value="{{old('access_link')}}" class="form-control" placeholder="https://">
                                     <x-errors name="link" />
                                 </div>
                             </div>
@@ -107,27 +117,15 @@
 
                             <div class="card radius p-3 p-md-5 mt-1">
                                 <div class="single-form my-2">
+                                    <label class="mb-1">Batch Image</label>
                                     <x-img-upload name="images" :image="old('images')">Upload Image</x-img-upload>
                                     <x-errors name="images" />
                                 </div>
 
-                                <hr>
-
                                 <div class="single-form my-2">
-                                    <div class="row gx-3">
-                                        <div class="col-md-6">
-                                            <label class="mb-1">Promotional Video Link</label>
-                                            <input type="text" name="video" class="px-2 mt-1" value="{{old('video')}}" placeholder="Link to promotional video" />
-                                            <x-errors name="video" />
-                                        </div>
-
-                                        <div class="col-md-6">
-                                            <div class="position-relative overflow-hidden radius mt-2" style="height: 180px;">
-                                                <img src="{{asset('images/add_video.jpg')}}" id="avatar_preview" style="width: 100%;" class="img-cover radius" alt="">
-                                            </div>
-                                        </div>
-                                    </div>
-
+                                    <label class="mb-1">Promotional Video Link</label>
+                                    <input type="text" name="video" class="px-2 mt-1" value="{{old('video')}}" placeholder="Link to promotional video" />
+                                    <x-errors name="video" />
                                 </div>
                             </div>
 
@@ -180,7 +178,7 @@
                                     <div id="discount_container">
                                         <div class="row">
                                             <div class="mt-4">
-                                                <h5 class="lh-0 mb-0">Discount Limit</h5>
+                                                <h6 class="lh-0 mb-0">Discount Limit</h6>
                                             </div>
                                             <div class="single-form col-md-6 mt-2">
                                                 <label>Expiration Date</label>

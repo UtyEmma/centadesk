@@ -91,7 +91,7 @@ trait CourseActions {
     }
 
     function getActiveCourses(){
-        return Courses::where('status', 'published')->get();
+        return Courses::where('status', 'published')->whereRelation('batches', 'startdate', '>', now())->get();
     }
 
     function getSuggestedCourses(){

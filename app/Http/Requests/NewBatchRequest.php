@@ -41,7 +41,8 @@ class NewBatchRequest extends FormRequest
             'fixed' => 'nullable|numeric',
             'percent' => 'nullable|numeric|max:100|min:0',
             'time_limit' => 'nullable|string|date',
-            'signup_limit' => 'nullable|numeric'
+            'signup_limit' => 'nullable|numeric',
+            'certificates' => 'required'
         ];
     }
 

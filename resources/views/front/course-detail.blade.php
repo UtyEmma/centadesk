@@ -104,8 +104,13 @@
                     <!-- Courses Details End -->
                 </div>
                 <div class="col-lg-4 mt-5 mt-md-0">
+                    <div class="sidebar-widget mt-0 mb-4">
+                        <h5 class="tab-title mb-2">Share This Course</h5>
+                        <x-share-link :link="request()->url()" />
+                    </div>
+
                     <div>
-                        <h5 class="tab-title mb-2">Course Batches</h5>
+                        <h5 class="tab-title mb-2">Upcoming Batches</h5>
 
                         <div class="widget-post mt-2 p-3">
                             <ul class="post-items">
@@ -120,14 +125,6 @@
                         <h5>Meet the Mentor</h5>
                         <x-mentor-card :mentor="$mentor" :class="''" :btn="true" />
                     </div>
-
-                    <!-- Sidebar Widget Share Start -->
-                    <div class="sidebar-widget mt-4">
-                        <h5 class="tab-title mb-0">Share Course</h5>
-
-                        <x-share-btns :text="$course->excerpt" :tags="$course->tags" />
-                    </div>
-                    <!-- Sidebar Widget Share End -->
                 </div>
             </div>
 

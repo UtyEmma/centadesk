@@ -38,6 +38,7 @@ class CourseController extends Controller{
         $user = $this->user();
 
         $query = Courses::query();
+
         // $courses = Courses::where()
 
         $query->when($request->category, function($query, $category){
@@ -51,7 +52,7 @@ class CourseController extends Controller{
 
         // $query->where('status', 'published');
 
-        $query->whereRelation('batches', 'startdate', '>', now()); //Courses with upcoming batches
+        // $query->whereRelation('batches', 'startdate', '>', now()); //Courses with upcoming batches
         // $verificationStatuses = implode(',', ["verified", "requested", "unverified"]);
 
         // $query->join('users', 'users.unique_id', 'courses.unique_id')

@@ -19,6 +19,9 @@
             <div class="text-center">
                 <h4 style="font-weight: 500;" class="text-primary mt-2">This batch has been completed</h4>
 
+                @if ($batch->certificates)
+                    <a href="{{route('enrolledBatchRoute')}}/certificate">Download Certificate</a>
+                @endif
                 <a href="/courses">
                     <x-btn classes="btn-primary btn-hover-dark">View Upcoming Classes</x-btn>
                 </a>

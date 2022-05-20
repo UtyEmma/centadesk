@@ -94,17 +94,17 @@
                                 {{-- <img src="{{asset('images/logos/flutterwave.png')}}" width="200" class="img-fluid" alt=""> --}}
                             </x-custom-radio>
                         </div>
-                        <div class="mb-2">
+                        {{-- <div class="mb-2">
                             <x-custom-radio name="payment" value="crypto" :default="false">
                                 <div>
                                     <small>Pay with Crypto</small>
                                 </div>
                             </x-custom-radio>
-                        </div>
+                        </div> --}}
                         <div class="mb-2">
                             <x-custom-radio name="payment" value="wallet" :default="false">
                                 <div>
-                                    <small>Pay with Wallet</small>
+                                    <small>Pay with your Wallet</small>
                                     <p >
                                         <small class="fw-bold">{{$user->currency}}</small>
                                         <span class="fs-5">
@@ -117,8 +117,8 @@
                     </div>
                 </div>
                 <div class="modal-footer w-100">
-                    <button type="button" class="btn btn-secondary btn-hover-primary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary btn-hover-dark">Proceed with Payment</button>
+                    <button type="button" class="btn btn-secondary btn-hover-primary btn-custom" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary btn-hover-dark btn-custom">Proceed with Payment</button>
                 </div>
             </form>
         </div>

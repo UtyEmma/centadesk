@@ -50,8 +50,12 @@
                             </div>
 
                             <div class="d-flex align-items-center mt-2">
-                                <input type="checkbox" id="current" class="me-2 checkbox"  />
-                                <label for="current">Current Position</label>
+                                <div class="form-check">
+                                    <input class="form-check-input" id="current"  type="checkbox">
+                                    <label class="form-check-label fs-6" for="current">
+                                        Current Position
+                                    </label>
+                                </div>
                             </div>
 
                             {{-- <div class="col-md-12">

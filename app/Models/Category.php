@@ -21,7 +21,7 @@ class Category extends Model{
     ];
 
     function getCourses (){
-        return $this->hasMany(Courses::class, 'category', 'slug');
+        return $this->hasMany(Courses::class, 'category', 'name');
     }
 
 }

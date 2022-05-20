@@ -45,7 +45,6 @@ const parseErrors = (errors) => {
 
 function validateCourseInput(e){
     const values = Object.fromEntries(new FormData(e.target).entries())
-    console.log(values)
     const validator = new Validator(values, __courseSchema.rules)
     validator.setAttributeNames(__courseSchema.attributes)
 
