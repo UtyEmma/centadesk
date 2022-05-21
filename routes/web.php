@@ -60,6 +60,7 @@ Route::middleware(['set.currency', 'set.referrals'])->group(function(){
                             Route::get('/', [StudentController::class, 'enrolledCourse'])->name('enrolledBatchRoute');
                             Route::get('forum', [StudentController::class, 'courseForum']);
                             Route::get('certificate', [EnrollmentController::class, 'downloadCertificate']);
+                            Route::get('view-certificate', [EnrollmentController::class, 'viewCertificate']);
                         });
                     });
                 });

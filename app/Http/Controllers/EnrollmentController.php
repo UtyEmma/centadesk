@@ -20,10 +20,7 @@ use App\Models\User;
 use App\Models\Wallet;
 use Exception;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\Redirect;
-use PDF;
-
+use Barryvdh\DomPDF\Facade\Pdf;
 class EnrollmentController extends Controller{
     use TransactionActions, BatchActions, EnrollmentActions, WalletActions, CryptoActions;
 
@@ -84,7 +81,10 @@ class EnrollmentController extends Controller{
 
     public function downloadCertificate($slug, $shortCode){
         if(!$batch = Batch::where('short_code', $shortCode)->first()) return Response::redirectBack('error', 'This batch does not exist');
+
         $user = $this->user();
+        $course = Courses::find($batch->course_id);
+        $mentor = User::find($course->mentor_id);
 
         if(!Enrollment::where([
             'batch_id' => $batch->unique_id,
@@ -93,14 +93,33 @@ class EnrollmentController extends Controller{
 
         if(!$batch->isCompleted()) return Response::redirectBack('error', "You cannot download this certificate because the batch has not been completed");
 
-        if(!$batch->certificate) return Response::redirectBack('error', 'There is no certificate for this batch');
+        if(!$batch->certificates) return Response::redirectBack('error', 'There is no certificate for this batch');
 
-        $pdf = PDF::loadview('certificate.template', [
+        $data = [
             'batch' => $batch,
-            'student' => $user
-        ]);
+            'student' => $user,
+            'course' => $course,
+            'mentor' => $mentor
+        ];
 
-        return $pdf->download();
+        $pdf = Pdf::setOptions(['dpi' => 150,])->setPaper('a4', 'landscape');
+        $pdf->loadView('certificate.template', $data);
+        $pdf->render();
+
+        return $pdf->download("libraclass_cert.pdf");
+    }
+
+    function viewCertificate($slug, $shortCode){
+        if(!$batch = Batch::where('short_code', $shortCode)->first()) return Response::redirectBack('error', 'This batch does not exist');
+        $user = $this->user();
+        $course = Courses::find($batch->course_id);
+        $mentor = User::find($course->mentor_id);
+        return view('certificate.template',[
+            'batch' => $batch,
+            'student' => $user,
+            'course' => $course,
+            'mentor' => $mentor
+        ]);
     }
 
 

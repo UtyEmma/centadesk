@@ -1,132 +1,71 @@
 <style>
-    @import url('https://fonts.googleapis.com/css?family=Open+Sans|Pinyon+Script|Rochester');
- .cursive {
-	 font-family: 'Pinyon Script', cursive;
+body, html {
+    margin: 0;
+    padding: 0;
 }
- .sans {
-	 font-family: 'Open Sans', sans-serif;
+body {
+    color: black;
+    display: table;
+    font-family: Georgia, serif;
+    font-size: 30px;
+    text-align: center;
 }
- .bold {
-	 font-weight: bold;
+.container {
+    border: 20px solid #309255;
+    height:  8 in;
+    display: block;
 }
- .block {
-	 display: block;
+.logo {
+    color: #309255;
+    margin-top: 7%;
+    margin-bottom: 4%;
 }
- .underline {
-	 border-bottom: 1px solid #777;
-	 padding: 5px;
-	 margin-bottom: 15px;
+
+.marquee {
+    color: #309255;
+    font-size: 100px;
+    margin: 20px;
 }
- .margin-0 {
-	 margin: 0;
+.assignment {
+    margin: 20px;
+    font-size: 60px;
 }
- .padding-0 {
-	 padding: 0;
+.person {
+    padding: 10px 20px;
+    border-bottom: 2px solid black;
+    font-size: 50px;
+    font-style: italic;
+    margin: 20px auto;
+    text-align: center;
+    width: 60%;
 }
- .pm-empty-space {
-	 height: 40px;
-	 width: 100%;
+.reason {
+    margin: 20px;
+    margin-top: 30px;
+    font-size: 48px;
+    line-height: 70px;
 }
- body {
-	 padding: 20px 0;
-	 background: #ccc;
+
+.instructor{
+    border-bottom: 2px solid black;
+    width: 500px;
+    margin: 0 auto;
+    font-weight: 600;
+    line-height: 50px
+    padding: 0 20px;
+    text-align: center;
+    padding-bottom: 2px;
+    margin-bottom: 10px;
+    font-size: 40px;
 }
- .pm-certificate-container {
-	 position: relative;
-	 width: 800px;
-	 height: 600px;
-	 background-color: #618597;
-	 padding: 30px;
-	 color: #333;
-	 font-family: 'Open Sans', sans-serif;
-	 box-shadow: 0 0 5px rgba(0,0,0,0.5);
-}
- .pm-certificate-container .outer-border {
-	 width: 794px;
-	 height: 594px;
-	 position: absolute;
-	 left: 50%;
-	 margin-left: -397px;
-	 top: 50%;
-	 margin-top: -297px;
-	 border: 2px solid #fff;
-}
- .pm-certificate-container .inner-border {
-	 width: 730px;
-	 height: 530px;
-	 position: absolute;
-	 left: 50%;
-	 margin-left: -365px;
-	 top: 50%;
-	 margin-top: -265px;
-	 border: 2px solid #fff;
-}
- .pm-certificate-container .pm-certificate-border {
-	 position: relative;
-	 width: 720px;
-	 height: 520px;
-	 padding: 0;
-	 border: 1px solid #E1E5F0;
-	 background-color: #ffffff;
-	 background-image: none;
-	 left: 50%;
-	 margin-left: -360px;
-	 top: 50%;
-	 margin-top: -260px;
-}
- .pm-certificate-container .pm-certificate-border .pm-certificate-block {
-	 width: 650px;
-	 height: 200px;
-	 position: relative;
-	 left: 50%;
-	 margin-left: -325px;
-	 top: 70px;
-	 margin-top: 0;
-}
- .pm-certificate-container .pm-certificate-border .pm-certificate-header {
-	 margin-bottom: 10px;
-}
- .pm-certificate-container .pm-certificate-border .pm-certificate-title {
-	 position: relative;
-	 top: 40px;
-}
- .pm-certificate-container .pm-certificate-border .pm-certificate-title h2 {
-	 font-size: 34px !important;
-}
- .pm-certificate-container .pm-certificate-border .pm-certificate-body {
-	 padding: 20px;
-}
- .pm-certificate-container .pm-certificate-border .pm-certificate-body .pm-name-text {
-	 font-size: 20px;
-}
- .pm-certificate-container .pm-certificate-border .pm-earned {
-	 margin: 15px 0 20px;
-}
- .pm-certificate-container .pm-certificate-border .pm-earned .pm-earned-text {
-	 font-size: 20px;
-}
- .pm-certificate-container .pm-certificate-border .pm-earned .pm-credits-text {
-	 font-size: 15px;
-}
- .pm-certificate-container .pm-certificate-border .pm-course-title .pm-earned-text {
-	 font-size: 20px;
-}
- .pm-certificate-container .pm-certificate-border .pm-course-title .pm-credits-text {
-	 font-size: 15px;
-}
- .pm-certificate-container .pm-certificate-border .pm-certified {
-	 font-size: 12px;
-}
- .pm-certificate-container .pm-certificate-border .pm-certified .underline {
-	 margin-bottom: 5px;
-}
- .pm-certificate-container .pm-certificate-border .pm-certificate-footer {
-	 width: 650px;
-	 height: 100px;
-	 position: relative;
-	 left: 50%;
-	 margin-left: -325px;
-	 bottom: -105px;
+
+.signature{
+    margin: 0 auto;
+    text-align: center;
+    padding-bottom: 2px;
+    margin-bottom: 10px;
+    font-size: 35px;
+    padding: 10px 20px;
 }
 
 </style>

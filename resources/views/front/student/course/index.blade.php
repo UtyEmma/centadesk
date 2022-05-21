@@ -39,32 +39,44 @@
 
                     <div class="col-md-4">
                         <div class="sidebar">
+
                             <x-batch-countdown :batch="$batch" />
 
                             <div class="my-3">
-                                <h5>Batch Links</h5>
-                                <div class="d-flex">
-                                    <div class="me-4">
-                                        @if ($batch->class_link)
-                                            <a href="{{$batch->class_link}}" target="__blank">
-                                                <x-btn classes="btn-secondary btn-hover-primary px-4">Waiting Link <i class="icofont-external-link"></i></x-btn>
-                                            </a>
-                                        @endif
-                                    </div>
-                                    <div>
-                                        <a  href="{{$batch->access_link}}" target="__blank">
-                                            <x-btn classes="btn-primary btn-hover-dark px-4">Access Link <i class="icofont-external-link"></i></x-btn>
-                                        </a>
-                                    </div>
-                                </div>
+                                @if ($batch->isCompleted() && $batch->certificates)
+                                    <a class="btn btn-primary btn-hover-dark btn-custom w-100" href="{{route('enrolledBatchRoute', [
+                                        'shortcode' => $batch->short_code,
+                                        'slug' => $course->slug
+                                        ])}}/certificate">Download Certificate</a>
+                                @endif
                             </div>
 
-                            <!-- Sidebar Widget Information Start -->
-                            <h5 class="">Meet your Mentor:</h5>
-                            <x-mentor-card :mentor="$mentor" :class="''" :btn="true" />
-                            <!-- Sidebar Widget Information End -->
+                            <div class="my-3">
+                                @if (!$batch->isCompleted())
+                                    <h5>Access Links</h5>
+                                    <div class="d-flex">
+                                        <div class="me-4">
+                                            @if ($batch->class_link)
+                                                <a href="{{$batch->class_link}}" target="__blank">
+                                                    <x-btn classes="btn-secondary btn-hover-primary px-4">Waiting Link <i class="icofont-external-link"></i></x-btn>
+                                                </a>
+                                            @endif
+                                        </div>
+                                        <div>
+                                            <a  href="{{$batch->access_link}}" target="__blank">
+                                                <x-btn classes="btn-primary btn-hover-dark px-4">Access Link <i class="icofont-external-link"></i></x-btn>
+                                            </a>
+                                        </div>
+                                    </div>
+                                @endif
+                            </div>
 
-                            <div class="w-100 mt-4 p-3 border radius">
+                            <div class="sidebar-widget my-3">
+                                <h5 class="">Share Course:</h5>
+                                <x-share-link :link="request()->url()" />
+                            </div>
+
+                            <div class="w-100 my-4 p-3 border radius">
                                 @if ($report)
                                     <x-reports.view :report="$report" :batch="$batch" />
                                 @else
@@ -72,20 +84,10 @@
                                 @endif
                             </div>
 
-                            <!-- Sidebar Widget Share Start -->
-                            <div class="sidebar-widget">
-                                <h5 class="">Share Course:</h5>
-
-                                <ul class="social mt-0">
-                                    <li><a href="#"><i class="flaticon-facebook"></i></a></li>
-                                    <li><a href="#"><i class="flaticon-linkedin"></i></a></li>
-                                    <li><a href="#"><i class="flaticon-twitter"></i></a></li>
-                                    <li><a href="#"><i class="flaticon-skype"></i></a></li>
-                                    <li><a href="#"><i class="flaticon-instagram"></i></a></li>
-                                </ul>
+                            <div>
+                                <h5 class="">Meet your Mentor:</h5>
+                                <x-mentor-card :mentor="$mentor" :class="''" :btn="true" />
                             </div>
-                            <!-- Sidebar Widget Share End -->
-
                         </div>
                     </div>
                 </div>
