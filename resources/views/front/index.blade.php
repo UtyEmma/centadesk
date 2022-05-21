@@ -3,14 +3,6 @@
     <x-page-title title="Home - Libraclass, Create and sell online courses" />
 
     <div class="section slider-section">
-
-
-        <!-- Slider Shape Start -->
-        <div class="slider-shape">
-            <img class="shape-1 animation-round" src="{{asset('images/shape/shape-8.png')}}" alt="Shape">
-        </div>
-        <!-- Slider Shape End -->
-
         <div class="container">
 
             <!-- Slider Content Start -->
