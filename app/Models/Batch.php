@@ -34,6 +34,10 @@ class Batch extends Model{
         return $this->belongsTo(Courses::class, 'course_id', 'unique_id');
     }
 
+    public function mentor (){
+        return $this->belongsTo(User::class, 'mentor_id', 'unique_id');
+    }
+
     function isOngoing(){
         return Date::parse($this->startdate)->lessThanOrEqualTo(Date::now()) && Date::parse($this->enddate)->greaterThanOrEqualTo(Date::now());
     }

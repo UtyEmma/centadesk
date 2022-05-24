@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 
 class Currency implements CastsAttributes{
     function get($model, string $key, $value, array $attributes){
-        $currency = request()->cookie('currency') ?? Auth::user()->currency;
+        $currency = request()->cookie('currency') ?? Auth::user()->currency ?? env('DEFAULT_CURRENCY');
         $from = env('DEFAULT_CURRENCY');
         $converted = $value ? LibraryCurrency::convert($value, $from, $currency) : $value;
         return $converted;

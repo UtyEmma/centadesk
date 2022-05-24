@@ -23,11 +23,19 @@
         <div class="section-padding-02 mt-0 pt-0">
             <div class="container mt-0">
                 <div class="row">
-                    <div class="col-lg-6">
-                        <!-- About Images Start -->
-                        <div class="about-images mt-0">
-                            <div class="images">
-                                <img src="{{asset('images/about.jpg')}}" alt="About">
+                    <div class="col-lg-8">
+                        <div class="about-content mt-0 ms-0 ps-0 w-100" style="max-width: 100%;">
+                            {{-- <h5 class="sub-title">Welcome to Libraclass.</h5> --}}
+                            <h2 class="main-title">Create courses and enroll students on Libraclass! <span>Host classes anywhere.</span></h2>
+                            <p>The Libraclass Platform is solely for high-value digital knowledge contents, and to keep it that way, anything placed on the learning platform must meet certain criteria.</p>
+                            <a href="/mentor/onboarding" class="btn btn-primary btn-hover-dark btn-custom">Start Selling Courses</a>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4">
+                        <div class="about-images h-100">
+                            <div class="images h-100">
+                                <img src="{{asset('images/about.jpg')}}" style="object-fit: cover;" class="h-100" alt="About">
                             </div>
 
                             <div class="about-years">
@@ -37,76 +45,62 @@
                                 <p><strong>28+</strong> Years Experience</p>
                             </div>
                         </div>
-                        <!-- About Images End -->
-
-                    </div>
-                    <div class="col-lg-6">
-
-                        <!-- About Content Start -->
-                        <div class="about-content mt-0">
-                            <h5 class="sub-title">Welcome to Libraclass.</h5>
-                            <h2 class="main-title">You can join with Edule and upgrade your skill for your <span>bright future.</span></h2>
-                            <p>Lorem Ipsum has been the industr’s standard dummy text ever since unknown printer took galley type and scmbled make type specimen book. It has survived not only five centuries.</p>
-                            <a href="/mentor/onboarding" class="btn btn-primary btn-hover-dark">Start Selling Courses</a>
-                        </div>
-                        <!-- About Content End -->
-
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="section-padding-02 mt-n6">
+        <div class="section-padding-02">
             <div class="container">
+                <!-- Section Title Start -->
+                <div class="section-title shape-03 text-center">
+                    <h2 class="main-title">How to become a <span> Mentor</span></h2>
+                </div>
+                <!-- Section Title End -->
+
                 <div class="about-items-wrapper">
                     <div class="row">
-                        <div class="col-lg-4">
-                            <!-- About Item Start -->
-                            <div class="about-item">
+                        <div class="col-lg-4 py-3">
+                            <div class="about-item h-100">
                                 <div class="item-icon-title">
                                     <div class="item-icon">
                                         <i class="flaticon-tutor"></i>
                                     </div>
                                     <div class="item-title">
-                                        <h3 class="title">Top Instructors</h3>
+                                        <h3 class="title">Create A Mentor Account</h3>
                                     </div>
                                 </div>
-                                <p>Lorem Ipsum has been the industry's standard dumy text since the when took and scrambled to make type specimen book has survived.</p>
-                                <p>Lorem Ipsum has been the industry's standard dumy text since the when took and scrambled make.</p>
+                                <p>To get started, we recommend you read our <a href="/terms">terms and conditions</a> about operating as a Mentor on Libraclass.</p>
+                                <p>You can then proceed to <a href="/mentor/onboarding">Create a Mentor Account</a>.</p>
                             </div>
-                            <!-- About Item End -->
                         </div>
-                        <div class="col-lg-4">
-                            <!-- About Item Start -->
-                            <div class="about-item">
+                        <div class="col-lg-4 py-3">
+                            <div class="about-item h-100">
                                 <div class="item-icon-title">
                                     <div class="item-icon">
                                         <i class="flaticon-coding"></i>
                                     </div>
                                     <div class="item-title">
-                                        <h3 class="title">Portable Program</h3>
+                                        <h3 class="title">Provide Your Information</h3>
                                     </div>
                                 </div>
-                                <p>Lorem Ipsum has been the industry's standard dumy text since the when took and scrambled to make type specimen book has survived.</p>
-                                <p>Lorem Ipsum has been the industry's standard dumy text since the when took and scrambled make.</p>
+                                <p>We are dedicated to providing the best programs and courses for our students, mentors need to provide information to help us assertain your expertise.</p>
+                                <p>We also request your bank account details through which you can withdrawals from the platform.</p>
                             </div>
-                            <!-- About Item End -->
                         </div>
-                        <div class="col-lg-4">
-                            <!-- About Item Start -->
-                            <div class="about-item">
+                        <div class="col-lg-4 py-3">
+                            <div class="about-item h-100">
                                 <div class="item-icon-title">
                                     <div class="item-icon">
                                         <i class="flaticon-increase"></i>
                                     </div>
                                     <div class="item-title">
-                                        <h3 class="title">Improve Quickly</h3>
+                                        <h3 class="title">Start Creating Courses</h3>
                                     </div>
                                 </div>
-                                <p>Lorem Ipsum has been the industry's standard dumy text since the when took and scrambled to make type specimen book has survived.</p>
-                                <p>Lorem Ipsum has been the industry's standard dumy text since the when took and scrambled make.</p>
+                                <p>Once your Mentor account has been approved, you can start creating courses and hosting sessions on Libraclass.</p>
+                                <p>Your earnings will be accumulated and you can make withdraw anytime.</p>
                             </div>
-                            <!-- About Item End -->
                         </div>
                     </div>
                 </div>
@@ -118,233 +112,45 @@
     <!-- Call to Action Start -->
     <div class="section section-padding-02">
         <div class="container">
-
-            <!-- Call to Action Wrapper Start -->
             <div class="call-to-action-wrapper">
-
                 <img class="cat-shape-01 animation-round" src="{{asset('images/shape/shape-12.png')}}" alt="Shape">
                 <img class="cat-shape-02" src="{{asset('images/shape/shape-13.svg')}}" alt="Shape">
                 <img class="cat-shape-03 animation-round" src="{{asset('images/shape/shape-12.png')}}" alt="Shape">
 
                 <div class="row align-items-center">
                     <div class="col-md-6">
-
-                        <!-- Section Title Start -->
                         <div class="section-title shape-02">
-                            <h5 class="sub-title">Become A Instructor</h5>
-                            <h2 class="main-title">You can join with Edule as <span>a instructor?</span></h2>
+                            <h2 class="main-title">Join with Libraclass as <span>a mentor?</span></h2>
                         </div>
-                        <!-- Section Title End -->
-
                     </div>
                     <div class="col-md-6">
                         <div class="call-to-action-btn">
-                            <a class="btn btn-primary btn-hover-dark" href="/mentor/onboarding">Start Selling Courses</a>
+                            <a class="btn btn-primary btn-hover-dark btn-custom" href="/mentor/onboarding">Start Selling Courses</a>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- Call to Action Wrapper End -->
-
         </div>
     </div>
     <!-- Call to Action End -->
 
-    <!-- Download App Start -->
-    <div class="section section-padding download-section mt-5">
 
-        <div class="app-shape-1"></div>
-        <div class="app-shape-2"></div>
-        <div class="app-shape-3"></div>
-        <div class="app-shape-4"></div>
-
+    <div class="section section-padding">
         <div class="container">
-
-            <!-- Download App Wrapper Start -->
-            <div class="download-app-wrapper mt-n6">
-
-                <!-- Section Title Start -->
-                <div class="section-title section-title-white">
-                    <h5 class="sub-title">Ready to start?</h5>
-                    <h2 class="main-title">Download our mobile app. for easy to start your course.</h2>
-                </div>
-                <!-- Section Title End -->
-
-                <img class="shape-1 animation-right" src="assets/images/shape/shape-14.png" alt="Shape">
-
-                <!-- Download App Button End -->
-                <div class="download-app-btn">
-                    <ul class="app-btn">
-                        <li><a href="#"><img src="assets/images/google-play.png" alt="Google Play"></a></li>
-                        <li><a href="#"><img src="assets/images/app-store.png" alt="App Store"></a></li>
-                    </ul>
-                </div>
-                <!-- Download App Button End -->
-
-            </div>
-            <!-- Download App Wrapper End -->
-
-        </div>
-    </div>
-    <!-- Download App End -->
-
-    <!-- Testimonial End -->
-    <div class="section section-padding-02 mt-n1">
-        <div class="container">
-
             <!-- Section Title Start -->
             <div class="section-title shape-03 text-center">
-                <h5 class="sub-title">Student Testimonial</h5>
-                <h2 class="main-title">Feedback From <span> Student</span></h2>
+                <h2 class="main-title">Frequently Asked<span> Questions</span></h2>
             </div>
             <!-- Section Title End -->
 
-            <!-- Testimonial Wrapper End -->
-            <div class="testimonial-wrapper testimonial-active">
-                <div class="swiper-container">
-                    <div class="swiper-wrapper">
-                        <!-- Single Testimonial Start -->
-                        <div class="single-testimonial swiper-slide">
-                            <div class="testimonial-author">
-                                <div class="author-thumb">
-                                    <img src="assets/images/author/author-06.jpg" alt="Author">
-
-                                    <i class="icofont-quote-left"></i>
-                                </div>
-
-                                <span class="rating-star">
-                                        <span class="rating-bar" style="width: 80%;"></span>
-                                </span>
-                            </div>
-                            <div class="testimonial-content">
-                                <p>Lorem Ipsum has been the industry's standard dummy text since the 1500s, when an unknown printer took a galley of type and scrambled it to make type specimen book has survived not five centuries but also the leap into electronic.</p>
-                                <h4 class="name">Sara Alexander</h4>
-                                <span class="designation">Product Designer, USA</span>
-                            </div>
-                        </div>
-                        <!-- Single Testimonial End -->
-
-                        <!-- Single Testimonial Start -->
-                        <div class="single-testimonial swiper-slide">
-                            <div class="testimonial-author">
-                                <div class="author-thumb">
-                                    <img src="assets/images/author/author-07.jpg" alt="Author">
-
-                                    <i class="icofont-quote-left"></i>
-                                </div>
-
-                                <span class="rating-star">
-                                        <span class="rating-bar" style="width: 80%;"></span>
-                                </span>
-                            </div>
-                            <div class="testimonial-content">
-                                <p>Lorem Ipsum has been the industry's standard dummy text since the 1500s, when an unknown printer took a galley of type and scrambled it to make type specimen book has survived not five centuries but also the leap into electronic.</p>
-                                <h4 class="name">Melissa Roberts</h4>
-                                <span class="designation">Product Designer, USA</span>
-                            </div>
-                        </div>
-                        <!-- Single Testimonial End -->
-
-                        <!-- Single Testimonial Start -->
-                        <div class="single-testimonial swiper-slide">
-                            <div class="testimonial-author">
-                                <div class="author-thumb">
-                                    <img src="assets/images/author/author-03.jpg" alt="Author">
-
-                                    <i class="icofont-quote-left"></i>
-                                </div>
-
-                                <span class="rating-star">
-                                        <span class="rating-bar" style="width: 80%;"></span>
-                                </span>
-                            </div>
-                            <div class="testimonial-content">
-                                <p>Lorem Ipsum has been the industry's standard dummy text since the 1500s, when an unknown printer took a galley of type and scrambled it to make type specimen book has survived not five centuries but also the leap into electronic.</p>
-                                <h4 class="name">Sara Alexander</h4>
-                                <span class="designation">Product Designer, USA</span>
-                            </div>
-                        </div>
-                        <!-- Single Testimonial End -->
-                    </div>
-
-                    <!-- Add Pagination -->
-                    <div class="swiper-pagination"></div>
-                </div>
+            <div class="faq-wrapper">
+                @forelse ($mentors as $mentor)
+                    <x-faq :title="$mentor->title">
+                        {{$mentor->content}}
+                    </x-faq>
+                @empty
+                @endforelse
             </div>
-            <!-- Testimonial Wrapper End -->
-
         </div>
     </div>
-    <!-- Testimonial End -->
-
-    <!-- Brand Logo Start -->
-    <div class="section section-padding">
-        <div class="container">
-
-            <!-- Brand Logo Wrapper Start -->
-            <div class="brand-logo-wrapper">
-
-                <img class="shape-1" src="assets/images/shape/shape-19.png" alt="Shape">
-
-                <img class="shape-2 animation-round" src="assets/images/shape/shape-20.png" alt="Shape">
-
-                <!-- Section Title Start -->
-                <div class="section-title shape-03">
-                    <h2 class="main-title">Best Supporter of <span> Edule.</span></h2>
-                </div>
-                <!-- Section Title End -->
-
-                <!-- Brand Logo Start -->
-                <div class="brand-logo brand-active">
-                    <div class="swiper-container">
-                        <div class="swiper-wrapper">
-
-                            <!-- Single Brand Start -->
-                            <div class="single-brand swiper-slide">
-                                <img src="assets/images/brand/brand-01.png" alt="Brand">
-                            </div>
-                            <!-- Single Brand End -->
-
-                            <!-- Single Brand Start -->
-                            <div class="single-brand swiper-slide">
-                                <img src="assets/images/brand/brand-02.png" alt="Brand">
-                            </div>
-                            <!-- Single Brand End -->
-
-                            <!-- Single Brand Start -->
-                            <div class="single-brand swiper-slide">
-                                <img src="assets/images/brand/brand-03.png" alt="Brand">
-                            </div>
-                            <!-- Single Brand End -->
-
-                            <!-- Single Brand Start -->
-                            <div class="single-brand swiper-slide">
-                                <img src="assets/images/brand/brand-04.png" alt="Brand">
-                            </div>
-                            <!-- Single Brand End -->
-
-                            <!-- Single Brand Start -->
-                            <div class="single-brand swiper-slide">
-                                <img src="assets/images/brand/brand-05.png" alt="Brand">
-                            </div>
-                            <!-- Single Brand End -->
-
-                            <!-- Single Brand Start -->
-                            <div class="single-brand swiper-slide">
-                                <img src="assets/images/brand/brand-06.png" alt="Brand">
-                            </div>
-                            <!-- Single Brand End -->
-
-                        </div>
-                    </div>
-                </div>
-                <!-- Brand Logo End -->
-
-            </div>
-            <!-- Brand Logo Wrapper End -->
-
-        </div>
-    </div>
-    <!-- Brand Logo End -->
-
 </x-guest-layout>

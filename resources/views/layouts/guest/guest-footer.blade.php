@@ -64,10 +64,10 @@
 
                             <ul class="widget-link">
                                 <li><a href="/privacy-policy">Privacy Policy</a></li>
-                                <li><a href="#">Discussion</a></li>
+                                <li><a href="/disclaimer">Disclaimer</a></li>
                                 <li><a href="/terms">Terms & Conditions</a></li>
                                 <li><a href="#">Customer Support</a></li>
-                                <li><a href="/faqs">Course FAQ’s</a></li>
+                                <li><a href="/faqs">Frequently Asked Questions</a></li>
                             </ul>
 
                         </div>
@@ -81,13 +81,13 @@
 
                     <!-- Footer Widget Start -->
                     <div class="footer-widget">
-                        <h4 class="footer-widget-title">Subscribe</h4>
+                        <h4 class="footer-widget-title">Currency</h4>
 
                         <div class="widget-subscribe">
-                            <p>Lorem Ipsum has been them an industry printer took a galley make book.</p>
+                            {{-- <p>Lorem Ipsum has been them an industry printer took a galley make book.</p> --}}
 
                             <div class="widget-form">
-                                <form action="/settings/update" method="POST">
+                                <form action="/settings/currency/update" method="GET">
                                     @csrf
                                     <x-currency-select :name="'currency'" :currency="$currency" :data="$data" class="" btnClasses="btn-light" />
                                     <x-btn type="submit" classes="btn-primary btn-hover-dark">Update</x-btn>

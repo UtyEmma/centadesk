@@ -6,6 +6,7 @@ use App\Http\Traits\CategoryActions;
 use App\Http\Traits\CourseActions;
 use App\Library\Response;
 use App\Models\Category;
+use App\Models\Faq;
 use App\Models\Testimonial;
 use Illuminate\Http\Request;
 
@@ -41,8 +42,17 @@ class AppController extends Controller {
         return Response::view('front.privacy-policy');
     }
 
-    function faqs(Request $request){
-        return Response::view('front.faqs');
+    function faqs(){
+        $mentors = Faq::where('type', 'mentor')->get();
+        $students = Faq::where('type', 'student')->get();
+        return Response::view('front.faqs', [
+            'mentors' => $mentors,
+            'students' => $students
+        ]);
+    }
+
+    function disclaimer(){
+        return Response::view('front.disclaimer');
     }
 
 }

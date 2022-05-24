@@ -22,7 +22,6 @@ trait Analytics {
         $deposits = Deposit::all();
         $transactions = Transaction::all();
         $enrollments = Enrollment::all();
-        $wallet = Wallet::all();
 
         $no_batches = $batches->count();
         $no_users = $users->count();

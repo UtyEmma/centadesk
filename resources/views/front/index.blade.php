@@ -7,9 +7,9 @@
 
             <!-- Slider Content Start -->
             <div class="slider-content">
-                <h4 class="sub-title">Start your favourite course</h4>
-                <h2 class="main-title">Now learning from anywhere, and build your <span>bright career.</span></h2>
-                <p>It has survived not only five centuries but also the leap into electronic typesetting.</p>
+                <h4 class="sub-title">Find your favourite course</h4>
+                <h2 class="main-title">Start learning from anywhere, and build your <span>bright career.</span></h2>
+                <p>Find and create amazing courses, host sessions anywhere and enroll students anytime.</p>
                 <a class="btn btn-primary btn-hover-dark" href="/courses">Start A Course</a>
             </div>
             <!-- Slider Content End -->
@@ -174,8 +174,8 @@
                         <i class="flaticon-transparency"></i>
                     </div>
                     <div class="work-content">
-                        <h3 class="title">Find Your Course</h3>
-                        <p>It has survived not only centurie also leap into electronic.</p>
+                        <h3 class="title">Find a Course</h3>
+                        <p>Find your life-changing course from curated experts in your field of interest.</p>
                     </div>
                 </div>
                 <!-- Single Work End -->
@@ -195,7 +195,7 @@
                     </div>
                     <div class="work-content">
                         <h3 class="title">Book A Seat</h3>
-                        <p>It has survived not only centurie also leap into electronic.</p>
+                        <p>Book and Join an ongoing session of your desired courses with your mentor.</p>
                     </div>
                 </div>
                 <!-- Single Work End -->
@@ -215,7 +215,7 @@
                     </div>
                     <div class="work-content">
                         <h3 class="title">Get Certificate</h3>
-                        <p>It has survived not only centurie also leap into electronic.</p>
+                        <p>Optionally receive certification upon when your current session is completed.</p>
                     </div>
                 </div>
                 <!-- Single Work End -->
@@ -240,9 +240,9 @@
             <div class="download-app-wrapper mt-n6">
 
                 <!-- Section Title Start -->
-                <div class="section-title section-title-white">
-                    <h5 class="sub-title">Ready to start?</h5>
-                    <h2 class="main-title">Download our mobile app. for easy to start your course.</h2>
+                <div class="section-title section-title-white" style="max-width: 650px;">
+                    <h5 class="sub-title">Want to learn more about us?</h5>
+                    <h2 class="main-title">We have made a video to help you understand how Libraclass Works!.</h2>
                 </div>
                 <!-- Section Title End -->
 

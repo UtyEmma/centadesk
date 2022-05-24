@@ -14,35 +14,42 @@
         </a>
       </li> --}}
       <li class="nav-item">
-        <a class="nav-link" href="/users">
-          <i class="mdi mdi-account menu-icon"></i>
-          <span class="menu-title">Users</span>
+          <a class="nav-link" href="/users">
+            <i class="mdi mdi-account menu-icon"></i>
+            <span class="menu-title">Users</span>
         </a>
-      </li>
-      <li class="nav-item">
+    </li>
+    <li class="nav-item">
         <a class="nav-link" href="/mentors/requests">
-          <i class="mdi mdi-account-group-outline menu-icon"></i>
-          <span class="menu-title">Mentor Requests</span>
+            <i class="mdi mdi-account-group-outline menu-icon"></i>
+            <span class="menu-title">Mentor Requests</span>
         </a>
-      </li>
-      <li class="nav-item">
+    </li>
+    <li class="nav-item">
         <a class="nav-link" href="/mentors/verify">
-          <i class="mdi mdi-account-badge-outline menu-icon"></i>
-          <span class="menu-title">Verification Requests</span>
+            <i class="mdi mdi-account-badge-outline menu-icon"></i>
+            <span class="menu-title">Verification Requests</span>
         </a>
-      </li>
-      <li class="nav-item">
+    </li>
+    <li class="nav-item">
         <a class="nav-link" href="/courses">
           <i class="mdi mdi-view-headline menu-icon"></i>
           <span class="menu-title">Courses</span>
         </a>
-      </li>
+    </li>
       <li class="nav-item">
-        <a class="nav-link" href="/reports">
-          <i class="mdi mdi-view-headline menu-icon"></i>
+          <a class="nav-link" href="/reports">
+            <i class="mdi mdi-view-headline menu-icon"></i>
           <span class="menu-title">Reports</span>
         </a>
-      </li>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/faqs">
+        <i class="mdi mdi-help-circle-outline menu-icon"></i>
+        <span class="menu-title">Faqs</span>
+      </a>
+    </li>
+
       <li class="nav-item">
         <a class="nav-link" href="/categories">
           <i class="mdi mdi-forum menu-icon"></i>

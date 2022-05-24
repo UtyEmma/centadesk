@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\BatchController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\CourseController;
 use App\Http\Controllers\Admin\CurrencyController;
+use App\Http\Controllers\Admin\FaqController;
 use App\Http\Controllers\Admin\MentorController;
 use App\Http\Controllers\Admin\ReportController;
 use App\Http\Controllers\Admin\SettingsController;
@@ -119,6 +120,15 @@ Route::middleware('auth:admin')->group(function(){
         Route::get('/', [ReportController::class, 'viewAllReports']);
         Route::get('/{id}/resolve', [ReportController::class, 'resolve']);
 
+    });
+
+    Route::prefix('/faqs')->group(function(){
+        Route::get('/', [FaqController::class, 'all']);
+        Route::post('/create', [FaqController::class, 'create']);
+        Route::prefix('{id}', function(){
+            Route::get('/delete', [FaqController::class, 'delete']);
+            Route::get('/status', [FaqController::class, 'status']);
+        });
     });
 
     Route::prefix('/admin')->middleware('is.super')->group(function(){

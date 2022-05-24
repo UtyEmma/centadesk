@@ -15,20 +15,23 @@ use App\Library\Token;
 use App\Models\Batch;
 use App\Models\Courses;
 use App\Models\Enrollment;
-use App\Models\ForumMessages;
-use App\Models\User;
 use App\Notifications\NewBatchPublishedNotification;
 use Exception;
 use Illuminate\Http\Request;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Notification;
-use Illuminate\Support\Facades\Redirect;
-
-use function PHPUnit\Framework\throwException;
 
 class BatchController extends Controller{
     use BatchActions, CourseActions;
+
+    function batchDetailsByShortcode(Request $request, $shortcode){
+        try {
+            $details = $this->getBatchDetails($shortcode);
+            return Response::view('front.batch-details', $details);
+        } catch (\Throwable $th) {
+            return Response::redirectBack('error', $th->getMessage());
+        }
+    }
 
     function fetch(Request $request, $batch_id){
         $batch = DB::table('batches')

@@ -19,7 +19,6 @@
 
     <!-- About Start -->
     <div class="section">
-
         <div class="section-padding-02 mt-0 pt-0">
             <div class="container mt-0">
                 <div class="row">
@@ -45,8 +44,9 @@
                         <!-- About Content Start -->
                         <div class="about-content mt-0">
                             <h5 class="sub-title">Welcome to Libraclass.</h5>
-                            <h2 class="main-title">You can join with Edule and upgrade your skill for your <span>bright future.</span></h2>
-                            <p>Lorem Ipsum has been the industr’s standard dummy text ever since unknown printer took galley type and scmbled make type specimen book. It has survived not only five centuries.</p>
+                            <h2 class="main-title">The world is your classroom. Upgrade yourself for a bigger, <span>brighter future.</span></h2>
+                            <p>Libraclass is a worldwide learning innovation company that works with students and businesses to transform the future of learning and work.</p>
+                            <p>We're paving the path for individualised learning, driven by the notion that everyone, regardless of age, ability, or geography, deserves access to high-quality education. Our cutting-edge technology is applicable at every stage of learning, from kindergarten to retirement.</p>
                             <a href="/courses" class="btn btn-primary btn-hover-dark">Start A Course</a>
                         </div>
                         <!-- About Content End -->
@@ -68,10 +68,10 @@
                                         <i class="flaticon-tutor"></i>
                                     </div>
                                     <div class="item-title">
-                                        <h3 class="title">Top Instructors</h3>
+                                        <h3 class="title">Find Expert Mentors</h3>
                                     </div>
                                 </div>
-                                <p>Lorem Ipsum has been the industry's standard dumy text since the when took and scrambled to make type specimen book has survived.</p>
+                                <p>Learning is quite beneficial. All development and achievement are built on the basis of learning.</p>
                                 <p>Lorem Ipsum has been the industry's standard dumy text since the when took and scrambled make.</p>
                             </div>
                             <!-- About Item End -->
@@ -84,7 +84,7 @@
                                         <i class="flaticon-coding"></i>
                                     </div>
                                     <div class="item-title">
-                                        <h3 class="title">Portable Program</h3>
+                                        <h3 class="title">Host Sessions Anywhere</h3>
                                     </div>
                                 </div>
                                 <p>Lorem Ipsum has been the industry's standard dumy text since the when took and scrambled to make type specimen book has survived.</p>
@@ -100,7 +100,7 @@
                                         <i class="flaticon-increase"></i>
                                     </div>
                                     <div class="item-title">
-                                        <h3 class="title">Improve Quickly</h3>
+                                        <h3 class="title">Recieve Enrollments</h3>
                                     </div>
                                 </div>
                                 <p>Lorem Ipsum has been the industry's standard dumy text since the when took and scrambled to make type specimen book has survived.</p>

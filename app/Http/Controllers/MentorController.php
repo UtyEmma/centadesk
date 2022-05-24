@@ -10,6 +10,7 @@ use App\Library\Response;
 use App\Models\Bank;
 use App\Models\Courses;
 use App\Models\Enrollment;
+use App\Models\Faq;
 use App\Models\User;
 use App\Notifications\NewMentorAccountRequestNotification;
 use Illuminate\Http\Request;
@@ -22,7 +23,10 @@ class MentorController extends Controller{
     const HOME = '/me';
 
     public function mentorInfo(){
-        return Response::view('front.mentors.mentorship-about');
+        $mentors = Faq::where('type', 'mentor')->get();
+        return Response::view('front.mentors.mentorship-about', [
+            'mentors' => $mentors
+        ]);
     }
 
     public function index(Request $request){
@@ -143,6 +147,5 @@ class MentorController extends Controller{
         $user->save();
 
         return Response::redirectBack('success', 'Your Verification request has been sent');
-
     }
 }

@@ -13,7 +13,6 @@ use App\Http\Controllers\ForumController;
 use App\Http\Controllers\MentorController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\ReviewController;
-use App\Http\Controllers\SearchController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TransactionsController;
@@ -37,7 +36,7 @@ Route::middleware(['set.currency', 'set.referrals'])->group(function(){
     Route::get('/', [AppController::class, 'index']);
     Route::get('/about', [AppController::class, 'about']);
     Route::get('/contact', [AppController::class, 'contact']);
-    Route::post('/settings/update', [SettingsController::class, 'updateCurrency']);
+    Route::get('/currency/update', [SettingsController::class, 'updateCurrency']);
 
     Route::middleware('auth')->group(function(){
 
@@ -64,7 +63,6 @@ Route::middleware(['set.currency', 'set.referrals'])->group(function(){
                         });
                     });
                 });
-                // Route::get('/mentors', [StudentController::class, 'fetchMentors']);
             });
 
 
@@ -176,8 +174,11 @@ Route::middleware(['set.currency', 'set.referrals'])->group(function(){
     Route::get('/terms', [AppController::class, 'terms']);
     Route::get('/privacy-policy', [AppController::class, 'privacyPolicy']);
     Route::get('/faqs', [AppController::class, 'faqs']);
+    Route::get('/disclaimer', [AppController::class, 'disclaimer']);
 
     require __DIR__.'/auth.php';
+
+    Route::get('/{shortcode}', [BatchController::class, 'batchDetailsByShortcode']);
 
 });
 
