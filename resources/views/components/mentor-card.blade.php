@@ -11,7 +11,6 @@
                 <x-mentor-verified :status="$mentor->is_verified" />
             </h4>
             <span class="designation mt-0">{{$mentor->specialty}}</span>
-            {{-- <small class="mt-2">{{$mentor->desc}}</small> --}}
         </div>
         <div class="single-courses border-0 py-0 mt-0">
             <div class="courses-content py-0">
@@ -20,11 +19,11 @@
                         <div>
                             <span class="rating-count">{{$mentor->avg_rating}}.0</span>
                             <span class="rating-star">
-                                    <span class="rating-bar" style="width: {{$mentor->avg_rating * 20}}%;"></span>
+                                <span class="rating-bar" style="width: {{$mentor->avg_rating * 20}}%;"></span>
                             </span>
                         </div>
 
-                        <small class="text">({{$mentor->total_reviews}} reviews)</small>
+                        <small class="text">({{$mentor->reviews_count}} {{Str::plural('review', $mentor->reviews_count)}})</small>
                     </div>
                 </div>
             </div>

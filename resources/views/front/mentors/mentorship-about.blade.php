@@ -8,9 +8,9 @@
             <div class="page-banner-content py-5">
                 <ul class="breadcrumb mt-3">
                     <li><a href="/">Home</a></li>
-                    <li class="active">About</li>
+                    <li class="active">Become a Mentor</li>
                 </ul>
-                <h2 class="title mt-0">About <span>EduLe.</span></h2>
+                <h2 class="title mt-0">Become a <span>Mentor.</span></h2>
             </div>
             <!-- Page Banner End -->
         </div>
@@ -25,17 +25,17 @@
                 <div class="row">
                     <div class="col-lg-8">
                         <div class="about-content mt-0 ms-0 ps-0 w-100" style="max-width: 100%;">
-                            {{-- <h5 class="sub-title">Welcome to Libraclass.</h5> --}}
+                            <h5 class="sub-title">Welcome to Libraclass.</h5>
                             <h2 class="main-title">Create courses and enroll students on Libraclass! <span>Host classes anywhere.</span></h2>
                             <p>The Libraclass Platform is solely for high-value digital knowledge contents, and to keep it that way, anything placed on the learning platform must meet certain criteria.</p>
                             <a href="/mentor/onboarding" class="btn btn-primary btn-hover-dark btn-custom">Start Selling Courses</a>
                         </div>
                     </div>
 
-                    <div class="col-lg-4">
-                        <div class="about-images h-100">
-                            <div class="images h-100">
-                                <img src="{{asset('images/about.jpg')}}" style="object-fit: cover;" class="h-100" alt="About">
+                    <div class="col-lg-4 mt-4 mt-md-0">
+                        <div class="about-images h-100 mt-0">
+                            <div class="images h-100 mt-0 pt-0">
+                                <img src="{{asset('images/about.jpg')}}" style="object-fit: cover;" class="h-100 mt-0" alt="About">
                             </div>
 
                             <div class="about-years">

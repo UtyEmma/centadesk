@@ -57,6 +57,9 @@ class User extends Authenticatable{
         return $this->hasMany(Deposit::class, 'user_id', 'unique_id');
     }
 
+    public function reviews(){
+        return $this->hasMany(Review::class, 'mentor_id', 'unique_id');
+    }
     public function enrolledBatches(){
         return Enrollment::where('student_id', $this->unique_id)
                             ->join('courses', 'courses.unique_id', 'enrollments.course_id')

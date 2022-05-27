@@ -1,16 +1,10 @@
-<!-- Footer Start  -->
 <footer class="section footer-section">
-
-    <!-- Footer Widget Section Start -->
     <div class="footer-widget-section">
-
         <img class="shape-1 animation-down" src="{{asset('images/shape/shape-21.png')}}" alt="Shape">
 
         <div class="container">
             <div class="row">
                 <div class="col-lg-3 col-md-6 order-md-1 order-lg-1">
-
-                    <!-- Footer Widget Start -->
                     <div class="footer-widget">
                         <div class="widget-logo">
                             <a href="#"><img src="{{asset('images/libra-main.png')}}" width="150" alt="Logo"></a>
@@ -87,11 +81,7 @@
                             {{-- <p>Lorem Ipsum has been them an industry printer took a galley make book.</p> --}}
 
                             <div class="widget-form">
-                                <form action="/settings/currency/update" method="GET">
-                                    @csrf
-                                    <x-currency-select :name="'currency'" :currency="$currency" :data="$data" class="" btnClasses="btn-light" />
-                                    <x-btn type="submit" classes="btn-primary btn-hover-dark">Update</x-btn>
-                                </form>
+                                <x-currency-select name="currency" :currency="$currency" :data="$data" class="" btnClasses="btn-light" />
                             </div>
                         </div>
                     </div>

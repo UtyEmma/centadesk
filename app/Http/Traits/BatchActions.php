@@ -53,7 +53,7 @@ trait BatchActions {
 
     function mentorBatchDetails($shortcode, bool $getStudents = false, bool $getForum = false){
         $user = $this->user();
-        $batch = Batch::where('short_code', $shortcode)->with(['mentor', 'courses'])->get();
+        // $batch = Batch::where('short_code', $shortcode)->with(['mentor', 'courses'])->get();
 
         if(!$batch = Batch::where(['short_code' => $shortcode])->first())
             throw new Exception("No Batch was found with the shortcode: '$shortcode'", 404);
@@ -185,6 +185,7 @@ trait BatchActions {
             'batch' => $batch,
             'can_review' => $can_review,
             'forum' => $messages,
+            'messages' => $messages,
             'user' => $user,
             'course' => $course
         ];

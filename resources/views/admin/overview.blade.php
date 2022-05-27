@@ -28,7 +28,7 @@
             </div>
           </div>
         </div>
-      </div>
+    </div>
       <div class="row" id="proBanner">
         <div class="col-md-12 grid-margin">
           <div class="card bg-gradient-primary border-0">

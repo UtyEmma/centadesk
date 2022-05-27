@@ -21,7 +21,11 @@
     </style>
 @endpush
 
+
 <div class="d-block">
+    {{-- @if ()
+
+    @endif --}}
     <div title="Baby Yoda" class="rounded-circle default-avatar member-overlap-item shadow-sm" style="background: url(https://raw.githubusercontent.com/solodev/layering-profile-images/master/images/baby-yoda.jpg) 0 0 no-repeat; background-size: cover;">
     </div>
     <div title="R2D2" class="rounded-circle default-avatar member-overlap-item shadow-sm" style="background: url(https://raw.githubusercontent.com/solodev/layering-profile-images/master/images/r2d2.jpg) 0 0 no-repeat; background-size: cover;">

@@ -20,5 +20,4 @@ class Admin extends Authenticatable{
     protected $attributes = [
         'status' => true
     ];
-
 }

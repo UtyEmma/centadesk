@@ -24,18 +24,20 @@
                             {{$course->mentor->firstname}} {{$course->mentor->lastname}}
                             <span class="ms-0"><x-mentor-verified :status="$course->mentor->is_verified" /></span>
                         </a>
-                        <p style="font-size: 11px; line-height: 1px;" class="mt-1 mb-2">{{$course->mentor->specialty}}</p>
+                        <p style="font-size: 12px; line-height: 1px;" class="mt-1 mb-2">{{$course->mentor->specialty}}</p>
                     </div>
                 </div>
             </div>
         </div>
 
-        {{-- @if ($course->enrollments_count > 0) --}}
+
             <div class="mt-2 d-flex align-items-center">
                 <x-layered-profile-images :users="$course->enrollments" />
-                <small class="ms-4">{{$course->enrollments_count}} {{Str::plural('Student', $course->enrollments_count)}}</small>
+
+                @if ($course->enrollments_count > 0)
+                    <small class="ms-4">{{$course->enrollments_count}} {{Str::plural('Student', $course->enrollments_count)}}</small>
+                @endif
             </div>
-        {{-- @endif --}}
 
         <div class="courses-price-review">
             <span>
@@ -47,7 +49,7 @@
             <div class="courses-review">
                 <span class="rating-count">{{$course->rating}}.0</span>
                 <span class="rating-star">
-                        <span class="rating-bar" style="width: {{$course->rating * 20}}%;"></span>
+                    <span class="rating-bar" style="width: {{$course->rating * 20}}%;"></span>
                 </span>
             </div>
         </div>

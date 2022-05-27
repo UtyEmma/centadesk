@@ -3,6 +3,7 @@
 
     <div class="container px-0">
         {{$slot}}
+
         <x-students.mentor-cta />
     </div>
 </x-guest-layout>

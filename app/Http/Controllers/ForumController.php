@@ -17,21 +17,23 @@ use Illuminate\Support\Facades\DB;
 class ForumController extends Controller{
     use CourseActions;
 
-    function sendMessage(Request $request, $batch_id) {
+    function sendMessage(Request $request, $batch_id, $user_id) {
         try {
-            $user = $this->user();
+            $user = User::find($user_id);
             $unique_id = Token::unique('forum_messages');
 
-            ForumMessages::create([
+            $message = ForumMessages::create([
                 'unique_id' => $unique_id,
                 'batch_id' => $batch_id,
                 'sender_id' => $user->unique_id,
                 'message' => $request->message
             ]);
 
-            return Response::redirectBack();
+            return Response::json(200, 'Message Sent', [
+                'message' => $message
+            ]);
         } catch (\Throwable $th) {
-            return redirect()->back();
+            return Response::json(400, $th->getMessage());
         }
     }
 
@@ -55,9 +57,10 @@ class ForumController extends Controller{
 
         $mentor = User::find($batch->mentor_id);
 
-        $messages->map(function($message) use ($mentor){
+        $messages->map(function($message) use ($mentor, $user){
             $message->time_interval = DateTime::getDateInterval($message->created_at);
             $message->is_mentor = $mentor->unique_id === $message->user_id;
+            $message->is_sender = $mentor->unique_id === $user->unique_id;
             return $message;
         });
 

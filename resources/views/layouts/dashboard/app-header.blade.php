@@ -8,7 +8,7 @@
 
             <!-- Header Logo Start -->
             <div class="login-header-logo">
-                <a href="/"><img src="{{asset('images/logo-icon.png')}}" alt="Logo"></a></li>
+                <a href="/"><img src="{{asset('images/libra-gr-wh.png')}}" width="150" alt="Logo"></a></li>
             </div>
             <!-- Header Logo End -->
 

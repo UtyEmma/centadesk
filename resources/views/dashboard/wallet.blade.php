@@ -13,31 +13,39 @@
             <!-- Overview Top Start -->
             <div class="admin-top-bar flex-wrap">
                 <div class="overview-box">
-                    <div class="single-box w-auto">
-                        <h5 class="title">Lifetime Earnings</h5>
-                        <div class="count">
-                            <span style="font-size: 1rem;">{{request()->cookie('currency') ?? $user->currency}}</span>
-                            {{number_format($wallet->earnings)}}
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="single-box w-100">
+                                <h5 class="title">Lifetime Earnings</h5>
+                                <div class="count">
+                                    <span style="font-size: 1rem;">{{request()->cookie('currency') ?? $user->currency}}</span>
+                                    {{number_format($wallet->earnings)}}
+                                </div>
+                                {{-- <p><span>$235.00</span> This months</p> --}}
+                            </div>
                         </div>
-                        {{-- <p><span>$235.00</span> This months</p> --}}
-                    </div>
 
-                    <div class="single-box w-auto">
-                        <h5 class="title">Available Balance</h5>
-                        <div class="count">
-                            <span style="font-size: 1rem;">{{request()->cookie('currency') ?? $user->currency}}</span>
-                            {{number_format($wallet->available)}}
+                        <div class="col-md-4">
+                            <div class="single-box w-100">
+                                <h5 class="title">Available Balance</h5>
+                                <div class="count">
+                                    <span style="font-size: 1rem;">{{request()->cookie('currency') ?? $user->currency}}</span>
+                                    {{number_format($wallet->available)}}
+                                </div>
+                                {{-- <p><span>345</span> This months</p> --}}
+                            </div>
                         </div>
-                        {{-- <p><span>345</span> This months</p> --}}
-                    </div>
 
-                    <div class="single-box w-auto">
-                        <h5 class="title">Pending Balance</h5>
-                        <div class="count">
-                            <span style="font-size: 1rem;">{{request()->cookie('currency') ?? $user->currency}}</span>
-                            {{number_format($wallet->escrow)}}
+                        <div class="col-md-4">
+                            <div class="single-box w-100">
+                                <h5 class="title">Pending Balance</h5>
+                                <div class="count">
+                                    <span style="font-size: 1rem;">{{request()->cookie('currency') ?? $user->currency}}</span>
+                                    {{number_format($wallet->escrow)}}
+                                </div>
+                                {{-- <p><span>345</span> This months</p> --}}
+                            </div>
                         </div>
-                        {{-- <p><span>345</span> This months</p> --}}
                     </div>
                 </div>
             </div>

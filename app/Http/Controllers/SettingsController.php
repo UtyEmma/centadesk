@@ -10,6 +10,7 @@ class SettingsController extends Controller
     function updateCurrency(Request $request){
         $user = $this->user();
 
+        // return print ($request->currency);
         if($user) {
             $user->currency = $request->currency;
             $user->save();

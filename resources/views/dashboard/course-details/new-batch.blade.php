@@ -8,8 +8,6 @@
 
     <div class="page-content-wrapper">
         <div class="container-fluid custom-container">
-
-
             <div>
                 <div >
                     <h3 class="mb-0 lh-0">{{$course->name}}</h3>

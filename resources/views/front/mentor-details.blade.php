@@ -2,14 +2,14 @@
     <x-page-title title="{{$mentor->firstname}} {{$mentor->lastname}} - Mentor on Libraclass" />
     <x-page-banner>
             <!-- Page Banner Start -->
-            <div class="m-0">
+            {{-- <div class="m-0">
                 <ul class="breadcrumb mb-0">
                     <li><a href="/">Home</a></li>
                     <li class="/mentors">Mentors</li>
                     <li class="active">Profile</li>
                 </ul>
                 <h4 class="title mt-0">{{$mentor->firstname}} {{$mentor->lastname}}</h4>
-            </div>
+            </div> --}}
             <!-- Page Banner End -->
     </x-page-banner>
 
@@ -18,85 +18,99 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-4">
-                    <x-mentor-card :mentor="$mentor" :class="''" :btn="false" />
+                    <div class="single-team mb-3 mt-0" style="position: sticky; top: 120px;" >
+                        <div class="col-6 col-md-7 mx-md-auto">
+                            <div class="team-thumb ratio ratio-1x1 p-0" style="position: relative;">
+                                <img src="{{$mentor->avatar ?? asset('images/author/author-04.jpg')}}" class="ratio ratio-1x1" style="object-fit: cover;" alt="Author">
+                            </div>
+                        </div>
+                        <div class="sidebar-widget mt-3 d-md-block d-none">
+                            <ul class="social mt-0 justify-content-center">
+                                <li><a href="{{env('FACEBOOK_PROFILE_URL')}}{{$mentor->facebook}}" target="_blank" rel="noopener noreferrer"><i class="flaticon-facebook"></i></a></li>
+                                <li><a href="{{env('INSTAGRAM_PROFILE_URL')}}{{$mentor->instagram}}" target="_blank" rel="noopener noreferrer"><i class="flaticon-instagram"></i></a></li>
+                                <li><a href="{{env('TWITTER_PROFILE_URL')}}{{$mentor->twitter}}" target="_blank" rel="noopener noreferrer"><i class="flaticon-twitter" data-lang="en" data-show-count="false"></i></a></li>
+                            </ul>
+
+                            <div class="col-md-9 mx-auto my-3">
+                                <a href="{{$mentor->website}}" target="_blank" class="btn my-2 btn-custom btn-primary btn-hover-dark w-100">Visit Website</a>
+                                <a href="{{$mentor->resume}}" target="_blank" class="btn my-2 btn-custom btn-outline-info btn-hover-dark w-100">My Resume</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="col-md-8 mt-3 mt-md-0">
-                    <div class="bg-light-primary radius p-3 mb-3">
-                        <h5>About this Mentor</h5>
-                        <p>
-                            {{$mentor->desc}}
-                        </p>
+                    <div>
+                        <p class="mb-0 fw-bold">Mentor</p>
+                        <h2 class="mb-0">{{$mentor->firstname}} {{$mentor->lastname}} <x-mentor-verified :status="$mentor->is_verified" /></h2>
+                        <small class="mb-0">
+                            {{$mentor->specialty}}
+                        </small>
 
-                        <div>
-                            <strong class="mb-0">Connect on Social Media</strong>
-                            <div class="d-flex fs-4 mt-0">
-                                @if ($mentor->facebook)
-                                    <a href="{{env('FACEBOOK_PROFILE_URL')}}{{$mentor->facebook}}" class="me-3">
-                                        <i class="icofont-facebook"></i>
-                                    </a>
-                                @endif
-                                @if ($mentor->twitter)
-                                    <a href="{{env('TWITTER_PROFILE_URL')}}{{$mentor->twitter}}" class="me-3">
-                                        <i class="icofont-twitter"></i>
-                                    </a>
-                                @endif
-                                @if ($mentor->instagram)
-                                    <a href="{{env('INSTAGRAM_PROFILE_URL')}}{{$mentor->instagram}}" class="me-3">
-                                        <i class="icofont-instagram"></i>
-                                    </a>
-                                @endif
+                        <div class="single-courses border-0 p-0 mt-0">
+                            <div class="courses-content py-0">
+                                <div class="courses-price-review mt-2">
+                                    <div class="courses-review d-flex justify-content-between w-100 align-items-center">
+                                        <div class="d-flex">
+                                            <div class="me-2">
+                                                <span class="rating-count">{{$mentor->avg_rating}}.0</span>
+                                                <span class="rating-star">
+                                                    <span class="rating-bar" style="width: {{$mentor->avg_rating * 20}}%;"></span>
+                                                </span>
+                                            </div>
+
+                                            <small class="text">({{$mentor->reviews_count}} {{Str::plural('review', $mentor->reviews_count)}})</small>
+
+                                            <span class="mx-2">||</span>
+
+                                            {{$mentor->courses_count}} {{Str::plural('student', $mentor->courses_count)}}
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="bg-light-primary radius p-3 mb-3">
-                        <h5>Educational Background</h5>
-                        <div class="mt-5">
-                            @foreach (json_decode($mentor->qualification) as $education)
-                                <div class="bg-white border radius p-3 my-2">
-                                    <div class="d-flex justify-content-between">
-                                        <div>
-                                            <div>
-                                                <small class="fw-bold">Qualification</small>
-                                                <p>{{$education->qualification}}</p>
-                                            </div>
-                                            <div>
-                                                <small class="fw-bold">Institution: </small>
-                                                <span>{{$education->institution}}</span>
-                                            </div>
-                                        </div>
+                    <div class="my-3">
+                        <h6>About Me</h6>
+                        <p>
+                            {{$mentor->desc}}
+                        </p>
 
-                                        <div>
-                                            <small class="fw-bold">Year Acquired</small>
-                                            <p>{{$education->date}}</p>
-                                        </div>
+                        <div class="sidebar-widget mt-3 d-md-none d-block">
+                            <ul class="social mt-0 justify-content-start">
+                                <li><a href="{{env('FACEBOOK_PROFILE_URL')}}{{$mentor->facebook}}" target="_blank" rel="noopener noreferrer"><i class="flaticon-facebook"></i></a></li>
+                                <li><a href="{{env('INSTAGRAM_PROFILE_URL')}}{{$mentor->instagram}}" target="_blank" rel="noopener noreferrer"><i class="flaticon-instagram"></i></a></li>
+                                <li><a href="{{env('TWITTER_PROFILE_URL')}}{{$mentor->twitter}}" target="_blank" rel="noopener noreferrer"><i class="flaticon-twitter" data-lang="en" data-show-count="false"></i></a></li>
+                            </ul>
+
+                            <div class="col-md-9 mx-auto my-3">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <a href="{{$mentor->website}}" target="_blank" class="btn my-2 btn-custom btn-primary btn-hover-dark w-100">Visit Website</a>
+                                    </div>
+
+                                    <div class="col-6">
+                                        <a href="{{$mentor->resume}}" target="_blank" class="btn my-2 btn-custom btn-outline-info btn-hover-dark w-100">My Resume</a>
                                     </div>
                                 </div>
-                            @endforeach
+                            </div>
                         </div>
                     </div>
 
-                    <div class="bg-light-primary radius p-3 mb-3">
-                        <h5>Work Experience</h5>
-                        <div class="mt-5">
+                    <div class="mb-3">
+                        <h6>My Work Experience</h6>
+                        <div class="row">
                             @foreach (json_decode($mentor->experience) as $experience)
-                                <div class="bg-white border radius p-3 my-2">
-                                    <div class="d-flex justify-content-between">
+                                <div class="col-md-6">
+                                    <div class="border radius p-3 my-2 d-flex align-items-center">
                                         <div>
-                                            <div>
-                                                <small class="fw-bold">Company</small>
-                                                <p>{{$experience->company}}</p>
-                                            </div>
-                                            <div>
-                                                <small class="fw-bold">Role: </small>
-                                                <span>{{$experience->role}}</span>
-                                            </div>
+                                            <i class="icofont-bag-alt fs-4"></i>
                                         </div>
-
-                                        <div>
-                                            <small class="fw-bold">End Date</small>
-                                            <p>{{$experience->enddate}}</p>
+                                        <div class="ms-3">
+                                            <p style="font-weight: 500" class="mb-0">{{$experience->role}} - <small class="fw-normal">{{$experience->company}}</small></p>
+                                            <p class="mb-0"></p>
+                                            <p style="font-size: 13px;">{{$experience->startdate}} - {{$experience->enddate}}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -105,15 +119,35 @@
                     </div>
 
                     <div class="mt-3">
-                        <h5 class="lh-0 mb-0">Mentor Courses</h5>
-
+                        <h6>My Education</h6>
                         <div class="row">
-                            <div class="col-md-6">
-                                @foreach ($courses as $course)
-                                    <x-courses.single-course-card :course="$course" :mentor="$mentor" />
-                                @endforeach
-                            </div>
+                            @foreach (json_decode($mentor->qualification) as $education)
+                                <div class="col-md-6">
+                                    <div class="bg-white border radius p-3 my-2 d-flex align-items-center">
+                                        <div>
+                                            <i class="icofont-graduate fs-4"></i>
+                                        </div>
+                                        <div class="ms-3">
+                                            <p class="mb-0" style="font-weight: 500;">{{$education->qualification}} </p>
+                                            <small> <span style="font-weight: 500;">{{$education->institution}}</span> - {{$education->date}}</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
                         </div>
+                    </div>
+
+                    <div class="mt-5">
+                        @if ($courses->count())
+                            <h6 class="lh-0 mb-3">My Courses</h6>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    @foreach ($courses as $course)
+                                        <x-courses.single-course-card :course="$course" :mentor="$mentor" />
+                                    @endforeach
+                                </div>
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>

@@ -106,10 +106,8 @@ class MentorController extends Controller{
     }
 
     public function show($username){
-        if(!$mentor = User::where('username', $username)->first())
-                    return Response::redirect('/404', 'error', 'The requested mentor does not exist');
-
-        $mentor = $this->getMentorDetails($mentor);
+        $mentor = User::where('username', $username)->withCount(['courses', 'reviews'])->first();
+        if(!$mentor) return Response::redirect('/404', 'error', 'The requested mentor does not exist');
         $courses = Courses::where('mentor_id', $mentor->unique_id)->get();
 
         return Response::view('front.mentor-details', [

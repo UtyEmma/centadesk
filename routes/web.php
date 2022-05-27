@@ -36,7 +36,7 @@ Route::middleware(['set.currency', 'set.referrals'])->group(function(){
     Route::get('/', [AppController::class, 'index']);
     Route::get('/about', [AppController::class, 'about']);
     Route::get('/contact', [AppController::class, 'contact']);
-    Route::get('/currency/update', [SettingsController::class, 'updateCurrency']);
+    Route::post('/currency/update', [SettingsController::class, 'updateCurrency']);
 
     Route::middleware('auth')->group(function(){
 
@@ -81,10 +81,6 @@ Route::middleware(['set.currency', 'set.referrals'])->group(function(){
                 });
             });
 
-            Route::prefix('forum')->middleware('user.status')->group(function(){
-                Route::post('/send/{batch_id}', [ForumController::class, 'sendMessage']);
-            });
-
             Route::prefix('reports')->middleware('user.status')->group(function(){
                 Route::post('/create/{batch_id}', [ReportController::class, 'create']);
                 Route::get('/resolve/{batch_id}', [ReportController::class, 'resolve']);
@@ -99,12 +95,6 @@ Route::middleware(['set.currency', 'set.referrals'])->group(function(){
             Route::post('/{batch_id}', [EnrollmentController::class, 'initiate']);
             Route::get('/complete/{type}/{batch_id}', [EnrollmentController::class, 'complete']);
         });
-
-
-        Route::prefix('/currency')->group(function(){
-            Route::post('/update', [CurrencyController::class, 'update']);
-        });
-
 
         Route::prefix('/mentor')->middleware('user.status')->group(function(){
             Route::get('/onboarding', [MentorController::class, 'onboarding']);

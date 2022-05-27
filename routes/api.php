@@ -40,3 +40,8 @@ Route::prefix('banks')->group(function(){
     Route::get('/', [TransactionsController::class, 'fetchBanks']);
     Route::post('/verify', [TransactionsController::class, 'verifyBankDetails']);
 });
+
+Route::prefix('forum')->group(function(){
+    Route::post('/send/{batch_id}/{user_id}', [ForumController::class, 'sendMessage']);
+});
+

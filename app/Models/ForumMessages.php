@@ -14,8 +14,14 @@ class ForumMessages extends Model{
     protected $keyType = 'string';
     public $incrementing = false;
 
-    function replies (){
-        return $this->hasMany(ForumReplies::class, 'message_id', 'unique_id');
+    // function replies (){
+    //     return $this->hasMany(ForumReplies::class, 'message_id', 'unique_id');
+    // }
+
+    function user(){
+        return $this->belongsTo(User::class, 'sender_id', 'unique_id');
     }
+
+
 
 }

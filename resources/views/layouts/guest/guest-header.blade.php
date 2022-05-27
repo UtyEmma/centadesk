@@ -22,7 +22,7 @@
                         </div>
                     </div>
 
-                    <x-currency-select :name="'currency'" :currency="$currency" :data="$data" btnClasses="text-white text-white fw-normal btn-custom" />
+                    <x-currency-select name="currency" :currency="$currency" :data="$data" btnClasses="text-white text-white fw-normal btn-custom" />
                     <!-- Header Top Medal End -->
 
                     <!-- Header Top Right Start -->
@@ -170,9 +170,8 @@
         <!-- Mobile Sing In & Up End -->
 
         <div class="px-3">
-            <p class="mb-2">Select Currency</p>
-            <x-currency-select :name="'currency'" :currency="$currency" :data="$data" class="text-white" btnClasses="btn bg-secondary btn-hover-primary w-100 border border-primary btn-custom" />
-            <x-btn type="submit" classes="btn-primary btn-hover-dark">Update</x-btn>
+            <p class="mb-0">Select Currency</p>
+            <x-currency-select :name="'currency'" :currency="$currency" :data="$data" class="text-white" btnClasses="btn bg-secondary btn-hover-primary w-100 border border-primary btn-custom mt-0" />
         </div>
 
 
