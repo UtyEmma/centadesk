@@ -39,7 +39,7 @@
                 @endif
             </div>
 
-        <div class="courses-price-review">
+        <div class="courses-price-review mt-2">
             <span>
                 <i class="icofont-comment"></i>
                 <small>

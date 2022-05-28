@@ -15,25 +15,30 @@
         }
 
         .member-overlap-item {
-            margin-right: -15px;
-            border: 2px solid #fff;
+            margin-right: -13px;
+            border: 1px solid #fff;
         }
     </style>
 @endpush
 
 
 <div class="d-block">
-    {{-- @if ()
+    @if (count($users) > 0)
+        @forelse ($users as $user)
 
-    @endif --}}
-    <div title="Baby Yoda" class="rounded-circle default-avatar member-overlap-item shadow-sm" style="background: url(https://raw.githubusercontent.com/solodev/layering-profile-images/master/images/baby-yoda.jpg) 0 0 no-repeat; background-size: cover;">
-    </div>
-    <div title="R2D2" class="rounded-circle default-avatar member-overlap-item shadow-sm" style="background: url(https://raw.githubusercontent.com/solodev/layering-profile-images/master/images/r2d2.jpg) 0 0 no-repeat; background-size: cover;">
-    </div>
-    <div title="Jabba the Hut" class="rounded-circle default-avatar member-overlap-item shadow-sm" style="background: url(https://raw.githubusercontent.com/solodev/layering-profile-images/master/images/jabba-the-hut.png) 0 0 no-repeat; background-size: cover;">
-    </div>
-    <div title="Chewbacca" class="rounded-circle default-avatar member-overlap-item shadow-sm" style="background: url(https://raw.githubusercontent.com/solodev/layering-profile-images/master/images/chewy.png) 0 0 no-repeat; background-size: cover;">
-    </div>
-    <div title="C-3PO" class="rounded-circle default-avatar member-overlap-item" style="background: url(https://raw.githubusercontent.com/solodev/layering-profile-images/master/images/c-3po.jpg) 0 0 no-repeat; background-size: cover;">
-    </div>
+        @empty
+
+        @endforelse
+    @else
+        <div title="Baby Yoda" class="rounded-circle default-avatar member-overlap-item shadow-sm" style="background: url({{asset('images/avatars/avatar-1.png')}}) 0 0 no-repeat; background-size: 120%; background-position: center;">
+        </div>
+        <div title="R2D2" class="rounded-circle default-avatar member-overlap-item shadow-sm" style="background: url({{asset('images/avatars/avatar-2.png')}}) 0 0 no-repeat; background-size: 120%; background-position: center;">
+        </div>
+        <div title="Jabba the Hut" class="rounded-circle default-avatar member-overlap-item shadow-sm" style="background: url({{asset('images/avatars/avatar-3.png')}}) 0 0 no-repeat; background-size: 120%; background-position: center;">
+        </div>
+        <div title="Chewbacca" class="rounded-circle default-avatar member-overlap-item shadow-sm" style="background: url({{asset('images/avatars/avatar-4.png')}}) 0 0 no-repeat; background-size: 120%; background-position: center;">
+        </div>
+        <div title="C-3PO" class="rounded-circle default-avatar member-overlap-item" style="background: url({{asset('images/avatars/avatar-5.png')}}) 0 0 no-repeat; background-size: 120%; background-position: center;">
+        </div>
+    @endif
   </div>

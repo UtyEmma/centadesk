@@ -1,13 +1,13 @@
 <x-guest-layout>
     <x-page-title title="Courses - Find Amazing courses based on what you are interested in" />
     <x-page-banner>
-        <div class="d-md-flex justify-content-between align-items-center">
+        <div class="d-md-flex justify-content-between align-items-end">
             <!-- Page Banner Start -->
             <div class="m-0 page-banner-content">
                 <h4 class="title mt-0 pb-0">Courses</h4>
-                <ul class="breadcrumb  mb-0">
-                    <li><a href="/">Home</a></li>
-                    <li class="active">Courses</li>
+                <ul class="d-flex mb-0">
+                    <li class="me-3 "><a class="btn btn-primary btn-hover-dark btn-custom" href="/courses">All Courses</a></li>
+                    <li class="active me-3"><a class="btn btn-secondary btn-hover-primary btn-custom" href="/courses?filter=suggestions">Suggested Courses</a></li>
                 </ul>
             </div>
             <!-- Page Banner End -->
@@ -52,51 +52,43 @@
                     <div class="col-md-4">
                         <!-- Blog Sidebar Start -->
                         <div class="sidebar">
-                            <!-- Sidebar Widget Category Start -->
-                            <div class="sidebar-widget mt-0">
-                                <h5>Categories</h5>
+                            @if($user)
+                                <div class="sidebar-widget mt-5 mt-md-0">
+                                    <div class="widget-tags mt-3 p-3">
+                                        <div class="d-flex justify-content-between mb-2">
+                                            <h6>Your Interests</h6>
+                                            <a href="/"><small>Update Interests</small></a>
+                                        </div>
+                                        <ul class="tags-list">
+                                            @foreach ($user->interests as $interest)
+                                                <li>
+                                                    <a class="px-3" href="/courses?category={{Str::slug($interest)}}">{{$interest}}</a>
+                                                </li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                </div>
+                            @endif
+
+                            <div class="sidebar-widget mt-5">
+                                <h5>Top Categories</h5>
 
                                 <div class="widget-category mt-3">
                                     <ul class="category-list">
-                                        <li><a href="#">UI/UX Design <span>(16)</span></a></li>
-                                        <li><a href="#">Creative Writing <span>(03)</span></a></li>
-                                        <li><a href="#">Graphic Design <span>(08)</span></a></li>
-                                        <li><a href="#">Fine Arts <span>(18)</span></a></li>
-                                        <li><a href="#">Business Analytics <span>(02)</span></a></li>
-                                        <li><a href="#">Marketing <span>(14)</span></a></li>
+                                        @forelse ($categories as $category)
+                                            <li><a href="/courses?category={{$category->slug}}">{{$category->name}} <span>({{$category->get_courses_count}})</span></a></li>
+                                        @empty
+                                        @endforelse
                                     </ul>
                                 </div>
                             </div>
-                            <!-- Sidebar Widget Category End -->
-
-                            <!-- Sidebar Widget Tags Start -->
-                            <div class="sidebar-widget mt-5">
-                                <h5>Popular Tags</h5>
-
-                                <div class="widget-tags mt-3">
-                                    <ul class="tags-list">
-                                        <li><a href="#">Design</a></li>
-                                        <li><a href="#">Education</a></li>
-                                        <li><a href="#">Education</a></li>
-                                        <li><a href="#">Design</a></li>
-                                        <li><a href="#">Design</a></li>
-                                        <li><a href="#">Education</a></li>
-                                        <li><a href="#">Education</a></li>
-                                        <li><a href="#">Design</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <!-- Sidebar Widget Tags End -->
                         </div>
-                        <!-- Blog Sidebar End -->
+
                     </div>
                 </div>
-
             </div>
-            <!-- Courses Wrapper End  -->
 
         </div>
     </div>
-    <!-- Courses End -->
 
 </x-guest-layout>

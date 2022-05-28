@@ -21,8 +21,7 @@
         <link rel="stylesheet" href="{{ asset('css/plugins/flaticon.css')}} ">
         <link rel="stylesheet" href="{{ asset('css/plugins/font-awesome.min.css')}} ">
         <link rel="stylesheet" href="{{ asset('css/plugins/tagify.min.css')}} ">
-        <link rel="stylesheet" href="{{ asset('css/plugins/jqvmap.min.css')}} ">
-        <link rel="stylesheet" href="{{ asset('vendor/summernote-0.8.18-dist/summernote-lite.min.css')}} ">
+        {{-- <link rel="stylesheet" href="{{ asset('css/plugins/jqvmap.min.css')}} "> --}}
 
         <link rel="stylesheet" href="{{asset('css/plugins/animate.min.css')}}">
         <link rel="stylesheet" href="{{asset('css/plugins/swiper-bundle.min.css')}}">
@@ -30,8 +29,6 @@
         <link rel="stylesheet" href="{{ asset('css/plugins/bs-stepper.min.css')}}">
         <link rel="stylesheet" href="{{asset('css/plugins/simple-notify.min.css')}}">
 
-
-        <link rel="stylesheet" href="{{asset('css/plugins/quill-snow.css')}}">
         <link rel="stylesheet" href="{{asset('css/style.css')}}">
         <link rel="stylesheet" href="{{ asset('css/custom.css')}} ">
 
@@ -60,7 +57,7 @@
         <script src="{{asset('js/plugins/tagify/tagify.polyfills.min.js')}}" ></script>
         <script src="{{asset('js/plugins/moment.min.js')}}" ></script>
         <script src="{{asset('js/plugins/jquery.inputmask.min.js')}}" ></script>
-        <script src="{{asset('js/plugins/quill.js')}}" ></script>
+
         <script src="{{asset('js/plugins/jquery.countdown.js')}}" ></script>
         <script src="{{asset('js/plugins/jquery-repeater.min.js')}}" ></script>
 

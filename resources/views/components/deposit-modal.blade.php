@@ -74,7 +74,7 @@
         <form action="/wallet/deposit" method="POST">
             @csrf
             <div class="modal-body">
-                <div class="single-form">
+                {{-- <div class="single-form">
                     <label for="">Select Payment Method</label>
 
                     <div class="row">
@@ -85,7 +85,7 @@
                             <x-custom-radio :default="false" name="type" value="crypto">Crypto</x-custom-radio>
                         </div>
                     </div>
-                </div>
+                </div> --}}
 
                 <div class="single-form">
                     <label for="">Amount</label>

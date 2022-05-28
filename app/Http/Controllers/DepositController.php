@@ -29,7 +29,7 @@ class DepositController extends Controller{
             $deposit = Deposit::create([
                 'unique_id' => $unique_id,
                 'user_id' => $user->unique_id,
-                'type' => $request->type,
+                'type' => 'bank',//$request->type,
                 'reference' => $reference,
                 'amount' => $amount,
                 'currency' => Currency::user()
@@ -37,10 +37,11 @@ class DepositController extends Controller{
 
             $redirect_url = env('MAIN_APP_URL')."/wallet/verify?method=$request->type&ref=$deposit->unique_id";
 
-            if($request->type === 'crypto') return $this->payWithCrypto($deposit, $user, $redirect_url);
-            if($request->type === 'bank') return $this->initializeCardDeposit($deposit, $user, $redirect_url);
+            // if($request->type === 'crypto') return $this->payWithCrypto($deposit, $user, $redirect_url);
+            // if($request->type === 'bank')
 
-            throw new Exception('Invalid Payment Method Selected', 400);
+            return $this->initializeCardDeposit($deposit, $user, $redirect_url);
+            // throw new Exception('Invalid Payment Method Selected', 400);
 
         } catch (\Throwable $th) {
             return Response::redirectBack(400, $th->getMessage());

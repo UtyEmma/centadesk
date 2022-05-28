@@ -34,8 +34,9 @@ class CourseController extends Controller{
 
 
     public function all(Request $request){
-        $type = 'page';
+        global $type;
         $user = $this->user();
+        $type = 'page';
 
         $query = Courses::query();
 
@@ -52,13 +53,12 @@ class CourseController extends Controller{
 
         // $query->where('status', 'published');
 
-        $query->whereRelation('batches', 'startdate', '>', now()); //Courses with upcoming batches
-        // $verificationStatuses = implode(',', ["verified", "requested", "unverified"]);
+        $query->when($request->filter === 'suggestions', function($query) use ($user){
+            return $this->sortCoursesBasedOnUserInterest($query);
+        });
 
-        // $query->join('users', 'users.unique_id', 'courses.unique_id')
-        //             ->select('courses.*', 'users.is_verified')
-        //             ->orderByRaw("FIELD(is_verified, $verificationStatuses)");
-        // $withVerifiedUsers = $query->whereRelation('mentor', 'is_verified', 'verified');
+        // $query->whereRelation('batches', 'startdate', '>', now()); //Courses with upcoming batches
+
 
         $query->orderBy(Batch::select('startdate')->whereColumn('courses.unique_id', 'batches.course_id'));
 
@@ -73,11 +73,19 @@ class CourseController extends Controller{
         return view('front.courses', [
             'courses' => $results,
             'data' => $this->app_data(),
-            'type' => $type
+            'type' => $type,
+            'user' => $this->user(),
+            'categories' => $this->getTopCategories()
         ]);
     }
 
     public function coursesByVerifiedUsers($query){
+        // $verificationStatuses = implode(',', ["verified", "requested", "unverified"]);
+
+        // $query->join('users', 'users.unique_id', 'courses.unique_id')
+        //             ->select('courses.*', 'users.is_verified')
+        //             ->orderByRaw("FIELD(is_verified, $verificationStatuses)");
+        // $withVerifiedUsers = $query->whereRelation('mentor', 'is_verified', 'verified');
         return $query->whereRelation('mentor', 'is_verified', 'verified');
     }
 

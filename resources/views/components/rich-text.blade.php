@@ -2,8 +2,13 @@
 <div id="editor" class="border radius" style="height: 200px"></div>
 <textarea type="text" id="text-content" hidden name="{{$name}}"></textarea>
 
+@push('styles')
+    <link rel="stylesheet" href="{{asset('css/plugins/quill-snow.css')}}">
+@endpush
 
 @push('scripts')
+    <script src="{{asset('js/plugins/quill.js')}}" ></script>
+
     <script>
         $(document).ready(() => {
             var quill = new Quill('#editor', {
@@ -35,6 +40,8 @@
                 placeholder: '{{$placeholder ?? "Compose an epic..."}}',
                 theme: 'snow'  // or 'bubble'
             });
+
+            quill.root.insertAdjacentHTML('afterbegin', "{!! $value ?? '' !!}")
 
             quill.on('text-change', function(delta, oldDelta, source) {
                 $('#text-content').val(quill.root.innerHTML)

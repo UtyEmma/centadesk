@@ -25,7 +25,7 @@ class DepositRequest extends FormRequest
     {
         return [
             'amount' => 'required|numeric|min:1',
-            'type' => 'required|string'
+            // 'type' => 'required|string'
         ];
     }
 }
