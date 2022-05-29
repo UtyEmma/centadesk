@@ -60,7 +60,7 @@
                                 <li><a href="/privacy-policy">Privacy Policy</a></li>
                                 <li><a href="/disclaimer">Disclaimer</a></li>
                                 <li><a href="/terms">Terms & Conditions</a></li>
-                                <li><a href="#">Customer Support</a></li>
+                                <li><a href="https://libraclass.tawk.help/" target="_blank">Help Center</a></li>
                                 <li><a href="/faqs">Frequently Asked Questions</a></li>
                             </ul>
 

@@ -1,4 +1,6 @@
 <x-guest-layout>
+
+    <x-page-title title="Disclaimer - Libraclass" />
     <div class="section page-banner bg-transparent">
         <div class="container mt-5">
             <div class="page-banner-content py-5">
