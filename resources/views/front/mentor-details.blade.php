@@ -103,9 +103,9 @@
                         <div class="row">
                             @foreach (json_decode($mentor->experience) as $experience)
                                 <div class="col-md-6">
-                                    <div class="border radius p-3 my-2 d-flex align-items-center">
+                                    <div class="border radius p-3 my-2 d-flex align-items-center border-primary">
                                         <div>
-                                            <i class="icofont-bag-alt fs-4"></i>
+                                            <i class="icofont-bag-alt text-primary fs-4"></i>
                                         </div>
                                         <div class="ms-3">
                                             <p style="font-weight: 500" class="mb-0">{{$experience->role}} - <small class="fw-normal">{{$experience->company}}</small></p>
@@ -123,9 +123,9 @@
                         <div class="row">
                             @foreach (json_decode($mentor->qualification) as $education)
                                 <div class="col-md-6">
-                                    <div class="bg-white border radius p-3 my-2 d-flex align-items-center">
+                                    <div class="bg-white border radius p-3 my-2 d-flex align-items-center border-primary">
                                         <div>
-                                            <i class="icofont-graduate fs-4"></i>
+                                            <i class="icofont-graduate text-primary fs-4"></i>
                                         </div>
                                         <div class="ms-3">
                                             <p class="mb-0" style="font-weight: 500;">{{$education->qualification}} </p>

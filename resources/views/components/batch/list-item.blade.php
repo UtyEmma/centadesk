@@ -26,9 +26,9 @@
                         </p>
                     </div>
                     <div class="d-flex align-items-center mt-1 p-2 bg-light-primary radius">
-                        <h6 class="my-0 text-primary fw-bold"><span style="font-size: 13px;">{{$batch->currency}}</span> {{number_format($batch->discount_price)}}</h6>
+                        <h6 class="my-0 text-primary fw-bold"><span style="font-size: 13px;">{{request()->cookie('currency')}}</span> {{number_format($batch->discount_price)}}</h6>
                         <small class="date my-0 ms-1 text-decoration-strikethrough" style="text-decoration: line-through; font-size: 12px;">
-                            {{$batch->currency}} {{number_format($batch->price)}}
+                            {{request()->cookie('currency')}} {{number_format($batch->price)}}
                         </small>
                     </div>
                 </div>
