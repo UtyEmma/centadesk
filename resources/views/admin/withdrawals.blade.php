@@ -32,7 +32,7 @@
                                 <th>Type</th>
                                 <th>Wallet Balance</th>
                                 <th>Status</th>
-                                <th></th>
+                                {{-- <th></th> --}}
                             </tr>
                         </thead>
                         <tbody>
@@ -58,19 +58,9 @@
                                     <td>
                                         <div class="badge {{$withdrawal->status ? 'badge-primary' : 'badge-warning'}}">{{$withdrawal->status}}</div>
                                     </td>
-                                    <td>
-                                        <div class="btn-group">
-                                            <a href="/withdrawals/confirm?withdrawal_id={{$withdrawal->unique_id}}" class="btn btn-outline-primary" type="button">
-                                                Confirm
-                                            </a>
-                                            <a href="/withdrawals/decline?withdrawal_id={{$withdrawal->unique_id}}" class="btn btn-outline-danger" type="button">
-                                                Decline
-                                            </a>
-                                        </div>
-                                    </td>
                                 </tr>
                             @empty
-                                <p>No Categories</p>
+                                <p>No Withdrawals</p>
                             @endforelse
                         </tbody>
                     </table>

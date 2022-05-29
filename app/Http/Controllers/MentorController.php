@@ -14,6 +14,7 @@ use App\Models\Faq;
 use App\Models\User;
 use App\Notifications\NewMentorAccountRequestNotification;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Str;
 
@@ -97,11 +98,30 @@ class MentorController extends Controller{
             'dashboard' => self::HOME
         ];
 
-        return Response::redirect('/learning', 'success', 'Your application has been sent! 🎉');
+        return Response::redirectBack('success', 'Your application has been sent! 🎉');
 
         try {
             Notification::send($user, new NewMentorAccountRequestNotification($notification));
         } catch (\Throwable $th) {
+        }
+    }
+
+    public function update(Request $request){
+        try {
+            $user = $this->user();
+
+            $avatar = $user->avatar;
+
+            if($request->avatar){
+                FileHandler::deleteFile($user->avatar);
+                $avatar = FileHandler::upload($request->avatar);
+            }
+
+            $request->merge(['avatar' => $avatar]);
+            $user->update($request->all());
+            return Response::redirectBack('success', "Your Profile has been updated Successfully");
+        } catch (\Throwable $th) {
+            return Response::redirectBack('error', $th->getMessage());
         }
     }
 
@@ -145,5 +165,22 @@ class MentorController extends Controller{
         $user->save();
 
         return Response::redirectBack('success', 'Your Verification request has been sent');
+    }
+
+    function security(){
+        return Response::view('dashboard.profile.security');
+    }
+
+    function delete(){
+        try {
+            $user = $this->user();
+            $wallet = $user->wallet;
+            if($wallet->balance > 0) return Response::redirectBack('error', "You cannot delete your account because you still have some pending balance in your Wallet");
+            Auth::logout();
+            $user->delete();
+            return Response::redirect('/login', 'success', "Your Account has been deleted successfully!");
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
     }
 }

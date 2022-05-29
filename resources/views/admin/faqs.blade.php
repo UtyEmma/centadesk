@@ -82,7 +82,7 @@
                                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
                                         <a class="dropdown-item" href="/faq/{{$faq->unique_id}}/edit">Edit Info</a>
                                         <a class="dropdown-item" href="/faq/{{$faq->unique_id}}/status">Disable</a>
-                                        <a class="dropdown-item" href="/faq/{{$faq->unique_id}}/delete">Delete</a>
+                                        <x-swal class="dropdown-item" href="/faq/{{$faq->unique_id}}/delete">Delete</x-swal>
                                         </div>
                                     </div>
                                 </td>

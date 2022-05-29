@@ -1,9 +1,11 @@
 <x-mentor-profile>
+    <form action="/me/account/update" method="POST" >
+        @csrf
     <div class="">
         <x-page-title title="Mentor Dashboard - Payment Details" />
 
         <div class="row">
-            <div class="col-md-4">
+            {{-- <div class="col-md-4">
                 <div class="border p-3 py-5 p-md-5 radius mb-4">
                     <div>
                         <h6 class="mb-0">Select Default Payment Option</h6>
@@ -37,7 +39,7 @@
                         <button class="btn btn-primary btn-hover-dark">Update</button>
                     </div>
                 </div>
-            </div>
+            </div> --}}
 
             <div class="col-md-8">
                 <div class="border mb-4 radius p-3">
@@ -52,7 +54,7 @@
                         <div class="row">
                             <div class="single-form col-md-6">
                                 <label class="">Bank</label>
-                                <input class="input" name='bank' readonly value="{{$user->bank}}" placeholder="Bank">
+                                <input class="input" name='bank'  value="{{$user->bank}}" placeholder="Bank">
                                 <small class="text-danger text-capitalize">
                                     @error('bank')
                                         {{$message}}
@@ -62,7 +64,7 @@
 
                             <div class="single-form col-md-6">
                                 <label class="">Account Number</label>
-                                <input class="input" name='account_number' readonly value="{{$user->account_no}}" placeholder="Account Number">
+                                <input class="input" name='account_number'  value="{{$user->account_no}}" placeholder="Account Number">
                                 <small class="text-danger text-capitalize">
                                     @error('account_number')
                                         {{$message}}
@@ -73,7 +75,7 @@
                             <div class="single-form">
                                 <label class="">Account Name</label>
                                 <h5 id="account_name"></h5>
-                                <input class="input" name="account_name" readonly value="{{$user->account_name}}"  placeholder="Account Name" >
+                                <input class="input" name="account_name"  value="{{$user->account_name}}"  placeholder="Account Name" >
                                 <small class="text-danger text-capitalize">
                                     @error('account_name')
                                         {{$message}}
@@ -84,7 +86,7 @@
                     </div>
                 </div>
 
-                <div class="border my-2 radius p-5">
+                {{-- <div class="border my-2 radius p-5">
                     <div class="p-5 px-3">
                         <div>
                             <h6 class="p-0">Crypto Wallet</h6>
@@ -100,13 +102,15 @@
                             </small>
                         </div>
                     </div>
-                </div>
+                </div> --}}
 
                 <div class="single-form d-flex justify-content-end px-0">
-                    <button type="submit" class="btn btn-primary">Update Payment Settings</button>
+                    <button type="submit" class="btn btn-primary btn-hover-dark">Update Payment Settings</button>
                 </div>
             </div>
 
         </div>
     </div>
+
+    </form>
 </x-mentor-profile>

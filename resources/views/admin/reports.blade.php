@@ -79,9 +79,9 @@
                                     <td>
                                         @if ($report->status === 'pending')
                                             <div class="btn-group">
-                                                <a href="/reports/{{$report->unique_id}}/resolve" class="btn btn-outline-secondary">
+                                                <x-swal href="/reports/{{$report->unique_id}}/resolve" class="btn btn-outline-secondary">
                                                     Mark As Resolved
-                                                </a>
+                                                </x-swal>
                                             </div>
                                         @endif
                                     </td>

@@ -42,25 +42,25 @@
 
                         <div class="row py-3">
                             <div class="col-6">
-                                <button type="button" class="btn btn-primary">Edit Profile</button>
+                                <a href="/users/{{$user->unique_id}}/edit" class="btn btn-primary">Edit Profile</a>
                             </div>
 
                             <div class="col-6">
-                                <button type="button" class="btn btn-primary">Disable Account</button>
+                                <a href="/users/{{$user->unique_id}}/status" class="btn btn-primary">Disable Account</a>
                             </div>
 
                             <div class="col-6">
-                                <button type="button" class="btn btn-primary">Delete Account</button>
+                                <x-swal href="/users/{{$user->unique_id}}/delete"  class="btn btn-primary">Delete Account</x-swal>
                             </div>
 
                             @if($user->role === 'mentor')
                                 <div class="col-6">
-                                    <button type="button" class="btn btn-primary">Verify User</button>
+                                    <x-swal  type="button" class="btn btn-primary">Verify User</x-swal>
                                 </div>
 
                                 @if ($user->kyc_status === 'pending')
                                     <div class="col-6">
-                                        <a href="/users/{{$user->unique_id}}/actions/approve?action=true" class="btn btn-primary">Approve</a>
+                                        <x-swal href="/users/{{$user->unique_id}}/actions/approve?action=true" class="btn btn-primary">Approve</x-swal>
                                     </div>
                                 @endif
                             @endif

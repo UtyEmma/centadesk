@@ -29,10 +29,12 @@
         <link rel="stylesheet" href="{{ asset('css/plugins/bs-stepper.min.css')}}">
         <link rel="stylesheet" href="{{asset('css/plugins/simple-notify.min.css')}}">
 
+        <link rel="stylesheet" href="{{asset('css/plugins/sweetalert.css')}}">
         <link rel="stylesheet" href="{{asset('css/style.css')}}">
         <link rel="stylesheet" href="{{ asset('css/custom.css')}} ">
 
         <link rel="stylesheet" href="{{ asset('css/plugins/bootstrap-select.css')}} ">
+
 
         <!-- Theme included stylesheets -->
 
@@ -61,6 +63,7 @@
         <script src="{{asset('js/plugins/jquery.countdown.js')}}" ></script>
         <script src="{{asset('js/plugins/jquery-repeater.min.js')}}" ></script>
 
+
         <script src="{{asset('vendor/summernote-0.8.18-dist/summernote-lite.min.js')}}" ></script>
 
         <script src="{{asset('js/plugins/easepick.min.js')}}" defer></script>
@@ -69,6 +72,8 @@
         <script src="{{asset('js/validation.js')}}"></script>
 
         <script src="{{asset('js/plugins/bootstrap-select.js')}}"></script>
+
+        <script src="{{ asset('js/plugins/sweetalert.js')}} "></script>
 
         <!-- Main JS -->
         <script src="{{asset('js/main.js')}}" ></script>

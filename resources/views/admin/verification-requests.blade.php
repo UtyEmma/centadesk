@@ -24,8 +24,8 @@
                                 <td><label class="badge badge-warning">{{$mentor->is_verified}}</label></td>
                                 <td colspan="2">
                                     <a href="/users/{{$mentor->unique_id}}" class="btn btn-outline-warning">View Profile</a>
-                                    <a href="/users/{{$mentor->unique_id}}/actions/verify?status=true" class="btn btn-outline-primary">Verify</a>
-                                    <a href="/users/{{$mentor->unique_id}}/actions/verify?status=false" class="btn btn-outline-danger">Decline</a>
+                                    <x-swal href="/users/{{$mentor->unique_id}}/actions/verify?status=true" class="btn btn-outline-primary">Verify</x-swal>
+                                    <x-swal href="/users/{{$mentor->unique_id}}/actions/verify?status=false" class="btn btn-outline-danger">Decline</x-swal>
                                 </td>
                             </tr>
                         @endforeach

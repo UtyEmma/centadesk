@@ -22,18 +22,6 @@ Route::middleware('guest')->group(function () {
 
     Route::post('login', [AuthenticatedSessionController::class, 'store']);
 
-    Route::get('forgot-password', [PasswordResetLinkController::class, 'create'])
-                ->name('password.request');
-
-    Route::post('forgot-password', [PasswordResetLinkController::class, 'store'])
-                ->name('password.email');
-
-    Route::get('reset-password/{token}', [NewPasswordController::class, 'create'])
-                ->name('password.reset');
-
-    Route::post('reset-password', [NewPasswordController::class, 'store'])
-                ->name('password.update');
-
     Route::prefix('facebook')->name('facebook.')->group( function(){
         Route::get('auth', [SocialAuthController::class, 'facebookLogin'])->name('login');
         Route::get('callback', [SocialAuthController::class, 'facebookCallback'])->name('callback');
@@ -43,9 +31,20 @@ Route::middleware('guest')->group(function () {
         Route::get('auth', [SocialAuthController::class, 'googleLogin'])->name('login');
         Route::get('callback', [SocialAuthController::class, 'googleCallback'])->name('callback');
     });
-
-
 });
+
+Route::get('forgot-password', [PasswordResetLinkController::class, 'create'])
+->name('password.request');
+
+Route::post('forgot-password', [PasswordResetLinkController::class, 'store'])
+->name('password.email');
+
+Route::get('reset-password/{token}', [NewPasswordController::class, 'create'])
+->name('password.reset');
+
+Route::post('reset-password', [NewPasswordController::class, 'store'])
+->name('password.update');
+
 
 Route::middleware('auth')->group(function () {
     Route::get('verify-email', [EmailVerificationPromptController::class, '__invoke'])

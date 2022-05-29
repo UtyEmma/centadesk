@@ -43,7 +43,9 @@
                                     </div>
                                     <!-- Single Form End -->
 
-                                    <p class="mt-5 text-center">Do not have an account? <a href="/register" class="text-primary" style="font-weight: 500;">Sign up here</a></p>
+                                    @if (!Auth::user())
+                                        <p class="mt-5 text-center">Do not have an account? <a href="/register" class="text-primary" style="font-weight: 500;">Sign up here</a></p>
+                                    @endif
                                 </form>
                             </div>
                         </div>

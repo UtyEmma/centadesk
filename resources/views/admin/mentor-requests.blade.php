@@ -25,8 +25,8 @@
                                 <td><label class="badge badge-warning">{{$mentor->kyc_status}}</label></td>
                                 <td colspan="2">
                                     <a href="/users/{{$mentor->unique_id}}" class="btn btn-outline-warning">View Profile</a>
-                                    <a href="/users/{{$mentor->unique_id}}/actions/approve?action=true" class="btn btn-outline-primary">Approve</a>
-                                    <a href="/users/{{$mentor->unique_id}}/actions/approve?action=false" class="btn btn-outline-primary">Disapprove</a>
+                                    <x-swal href="/users/{{$mentor->unique_id}}/actions/approve?action=true" class="btn btn-outline-primary">Approve</x-swal>
+                                    <x-swal href="/users/{{$mentor->unique_id}}/actions/approve?action=false" class="btn btn-outline-primary">Disapprove</x-swal>
                                 </td>
                             </tr>
                         @endforeach

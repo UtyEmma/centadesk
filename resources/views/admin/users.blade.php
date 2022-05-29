@@ -50,7 +50,7 @@
                                     <a class="dropdown-item" href="/users/{{$user->unique_id}}/edit">Edit Info</a>
                                     <hr/>
                                     <a class="dropdown-item" href="/users/{{$user->unique_id}}/status">Disable</a>
-                                    <a class="dropdown-item" href="/users/{{$user->unique_id}}/delete">Delete</a>
+                                    <x-swal class="dropdown-item" href="/users/{{$user->unique_id}}/delete">Delete</x-swal>
                                     </div>
                                 </div>
                             </td>

@@ -29,8 +29,8 @@
                                 {{$suggestion->user}}
                             </td>
                             <td>
-                                <a class="btn btn-success" href="/categories/suggestions/{{$suggestion->unique_id}}/update?action=accept">Accept</a>
-                                <a class="btn btn-danger" href="/categories/suggestions/{{$suggestion->unique_id}}/update?action=decline">Decline</a>
+                                <x-swal class="btn btn-success" href="/categories/suggestions/{{$suggestion->unique_id}}/update?action=accept">Accept</x-swal>
+                                <x-swal class="btn btn-danger" href="/categories/suggestions/{{$suggestion->unique_id}}/update?action=decline">Decline</x-swal>
                             </td>
                         </tr>
                     @empty

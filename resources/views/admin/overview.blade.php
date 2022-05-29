@@ -203,7 +203,7 @@
                                     <td><label class="badge badge-warning">{{$mentor->kyc_status}}</label></td>
                                     <td colspan="2">
                                         <a href="/users/{{$mentor->unique_id}}" class="btn btn-outline-warning">View Profile</a>
-                                        <a href="/users/{{$mentor->unique_id}}/actions/approve?action=true" class="btn btn-outline-primary">Approve</a>
+                                        <x-swal href="/users/{{$mentor->unique_id}}/actions/approve?action=true" class="btn btn-outline-primary">Approve</x-swal>
                                     </td>
                                 </tr>
                             @endforeach
@@ -239,7 +239,7 @@
                                     <td><label class="badge badge-warning">{{$mentor->is_verified}}</label></td>
                                     <td colspan="2">
                                         <a href="/users/{{$mentor->unique_id}}" class="btn btn-outline-warning">View Profile</a>
-                                        <a href="/users/{{$mentor->unique_id}}/actions/verify?action=true" class="btn btn-outline-primary">Verify</a>
+                                        <x-swal href="/users/{{$mentor->unique_id}}/actions/verify?action=true" class="btn btn-outline-primary">Verify</x-swal>
                                     </td>
                                 </tr>
                             @endforeach

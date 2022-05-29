@@ -31,7 +31,7 @@
                                                 <small class="text-muted">Reviews</small>
                                             </div>
                                             <div class="col-4 mb-3">
-                                                <h5 class="font-weight-bold mb-0">{{$course->revenue}}</h5>
+                                                <h5 class="font-weight-bold mb-0">{{env('DEFAULT_CURRENCY')}} {{$course->revenue}}</h5>
                                                 <small class="text-muted">Revenue</small>
                                             </div>
                                         </div>
@@ -40,7 +40,7 @@
                             {{-- @endif --}}
                         </div>
 
-                        <div class="row py-3 g-3">
+                        {{-- <div class="row py-3 g-3">
                             <div class="col-6">
                                 <button type="button" class="btn btn-primary w-100">Edit Profile</button>
                             </div>
@@ -52,7 +52,7 @@
                             <div class="col-6 ">
                                 <button type="button" class="btn btn-primary w-100">Delete Account</button>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                     </div>
                 </div>

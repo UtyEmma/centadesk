@@ -155,7 +155,10 @@ Route::middleware(['set.currency', 'set.referrals'])->group(function(){
 
             Route::prefix('account')->group(function(){
                 Route::get('/', [MentorController::class, 'profile']);
+                Route::get('/security', [MentorController::class, 'security']);
                 Route::get('/payments', [MentorController::class, 'payments']);
+                Route::get('/update', [MentorController::class, 'update']);
+                Route::get('/delete', [MentorController::class, 'delete']);
             });
 
             Route::prefix('/wallet')->group(function(){

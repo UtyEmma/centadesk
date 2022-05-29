@@ -74,7 +74,7 @@
                                             </button>
                                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
                                             <a class="dropdown-item" href="/admin/{{$admin->unique_id}}/status">{{$admin->status ? 'Suspend' : 'Unsuspend'}}</a>
-                                            <a class="dropdown-item" href="/admin/{{$admin->unique_id}}/delete">Delete</a>
+                                            <x-swal class="dropdown-item" href="/admin/{{$admin->unique_id}}/delete">Delete</x-swal>
                                             </div>
                                         </div>
                                     </td>

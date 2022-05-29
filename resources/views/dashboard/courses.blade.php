@@ -85,7 +85,7 @@
                                                   <li><a class="dropdown-item" href="{{$course->slug}}/edit">Edit</a></li>
                                                   <li><a class="dropdown-item" href="/me/courses/{{$course->slug}}">Details</a></li>
                                                   <li><a class="dropdown-item" href="/courses/{{$course->slug}}">Preview</a></li>
-                                                  <li><a class="dropdown-item text-danger" href="{{$course->slug}}/delete">Cancel</a></li>
+                                                  <li><x-swal class="dropdown-item text-danger" href="{{$course->slug}}/delete">Cancel</x-swal></li>
                                                 </ul>
                                             </div>
                                         </div>

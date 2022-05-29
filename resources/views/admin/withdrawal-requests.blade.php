@@ -60,12 +60,12 @@
                                     </td>
                                     <td>
                                         <div class="btn-group">
-                                            <a href="/withdrawals/confirm?withdrawal_id={{$withdrawal->unique_id}}" class="btn btn-outline-primary" type="button">
+                                            <x-swal href="/withdrawals/confirm?withdrawal_id={{$withdrawal->unique_id}}" class="btn btn-outline-primary" type="button">
                                                 Confirm
-                                            </a>
-                                            <a href="/withdrawals/decline?withdrawal_id={{$withdrawal->unique_id}}" class="btn btn-outline-danger" type="button">
+                                            </x-swal>
+                                            <x-swal href="/withdrawals/decline?withdrawal_id={{$withdrawal->unique_id}}" class="btn btn-outline-danger" type="button">
                                                 Decline
-                                            </a>
+                                            </x-swal>
                                         </div>
                                     </td>
                                 </tr>
