@@ -4,9 +4,9 @@
         <div class="card">
             <div class="card-body">
                 <div class="d-flex justify-content-between">
-                    <h4 class="card-title">Withdrawals</h4>
+                    <h4 class="card-title">Withdrawal Requests</h4>
                     <div >
-                        <a href="/withdrawals/requests" class="btn btn-outline-success">Withdrawal Requests</a>
+                        <a href="/withdrawals" class="btn btn-outline-success">Withdrawals</a>
                         {{-- <a href="" class="btn btn-outline-warning">Decline Selected</a> --}}
                     </div>
                 </div>

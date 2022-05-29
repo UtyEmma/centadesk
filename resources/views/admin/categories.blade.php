@@ -27,9 +27,10 @@
                 <h4 class="card-title">Categories</h4>
                 <p class="card-description">
                   {{-- Add class <code>.table-striped</code> --}}
+                  {{$categories->links()}}
                 </p>
                 <div>
-                  <table class="table table-bordered  table-responsive">
+                  <table class="table table-bordered  table-responsive-md">
                     <thead>
                       <tr>
                         <th></th>

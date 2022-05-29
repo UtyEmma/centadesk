@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\CurrencyController;
 use App\Http\Controllers\AppController;
 use App\Http\Controllers\BatchController;
 use App\Http\Controllers\BatchResourceController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\CryptoPaymentController;
@@ -106,6 +107,10 @@ Route::middleware(['set.currency', 'set.referrals'])->group(function(){
 
         Route::prefix('/me')->middleware('is.mentor')->group(function(){
             Route::get('/', [MentorController::class, 'home'])->name('dashboard');
+
+            Route::prefix('/category')->group(function(){
+                Route::post('/suggest', [CategoryController::class, 'suggestCategory']);
+            });
 
             Route::prefix('courses')->group(function(){
                 Route::get('/', [CourseController::class, 'fetch']);

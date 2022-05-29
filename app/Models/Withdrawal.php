@@ -22,5 +22,9 @@ class Withdrawal extends Model{
         'amount' => Currency::class
     ];
 
+    public function users (){
+        return $this->hasMany(User::class, 'user_id', 'unique_id');
+    }
+
 
 }

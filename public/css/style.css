@@ -16545,7 +16545,7 @@ img {
 /*  2.4 - Modal CSS
 /*----------------------------------------*/
 .modal .modal-dialog {
-  max-width: 900px;
+  /* max-width: 900px; */
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {

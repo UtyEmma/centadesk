@@ -79,6 +79,12 @@ Route::middleware('auth:admin')->group(function(){
     Route::prefix('/categories')->group(function(){
         Route::get('/', [CategoryController::class, 'fetchAll']);
         Route::post('/create', [CategoryController::class, 'create']);
+
+        Route::prefix('/suggestions')->group(function(){
+            Route::get('/', [CategoryController::class, 'suggestions']);
+            Route::get('/{id}/update', [CategoryController::class, 'updateSuggestions']);
+        });
+
         Route::prefix('{category_id}')->group(function(){
             Route::post('/update', [CategoryController::class, 'update']);
             Route::get('/status', [CategoryController::class, 'setStatus']);

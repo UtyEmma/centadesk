@@ -29,9 +29,7 @@ class WithdrawalController extends Controller{
     function show(Request $request){
         if($request->type === 'requests'){
             $withdrawals = Withdrawal::where('status', 'pending')
-                                        ->join('users', 'users.unique_id', 'withdrawals.user_id')
-                                        ->join('wallets', 'withdrawals.user_id', 'wallets.user_id')
-                                        ->select('withdrawals.*', 'wallets.available', 'users.firstname', 'users.lastname', 'users.avatar', 'users.unique_id as user_id')
+                                        ->with('user')
                                         ->paginate(env('ADMIN_PAGINATION_COUNT'));
         }else{
             $withdrawals = Withdrawal::join('users', 'users.unique_id', 'withdrawals.user_id')
@@ -41,6 +39,16 @@ class WithdrawalController extends Controller{
         }
 
         return Response::view('admin.withdrawals', [
+            'withdrawals' => $withdrawals
+        ]);
+    }
+
+    function withdrawalRequests(){
+        $withdrawals = Withdrawal::where('status', 'pending')
+                                    ->with('user')
+                                    ->paginate(env('ADMIN_PAGINATION_COUNT'));
+
+        return Response::view('admin.withdrawal-requests', [
             'withdrawals' => $withdrawals
         ]);
     }

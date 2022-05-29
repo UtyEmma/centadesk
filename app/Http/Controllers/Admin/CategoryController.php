@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Library\Response;
 use App\Library\Token;
 use App\Models\Category;
+use App\Models\CategorySuggestion;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -68,6 +69,42 @@ class CategoryController extends Controller{
             $category = Category::where('unique_id', $category_id)->first();
             $category->delete();
             return Response::redirectBack('success', "Category Deleted Successfully");
+        } catch (\Throwable $th) {
+            return Response::redirectBack('error',  $th->getMessage());
+        }
+    }
+
+    function suggestions () {
+        try {
+            $suggestions = CategorySuggestion::all();
+            return Response::view('admin.category-suggestions', [
+                'suggestions' => $suggestions
+            ]);
+        } catch (\Throwable $th) {
+            return Response::redirectBack('error',  $th->getMessage());
+        }
+    }
+
+    function updateSuggestions(Request $request, $id){
+        try {
+            $suggestion = CategorySuggestion::where('unique_id', $id)->first();
+
+            if($request->action === 'accept') {
+                $unique_id = Token::unique('categories');
+                $slug = Str::slug($suggestion->title);
+
+                $category = Category::create([
+                    'unique_id' => $unique_id,
+                    'name' => $suggestion->title,
+                    'slug' => $slug
+                ]);
+
+                $suggestion->delete();
+                return Response::redirectBack('success', "Category Added to Active Categories");
+            }else{
+                $suggestion->delete();
+                return Response::redirectBack('success', "Category Suggestion Deleted");
+            }
         } catch (\Throwable $th) {
             return Response::redirectBack('error',  $th->getMessage());
         }

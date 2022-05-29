@@ -57,6 +57,12 @@
         </a>
       </li>
       <li class="nav-item">
+        <a class="nav-link" href="/categories/suggestions">
+          <i class="mdi mdi-forum menu-icon"></i>
+          <span class="menu-title">Category Suggestions</span>
+        </a>
+      </li>
+      <li class="nav-item">
         <a class="nav-link" href="/testimonials">
           <i class="mdi mdi-bullhorn menu-icon"></i>
           <span class="menu-title">Testimonials</span>
@@ -66,6 +72,12 @@
         <a class="nav-link" href="/withdrawals">
           <i class="mdi mdi-upload menu-icon"></i>
           <span class="menu-title">Withdrawals</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/withdrawals/requests">
+          <i class="mdi mdi-upload menu-icon"></i>
+          <span class="menu-title">Withdrawal Requests</span>
         </a>
       </li>
       <li class="nav-item">

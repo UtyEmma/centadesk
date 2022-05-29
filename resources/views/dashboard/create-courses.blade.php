@@ -56,7 +56,10 @@
                                 <h5 class="mb-3">Course Meta</h5>
 
                                 <div class="single-form">
-                                    <label class="mb-1">Category</label>
+                                    <div class="d-flex justify-content-between">
+                                        <label class="mb-1">Category</label>
+                                        <button type="button" data-bs-toggle="modal" data-bs-target="#suggest-category" class="p-0 mb-1 bg-transparent border-0"><small>Suggest a Category</small></button>
+                                    </div>
 
                                     <select onblur="validateInput(event, __courseSchema)" name="category" class="selectpicker w-100" data-live-search="true" title="Select Category" data-style="border radius py-0 px-2 fw-normal">
                                         @foreach ($categories as $category)
@@ -97,5 +100,7 @@
 
             </form>
         </div>
+        @include('components.suggest-category')
     </div>
+
 </x-app-layout>
