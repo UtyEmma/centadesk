@@ -13,12 +13,12 @@
                 </div>
             @endforeach
         @else
-            <div class="w-100 border radius p-3">
+            <div class="w-100 border text-center radius p-5">
                 @if (Auth::user())
                     <h6>Be the first to review this Course</h6>
                     <p>Enroll in any of the active batches and let us know what you think.</p>
                 @else
-                    {{$can['message']}}
+                    <h6>There are no reviews for this course</h6>
                 @endif
             </div>
         @endif

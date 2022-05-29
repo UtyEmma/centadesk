@@ -20,6 +20,14 @@ return new class extends Migration
             $table->string('sender_id');
             $table->text('message');
             $table->timestamps();
+
+            $table->foreign('sender_id')
+                    ->references('unique_id')->on('users')
+                    ->onDelete('cascade');
+
+            $table->foreign('batch_id')
+                    ->references('unique_id')->on('batches')
+                    ->onDelete('cascade');
         });
     }
 

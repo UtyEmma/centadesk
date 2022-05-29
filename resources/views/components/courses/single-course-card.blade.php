@@ -34,9 +34,9 @@
             <div class="mt-2 d-flex align-items-center">
                 <x-layered-profile-images :users="$course->enrollments" />
 
-                @if ($course->enrollments_count > 0)
+                {{-- @if ($course->enrollments_count > 0)
                     <small class="ms-4">{{$course->enrollments_count}} {{Str::plural('Student', $course->enrollments_count)}}</small>
-                @endif
+                @endif --}}
             </div>
 
         <div class="courses-price-review mt-2">

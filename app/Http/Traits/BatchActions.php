@@ -152,13 +152,14 @@ trait BatchActions {
 
         if(!$enrollment) throw new Exception("You are not enrolled for this batch");
 
-        $forum_messages = ForumMessages::where('batch_id', $batch->unique_id)
-                                ->join('users', 'users.unique_id', 'forum_messages.sender_id')
-                                ->select('forum_messages.*', 'users.firstname', 'users.lastname', 'users.avatar')
-                                ->get();
+        $messages = ForumMessages::where('batch_id', $batch->unique_id)->with(['user'])->get();
 
-        $messages = $forum_messages->map(function($message){
-            $message['created_at'] = DateTime::getDateInterval($message['created_at']);
+        $mentor = User::find($batch->mentor_id);
+
+        $messages->map(function($message) use ($mentor, $user){
+            $message->time_interval = DateTime::getDateInterval($message->created_at);
+            $message->is_mentor = $mentor->unique_id === $message->user_id;
+            $message->is_sender = $message->sender_id === $user->unique_id;
             return $message;
         });
 
@@ -169,8 +170,6 @@ trait BatchActions {
 
         $reviews = $this->getBatchReviews($batch);
         $can_review = $this->checkIfUserCanReview($user->unique_id, $batch);
-
-        $mentor = User::where('unique_id', $enrollment->mentor_id)->first();
 
 
         $report = Report::where([

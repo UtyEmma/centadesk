@@ -1,3 +1,3 @@
-<x-email-header />
+<x-email.header />
     {{$slot}}
-<x-email-footer />
+<x-email.footer />

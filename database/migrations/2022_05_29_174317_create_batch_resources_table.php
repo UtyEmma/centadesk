@@ -13,19 +13,18 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('transactions', function (Blueprint $table) {
+        Schema::create('batch_resources', function (Blueprint $table) {
             $table->id();
-            $table->string('unique_id');
-            $table->string('reference');
-            $table->string('user_id');
-            $table->string('type');
-            $table->string('status');
-            $table->integer('amount');
-            $table->string('currency');
+            $table->string('unique_id')->unique();
+            $table->string('batch_id');
+            $table->string('link');
+            $table->string('title');
+            $table->string('description');
+            $table->boolean('status');
             $table->timestamps();
 
-            $table->foreign('user_id')
-                    ->references('unique_id')->on('users')
+            $table->foreign('batch_id')
+                    ->references('unique_id')->on('batches')
                     ->onDelete('cascade');
         });
     }
@@ -37,6 +36,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('transactions');
+        Schema::dropIfExists('batch_resources');
     }
 };

@@ -9,8 +9,8 @@
 
         .default-avatar,
         .member-overlap-item {
-            height: 40px;
-            width: 40px;
+            height: 35px;
+            width: 35px;
             display: inline-block;
         }
 
@@ -22,12 +22,12 @@
 @endpush
 
 
-<div class="d-block">
-    @if (count($users) > 0)
+<div class="d-flex align-items-center">
+    @if ($users->count() > 5)
         @forelse ($users as $user)
-
+            <div title="Baby Yoda" class="rounded-circle default-avatar member-overlap-item shadow-sm" style="background: url({{$user->avatar ?? asset('images/avatars/avatar-1.png')}}) 0 0 no-repeat; background-size: 120%; background-position: center;">
+            </div>
         @empty
-
         @endforelse
     @else
         <div title="Baby Yoda" class="rounded-circle default-avatar member-overlap-item shadow-sm" style="background: url({{asset('images/avatars/avatar-1.png')}}) 0 0 no-repeat; background-size: 120%; background-position: center;">
@@ -40,5 +40,9 @@
         </div>
         <div title="C-3PO" class="rounded-circle default-avatar member-overlap-item" style="background: url({{asset('images/avatars/avatar-5.png')}}) 0 0 no-repeat; background-size: 120%; background-position: center;">
         </div>
+    @endif
+
+    @if ($users->count() > 0)
+        <small class="ms-4">+ {{$users->count()}} {{Str::plural('student', $users->count())}}</small>
     @endif
   </div>

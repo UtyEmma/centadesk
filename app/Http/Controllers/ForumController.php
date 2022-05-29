@@ -48,23 +48,21 @@ class ForumController extends Controller{
         $user = $this->user();
         $course = Courses::where('slug', $slug)->first();
 
-        $batch = Batch::where('short_code', $shortcode)->first();
+        $batch = Batch::where('short_code', $shortcode)->with(['mentor', 'course', 'enrollments.student'])->first();
 
-        $messages = ForumMessages::where('batch_id', $batch->unique_id)
-                                ->join('users', 'users.unique_id', 'forum_messages.sender_id')
-                                ->select('forum_messages.*', 'users.firstname', 'users.lastname', 'users.avatar', 'users.unique_id as user_id')
-                                ->get();
+        $messages = ForumMessages::where('batch_id', $batch->unique_id)->with(['user'])->get();
 
         $mentor = User::find($batch->mentor_id);
 
         $messages->map(function($message) use ($mentor, $user){
             $message->time_interval = DateTime::getDateInterval($message->created_at);
             $message->is_mentor = $mentor->unique_id === $message->user_id;
-            $message->is_sender = $mentor->unique_id === $user->unique_id;
+            $message->is_sender = $message->sender_id === $user->unique_id;
             return $message;
         });
 
         $batch->begins = DateTime::getDateInterval($batch->startdate);
+
 
         return view('dashboard.course-details.batch.forum', [
             'batch' => $batch,

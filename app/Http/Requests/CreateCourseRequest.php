@@ -27,10 +27,12 @@ class CreateCourseRequest extends FormRequest
         return [
             'name' => ['required','string', 'unique:courses,name'],
             'desc' => 'required|string',
-            'tags' => 'required|string|json',
-            'video' => "required|string|url",
-            'images*' => 'required|image',
-            'category' => 'required|string'
+            'tags' => 'nullable|string|json',
+            'video' => "nullable|string|url",
+            'images' => 'required|image',
+            'excerpt' => 'required|string|max:120',
+            'category' => 'required|string',
+            'objectives' => 'json'
         ];
     }
 }

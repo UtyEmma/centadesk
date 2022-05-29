@@ -11,6 +11,7 @@ use App\Library\Arr as LibraryArr;
 use App\Library\DateTime;
 use App\Library\Response;
 use App\Models\Batch;
+use App\Models\BatchResource;
 use App\Models\Category;
 use App\Models\Courses;
 use App\Models\Enrollment;
@@ -75,10 +76,23 @@ class StudentController extends Controller{
         try {
             if(!$batch = Batch::where('short_code', $shortcode)->first()) throw new Exception("The requested batch does not exist");
             $data = $this->getEnrolledBatch($batch, $this->user());
+
             return view('front.student.course.forum', $data);
         } catch (\Throwable $th) {
             return Response::redirectBack('error', $th->getMessage());
         }
+    }
+
+    function courseResources($slug, $shortcode){
+        try {
+            if(!$batch = Batch::where('short_code', $shortcode)->first()) throw new Exception("The requested batch does not exist");
+            $data = $this->getEnrolledBatch($batch, $this->user());
+            $resources = BatchResource::where('batch_id', $batch->unique_id)->get();
+            return Response::view('front.student.course.resources', array_merge($data, ['resources' => $resources]));
+        } catch (\Throwable $th) {
+            return Response::redirectBack('error', $th->getMessage());
+        }
+
     }
 
     public function enrolledCourse(Request $request, $slug, $shortcode){

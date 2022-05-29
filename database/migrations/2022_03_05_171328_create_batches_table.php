@@ -31,6 +31,7 @@ return new class extends Migration
             $table->integer('price')->nullable();
             $table->integer('total_students');
             $table->string('class_link')->nullable();
+            $table->longText('resources')->nullable();
             $table->string('status');
             $table->boolean('current');
             $table->boolean('certificates');
@@ -47,6 +48,13 @@ return new class extends Migration
             $table->boolean('payable');
             $table->integer('count');
             $table->timestamps();
+
+            $table->foreign('mentor_id')
+                    ->references('unique_id')->on('users')
+                    ->onDelete('cascade');
+            $table->foreign('course_id')
+                    ->references('unique_id')->on('courses')
+                    ->onDelete('cascade');
         });
     }
 

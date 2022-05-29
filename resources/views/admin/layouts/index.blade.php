@@ -16,7 +16,7 @@
         <!-- inject:css -->
         <link rel="stylesheet" href="{{asset('administrator/css/style.css')}}">
         <!-- endinject -->
-        <link rel="shortcut icon" href="{{asset('administrator/images/favicon.png')}}" />
+        <link rel="shortcut icon" href="{{asset('images/icon.png')}}" />
 
         <!-- plugins:js -->
         <script src="{{asset('administrator/vendors/base/vendor.bundle.base.js')}}"></script>

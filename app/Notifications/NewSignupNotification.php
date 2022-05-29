@@ -7,9 +7,10 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class NewSignupNotification extends Notification implements ShouldQueue
+class NewSignupNotification extends Notification
+// implements ShouldQueue
 {
-    use Queueable;
+    // use Queueable;
 
     private $details;
 
@@ -25,7 +26,7 @@ class NewSignupNotification extends Notification implements ShouldQueue
      */
     public function via($notifiable)
     {
-        return ['mail'];
+        return ['database', 'mail'];
     }
 
     /**
@@ -52,10 +53,9 @@ class NewSignupNotification extends Notification implements ShouldQueue
      * @param  mixed  $notifiable
      * @return array
      */
-    public function toArray($notifiable)
-    {
+    public function toArray($notifiable){
         return [
-            //
+            'message' => 'Your account has been created. Welcome onboard!'
         ];
     }
 }

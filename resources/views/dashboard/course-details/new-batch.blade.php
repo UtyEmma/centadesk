@@ -10,8 +10,8 @@
         <div class="container-fluid custom-container">
             <div>
                 <div >
-                    <h3 class="mb-0 lh-0">{{$course->name}}</h3>
-                    <h5 class="mt-1 lh-0">Create a New Batch</h5>
+                    <h3 class="mt-1 mb-0 lh-0">Create a New Batch</h3>
+                    <h6 class="mb-0 lh-0">{{$course->name}}</h6>
                 </div>
 
                 <form class="mt-5" action="/me/courses/{{$course->unique_id}}/batch/create" onsubmit="return validateBatchDetails(event)"  method="post" enctype="multipart/form-data">

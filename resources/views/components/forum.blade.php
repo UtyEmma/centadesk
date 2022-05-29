@@ -1,6 +1,6 @@
 <div class="card radius border card-chat-body order-0 w-100 p-0"  style="height: 84vh;">
     <div class="chat-header border-bottom p-3" style="height: 15%">
-       <x-layered-profile-images />
+       <x-layered-profile-images :users="$batch->enrollments" />
        <h6 class="mb-0">{{$batch->title}}</h6>
    </div>
 
@@ -10,8 +10,8 @@
                <li class="float-right offset-3 col-9">
                    <div class="single-message p-0" >
                        <div class="message-author justify-content-end align-items-start mx-0 px-0 gx-3">
-                           <div class="flex-1 me-2">
-                               <div class="author-content bg-primary text-right text-white p-2 float-left w-100 radius mt-1 mb-0">
+                           <div class="flex-1 col-10 me-2">
+                               <div class="author-content bg-primary text-right text-white p-2 w-100 radius mt-1 mb-0">
                                    <p class="my-0 text-end">
                                        <small class="name text-right mb-1" style="font-size: 14px;">
                                            <small >You</small>
@@ -27,7 +27,7 @@
 
                            <div class="author-images col-1 pt-2">
                                <div class="ratio ratio-1x1">
-                                   <img src="{{$message->avatar}}" class="" style="object-fit: cover;"  alt="Author">
+                                   <img src="{{$message->user->avatar ?? asset('images/icon/avatar.png')}}" class="" style="object-fit: cover;"  alt="Author">
                                </div>
                            </div>
                        </div>
@@ -39,15 +39,14 @@
                        <div class="message-author align-items-start mx-0 px-0 gx-3">
                            <div class="author-images col-1 pt-2">
                                <div class="ratio ratio-1x1">
-                                   <img src="{{$message->avatar}}" class="" style="object-fit: cover;"  alt="Author">
+                                   <img src="{{$message->user->avatar ?? asset('images/icon/avatar.png')}}" class="" style="object-fit: cover;"  alt="Author">
                                </div>
                            </div>
 
                            <div class="flex-1 col-10 ms-2">
-
                                <div class="author-content bg-light p-2 radius mt-1">
                                    <small class="name mb-1" style="font-size: 14px;">
-                                       <small >{{$message->firstname}} {{$message->lastname}}</small>
+                                       <small >{{$message->user->firstname}} {{$message->user->lastname}}</small>
                                        @if ($message->is_mentor)
                                            <span class="bg-secondary text-primary rounded p-1 py-0 mt-0" style="font-size: 11px;">Mentor</span>
                                        @endif
@@ -60,7 +59,6 @@
                        </div>
                    </div>
                </li>
-
            @endif
         @empty
         @endforelse
@@ -94,7 +92,7 @@
 
                            <div class="author-images col-1 pt-2">
                                <div class="ratio ratio-1x1">
-                                   <img src="{{$message->avatar}}" class="" style="object-fit: cover;"  alt="Author">
+                                   <img src="{{$user->avatar}}" class="" style="object-fit: cover;"  alt="Author">
                                </div>
                            </div>
                        </div>

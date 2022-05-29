@@ -63,8 +63,8 @@ class MentorController extends Controller{
         $user = $this->user();
 
         if($user->role === 'mentor' && $user->kyc_status === 'approved') return redirect(self::HOME);
-
         $banks = Bank::all();
+
         return view('front.mentors.onboarding', [
             'banks' => $banks,
             'user' => $user

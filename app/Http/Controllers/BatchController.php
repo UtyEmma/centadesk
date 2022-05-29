@@ -13,6 +13,7 @@ use App\Library\Number;
 use App\Library\Response;
 use App\Library\Token;
 use App\Models\Batch;
+use App\Models\BatchResource;
 use App\Models\Courses;
 use App\Models\Enrollment;
 use App\Notifications\NewBatchPublishedNotification;
@@ -55,18 +56,26 @@ class BatchController extends Controller{
     }
 
     function fetchBatch(Request $request, $slug, $shortcode){
-        $user = $this->user();
-        $details = $this->mentorBatchDetails($shortcode, true);
-        return view('dashboard.course-details.batch.overview', $details);
+        try {
+            $user = $this->user();
+            $details = $this->mentorBatchDetails($shortcode, true);
+            return view('dashboard.course-details.batch.overview', $details);
+        } catch (\Throwable $th) {
+            return Response::redirectBack('error', $th->getMessage());
+        }
     }
 
     function newBatchPage(Request $request, $slug){
-        $user = $this->user();
-        $course = $this->getCourseBySlug($slug, $user);
-        return Response::view('dashboard.course-details.new-batch', [
-            'mentor' => $user,
-            'course' => $course
-        ]);
+        try {
+            $user = $this->user();
+            $course = $this->getCourseBySlug($slug, $user);
+            return Response::view('dashboard.course-details.new-batch', [
+                'mentor' => $user,
+                'course' => $course
+            ]);
+        } catch (\Throwable $th) {
+            return Response::redirectBack('error', $th->getMessage());
+        }
     }
 
     function newBatch(NewBatchRequest $request, $course_id){
@@ -142,8 +151,12 @@ class BatchController extends Controller{
     }
 
     function batchDetails(Request $request, $slug, $shortcode){
-        $details = $this->getBatchDetails($shortcode);
-        return Response::view('front.batch-details', $details);
+        try {
+            $details = $this->getBatchDetails($shortcode);
+            return Response::view('front.batch-details', $details);
+        } catch (\Throwable $th) {
+            return Response::redirectBack('error', $th->getMessage());
+        }
     }
 
     function update(Request $request, $slug, $shortcode){
@@ -216,6 +229,13 @@ class BatchController extends Controller{
         $course = Courses::find($batch->course_id);
 
         return Response::redirect("/courses/$course->slug", 'success', 'You have successfully deleted this batch!');
+    }
+
+    function batchRecourses($slug, $shortcode){
+        $details = $this->getBatchDetails($shortcode);
+        // $batch = Batch::where('short_code', $shortcode)->first();
+        $resources = BatchResource::where('batch_id', $details['batch']->unique_id)->get();
+        return Response::view('dashboard.course-details.batch.resources', array_merge($details, ['resources' => $resources]));
     }
 
 }

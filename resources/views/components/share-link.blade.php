@@ -32,7 +32,7 @@
             {{$link}}
         </p>
 
-        <div class="d-flex">
+        <div class="w-auto d-flex">
             <button onclick="copyLink()" title="Copy" type="button" class="btn btn-secondary btn-hover-primary h-auto btn-custom d-flex align-items-center justify-content-center py-2 px-2 me-2" >
                 <i class="icofont-ui-copy ms-0 fs-5"></i>
             </button>

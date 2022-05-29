@@ -24,6 +24,22 @@ return new class extends Migration
             $table->string('review');
             $table->boolean('status');
             $table->timestamps();
+
+            $table->foreign('user_id')
+                    ->references('unique_id')->on('users')
+                    ->onDelete('cascade');
+
+            $table->foreign('mentor_id')
+                    ->references('unique_id')->on('users')
+                    ->onDelete('cascade');
+
+            $table->foreign('course_id')
+                    ->references('unique_id')->on('courses')
+                    ->onDelete('cascade');
+
+            $table->foreign('batch_id')
+                    ->references('unique_id')->on('batches')
+                    ->onDelete('cascade');
         });
     }
 

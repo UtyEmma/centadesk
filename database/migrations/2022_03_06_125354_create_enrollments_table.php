@@ -21,6 +21,22 @@ return new class extends Migration
             $table->string('mentor_id');
             $table->string('transaction_id')->unique();
             $table->timestamps();
+
+            $table->foreign('student_id')
+                    ->references('unique_id')->on('users')
+                    ->onDelete('cascade');
+
+            $table->foreign('mentor_id')
+                    ->references('unique_id')->on('users')
+                    ->onDelete('cascade');
+
+            $table->foreign('batch_id')
+                    ->references('unique_id')->on('batches')
+                    ->onDelete('cascade');
+
+            $table->foreign('course_id')
+                    ->references('unique_id')->on('courses')
+                    ->onDelete('cascade');
         });
     }
 

@@ -70,6 +70,8 @@ class CourseController extends Controller{
 
         $results = $query->paginate(env('PAGINATION_COUNT'));
 
+        // return print_r($results);
+
         return view('front.courses', [
             'courses' => $results,
             'data' => $this->app_data(),

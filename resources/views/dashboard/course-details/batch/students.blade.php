@@ -31,7 +31,7 @@
                             </div>
                         </div>
                         <div class="taught">
-                            <h6>{{$student->enrolled_at}}</h6>
+                            <p>{{$student->enrolled_at}}</p>
                         </div>
                         {{-- <div class="student">
                             <span>{{$student->}}</span>

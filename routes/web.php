@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\CurrencyController;
 use App\Http\Controllers\AppController;
 use App\Http\Controllers\BatchController;
+use App\Http\Controllers\BatchResourceController;
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\CryptoPaymentController;
@@ -58,6 +59,7 @@ Route::middleware(['set.currency', 'set.referrals'])->group(function(){
                         Route::prefix('{shortcode}')->group(function(){
                             Route::get('/', [StudentController::class, 'enrolledCourse'])->name('enrolledBatchRoute');
                             Route::get('forum', [StudentController::class, 'courseForum']);
+                            Route::get('resources', [StudentController::class, 'courseResources']);
                             Route::get('certificate', [EnrollmentController::class, 'downloadCertificate']);
                             Route::get('view-certificate', [EnrollmentController::class, 'viewCertificate']);
                         });
@@ -125,6 +127,16 @@ Route::middleware(['set.currency', 'set.referrals'])->group(function(){
                         Route::get('/', [BatchController::class, 'fetchBatch'])->name('mentor_batch');
                         Route::get('/students', [BatchController::class, 'fetchBatchStudents'])->name('mentor_batch_students');
                         Route::get('/forum', [ForumController::class, 'fetchMentorBatchForum'])->name('mentor_batch_forum');
+
+                        Route::prefix('/resources')->group(function(){
+                            Route::get('/', [BatchController::class, 'batchRecourses'])->name('mentor_batch_resources');
+                            Route::post('/create', [BatchResourceController::class, 'create'])->name('create_batch_resources');
+
+                            Route::prefix('/{resource_id}')->group(function(){
+                                Route::post('edit' , [BatchResourceController::class, 'edit']);
+                                Route::get('delete' , [BatchResourceController::class, 'delete']);
+                            });
+                        });
                         Route::get('/edit', [BatchController::class, 'edit'])->name('mentor_batch_edit');
                         Route::post('/update', [BatchController::class, 'update']);
                         Route::post('/delete', [BatchController::class, 'deleteBatch']);

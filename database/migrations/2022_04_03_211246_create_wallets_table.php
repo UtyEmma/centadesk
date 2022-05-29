@@ -26,6 +26,10 @@ return new class extends Migration
             $table->integer('withdrawals');
             $table->integer('deposits');
             $table->timestamps();
+
+            $table->foreign('user_id')
+                    ->references('unique_id')->on('users')
+                    ->onDelete('cascade');
         });
     }
 

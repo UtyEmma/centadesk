@@ -32,7 +32,7 @@
             </div>
         </div>
     </div>
-    <button data-repeater-create type="button" class="w-auto mt-2 btn btn-primary btn-custom">Add</button>
+    <button data-repeater-create type="button" class="w-auto mt-2 btn btn-primary btn-hover-dark btn-custom">Add</button>
     <input type="text" name="objectives" id="objectives-input" hidden>
 </div>
 

@@ -4,7 +4,7 @@
     </h6>
 
     <div>
-        <small>Your Report is <span class="fw-bold" style="text-transform: capitalize;">{{strtoupper($report->status)}}</span></small>
+        <small>Your Report is <span class="fw-bold {{$report->status === 'resolved' ? 'text-primary' : 'text-warning'}}" style="text-transform: capitalize; ">{{strtoupper($report->status)}}</span></small>
     </div>
 
     <p class="p-2 bg-light-primary radius mt-2">

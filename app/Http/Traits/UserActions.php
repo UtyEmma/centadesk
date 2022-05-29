@@ -44,9 +44,7 @@ trait UserActions{
 
         // try {
             Notification::send($user, new NewSignupNotification($notification));
-        // } catch (\Throwable $th) {
-        //     return $user;
-        // }
+        // } catch (\Throwable $th) { }
         return $user;
     }
 

@@ -27,13 +27,16 @@
                     </div>
 
 
-                    <div class="d-flex my-3 mt-md-0 justify-content-between align-items-center">
+                    <div class="d-flex my-3 mt-md-0 justify-content-between align-items-center border border-primary radius p-3 bg-secondary">
                         <div>
                             <a class="me-3 text-primary {{request()->routeIs('mentor_batch') ? 'fw-bold' : ''}}" href="/me/courses/{{$course->slug}}/{{$batch->short_code}}">
                                 Students
                             </a>
                             <a class="me-3 text-primary {{request()->routeIs('mentor_batch_forum') ? 'fw-bold' : ''}}" href="/me/courses/{{$course->slug}}/{{$batch->short_code}}/forum">
                                 Forum
+                            </a>
+                            <a class="me-3 text-primary {{request()->routeIs('mentor_batch_resources') ? 'fw-bold' : ''}}" href="/me/courses/{{$course->slug}}/{{$batch->short_code}}/resources">
+                                Resources
                             </a>
                             <a class="me-3 text-primary {{request()->routeIs('mentor_batch_edit') ? 'fw-bold' : ''}}" href="/me/courses/{{$course->slug}}/{{$batch->short_code}}/edit">
                                 Edit
@@ -56,7 +59,7 @@
                         <div class="card-body">
 
                             <div class="row gy-4">
-                                <div class="col-4">
+                                <div class="col-4 pe-0">
                                     <div class="ratio ratio-1x1 radius h-100">
                                         <img src="{{$batch->images}}" class="w-100 h-100 radius" style="object-fit: cover" alt="">
                                     </div>

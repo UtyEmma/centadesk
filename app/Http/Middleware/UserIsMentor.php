@@ -18,6 +18,6 @@ class UserIsMentor
     public function handle(Request $request, Closure $next){
         $user = $request->user();
         if($user->role === 'mentor' && $user->kyc_status === 'approved') return $next($request);
-        return Response::redirectBack('error', "You are not yet a Mentor! You are not allowed to access this page.");
+        return Response::redirect('/mentor/onboarding', 'error', "You are not yet a Mentor! You are not allowed to access this page.");
     }
 }

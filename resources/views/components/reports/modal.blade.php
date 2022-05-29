@@ -1,5 +1,3 @@
-@if ($batch->reportable)
-
 <h6>Do you have any complaints?</h6>
 <small>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat a excepturi in vitae perspiciatis provident! Recusandae, excepturi? Dicta, ex deserunt.</small>
 
@@ -40,5 +38,3 @@
         </div>
     </div>
 </div>
-<!-- Reviews Form Modal End -->
-@endif

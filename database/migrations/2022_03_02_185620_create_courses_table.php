@@ -35,6 +35,10 @@ return new class extends Migration
             $table->string('active_batch')->nullable();
             $table->string('status');
             $table->timestamps();
+
+            $table->foreign('mentor_id')
+                        ->references('unique_id')->on('users')
+                        ->onDelete('cascade');
         });
     }
 

@@ -20,15 +20,29 @@
                                         {{ $course->excerpt }}
                                     </p>
 
-                                    <div>
-                                        <a href="/learning/courses/{{$course->slug}}/{{$batch->short_code}}">
-                                            <x-btn classes="{{request()->is('learning/courses/'.$course->slug.'/'.$batch->short_code.'') ? 'btn-primary btn-hover-dark' : 'btn-secondary border border-primary btn-hover-primary'}}">Overview <i class="icofont-ui-home"></i></x-btn>
-                                        </a>
-                                        <a href="/learning/courses/{{$course->slug}}/{{$batch->short_code}}/forum">
-                                            <x-btn classes="{{request()->is('learning/courses/'.$course->slug.'/'.$batch->short_code.'/forum') ? 'btn-primary btn-hover-dark' : 'btn-secondary border border-primary btn-hover-primary'}}">
-                                                Discussion <i class="icofont-chat"></i>
-                                            </x-btn>
-                                        </a>
+                                    <div class="w-100">
+                                        <div class="row">
+                                            <div class="col-4">
+                                                <a class="{{request()->is('learning/courses/'.$course->slug.'/'.$batch->short_code.'') ? 'fw-bold' : ''}} text-primary" href="/learning/courses/{{$course->slug}}/{{$batch->short_code}}">
+                                                    Overview
+                                                    {{-- <i class="icofont-ui-home"></i> --}}
+                                                </a>
+                                            </div>
+
+                                            <div class="col-4">
+                                                <a class="{{request()->is('learning/courses/'.$course->slug.'/'.$batch->short_code.'/resources') ? 'fw-bold' : ''}} text-primary" href="/learning/courses/{{$course->slug}}/{{$batch->short_code}}/resources">
+                                                    Resources
+                                                    {{-- <i class="icofont-book-mark"></i> --}}
+                                                </a>
+                                            </div>
+
+                                            <div class="col-4">
+                                                <a class="{{request()->is('learning/courses/'.$course->slug.'/'.$batch->short_code.'/forum') ? 'fw-bold' : ''}} text-primary" href="/learning/courses/{{$course->slug}}/{{$batch->short_code}}/forum">
+                                                    Discussion
+                                                    {{-- <i class="icofont-chat"></i> --}}
+                                                </a>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -37,7 +51,7 @@
                         {{$slot}}
                     </div>
 
-                    <div class="col-md-4">
+                    <div class="col-md-4 mt-4 mt-md-0">
                         <div class="sidebar">
 
                             <x-batch-countdown :batch="$batch" />
@@ -76,13 +90,17 @@
                                 <x-share-link :link="request()->url()" />
                             </div>
 
-                            <div class="w-100 my-4 p-3 border radius">
-                                @if ($report)
+                            @if ($report)
+                                <div class="w-100 my-4 p-3 border radius">
                                     <x-reports.view :report="$report" :batch="$batch" />
-                                @else
-                                    <x-reports.modal :batch="$batch" />
+                                </div>
+                            @else
+                                @if ($batch->reportable)
+                                    <div class="w-100 my-4 p-3 border radius">
+                                        <x-reports.modal :batch="$batch" />
+                                    </div>
                                 @endif
-                            </div>
+                            @endif
 
                             <div>
                                 <h5 class="">Meet your Mentor:</h5>
