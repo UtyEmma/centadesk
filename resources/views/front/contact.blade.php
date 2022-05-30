@@ -1,5 +1,5 @@
 <x-guest-layout>
-    <x-page-title title="Contact Us" />
+    <x-page-title title="Contact Us - Libraclass" />
     <div class="section page-banner bg-transparent">
         <div class="container mt-5">
             <div class="page-banner-content py-5">
@@ -38,7 +38,7 @@
                         <!-- Contact Info Start -->
                         <div class="contact-info">
 
-                            <img class="shape animation-round" src="assets/images/shape/shape-12.png" alt="Shape">
+                            <img class="shape animation-round" src="{{asset('images/shape/shape-12.png')}}" alt="Shape">
 
                             <!-- Single Contact Info Start -->
                             <div class="single-contact-info">
@@ -47,7 +47,7 @@
                                 </div>
                                 <div class="info-content">
                                     <h6 class="title">Phone No.</h6>
-                                    <p><a href="tel:88193326867">(88) 193 326 867</a></p>
+                                    <p><a href="tel:88193326867">{{env('LIBRACLASS_PHONE')}}</a></p>
                                 </div>
                             </div>
                             <!-- Single Contact Info End -->
@@ -58,7 +58,7 @@
                                 </div>
                                 <div class="info-content">
                                     <h6 class="title">Email Address.</h6>
-                                    <p><a href="mailto:edule100@gmail.com">edule100@gmail.com</a></p>
+                                    <p><a href="mailto:edule100@gmail.com">{{env('LIBRACLASS_EMAIL')}}</a></p>
                                 </div>
                             </div>
                             <!-- Single Contact Info End -->
@@ -69,7 +69,7 @@
                                 </div>
                                 <div class="info-content">
                                     <h6 class="title">Office Address.</h6>
-                                    <p>Talga, Alabama, USA</p>
+                                    <p>{{env('LIBRACLASS_ADDRESS')}}</p>
                                 </div>
                             </div>
                             <!-- Single Contact Info End -->
@@ -84,25 +84,30 @@
                             <h3 class="title">Get in Touch <span>With Us</span></h3>
 
                             <div class="form-wrapper">
-                                <form id="contact-form" action="https://htmlmail.hasthemes.com/humayun/edule-contact.php" method="POST">
+                                <form action="/contact/send" method="POST">
+                                    @csrf
                                     <!-- Single Form Start -->
                                     <div class="single-form">
                                         <input type="text" name="name" placeholder="Name">
+                                        <x-errors name="name" />
                                     </div>
                                     <!-- Single Form End -->
                                     <!-- Single Form Start -->
                                     <div class="single-form">
                                         <input type="email" name="email" placeholder="Email">
+                                        <x-errors name="email" />
                                     </div>
                                     <!-- Single Form End -->
                                     <!-- Single Form Start -->
                                     <div class="single-form">
                                         <input type="text" name="subject" placeholder="Subject">
+                                        <x-errors name="subject" />
                                     </div>
                                     <!-- Single Form End -->
                                     <!-- Single Form Start -->
                                     <div class="single-form">
                                         <textarea name="message" placeholder="Message"></textarea>
+                                        <x-errors name="message" />
                                     </div>
                                     <!-- Single Form End -->
                                     <p class="form-message"></p>

@@ -7,6 +7,7 @@ use App\Http\Controllers\BatchController;
 use App\Http\Controllers\BatchResourceController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ChatController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\CryptoPaymentController;
 use App\Http\Controllers\DepositController;
@@ -181,6 +182,8 @@ Route::middleware(['set.currency', 'set.referrals'])->group(function(){
 
     Route::get('/about', [AppController::class, 'about']);
     Route::get('/contact', [AppController::class, 'contact']);
+
+    Route::post('/contact/send', [ContactController::class, 'sendContactMessage']);
     Route::get('/terms', [AppController::class, 'terms']);
     Route::get('/privacy-policy', [AppController::class, 'privacyPolicy']);
     Route::get('/faqs', [AppController::class, 'faqs']);

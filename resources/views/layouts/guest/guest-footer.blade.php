@@ -105,7 +105,7 @@
                 <div class="copyright-link">
                     <a href="/terms">Terms of Service</a>
                     <a href="/privacy-policy">Privacy Policy</a>
-                    <a href="#">Sitemap</a>
+                    <a href="{{asset('sitemap.xml')}}" >Sitemap</a>
                     <a href="#">Security</a>
                 </div>
                 <div class="copyright-text">

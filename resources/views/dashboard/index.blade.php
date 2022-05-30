@@ -48,31 +48,7 @@
                 <x-new-course />
             @endif
 
-            <div class="graph">
-                <div class="graph-title">
-                    <h4 class="title">Get top insights about your performance</h4>
-
-                    <div class="months-select">
-                        <select class="selectpicker">
-                            <option data-display="Last 12 months">Last 12 months</option>
-                            <option value="1">Last 6 months</option>
-                            <option value="1">Last 3 months</option>
-                            <option value="1">Last 2 months</option>
-                            <option value="1">Last 1 months</option>
-                            <option value="1">Last 1 week</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="graph-content">
-                    <div id="uniqueReport"></div>
-                </div>
-
-                <div class="graph-btn">
-                    <a class="btn btn-primary btn-hover-dark" href="#">Revenue Report <i class="icofont-rounded-down"></i></a>
-                </div>
-            </div>
-            <!-- Graph Top End -->
+            <x-mentor-charts />
             <x-course-resources />
         </div>
     </div>
