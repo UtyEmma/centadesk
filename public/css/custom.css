@@ -130,10 +130,6 @@ input::-webkit-inner-spin-button {
     background-color: #e5f4eb;
 }
 
-.app-menu{
-
-}
-
 .app-menu .app-menu-item{
     transition: all 500s ease-in-out ;
 }
