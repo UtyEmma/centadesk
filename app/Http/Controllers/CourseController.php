@@ -22,6 +22,7 @@ use App\Models\User;
 use App\Models\Wallet;
 use App\Notifications\CoursePublishedNotification;
 use Exception;
+use Google\Service\Classroom\Course;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
@@ -38,37 +39,56 @@ class CourseController extends Controller{
         $user = $this->user();
         $type = 'page';
 
-        $query = Courses::query();
-
-        // $courses = Courses::where()
-
-        $query->when($request->category, function($query, $category){
-            return $query->where('category', $category);
-        });
-
         if($keyword = $request->keyword){
             $type = 'search';
-            $query->search($keyword);
+            $results = Courses::search($request->keyword)
+                    ->where('status', 'published')
+                    ->orderBy(Batch::select('startdate')->whereColumn('courses.unique_id', 'batches.course_id'))->paginate(env('PAGINATION_COUNT'));
+        }else{
+            $query =  Courses::query();
+
+            $query->with(['mentor', 'enrollments.student'])
+                        ->withCount('allReviews')
+                        ->withCount('batches')
+                        ->withCount('enrollments');
+
+            $query->when($request->category, function($query, $category){
+                return $query->where('category', $category);
+            });
+
+            $query->where('status', 'published');
+
+            $query->when($request->filter === 'suggestions', function($query) use ($user){
+                return $this->sortCoursesBasedOnUserInterest($query);
+            });
+
+            $query->when($request->order === 'popularity', function ($query) {
+                return $query->orderBy('total_students', 'desc');
+            });
+
+            $query->when($request->order === 'rating', function ($query) {
+                return $query->orderBy('rating', 'desc');
+            });
+            $query->orderBy(Batch::select('startdate')->whereColumn('courses.unique_id', 'batches.course_id'));
+            $results = $query->paginate(env('PAGINATION_COUNT'));
+
         }
 
-        $query->where('status', 'published');
 
-        $query->when($request->filter === 'suggestions', function($query) use ($user){
-            return $this->sortCoursesBasedOnUserInterest($query);
-        });
+
+
+        // $query->when($request->price === 'free', function ($query) {
+        //     return $query->where('price', 0);
+        // });
+
+        // $query->when($request->price === 'paid', function ($query) {
+        //     return $query->where('price', '>', 0);
+        // });
+
 
         // $query->whereRelation('batches', 'startdate', '>', now()); //Courses with upcoming batches
 
 
-        $query->orderBy(Batch::select('startdate')->whereColumn('courses.unique_id', 'batches.course_id'));
-
-        $query->with(['mentor', 'enrollments.student'])
-                ->withCount('allReviews')
-                ->withCount('batches')
-                ->withCount('enrollments');
-
-
-        $results = $query->paginate(env('PAGINATION_COUNT'));
 
         // return print_r($results);
 
@@ -77,7 +97,8 @@ class CourseController extends Controller{
             'data' => $this->app_data(),
             'type' => $type,
             'user' => $this->user(),
-            'categories' => $this->getTopCategories()
+            // 'categories' => $this->getAllCategories()
+            'categories' => $this->getActiveCategories()
         ]);
     }
 

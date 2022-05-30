@@ -4,16 +4,12 @@
 
     <div class="section slider-section">
         <div class="container">
-
-            <!-- Slider Content Start -->
             <div class="slider-content">
                 <h4 class="sub-title">Find your favourite course</h4>
                 <h2 class="main-title">Start learning from anywhere, and build your <span>bright career.</span></h2>
                 <p>Find and create amazing courses, host sessions anywhere and enroll students anytime.</p>
                 <a class="btn btn-primary btn-hover-dark" href="/courses">Start A Course</a>
             </div>
-            <!-- Slider Content End -->
-
         </div>
 
         <!-- Slider Courses Box Start -->

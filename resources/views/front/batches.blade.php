@@ -1,5 +1,5 @@
 <x-guest-layout>
-    <x-page-title title="Mentors - Find experts and professionals in your interested field " />
+    <x-page-title title="Sessions - Find Amazing courses based on what you are interested in" />
     <x-page-banner>
         @push('scripts')
             <script>
@@ -37,7 +37,7 @@
                 <div class="m-0 page-banner-content w-100 d-md-flex justify-content-between align-items-end">
                     <div>
                         <h3 class="title mt-0 pb-0">Explore</h3>
-                        <x-explore-menu page='mentors' />
+                        <x-explore-menu page='sessions' />
                     </div>
 
                     <div class="courses-search search-2 m-0">
@@ -58,17 +58,16 @@
                         @endforelse
                     </x-selectpicker> --}}
 
-                    {{-- <x-selectpicker name="price"  class="btn btn-custom border" title="Price">
+                    <x-selectpicker name="price"  class="btn btn-custom border" title="Price">
                         <option value="">All</option>
                         <option @selected(request()->has('price') && request()->price === 'free') value="free">Free</option>
                         <option @selected(request()->has('price') && request()->price === 'paid') value="paid">Paid</option>
-                    </x-selectpicker> --}}
-                    <x-selectpicker name='order' class="btn btn-custom border" title="Sort By">
+                    </x-selectpicker>
+                    <x-selectpicker name='order' class="btn btn-custom border" title="Status">
                         <option value="">All</option>
-                        <option @selected(request()->has('order') && request()->order === 'popularity') value="popularity">Popularity</option>
-                        {{-- <option @selected(request()->has('order') && request()->order === 'batches') value="batches">Active Batches</option> --}}
-                        {{-- <option @selected(request()->has('order') && request()->order === 'mentor') value="mentor">Mentor Status</option> --}}
-                        <option @selected(request()->has('order') && request()->order === 'rating') value="rating">Rating</option>
+                        <option @selected(request()->has('status') && request()->order === 'ongoing') value="ongoing">Ongoing</option>
+                        <option @selected(request()->has('status') && request()->order === 'upcoming') value="upcoming">Upcoming</option>
+                        <option @selected(request()->has('status') && request()->order === 'completed') value="completed">Completed</option>
                     </x-selectpicker>
                 </div>
             </div>
@@ -105,29 +104,32 @@
         </form>
     </x-page-banner>
 
-    <div class="section section-padding pt-0">
+    <!-- Courses Start -->
+    <div class="section section-padding pt-4">
         <div class="container">
-            <div class="courses-wrapper-02 px-md-0 px-4">
+            <!-- Courses Wrapper Start  -->
+            <div class="courses-wrapper-02 mt-0 pt-3">
                 <div class="row">
-                    @forelse ($mentors as $mentor)
+                    @forelse ($batches as $batch)
                         <div class="col-md-4">
-                            <x-mentor-card :mentor="$mentor" :class="''" :btn="true" />
+                            <x-batch.single :course="$batch->course" :batch="$batch" />
                         </div>
                     @empty
                         <div class="text-center">
-                            <img src="{{asset('images/states/empty-mentors.svg')}}" />
-                            <h4>There are no mentors found at the moment</h4>
-                            <p>Sign up as a Mentor to start earning money teaching the things you love</p>
+                            <img src="{{asset('images/states/empty-courses.svg')}}" />
+                            <h4>There are no sessions available at this time</h4>
+                            <p class="px-5">Sign up as a Mentor to start earning money teaching the things you love</p>
 
-                            <a href="{{Auth::user() ? '/mentor/onboarding' : '/register'}}" class="btn btn-primary w-auto">Become a Mentor</a>
+                            <a href="{{Auth::user() ? '/mentor/onboarding' : '/register'}}" class="btn btn-primary btn-hover-dark btn-custom w-auto">Start Creating Courses</a>
                         </div>
                     @endforelse
                 </div>
-            </div>
 
-            <div class="d-flex justify-content-center">
-                {{ $mentors->onEachSide(5)->links() }}
+                <div class="d-flex justify-content-center">
+                    {{ $batches->onEachSide(5)->links() }}
+                </div>
             </div>
         </div>
     </div>
+
 </x-guest-layout>

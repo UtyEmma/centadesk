@@ -65,6 +65,14 @@
                                 @endif
                             </div>
 
+                            <div>
+                                <a class="btn" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text={{$batch->title}}&details={{$batch->excerpt}}&dates={{Date::parse($batch->startdate)}}/{{Date::parse($batch->enddate)}}">
+                                    Add to Google Calendar
+                                </a>
+
+                                <a href="https://outlook.office.com/calendar/0/deeplink/compose?subject={{$batch->title}}&body={{$batch->excerpt}}&startdt={{Date::parse($batch->startdate)}}&enddt={{Date::parse($batch->enddate)}}&path=%2Fcalendar%2Faction%2Fcompose&rru=addevent">Add to Outlook.com</a>
+                            </div>
+
                             <div class="my-3">
                                 @if (!$batch->isCompleted())
                                     <h5>Access Links</h5>

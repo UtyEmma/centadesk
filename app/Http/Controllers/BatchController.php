@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\NewBatchRequest;
 use App\Http\Traits\BatchActions;
+use App\Http\Traits\CategoryActions;
 use App\Http\Traits\CourseActions;
 use App\Jobs\NewCourseAlert;
 use App\Library\Currency;
@@ -21,12 +22,73 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Notification;
+use Illuminate\Support\Facades\Response as FacadesResponse;
 
 class BatchController extends Controller{
-    use BatchActions, CourseActions;
+    use BatchActions, CourseActions, CategoryActions;
+
+    function all(Request $request){
+        global $type;
+        $user = $this->user();
+        $type = 'page';
+
+        if($keyword = $request->keyword){
+            $type = 'search';
+            $results = Batch::search($request->keyword)
+                        ->orderBy('startdate')->paginate(env('PAGINATION_COUNT'));
+        }else{
+            $query =  Batch::query();
+
+            $query->with(['mentor', 'course', 'enrollments.student'])
+                        ->withCount('enrollments');
+
+            $query->when($request->category, function($query, $category){
+                return $query->where('category', $category);
+            });
+
+            $query->when($request->filter === 'suggestions', function($query) use ($user){
+                return $this->sortCoursesBasedOnUserInterest($query);
+            });
+
+            $query->when($request->order === 'students', function ($query) {
+                return $query->orderBy('total_students', 'desc');
+            });
+
+            $query->when($request->order === 'price', function ($query) {
+                return $query->orderBy('rating', 'desc');
+            });
+
+            $query->orderBy('startdate', 'desc');
+
+            $results = $query->paginate(env('PAGINATION_COUNT'));
+        }
+
+
+
+
+        // $query->when($request->price === 'free', function ($query) {
+        //     return $query->where('price', 0);
+        // });
+
+        // $query->when($request->price === 'paid', function ($query) {
+        //     return $query->where('price', '>', 0);
+        // });
+
+
+        // $query->whereRelation('batches', 'startdate', '>', now()); //Courses with upcoming batches
+
+        return view('front.batches', [
+            'batches' => $results,
+            'data' => $this->app_data(),
+            'type' => $type,
+            'user' => $this->user(),
+            'categories' => $this->getActiveCategories()
+        ]);
+    }
 
     function batchDetailsByShortcode(Request $request, $shortcode){
         try {
+            if(!Batch::where('short_code', $shortcode)->first()) return Response::view('errors.404');
             $details = $this->getBatchDetails($shortcode);
             return Response::view('front.batch-details', $details);
         } catch (\Throwable $th) {

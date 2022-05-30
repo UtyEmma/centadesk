@@ -23,8 +23,8 @@
 
 
 <div class="d-flex align-items-center">
-    @if ($users->count() > 5)
-        @forelse ($users as $user)
+    @if ($users->count() > 4)
+        @forelse ($users->take(4)->all() as $user)
             <div title="Baby Yoda" class="rounded-circle default-avatar member-overlap-item shadow-sm" style="background: url({{$user->avatar ?? asset('images/avatars/avatar-1.png')}}) 0 0 no-repeat; background-size: 120%; background-position: center;">
             </div>
         @empty
@@ -37,8 +37,6 @@
         <div title="Jabba the Hut" class="rounded-circle default-avatar member-overlap-item shadow-sm" style="background: url({{asset('images/avatars/avatar-3.png')}}) 0 0 no-repeat; background-size: 120%; background-position: center;">
         </div>
         <div title="Chewbacca" class="rounded-circle default-avatar member-overlap-item shadow-sm" style="background: url({{asset('images/avatars/avatar-4.png')}}) 0 0 no-repeat; background-size: 120%; background-position: center;">
-        </div>
-        <div title="C-3PO" class="rounded-circle default-avatar member-overlap-item" style="background: url({{asset('images/avatars/avatar-5.png')}}) 0 0 no-repeat; background-size: 120%; background-position: center;">
         </div>
     @endif
 

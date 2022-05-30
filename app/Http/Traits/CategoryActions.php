@@ -15,6 +15,12 @@ trait CategoryActions {
                         ->get();
     }
 
+    function getAllCategories(){
+        return Category::where('status', true)
+                        ->withCount('getCourses')
+                        ->get();
+    }
+
     function getTopCategories(){
         return $this->getActiveCategories()
                     ->sortByDesc('courses')

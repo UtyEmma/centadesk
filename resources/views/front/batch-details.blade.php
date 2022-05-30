@@ -88,7 +88,7 @@
                     <div class="sidebar mt-0 p-0">
                         <div class="sidebar-widget mb-4 mt-0">
                             <h5 class="tab-title mb-2">Invite your friends</h5>
-                            <x-share-link :link="request()->url()" />
+                            <x-share-link :link="env('MAIN_APP_URL').'/'.$batch->short_code" />
                         </div>
 
                         <div class="sidebar-widget mt-md-0 mb-3">

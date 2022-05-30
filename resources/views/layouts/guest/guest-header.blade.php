@@ -59,12 +59,12 @@
                                 <a href="/">Home</a>
                             </li>
                             <li>
-                                <a href="/about">About</a>
+                                <a href="/sessions">Explore</a>
                             </li>
                             <li>
-                                <a href="/courses">Courses</a>
+                                <a href="/about">About</a>
                             </li>
-                            <li><a href="/mentors">Mentors</a></li>
+                            {{-- <li><a href="/mentors">FAQs</a></li> --}}
                         </ul>
 
                     </div>

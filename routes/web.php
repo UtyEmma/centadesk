@@ -180,6 +180,9 @@ Route::middleware(['set.currency', 'set.referrals'])->group(function(){
         Route::get('/{slug}/{shortcode}', [BatchController::class, 'batchDetails']);
     });
 
+    Route::get('/sessions', [BatchController::class, 'all']);
+
+
     Route::get('/about', [AppController::class, 'about']);
     Route::get('/contact', [AppController::class, 'contact']);
 
