@@ -22,22 +22,23 @@ class SocialAuthController extends Controller{
 
     function facebookCallback(){
         try {
-            if($data = Socialite::driver('facebook')->user()){
+            $data = Socialite::driver('facebook')->user();
+
+            if($data){
+
+                $user = collect([]);
                 $nameArray = Str::of($data->getName())->explode(' ');
 
-                $user = [
-                    'firstname' => $nameArray[0],
-                    'lastname' => $nameArray[1],
-                    'avatar' => $data->getAvatar(),
-                    'email' => $data->getEmail()
-                ];
+                $user->firstname = $nameArray[0];
+                $user->lastname = $nameArray[1];
+                $user->avatar = $data->getAvatar();
+                $user->email = $data->getEmail();
 
-                $user = $this->findOrCreate($user);
-
-                Auth::login($user, true);
+                $newUser = $this->findOrCreate($user);
+                Auth::login($newUser, true);
 
                 return response()->redirectToIntended(RouteServiceProvider::LEARNING_CENTER)
-                                    ->withCookie(cookie('currency', $user->currency));
+                                    ->withCookie(cookie('currency', $newUser->currency));
             }else{
                 throw new Exception("We could not fetch any user data from Facebook");
             }

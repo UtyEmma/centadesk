@@ -46,12 +46,12 @@ class CourseController extends Controller{
             return $query->where('category', $category);
         });
 
-        $query->when($request->keyword, function($query, $keyword) use ($type){
+        if($keyword = $request->keyword){
             $type = 'search';
-            return $query->search($keyword);
-        });
+            $query->search($keyword);
+        }
 
-        // $query->where('status', 'published');
+        $query->where('status', 'published');
 
         $query->when($request->filter === 'suggestions', function($query) use ($user){
             return $this->sortCoursesBasedOnUserInterest($query);
@@ -148,7 +148,8 @@ class CourseController extends Controller{
 
             $notification = [
                 'subject' => 'Your course has been created successfully',
-                'course' => $course
+                'course' => $course,
+                'link' => url("/courses/$slug")
             ];
 
             Notification::send($user, new CoursePublishedNotification($notification));
