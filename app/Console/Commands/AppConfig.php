@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use Database\Seeders\AppConfigSeeder;
+use Database\Seeders\BlogPostSeeder;
 use Database\Seeders\CategoriesSeeder;
 use Database\Seeders\CurrenciesSeeder;
 use Database\Seeders\DefaultAdminSeeder;
@@ -42,40 +43,45 @@ class AppConfig extends Command
      * @return int
      */
     public function handle(){
-        $bar = $this->output->createProgressBar(6);
-        echo "\r\n";
-        $bar->start();
+        // $bar = $this->output->createProgressBar(6);
+        // echo "\r\n";
+        // $bar->start();
 
         $details = new DefaultAdminSeeder();
         $this->info('Default Administrator Account Created');
         echo "\r\n";
-        $bar->advance();
+        // $bar->advance();
 
         new AppConfigSeeder();
         $this->info('App Configuration set up completed');
         echo "\r\n";
-        $bar->advance();
+        // $bar->advance();
 
         new CategoriesSeeder();
         $this->info('Categories Seeded');
         echo "\r\n";
-        $bar->advance();
+        // $bar->advance();
 
         new CurrenciesSeeder();
         $this->info('Currencies and Exchange rates set successfully!');
         echo "\r\n";
-        $bar->advance();
+        // $bar->advance();
 
 
         new FaqSeeder();
         $this->info('Frequently Asked Questions Updated Successfully!');
         echo "\r\n";
-        $bar->finish();
+        // $bar->finish();
+
+        new BlogPostSeeder();
+        $this->info('Medium Blog Posts Updated Successfully!');
+        echo "\r\n";
+        // $bar->finish();
 
         new GetBanksSeeder();
         $this->info('Bank Info retrieved successfully!');
         echo "\r\n";
-        $bar->finish();
+        // $bar->finish();
 
         echo "\r\n";
         $this->info('App Setup Completed Successfully!');
