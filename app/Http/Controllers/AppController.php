@@ -20,7 +20,7 @@ class AppController extends Controller {
         $categories = $this->getTopCategories();
         $testimonials = Testimonial::all();
 
-        $posts = Blog::where('status', true);
+        $posts = Blog::where('status', true)->orderBy('date', 'desc');
 
         return Response::view('front.index', [
             'data' => $this->app_data($request),

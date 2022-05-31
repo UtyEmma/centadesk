@@ -1,7 +1,7 @@
 <div class="col-lg-4 col-md-6">
 
     <!-- Single Blog Start -->
-    <div class="single-blog">
+    <div class="single-blog h-100">
         <div class="blog-image">
             <a href="/blog/{{$post->slug}}"><img src="{{$post->thumbnail}}" alt="Blog"></a>
         </div>

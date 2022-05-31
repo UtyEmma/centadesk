@@ -12,15 +12,12 @@ use Illuminate\Http\Request;
 class BlogController extends Controller{
 
     function createPosts(BlogService $blogService){
-        try {
+        // try {
             $posts = $blogService->posts();
             $blog = Blog::all();
 
             foreach ($posts['items'] as $key => $post) {
                 $postIsEmpty = $blog->where('title', $post['title'])->isEmpty();
-
-                // dd($post);
-                // dd($posts['feed']['image']);
                 if($postIsEmpty){
                     Blog::create([
                         'title' => $post['title'],
@@ -38,9 +35,9 @@ class BlogController extends Controller{
             }
 
             return Response::redirectBack('success', "Blog Posts Updated");
-        } catch (\Throwable $th) {
-            return Response::redirectBack('error', $th->getMessage());
-        }
+        // } catch (\Throwable $th) {
+        //     return Response::redirectBack('error', $th->getMessage());
+        // }
     }
 
     function all(){

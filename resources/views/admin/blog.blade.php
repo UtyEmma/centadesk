@@ -28,7 +28,7 @@
                     @foreach ($posts as $post)
                         <tr>
                             <td>
-                                <a href="/courses/{{$post->slug}}" class="ml-2">{{$post->title}}</a>
+                                <a href="{{env('MAIN_APP_URL')}}/blog/{{$post->slug}}" class="ml-2">{{$post->title}}</a>
                             </td>
                             <td>
                                 {{$post->author}}
@@ -45,11 +45,11 @@
                                         Action
                                     </button>
                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-                                    <a class="dropdown-item" href="/courses/{{$course->unique_id}}">View Details</a>
-                                    <a class="dropdown-item" href="/courses/{{$course->unique_id}}/edit">Edit Info</a>
+                                    <a class="dropdown-item" href="/blog/{{$post->unique_id}}">View Details</a>
+                                    <a class="dropdown-item" href="/blog/{{$post->unique_id}}/edit">Edit Info</a>
                                     <hr/>
-                                    <a class="dropdown-item" href="/courses/{{$course->unique_id}}/status">Disable</a>
-                                    <x-swal class="dropdown-item" href="/courses/{{$course->unique_id}}/delete">Delete</x-swal>
+                                    <a class="dropdown-item" href="/blog/{{$post->unique_id}}/status">Disable</a>
+                                    <x-swal class="dropdown-item" href="/blog/{{$post->unique_id}}/delete">Delete</x-swal>
                                     </div>
                                 </div>
                             </td>

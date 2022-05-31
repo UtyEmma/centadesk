@@ -191,7 +191,7 @@
                         <i class="flaticon-forms"></i>
                     </div>
                     <div class="work-content">
-                        <h3 class="title">Book A Seat</h3>
+                        <h3 class="title">Join A Session</h3>
                         <p>Book and Join an ongoing session of your desired courses with your mentor.</p>
                     </div>
                 </div>
@@ -224,7 +224,7 @@
     <!-- How It Work End -->
 
     <!-- Download App Start -->
-    <div class="section section-padding download-section">
+    <div class="section section-padding download-section px-2">
 
         <div class="app-shape-1"></div>
         <div class="app-shape-2"></div>
@@ -334,27 +334,28 @@
     <!-- Brand Logo End -->
 
     <!-- Blog Start -->
-    <div class="section section-padding mt-n1">
-        <div class="container">
+    @if ($posts->count() > 0)
+        <div class="section section-padding mt-n1">
+            <div class="container">
 
-            <!-- Section Title Start -->
-            <div class="section-title shape-03 text-center">
-                <h5 class="sub-title">Latest News</h5>
-                <h2 class="main-title">Educational Tips & <span> Tricks</span></h2>
-            </div>
-            <!-- Section Title End -->
-
-            <!-- Blog Wrapper Start -->
-            <div class="blog-wrapper">
-                <div class="row">
-                    @foreach ($posts as $post)
-                        <x-blog-post :post="$post" />
-                    @endforeach
+                <!-- Section Title Start -->
+                <div class="section-title shape-03 text-center">
+                    <h5 class="sub-title">Latest News</h5>
+                    <h2 class="main-title">Educational Tips & <span> Tricks</span></h2>
                 </div>
-            </div>
-            <!-- Blog Wrapper End -->
+                <!-- Section Title End -->
 
+                <!-- Blog Wrapper Start -->
+                <div class="blog-wrapper">
+                    <div class="row">
+                        @foreach ($posts as $post)
+                            <x-blog-post :post="$post" />
+                        @endforeach
+                    </div>
+                </div>
+                <!-- Blog Wrapper End -->
+
+            </div>
         </div>
-    </div>
-    <!-- Blog End -->
+    @endif
 </x-guest-layout>

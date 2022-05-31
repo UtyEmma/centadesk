@@ -96,6 +96,4 @@
     </div>
     <!-- Register & Login End -->
 
-    <x-download-cta />
-
 </x-guest-layout>

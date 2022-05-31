@@ -11,24 +11,23 @@
                         </div>
 
                         <div class="widget-address">
-                            <h4 class="footer-widget-title">Caribbean Ct</h4>
-                            <p>Haymarket, Virginia (VA).</p>
+                            <h4 class="footer-widget-title">{{env('LIBRACLASS_ADDRESS')}}</h4>
+                            {{-- <p>Haymarket, Virginia (VA).</p> --}}
                         </div>
 
                         <ul class="widget-info">
                             <li>
-                                <p> <i class="flaticon-email"></i> <a href="mailto:address@gmail.com">address@gmail.com</a> </p>
+                                <p> <i class="flaticon-email"></i> <a href="mailto:{{env('LIBRACLASS_EMAIL')}}">{{env('LIBRACLASS_EMAIL')}}</a> </p>
                             </li>
                             <li>
-                                <p> <i class="flaticon-phone-call"></i> <a href="tel:9702621413">(970) 262-1413</a> </p>
+                                <p> <i class="flaticon-phone-call"></i> <a href="tel:{{env('LIBRACLASS_PHONE')}}">{{env('LIBRACLASS_PHONE')}}</a> </p>
                             </li>
                         </ul>
 
                         <ul class="widget-social">
-                            <li><a href="#"><i class="flaticon-facebook"></i></a></li>
-                            <li><a href="#"><i class="flaticon-twitter"></i></a></li>
-                            <li><a href="#"><i class="flaticon-skype"></i></a></li>
-                            <li><a href="#"><i class="flaticon-instagram"></i></a></li>
+                            <li><a href="{{env('FACEBOOK_PROFILE_URL')}}{{env('LIBRACLASS_FACEBOOK')}}" target="_blank"><i class="flaticon-facebook"></i></a></li>
+                            <li><a href="{{env('TWITTER_PROFILE_URL')}}{{env('LIBRACLASS_TWITTER')}}" target="_blank"><i class="flaticon-twitter"></i></a></li>
+                            <li><a href="{{env('INSTAGRAM_PROFILE_URL')}}{{env('LIBRACLASS_INSTAGRAM')}}" target="_blank"><i class="flaticon-instagram"></i></a></li>
                         </ul>
                     </div>
                     <!-- Footer Widget End -->
@@ -77,11 +76,11 @@
                     <div class="footer-widget">
                         <h4 class="footer-widget-title">Currency</h4>
 
-                        <div class="widget-subscribe">
+                        <div class="widget-subscribe mt-0 pt-0">
                             {{-- <p>Lorem Ipsum has been them an industry printer took a galley make book.</p> --}}
 
                             <div class="widget-form">
-                                <x-currency-select name="currency" :currency="$currency" :data="$data" class="" btnClasses="btn-light" />
+                                <x-currency-select name="currency" :currency="$currency" :data="$data" class="" btnClasses="btn-light w-100" />
                             </div>
                         </div>
                     </div>
@@ -96,28 +95,22 @@
     </div>
     <!-- Footer Widget Section End -->
 
-    <!-- Footer Copyright Start -->
     <div class="footer-copyright " >
         <div class="container">
-
-            <!-- Footer Copyright Start -->
             <div class="copyright-wrapper">
                 <div class="copyright-link">
                     <a href="/terms">Terms of Service</a>
                     <a href="/privacy-policy">Privacy Policy</a>
                     <a href="{{asset('sitemap.xml')}}" >Sitemap</a>
-                    <a href="#">Security</a>
+                    <a href="/disclaimer">Disclaimer</a>
                 </div>
                 <div class="copyright-text">
-                    <p>&copy; 2021 <span> Edule </span> Made with <i class="icofont-heart-alt"></i> by <a href="#">Codecarnival</a></p>
+                    <p>&copy; {{Date::now()->format("Y")}} <a href="/"> {{env('APP_NAME')}}. </a> All Rights Reserved.
+                    </p>
                 </div>
             </div>
-            <!-- Footer Copyright End -->
-
-        </div>
+            </div>
     </div>
-    <!-- Footer Copyright End -->
-
 </footer>
 <!-- Footer End -->
 

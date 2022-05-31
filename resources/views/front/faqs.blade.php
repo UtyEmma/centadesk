@@ -32,7 +32,7 @@
                     <div class="faq-wrapper">
                         @forelse ($students as $student)
                             <x-faq :title="$student->title">
-                                {{$student->content}}
+                                {!! $student->content !!}
                             </x-faq>
                             @empty
                             @endforelse

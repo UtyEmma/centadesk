@@ -4,7 +4,7 @@
         <div class="d-md-flex justify-content-between align-items-end">
             <div class="m-0 page-banner-content w-100 d-md-flex justify-content-between align-items-end">
                 <div>
-                    <h3 class="title mt-0 pb-0">Our Blog Posts</h3>
+                    <h3 class="title mt-0 pb-0">Blog</h3>
                 </div>
             </div>
         </div>

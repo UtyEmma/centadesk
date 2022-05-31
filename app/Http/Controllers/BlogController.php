@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class BlogController extends Controller {
 
     function all (){
-        $posts = Blog::where('status', true)->paginate(env('PAGINATION_COUNT'));
+        $posts = Blog::where('status', true)->orderBy('date', 'desc')->paginate(env('PAGINATION_COUNT'));
         return Response::view('front.blog', [
             'posts' => $posts
         ]);

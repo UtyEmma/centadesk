@@ -103,7 +103,6 @@ Route::middleware(['set.currency', 'set.referrals'])->group(function(){
 
         Route::prefix('/mentor')->middleware('user.status')->group(function(){
             Route::get('/onboarding', [MentorController::class, 'onboarding']);
-            Route::get('/join', [MentorController::class, 'mentorInfo']);
             Route::post('/create', [MentorController::class, 'store']);
         });
 
@@ -169,6 +168,8 @@ Route::middleware(['set.currency', 'set.referrals'])->group(function(){
             });
         });
     });
+
+    Route::get('/mentor/join', [MentorController::class, 'mentorInfo']);
 
     Route::prefix('/mentors')->group(function(){
         Route::get('/', [MentorController::class, 'index']);

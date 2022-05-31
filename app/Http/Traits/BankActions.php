@@ -19,6 +19,8 @@ trait BankActions {
 
     function setBanks(){
         $banks = collect($this->getBanks());
+
+        // dd($banks);
         $banks->map(function($bank){
             $unique_id = Token::unique('banks');
 

@@ -67,7 +67,9 @@
                             <li>
                                 <a href="/blog">Blog</a>
                             </li>
-                            {{-- <li><a href="/mentors">FAQs</a></li> --}}
+                            <li>
+                                <a href="/mentor/join">Mentors</a>
+                            </li>
                         </ul>
 
                     </div>
@@ -128,8 +130,8 @@
 
         <!-- Mobile Top Medal Start -->
         <div class="mobile-top">
-            <p><i class="flaticon-phone-call"></i> <a href="tel:9702621413">(970) 262-1413</a></p>
-            <p><i class="flaticon-email"></i> <a href="mailto:address@gmail.com">address@gmail.com</a></p>
+            <p><i class="flaticon-phone-call"></i> <a href="tel:{{env('LIBRACLASS_PHONE')}}">{{env('LIBRACLASS_PHONE')}}</a></p>
+            <p><i class="flaticon-email"></i> <a href="mailto:{{env('LIBRACLASS_EMAIL')}}">{{env('LIBRACLASS_EMAIL')}}</a></p>
         </div>
         <!-- Mobile Top Medal End -->
 
@@ -145,6 +147,9 @@
                 </li>
                 <li>
                     <a href="/blog">Blog</a>
+                </li>
+                <li>
+                    <a href="/mentor/join">Mentors</a>
                 </li>
             </ul>
 

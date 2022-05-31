@@ -10,7 +10,7 @@
                     <li><a href="/">Home</a></li>
                     <li class="active">About</li>
                 </ul>
-                <h2 class="title mt-0">About <span>EduLe.</span></h2>
+                <h2 class="title mt-0">About <span>{{env('APP_NAME')}}.</span></h2>
             </div>
             <!-- Page Banner End -->
         </div>
@@ -33,7 +33,7 @@
                                 <div class="years-icon">
                                     <img src="{{asset('images/logo-icon.png')}}" alt="About">
                                 </div>
-                                <p><strong>28+</strong> Years Experience</p>
+                                <p>Join Over <strong>100+</strong> Mentors</p> {{-- dynamic --}}
                             </div>
                         </div>
                         <!-- About Images End -->
@@ -42,8 +42,8 @@
                     <div class="col-lg-6">
 
                         <!-- About Content Start -->
-                        <div class="about-content mt-0">
-                            <h5 class="sub-title">Welcome to Libraclass.</h5>
+                        <div class="about-content mt-3">
+                            <h5 class="sub-title">Welcome to {{env('APP_NAME')}}.</h5>
                             <h2 class="main-title">The world is your classroom. Upgrade yourself for a bigger, <span>brighter future.</span></h2>
                             <p>Libraclass is a worldwide learning innovation company that works with students and businesses to transform the future of learning and work.</p>
                             <p>We're paving the path for individualised learning, driven by the notion that everyone, regardless of age, ability, or geography, deserves access to high-quality education. Our cutting-edge technology is applicable at every stage of learning, from kindergarten to retirement.</p>

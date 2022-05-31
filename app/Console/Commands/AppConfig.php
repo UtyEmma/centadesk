@@ -6,6 +6,7 @@ use Database\Seeders\AppConfigSeeder;
 use Database\Seeders\CategoriesSeeder;
 use Database\Seeders\CurrenciesSeeder;
 use Database\Seeders\DefaultAdminSeeder;
+use Database\Seeders\FaqSeeder;
 use Database\Seeders\GetBanksSeeder;
 use Illuminate\Console\Command;
 
@@ -41,7 +42,7 @@ class AppConfig extends Command
      * @return int
      */
     public function handle(){
-        $bar = $this->output->createProgressBar(5);
+        $bar = $this->output->createProgressBar(6);
         echo "\r\n";
         $bar->start();
 
@@ -61,12 +62,18 @@ class AppConfig extends Command
         $bar->advance();
 
         new CurrenciesSeeder();
-        $this->info('Currencies and Exchange rates set successfully');
+        $this->info('Currencies and Exchange rates set successfully!');
+        echo "\r\n";
+        $bar->advance();
+
+
+        new FaqSeeder();
+        $this->info('Frequently Asked Questions Updated Successfully!');
         echo "\r\n";
         $bar->finish();
 
         new GetBanksSeeder();
-        $this->info('Bank Info retrieved successfully');
+        $this->info('Bank Info retrieved successfully!');
         echo "\r\n";
         $bar->finish();
 
