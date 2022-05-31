@@ -138,10 +138,13 @@
             <ul class="nav-menu">
                 <li><a href="/">Home</a></li>
                 <li>
-                    <a href="/courses">Courses</a>
+                    <a href="/sessions">Explore</a>
                 </li>
                 <li>
-                    <a href="/mentors">Mentors</a>
+                    <a href="/about">About</a>
+                </li>
+                <li>
+                    <a href="/blog">Blog</a>
                 </li>
             </ul>
 

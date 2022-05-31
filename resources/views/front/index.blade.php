@@ -80,7 +80,7 @@
                 <div class="courses-top">
                     <!-- Section Title Start -->
                     <div class="section-title shape-01">
-                        <h2 class="main-title">All <span>Courses</span> of Edule</h2>
+                        <h2 class="main-title">All <span>Courses</span> of {{env('APP_NAME')}}</h2>
                     </div>
                     <!-- Section Title End -->
 
@@ -131,7 +131,7 @@
                         <!-- Section Title Start -->
                         <div class="section-title shape-02">
                             <h5 class="sub-title">Become A Instructor</h5>
-                            <h2 class="main-title">You can join with Edule as <span>a instructor?</span></h2>
+                            <h2 class="main-title">You can join with {{env('APP_NAME')}} as <span>a instructor?</span></h2>
                         </div>
                         <!-- Section Title End -->
 
