@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use App\Http\Traits\CategoryActions;
 use App\Http\Traits\CourseActions;
 use App\Library\Response;
+use App\Models\Blog;
 use App\Models\Category;
 use App\Models\Faq;
 use App\Models\Testimonial;
+use App\Services\BlogService;
 use Illuminate\Http\Request;
 
 class AppController extends Controller {
@@ -18,11 +20,14 @@ class AppController extends Controller {
         $categories = $this->getTopCategories();
         $testimonials = Testimonial::all();
 
+        $posts = Blog::where('status', true);
+
         return Response::view('front.index', [
             'data' => $this->app_data($request),
             'courses' => $courses,
             'categories' => $categories,
-            'testimonials' => $testimonials
+            'testimonials' => $testimonials,
+            'posts' => $posts->get()
         ]);
     }
 

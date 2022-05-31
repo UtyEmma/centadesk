@@ -64,6 +64,9 @@
                             <li>
                                 <a href="/about">About</a>
                             </li>
+                            <li>
+                                <a href="/blog">Blog</a>
+                            </li>
                             {{-- <li><a href="/mentors">FAQs</a></li> --}}
                         </ul>
 

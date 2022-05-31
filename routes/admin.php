@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\AnalyticsController;
 use App\Http\Controllers\Admin\BanksController;
 use App\Http\Controllers\Admin\BatchController;
+use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\CourseController;
 use App\Http\Controllers\Admin\CurrencyController;
@@ -95,6 +96,11 @@ Route::middleware('auth:admin')->group(function(){
     Route::prefix('/banks')->group(function(){
         Route::get('/', [BanksController::class, 'show']);
         Route::get('/refresh', [BanksController::class, 'refresh']);
+    });
+
+    Route::prefix('/blog')->group(function(){
+        Route::get('/', [BlogController::class, 'all']);
+        Route::get('/fetch', [BlogController::class, 'createPosts']);
     });
 
     Route::prefix('/currencies')->group(function(){

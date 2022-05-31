@@ -7,12 +7,6 @@
           <span class="menu-title">Dashboard</span>
         </a>
       </li>
-      {{-- <li class="nav-item">
-        <a class="nav-link" href="/analytics">
-          <i class="mdi mdi-google-analytics menu-icon"></i>
-          <span class="menu-title">Analytics</span>
-        </a>
-      </li> --}}
       <li class="nav-item">
           <a class="nav-link" href="/users">
             <i class="mdi mdi-account menu-icon"></i>
@@ -33,9 +27,15 @@
     </li>
     <li class="nav-item">
         <a class="nav-link" href="/courses">
-          <i class="mdi mdi-view-headline menu-icon"></i>
-          <span class="menu-title">Courses</span>
+            <i class="mdi mdi-view-headline menu-icon"></i>
+            <span class="menu-title">Courses</span>
         </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/blog">
+        <i class="mdi mdi-google-analytics menu-icon"></i>
+        <span class="menu-title">Blog</span>
+      </a>
     </li>
       <li class="nav-item">
           <a class="nav-link" href="/reports">

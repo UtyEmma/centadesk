@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\CurrencyController;
 use App\Http\Controllers\AppController;
 use App\Http\Controllers\BatchController;
 use App\Http\Controllers\BatchResourceController;
+use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\ContactController;
@@ -178,6 +179,11 @@ Route::middleware(['set.currency', 'set.referrals'])->group(function(){
         Route::get('/', [CourseController::class, 'all']);
         Route::get('/{slug}', [CourseController::class, 'show']);
         Route::get('/{slug}/{shortcode}', [BatchController::class, 'batchDetails']);
+    });
+
+    Route::prefix('/blog')->group(function(){
+        Route::get('/', [BlogController::class, 'all']);
+        Route::get('/{slug}', [BlogController::class, 'show']);
     });
 
     Route::get('/sessions', [BatchController::class, 'all']);
