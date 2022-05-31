@@ -6,19 +6,17 @@
                 function searchAndfilter(e) {
                     e.preventDefault()
                     const form = document.getElementById('filter-form')
-                    const category = form.category?.value ?? ''
                     const price = form.price?.value ?? ''
                     const order = form.order?.value ?? ''
                     const keyword = form.keyword?.value ?? ''
 
                     const params = [
-                        {name: 'category', value: category},
                         {name: 'price', value: price},
                         {name: 'order', value: order},
                         {name: 'keyword', value: keyword},
                     ]
 
-                    let query = 'courses?'
+                    let query = 'sessions?'
 
                     const validArray =  params.filter(param => param.value !== '')
 
@@ -50,14 +48,6 @@
 
             <div class=" p-0 m-0 bg-transparent mt-3 d-flex justify-content-between" style="z-index: 11;">
                 <div>
-                    {{-- <x-selectpicker :search="true" name="category" class="btn btn-custom border" title="Category">
-                        <option value="">All</option>
-                        @forelse ($categories as $category)
-                        <option @selected(request()->has('category') && request()->category === $category->name)  value="{{$category->name}}">{{$category->name}} <small style="font-weight: 500;">({{$category->get_courses_count}})</small></option>
-                        @empty
-                        @endforelse
-                    </x-selectpicker> --}}
-
                     <x-selectpicker name="price"  class="btn btn-custom border" title="Price">
                         <option value="">All</option>
                         <option @selected(request()->has('price') && request()->price === 'free') value="free">Free</option>
@@ -72,7 +62,7 @@
                 </div>
             </div>
 
-            @if (request()->has('price') || request()->has('order') || request()->has('category'))
+            @if (request()->has('price') || request()->has('order') || request()->has('keyword'))
             <div class="mt-2 d-flex align-items-center">
                 <p class="me-2 my-0 ">Filters:</p>
                 @if (request()->has('order'))
@@ -80,9 +70,9 @@
                         {{request()->order}}
                     </span>
                 @endif
-                @if (request()->has('category'))
+                @if (request()->has('price'))
                     <span class="badge badge-light me-2 rounded-pill text-muted bg-light border fw-normal px-2">
-                        {{request()->category}}
+                        {{request()->price}}
                     </span>
                 @endif
                 @if (request()->has('keyword'))
@@ -90,12 +80,7 @@
                         {{request()->keyword}}
                     </span>
                 @endif
-                @if (request()->has('keyword'))
-                    <span class="badge badge-light me-2 rounded-pill text-muted bg-light border fw-normal px-2">
-                        {{request()->keyword}}
-                    </span>
-                @endif
-                <a href="/courses" style="font-size: 0.75em; line-height: 0 !important;" class="badge me-2 badge-light btn btn-light btn-hover-primary p-1 btn-custom rounded-pill text-muted text-accent fw-normal border h-auto mt-0">
+                <a href="/sessions" style="font-size: 0.75em; line-height: 0 !important;" class="badge me-2 badge-light btn btn-light btn-hover-primary p-1 btn-custom rounded-pill text-muted text-accent fw-normal border h-auto mt-0">
                     <i class="icofont-close ms-0 me-1"></i>
                     Clear Filters
                 </a>

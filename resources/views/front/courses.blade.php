@@ -73,7 +73,7 @@
                 </div>
             </div>
 
-            @if (request()->has('price') || request()->has('order') || request()->has('category'))
+            @if (request()->has('order') || request()->has('category') || request()->has('keyword'))
             <div class="mt-2 d-flex align-items-center">
                 <p class="me-2 my-0 ">Filters:</p>
                 @if (request()->has('order'))
@@ -84,6 +84,11 @@
                 @if (request()->has('category'))
                     <span class="badge badge-light me-2 rounded-pill text-muted bg-light border fw-normal px-2">
                         {{request()->category}}
+                    </span>
+                @endif
+                @if (request()->has('keyword'))
+                    <span class="badge badge-light me-2 rounded-pill text-muted bg-light border fw-normal px-2">
+                        {{request()->keyword}}
                     </span>
                 @endif
                 <a href="/courses" style="font-size: 0.75em; line-height: 0 !important;" class="badge me-2 badge-light btn btn-light btn-hover-primary p-1 btn-custom rounded-pill text-muted text-accent fw-normal border h-auto mt-0">

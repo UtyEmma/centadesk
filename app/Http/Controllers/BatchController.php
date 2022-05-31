@@ -34,10 +34,13 @@ class BatchController extends Controller{
 
         if($keyword = $request->keyword){
             $type = 'search';
-            $results = Batch::search($request->keyword)
-                        ->orderBy('startdate')->paginate(env('PAGINATION_COUNT'));
+            $results = Batch::search($keyword)
+                            ->where('startdate', '>', now())
+                            ->orderBy('startdate')->paginate(env('PAGINATION_COUNT'));
         }else{
             $query =  Batch::query();
+
+            $query->where('startdate', '>', now());
 
             $query->with(['mentor', 'course', 'enrollments.student'])
                         ->withCount('enrollments');
@@ -46,16 +49,16 @@ class BatchController extends Controller{
                 return $query->where('category', $category);
             });
 
-            $query->when($request->filter === 'suggestions', function($query) use ($user){
-                return $this->sortCoursesBasedOnUserInterest($query);
-            });
-
             $query->when($request->order === 'students', function ($query) {
                 return $query->orderBy('total_students', 'desc');
             });
 
-            $query->when($request->order === 'price', function ($query) {
-                return $query->orderBy('rating', 'desc');
+            $query->when($request->price === 'free', function ($query) {
+                return $query->where('price', 0);
+            });
+
+            $query->when($request->price === 'paid', function ($query) {
+                return $query->where('price', '>', 0);
             });
 
             $query->orderBy('startdate', 'desc');
@@ -63,26 +66,11 @@ class BatchController extends Controller{
             $results = $query->paginate(env('PAGINATION_COUNT'));
         }
 
-
-
-
-        // $query->when($request->price === 'free', function ($query) {
-        //     return $query->where('price', 0);
-        // });
-
-        // $query->when($request->price === 'paid', function ($query) {
-        //     return $query->where('price', '>', 0);
-        // });
-
-
-        // $query->whereRelation('batches', 'startdate', '>', now()); //Courses with upcoming batches
-
         return view('front.batches', [
             'batches' => $results,
             'data' => $this->app_data(),
             'type' => $type,
-            'user' => $this->user(),
-            'categories' => $this->getActiveCategories()
+            'user' => $this->user()
         ]);
     }
 

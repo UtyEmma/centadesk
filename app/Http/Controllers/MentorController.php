@@ -36,17 +36,27 @@ class MentorController extends Controller{
         if($request->keyword){
             $mentors = User::search($request->keyword)
                                 ->where('role', 'mentor')
-                                ->where('kyc_status', 'approved')->paginate(env('PAGINATION_COUNT'));
+                                ->where('kyc_status', 'approved');
             $type = 'search';
         }else{
-            $mentors = User::where([
-                                'role' => 'mentor',
-                                'kyc_status' => 'approved'
-                            ])->paginate(env('PAGINATION_COUNT'));
+            $mentors = User::query();
+
+            $mentors->when($request->order === 'popularity', function($query){
+                return $query->orderBy('rating');
+            });
+
+            $mentors->when($request->order === 'rating', function($query){
+                return $query->orderBy('rating');
+            });
+
+            $mentors->where([
+                'role' => 'mentor',
+                'kyc_status' => 'approved'
+            ]);
         }
 
         return view('front.mentors', [
-            'mentors' => $mentors,
+            'mentors' => $mentors->paginate(env('PAGINATION_COUNT')),
             'type' => $type
         ]);
     }
