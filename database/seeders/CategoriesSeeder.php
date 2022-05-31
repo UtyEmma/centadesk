@@ -30,7 +30,11 @@ class CategoriesSeeder extends Seeder{
         foreach ($this->categories as $value) {
             $unique_id = Token::unique('categories');
             $slug = Str::slug($value);
-            Category::create([
+
+            Category::updateOrCreate([
+                'name' => $value,
+                'slug' => $slug
+            ], [
                 'unique_id' => $unique_id,
                 'name' => $value,
                 'slug' => $slug,

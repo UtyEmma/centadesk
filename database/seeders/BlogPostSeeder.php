@@ -10,6 +10,11 @@ use Illuminate\Database\Seeder;
 
 class BlogPostSeeder extends Seeder{
 
+    function __construct(){
+        $blogService = new BlogService();
+        return $this->run($blogService);
+    }
+
     public function run(BlogService $blogService){
         $posts = $blogService->posts();
         $blog = Blog::all();

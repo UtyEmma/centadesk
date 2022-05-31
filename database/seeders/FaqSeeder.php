@@ -9,6 +9,10 @@ use Illuminate\Database\Seeder;
 
 class FaqSeeder extends Seeder{
 
+    function __construct(){
+        return $this->run();
+    }
+
     private $faqs = [
         [
             'title' => 'How can I register on Libraclass?',
@@ -88,12 +92,12 @@ class FaqSeeder extends Seeder{
             $unique_id = Token::unique('faqs');
 
             Faq::updateOrCreate([
-                'code' => $value['title'],
+                'title' => $value['title'],
                 'type' => $value['type'],
                 'content' => $value['content']
             ], [
                 'unique_id' => $unique_id,
-                'code' => $value['title'],
+                'title' => $value['title'],
                 'type' => $value['type'],
                 'content' => $value['content']
             ]);
