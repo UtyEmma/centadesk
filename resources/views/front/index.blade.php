@@ -59,7 +59,7 @@
 
             <div class="video-play">
                 <img src="{{asset('images/shape/shape-10.png')}}" alt="Shape">
-                Watch Video
+                {{-- Watch Video --}}
                 <a href="https://www.youtube.com/watch?v=BRvyWfuxGuU" class="play video-popup"><i class="flaticon-play"></i></a>
             </div>
         </div>
