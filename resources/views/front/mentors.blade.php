@@ -41,7 +41,7 @@
                     </div>
 
                     <div class="courses-search search-2 m-0">
-                        <input name="keyword" type="text" placeholder="Search for courses...">
+                        <input name="keyword" type="text" placeholder="Search for Mentors...">
                         <button type="submit"><i class="icofont-search"></i></button>
                         </div>
                 </div>
