@@ -26,10 +26,16 @@
                         </p>
                     </div>
                     <div class="d-flex align-items-center mt-1 p-2 bg-light-primary radius">
+                    @if ($batch->price > 0)
                         <h6 class="my-0 text-primary fw-bold"><span style="font-size: 13px;">{{request()->cookie('currency')}}</span> {{number_format($batch->discount_price)}}</h6>
                         <small class="date my-0 ms-1 text-decoration-strikethrough" style="text-decoration: line-through; font-size: 12px;">
                             {{request()->cookie('currency')}} {{number_format($batch->price)}}
                         </small>
+                    @else
+                        <p class="sale-parice text-start fw-bold text-primary" style="font-size: 12px;">
+                            Free
+                        </p>
+                    @endif
                     </div>
                 </div>
             </div>

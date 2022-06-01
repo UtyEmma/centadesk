@@ -49,13 +49,13 @@
                 <x-layered-profile-images :users="$batch->enrollments" />
             </div>
             <div>
-                @if ($batch->price === 0)
-                    <h6 class="my-0 text-primary fw-bold" style="font-size: 18px;">Free</h6>
-                @else
+                @if ($batch->price > 0)
                     <h6 class="my-0 text-primary fw-bold" style="font-size: 18px;"><span style="font-size: 12px;">{{request()->cookie('currency')}}</span> {{number_format($batch->discount_price)}}</h6>
                     <small class="date my-0 me-1 text-decoration-strikethrough" style="text-decoration: line-through; font-size: 11px;">
                         {{request()->cookie('currency')}} {{number_format($batch->price)}}
                     </small>
+                @else
+                    <h6 class="my-0 text-primary fw-bold" style="font-size: 18px;">Free</h6>
                 @endif
             </div>
         </div>

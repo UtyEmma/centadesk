@@ -71,8 +71,7 @@
                                         <h3 class="title">Find Expert Mentors</h3>
                                     </div>
                                 </div>
-                                <p>Learning is quite beneficial. All development and achievement are built on the basis of learning.</p>
-                                <p>Lorem Ipsum has been the industry's standard dumy text since the when took and scrambled make.</p>
+                                <p>You can find experts in various areas, join mentorship programs and fastpace your personal development in your area of interest.</p>
                             </div>
                             <!-- About Item End -->
                         </div>
@@ -87,8 +86,7 @@
                                         <h3 class="title">Host Sessions Anywhere</h3>
                                     </div>
                                 </div>
-                                <p>Lorem Ipsum has been the industry's standard dumy text since the when took and scrambled to make type specimen book has survived.</p>
-                                <p>Lorem Ipsum has been the industry's standard dumy text since the when took and scrambled make.</p>
+                                <p>Are you an expert looking for a platform to sell sessions and recieve payments. You can sign up as a mentor and start creating your courses.</p>
                             </div>
                             <!-- About Item End -->
                         </div>
@@ -103,8 +101,7 @@
                                         <h3 class="title">Recieve Enrollments</h3>
                                     </div>
                                 </div>
-                                <p>Lorem Ipsum has been the industry's standard dumy text since the when took and scrambled to make type specimen book has survived.</p>
-                                <p>Lorem Ipsum has been the industry's standard dumy text since the when took and scrambled make.</p>
+                                <p>As a Mentor, you can signup new students for both free and paid courses, recieve payments from students and withdraw your earnings when the class is completed.</p>
                             </div>
                             <!-- About Item End -->
                         </div>

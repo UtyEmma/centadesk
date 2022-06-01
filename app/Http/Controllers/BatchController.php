@@ -137,6 +137,7 @@ class BatchController extends Controller{
         $user = $this->user();
 
         $short_code = strtolower(Token::text(7, 'batches', 'short_code'));
+
         $discount_price = 0;
         $price = Currency::convertUserCurrencyToDefault($request->price);
 

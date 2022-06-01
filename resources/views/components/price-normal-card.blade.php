@@ -2,13 +2,19 @@
     <div class="info-price text-start">
         <div class="d-flex align-items-center ">
             <h5 class="fw-bold">
-                <span style="font-size: 0.8rem;">
-                    {{request()->cookie('currency')}}
-                </span>
-                {{number_format($batch->discount_price)}}
+                @if ($batch->discount_price > 0)
+                    <span style="font-size: 0.8rem;">
+                        {{request()->cookie('currency')}}
+                    </span>
+                    {{number_format($batch->discount_price)}}
+                @endif
             </h5>
             <h6 style="font-size: 13px;" class="ms-1 price text-decoration-line-through text-left">
-                {{request()->cookie('currency')}} {{number_format($batch->price)}}
+                @if ($batch->price > 0)
+                    {{request()->cookie('currency')}} {{number_format($batch->price)}}
+                @else
+                    Free
+                @endif
             </h6>
         </div>
     </div>
