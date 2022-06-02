@@ -11,8 +11,8 @@
                         </div>
 
                         <div class="widget-address">
-                            <h4 class="footer-widget-title">{{env('LIBRACLASS_ADDRESS')}}</h4>
-                            {{-- <p>Haymarket, Virginia (VA).</p> --}}
+                            {{-- <h4 class="footer-widget-title"></h4> --}}
+                            <p>{{env('LIBRACLASS_ADDRESS')}}.</p>
                         </div>
 
                         <ul class="widget-info">
@@ -61,6 +61,7 @@
                                 <li><a href="/terms">Terms & Conditions</a></li>
                                 <li><a href="https://libraclass.tawk.help/" target="_blank">Help Center</a></li>
                                 <li><a href="/faqs">Frequently Asked Questions</a></li>
+                                <li><a href="/contact">Contact Us</a></li>
                             </ul>
 
                         </div>

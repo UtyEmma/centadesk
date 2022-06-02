@@ -142,7 +142,7 @@
                 <div class="faq-wrapper">
                     @forelse ($mentors as $mentor)
                         <x-faq :title="$mentor->title">
-                            {{$mentor->content}}
+                            {!! $mentor->content !!}
                         </x-faq>
                     @empty
                     @endforelse

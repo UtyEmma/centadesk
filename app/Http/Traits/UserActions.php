@@ -42,9 +42,9 @@ trait UserActions{
             'profile' =>  url(RouteServiceProvider::LEARNING_CENTER)
         ];
 
-        // try {
+        try {
             Notification::send($user, new NewSignupNotification($notification));
-        // } catch (\Throwable $th) { }
+        } catch (\Throwable $th) { }
         return $user;
     }
 

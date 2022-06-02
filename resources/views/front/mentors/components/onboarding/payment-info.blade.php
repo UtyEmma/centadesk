@@ -60,12 +60,12 @@
                         <p id="bank_info_error" class="text-danger"></p>
 
                         <div class="single-form">
-                            <select name="bank" class="w-md-50 radius form-select border py-3 mb-3">
+                            <x-selectpicker :search="true" name="bank" classes='w-100' class="w-100 radius form-select border mb-2">
                                 <option>Select Bank</option>
                                 @foreach ($banks as $bank)
                                     <option value="{{$bank->code}}">{{$bank->name}}</option>
                                 @endforeach
-                            </select>
+                            </x-selectpicker>
                             <small class="text-danger text-capitalize">
                                 @error('bank')
                                     {{$message}}

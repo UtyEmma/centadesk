@@ -17,8 +17,8 @@
                     <!-- Header Top Medal Start -->
                     <div class="header-top-medal">
                         <div class="top-info">
-                            <p><i class="flaticon-phone-call"></i> <a href="tel:9702621413">(970) 262-1413</a></p>
-                            <p><i class="flaticon-email"></i> <a href="mailto:support@libraclass.com">support@libraclass.com</a></p>
+                            <p><i class="flaticon-phone-call"></i> <a href="tel:{{env('LIBRACLASS_PHONE')}}">{{env('LIBRACLASS_PHONE')}}</a></p>
+                            <p><i class="flaticon-email"></i> <a href="mailto:{{env('LIBRACLASS_EMAIL')}}">{{env('LIBRACLASS_EMAIL')}}</a></p>
                         </div>
                     </div>
 
@@ -55,9 +55,6 @@
                     <!-- Header Menu Start -->
                     <div class="header-menu d-none d-lg-block">
                         <ul class="nav-menu">
-                            <li>
-                                <a href="/">Home</a>
-                            </li>
                             <li>
                                 <a href="/sessions">Explore</a>
                             </li>
@@ -138,7 +135,6 @@
         <!-- Mobile Menu Start -->
         <div class="mobile-menu-items mb-1">
             <ul class="nav-menu">
-                <li><a href="/">Home</a></li>
                 <li>
                     <a href="/sessions">Explore</a>
                 </li>

@@ -10,7 +10,7 @@
         </div>
         <div class="col-lg-7">
             <div class="faq-text">
-                {{$slot}}
+                {!! $slot !!}
             </div>
         </div>
     </div>

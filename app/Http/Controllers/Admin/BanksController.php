@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 class BanksController extends Controller{
     use BankActions;
 
-    function show(Request $request){
+    function show(){
         $banks = Bank::paginate();
         return Response::view('admin.banks', [
             'banks' => $banks

@@ -29,7 +29,7 @@
                 </script>
 
                 <div>
-                    <button onclick="toggleMenuShow()" class="menu-toggle text-white" href="javascript:void(0)">
+                    <button onclick="toggleMenuShow()" class="menu-toggle text-white ms-2" href="javascript:void(0)">
                         <span class="bg-white"></span>
                         <span class="bg-white"></span>
                         <span class="bg-white"></span>

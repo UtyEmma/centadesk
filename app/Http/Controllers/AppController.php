@@ -32,7 +32,10 @@ class AppController extends Controller {
     }
 
     function about(Request $request){
-        return Response::view('front.about');
+        $testimonials = Testimonial::all();
+        return Response::view('front.about', [
+            'testimonials' => $testimonials
+        ]);
     }
 
     function contact(Request $request){

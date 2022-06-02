@@ -42,36 +42,36 @@
             }
         </script>
 
-        <div class="w-100 float-left">
-            <button class="float-right" onclick="closeMenu()">X</button>
-        </div>
+        <button class="float-right btn border-0 btn-custom p-0 text-right text-white" onclick="closeMenu()">
+            <i class="icofont-close-squared-alt fs-1"></i>
+        </button>
 
         <ul class="mt-3 app-menu text-white mx-0">
-            <li class="w-100 app-menu-item {{request()->is('me') ? 'bg-white text-primary' : ''}}">
+            <li class="w-100 app-menu-item {{request()->is('me') ? 'bg-white text-primary radius-left' : ''}}">
                 <a class="active d-flex align-items-center w-100 p-3" href="/me">
                     <i class="icofont-ui-home fs-4 me-3"></i>
                     <span>Overview</span>
                 </a>
             </li>
-            <li class="{{request()->is('me/courses*') ? 'bg-white text-primary' : ''}}">
+            <li class="{{request()->is('me/courses*') ? 'bg-white text-primary radius-left' : ''}}">
                 <a class="active d-flex align-items-center w-100 p-3" href="/me/courses">
                     <i class="icofont-book-alt fs-4 me-3"></i>
                     <span>Courses</span>
                 </a>
             </li>
-            <li class="{{request()->is('me/wallet*') ? 'bg-white text-primary' : ''}}">
+            <li class="{{request()->is('me/wallet*') ? 'bg-white text-primary radius-left' : ''}}">
                 <a class="active d-flex align-items-center w-100 p-3" href="/me/wallet">
                     <i class="icofont-wallet fs-4 me-3"></i>
                     <span>Wallet</span>
                 </a>
             </li>
-            <li class="{{request()->is('me/profile*') ? 'bg-white text-primary' : ''}}">
+            <li class="{{request()->is('me/profile*') ? 'bg-white text-primary radius-left' : ''}}">
                 <a class="active d-flex align-items-center w-100 p-3" href="/me/profile">
                     <i class="icofont-user-alt-3 fs-4 me-3"></i>
                     <span>Profile</span>
                 </a>
             </li>
-            <li class="{{request()->is('me/settings*') ? 'bg-white text-primary' : ''}}">
+            <li class="{{request()->is('me/settings*') ? 'bg-white text-primary radius-left' : ''}}">
                 <a class="active d-flex align-items-center w-100 p-3" href="/me/settings">
                     <i class="icofont-settings fs-4 me-3"></i>
                     <span>Settings</span>

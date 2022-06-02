@@ -61,7 +61,7 @@
 <div class="row mt-4">
     <div class="col-md-8 mx-auto">
         <div class="courses-search search-2 m-0 w-100" style="max-width: 100% !important" >
-            <input name="keyword" class="w-100" onchange="search(event)" type="text" placeholder="Search for categories...">
+            <input name="keyword" class="w-100" onkeyup="search(event)" type="text" placeholder="Search for categories...">
             <button type="submit">
                 <i class="icofont-search mx-auto"></i>
             </button>
