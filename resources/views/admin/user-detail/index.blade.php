@@ -40,30 +40,44 @@
                             @endif
                         </div>
 
-                        <div class="row py-3">
-                            <div class="col-6">
-                                <a href="/users/{{$user->unique_id}}/edit" class="btn btn-primary">Edit Profile</a>
+                        <div>
+                            <div class="row">
+                                <div class="col-6 p-2">
+                                    <a href="/users/{{$user->unique_id}}/edit" class="btn btn-block btn-info">Edit Profile</a>
+                                </div>
                             </div>
+                        </div>
 
-                            <div class="col-6">
-                                <a href="/users/{{$user->unique_id}}/status" class="btn btn-primary">Disable Account</a>
-                            </div>
+                        <div class="text-left">
+                            <h6 class="">Account Management</h6>
 
-                            <div class="col-6">
-                                <x-swal href="/users/{{$user->unique_id}}/delete"  class="btn btn-primary">Delete Account</x-swal>
-                            </div>
-
-                            @if($user->role === 'mentor')
-                                <div class="col-6">
-                                    <x-swal  type="button" class="btn btn-primary">Verify User</x-swal>
+                            <div class="row">
+                                <div class="col-6 p-2">
+                                    <x-swal href="/users/{{$user->unique_id}}/actions/status" message="Do you wish to proceed?" class="btn btn-block {{$user->status ? 'btn-warning' : 'btn-success'}} ">{{$user->status ? 'Suspend' : 'Restore'}} Account</x-swal>
                                 </div>
 
-                                @if ($user->kyc_status === 'pending')
-                                    <div class="col-6">
-                                        <x-swal href="/users/{{$user->unique_id}}/actions/approve?action=true" class="btn btn-primary">Approve</x-swal>
+                                <div class="col-6 p-2">
+                                    <x-swal href="/users/{{$user->unique_id}}/actions/delete"  class="btn btn-block btn-danger">Delete Account</x-swal>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="text-left" >
+                            <h6 class="">Mentor Status</h6>
+
+                            <div class="row">
+                                @if($user->role === 'mentor')
+                                    <div class="col-6 p-2">
+                                        <x-swal  href="/users/{{$user->unique_id}}/actions/verify?action=true" class="btn btn-block btn-primary">Verify Mentor</x-swal>
                                     </div>
+
+                                    @if ($user->kyc_status === 'pending')
+                                        <div class="col-6 p-2">
+                                            <x-swal href="/users/{{$user->unique_id}}/actions/approve?action=true" class="btn btn-block btn-primary">Approve Request</x-swal>
+                                        </div>
+                                    @endif
                                 @endif
-                            @endif
+                            </div>
                         </div>
                     </div>
                   </div>
@@ -82,22 +96,25 @@
                         <li class="nav-item">
                             <a class="nav-link {{request()->is('users/*/courses') ? 'active' : ''}} " href="/users/{{$user->unique_id}}/courses">Courses</a>
                         </li>
-                    @endif
+                        @endif
 
                     <li class="nav-item">
                         <a class="nav-link {{request()->is('users/*/enrolled') ? 'active' : ''}}" href="/users/{{$user->unique_id}}/enrolled">Enrollments</a>
                     </li>
 
+                    @if ($user->role === 'mentor')
+                        <li class="nav-item">
+                            <a class="nav-link {{request()->is('users/*/payments') ? 'active' : ''}}" href="/users/{{$user->unique_id}}/payments">Deposits</a>
+                        </li>
+                    @endif
+
                     <li class="nav-item">
-                        <a class="nav-link {{request()->is('users/*/payments') ? 'active' : ''}}" href="/users/{{$user->unique_id}}/payments">Payments</a>
+                        <a class="nav-link {{request()->is('users/*/kyc') ? 'active' : ''}}" href="/users/{{$user->unique_id}}/kyc">KYC</a>
                     </li>
 
                     @if ($user->role === 'mentor' && $user->kyc_status === 'approved')
                         <li class="nav-item">
                             <a class="nav-link {{request()->is('users/*/withdrawals') ? 'active' : ''}}" href="/users/{{$user->unique_id}}/withdrawals">Withdrawals</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link {{request()->is('users/*/kyc') ? 'active' : ''}}" href="/users/{{$user->unique_id}}/kyc">KYC</a>
                         </li>
                     @endif
 

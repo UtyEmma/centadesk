@@ -70,9 +70,9 @@ Route::middleware('auth:admin')->group(function(){
     });
 
     Route::prefix('/mentors')->group(function(){
-        Route::get('/', [MentorController::class, 'mentors']);
-        Route::get('/requests', [MentorController::class, 'requests']);
-        Route::get('/verify', [MentorController::class, 'verificationRequests']);
+        Route::get('/', [MentorController::class, 'mentors'])->name('admin.mentors');
+        Route::get('/requests', [MentorController::class, 'requests'])->name('admin.mentors.requests');
+        Route::get('/verify', [MentorController::class, 'verificationRequests'])->name('admin.mentors.verification_requests');
     });
 
     Route::get('/countries', [CurrencyController::class, 'getCountries']);

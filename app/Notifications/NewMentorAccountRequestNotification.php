@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class NewMentorAccountRequestNotification extends Notification implements ShouldQueue
+class NewMentorAccountRequestNotification extends Notification
 {
     use Queueable;
 
@@ -25,7 +25,7 @@ class NewMentorAccountRequestNotification extends Notification implements Should
      */
     public function via($notifiable)
     {
-        return ['mail'];
+        return ['database', 'mail'];
     }
 
     /**
@@ -34,8 +34,7 @@ class NewMentorAccountRequestNotification extends Notification implements Should
      * @param  mixed  $notifiable
      * @return \Illuminate\Notifications\Messages\MailMessage
      */
-    public function toMail($notifiable)
-    {
+    public function toMail($notifiable){
         return (new MailMessage)
                     ->subject($this->data['subject'])
                     ->view('emails.mentor.onboarding', $this->data);
@@ -50,7 +49,10 @@ class NewMentorAccountRequestNotification extends Notification implements Should
     public function toArray($notifiable)
     {
         return [
-            //
+            'title' => "Your Mentor Application has been sent and is under review!",
+            'body' => "Your Request is being reviewed! You will receive a notification when the process is completed! It may take about 12 days",
+            'link' => '',
+            'action' => ''
         ];
     }
 }

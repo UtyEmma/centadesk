@@ -111,12 +111,26 @@ class StudentController extends Controller{
         }
     }
 
+    public function sortCoursesBasedOnUserInterest($query){
+        $user = $this->user();
+
+        return $query->when($user, function($query, $user) {
+            $interest = $user->interests;
+            return $query->whereIn('category', $interest);
+        }, function($query){
+            return $query;
+        });
+    }
+
     function overview(Request $request){
         $user = $this->user();
         $courses = $user->batches();
-        $events = $user->enrolledBatches();
+        $sessions = $user->enrolledBatches();
+        $query = Courses::query();
+        $userInterests = $user->interests;
+        $suggestedCourses = $this->sortCoursesBasedOnUserInterest($query)->limit(10);
 
-        $new_event = $events->map(function($event){
+        $new_event = $sessions->map(function($event){
             $startdate = Date::parse($event->startdate);
             $enddate = Date::parse($event->enddate);
             return [
@@ -126,11 +140,11 @@ class StudentController extends Controller{
             ];
         });
 
-
         return Response::view('front.student.overview', [
             'user' => $user,
             'courses' => $courses,
-            'events' => $new_event->toJson()
+            'events' => $new_event->toJson(),
+            'suggested' => $suggestedCourses->get()
         ]);
     }
 

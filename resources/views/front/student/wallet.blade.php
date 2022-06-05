@@ -4,23 +4,21 @@
         <div class="container">
             <h4 class="title">Wallet Overview</h4>
 
-            <div class="overview-box ">
-                <div class="single-box w-auto">
+            <div class="overview-box row">
+                <div class="single-box col-md-4">
                     <h5 class="title">Deposits</h5>
                     <div class="count">
                         <span style="font-size: 16px;">
                             {{request()->cookie('currency')}}
                         </span>
                         {{number_format($wallet->deposits)}}</div>
-                    <p><span>$235.00</span> This months</p>
                 </div>
 
-                <div class="single-box w-auto">
+                <div class="col-md-4 single-box">
                     <h5 class="title">Referral Earnings</h5>
                     <div class="count">
                         <span style="font-size: 16px;">{{request()->cookie('currency')}}</span>
                         {{number_format($wallet->referrals)}}</div>
-                    <p><span>345</span> This months</p>
                 </div>
             </div>
 

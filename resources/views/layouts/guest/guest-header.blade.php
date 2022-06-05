@@ -1,20 +1,12 @@
 <div class="main-wrapper">
-    <!-- Header Section Start -->
     <div class="header-section">
-        <!-- Header Top Start -->
         <div class="header-top d-none d-lg-block">
             <div class="container">
-
-                <!-- Header Top Wrapper Start -->
-                <div class="header-top-wrapper">
-
-                    <!-- Header Top Left Start -->
+                <div class="header-top-wrapper pb-0">
                     <div class="header-top-left">
-                        <p>All course 28% off for <a href="#">Liberian people’s.</a></p>
+                        <p>Create and Join <a href="#">amazing Courses.</a></p>
                     </div>
-                    <!-- Header Top Left End -->
 
-                    <!-- Header Top Medal Start -->
                     <div class="header-top-medal">
                         <div class="top-info">
                             <p><i class="flaticon-phone-call"></i> <a href="tel:{{env('LIBRACLASS_PHONE')}}">{{env('LIBRACLASS_PHONE')}}</a></p>
@@ -22,10 +14,8 @@
                         </div>
                     </div>
 
-                    <x-currency-select name="currency" :currency="$currency" :data="$data" btnClasses="text-white text-white fw-normal btn-custom" />
-                    <!-- Header Top Medal End -->
+                    <x-currency-select name="currency" :currency="$currency" class="w-auto" :data="$data" btnClasses="text-white text-white fw-normal btn-custom" />
 
-                    <!-- Header Top Right Start -->
                     <div class="header-top-right">
                         <ul class="social">
                             <li><a href="#"><i class="flaticon-facebook"></i></a></li>
@@ -37,22 +27,14 @@
                 </div>
             </div>
         </div>
-        <!-- Header Top End -->
 
-        <!-- Header Main Start -->
         <div class="header-main">
             <div class="container">
-
-                <!-- Header Main Start -->
                 <div class="header-main-wrapper">
-
-                    <!-- Header Logo Start -->
                     <div class="header-logo">
                         <a href="/"><img src="{{asset('images/libra-main.png')}}" width="150" class="img-fluid" alt="Logo"></a>
                     </div>
-                    <!-- Header Logo End -->
 
-                    <!-- Header Menu Start -->
                     <div class="header-menu d-none d-lg-block">
                         <ul class="nav-menu">
                             <li>
@@ -68,11 +50,8 @@
                                 <a href="/mentor/join">Mentors</a>
                             </li>
                         </ul>
-
                     </div>
-                    <!-- Header Menu End -->
 
-                    <!-- Header Sing In & Up Start -->
                     <div class="header-sign-in-up d-none d-lg-block">
                         @if ($user = Auth::user())
                             <ul>

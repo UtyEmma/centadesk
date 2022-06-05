@@ -52,11 +52,10 @@ Route::middleware(['set.currency', 'set.referrals'])->group(function(){
 
         Route::middleware('is.onboarded')->group(function(){
             Route::prefix('learning')->group(function(){
-                Route::get('/', [StudentController::class, 'overview']);
+                Route::get('/', [StudentController::class, 'overview'])->name('profile.overview');
 
                 Route::prefix('courses')->group(function(){
-
-                    Route::get('/', [StudentController::class, 'enrolledCourses']);
+                    Route::get('/', [StudentController::class, 'enrolledCourses'])->name('profile.courses');
 
                     Route::prefix('{slug}')->group(function(){
                         Route::prefix('{shortcode}')->group(function(){
@@ -102,15 +101,15 @@ Route::middleware(['set.currency', 'set.referrals'])->group(function(){
         });
 
         Route::prefix('/mentor')->middleware('user.status')->group(function(){
-            Route::get('/onboarding', [MentorController::class, 'onboarding']);
-            Route::post('/create', [MentorController::class, 'store']);
+            Route::get('/onboarding', [MentorController::class, 'onboarding'])->name('mentor.onboarding');
+            Route::post('/create', [MentorController::class, 'store'])->name('mentor.apply');
         });
 
         Route::prefix('/me')->middleware('is.mentor')->group(function(){
-            Route::get('/', [MentorController::class, 'home'])->name('dashboard');
+            Route::get('/', [MentorController::class, 'home'])->name('dashboard')->name('mentor.home');
 
             Route::prefix('/category')->group(function(){
-                Route::post('/suggest', [CategoryController::class, 'suggestCategory']);
+                Route::post('/suggest', [CategoryController::class, 'suggestCategory'])->name('category.suggest');
             });
 
             Route::prefix('courses')->group(function(){

@@ -37,51 +37,28 @@ class AppConfig extends Command
         parent::__construct();
     }
 
-    /**
-     * Execute the console command.
-     *
-     * @return int
-     */
     public function handle(){
-        // $bar = $this->output->createProgressBar(6);
-        // echo "\r\n";
-        // $bar->start();
-
         $details = new DefaultAdminSeeder();
         $this->info('Default Administrator Account Created');
-        // echo "\r\n";
-        // $bar->advance();
 
         new AppConfigSeeder();
         $this->info('App Configuration set up completed');
-        // echo "\r\n";
-        // $bar->advance();
 
         new CategoriesSeeder();
         $this->info('Categories Seeded');
-        echo "\r\n";
-        // $bar->advance();
 
         new CurrenciesSeeder();
         $this->info('Currencies and Exchange rates set successfully!');
-        // echo "\r\n";
-        // $bar->advance();
 
 
         new FaqSeeder();
         $this->info('Frequently Asked Questions Updated Successfully!');
-        // echo "\r\n";
-        // $bar->finish();
 
         new BlogPostSeeder();
         $this->info('Medium Blog Posts Updated Successfully!');
-        // echo "\r\n";
-        // $bar->finish();
 
         new GetBanksSeeder();
         $this->info('Bank Info retrieved successfully!');
-        // echo "\r\n";
-        // $bar->finish();
 
         echo "\r\n";
         $this->info('App Setup Completed Successfully!');

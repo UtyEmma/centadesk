@@ -2,7 +2,6 @@
     <x-page-title title="Become a Mentor - Join an elite rank of experts that sell their knowledge on {{env("APP_NAME")}}" />
      <!-- Page Banner Start -->
      <div class="section page-banner bg-transparent">
-
         <div class="container mt-5">
             <!-- Page Banner Start -->
             <div class="page-banner-content py-5">
@@ -10,7 +9,7 @@
                     <li><a href="/">Home</a></li>
                     <li class="active">Become a Mentor</li>
                 </ul>
-                <h2 class="title mt-0">Become a <span>Mentor.</span></h2>
+                <h2 class="title my-0 pb-0">Become a <span>Mentor.</span></h2>
             </div>
             <!-- Page Banner End -->
         </div>
@@ -25,10 +24,10 @@
                 <div class="row">
                     <div class="col-lg-8">
                         <div class="about-content mt-0 ms-0 ps-0 w-100" style="max-width: 100%;">
-                            <h5 class="sub-title">Welcome to {{env("APP_NAME")}}.</h5>
+                            <h5 class="sub-title mb-3">Share your next session on {{env("APP_NAME")}}.</h5>
                             <h2 class="main-title">Create courses and enroll students on {{env("APP_NAME")}}! <span>Host classes anywhere.</span></h2>
                             <p>The {{env("APP_NAME")}} Platform is solely for high-value digital knowledge contents, and to keep it that way, anything placed on the learning platform must meet certain criteria.</p>
-                            <a href="/mentor/onboarding" class="btn btn-primary btn-hover-dark">Get Started!</a>
+                            <a href="/mentor/onboarding" class="btn btn-primary btn-hover-dark mt-3">Get Started Now</a>
                         </div>
                     </div>
 
@@ -42,7 +41,7 @@
                                 <div class="years-icon">
                                     <img src="{{asset('images/logo-icon.png')}}" alt="About">
                                 </div>
-                                <p><strong>28+</strong> Years Experience</p>
+                                {{-- <p><strong>200+</strong> students</p> --}}
                             </div>
                         </div>
                     </div>

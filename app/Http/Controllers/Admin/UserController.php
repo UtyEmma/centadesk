@@ -33,16 +33,12 @@ class UserController extends Controller{
     }
 
     function status($id){
-        try {
-            $user = $this->findOrFail($id);
-            $user->status = !!$user->status;
-            $user->save();
+        $user = $this->findOrFail($id);
+        $user->status = !$user->status;
+        $user->save();
 
-            $status = $user->status ? 'enabled' : 'disabled';
-            return redirect()->back()->with('success', "User Status was $status successfully");
-        } catch (\Throwable $th) {
-            return Response::redirectBack('error', $th->getMessage());
-        }
+        $status = $user->status ? 'enabled' : 'disabled';
+        return redirect()->back()->with('success', "User Status was $status successfully");
     }
 
     function delete($id){

@@ -65,11 +65,11 @@
     </ul>
 
     <script>
-        function sendMessage(e){
+        async function sendMessage(e){
             e.preventDefault()
 
             const data = new FormData(e.target)
-           //  const forumChat =
+            let sent = false
 
 
             const message = `<li class="float-right offset-3 col-9">
@@ -99,20 +99,24 @@
                    </div>
                </li>`
 
-           $('#forum-chat').append(message)
            //  console.log()
             const url = 'http://localhost:8000/api/forum/send/{{$batch->unique_id}}/{{$user->unique_id}}'
 
-            const request = fetch(url, {
+            const request = await fetch(url, {
                method: 'POST',
                body: data,
                headers: {
                    'Accept': 'application/json',
                    'ContentType': 'application/json'
                }
-            })
+            }).then((result) => {
+                $('#forum-chat').append(message)
+                e.target.reset()
+                sent = true
+            }).catch((err) => {
 
-            e.target.reset()
+            });
+
         }
     </script>
 

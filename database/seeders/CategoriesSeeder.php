@@ -11,10 +11,10 @@ use Illuminate\Support\Str;
 class CategoriesSeeder extends Seeder{
 
     protected $categories = [
-        'Personal Development', 'Information Technology', 'Computer Science', 'Web Development', 'Business', 'Social Science',
+        "Amazon KDP", 'Personal Development', 'Information Technology', 'Computer Science', 'Web Development', 'Business', 'Social Science',
         'Software Engineering', 'Leadership', 'Education', 'Cryptocurrency', 'Marketing', 'UI/UX Design', 'Photography', 'Politics',
         'History', 'Language', 'Neuroscience', 'Freelancing', 'Product Management', 'Blockchain', 'Climate Change', 'Mobile Development',
-        'Game Development', 'Entrepreneurship', 'Human Resources'
+        'Game Development', 'Entrepreneurship', 'Human Resources', "Wordpress"
     ];
 
     function __construct(){

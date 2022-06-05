@@ -60,6 +60,7 @@ class User extends Authenticatable{
     public function reviews(){
         return $this->hasMany(Review::class, 'mentor_id', 'unique_id');
     }
+
     public function enrolledBatches(){
         return Enrollment::where('student_id', $this->unique_id)
                             ->join('courses', 'courses.unique_id', 'enrollments.course_id')
@@ -116,8 +117,10 @@ class User extends Authenticatable{
         $interests->map(function($interest) use($courses){
             $courses->where('category', $interest);
         });
+    }
 
-        // $courses->when();
+    public function sessions(){
+        return $this->hasMany(Enrollment::class, 'student_id', 'unique_id');
     }
 
     public function toSearchableArray(){

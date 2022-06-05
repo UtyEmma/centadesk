@@ -4,7 +4,7 @@
 
         Swal.fire({
             title: 'Are you sure?',
-            text: "This action cannot be reversed!",
+            text: "{{$message ?? 'This action cannot be reversed!'}}",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#309255',

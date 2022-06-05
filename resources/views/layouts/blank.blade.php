@@ -19,8 +19,7 @@
         <!-- Icon Font CSS -->
         <link rel="stylesheet" href="{{ asset('css/plugins/icofont.min.css')}} ">
         <link rel="stylesheet" href="{{ asset('css/plugins/flaticon.css')}} ">
-        <link rel="stylesheet" href="{{ asset('css/plugins/font-awesome.min.css')}} ">
-        <link rel="stylesheet" href="{{ asset('css/plugins/tagify.min.css')}} ">
+        {{-- <link rel="stylesheet" href="{{ asset('css/plugins/font-awesome.min.css')}} "> --}}
         {{-- <link rel="stylesheet" href="{{ asset('css/plugins/jqvmap.min.css')}} "> --}}
 
         <link rel="stylesheet" href="{{asset('css/plugins/animate.min.css')}}">
@@ -55,16 +54,12 @@
         <script src="{{asset('js/plugins.min.js')}}"></script>
 
         <script src="{{asset('js/plugins/bs-stepper.min.js')}}" ></script>
-        <script src="{{asset('js/plugins/tagify/tagify.min.js')}}"></script>
-        <script src="{{asset('js/plugins/tagify/tagify.polyfills.min.js')}}" ></script>
+
         <script src="{{asset('js/plugins/moment.min.js')}}" ></script>
         <script src="{{asset('js/plugins/jquery.inputmask.min.js')}}" ></script>
 
         <script src="{{asset('js/plugins/jquery.countdown.js')}}" ></script>
         <script src="{{asset('js/plugins/jquery-repeater.min.js')}}" ></script>
-
-
-        <script src="{{asset('vendor/summernote-0.8.18-dist/summernote-lite.min.js')}}" ></script>
 
         <script src="{{asset('js/plugins/easepick.min.js')}}" defer></script>
 
@@ -72,7 +67,6 @@
         <script src="{{asset('js/validation.js')}}"></script>
 
         <script src="{{asset('js/plugins/bootstrap-select.js')}}"></script>
-
         <script src="{{ asset('js/plugins/sweetalert.js')}} "></script>
 
         <!-- Main JS -->

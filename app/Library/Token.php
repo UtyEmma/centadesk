@@ -30,7 +30,7 @@ class Token {
         if($table && $column){
             $status = DB::table($table)->where($column, '===', $str)->first() ?? false;
             $array = ['about', 'contact', 'onboarding', 'categories', 'learning', 'wallet', 'profile', 'reports', 'transaction', 'enroll', 'mentor', 'me', 'mentors', 'courses', 'terms', 'privacy-policy', 'faqs', 'disclaimer']; //Filter out some words from the routes to ensure that they do not conflict
-            if ($status || in_array($str, $array)) { return static::text($len, $table, $column); }
+            if ($status || in_array($str, $array)) return static::text($len, $table, $column);
         }
 
         return $str;

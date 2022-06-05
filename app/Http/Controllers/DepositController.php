@@ -74,6 +74,8 @@ class DepositController extends Controller{
             $wallet->deposits += $deposit->amount;
             $wallet->save();
 
+
+
             return Response::redirect($success_link, 'success', 'Your deposit was successful');
         }
 

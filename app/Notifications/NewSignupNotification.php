@@ -7,10 +7,8 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class NewSignupNotification extends Notification
-// implements ShouldQueue
-{
-    // use Queueable;
+class NewSignupNotification extends Notification implements ShouldQueue{
+    use Queueable;
 
     private $details;
 
@@ -18,23 +16,11 @@ class NewSignupNotification extends Notification
         $this->details = $details;
     }
 
-    /**
-     * Get the notification's delivery channels.
-     *
-     * @param  mixed  $notifiable
-     * @return array
-     */
     public function via($notifiable)
     {
         return ['database', 'mail'];
     }
 
-    /**
-     * Get the mail representation of the notification.
-     *
-     * @param  mixed  $notifiable
-     * @return \Illuminate\Notifications\Messages\MailMessage
-     */
     public function toMail($notifiable){
         $details = $this->details;
         $user = $details['user'];
@@ -43,7 +29,9 @@ class NewSignupNotification extends Notification
                     ->subject("Hi $user->firstname, Welcome to Libraclass")
                     ->view('emails.welcome', [
                         'user' => $user,
-                        'profile' => $details['profile']
+                        'profile' => $details['profile'],
+                        'link' => route('profile.overview'),
+                        'action' => 'My Profile'
                     ]);
     }
 
@@ -55,7 +43,10 @@ class NewSignupNotification extends Notification
      */
     public function toArray($notifiable){
         return [
-            'message' => 'Your account has been created. Welcome onboard!'
+            'title' => 'Your account has been created. Welcome onboard!',
+            'body' => "We are pleased to have you onboard and can't wait to !",
+            'link' => route('profile.overview'),
+            'action' => 'My Profile',
         ];
     }
 }

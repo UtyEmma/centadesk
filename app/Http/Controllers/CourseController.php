@@ -74,9 +74,6 @@ class CourseController extends Controller{
 
         }
 
-
-
-
         // $query->when($request->price === 'free', function ($query) {
         //     return $query->where('price', 0);
         // });

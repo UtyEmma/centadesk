@@ -20,7 +20,7 @@
             <div class="box-content">
                 <div class="box-wrapper">
                     <i class="flaticon-open-book"></i>
-                    <span class="count">1,235</span>
+                    <span class="count">{{$courses->count() + env('NUMBER_OF_COURSES')}}+</span>
                     <p>courses</p>
                 </div>
             </div>
@@ -35,8 +35,8 @@
 
             <div class="box-rating">
                 <div class="box-wrapper">
-                    <span class="count">4.8 <i class="flaticon-star"></i></span>
-                    <p>Rating (86K)</p>
+                    <span class="count">{{env('APP_RATING')}} <i class="flaticon-star"></i></span>
+                    <p>Rating ({{env('APP_REVIEWS_COUNT')}})</p>
                 </div>
             </div>
 
@@ -155,7 +155,7 @@
 
             <!-- Section Title Start -->
             <div class="section-title shape-03 text-center">
-                <h5 class="sub-title">Over 1,235+ Course</h5>
+                <h5 class="sub-title">Over {{$courses->count() + env('NUMBER_OF_COURSES')}}+ Course</h5>
                 <h2 class="main-title">How It <span> Work?</span></h2>
             </div>
             <!-- Section Title End -->
@@ -195,15 +195,11 @@
                         <p>Book and Join an ongoing session of your desired courses with your mentor.</p>
                     </div>
                 </div>
-                <!-- Single Work End -->
 
-                <!-- Single Work Start -->
                 <div class="work-arrow">
                     <img class="arrow" src="{{asset('images/shape/shape-17.png')}}" alt="Shape">
                 </div>
-                <!-- Single Work End -->
 
-                <!-- Single Work Start -->
                 <div class="single-work">
                     <img class="shape-3" src="{{asset('images/shape/shape-16.png')}}" alt="Shape">
 
@@ -215,13 +211,10 @@
                         <p>Optionally receive certification upon when your current session is completed.</p>
                     </div>
                 </div>
-                <!-- Single Work End -->
-
             </div>
 
         </div>
     </div>
-    <!-- How It Work End -->
 
     @include('components.video-cta')
 
@@ -237,7 +230,7 @@
                 <!-- Section Title Start -->
                 <div class="section-title shape-03 text-center">
                     <h5 class="sub-title">Latest News</h5>
-                    <h2 class="main-title">Educational Tips & <span> Tricks</span></h2>
+                    <h2 class="main-title">Educational Tips & <span> Updates</span></h2>
                 </div>
                 <!-- Section Title End -->
 

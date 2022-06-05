@@ -52,61 +52,31 @@
 
             <!-- Header Action Start -->
             <div class="login-header-action ml-auto">
-                <div class="dropdown">
+                <div class="dropdown dropleft">
                     <button class="action notification" data-bs-toggle="dropdown">
                         <i class="flaticon-notification"></i>
                         <span class="active"></span>
                     </button>
-                    <div class="dropdown-menu dropdown-notification">
+                    <div class="dropdown-menu dropdown-notification right-0" style="right: 0;">
                         <ul class="notification-items-list">
-                            <li class="notification-item">
-                                <span class="notify-icon bg-success text-white"><i class="icofont-ui-user"></i></span>
-                                <div class="dropdown-body">
-                                    <a href="#">
-                                        <p><strong>Martin</strong> has added a <strong>customer</strong> Successfully
-                                        </p>
-                                    </a>
-                                </div>
-                                <span class="notify-time">3:20 am</span>
-                            </li>
-                            <li class="notification-item">
-                                <span class="notify-icon bg-success text-white"><i class="icofont-shopping-cart"></i></span>
-                                <div class="dropdown-body">
-                                    <a href="#">
-                                        <p><strong>Jennifer</strong> purchased Light Dashboard 2.0.</p>
-                                    </a>
-                                </div>
-                                <span class="notify-time">3:20 am</span>
-                            </li>
-                            <li class="notification-item">
-                                <span class="notify-icon bg-danger text-white"><i class="icofont-book-mark"></i></span>
-                                <div class="dropdown-body">
-                                    <a href="#">
-                                        <p><strong>Robin</strong> marked a <strong>ticket</strong> as unsolved.
-                                        </p>
-                                    </a>
-                                </div>
-                                <span class="notify-time">3:20 am</span>
-                            </li>
-                            <li class="notification-item">
-                                <span class="notify-icon bg-success text-white"><i class="icofont-heart-alt"></i></span>
-                                <div class="dropdown-body">
-                                    <a href="#">
-                                        <p><strong>David</strong> purchased Light Dashboard 1.0.</p>
-                                    </a>
-                                </div>
-                                <span class="notify-time">3:20 am</span>
-                            </li>
-                            <li class="notification-item">
-                                <span class="notify-icon bg-success text-white"><i class="icofont-image"></i></span>
-                                <div class="dropdown-body">
-                                    <a href="#">
-                                        <p><strong> James.</strong> has added a<strong>customer</strong> Successfully
-                                        </p>
-                                    </a>
-                                </div>
-                                <span class="notify-time">3:20 am</span>
-                            </li>
+                            @foreach ($user->notifications as $key => $notification)
+                                <li class="notification-item">
+                                    <div class="row">
+                                        <div class="col-2">
+                                            <span class="notify-icon bg-success text-white"><i class="icofont-ui-user"></i></span>
+                                        </div>
+
+                                        <div class="col-10">
+                                            <div class="dropdown-body">
+                                                <a href="{{$notification->data['link'] ?? ''}}">
+                                                    {{$notification->data['title']}}
+                                                </a>
+                                            </div>
+                                            <small class="mt-0" style="font-size: 12px;">{{Date::parse($notification->created_at)->diffForHumans()}}</small>
+                                        </div>
+                                    </div>
+                                </li>
+                            @endforeach
                         </ul>
                         <a class="all-notification" href="#">See all notifications <i class="icofont-simple-right"></i></a>
                     </div>

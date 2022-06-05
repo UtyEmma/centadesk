@@ -11,7 +11,7 @@
 
             <!-- Section Title Start -->
             <div class="section-title shape-03">
-                <h2 class="main-title">Best Supporter of <span> Edule.</span></h2>
+                <h2 class="main-title">Best Supporter of <span> {{env('APP_NAME')}}.</span></h2>
             </div>
             <!-- Section Title End -->
 

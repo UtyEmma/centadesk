@@ -37,7 +37,33 @@
 
                     @if (count($courses['upcoming']) > 0)
                         <div class="py-5">
-                            <h5 class="mb-2">Upcoming Classes</h5>
+                            <h5 class="mb-2">Upcoming Sessions</h5>
+
+                            <div class="row">
+                                @forelse ($courses['upcoming'] as $course)
+                                    <div class="col-lg-6 col-md-6">
+                                        <x-batch.upcoming :course="$course" />
+                                    </div>
+                                @empty
+                                    <div class="col-md-12">
+                                        <div class="border radius p-4">
+                                            <h5>You have not enrolled for any courses yet!</h5>
+                                            <a href="/courses">
+                                                <x-btn classes="btn-primary btn-hover-dark">Find Courses</x-btn>
+                                            </a>
+                                        </div>
+                                    </div>
+                                @endforelse
+                            </div>
+                        </div>
+                    @endif
+
+                    {{-- <div class="py-5">
+                        <h5 class="mb-2">Suggested For You</h5>
+                    </div> --}}
+                    @if ($suggested->count() > 0)
+                        <div class="py-5">
+                            <h5 class="mb-2">Suggested For You!</h5>
 
                             <div class="row">
                                 @forelse ($courses['upcoming'] as $course)

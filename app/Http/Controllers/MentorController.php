@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\MentorApplicationCreated;
+use App\Events\MentorApplicationSent;
 use App\Http\Requests\MentorSignupRequest;
 use App\Http\Traits\CourseActions;
 use App\Http\Traits\MentorActions;
@@ -103,17 +105,10 @@ class MentorController extends Controller{
             ]
         ));
 
-        $notification = [
-            'subject' => "Your Mentor Signup Request is being reviewed",
-            'dashboard' => self::HOME
-        ];
+        MentorApplicationSent::dispatch($user);
 
         return Response::redirectBack('success', 'Your application has been sent! 🎉');
 
-        try {
-            Notification::send($user, new NewMentorAccountRequestNotification($notification));
-        } catch (\Throwable $th) {
-        }
     }
 
     public function update(Request $request){

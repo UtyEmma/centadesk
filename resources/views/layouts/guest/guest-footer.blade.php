@@ -1,17 +1,14 @@
 <footer class="section footer-section">
     <div class="footer-widget-section">
-        <img class="shape-1 animation-down" src="{{asset('images/shape/shape-21.png')}}" alt="Shape">
-
         <div class="container">
             <div class="row">
                 <div class="col-lg-3 col-md-6 order-md-1 order-lg-1">
                     <div class="footer-widget">
                         <div class="widget-logo">
-                            <a href="#"><img src="{{asset('images/libra-main.png')}}" width="150" alt="Logo"></a>
+                            <a href="/"><img src="{{asset('images/libra-main.png')}}" width="150" alt="Logo"></a>
                         </div>
 
                         <div class="widget-address">
-                            {{-- <h4 class="footer-widget-title"></h4> --}}
                             <p>{{env('LIBRACLASS_ADDRESS')}}.</p>
                         </div>
 
@@ -30,15 +27,10 @@
                             <li><a href="{{env('INSTAGRAM_PROFILE_URL')}}{{env('LIBRACLASS_INSTAGRAM')}}" target="_blank"><i class="flaticon-instagram"></i></a></li>
                         </ul>
                     </div>
-                    <!-- Footer Widget End -->
-
                 </div>
+
                 <div class="col-lg-6 order-md-3 order-lg-2">
-
-                    <!-- Footer Widget Link Start -->
                     <div class="footer-widget-link">
-
-                        <!-- Footer Widget Start -->
                         <div class="footer-widget">
                             <h4 class="footer-widget-title">Popular Categories</h4>
 
@@ -47,11 +39,8 @@
                                     <li><a href="/courses?category={{$category->slug}}">{{$category->name}}</a></li>
                                 @endforeach
                             </ul>
-
                         </div>
-                        <!-- Footer Widget End -->
 
-                        <!-- Footer Widget Start -->
                         <div class="footer-widget">
                             <h4 class="footer-widget-title">Quick Links</h4>
 
@@ -63,12 +52,8 @@
                                 <li><a href="/faqs">Frequently Asked Questions</a></li>
                                 <li><a href="/contact">Contact Us</a></li>
                             </ul>
-
                         </div>
-                        <!-- Footer Widget End -->
-
                     </div>
-                    <!-- Footer Widget Link End -->
 
                 </div>
                 <div class="col-lg-3 col-md-6 order-md-2 order-lg-3">
@@ -77,24 +62,17 @@
                     <div class="footer-widget">
                         <h4 class="footer-widget-title">Currency</h4>
 
-                        <div class="widget-subscribe mt-0 pt-0">
-                            {{-- <p>Lorem Ipsum has been them an industry printer took a galley make book.</p> --}}
-
+                        <div class="widget-subscribe">
                             <div class="widget-form">
-                                <x-currency-select name="currency" :currency="$currency" :data="$data" class="" btnClasses="btn-light w-100" />
+                                <p class="mb-1">Update Currency</p>
+                                <x-currency-select name="currency" :currency="$currency" :data="$data" class="w-100" btnClasses="btn-light w-100 mt-0" />
                             </div>
                         </div>
                     </div>
-                    <!-- Footer Widget End -->
-
                 </div>
             </div>
         </div>
-
-        <img class="shape-2 animation-left" src="{{asset('images/shape/shape-22.png')}}" alt="Shape">
-
     </div>
-    <!-- Footer Widget Section End -->
 
     <div class="footer-copyright " >
         <div class="container">

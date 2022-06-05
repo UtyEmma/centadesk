@@ -18,4 +18,8 @@ class Enrollment extends Model{
         return $this->belongsTo(User::class, 'student_id', 'unique_id');
     }
 
+    public function batch(){
+        return $this->hasOne(Batch::class, 'batch_id', 'unique_id');
+    }
+
 }
