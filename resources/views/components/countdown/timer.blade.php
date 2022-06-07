@@ -1,7 +1,6 @@
 <script>
     $(() => {
         const date = moment("{{$date}}", "HH:mm, DD MMM, YYYY").format("YYYY/MM/DD HH:mm:ss");
-        console.log(date)
         $("#{{$id}}").countdown(date, function(event) {
             $(this).text(event.strftime('%-Dd : %-Hh : %-Mm : %-Ss'));
         })

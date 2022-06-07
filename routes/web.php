@@ -106,7 +106,7 @@ Route::middleware(['set.currency', 'set.referrals'])->group(function(){
         });
 
         Route::prefix('/me')->middleware('is.mentor')->group(function(){
-            Route::get('/', [MentorController::class, 'home'])->name('dashboard')->name('mentor.home');
+            Route::get('/', [MentorController::class, 'home'])->name('dashboard');
 
             Route::prefix('/category')->group(function(){
                 Route::post('/suggest', [CategoryController::class, 'suggestCategory'])->name('category.suggest');

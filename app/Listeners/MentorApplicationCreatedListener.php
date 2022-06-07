@@ -26,7 +26,7 @@ class MentorApplicationCreatedListener{
 
         $notification = [
             'subject' => "Your Mentor Signup Request has been sent and is being Reviewed",
-            'dashboard' => route('mentor.home')
+            'dashboard' => route('dashboard')
         ];
 
         Notification::send($user, new NewMentorAccountRequestNotification($notification));

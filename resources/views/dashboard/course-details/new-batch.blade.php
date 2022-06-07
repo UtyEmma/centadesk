@@ -138,7 +138,7 @@
                                     <div class="col-md-4 mt-2">
                                         <input class="radio-custom" onchange="setDiscount(event)" checked hidden type="radio" onchange="" name="discount" id="none" value="none">
                                         <label for="none" class="border cursor-pointer d-flex justify-content-between align-items-center radius p-4 px-2 w-100">
-                                            <span class="fs-6">No Discount</span>
+                                            <small class="fs-6">No Discount</small>
                                             <i class="icofont-check-circled fs-4 d-none"></i>
                                         </label>
                                     </div>
@@ -146,7 +146,7 @@
                                     <div class="col-md-4 mt-2">
                                         <input class="radio-custom" onchange="setDiscount(event)" hidden type="radio" name="discount" id="percent" value="percent">
                                         <label for="percent" class="cursor-pointer border p-4 px-2 d-flex justify-content-between align-items-center radius w-100">
-                                            <span>Percentage</span>
+                                            <small>Percentage</small>
                                             <i class="icofont-check-circled fs-4 d-none"></i>
                                         </label>
                                     </div>
@@ -154,7 +154,7 @@
                                     <div class="col-md-4 mt-2">
                                         <input class="radio-custom" onchange="setDiscount(event)" hidden type="radio" name="discount" id="fixed" value="fixed">
                                         <label for="fixed" class="cursor-pointer border p-4 px-2 d-flex justify-content-between align-items-center radius w-100">
-                                            <span>Fixed Amount</span>
+                                            <small>Fixed Amount</small>
                                             <i class="icofont-check-circled fs-4 d-none"></i>
                                         </label>
                                     </div>

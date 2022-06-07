@@ -4,7 +4,7 @@
     @endphp
     <!-- Page Content Wrapper Start -->
     <x-page-title title="Mentor Dashboard - Courses" />
-    <div class="page-content-wrapper pt-0 mt-3">
+    <div class="page-content-wrapper">
         <div class="container-fluid custom-container">
 
 
@@ -96,7 +96,7 @@
                         @else
                             <div class="w-100 text-center border p-4 py-8 mt-3 radius">
                                 <div class="text-center">You have not created any courses yet</div>
-                                <a href="/me/courses/create" class="btn btn-primary mx-auto w-auto mt-5">Create a Course</a>
+                                <a href="/me/courses/create" class="btn btn-primary btn-hover-dark mx-auto w-auto mt-5">Create a Course</a>
                             </div>
                         @endif
                     </div>

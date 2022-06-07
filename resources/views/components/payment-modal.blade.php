@@ -7,7 +7,7 @@
 
   <!-- Modal -->
 <div class="modal fade" id="enrollmentModal" tabindex="-1" aria-labelledby="enrollmentModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="enrollmentModalLabel">Complete your Enrollment</h5>
@@ -116,7 +116,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="modal-footer w-100">
+                <div class="modal-footer px-0">
                     <button type="button" class="btn btn-secondary btn-hover-primary btn-custom" data-bs-dismiss="modal">Close</button>
                     <button type="submit" class="btn btn-primary btn-hover-dark btn-custom">Proceed with Payment</button>
                 </div>

@@ -1,6 +1,7 @@
 <x-guest-layout>
     @inject('parsedate', 'App\Library\DateTime' )
     <x-page-title title="{{$batch->title}} of {{$course->name}} by {{$mentor->firstname}} {{$mentor->lastname}}" />
+    <x-metadata :title="$batch->name" :image="$batch->images" :excerpt="$batch->excerpt" />
 
     @php
         $startdate = Date::parse($batch->startdate);
@@ -9,9 +10,6 @@
 
     <x-page-banner></x-page-banner>
 
-    <x-metadata :title="$batch->name" :image="$batch->images" :excerpt="$batch->excerpt" />
-
-    <!-- Courses Start -->
     <div class="section section-padding mt-0 pt-0">
         <div class="container">
             <div class="row gx-10">
@@ -51,11 +49,11 @@
                                         <div class="d-flex justify-content-between">
                                             <div>
                                                 <p style="font-size: 13px; font-weight: 600;" class="mb-0">Begins</p>
-                                                <small>{{$startdate->toDayDateTimeString()}}</small>
+                                                <small>{{$startdate->format('M jS, g:i A')}}</small>
                                             </div>
                                             <div>
                                                 <p style="font-size: 13px; font-weight: 600;" class="mb-0">End</p>
-                                                <small>{{$enddate->toDayDateTimeString()}}</small>
+                                                <small>{{$enddate->format('M jS, g:i A')}}</small>
                                             </div>
                                         </div>
                                     </div>
@@ -99,10 +97,10 @@
                             @if (now() > Date::parse($batch->enddate) || Date::parse($batch->startdate)->lessThanOrEqualTo(Date::now()) && Date::parse($batch->enddate)->greaterThanOrEqualTo(Date::now()))
                             @else
                                 <h5>Enroll for this Batch</h5>
-                                @if ($batch->discount)
-                                    <x-price-discount-card :batch="$batch" />
-                                @else
+                                @if ($batch->discount === 'none')
                                     <x-price-normal-card :batch="$batch" />
+                                @else
+                                    <x-price-discount-card :batch="$batch" />
                                 @endif
                             @endif
                         </div>

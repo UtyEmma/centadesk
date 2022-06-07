@@ -34,8 +34,7 @@ class AuthenticatedSessionController extends Controller
         $request->session()->regenerate();
 
         $user = Auth::user();
-
-        return redirect()->intended(RouteServiceProvider::LEARNING_CENTER)->withCookie(cookie('currency', $user->currency));
+        return redirect()->intended($request->redirect ?? RouteServiceProvider::LEARNING_CENTER)->withCookie(cookie('currency', $user->currency));
     }
 
     /**

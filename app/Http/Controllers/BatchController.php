@@ -20,6 +20,7 @@ use App\Models\Enrollment;
 use App\Notifications\NewBatchPublishedNotification;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Response as FacadesResponse;
@@ -35,12 +36,12 @@ class BatchController extends Controller{
         if($keyword = $request->keyword){
             $type = 'search';
             $results = Batch::search($keyword)
-                            ->where('startdate', '>', now())
+                            // ->where('startdate', '>', Date::now())
                             ->orderBy('startdate')->paginate(env('PAGINATION_COUNT'));
         }else{
             $query =  Batch::query();
 
-            $query->where('startdate', '>', now());
+            // $query->where('startdate', '>', Date::now());
 
             $query->with(['mentor', 'course', 'enrollments.student'])
                         ->withCount('enrollments');
@@ -65,6 +66,8 @@ class BatchController extends Controller{
 
             $results = $query->paginate(env('PAGINATION_COUNT'));
         }
+
+        // dd($results);
 
         return view('front.batches', [
             'batches' => $results,

@@ -44,6 +44,10 @@
         <script src="{{asset('js/vendor/modernizr-3.11.2.min.js')}}" ></script>
         <script src="{{asset('js/vendor/jquery-3.5.1.min.js')}}" ></script>
 
+    </head>
+    <body>
+
+        {{$slot}}
 
         <!-- Bootstrap JS -->
         {{-- <script src="{{asset('js/plugins/bootstrap.min.js')}}" ></script>
@@ -101,13 +105,9 @@
         </script>
         <!--End of Tawk.to Script-->
 
+        <x-toasts />
+
 
         @stack('scripts')
-    </head>
-    <body>
-
-        {{$slot}}
-
-        <x-toasts />
     </body>
 </html>

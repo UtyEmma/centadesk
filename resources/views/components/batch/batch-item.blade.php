@@ -13,21 +13,8 @@
 
         <h3 class="title mt-0 mb-2"><a href="/me/courses/{{$course->slug}}/{{$batch->short_code}}">{{$batch->title}}</a></h3>
         <div class="w-100 d-flex align-items-center">
-            @if ($batch->price > 0)
-                <p class="sale-parice text-start fw-bold text-primary">
-                    <span style="font-size: 17px;">{{request()->cookie('currency')}}</span>
-                    <span style="font-size: 24px;">{{number_format($batch->discount_price)}}</span>
-                </p>
-                <del class="old-parice text-start text-dark me-2" style="font-size: 15px; font-weight: 500;">
-                    {{request()->cookie('currency')}} {{number_format($batch->price)}}
-                </del>
-            @else
-                <p class="sale-parice text-start fw-bold text-primary" style="font-size: 24px;">
-                    Free
-                </p>
-            @endif
+            @include('components.batch.batch-price')
         </div>
-
     </div>
 
     <div class="content-wrapper">

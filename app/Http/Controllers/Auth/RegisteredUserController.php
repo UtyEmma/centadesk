@@ -29,6 +29,6 @@ class RegisteredUserController extends Controller{
         event(new Registered($user));
 
         Auth::login($user);
-        return redirect(RouteServiceProvider::LEARNING_CENTER);
+        return redirect($request->redirect ?? RouteServiceProvider::LEARNING_CENTER);
     }
 }

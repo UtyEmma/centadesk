@@ -1,21 +1,7 @@
 <div class="border radius card-body">
     <div class="info-price text-start">
         <div class="d-flex align-items-center ">
-            <h5 class="fw-bold">
-                @if ($batch->discount_price > 0)
-                    <span style="font-size: 0.8rem;">
-                        {{request()->cookie('currency')}}
-                    </span>
-                    {{number_format($batch->discount_price)}}
-                @endif
-            </h5>
-            <h6 style="font-size: 13px;" class="ms-1 price text-decoration-line-through text-left">
-                @if ($batch->price > 0)
-                    {{request()->cookie('currency')}} {{number_format($batch->price)}}
-                @else
-                    Free
-                @endif
-            </h6>
+            @include('components.batch.batch-price')
         </div>
     </div>
     <div class="mb-3">
@@ -31,7 +17,7 @@
         <x-payment-modal :user="$user" :batch="$batch" :wallet="$user->wallet" />
     @else
         <div class="info-btn w-100">
-            <a href="/login">
+            <a href="/login?redirect={{request()->url()}}">
                 <x-btn classes="btn-primary w-100 btn-hover-dark">
                     Login to Enroll
                 </x-btn>

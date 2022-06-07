@@ -30,7 +30,7 @@
                         <h3 class="title pb-0 d-md-block d-none">Lets get you <span>Started</span></h3>
 
                         <div class="form-wrapper w-100 pb-lg-5 pt-3">
-                            <form action="/register" method="POST">
+                            <form action="/register?redirect={{request()->redirect}}" method="POST">
                                 @csrf
                                 <!-- Single Form Start -->
                                 <div class="row mt-3">
@@ -77,7 +77,7 @@
                                     <button type="submit" class="btn btn-primary btn-hover-dark w-100">Create an account</button>
                                 </div>
                                 <!-- Single Form End -->
-                                <p class="mt-5 text-center">Already have an account? <a href="/login" class="text-primary" style="font-weight: 500;">Login Here</a></p>
+                                <p class="mt-5 text-center">Already have an account? <a href="/login?redirect={{request()->redirect}}" class="text-primary" style="font-weight: 500;">Login Here</a></p>
                             </form>
                         </div>
                     </div>

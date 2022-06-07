@@ -52,7 +52,7 @@
 
                 <div class="col-md-4">
                     <div class="d-block d-md-none">
-                        <x-share-link link="{{env('MAIN_APP_DOMAIN')}}/{{$batch->short_code}}" />
+                        <x-share-link link="{{env('MAIN_APP_DOMAIN')}}/{{$batch->short_code}}" id="" />
                     </div>
 
                     <div class="card radius">

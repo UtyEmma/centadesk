@@ -1,7 +1,5 @@
 @if (Date::parse($batch->startdate) > now())
     <div class="card border radius h-100">
-        {{Date::parse($batch->startdate)}}
-        {{now()}}
         <div class="card-body">
             <div class="p-1 pt-3 radius text-center bg-light">
                 <h6 class="text-uppercase fw-bold">Time to Class</h6>

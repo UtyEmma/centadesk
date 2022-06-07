@@ -1,16 +1,16 @@
 <x-app-layout>
     @include('dashboard.js.create-courses-js')
+    <x-page-title title="Mentor Dashboard - Create Courses" />
 
     @push('scripts')
         <script src="{{asset('js/pages/createcourse.js')}}"></script>
     @endpush
 
-    <x-page-title title="Mentor Dashboard - Create Courses" />
     <div class="page-content-wrapper">
         <div class="container px-3 px-md-0">
             <div class="mb-3">
                 <h4 class="my-0">Create a New Course</h4>
-                <p class="my-0">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laudantium, aliquam.</p>
+                {{-- <p class="my-0">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laudantium, aliquam.</p> --}}
             </div>
 
             <x-mentor.kyc-warning />

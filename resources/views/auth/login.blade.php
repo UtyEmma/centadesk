@@ -34,7 +34,7 @@
                             <h3 class="title pb-0">Log into your <span>account</span></h3>
 
                             <div class="form-wrapper w-100 pb-lg-5 pt-3">
-                                <form method="POST" action="{{ route('login') }}">
+                                <form method="POST" action="{{ route('login', ['redirect' => request()->redirect]) }}">
                                     @csrf
                                     <!-- Single Form Start -->
                                     <div class="row mt-3">
@@ -82,7 +82,7 @@
                                     </div>
                                     <!-- Single Form End -->
 
-                                    <p class="mt-5 text-center">Do not have an account? <a href="/register" class="text-primary" style="font-weight: 500;">Sign up here</a></p>
+                                    <p class="mt-5 text-center">Do not have an account? <a href="/register?redirect={{request()->redirect}}" class="text-primary" style="font-weight: 500;">Sign up here</a></p>
                                 </form>
                             </div>
                         </div>
