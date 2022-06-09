@@ -93,7 +93,7 @@ trait TransactionActions {
 
         if($transaction = Transaction::where('reference', $tx_ref)->first()) $transaction->delete();
 
-        return Response::redirect($enrollment_failed_link, 'error', "Your Payment attempt was failed");
+        return Response::redirect($enrollment_failed_link, 'error', "Your Enrollment could not be completed at the moment!");
     }
 
     function verifyTransaction($transaction_id, $tx_ref){

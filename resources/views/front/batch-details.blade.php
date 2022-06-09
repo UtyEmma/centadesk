@@ -33,29 +33,23 @@
 
                                 <div class="mt-2 w-100">
                                     <div class="author-content ms-0 p-0 d-flex align-items-center w-100">
-                                        <x-profile-img :user="$mentor" size="45px" />
+                                        <x-profile-img :user="$mentor" size="40px" />
                                         <a style="font-weight: 500" class="ms-2" href="/mentors/{{$mentor->username}}">{{$mentor->firstname}} {{$mentor->lastname}}</a>
                                     </div>
                                     <div class="mt-2">
                                         <div class="d-flex justify-content-between">
-                                            <h6><i class="text-primary mr-5 fs-5 icofont-calendar"></i> Class Date</h6>
-
-                                            <small class="ms-1">
-                                                <i class="text-primary fs-5 icofont-user"></i>
-                                                {{$course->total_students}} Students
-                                            </small>
-                                        </div>
-
-                                        <div class="d-flex justify-content-between">
-                                            <div>
-                                                <p style="font-size: 13px; font-weight: 600;" class="mb-0">Begins</p>
+                                            <h6>
+                                                <i class="text-primary mr-5 fs-5 icofont-calendar"></i>
                                                 <small>{{$startdate->format('M jS, g:i A')}}</small>
-                                            </div>
-                                            <div>
-                                                <p style="font-size: 13px; font-weight: 600;" class="mb-0">End</p>
+                                                -
                                                 <small>{{$enddate->format('M jS, g:i A')}}</small>
-                                            </div>
+                                            </h6>
                                         </div>
+
+                                        <small class="">
+                                            <i class="text-primary fs-5 icofont-user"></i>
+                                            {{$course->total_students}} Students
+                                        </small>
                                     </div>
                                 </div>
                             </div>

@@ -63,9 +63,8 @@
         <script src="{{asset('js/plugins/jquery.inputmask.min.js')}}" ></script>
 
         <script src="{{asset('js/plugins/jquery.countdown.js')}}" ></script>
-        <script src="{{asset('js/plugins/jquery-repeater.min.js')}}" ></script>
 
-        <script src="{{asset('js/plugins/easepick.min.js')}}" defer></script>
+        <script src="{{asset('js/plugins/easepick.min.js')}}" ></script>
 
         <script src="{{asset('js/plugins/validator.js')}}"></script>
         <script src="{{asset('js/validation.js')}}"></script>

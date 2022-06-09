@@ -12,12 +12,11 @@
         <div class="row">
             <div class="col-12">
                 <div class="bg-transparent">
-                    <h6 class="mb-0">Batch Details</h6>
-                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit</p>
+                    <h6 class="mb-0">Session Details</h6>
                 </div>
                 <div class="card radius p-3 p-md-5 mt-1">
                     <div class="single-form">
-                        <label>Batch Title</label>
+                        <label>Session Title</label>
                         <input type="text" name="title" value="{{old('title') ?? $batch->title}}"  class="form-control" placeholder="eg. Cohort One">
                         <x-errors name="title" />
                     </div>
@@ -30,13 +29,13 @@
 
                     <div class="single-form">
                         <label class="mb-1">Description</label>
-                        <x-rich-text default="{{old('desc') ?? $batch->desc}}" placeholder="Write a compelling description of your class here" name="desc" />
+                        <x-rich-text value="{!! $batch->desc ?? old('desc') !!}" placeholder="Write a compelling description of your class here" name="desc" />
                         <x-errors name="desc" />
                     </div>
 
                     <div class="single-form">
                         <label class="mb-0">Objectives</label>
-                        <x-form-repeater default="{{old('objectives') ?? $batch->objectives}}" name="objectives" />
+                        <x-form-repeater :value="$batch->objectives" name="objectives" />
                     </div>
 
 
@@ -87,13 +86,13 @@
                     </div>
 
                     <div class="single-form">
-                        <label>Batch Waiting Link</label>
+                        <label>Session Waiting Link</label>
                         <input type="text" name="class_link" value="{{old('class_link') ?? $batch->class_link}}" class="form-control" placeholder="https://">
                         <x-errors name="link" />
                     </div>
 
                     <div class="single-form">
-                        <label>Batch Access Link</label>
+                        <label>Session Access Link</label>
                         <input type="text" name="access_link" value="{{old('access_link') ?? $batch->access_link}}" class="form-control" placeholder="https://">
                         <x-errors name="link" />
                     </div>
@@ -102,13 +101,12 @@
 
             <div class="col-md-12 mt-5">
                 <div class="mt-5 mt-md-0">
-                    <h6 class="mb-0">Batch Media</h6>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing.</p>
+                    <h6 class="mb-0">Session Media</h6>
                 </div>
 
                 <div class="card radius p-3 p-md-5 mt-1">
                     <div class="single-form my-2">
-                        <label class="mb-1">Batch Image</label>
+                        <label class="mb-1">Session Image</label>
                         <x-img-upload name="images" :image="old('images') ?? $batch->images">Upload Image</x-img-upload>
                         <x-errors name="images" />
                     </div>
@@ -122,8 +120,7 @@
 
 
                 <div class="mt-5 border-0">
-                    <h6 class="mb-0">Batch Discounts</h6>
-                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit</p>
+                    <h6 class="mb-0">Session Discounts</h6>
                 </div>
 
                 <div class="card radius p-3 p-md-5 mt-1">
@@ -188,7 +185,7 @@
                 </div>
 
                 <div class="mt-5 d-flex justify-content-end">
-                    <button type="submit" class="btn float-right btn-primary btn-hover-dark radius">Create new Batch</button>
+                    <button type="submit" class="btn float-right btn-primary btn-hover-dark radius">Update Session</button>
                 </div>
             </div>
         </div>

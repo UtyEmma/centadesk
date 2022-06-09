@@ -6,7 +6,7 @@
             @include('layouts.dashboard.app-sidebar')
 
             <div class="col-md-10 offset-md-2 px-0">
-                <div class="container">
+                <div class="">
                     {{$slot}}
                 </div>
             </div>

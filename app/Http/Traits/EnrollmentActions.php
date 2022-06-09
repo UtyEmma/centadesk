@@ -22,25 +22,27 @@ trait EnrollmentActions {
             'course_id' => $batch->course_id,
             'student_id' => $student->unique_id,
             'mentor_id' => $course->mentor_id,
-            'transaction_id' => $transaction->unique_id
+            'transaction_id' => $transaction
         ]);
 
-        $charge = Setting::first()->charge ?? env('DEFAULT_CHARGE');
-        $mentor_amount = Number::percentageDecrease($charge, $transaction['amount']);
+        if($transaction->amount > 0){
+            $charge = Setting::first()->charge ?? env('DEFAULT_CHARGE');
+            $mentor_amount = Number::percentageDecrease($charge, $transaction['amount']);
 
-        $mentor->earnings += $mentor_amount;
-        $mentor->save();
+            $mentor->earnings += $mentor_amount;
+            $mentor->save();
 
-        $this->updateMentorWallet($mentor, $mentor_amount);
+            $this->updateMentorWallet($mentor, $mentor_amount);
 
-        $course->total_students += 1;
-        $course->revenue += $mentor_amount;
-        $course->save();
+            $course->total_students += 1;
+            $course->revenue += $mentor_amount;
+            $course->save();
 
-        $batch->total_students += 1;
-        $batch->earnings += $mentor_amount;
-        $batch->discount = $batch->total_students > $batch->signup_limit && $batch->signup_limit !== 0  ? 'none' : $batch->discount;
-        $batch->save();
+            $batch->total_students += 1;
+            $batch->earnings += $mentor_amount;
+            $batch->discount = $batch->total_students > $batch->signup_limit && $batch->signup_limit !== 0  ? 'none' : $batch->discount;
+            $batch->save();
+        }
 
         $notification = [
             'subject' => [

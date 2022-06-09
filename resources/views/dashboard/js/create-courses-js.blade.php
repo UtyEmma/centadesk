@@ -1,19 +1,5 @@
 <script>
 
-    $(document).ready(function() {
-        $('#summernote').summernote({
-            placeholder: 'Write a compelling description of your class here',
-            height: 100,
-            toolbar: [
-                ['font', ['bold', 'underline', 'clear']],
-                ['color', ['color']],
-                ['para', ['ul', 'ol', 'paragraph']],
-                ['insert', ['link']],
-                ['view', ['fullscreen']]
-            ]
-        })
-    });
-
     function toggleDiscount(e){
         $('#discount_container')[0].style.display = e.target.checked ? 'block' : 'none'
         $('#discount_switch_label').text(`Discounts ${e.target.checked ? 'Enabled' : 'Disabled'}`)

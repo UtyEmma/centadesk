@@ -252,7 +252,7 @@ class CourseController extends Controller{
         $user = $this->user();
         $course = Courses::where('slug', $slug)->first();
         $data = $this->getCourseData($course, $user);
-        $categories = $this->getActiveCategories();
+        $categories = $this->getAllCategories();
 
         return Response::view('dashboard.course-details.edit', [
             'course' => $data,
@@ -266,8 +266,7 @@ class CourseController extends Controller{
             $user = $this->user();
             $course = Courses::where('slug', $slug)->first();
 
-            $images = FileHandler::upload($request->file('images'));
-            FileHandler::deleteFiles(json_decode($course->images));
+            $image = $request->hasFile('images') ? FileHandler::updateFile($request->file('images'), $course->images) : $course->images;
 
             $category = Category::where('slug', $request->category)->first();
             $slug = Str::slug($request->name, '-');
@@ -278,7 +277,7 @@ class CourseController extends Controller{
                 'desc' => $request->desc,
                 'tags' => $request->tags,
                 'video' => $request->video,
-                'images' => $images,
+                'images' => $image,
                 'currency' => $user->currency,
                 'category' => $category->name
             ]);

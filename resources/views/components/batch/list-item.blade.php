@@ -17,7 +17,7 @@
                 </div>
 
                 <div class="col-9">
-                    <h5 class="mb-0"><a href="./{{$course->slug}}/{{$batch->short_code}}">{{$batch->title}}</a></h5>
+                    <h5 class="mb-0"><a href="/courses/{{$course->slug}}/{{$batch->short_code}}">{{$batch->title}}</a></h5>
                     <div class="mt-1">
                         <p class="date my-0">
                             <i class="icofont-calendar fs-6"></i>

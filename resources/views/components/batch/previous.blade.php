@@ -4,23 +4,24 @@
             <img src="{{json_decode($course->images)[0] ?? asset('images/courses/courses-01.jpg')}}" alt="Courses">
         </a>
     </div>
-    <div class="courses-content pt-0">
-        <h4 class="title mb-0"><a href="/learning/courses/{{$course->slug}}/{{$course->short_code}}">{{$course->name}}</a></h4>
-        <h6 class="pt-0">
-            <a class="pt-0" href="/learning/courses/{{$course->slug}}/{{$course->short_code}}">{{$course->title}}</a>
-        </h6>
+    <div class="courses-content pt-3">
+        <h5 class="pt-0 mb-1">
+            <a class="py-0 my-0" href="/learning/courses/{{$course->slug}}/{{$course->short_code}}">{{$course->title}}</a>
+        </h5>
+
+        <h6 class="mb-0 mt-0 p-0"><a class="py-0 my-0" href="/learning/courses/{{$course->slug}}/{{$course->short_code}}">{{$course->name}}</a></h6>
 
         <div class="courses-rating">
-            <div class="rating-progress-bar">
+            {{-- <div class="rating-progress-bar">
                 <div class="rating-line" style="width: 38%;"></div>
-            </div>
+            </div> --}}
 
             <div class="rating-meta">
                 <span class="rating-star">
                         <span class="rating-bar" style="width: 80%;"></span>
                 </span>
-                <button class="">
-                    <p>Leave a Review</p>
+                <button class="btn btn-secondary btn-hover-primary border px-2 py-0 lh-0 border-primary btn-custom">
+                    Leave a Review
                 </button>
             </div>
         </div>

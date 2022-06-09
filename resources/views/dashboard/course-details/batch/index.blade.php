@@ -27,7 +27,7 @@
                     </div>
 
 
-                    <div class="d-flex my-3 mt-md-0 justify-content-between align-items-center border border-primary radius p-3 bg-secondary">
+                    <div class="d-flex my-3 mt-md-0 justify-content-between align-items-center radius p-3 bg-light">
                         <div>
                             <a class="me-3 text-primary {{request()->routeIs('mentor_batch') ? 'fw-bold' : ''}}" href="/me/courses/{{$course->slug}}/{{$batch->short_code}}">
                                 Students

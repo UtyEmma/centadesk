@@ -2,7 +2,11 @@
     $(() => {
         const date = moment("{{$date}}", "HH:mm, DD MMM, YYYY").format("YYYY/MM/DD HH:mm:ss");
         $("#{{$id}}").countdown(date, function(event) {
-            $(this).text(event.strftime('%-Dd : %-Hh : %-Mm : %-Ss'));
+            const days = event.offset.totalDays > 0 ? '%-Dd :' : ''
+            const hours = event.offset.totalHours > 0 ? '%-Hh :' : ''
+            const minutes = event.offset.totalMinutes > 0 ? '%-Mm :' : ''
+            const seconds = event.offset.totalSeconds > 0 ? '%-Ss' : ''
+            $(this).text(event.strftime(`${days} ${hours} ${minutes} ${seconds}`));
         })
     })
 </script>

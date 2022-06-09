@@ -18,7 +18,7 @@
         <link rel="stylesheet" href="{{asset('administrator/css/style.css')}}">
         <!-- endinject -->
         <link rel="shortcut icon" href="{{asset('images/icon.png')}}" />
-
+        @stack('styles')
         <!-- plugins:js -->
         <script src="{{asset('administrator/vendors/base/vendor.bundle.base.js')}}"></script>
         <!-- endinject -->
@@ -42,7 +42,9 @@
         <!-- End custom js for this page-->
         <script src="{{asset('administrator/js/jquery.cookie.js')}}" type="text/javascript"></script>
         <script src="{{asset('js/plugins/simple-notify.min.js')}}"></script>
+        <script src="{{asset('js/plugins/bootstrap-select.js')}}"></script>
 
+        @stack('scripts')
     </head>
     <body>
         <div class="container-scroller">

@@ -1,8 +1,11 @@
-<h6>Do you have any complaints?</h6>
-<small>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat a excepturi in vitae perspiciatis provident! Recusandae, excepturi? Dicta, ex deserunt.</small>
+<div>
+    <h6 class="d-flex align-items-center"><i class="icofont-warning fs-5 me-2"></i> Do you have any complaints?</h6>
+    <p><small>Report any complaints or issues you may have with your session or the Mentor and we will handle it accordingly.</small></p>
+    <p class="alert alert-warning radius text-muted"><small>Please note that this medium must be used for genuine complaints only. Abusing this medium will result in a ban on your account.</small></p>
+</div>
 
 <div class="reviews-btn w-100 pt-3">
-    <button type="button" class="btn w-100 btn-primary btn-hover-dark" style="font-size: 14px; line-height: 3.5;" data-bs-toggle="modal" data-bs-target="#reportsModal">Report this Batch</button>
+    <button type="button" class="btn w-100 btn-primary btn-hover-dark" style="font-size: 14px; line-height: 3.5;" data-bs-toggle="modal" data-bs-target="#reportsModal">Report this Session</button>
 </div>
 
 <!-- Reviews Form Modal Start -->

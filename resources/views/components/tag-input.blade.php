@@ -5,7 +5,7 @@
     <script>
         $(document).ready(() => {
             const tagifyElement = document.querySelector('input[name=tags]')
-            new Tagify(tagifyElement, {
+            const tagify = new Tagify(tagifyElement, {
                 placeholder: 'Click Enter to Seperate tags'
             })
         })
@@ -16,4 +16,4 @@
     <link rel="stylesheet" href="{{ asset('css/plugins/tagify.min.css')}} ">
 @endpush
 
-<input class="border radius p-1" value="{{old('tags')}}" name="tags" type="text">
+<input class="border radius p-1" value="{{$value ?? old('tags')}}" name="tags" type="text">

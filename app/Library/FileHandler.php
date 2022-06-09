@@ -30,6 +30,11 @@ class FileHandler {
         }
     }
 
+    static function updateFile($file, $oldFile){
+        self::deleteFile($oldFile);
+        return self::upload($file);
+    }
+
     static function deleteFiles(array $files){
         foreach ($files as $file) {
             self::deleteFile($file);

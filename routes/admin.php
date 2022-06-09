@@ -61,10 +61,15 @@ Route::middleware('auth:admin')->group(function(){
         Route::get('/', [CourseController::class, 'courses']);
         Route::prefix('/{slug}')->group(function(){
             Route::get('/', [CourseController::class, 'show']);
+            Route::get('/edit', [CourseController::class, 'edit']);
+            Route::post('/update', [CourseController::class, 'update']);
+
             Route::prefix('/{shortcode}')->group(function(){
                 Route::get('/', [BatchController::class, 'show']);
                 Route::get('/students', [BatchController::class, 'batch_students']);
                 Route::get('/forum', [BatchController::class, 'batch_forum']);
+                Route::get('/edit', [BatchController::class, 'edit']);
+                Route::post('/update', [BatchController::class, 'update']);
             });
         });
     });

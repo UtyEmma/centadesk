@@ -50,14 +50,13 @@ class StudentController extends Controller{
 
     public function enrolledCourses(Request $request){
         $user = $this->user();
-        $suggestedCourses = $this->getSuggestedCourses($user);
+        $query = Courses::query();
+        $suggestedBatches = $this->sortBatchesBasedOnUserInterest(3);
         $enrolledBatches = $user->batches();
-
-        // return print_r($enrolledBatches);
 
         return view('front.student.enrolled-courses', [
             'courses' => $enrolledBatches,
-            'suggested' => $suggestedCourses
+            'suggested' => $suggestedBatches
         ]);
     }
 
@@ -111,6 +110,17 @@ class StudentController extends Controller{
         }
     }
 
+    public function sortBatchesBasedOnUserInterest($limit){
+        $user = $this->user();
+        $query = Batch::query();
+        return $query->join('courses', 'batches.course_id', '=', 'courses.unique_id')
+                        ->whereIn('courses.category', $user->interests)
+                        ->with(['course', 'enrollments'])
+                        ->withCount(['course', 'enrollments'])
+                        ->limit($limit)
+                        ->get();
+    }
+
     public function sortCoursesBasedOnUserInterest($query){
         $user = $this->user();
 
@@ -126,9 +136,7 @@ class StudentController extends Controller{
         $user = $this->user();
         $courses = $user->batches();
         $sessions = $user->enrolledBatches();
-        $query = Courses::query();
-        $userInterests = $user->interests;
-        $suggestedCourses = $this->sortCoursesBasedOnUserInterest($query)->limit(10);
+        $suggestedBatches = $this->sortBatchesBasedOnUserInterest(6);
 
         $new_event = $sessions->map(function($event){
             $startdate = Date::parse($event->startdate);
@@ -144,7 +152,7 @@ class StudentController extends Controller{
             'user' => $user,
             'courses' => $courses,
             'events' => $new_event->toJson(),
-            'suggested' => $suggestedCourses->get()
+            'suggested' => $suggestedBatches
         ]);
     }
 

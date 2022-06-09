@@ -1,7 +1,7 @@
 <x-enrolled-course :course="$course" :batch="$batch" :messages="$forum" :mentor="$mentor" :user="$user" :enrollment="$enrollment" :report="$report">
     <x-page-title title="Enrolled - {{$batch->title}} of {{$course->name}}" />
     <div>
-        <h5 class="tab-title">About this Batch</h5>
+        <h5 class="tab-title">About this Session</h5>
         <p>
             {!! $batch->desc !!}
         </p>
@@ -9,7 +9,7 @@
 
     <div class="overview">
         <div class="enroll-tab-title mt-4">
-            <h6 >What you will learn in this class:</h6>
+            <h5>What you will learn:</h5>
             <p>
                 @if ($batch->objectives)
                     @forelse (json_decode($batch->objectives) as $objective)

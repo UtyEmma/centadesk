@@ -58,28 +58,29 @@
                         </div>
                     @endif
 
-                    {{-- <div class="py-5">
-                        <h5 class="mb-2">Suggested For You</h5>
-                    </div> --}}
+
                     @if ($suggested->count() > 0)
                         <div class="py-5">
-                            <h5 class="mb-2">Suggested For You!</h5>
 
-                            <div class="row">
-                                @forelse ($courses['upcoming'] as $course)
-                                    <div class="col-lg-6 col-md-6">
-                                        <x-batch.upcoming :course="$course" />
+                            <!-- All Courses Tabs Menu Start -->
+                            <div class="courses-tabs-menu courses-active p-0 m-0 bg-transparent">
+                                <div class="d-flex justify-content-between align-content-center mb-4">
+                                    <h5>Upcoming Sessions you might be interested in.</h5>
+                                    <div class="d-flex ms-4">
+                                        <div style="left: 0;" class="swiper-button-prev border position-relative"><i class="icofont-rounded-left"></i></div>
+                                        <div style="left: 0;" class="swiper-button-next border ms-4 position-relative"><i class="icofont-rounded-right"></i></div>
                                     </div>
-                                @empty
-                                    <div class="col-md-12">
-                                        <div class="border radius p-4">
-                                            <h5>You have not enrolled for any courses yet!</h5>
-                                            <a href="/courses">
-                                                <x-btn classes="btn-primary btn-hover-dark">Find Courses</x-btn>
-                                            </a>
-                                        </div>
-                                    </div>
-                                @endforelse
+                                </div>
+                                <div class="swiper-container">
+                                    <ul class="swiper-wrapper nav row">
+                                        @forelse ($suggested as $course)
+                                            <div class="col-lg-6 col-md-6 pe-0">
+                                                <x-batch.suggested :btn="true" :course="$course" />
+                                            </div>
+                                        @empty
+                                        @endforelse
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     @endif

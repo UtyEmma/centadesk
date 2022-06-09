@@ -14,6 +14,8 @@
                 Completed
             @elseif ($batch->attendees && $batch->enrollment_count > $batch->attendees)
                 Full
+            @elseif ($batch->isUpcoming())
+                Upcoming
             @endif
         </div>
     </div>
@@ -41,8 +43,6 @@
                 </div>
             </div>
         </div>
-
-
 
         <div class="d-flex justify-content-between align-items-center mt-2 p-2 bg-secondary radius border border-primary">
             <div>

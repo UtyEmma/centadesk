@@ -33,8 +33,10 @@ class EnrollmentController extends Controller{
         if($this->checkEnrollmentStatus($batch, $user))
                     return Response::redirectBack('error', 'You are already enrolled for this batch');
 
+        $mentor = User::where('unique_id', $batch->mentor_id)->first();
         $course = Courses::find($batch->course_id);
         $amount = $this->getPayableAmount($batch->unique_id);
+
 
         $transaction = $this->createTransaction([
             'amount' => Currency::convertUserCurrencyToDefault($amount),
@@ -43,9 +45,21 @@ class EnrollmentController extends Controller{
             'type' => $request->payment
         ]);
 
+        if($amount < 1){
+            $transaction = $this->createTransaction([
+                'amount' => Currency::convertUserCurrencyToDefault($amount),
+                'user_id' => $user->unique_id,
+                'currency' => Currency::user(),
+                'type' => $request->payment
+            ]);
+
+            $this->enrollUser($user, $mentor, $batch, $course, $transaction);
+            return Response::redirect("/learning/courses/$course->slug/$batch->short_code", 'success', 'You have successfully enrolled for this course');
+        }
+
         $redirect_url = env('MAIN_APP_URL')."/enroll/complete/$request->payment/$batch->unique_id";
 
-        if($request->payment === 'crypto') return $this->payWithCrypto($transaction, $user, $redirect_url, $batch, $course);
+        // if($request->payment === 'crypto') return $this->payWithCrypto($transaction, $user, $redirect_url, $batch, $course);
         if($request->payment === 'card') return $this->payWithCard($transaction, $user, $redirect_url);
         if($request->payment === 'wallet') return $this->payFromWallet($transaction, $batch, $user);
     }

@@ -22,9 +22,9 @@
                 <button onclick="copyLink()" title="Copy" type="button" class="btn btn-secondary btn-hover-primary h-auto btn-custom d-flex align-items-center justify-content-center py-1 px-2 me-2" >
                     <i class="icofont-copy ms-0 fs-6"></i>
                 </button>
-                <button onclick="shareLink()" title="Copy" type="button" class="btn btn-secondary btn-hover-primary h-auto btn-custom d-flex align-items-center justify-content-center py-1 px-2" >
+                <a href="{{$resource->link}}" title="Open" type="button" class="btn btn-secondary btn-hover-primary h-auto btn-custom d-flex align-items-center justify-content-center py-1 px-2" >
                     <i class="icofont-external-link ms-0 fs-6"></i>
-                </button>
+                </a>
             </div>
 
         </div>

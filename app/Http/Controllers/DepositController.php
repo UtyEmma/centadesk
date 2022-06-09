@@ -35,7 +35,7 @@ class DepositController extends Controller{
                 'currency' => Currency::user()
             ]);
 
-            $redirect_url = env('MAIN_APP_URL')."/wallet/verify?method=$request->type&ref=$deposit->unique_id";
+            $redirect_url = env('MAIN_APP_URL')."/wallet/verify?method='bank'&ref=$deposit->unique_id";
 
             // if($request->type === 'crypto') return $this->payWithCrypto($deposit, $user, $redirect_url);
             // if($request->type === 'bank')

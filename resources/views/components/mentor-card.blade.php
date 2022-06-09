@@ -23,7 +23,7 @@
                             </span>
                         </div>
 
-                        <small class="text">({{$mentor->reviews_count}} {{Str::plural('review', $mentor->reviews_count)}})</small>
+                        <small class="text">({{$mentor->reviews->count()}} {{Str::plural('review', $mentor->reviews->count())}})</small>
                     </div>
                 </div>
             </div>

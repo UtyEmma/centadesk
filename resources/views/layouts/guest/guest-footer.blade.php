@@ -84,7 +84,7 @@
                     <a href="/disclaimer">Disclaimer</a>
                 </div>
                 <div class="copyright-text">
-                    <p>&copy; {{Date::now()->format("Y")}} <a href="/"> {{env('APP_NAME')}}. </a> All Rights Reserved.
+                    <p>&copy; {{Date::now()->format("Y")}} <a href="/"> {{env('APP_NAME')}}. </a> Powered by {{env('PARENT_COMPANY')}}.
                     </p>
                 </div>
             </div>

@@ -12,7 +12,7 @@
                                     </div>
                                 </div>
 
-                                <div class="col-md-7">
+                                <div class="col-md-7 py-3 pb-0 pb-md-3">
                                     <h4 class="mb-1">{{$batch->title}}</h4>
                                     <h6 class="mt-1 mb-1">{{$course->name}}</h6>
 
@@ -20,32 +20,42 @@
                                         {{ $course->excerpt }}
                                     </p>
 
-                                    <div class="w-100">
-                                        <div class="row">
-                                            <div class="col-4">
-                                                <a class="{{request()->is('learning/courses/'.$course->slug.'/'.$batch->short_code.'') ? 'fw-bold' : ''}} text-primary" href="/learning/courses/{{$course->slug}}/{{$batch->short_code}}">
-                                                    Overview
-                                                    {{-- <i class="icofont-ui-home"></i> --}}
-                                                </a>
+                                    <div class="my-2 col-md-12">
+                                        @if (!$batch->isCompleted())
+                                            <h6>Session Links</h6>
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    @if ($batch->class_link)
+                                                        <a href="{{$batch->class_link}}" class="btn btn-secondary btn-hover-primary w-100 btn-custom px-2" target="__blank">Waiting Link <i class="icofont-external-link"></i>
+                                                        </a>
+                                                    @endif
+                                                </div>
+                                                <div class="col-6">
+                                                    <a  href="{{$batch->access_link}}" class="btn btn-primary btn-hover-dark w-100 btn-custom px-2" target="__blank">
+                                                        Access Link <i class="icofont-external-link"></i>
+                                                    </a>
+                                                </div>
                                             </div>
-
-                                            <div class="col-4">
-                                                <a class="{{request()->is('learning/courses/'.$course->slug.'/'.$batch->short_code.'/resources') ? 'fw-bold' : ''}} text-primary" href="/learning/courses/{{$course->slug}}/{{$batch->short_code}}/resources">
-                                                    Resources
-                                                    {{-- <i class="icofont-book-mark"></i> --}}
-                                                </a>
-                                            </div>
-
-                                            <div class="col-4">
-                                                <a class="{{request()->is('learning/courses/'.$course->slug.'/'.$batch->short_code.'/forum') ? 'fw-bold' : ''}} text-primary" href="/learning/courses/{{$course->slug}}/{{$batch->short_code}}/forum">
-                                                    Discussion
-                                                    {{-- <i class="icofont-chat"></i> --}}
-                                                </a>
-                                            </div>
-                                        </div>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
+                        </div>
+
+                        <div class="p-3 bg-light radius mb-3 overflow-x-scroll">
+                            <a class="{{request()->is('learning/courses/'.$course->slug.'/'.$batch->short_code.'') ? 'fw-bold' : ''}} text-primary me-2 pe-2" href="/learning/courses/{{$course->slug}}/{{$batch->short_code}}">
+                                Overview
+                                {{-- <i class="icofont-ui-home"></i> --}}
+                            </a>
+                            <a class="{{request()->is('learning/courses/'.$course->slug.'/'.$batch->short_code.'/resources') ? 'fw-bold' : ''}} text-primary me-2 p-2" href="/learning/courses/{{$course->slug}}/{{$batch->short_code}}/resources">
+                                Resources
+                                {{-- <i class="icofont-book-mark"></i> --}}
+                            </a>
+
+                            <a class="{{request()->is('learning/courses/'.$course->slug.'/'.$batch->short_code.'/forum') ? 'fw-bold' : ''}} text-primary me-2 p-2" href="/learning/courses/{{$course->slug}}/{{$batch->short_code}}/forum">
+                                Discussion
+                                {{-- <i class="icofont-chat"></i> --}}
+                            </a>
                         </div>
 
                         {{$slot}}
@@ -66,31 +76,11 @@
                             </div>
 
                             <div>
-                                <a class="btn" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text={{$batch->title}}&details={{$batch->excerpt}}&dates={{Date::parse($batch->startdate)}}/{{Date::parse($batch->enddate)}}">
+                                <a class="btn btn-secondary btn-hover-primary border border-primary btn-custom w-100" target="__blank" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text={{$batch->title}}&details={{$batch->excerpt}}&dates={{Date::parse($batch->startdate)}}/{{Date::parse($batch->enddate)}}">
                                     Add to Google Calendar
                                 </a>
 
-                                <a href="https://outlook.office.com/calendar/0/deeplink/compose?subject={{$batch->title}}&body={{$batch->excerpt}}&startdt={{Date::parse($batch->startdate)}}&enddt={{Date::parse($batch->enddate)}}&path=%2Fcalendar%2Faction%2Fcompose&rru=addevent">Add to Outlook.com</a>
-                            </div>
-
-                            <div class="my-3">
-                                @if (!$batch->isCompleted())
-                                    <h5>Access Links</h5>
-                                    <div class="d-flex">
-                                        <div class="me-4">
-                                            @if ($batch->class_link)
-                                                <a href="{{$batch->class_link}}" target="__blank">
-                                                    <x-btn classes="btn-secondary btn-hover-primary px-4">Waiting Link <i class="icofont-external-link"></i></x-btn>
-                                                </a>
-                                            @endif
-                                        </div>
-                                        <div>
-                                            <a  href="{{$batch->access_link}}" target="__blank">
-                                                <x-btn classes="btn-primary btn-hover-dark px-4">Access Link <i class="icofont-external-link"></i></x-btn>
-                                            </a>
-                                        </div>
-                                    </div>
-                                @endif
+                                <a class="btn btn-secondary btn-hover-primary border border-primary btn-custom w-100 mt-3" target="__blank" href="https://outlook.office.com/calendar/0/deeplink/compose?subject={{$batch->title}}&body={{$batch->excerpt}}&startdt={{Date::parse($batch->startdate)}}&enddt={{Date::parse($batch->enddate)}}&path=%2Fcalendar%2Faction%2Fcompose&rru=addevent">Add to Outlook.com</a>
                             </div>
 
                             <div class="sidebar-widget my-3">
