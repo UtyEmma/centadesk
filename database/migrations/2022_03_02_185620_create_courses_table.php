@@ -19,20 +19,10 @@ return new class extends Migration
             $table->string('mentor_id');
             $table->string('name');
             $table->string('slug');
-            $table->longText('desc');
-            $table->string('excerpt');
-            $table->longText('objectives')->nullable();
-            $table->string('tags');
-            $table->string('video');
-            $table->longText('images');
+            $table->string('category');
             $table->integer('total_batches');
             $table->integer('total_students');
-            $table->integer('reviews');
-            $table->string('currency');
-            $table->string('category');
             $table->integer('rating');
-            $table->integer('revenue');
-            $table->string('active_batch')->nullable();
             $table->string('status');
             $table->timestamps();
 

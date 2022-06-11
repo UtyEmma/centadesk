@@ -5,17 +5,21 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Traits\BatchActions;
 use App\Library\Currency;
+use App\Library\DateTime;
 use App\Library\FileHandler;
 use App\Library\Number;
 use App\Library\Response;
 use App\Models\Batch;
+use App\Models\Messages;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class BatchController extends Controller{
     use BatchActions;
 
     function show($slug, $shortcode){
-        if(!$batch = Batch::where('short_code', $shortcode)->get()) return Response::redirectBack('error', 'Batch does not exist');
+        if(!$batch = Batch::where('short_code', $shortcode)->first()) return Response::redirectBack('error', "No Batch was found with the shortcode: '$shortcode'");
+
         $batch = $this->getBatchDetails($shortcode);
         return Response::view('admin.course.batch.info', [
             'batch' => $batch['batch'],
@@ -31,19 +35,36 @@ class BatchController extends Controller{
             'course' => $batch['course'],
             'students' => $this->students($batch['batch']->unique_id)
         ]);
+    }
 
+    function freezeFunds($batch_id){
+        $batch = Batch::find($batch_id);
+        $batch->payable = false;
+        $batch->save();
+
+        return Response::redirectBack('success', 'Batch Payments Suspended');
     }
 
     function batch_forum($slug, $shortcode){
-        if(!$batch = Batch::where('short_code', $shortcode)->get()) return Response::redirectBack('error', 'Batch does not exist');
+        if(!$batch = Batch::where('short_code', $shortcode)->first()) return Response::redirectBack('error', 'Batch does not exist');
+        $messages = Messages::where('batch_id', $batch->unique_id)->with(['user'])->get();
+        $mentor = User::find($batch->mentor_id);
+
         $batch = $this->getBatchDetails($shortcode);
+
+        $messages->map(function($message) use ($mentor){
+            $message->time_interval = DateTime::getDateInterval($message->created_at);
+            $message->is_mentor = $mentor->unique_id === $message->user_id;
+            $message->is_sender = $message->sender_id === $mentor->unique_id;
+            return $message;
+        });
+
         return Response::view('admin.course.batch.forum', [
             'batch' => $batch['batch'],
             'course' => $batch['course'],
-            'messages' => $this->forum($batch['batch']->unique_id)
+            'messages' => $messages
         ]);
     }
-
 
     function edit($slug, $shortcode){
         if(!$batch = Batch::where('short_code', $shortcode)->get()) return Response::redirectBack('error', 'Batch does not exist');
@@ -96,7 +117,6 @@ class BatchController extends Controller{
                 'signup_limit' => $request->signup_limit,
                 'currency' => $user->currency,
             ]);
-
             return Response::redirectBack("success", "Batch Updated Successfully!");
     }
 

@@ -37,20 +37,8 @@
                 </div>
             </div>
 
-            <!-- Header Search Start -->
-            <div class="login-header-search dropdown">
-                <button class="search-toggle" data-bs-toggle="dropdown"><i class="flaticon-loupe"></i></button>
+            <div class="login-header-search dropdown"></div>
 
-                <div class="search-input dropdown-menu">
-                    <form action="#">
-                        <input type="text" placeholder="Search here">
-                    </form>
-                </div>
-
-            </div>
-            <!-- Header Search End -->
-
-            <!-- Header Action Start -->
             <div class="login-header-action ml-auto">
                 <div class="dropdown dropleft">
                     <button class="action notification" data-bs-toggle="dropdown">

@@ -28,7 +28,7 @@
                 <div class="col-md-6">
                     <div class="call-to-action-btn">
                         @if (Auth::user()->role !== 'mentor')
-                            <a class="btn btn-primary btn-hover-dark" href="/mentor/onboarding">Get Started</a>
+                            <a class="btn btn-primary btn-hover-dark" href="/mentor/onboarding">Become a Mentor</a>
                         @else
                             <a class="btn btn-primary btn-hover-dark" href="/me/courses/create">Create a Course</a>
                         @endif

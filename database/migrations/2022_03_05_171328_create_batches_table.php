@@ -16,12 +16,13 @@ return new class extends Migration
         Schema::create('batches', function (Blueprint $table) {
             $table->id();
             $table->string('unique_id')->unique();
-            $table->string('course_id');
+            $table->string('course_id')->nullable();
             $table->string('startdate');
             $table->string('enddate');
             $table->string('mentor_id');
             $table->string('title');
             $table->string('short_code');
+            $table->string('category');
             $table->string('excerpt');
             $table->longText('desc');
             $table->longText('objectives')->nullable();
@@ -37,6 +38,8 @@ return new class extends Migration
             $table->boolean('certificates');
             $table->string('currency');
             $table->string('earnings');
+            $table->text('tags');
+            $table->integer('rating');
             $table->string('discount');
             $table->integer('discount_price')->nullable();
             $table->string('fixed')->nullable();
@@ -52,6 +55,7 @@ return new class extends Migration
             $table->foreign('mentor_id')
                     ->references('unique_id')->on('users')
                     ->onDelete('cascade');
+
             $table->foreign('course_id')
                     ->references('unique_id')->on('courses')
                     ->onDelete('cascade');

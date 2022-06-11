@@ -1,4 +1,4 @@
-<script>
+{{-- <script>
     $(() => {
         const date = moment("{{$course->startdate}}").format("YYYY/MM/DD");
 
@@ -7,7 +7,7 @@
                 event.strftime('%D days'));
             })
     })
-</script>
+</script> --}}
 
 
 {{-- <div class="single-courses mt-2">
@@ -66,11 +66,11 @@
 
             <div class="col-9 pt-1">
                 <h6 style="font-size: 20px; font-weight: 500;" class="mb-0">
-                    <a href="/learning/courses/{{$course->course->slug}}/{{$course->short_code}}">
+                    <a href="/courses/{{$course->course->slug}}/{{$course->short_code}}">
                         {{$course->title}}
                     </a>
                 </h6>
-                <h6 style="font-size: 16px;" class="mb-0">
+                <h6 style="font-size: 15px; font-weight: 500;" class="mb-0">
                     <a href="/courses/{{$course->slug}}">{{$course->course->name}}</a>
                 </h6>
                 <div class="w-100 d-flex align-items-center justify-content-between">

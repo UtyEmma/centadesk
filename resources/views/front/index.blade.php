@@ -20,7 +20,7 @@
             <div class="box-content">
                 <div class="box-wrapper">
                     <i class="flaticon-open-book"></i>
-                    <span class="count">{{$courses->count() + env('NUMBER_OF_COURSES')}}+</span>
+                    <span class="count">{{$batches->count() + env('NUMBER_OF_COURSES')}}+</span>
                     <p>courses</p>
                 </div>
             </div>
@@ -72,7 +72,7 @@
         <x-category :categories="$categories" />
     @endif
 
-    @if (count($courses) > 0)
+    @if ($batches->count() > 0)
         <!-- All Courses Start -->
         <div class="section section-padding-02">
             <div class="container">
@@ -80,13 +80,13 @@
                 <div class="courses-top">
                     <!-- Section Title Start -->
                     <div class="section-title shape-01">
-                        <h2 class="main-title">All <span>Courses</span> of {{env('APP_NAME')}}</h2>
+                        <h2 class="main-title">All <span>Sessions</span> of {{env('APP_NAME')}}</h2>
                     </div>
                     <!-- Section Title End -->
 
                     <!-- Courses Search Start -->
                     <div class="courses-search">
-                        <form action="/courses" type="GET">
+                        <form action="/sessions" type="GET">
                             @csrf
                             <input type="text" name="keyword" placeholder="Search for Courses...">
                             <button type="submit"><i class="flaticon-magnifying-glass"></i></button>
@@ -97,9 +97,9 @@
                 <!-- All Courses Top End -->
                 <!-- All Courses tab content Start -->
                 <div class="row mt-5">
-                    @foreach ($courses as  $course )
+                    @foreach ($batches as  $batch )
                         <div class="col-lg-4 col-md-6">
-                            <x-courses.single-course-card :course="$course" :mentor="$course->mentor" />
+                            <x-batch.single :course="$batch->course" :batch="$batch" :mentor="$batch->mentor" />
                         </div>
                     @endforeach
                 </div>
@@ -107,7 +107,7 @@
 
                 <!-- All Courses BUtton Start -->
                 <div class="courses-btn text-center">
-                    <a href="/courses" class="btn btn-secondary btn-hover-primary">View Courses</a>
+                    <a href="/sessions" class="btn btn-secondary btn-hover-primary">View Sessions</a>
                 </div>
             </div>
         </div>
@@ -155,7 +155,7 @@
 
             <!-- Section Title Start -->
             <div class="section-title shape-03 text-center">
-                <h5 class="sub-title">Over {{$courses->count() + env('NUMBER_OF_COURSES')}}+ Course</h5>
+                <h5 class="sub-title">Over {{$batches->count() + env('NUMBER_OF_COURSES')}}+ Course</h5>
                 <h2 class="main-title">How It <span> Work?</span></h2>
             </div>
             <!-- Section Title End -->

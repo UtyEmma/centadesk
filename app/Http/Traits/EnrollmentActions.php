@@ -22,7 +22,7 @@ trait EnrollmentActions {
             'course_id' => $batch->course_id,
             'student_id' => $student->unique_id,
             'mentor_id' => $course->mentor_id,
-            'transaction_id' => $transaction
+            'transaction_id' => $transaction->unique_id
         ]);
 
         if($transaction->amount > 0){

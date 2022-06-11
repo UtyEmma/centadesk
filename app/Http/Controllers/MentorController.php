@@ -10,6 +10,7 @@ use App\Http\Traits\MentorActions;
 use App\Library\FileHandler;
 use App\Library\Response;
 use App\Models\Bank;
+use App\Models\Batch;
 use App\Models\Courses;
 use App\Models\Enrollment;
 use App\Models\Faq;
@@ -133,11 +134,11 @@ class MentorController extends Controller{
     public function show($username){
         $mentor = User::where('username', $username)->withCount(['courses', 'reviews'])->first();
         if(!$mentor) return Response::redirect('/404', 'error', 'The requested mentor does not exist');
-        $courses = Courses::where('mentor_id', $mentor->unique_id)->get();
+        $batches = Batch::where('mentor_id', $mentor->unique_id)->with('course')->get();
 
         return Response::view('front.mentor-details', [
             'mentor' => $mentor,
-            'courses' => $courses
+            'batches' => $batches
         ]);
     }
 

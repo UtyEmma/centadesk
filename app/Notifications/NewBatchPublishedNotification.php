@@ -30,7 +30,7 @@ class NewBatchPublishedNotification extends Notification implements ShouldQueue
      */
     public function via($notifiable)
     {
-        return ['mail'];
+        return ['mail', 'database'];
     }
 
     /**
@@ -55,7 +55,10 @@ class NewBatchPublishedNotification extends Notification implements ShouldQueue
     public function toArray($notifiable)
     {
         return [
-            //
-        ];
+            'title' => $this->data['subject'],
+            'link' => $this->data['link'] ?? '',
+            'body' => $this->data['subject'],
+            'type' => 'course'
+        ];;
     }
 }

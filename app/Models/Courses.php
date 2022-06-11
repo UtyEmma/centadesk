@@ -4,14 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Laravel\Scout\Searchable;
+// use Laravel\Scout\Searchable;
 
 class Courses extends Model{
-    use HasFactory, Searchable;
+    use HasFactory;
 
     public $asYouType = true;
 
-    protected $fillable = ['unique_id', 'mentor_id', 'name', 'slug', 'desc', 'tags', 'video', 'images', 'total_batches', 'total_students', 'active_batch', 'status','currency', 'category', 'excerpt', 'objectives'];
+    protected $fillable = ['unique_id', 'mentor_id', 'name', 'slug',  'total_batches', 'total_students', 'status', 'category'];
 
     protected $primaryKey = 'unique_id';
     protected $keyType = 'string';
@@ -20,9 +20,7 @@ class Courses extends Model{
     protected $attributes = [
         'total_batches' => 0,
         'total_students' => 0,
-        'revenue' => 0,
         'rating' => 1,
-        'reviews' => 0,
         'status' => 'published'
     ];
 

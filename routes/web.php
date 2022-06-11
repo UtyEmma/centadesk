@@ -17,6 +17,7 @@ use App\Http\Controllers\ForumController;
 use App\Http\Controllers\MentorController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\SessionController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TransactionsController;
@@ -117,15 +118,16 @@ Route::middleware(['set.currency', 'set.referrals'])->group(function(){
                 Route::get('/create', [CourseController::class, 'create'])->middleware('user.status');
 
                 Route::middleware(['is.approved', 'user.status'])->group(function(){
-                    Route::post('/new', [CourseController::class, 'store']);
+                    Route::post('/new', [SessionController::class, 'createCourse']);
                     Route::get('/{slug}', [CourseController::class, 'single']);
                     Route::get('/{slug}/reviews', [ReviewController::class, 'fetchCourseReviews']);
                     Route::get('/{slug}/edit', [CourseController::class, 'edit']);
                     Route::post('/{slug}/update', [CourseController::class, 'update']);
+                    Route::get('/{slug}/delete', [CourseController::class, 'destroy']);
 
                     Route::prefix('/{slug}/batch')->group(function(){
                         Route::get('/new', [BatchController::class, 'newBatchPage']);
-                        Route::post('/create', [BatchController::class, 'newBatch']);
+                        Route::post('/create', [SessionController::class, 'createBatch']);
                     });
 
                     Route::prefix('/{slug}/{shortcode}')->group(function(){

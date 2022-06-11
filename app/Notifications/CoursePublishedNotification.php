@@ -49,8 +49,9 @@ class CoursePublishedNotification extends Notification implements ShouldQueue
      */
     public function toArray($notifiable){
         return [
+            'title' => $this->data['subject'],
             'link' => $this->data['link'],
-            'message' => $this->data['subject'],
+            'body' => $this->data['subject'],
             'type' => 'course'
         ];
     }

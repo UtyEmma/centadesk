@@ -6,9 +6,14 @@ use App\Http\Requests\Reports\CreateReportRequest;
 use App\Library\DateTime;
 use App\Library\Response;
 use App\Library\Token;
+use App\Models\Admin;
 use App\Models\Batch;
 use App\Models\Report;
+use App\Notifications\Admin\BatchReportedAlert;
+use App\Notifications\BatchReportedNotification;
+use App\Notifications\Mentor\BatchReportedMentorNotification;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Notification;
 
 class ReportController extends Controller{
 
@@ -20,6 +25,8 @@ class ReportController extends Controller{
         $user = $this->user();
         $unique_id = Token::unique('reports');
 
+        $admins = Admin::all();
+
         $report = Report::create([
             'unique_id' => $unique_id,
             'student_id' => $user->unique_id,
@@ -27,8 +34,13 @@ class ReportController extends Controller{
             'message' => $request->report
         ]);
 
-        $batch->payable = false;
-        $batch->save();
+        $notification = [
+            'message' => $request->report
+        ];
+
+        Notification::send($batch->mentor, new BatchReportedNotification($notification));
+        Notification::send($admins, new BatchReportedAlert($notification));
+        Notification::send($batch->mentor, new BatchReportedMentorNotification($notification));
 
         return Response::redirectBack('success', 'Report Submitted Successfully');
     }

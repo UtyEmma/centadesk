@@ -22,7 +22,7 @@
             const __kycSchema = {
                 rules: {
                     kyc_method: `required|string`,
-                    id_number: `required|numeric|digits:${sizes[data.kyc_method]}`
+                    id_number: `required|numeric`
                 },
 
                 attributes: {

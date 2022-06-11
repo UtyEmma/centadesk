@@ -36,7 +36,7 @@ class BatchController extends Controller{
         if($keyword = $request->keyword){
             $type = 'search';
             $results = Batch::search($keyword)
-                            // ->where('startdate', '>', Date::now())
+                            ->where('startdate', '>', Date::now())
                             ->orderBy('startdate')->paginate(env('PAGINATION_COUNT'));
         }else{
             $query =  Batch::query();
@@ -67,13 +67,12 @@ class BatchController extends Controller{
             $results = $query->paginate(env('PAGINATION_COUNT'));
         }
 
-        // dd($results);
-
         return view('front.batches', [
             'batches' => $results,
             'data' => $this->app_data(),
             'type' => $type,
-            'user' => $this->user()
+            'user' => $this->user(),
+            'categories' => $this->getActiveCategories()
         ]);
     }
 
@@ -122,86 +121,15 @@ class BatchController extends Controller{
         try {
             $user = $this->user();
             $course = $this->getCourseBySlug($slug, $user);
+            $categories = $this->getAllCategories();
             return Response::view('dashboard.course-details.new-batch', [
                 'mentor' => $user,
-                'course' => $course
+                'course' => $course,
+                'categories' => $categories
             ]);
         } catch (\Throwable $th) {
             return Response::redirectBack('error', $th->getMessage());
         }
-    }
-
-    function newBatch(NewBatchRequest $request, $course_id){
-        $course = Courses::find($course_id);
-        $batch_id = Token::unique('batches');
-
-        $images = FileHandler::upload($request->file('images'));
-
-        $user = $this->user();
-
-        $short_code = strtolower(Token::text(7, 'batches', 'short_code'));
-
-        $discount_price = 0;
-        $price = Currency::convertUserCurrencyToDefault($request->price);
-
-        if($request->discount === 'fixed'){
-            $discount_price = Currency::convertUserCurrencyToDefault($request->fixed);
-        }else if($request->discount === 'percent'){
-            $discount_price = Number::percentageDecrease($request->percent, $price);
-        }
-
-        $batch = Batch::create([
-            'unique_id' => $batch_id,
-            'course_id' => $course_id,
-            'mentor_id' => $user->unique_id,
-            'duration' => $request->duration,
-            'excerpt' => $request->excerpt,
-            'objectives' => $request->objectives,
-            'class_link' => $request->class_link,
-            'access_link' => $request->access_link,
-            'attendees' => $request->attendees,
-            'price' => $price,
-            'current' => true,
-            'count' => 1,
-            'desc' => $request->desc,
-            'video' => $request->video,
-            'certificates' => $request->certificates === 'on' ? true : false,
-            'images' => $images,
-            'startdate' => $request->startdate,
-            'enddate' => $request->enddate,
-            'title' => $request->title,
-            'short_code' => $short_code,
-            'discount' => $request->discount,
-            'discount_price' => $discount_price,
-            'fixed' => $request->fixed,
-            'percent' => $request->percent,
-            'time_limit' => $request->time_limit,
-            'signup_limit' => $request->signup_limit,
-            'currency' => $user->currency,
-        ]);
-
-        $course->update([
-            'total_batches' => $course->total_batches + 1,
-            'active_batch' => $batch->unique_id
-        ]);
-
-        $user->total_batches += 1;
-        $user->save();
-
-        $notification = [
-            'subject' => 'You have successfully created a new batch',
-            'batch' => $batch,
-            'course' => $course
-        ];
-
-        NewCourseAlert::dispatch($course);
-
-        try {
-            Notification::send($user, new NewBatchPublishedNotification($notification));
-        } catch (\Throwable $th) {}
-
-
-        return Response::redirect("/me/courses/$course->slug/$batch->short_code", 'success', 'Batch Created Successfully');
     }
 
     function batchDetails(Request $request, $slug, $shortcode){

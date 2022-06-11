@@ -14,6 +14,7 @@
         <div class="courses-top">
             <ul>
                 <li>Student</li>
+                <li>Price</li>
                 <li>Enrollment Date</li>
             </ul>
         </div>
@@ -33,12 +34,9 @@
                         <div class="taught">
                             <p>{{$student->enrolled_at}}</p>
                         </div>
-                        {{-- <div class="student">
-                            <span>{{$student->}}</span>
+                        <div class="taught">
+                            <p>{{$student->enrolled_at}}</p>
                         </div>
-                        <div class="button">
-                            <a class="btn" href="#">View Details</a>
-                        </div> --}}
                     </li>
                 @empty
                     <div class="bg-light p-5 text-center radius mt-5">

@@ -11,7 +11,7 @@ use Laravel\Scout\Searchable;
 class Batch extends Model{
     use HasFactory, Searchable;
 
-    protected $fillable = ['unique_id', 'course_id', 'mentor_id' ,'startdate', 'short_code', 'title', 'enddate', 'current', 'class_link', 'access_link', 'attendees', 'price' ,'count', 'video', 'desc', 'images', 'discount', 'fixed', 'percent', 'time_limit', 'signup_limit', 'certificates', 'currency', 'discount_price', 'excerpt', 'objectives', 'resources'];
+    protected $fillable = ['unique_id', 'course_id', 'mentor_id' ,'startdate', 'short_code', 'title', 'enddate', 'current', 'class_link', 'access_link', 'attendees', 'price' ,'count', 'video', 'desc', 'images', 'discount', 'fixed', 'percent', 'time_limit', 'signup_limit', 'certificates', 'currency', 'discount_price', 'excerpt', 'objectives', 'resources', 'category', 'tags'];
 
     protected $primaryKey = 'unique_id';
     protected $keyType = 'string';
@@ -23,6 +23,7 @@ class Batch extends Model{
         'status' => 'ongoing',
         'earnings' => 0,
         'paid' => false,
+        'rating' => 1,
         'payable' => true
     ];
 

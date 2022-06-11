@@ -72,7 +72,7 @@
                     </div>
 
                     <div class="my-3">
-                        <h6>About Me</h6>
+                        <h5>About Me</h5>
                         <p>
                             {{$mentor->desc}}
                         </p>
@@ -99,7 +99,7 @@
                     </div>
 
                     <div class="mb-3">
-                        <h6>My Work Experience</h6>
+                        <h5>My Work Experience</h5>
                         <div class="row">
                             @foreach (json_decode($mentor->experience) as $experience)
                                 <div class="col-md-6">
@@ -119,7 +119,7 @@
                     </div>
 
                     <div class="mt-3">
-                        <h6>My Education</h6>
+                        <h5>My Education</h5>
                         <div class="row">
                             @foreach (json_decode($mentor->qualification) as $education)
                                 <div class="col-md-6">
@@ -138,12 +138,12 @@
                     </div>
 
                     <div class="mt-5">
-                        @if ($courses->count())
-                            <h6 class="lh-0 mb-3">My Courses</h6>
+                        @if ($batches->count() > 0)
+                            <h5 class="lh-0 mb-3">My Sessions</h5>
                             <div class="row">
                                 <div class="col-md-6">
-                                    @foreach ($courses as $course)
-                                        <x-courses.single-course-card :course="$course" :mentor="$mentor" />
+                                    @foreach ($batches as $batch)
+                                        <x-batch.suggested :course="$batch" :mentor="$mentor" />
                                     @endforeach
                                 </div>
                             </div>

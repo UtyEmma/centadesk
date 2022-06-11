@@ -50,7 +50,6 @@ class StudentController extends Controller{
 
     public function enrolledCourses(Request $request){
         $user = $this->user();
-        $query = Courses::query();
         $suggestedBatches = $this->sortBatchesBasedOnUserInterest(3);
         $enrolledBatches = $user->batches();
 
@@ -114,8 +113,10 @@ class StudentController extends Controller{
         $user = $this->user();
         $query = Batch::query();
         return $query->join('courses', 'batches.course_id', '=', 'courses.unique_id')
+                        ->join('enrollments', 'enrollments.course_id', '=', 'batches.unique_id')
                         ->whereIn('courses.category', $user->interests)
                         ->with(['course', 'enrollments'])
+                        ->where('student_id', '!==', $user->unique_id)
                         ->withCount(['course', 'enrollments'])
                         ->limit($limit)
                         ->get();

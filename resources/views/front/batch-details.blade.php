@@ -74,6 +74,22 @@
                                 @endif
                             </p>
                         </div>
+
+                        <div class="courses-details-tab mt-0 p-0">
+                            <div class="mt-4">
+
+                                <h6 class="tab-title">Tags</h6>
+
+                                <div class="widget-tags p-0 border-0 mt-3">
+                                    <ul class="tags-list d-flex flex-wrap">
+                                        @forelse (json_decode($batch->tags) as $tag)
+                                            <li class="text-capitalize"><a class="px-3">{{$tag->value}}</a></li>
+                                        @empty
+                                        @endforelse
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="col-lg-4 mt-5 mt-md-0">
@@ -87,17 +103,25 @@
                             <x-batch-countdown :batch="$batch" />
                         </div>
 
-                        <div class="sidebar-widget mt-md-0 mb-3">
-                            @if (now() > Date::parse($batch->enddate) || Date::parse($batch->startdate)->lessThanOrEqualTo(Date::now()) && Date::parse($batch->enddate)->greaterThanOrEqualTo(Date::now()))
-                            @else
-                                <h5>Enroll for this Batch</h5>
-                                @if ($batch->discount === 'none')
-                                    <x-price-normal-card :batch="$batch" />
+                        @if (!$batch->enrolled)
+                            <div class="sidebar-widget mt-md-0 mb-3">
+                                @if (now() > Date::parse($batch->enddate) || Date::parse($batch->startdate)->lessThanOrEqualTo(Date::now()) && Date::parse($batch->enddate)->greaterThanOrEqualTo(Date::now()))
                                 @else
-                                    <x-price-discount-card :batch="$batch" />
+                                    <h5>Enroll for this Batch</h5>
+                                    @if ($batch->discount === 'none')
+                                        <x-price-normal-card :batch="$batch" />
+                                    @else
+                                        <x-price-discount-card :batch="$batch" />
+                                    @endif
                                 @endif
-                            @endif
-                        </div>
+                            </div>
+
+                        @else
+                            <div class="sidebar-widget mt-md-0 mb-3 p-5 text-center border radius">
+                                <h5>You are already enrolled for this session!</h5>
+                                <a href="/learning/courses/{{$course->slug}}/{{$batch->short_code}}" class="btn btn-primary btn-custom btn-hover-dark">View Enrollment</a>
+                            </div>
+                        @endif
 
                         <div class="sidebar-widget mt-5">
                             <h5>Meet the Mentor</h5>
@@ -111,5 +135,5 @@
     </div>
     <!-- Courses End -->
 
-    <x-call-to-action></x-call-to-action>
+    <x-mentor-cta />
 </x-guest-layout>

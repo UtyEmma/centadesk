@@ -36,7 +36,7 @@
                     </div>
                     <div class="category-content-right">
                     <h4>{{$category->name}}</h4>
-                    <span>{{$category->courses}} {{Str::plural('Course', $category->courses)}}</span>
+                    <span>{{$category->batches_count}} {{Str::plural('Session', $category->batches_count)}}</span>
                     </div>
                 </div>
                 </a>

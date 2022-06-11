@@ -11,13 +11,13 @@
                         <div class="single-box my-1 px-3 ">
                             <h5 class="title">Revenue</h5>
                             <div class="count">&#8358; {{number_format($user->earnings)}}</div>
-                            <p><span>$235.00</span> This months</p>
+                            {{-- <p><span>$235.00</span> This months</p> --}}
                         </div>
 
                         <div class="single-box my-1 px-3">
                             <h5 class="title">Enrollments</h5>
                             <div class="count">{{$enrollments}}</div>
-                            <p><span>345</span> This months</p>
+                            {{-- <p><span>345</span> This months</p> --}}
                         </div>
 
                         <div class="single-box my-1 px-3">
@@ -29,7 +29,7 @@
                                         <span class="rating-bar" style="width: {{$user->avg_rating * 20}}%;"></span>
                                 </span>
                             </div>
-                            <p><span>58</span> This months</p>
+                            {{-- <p><span>58</span> This months</p> --}}
                         </div>
                     </div>
                 </div>
@@ -48,7 +48,8 @@
                 <x-new-course />
             @endif
 
-            <x-mentor-charts />
+            {{-- <x-mentor-charts /> --}}
+
             <x-course-resources />
         </div>
     </div>

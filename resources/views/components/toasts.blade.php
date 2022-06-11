@@ -7,7 +7,7 @@
             effect: 'slide',
             autoclose: true,
             showIcon: false,
-            autotimeout: 4000,
+            autotimeout: 5000,
             speed: 300,
             type: 1
         })

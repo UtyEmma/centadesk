@@ -1,10 +1,10 @@
-<div class="single-courses mt-0 mb-4 radius">
+<div class="single-courses mt-0 mb-4 radius h-100">
     @php
         $startdate = Date::parse($batch->startdate);
     @endphp
     <div class="courses-images position-relative overflow-hidden radius" style="height: 200px">
-        <a href="courses/{{$course->slug}}">
-            <img class="img-cover" src="{{$course->images}}" alt="Courses">
+        <a href="{{"/$batch->short_code"}}">
+            <img class="img-cover" src="{{$batch->images}}" alt="Courses">
         </a>
 
         <div class="light-tag bg-white shadow-sm position-absolute" style="right: 10px; top: 10px;">
@@ -21,24 +21,29 @@
     </div>
 
     <div class="courses-content pt-2">
-        <small style="font-size: 12px; font-weight: 500;">{{$startdate->format('M jS, g:i A')}}</small>
-        <h5 class="mb-0"><a href="/courses/{{$course->slug}}/{{$batch->short_code}}">{{$batch->title}}</a></h5>
-        <p class="mb-2" style="font-weight: 500;"><a class="mt-0" href="/courses/{{$course->slug}}">{{$course->name}}</a></p>
+        <small style="font-size: 15px; font-weight: 500;">{{$startdate->format('M jS, g:i A')}}</small>
+        <h5 class="mb-0"><a href="/courses/{{$batch->course->slug}}/{{$batch->short_code}}">{{$batch->title}}</a></h5>
 
-        <div class="courses-author">
+        @if ($batch->course)
+            <p style="font-size: 15px; font-weight: 500;">
+                <a class="mt-0" href="/courses/{{$batch->course->slug}}">{{$batch->course->name}}</a>
+            </p>
+        @endif
+
+        <div class="courses-author mt-2">
             <div class="author">
                 <div class="author-thumb">
-                    <a href="/mentors/{{$course->mentor->username}}" class="rounded-img">
-                        <img src="{{$course->mentor->avatar ?? asset('images/icon/user.png')}}" alt="Author">
+                    <a href="/mentors/{{$batch->mentor->username}}" class="rounded-img">
+                        <img src="{{$batch->mentor->avatar ?? asset('images/icon/user.png')}}" alt="Author">
                     </a>
                 </div>
                 <div class="author-name">
                     <div>
-                        <a class="mb-1 name" style="font-weight: 500; line-height: 2px;"  href="/mentors/{{$course->mentor->username}}">
-                            {{$course->mentor->firstname}} {{$course->mentor->lastname}}
-                            <span class="ms-0"><x-mentor-verified :status="$course->mentor->is_verified" /></span>
+                        <a class="mb-1 name" style="font-weight: 500; line-height: 2px;"  href="/mentors/{{$batch->mentor->username}}">
+                            {{$batch->mentor->firstname}} {{$batch->mentor->lastname}}
+                            <span class="ms-0"><x-mentor-verified :status="$batch->mentor->is_verified" /></span>
                             </a>
-                        <p style="font-size: 12px; line-height: 1px;" class="mt-1 mb-2">{{$course->mentor->specialty}}</p>
+                        <p style="font-size: 12px; line-height: 1px;" class="mt-1 mb-2">{{$batch->mentor->specialty}}</p>
                     </div>
                 </div>
             </div>
@@ -53,7 +58,7 @@
             </div>
         </div>
 
-        <a href="/courses/{{$course->slug}}/{{$batch->short_code}}" class="btn btn-primary btn-hover-dark w-100 mt-2 btn-custom">Enroll Now</a>
+        <a href="/{{$batch->short_code}}" class="btn btn-primary btn-hover-dark w-100 mt-2 btn-custom">Enroll Now</a>
 
     </div>
 </div>

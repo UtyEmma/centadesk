@@ -4,14 +4,16 @@
             @include('components.batch.batch-price')
         </div>
     </div>
-    <div class="mb-3">
-        <small class="mb-0">{{$batch->remaining_slots}} out of {{$batch->attendees}} slots left</small>
-        <div class="courses-rating">
-            <div class="rating-progress-bar mt-1">
-                <div class="rating-line" style="width: {{$batch->remaining_slots_percent}}%;"></div>
+    @if ($batch->attendees > 0)
+        <div class="mb-3">
+            <small class="mb-0">{{$batch->remaining_slots}} out of {{$batch->attendees}} slots left</small>
+            <div class="courses-rating">
+                <div class="rating-progress-bar mt-1">
+                    <div class="rating-line" style="width: {{$batch->remaining_slots_percent}}%;"></div>
+                </div>
             </div>
         </div>
-    </div>
+    @endif
 
     @if ($user = Auth::user())
         <x-payment-modal :user="$user" :batch="$batch" :wallet="$user->wallet" />

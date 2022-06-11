@@ -42,13 +42,16 @@ class MentorController extends Controller{
             $action = (bool) $request->input('action');
             $user = User::find($unique_id);
 
-            $user->kyc_status = $action ? 'approved' : 'disapproved';
+            $user->kyc_status = $action ? 'approved' : 'pending';
+            if(!$action) $user->role = 'user';
             $user->approved = $action;
             $user->save();
 
+            $message =
+
             $notification = [
                 'dashboard' => env('MAIN_APP_URL').'/me',
-                'subject' => $user->kyc_status === 'approved' ? "Congratulations! Your Mentor Signup Request has been approved." : "Sorry! Your Mentor Signup Request was not approved."
+                'subject' => $this->approvalMessage($request->action, $request->type)
             ];
 
             if($user->kyc_status === 'approved'){
@@ -61,6 +64,18 @@ class MentorController extends Controller{
             return Response::redirectBack('success', "The Mentor has been approved successfully");
         } catch (\Throwable $th) {
             return Response::redirectBack('error', $th->getMessage());
+        }
+    }
+
+    function approvalMessage($status, $type){
+        switch ($type) {
+            case 'approval':
+                return $status === 'approved' ? "Congratulations! Your Mentor Signup Request has been approved." : "Sorry! Your Mentor Signup Request was not approved.";
+            case 'revoke':
+                return "Your Account Verification Status has been revoked!.";
+            default:
+                return "";
+                break;
         }
     }
 

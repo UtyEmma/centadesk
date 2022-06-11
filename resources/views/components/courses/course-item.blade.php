@@ -1,5 +1,4 @@
 <div class="col-lg-4 col-md-6">
-    <!-- Single Courses Start -->
     <div class="single-courses">
         <div class="courses-images">
             <a href="courses/{{$course->slug}}"><img src="{{json_decode($course->images)[0]}}" alt="Courses" class="img-fluid"></a>
@@ -35,5 +34,4 @@
             </div>
         </div>
     </div>
-    <!-- Single Courses End -->
 </div>

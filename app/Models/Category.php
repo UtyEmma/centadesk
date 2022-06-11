@@ -24,4 +24,8 @@ class Category extends Model{
         return $this->hasMany(Courses::class, 'category', 'name');
     }
 
+    function batches (){
+        return $this->hasMany(Batch::class, 'category', 'name');
+    }
+
 }

@@ -9,8 +9,7 @@ use App\Library\Token;
 use App\Models\Batch;
 use App\Models\Courses;
 use App\Models\Enrollment;
-use App\Models\ForumMessages;
-use App\Models\ForumReplies;
+use App\Models\Messages;
 use App\Models\Report;
 use App\Models\Setting;
 use App\Models\User;
@@ -28,7 +27,9 @@ trait BatchActions {
     function getBatchDetails($shortcode){
         $batch = Batch::where('short_code', $shortcode)->with(['mentor', 'course'])->get();
         if(!$batch = Batch::where('short_code', $shortcode)->first())
-        throw new Exception("No Batch was found with the shortcode: '$shortcode'", 404);
+                        throw new Exception("No Batch was found with the shortcode: '$shortcode'", 404);
+
+        $batch->enrolled = false;
 
         if(!$course = Courses::find($batch->course_id))
             throw new Exception("Invalid Request: The requested course does not exist", 404);
@@ -36,12 +37,24 @@ trait BatchActions {
         if(!$mentor = User::find($course->mentor_id))
             throw new Exception("Could not get the Mentor for this Course", 404);
 
-        $batch->remaining_slots = $batch->attendees - $batch->total_students;
-        $batch->remaining_slots_percent = $batch->total_students * 100 / $batch->remaining_slots;
+
+        if($batch->attendees > 0){
+            $batch->remaining_slots = $batch->attendees - $batch->total_students;
+            $batch->remaining_slots_percent = $batch->total_students * 100 / $batch->remaining_slots;
+        }
 
         if($batch->discount !== 'none'){
             $batch->discount_slots = $batch->signup_limit - $batch->total_students;
             $batch->discount_slots_percent = $batch->total_students * 100 / $batch->discount_slots;
+        }
+
+        if($user = Auth::user()){
+            $enrollment = Enrollment::where([
+                'student_id' => $user->unique_id,
+                'batch_id' => $batch->unique_id
+            ])->first();
+
+            $batch->enrolled = !!$enrollment;
         }
 
         return [
@@ -91,8 +104,9 @@ trait BatchActions {
     function students($batch_id){
         $students = DB::table('enrollments')
                             ->where('batch_id', $batch_id)
+                            ->join('transactions', 'transactions.unique_id', 'enrollments.transaction_id')
                             ->join('users', 'users.unique_id', 'enrollments.student_id')
-                            ->select('users.*', 'enrollments.created_at')
+                            ->select('users.*', 'enrollments.created_at', 'transactions.amount')
                             ->get();
 
         $students->map(function($student){
@@ -104,16 +118,12 @@ trait BatchActions {
     }
 
     function forum($batch_id){
-        $forum_messages = ForumMessages::where('batch_id', $batch_id)
-                                        ->join('users', 'users.unique_id', 'forum_messages.sender_id')
-                                        ->select('forum_messages.*', 'users.firstname', 'users.lastname', 'users.avatar')
+        $forum_messages = Messages::where('batch_id', $batch_id)
+                                        ->join('users', 'users.unique_id', 'messages.sender_id')
+                                        ->select('messages.*', 'users.firstname', 'users.lastname', 'users.avatar')
                                         ->get();
 
         $messages = array_map(function($message){
-                        $message['replies'] = ForumReplies::where('message_id', $message['unique_id'])
-                                        ->join('users', 'users.unique_id', 'forum_replies.sender_id')
-                                        ->select('forum_replies.*', 'users.firstname', 'users.lastname', 'users.avatar')
-                                        ->get()->toArray();
                         $message['created_at'] = DateTime::getDateInterval($message['created_at']);
                         return $message;
                     }, $forum_messages->toArray());
@@ -152,7 +162,7 @@ trait BatchActions {
 
         if(!$enrollment) throw new Exception("You are not enrolled for this batch");
 
-        $messages = ForumMessages::where('batch_id', $batch->unique_id)->with(['user'])->get();
+        $messages = Messages::where('batch_id', $batch->unique_id)->with(['user'])->get();
 
         $mentor = User::find($batch->mentor_id);
 

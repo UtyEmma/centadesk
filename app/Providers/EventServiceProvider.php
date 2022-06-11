@@ -8,9 +8,10 @@ use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvi
 use Illuminate\Support\Facades\Event;
 use App\Listeners\MentorApplicationCreatedListener;
 use App\Events\MentorApplicationSent;
+use App\Models\Batch;
+use App\Observers\BatchObserver;
 
-class EventServiceProvider extends ServiceProvider
-{
+class EventServiceProvider extends ServiceProvider{
     /**
      * The event listener mappings for the application.
      *
@@ -24,6 +25,7 @@ class EventServiceProvider extends ServiceProvider
         MentorApplicationSent::class => [
             MentorApplicationCreatedListener::class
         ]
+
     ];
 
     /**
@@ -31,9 +33,8 @@ class EventServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
-    {
-        //
+    public function boot(){
+        Batch::observe(BatchObserver::class);
     }
 
     /**

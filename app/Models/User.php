@@ -66,7 +66,7 @@ class User extends Authenticatable{
                             ->join('courses', 'courses.unique_id', 'enrollments.course_id')
                             ->join('batches', 'batches.unique_id', 'enrollments.batch_id')
                             ->join('users', 'users.unique_id', 'enrollments.mentor_id')
-                            ->select('courses.name', 'courses.slug', 'courses.tags', 'users.firstname', 'users.lastname', 'users.username', 'batches.*')->get();
+                            ->select('courses.name', 'courses.slug', 'users.firstname', 'users.lastname', 'users.username', 'batches.*')->get();
     }
 
     public function batches(){

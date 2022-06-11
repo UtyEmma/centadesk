@@ -7,26 +7,15 @@ use App\Http\Traits\AppActions;
 use App\Http\Traits\CategoryActions;
 use App\Http\Traits\CourseActions;
 use App\Http\Traits\ReviewActions;
-use App\Jobs\NewCourseAlert;
 use App\Library\FileHandler;
-use App\Library\Links;
-use App\Library\Number;
 use App\Library\Response;
 use App\Library\Token;
 use App\Models\Batch;
 use App\Models\Category;
 use App\Models\Courses;
-use App\Models\Enrollment;
-use App\Models\Review;
 use App\Models\User;
-use App\Models\Wallet;
 use App\Notifications\CoursePublishedNotification;
-use Exception;
-use Google\Service\Classroom\Course;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
-use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Str;
 
@@ -73,21 +62,6 @@ class CourseController extends Controller{
             $results = $query->paginate(env('PAGINATION_COUNT'));
 
         }
-
-        // $query->when($request->price === 'free', function ($query) {
-        //     return $query->where('price', 0);
-        // });
-
-        // $query->when($request->price === 'paid', function ($query) {
-        //     return $query->where('price', '>', 0);
-        // });
-
-
-        // $query->whereRelation('batches', 'startdate', '>', now()); //Courses with upcoming batches
-
-
-
-        // return print_r($results);
 
         return view('front.courses', [
             'courses' => $results,
@@ -180,7 +154,10 @@ class CourseController extends Controller{
 
     public function fetch(){
         $user = $this->user();
-        $courses = User::find($user->unique_id)->courses;
+        $courses = User::find($user->unique_id)
+                            ->courses()
+                            ->withCount(['batches', 'enrollments'])
+                            ->paginate(env('PAGINATION_COUNT'));
 
         return view('dashboard.courses', [
             'courses' => $courses,
@@ -215,16 +192,19 @@ class CourseController extends Controller{
         if(!$course = Courses::where('slug', $slug)->first())
         return Response::redirectBack('errors', 'Course Was not Found');
         $obj = $this->getCourseData($course, $user);
-        $related = $this->fetchRelatedCourses($course);
+        $batches = Batch::where('course_id', $course->unique_id)
+                        ->join('courses', 'batches.course_id', '=', 'courses.unique_id')
+                        ->with(['course', 'enrollments'])
+                        ->withCount(['course', 'enrollments'])
+                        ->get();
 
         return view('front.course-detail', [
             'course' => $course,
+            'batches' => $batches,
             'mentor' => $obj->mentor,
-            'batch' => $obj->active_batch,
             'user' => $user,
             'reviews' => $obj->reviews,
-            'data' => $this->app_data(),
-            'related' => $related
+            'data' => $this->app_data()
         ]);
     }
 
@@ -288,9 +268,9 @@ class CourseController extends Controller{
         }
     }
 
-    public function destroy($id){
-        $course = Courses::find($id);
-        if($course) $course->delete();
+    public function destroy($slug){
+        if(!$course = Courses::where('slug', $slug)->first()) return Response::redirectBack('error', "Course Not Found");
+        $course->delete();
         return Response::redirect('/me/courses', 'success', 'Your course was deleted successfully');
     }
 }

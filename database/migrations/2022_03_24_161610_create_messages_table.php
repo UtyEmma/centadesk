@@ -15,7 +15,19 @@ return new class extends Migration
     {
         Schema::create('messages', function (Blueprint $table) {
             $table->id();
+            $table->string('unique_id')->unique();
+            $table->string('batch_id');
+            $table->string('sender_id');
+            $table->text('message');
             $table->timestamps();
+
+            $table->foreign('sender_id')
+                    ->references('unique_id')->on('users')
+                    ->onDelete('cascade');
+
+            $table->foreign('batch_id')
+                    ->references('unique_id')->on('batches')
+                    ->onDelete('cascade');
         });
     }
 

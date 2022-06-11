@@ -25,13 +25,13 @@
                             query+=`${index === 0 ? '' : '&'}${param.name}=${param.value}`
                         }
                     });
+
                     window.location.href = query
                 }
             </script>
         @endpush
-        <form action="/courses" id="filter-form" onsubmit="searchAndfilter(event)" onchange="searchAndfilter(event)" method="GET"  >
+        <form action="/sessions" id="filter-form" onsubmit="searchAndfilter(event)" onchange="searchAndfilter(event)" method="GET"  >
             <div class="d-md-flex justify-content-between align-items-end">
-                <!-- Page Banner Start -->
                 <div class="m-0 page-banner-content w-100 d-md-flex justify-content-between align-items-end">
                     <div>
                         <h3 class="title mt-0 pb-0">Explore</h3>
@@ -43,17 +43,29 @@
                         <button type="submit"><i class="icofont-search"></i></button>
                         </div>
                 </div>
-                <!-- Page Banner End -->
             </div>
 
-            <div class=" p-0 m-0 bg-transparent mt-3 d-flex justify-content-between" style="z-index: 11;">
-                <div>
-                    <x-selectpicker name="price"  class="btn btn-custom border" title="Price">
+            <div class="p-0 m-0 mt-3 row gy-2" style="z-index: 11;">
+                <div class="col-6 col-md-2 ps-0">
+                    <x-selectpicker :search="true" name="category" classes="w-100" class="btn btn-custom border" title="Category">
+                        <option value="">All</option>
+                        @forelse ($categories as $category)
+                        <option @selected(request()->has('category') && request()->category === $category->name)  value="{{$category->name}}">{{$category->name}} <small style="font-weight: 500;">({{$category->batches_count}})</small></option>
+                        @empty
+                        @endforelse
+                    </x-selectpicker>
+                </div>
+
+                <div class="col-6 col-md-2 ps-0">
+                    <x-selectpicker name="price" classes="w-100"  class="btn btn-custom border" title="Price">
                         <option value="">All</option>
                         <option @selected(request()->has('price') && request()->price === 'free') value="free">Free</option>
                         <option @selected(request()->has('price') && request()->price === 'paid') value="paid">Paid</option>
                     </x-selectpicker>
-                    <x-selectpicker name='order' class="btn btn-custom border" title="Status">
+                </div>
+
+                <div class="col-6 col-md-2 ps-0">
+                    <x-selectpicker name='order' classes="w-100" class="btn btn-custom border" title="Status">
                         <option value="">All</option>
                         <option @selected(request()->has('status') && request()->order === 'ongoing') value="ongoing">Ongoing</option>
                         <option @selected(request()->has('status') && request()->order === 'upcoming') value="upcoming">Upcoming</option>
@@ -97,7 +109,7 @@
                 <div class="row">
                     @forelse ($batches as $batch)
                         <div class="col-md-4">
-                            <x-batch.single :course="$batch->course" :batch="$batch" />
+                            <x-batch.single :batch="$batch" />
                         </div>
                     @empty
                         <div class="text-center">

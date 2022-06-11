@@ -29,7 +29,7 @@ class NewBatchRequest extends FormRequest
             'attendees' => 'nullable|numeric',
             'price' => 'nullable|numeric',
             'video' => "nullable|string|url",
-            'images' => 'required|image',
+            'images' => 'required|image|size:2000',
             'startdate' => 'required|string|date',
             'enddate' => 'required|string|date',
             'title' => 'required|string',
@@ -42,7 +42,10 @@ class NewBatchRequest extends FormRequest
             'percent' => 'nullable|numeric|max:100|min:0',
             'time_limit' => 'nullable|string|date',
             'signup_limit' => 'nullable|numeric',
-            'certificates' => 'required'
+            'certificates' => 'required',
+            'category' => 'required',
+            'name' => ['required','string', 'unique:courses,name'],
+            'tags' => 'nullable|string|json',
         ];
     }
 

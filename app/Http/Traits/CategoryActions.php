@@ -9,15 +9,14 @@ trait CategoryActions {
 
     function getActiveCategories(){
         return Category::where('status', true)
-                        ->where('courses', '>', 0)
-                        ->whereRelation('getCourses', 'total_batches', '>', 0)
-                        ->withCount('getCourses')
+                        ->has('batches')
+                        ->withCount('batches')
                         ->get();
     }
 
     function getAllCategories(){
         return Category::where('status', true)
-                        ->withCount('getCourses')
+                        ->withCount('batches')
                         ->get();
     }
 

@@ -7,10 +7,10 @@
                 <div class="mb-4">
                     <a href="/users/{{$user->unique_id}}" class="btn btn-outline-warning">View Profile</a>
                     @if ($user->kyc_status == 'pending')
-                        <x-swal href="/users/{{$user->unique_id}}/actions/approve?action=true" class="btn btn-outline-primary">Approve</x-swal>
-                        <x-swal href="/users/{{$user->unique_id}}/actions/approve?action=true" class="btn btn-outline-danger">Decline</x-swal>
+                        <x-swal href="/users/{{$user->unique_id}}/actions/approve?action=true&type=approval" class="btn btn-outline-primary">Approve</x-swal>
+                        <x-swal href="/users/{{$user->unique_id}}/actions/approve?action=false&type=approval" class="btn btn-outline-danger">Decline</x-swal>
                     @elseif ($user->kyc_status === 'approved')
-                        <x-swal href="/users/{{$user->unique_id}}/actions/approve?action=true" class="btn btn-outline-primary">Revoke KYC</x-swal>
+                        <x-swal href="/users/{{$user->unique_id}}/actions/approve?action=false&type=revoke" class="btn btn-outline-primary">Revoke KYC</x-swal>
                     @endif
                 </div>
                 <div class="row">
