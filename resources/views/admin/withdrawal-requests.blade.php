@@ -43,7 +43,7 @@
                                     {{-- </td> --}}
                                     <td>
                                         <a href="/users/{{$withdrawal->user_id}}">
-                                            {{$withdrawal->firstname}} {{$withdrawal->lastname}}
+                                            {{$withdrawal->user->firstname}} {{$withdrawal->user->lastname}}
                                         </a>
                                     </td>
                                     <td>
@@ -53,7 +53,7 @@
                                         {{$withdrawal->type}}
                                     </td>
                                     <td>
-                                        {{$withdrawal->currency}} {{number_format($currency::convert($withdrawal->available, $withdrawal->currency, 'NGN'))}}
+                                        {{$withdrawal->currency}} {{number_format($currency::convert($withdrawal->user->wallet->available + $withdrawal->user->wallet->payouts, $withdrawal->user->currency, 'NGN'))}}
                                     </td>
                                     <td>
                                         <div class="badge {{$withdrawal->status ? 'badge-primary' : 'badge-warning'}}">{{$withdrawal->status}}</div>

@@ -46,8 +46,7 @@
 
     <div class="mt-3 px-0">
         <div class="p-0">
-            <h5 class="mb-0">KYC Confirmation</h5>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente, nemo.</p>
+            <h5 class="mb-0">Identity Confirmation Information</h5>
         </div>
 
         <div class="col-md-7">

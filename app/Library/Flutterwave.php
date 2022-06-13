@@ -27,6 +27,8 @@ class Flutterwave {
             'callback_url' => env('MAIN_APP_URL')."/bank/withdrawal/status",
             'debit_currency' => $withdrawal->currency
         ]);
+
+        // dd($response->collect());
         return $response->collect();
     }
 

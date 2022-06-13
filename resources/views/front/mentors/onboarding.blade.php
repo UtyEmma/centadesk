@@ -39,7 +39,7 @@
             <div class="container">
                 <div>
                     {{-- <h5 class="mb-0">Apply to become a Mentor</h5> --}}
-                    <p class="my-0">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vel, provident.</p>
+                    <p class="my-0">Please fill in your correct details as required below to enable us verify your identity and expert Status.</p>
                     <div class="progress mt-2" style="height: 3px;">
                     <div class="progress-bar" role="progressbar" id="onboarding-progress" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                 </div>

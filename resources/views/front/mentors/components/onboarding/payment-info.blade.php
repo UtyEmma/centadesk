@@ -4,8 +4,7 @@
 <div >
     <div class="px-0">
         <div class="p-0 mt-3">
-            <h5 class="mb-0">Payment Information</h5>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente, nemo.</p>
+            <h5 class="mb-0">Bank Account Information</h5>
         </div>
 
         {{-- <div class="border p-3 py-5 p-md-5 radius">

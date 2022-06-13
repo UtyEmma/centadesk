@@ -1,5 +1,5 @@
 <!-- Single Reviews Start -->
-<div class="single-review">
+<div class="single-review bg-transparent">
     <div class="review-author align-items-center">
         <div >
             <x-profile-img :user="$review" :size="'60px'" />

@@ -6,7 +6,6 @@
             <div>
             <div class="px-0 mt-3">
                 <h5 class="mb-0">Experience Information</h5>
-                <p>Share your experience to prove your expertise.</p>
             </div>
 
             <div class="">

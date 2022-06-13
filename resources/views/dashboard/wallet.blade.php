@@ -13,35 +13,53 @@
             <!-- Overview Top Start -->
             <div class="admin-top-bar flex-wrap">
                 <div class="overview-box">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="single-box w-100">
-                                <h5 class="title">Lifetime Earnings</h5>
-                                <div class="count">
-                                    <span style="font-size: 1rem;">{{request()->cookie('currency') ?? $user->currency}}</span>
-                                    {{number_format($wallet->earnings)}}
+                    <div class="row gx-2">
+                        <div class="col-md-3 col-6">
+                            <div class="single-box w-100 px-3">
+                                <h5 class="title mb-0">Lifetime Earnings</h5>
+                                <div class="count mt-0">
+                                    <span style="font-size: 14px;">{{request()->cookie('currency') ?? $user->currency}}</span>
+                                    <span style="font-size: 18px">
+                                        {{number_format($wallet->earnings)}}
+                                    </span>
                                 </div>
                                 {{-- <p><span>$235.00</span> This months</p> --}}
                             </div>
                         </div>
 
-                        <div class="col-md-4">
-                            <div class="single-box w-100">
-                                <h5 class="title">Available Balance</h5>
-                                <div class="count">
-                                    <span style="font-size: 1rem;">{{request()->cookie('currency') ?? $user->currency}}</span>
-                                    {{number_format($wallet->available)}}
+                        <div class="col-md-3 col-6">
+                            <div class="single-box w-100 px-3">
+                                <h5 class="title mb-0">Available Balance</h5>
+                                <div class="count mt-0">
+                                    <span style="font-size: 14px;">{{request()->cookie('currency') ?? $user->currency}}</span>
+                                    <span style="font-size: 18px">
+                                        {{number_format($wallet->available)}}
+                                    </span>
                                 </div>
                                 {{-- <p><span>345</span> This months</p> --}}
                             </div>
                         </div>
 
-                        <div class="col-md-4">
-                            <div class="single-box w-100">
-                                <h5 class="title">Pending Balance</h5>
-                                <div class="count">
-                                    <span style="font-size: 1rem;">{{request()->cookie('currency') ?? $user->currency}}</span>
-                                    {{number_format($wallet->escrow)}}
+                        <div class="col-md-3 col-6">
+                            <div class="single-box w-100 px-3">
+                                <h5 class="title mb-0">Pending Balance</h5>
+                                <div class="count mt-0">
+                                    <span style="font-size: 14px;">{{request()->cookie('currency') ?? $user->currency}}</span>
+                                    <span style="font-size: 18px">
+                                        {{number_format($wallet->escrow)}}
+                                    </span>
+                                </div>
+                                {{-- <p><span>345</span> This months</p> --}}
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-6">
+                            <div class="single-box w-100 px-3">
+                                <h5 class="title mb-0">Pending Payment</h5>
+                                <div class="count mt-0">
+                                    <span style="font-size: 14px;">{{request()->cookie('currency') ?? $user->currency}}</span>
+                                    <span style="font-size: 18px">
+                                        {{number_format($wallet->payouts)}}
+                                    </span>
                                 </div>
                                 {{-- <p><span>345</span> This months</p> --}}
                             </div>
@@ -76,17 +94,17 @@
                                         <td class="py-2">{{request()->cookie('currency')}} {{number_format($withdrawal->amount)}}</td>
                                         <td> {{$withdrawal->type}} </td>
                                         <td>
-                                            @if ($withdrawal->type === 'crypto')
-                                                {{$withdrawal->wallet_key}}
-                                            @elseif ($withdrawal->type === 'bank')
-                                                {{$withdrawal->account_no}}
-                                            @endif
+                                            {{-- @if ($withdrawal->type === 'crypto')
+                                                {{$withdrawal->wallet_key}} --}}
+                                            {{-- @elseif ($withdrawal->type === 'bank') --}}
+                                            {{$withdrawal->account_no}}
+                                            {{-- @endif --}}
                                         </td>
                                         <td>
-                                            @if ($withdrawal->type === 'crypto')
-                                            @elseif ($withdrawal->type === 'bank')
-                                                {{$withdrawal->bank_name}}
-                                            @endif
+                                            {{-- @if ($withdrawal->type === 'crypto') --}}
+                                            {{-- @elseif ($withdrawal->type === 'bank') --}}
+                                            {{$withdrawal->bank_name}}
+                                            {{-- @endif --}}
                                         </td>
                                         <td>
                                             <small class="bg-secondary p-2 py-1 rounded fs-6">
@@ -100,7 +118,7 @@
                                 @endforeach
                             @else
                                 <tr>
-                                    <td colspan="5" class="text-center pt-5 ">
+                                    <td colspan="6" class="text-center pt-5 ">
                                         <h4>You have not made any withdrawals</h4>
                                     </td>
                                 </tr>

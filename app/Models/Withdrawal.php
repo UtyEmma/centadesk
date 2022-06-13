@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Casts\Currency;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -22,8 +23,8 @@ class Withdrawal extends Model{
         'amount' => Currency::class
     ];
 
-    public function users (){
-        return $this->hasMany(User::class, 'user_id', 'unique_id');
+    public function user (){
+        return $this->hasOne(User::class, 'unique_id', 'user_id');
     }
 
 

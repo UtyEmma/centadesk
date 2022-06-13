@@ -15,10 +15,10 @@
         @else
             <div class="w-100 border text-center radius p-5">
                 @if (Auth::user())
-                    <h6>Be the first to review this Course</h6>
-                    <p>Enroll in any of the active batches and let us know what you think.</p>
+                    <h6>Be the first to review this Session</h6>
+                    <p>Enroll and let us know what you think.</p>
                 @else
-                    <h6>There are no reviews for this course</h6>
+                    <h6>There are no reviews for this Session</h6>
                 @endif
             </div>
         @endif

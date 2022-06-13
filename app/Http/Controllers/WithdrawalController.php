@@ -35,9 +35,6 @@ class WithdrawalController extends Controller{
             $wallet->payouts += $request->amount;
             $wallet->save();
 
-            $withdrawal->status = 'inprogress';
-            $withdrawal->save();
-
             $message = [
                 Notifications::parse('image', asset('images/email/kyc-pending.png')),
                 Notifications::parse('text', 'Your Withdrawal has been initiated! You will be notified when the process is completed.'),

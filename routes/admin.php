@@ -160,7 +160,7 @@ Route::middleware('auth:admin')->group(function(){
         Route::get('/requests', [WithdrawalController::class, 'withdrawalRequests']);
         Route::get('/confirm', [WithdrawalController::class, 'sendFunds']);
         Route::get('/decline', [WithdrawalController::class, 'delineWithdrawal']);
-        Route::get('/update', [WithdrawalController::class, 'sendFunds']);
+        // Route::get('/update', [WithdrawalController::class, 'sendFunds']);
     });
 
 });

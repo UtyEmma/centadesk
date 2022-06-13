@@ -6,7 +6,6 @@
         <div>
             <div class="px-0">
                 <h5 class="mb-0">Your Qualifications</h5>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente, nemo.</p>
             </div>
 
             <div class="py-5 px-0">

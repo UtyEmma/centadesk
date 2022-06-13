@@ -6,12 +6,13 @@
 </div>
 
 <div class="modal fade" id="withdrawalModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-sm modal-dialog-centered">
+    <div class="modal-dialog modal-md modal-dialog-centered">
       <div class="modal-content mx-auto ">
         <div class="modal-header pt-5">
           <h5 class="modal-title" id="exampleModalLabel">Withdraw Funds</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
+
         <form action="/me/wallet/withdraw" method="POST">
             <div class="modal-body text-start">
                 @csrf
@@ -39,7 +40,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary btn-hover-primary btn-custom" data-bs-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary btn-hover-dark btn-custom">Proceed to payment</button>
+                <button type="submit" class="btn btn-primary btn-hover-dark btn-custom">Withdraw</button>
             </div>
         </form>
       </div>
