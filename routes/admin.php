@@ -157,7 +157,7 @@ Route::middleware('auth:admin')->group(function(){
 
     Route::prefix('/withdrawals')->group(function(){
         Route::get('/', [WithdrawalController::class, 'show']);
-        Route::get('/requests', [WithdrawalController::class, 'withdrawalRequests']);
+        Route::get('/requests', [WithdrawalController::class, 'withdrawalRequests'])->name('admin.withdrawals.requests');
         Route::get('/confirm', [WithdrawalController::class, 'sendFunds']);
         Route::get('/decline', [WithdrawalController::class, 'delineWithdrawal']);
         // Route::get('/update', [WithdrawalController::class, 'sendFunds']);

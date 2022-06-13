@@ -46,27 +46,21 @@
                         <span class="active"></span>
                     </button>
                     <div class="dropdown-menu dropdown-notification right-0" style="right: 0;">
-                        <ul class="notification-items-list">
+                        <ul class="notification-items-list" style="height: 50vh; overflow-y: scroll;">
                             @foreach ($user->notifications as $key => $notification)
-                                <li class="notification-item">
-                                    <div class="row">
-                                        <div class="col-2">
-                                            <span class="notify-icon bg-success text-white"><i class="icofont-ui-user"></i></span>
-                                        </div>
-
-                                        <div class="col-10">
-                                            <div class="dropdown-body">
-                                                <a href="{{$notification->data['link'] ?? ''}}">
-                                                    {{$notification->data['title']}}
-                                                </a>
-                                            </div>
-                                            <small class="mt-0" style="font-size: 12px;">{{Date::parse($notification->created_at)->diffForHumans()}}</small>
-                                        </div>
+                                <li class="notification-item d-block">
+                                    <div class="dropdown-body w-100">
+                                        <small>
+                                            {{$notification->data['title']}}
+                                        </small>
+                                    </div>
+                                    <div>
+                                        <small class="mt-0" style="font-size: 12px;">{{Date::parse($notification->created_at)->diffForHumans()}}</small>
                                     </div>
                                 </li>
                             @endforeach
                         </ul>
-                        <a class="all-notification" href="#">See all notifications <i class="icofont-simple-right"></i></a>
+                        {{-- <a class="all-notification" href="#">See all notifications <i class="icofont-simple-right"></i></a> --}}
                     </div>
                 </div>
 

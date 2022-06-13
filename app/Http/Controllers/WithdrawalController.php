@@ -7,6 +7,7 @@ use App\Library\Flutterwave;
 use App\Library\Notifications;
 use App\Library\Response;
 use App\Library\Token;
+use App\Models\Admin;
 use App\Models\Transaction;
 use App\Models\User;
 use App\Models\Wallet;
@@ -42,8 +43,23 @@ class WithdrawalController extends Controller{
             ];
 
 
-            $notification = Notifications::builder("Your Withdrawal has been initiated!", $message);
-            Notifications::send($user, $notification, ['mail', 'database']);
+            $admins = Admin::all();
+            $notification = Notifications::builder("New Withdrawal Request!", $message);
+            Notifications::send($user, $notification, ['mail']);
+
+            $message = [
+                Notifications::parse('image', asset('images/email/kyc-pending.png')),
+                Notifications::parse('text', 'There is a new withdrawal request on '.env('APP_NAME')),
+                Notifications::parse('text', 'Click the button below to view all Withdrawal Requests'),
+                Notifications::parse('action', [
+                    'link' => route('admin.withdrawals.requests'),
+                    'action' => "Withdrawal Requests"
+                ])
+            ];
+
+
+            $notification = Notifications::builder("Attention Required! A new Withdrawal has been initiated!", $message);
+            Notifications::send($admins, $notification, ['mail']);
 
 
             return Response::redirectBack('success', "Your Withdrawal process has been initiated! You will be notified when it is completed");
