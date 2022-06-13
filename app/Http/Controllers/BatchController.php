@@ -109,7 +109,7 @@ class BatchController extends Controller{
     function newBatchPage(Request $request, $slug){
         try {
             $user = $this->user();
-            $course = $this->getCourseBySlug($slug, $user);
+            if(!$course = $this->getCourseBySlug($slug, $user)) return abort(404);
             $categories = $this->getAllCategories();
             return Response::view('dashboard.course-details.new-batch', [
                 'mentor' => $user,

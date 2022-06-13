@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreateCourseRequest;
 use App\Http\Requests\NewBatchRequest;
 use App\Library\Currency;
 use App\Library\FileHandler;
@@ -42,7 +43,7 @@ class SessionController extends Controller
 
     }
 
-    public function createCourse(Request $request){
+    public function createCourse(CreateCourseRequest $request){
 
         // $course = null;
         // if($request->type === 'series' && $request->filled('name')) {
@@ -51,7 +52,7 @@ class SessionController extends Controller
             $slug = Str::slug($request->name, '-');
 
             if(!$category = Category::where('slug', $request->category)->first())
-                                        throw Response::redirectBack('error', 'The selected category does not exist.');
+                                        return Response::redirectBack('error', 'The selected category does not exist.');
 
             $course = Courses::create([
                 'unique_id' => $course_id,
@@ -66,7 +67,7 @@ class SessionController extends Controller
     }
 
     public function createBatch(NewBatchRequest $request, $slug){
-        $course = Courses::where('slug', $slug)->first();
+        if(!$course = Courses::where('slug', $slug)->first()) return Response::redirectBack('error', 'Invalid Request');
         return $this->newBatch($request, $course);
     }
 

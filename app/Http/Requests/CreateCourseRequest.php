@@ -25,14 +25,28 @@ class CreateCourseRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['required','string', 'unique:courses,name'],
-            'desc' => 'required|string',
-            'tags' => 'nullable|string|json',
+            'class_link' => 'nullable|string|url',
+            'access_link' => 'nullable|string|url',
+            'attendees' => 'nullable|numeric',
+            'price' => 'nullable|numeric',
             'video' => "nullable|string|url",
-            'images' => 'required|image',
-            'excerpt' => 'required|string|max:120',
-            'category' => 'required|string',
-            'objectives' => 'json'
+            'images' => 'required|image|size:2000',
+            'startdate' => 'required|string|date',
+            'enddate' => 'required|string|date',
+            'title' => 'required|string',
+            'short_code' => 'nullable|string',
+            'discount' => 'required|string',
+            'excerpt' => 'required|string',
+            'objectives' => 'required|string',
+            'discount_price' => 'nullable|numeric',
+            'fixed' => 'nullable|numeric',
+            'percent' => 'nullable|numeric|max:100|min:0',
+            'time_limit' => 'nullable|string|date',
+            'signup_limit' => 'nullable|numeric',
+            'certificates' => 'required',
+            'category' => 'required',
+            'name' => ['required','string', 'unique:courses,name'],
+            'tags' => 'nullable|string|json',
         ];
     }
 }

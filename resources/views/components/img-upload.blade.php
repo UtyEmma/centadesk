@@ -5,6 +5,7 @@
             const file = e.target.files[0]
             const validation = this.validateImage(file)
             if(validation.status){
+                document.getElementById('image-error').innerText = ''
                 preview.src = URL.createObjectURL(file)
                 $('#del-btn').show()
             }else{

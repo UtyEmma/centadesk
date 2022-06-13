@@ -3,7 +3,7 @@
     <x-page-title title="Mentor Dashboard - Create A New Session" />
 
     @push('scripts')
-        <script src="{{asset('js/pages/createbatch.js')}}"></script>
+        <script src="{{asset('js/pages/createbatchfromcourse.js')}}"></script>
     @endpush
 
     <div class="py-4">
@@ -13,7 +13,7 @@
                 <h6 class="tag" >{{$course->category}}</h6>
             </div>
 
-            <form action="/me/courses/new" method="POST" onsubmit="return validateCourseInput(event)" enctype="multipart/form-data">
+            <form action="/me/courses/{{$course->slug}}/batch/create" method="POST" onsubmit="return validateBatchDetails(event)" enctype="multipart/form-data">
                 @csrf
                 <div class="bg-secondary radius p-2 my-2 border border-primary">
                     <h5 class="mb-0">Create a New Session</h5>
@@ -205,7 +205,7 @@
                     </div>
 
                     <div class="mt-5 d-flex justify-content-end">
-                        <button type="submit" class="btn float-right btn-primary btn-hover-dark radius btn-custom">Create Series</button>
+                        <button type="submit" class="btn float-right btn-primary btn-hover-dark radius btn-custom">Create Session</button>
                     </div>
                 </div>
             </form>

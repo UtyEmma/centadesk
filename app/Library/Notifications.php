@@ -3,6 +3,7 @@
 namespace App\Library;
 
 use App\Notifications\GeneralNotification;
+use App\Notifications\GeneralQueuedNotification;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Notification;
 
@@ -28,9 +29,13 @@ class Notifications {
         ];
     }
 
-    static function send($receivers, $data, $channels = ['mail', 'database']){
+    static function send($receivers, $data, $channels = ['mail', 'database'], $queue = false){
         try {
-            Notification::send($receivers, new GeneralNotification($data, $channels));
+            if($queue){
+                Notification::send($receivers, new GeneralQueuedNotification($data, $channels));
+            }else{
+                Notification::send($receivers, new GeneralNotification($data, $channels));
+            }
         } catch (\Throwable $th) {}
     }
 

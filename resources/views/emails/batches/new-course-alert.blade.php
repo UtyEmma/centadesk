@@ -1,4 +1,4 @@
-<x-email-index>
+<x-email.index>
     <tr>
         <td style="padding: 30px 30px 15px 30px;">
             <h2 style="font-size: 18px; color: #309255; font-weight: 600; margin: 0;">A new Course you may be interested in has been created</h2>
@@ -17,4 +17,4 @@
             <a href="{{env('MAIN_APP_URL')}}/courses/{{$course->slug}}/{{$batch->short_code}}" style="background-color:#309255;border-radius:4px;color:#ffffff;display:inline-block;font-size:13px;font-weight:600;line-height:38px;text-align:center;text-decoration:none;text-transform: uppercase; padding: 0 30px">Check it Out</a>
         </td>
     </tr>
-</x-email-index>
+</x-email.index>
