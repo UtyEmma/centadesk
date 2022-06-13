@@ -41,7 +41,10 @@ class BatchController extends Controller{
         }else{
             $query =  Batch::query();
 
-            // $query->where('startdate', '>', Date::now());
+            $query->orderBy('startdate');
+            if(!$request->order){
+                $query->where('startdate', '>', Date::now());
+            }
 
             $query->with(['mentor', 'course', 'enrollments.student', 'reviews'])
                         ->withCount('enrollments');
@@ -52,6 +55,19 @@ class BatchController extends Controller{
 
             $query->when($request->order === 'students', function ($query) {
                 return $query->orderBy('total_students', 'desc');
+            });
+
+            $query->when($request->order === 'ongoing', function ($query) {
+                return $query->where('startdate', '<==', now())
+                            ->where('enddate', '>==', now());
+                        });
+
+            $query->when($request->order === 'upcoming', function ($query) {
+                return $query->where('startdate', '>', Date::now());
+            });
+
+            $query->when($request->order === 'completed', function ($query) {
+                return $query->where('enddate', '<', Date::now())->where('startdate', '<', now());
             });
 
             $query->when($request->price === 'free', function ($query) {

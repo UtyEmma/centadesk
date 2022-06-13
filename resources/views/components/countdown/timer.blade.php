@@ -1,7 +1,8 @@
 <script>
     $(() => {
-        const date = moment("{{$date}}", "HH:mm, DD MMM, YYYY").format("YYYY/MM/DD HH:mm:ss");
-        $("#{{$id}}").countdown(date, function(event) {
+        const date = moment("{{$date}}", "YYYY-MM-DD HH:mm:ss").format("YYYY/MM/DD HH:mm:ss");
+
+        const countdown = $("#{{$id}}").countdown(date, function(event) {
             const days = event.offset.totalDays > 0 ? '%-Dd :' : ''
             const hours = event.offset.totalHours > 0 ? '%-Hh :' : ''
             const minutes = event.offset.totalMinutes > 0 ? '%-Mm :' : ''
@@ -10,6 +11,8 @@
         }).on('finish.countdown', function(){
             window.location.reload()
         })
+
+        console.log(countdown)
     })
 </script>
 

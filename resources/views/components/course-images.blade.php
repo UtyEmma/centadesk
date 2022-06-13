@@ -4,7 +4,7 @@
         <img src="{{$image}}" alt="{{$alt ?? ''}}" style="min-height: 100%" />
         <div class="courses-play">
             <img src="{{asset('images/courses/circle-shape.png')}}" class="" alt="Play">
-            <a class="play video-popup" href="{{$link::youtubeEmbedded($video)}}"><i class="flaticon-play"></i></a>
+            <a class="play video-popup" href="https://www.youtube.com/embed/{{$link::youtubeEmbedded($video)}}"><i class="flaticon-play"></i></a>
         </div>
     </div>
 </div>

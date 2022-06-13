@@ -106,7 +106,7 @@
         <div class="container">
             <!-- Courses Wrapper Start  -->
             <div class="courses-wrapper-02 mt-0 pt-3">
-                <div class="row">
+                <div class="row gy-3">
                     @forelse ($batches as $batch)
                         <div class="col-md-4">
                             <x-batch.single :batch="$batch" />

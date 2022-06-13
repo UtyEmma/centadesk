@@ -17,7 +17,7 @@ class AppController extends Controller {
     use CategoryActions, CourseActions;
 
     function index(Request $request){
-        $batches = Batch::with(['course', 'mentor'])->get();
+        $batches = Batch::with(['course', 'mentor'])->where('startdate', '>', now())->get();
         $categories = $this->getTopCategories();
         $testimonials = Testimonial::all();
         // dd($categories);
@@ -29,7 +29,8 @@ class AppController extends Controller {
             'batches' => $batches,
             'categories' => $categories,
             'testimonials' => $testimonials,
-            'posts' => $posts->get()
+            'posts' => $posts->get(),
+            'sessionsCount' => Batch::all()->count()
         ]);
     }
 

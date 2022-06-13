@@ -95,7 +95,7 @@ class SessionController extends Controller
             'attendees' => $request->attendees,
             'price' => $price,
             'tags' => $request->tags,
-            'category' => $request->category ?? $course->category,
+            'category' => $course->category,
             'desc' => $request->desc,
             'video' => $request->video,
             'certificates' => $request->certificates === 'on' ? true : false,

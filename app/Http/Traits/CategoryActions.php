@@ -11,6 +11,7 @@ trait CategoryActions {
         return Category::where('status', true)
                         ->has('batches')
                         ->withCount('batches')
+                        ->with('batches')
                         ->get();
     }
 

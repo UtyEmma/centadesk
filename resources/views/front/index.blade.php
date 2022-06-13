@@ -5,10 +5,10 @@
     <div class="section slider-section">
         <div class="container">
             <div class="slider-content">
-                <h4 class="sub-title">Find your favourite course</h4>
+                <h4 class="sub-title">Join amazing Sessions with top experts</h4>
                 <h2 class="main-title">Start learning from anywhere, and build your <span>bright career.</span></h2>
                 <p>Find and create amazing courses, host sessions anywhere and enroll students anytime.</p>
-                <a class="btn btn-primary btn-hover-dark" href="/courses">Start A Course</a>
+                <a class="btn btn-primary btn-hover-dark" href="/sessions">Find a Session</a>
             </div>
         </div>
 
@@ -20,7 +20,7 @@
             <div class="box-content">
                 <div class="box-wrapper">
                     <i class="flaticon-open-book"></i>
-                    <span class="count">{{$batches->count() + env('NUMBER_OF_COURSES')}}+</span>
+                    <span class="count">{{$sessionsCount + env('NUMBER_OF_COURSES')}}+</span>
                     <p>courses</p>
                 </div>
             </div>
@@ -80,7 +80,7 @@
                 <div class="courses-top">
                     <!-- Section Title Start -->
                     <div class="section-title shape-01">
-                        <h2 class="main-title">All <span>Sessions</span> of {{env('APP_NAME')}}</h2>
+                        <h2 class="main-title">Upcoming <span>Sessions</span> on {{env('APP_NAME')}}</h2>
                     </div>
                     <!-- Section Title End -->
 
@@ -88,7 +88,7 @@
                     <div class="courses-search">
                         <form action="/sessions" type="GET">
                             @csrf
-                            <input type="text" name="keyword" placeholder="Search for Courses...">
+                            <input type="text" name="keyword" placeholder="Search for Sessions...">
                             <button type="submit"><i class="flaticon-magnifying-glass"></i></button>
                         </form>
                     </div>
@@ -96,7 +96,7 @@
                 </div>
                 <!-- All Courses Top End -->
                 <!-- All Courses tab content Start -->
-                <div class="row mt-5">
+                <div class="row mt-5 gy-3">
                     @foreach ($batches as  $batch )
                         <div class="col-lg-4 col-md-6">
                             <x-batch.single :course="$batch->course" :batch="$batch" :mentor="$batch->mentor" />
@@ -155,8 +155,8 @@
 
             <!-- Section Title Start -->
             <div class="section-title shape-03 text-center">
-                <h5 class="sub-title">Over {{$batches->count() + env('NUMBER_OF_COURSES')}}+ Course</h5>
-                <h2 class="main-title">How It <span> Work?</span></h2>
+                <h5 class="sub-title">Over {{$sessionsCount + env('NUMBER_OF_COURSES')}}+ Course</h5>
+                <h2 class="main-title">How It <span> Works?</span></h2>
             </div>
             <!-- Section Title End -->
 
