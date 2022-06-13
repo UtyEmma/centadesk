@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\NewBatchRequest;
-use App\Jobs\NewCourseAlert;
 use App\Library\Currency;
 use App\Library\FileHandler;
 use App\Library\Notifications;
@@ -14,10 +13,8 @@ use App\Library\Token;
 use App\Models\Batch;
 use App\Models\Category;
 use App\Models\Courses;
-use App\Notifications\NewBatchPublishedNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Date;
-use Illuminate\Support\Facades\Notification;
 
 class SessionController extends Controller
 {

@@ -130,6 +130,7 @@ class User extends Authenticatable{
             'unique_id' => $this->unique_id,
             'firstname' => $this->firstname,
             'lastname' => $this->lastname,
+            'interests' => $this->interests
         ];
 
         return $index;

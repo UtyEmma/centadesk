@@ -4,6 +4,7 @@ namespace App\Observers;
 
 use App\Models\Batch;
 use App\Models\Courses;
+use App\Models\Enrollment;
 use App\Models\User;
 use App\Notifications\NewCourseAlertNotification;
 use Illuminate\Support\Facades\Notification;
@@ -11,28 +12,24 @@ use Illuminate\Support\Facades\Notification;
 class BatchObserver {
 
     public function created(Batch $batch){
-        // $category = $batch->category;
-        // $mentor = User::find($batch->mentor_id);
-        // $query = User::query();
+        $category = $batch->category;
+        $mentor = User::find($batch->mentor_id);
+        $users = User::where('interests', 'like', "%\"{$category}\"%")->get();
 
-        // $query->where('status', true)
-        //         ->whereIn('courses.category', "users.interests")
-        //         ->with(['course', 'enrollments'])
-        //         ->withCount(['course', 'enrollments'])
-        //         ->get();
+        // $enrollments = Enrollment::where('course_id', $batch->course_id)->with('student')->get();
 
-        // $users = User::where(function($query) use($category){
-        //     $interest = collect($query->get('interests'));
-        //     return $interest->contains($category);
-        // })->get();
+        $users = User::where(function($query) use($category){
+            $interest = collect($query->get('interests'));
+            return $interest->contains($category);
+        })->get();
 
-        // $notification = [
-        //     'course' => $batch->course,
-        //     'mentor' => $mentor,
-        //     'batch' => $this->batch
-        // ];
+        $notification = [
+            'course' => $batch->course,
+            'mentor' => $mentor,
+            'batch' => $this->batch
+        ];
 
-        // Notification::send($users, new NewCourseAlertNotification($notification));
+        Notification::send($users, new NewCourseAlertNotification($notification));
     }
 
     public function updated(Batch $batch) {

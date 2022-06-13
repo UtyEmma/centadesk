@@ -24,11 +24,15 @@
         })
 
         function validateImage(file){
-            // console.log(file.type.substring('jsdkkj'))
             if(!file){
                 return {
                     status: false,
                     message: "No file was selected"
+                }
+            }else if(!file.type.startsWith('image/')){
+                return {
+                    status: false,
+                    message: "File type must be an image"
                 }
             }else if(file.size > 2000000){
                 return {

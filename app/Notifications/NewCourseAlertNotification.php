@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class NewCourseAlertNotification extends Notification implements ShouldQueue{
+class NewCourseAlertNotification extends Notification{
     use Queueable;
 
     private $details;
@@ -41,7 +41,7 @@ class NewCourseAlertNotification extends Notification implements ShouldQueue{
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->subject('New Course Alert!')
+                    ->subject('New Course Alert from '.env('APP_NAME'))
                     ->view('emails.batches.new-course-alert', $this->details);
     }
 
