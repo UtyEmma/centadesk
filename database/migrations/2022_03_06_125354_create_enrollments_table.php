@@ -22,6 +22,8 @@ return new class extends Migration
             $table->string('transaction_id')->unique();
             $table->timestamps();
 
+            $table->softDeletes();
+
             $table->foreign('student_id')
                     ->references('unique_id')->on('users')
                     ->onDelete('cascade');

@@ -22,7 +22,8 @@ class Wallet extends Model{
         'referrals' => 0,
         'withdrawals' => 0,
         'payouts' => 0,
-        'deposits' => 0
+        'deposits' => 0,
+        'status' => true
     ];
 
     protected $casts = [

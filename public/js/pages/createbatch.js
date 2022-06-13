@@ -16,11 +16,15 @@ const __batchSchema = (values) => {
             percent: 'numeric|digits_between:0,100',
             fixed: `numeric|max:${values.price}|min:0`,
             signup_limit: 'numeric',
-            certificates: 'required|boolean'
+            certificates: 'required|boolean',
+            category: 'required|string',
+            name: 'required|string'
         },
 
         attributes: {
             title: 'Title',
+            name: "Series Name",
+            category: 'Category',
             excerpt: 'Short Description',
             desc: 'Description',
             objectives: 'Objectives',

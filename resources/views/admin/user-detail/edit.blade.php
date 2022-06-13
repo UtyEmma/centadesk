@@ -78,7 +78,43 @@
                                 <label for="">Instagram</label>
                                 <input type="text" name="Instagram" placeholder="Username" value="{{$user->instagram}}" class="form-control" />
                             </div>
-                        </div>
+
+                                <div class="form-group col-md-6">
+                                    <label class="">Bank</label>
+                                    <select name="bank" class="w-100 radius form-control border mb-2">
+                                        <option>Select Bank</option>
+                                        @foreach ($banks as $bank)
+                                            <option @selected($bank->code === $user->bank) value="{{$bank->code}}">{{$bank->name}}</option>
+                                        @endforeach
+                                    </select>
+                                    {{-- <input class="input form-control" name='bank' value="{{$user->bank}}" placeholder="Bank"> --}}
+                                    <small class="text-danger text-capitalize">
+                                        @error('bank')
+                                            {{$message}}
+                                        @enderror
+                                    </small>
+                                </div>
+
+                                <div class="form-group col-md-6">
+                                    <label class="">Account Number</label>
+                                    <input class="input form-control" name='account_number'  value="{{$user->account_no}}" placeholder="Account Number">
+                                    <small class="text-danger text-capitalize">
+                                        @error('account_number')
+                                            {{$message}}
+                                        @enderror
+                                    </small>
+                                </div>
+
+                                <div class="form-group col-12">
+                                    <label class="">Account Name</label>
+                                    <h5 id="account_name"></h5>
+                                    <input class="input form-control" name="account_name" value="{{$user->account_name}}"  placeholder="Account Name" >
+                                    <small class="text-danger text-capitalize">
+                                        @error('account_name')
+                                            {{$message}}
+                                        @enderror
+                                    </small>
+                                </div>
                     </div>
 
                     <div class="">

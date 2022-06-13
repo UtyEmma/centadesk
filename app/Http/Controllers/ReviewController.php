@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Traits\BatchActions;
 use App\Http\Traits\ReviewActions;
+use App\Library\Notifications;
 use App\Library\Response;
 use App\Library\Token;
 use App\Models\Batch;
@@ -45,6 +46,22 @@ class ReviewController extends Controller{
             $mentor->avg_rating = $this->calculateRatings('mentor_id', $mentor->unique_id);
             ++$mentor->total_reviews;
             $mentor->save();
+
+            $message = [
+                Notifications::parse('image', asset('images/email/kyc-success.png')),
+                'greeting' => "Hi, $user->firstname",
+                Notifications::parse('text', 'Your Session <strong>'.$batch->title.'</strong> has received a new review and a <strong>'.$request->rating.'.0</strong> rating from <strong>'.$user->firstname.' '.$user->lastname.'</strong>'),
+                Notifications::parse('text', 'You can check out how your sessions are performing by clicking the link below!.'),
+                Notifications::parse('action', [
+                    'link' => route('mentor.courses'),
+                    'action' => "My Courses"
+                ]),
+                Notifications::parse('text', "Remember, your Students are waiting to join more amazing sessions from you."),
+            ];
+
+            $notification = Notifications::builder("You have a new review!", $message);
+            Notifications::send($user, $notification, ['mail']);
+
 
             return Response::redirectBack('success', "Your Review has been submitted");
         } catch (\Throwable $th) {
@@ -90,8 +107,8 @@ class ReviewController extends Controller{
         }
     }
 
-    function fetchMentorReviews(Request $request){
-
+    function fetchUserReviews($column, $user){
+        return Review::where($column, $user->unique_id)->with('publisher')->get();
     }
 
 }

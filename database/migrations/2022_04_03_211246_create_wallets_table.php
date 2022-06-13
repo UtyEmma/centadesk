@@ -25,6 +25,7 @@ return new class extends Migration
             $table->integer('referrals');
             $table->integer('withdrawals');
             $table->integer('deposits');
+            $table->boolean('status');
             $table->timestamps();
 
             $table->foreign('user_id')

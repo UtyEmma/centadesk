@@ -81,7 +81,7 @@
                         <tbody>
                             <tr>
                                 <td style="text-align: center; padding-bottom:25px">
-                                    <a href="https://libraclass.com"><img style="height: 40px" src="{{asset('images/libra-main.png')}}"></a>
+                                    <a href="{{env('APP_URL')}}"><img style="height: 40px" src="{{asset('images/libra-main.png')}}"></a>
                                 </td>
                             </tr>
                         </tbody>

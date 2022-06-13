@@ -18,4 +18,8 @@ class Review extends Model{
         'status' => false
     ];
 
+    public function publisher(){
+        $this->belongsTo(User::class, 'user_id', 'unique_id');
+    }
+
 }

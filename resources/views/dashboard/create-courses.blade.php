@@ -3,7 +3,7 @@
     <x-page-title title="Mentor Dashboard - Create Courses" />
 
     @push('scripts')
-        <script src="{{asset('js/pages/createcourse.js')}}"></script>
+        <script src="{{asset('js/pages/createbatch.js')}}"></script>
     @endpush
 
     <div class="py-4">
@@ -13,7 +13,7 @@
                 <p class="my-0">If you intend to create a new series .</p>
             </div>
 
-            <form action="/me/courses/new" method="POST" onsubmit="return validateCourseInput(event)" enctype="multipart/form-data">
+            <form action="/me/courses/new" method="POST" onsubmit="return validateBatchDetails(event)" enctype="multipart/form-data">
                 @csrf
 
                 <div class="card card-body radius">
@@ -88,13 +88,13 @@
                             <div class="single-form">
                                 <label>Session Waiting Link</label>
                                 <input type="text" name="class_link" value="{{old('class_link')}}" class="form-control" placeholder="https://">
-                                <x-errors name="link" />
+                                <x-errors name="class_link" />
                             </div>
 
                             <div class="single-form">
                                 <label>Session Access Link</label>
                                 <input type="text" name="access_link" value="{{old('access_link')}}" class="form-control" placeholder="https://">
-                                <x-errors name="link" />
+                                <x-errors name="access_link" />
                             </div>
 
                             <div class="form-check mt-3">

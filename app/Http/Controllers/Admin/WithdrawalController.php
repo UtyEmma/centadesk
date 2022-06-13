@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Traits\WithdrawalActions;
 use App\Jobs\ProcessWithdrawals;
 use App\Library\Flutterwave;
+use App\Library\Notifications;
 use App\Library\Response;
 use App\Models\User;
 use App\Models\Wallet;
@@ -18,8 +19,24 @@ class WithdrawalController extends Controller{
 
     function sendFunds(Request $request){
         try {
-            if(!Withdrawal::find($request->withdrawal_id)) throw new Exception('The Requested withdrawal was not found');
+            if(!$$withdrawal = Withdrawal::find($request->withdrawal_id)) throw new Exception('The Requested withdrawal was not found');
             $this->handleWithdrawal($request->withdrawal_id);
+            $user = User::find($withdrawal);
+
+            $message = [
+                'greeting' => "Hi, $user->firstname",
+                Notifications::parse('text', 'Your withdrawal has been approved!'),
+                Notifications::parse('text', 'Your funds are on the way. You It will be sent into the Bank Account provided on your profile.'),
+                Notifications::parse('text', 'Please click the link below to reach out to our Support team if you have any complaints or have not received the funds.'),
+                Notifications::parse('action', [
+                    'link' => "mailto:".env('LIBRACLASS_EMAIL'),
+                    'action' => "Contact Support"
+                ]),
+                Notifications::parse('text', "Thank you for staying with us!"),
+            ];
+
+            $notification = Notifications::builder("Your funds are on the way!", $message);
+            Notifications::send($user, $notification, ['mail', 'database']);
             return Response::redirectBack('success', 'Withdrawal Completed');
         } catch (\Throwable $th) {
             return Response::redirectBack('error', $th->getMessage());

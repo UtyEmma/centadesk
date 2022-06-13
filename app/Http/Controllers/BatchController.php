@@ -43,7 +43,7 @@ class BatchController extends Controller{
 
             // $query->where('startdate', '>', Date::now());
 
-            $query->with(['mentor', 'course', 'enrollments.student'])
+            $query->with(['mentor', 'course', 'enrollments.student', 'reviews'])
                         ->withCount('enrollments');
 
             $query->when($request->category, function($query, $category){
@@ -86,17 +86,6 @@ class BatchController extends Controller{
         }
     }
 
-    function fetch(Request $request, $batch_id){
-        $batch = DB::table('batches')
-                    ->where('unique_id', $batch_id)
-                    ->join('enrollments', 'batches.unique_id', 'enrollments.batch_id')
-                    ->join('users', 'users.unique_id', 'enrollments.student_id')
-                    ->get();
-
-        return view('', [
-            'batches' => $batch
-        ]);
-    }
 
     function fetchBatchStudents(Request $request, $slug, $shortcode){
         try {

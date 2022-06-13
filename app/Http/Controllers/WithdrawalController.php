@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Library\Currency;
 use App\Library\Flutterwave;
+use App\Library\Notifications;
 use App\Library\Response;
 use App\Library\Token;
 use App\Models\Transaction;
@@ -21,7 +22,12 @@ class WithdrawalController extends Controller{
         try {
             $user = $this->user();
             $wallet = Wallet::where('user_id', $user->unique_id)->first();
-            if($wallet->available < $request->amount) return Response::redirectBack('error', 'You do not have sufficient funds for this transaction.');
+
+            if(!$wallet->status)
+                    return Response::redirectBack('error', "You cannot make a withdrawal because your account is under review!");
+
+            if($wallet->available < $request->amount)
+                    return Response::redirectBack('error', 'You do not have sufficient funds for this transaction.');
 
             $withdrawal = $this->createWithdrawal($user, $request->amount, $request->type ?? 'bank');
 
@@ -32,7 +38,18 @@ class WithdrawalController extends Controller{
             $withdrawal->status = 'inprogress';
             $withdrawal->save();
 
-            return Response::redirectBack('success', "Your Withdrawal process has been initiated! You will be notified once its completed");
+            $message = [
+                Notifications::parse('image', asset('images/email/kyc-pending.png')),
+                Notifications::parse('text', 'Your Withdrawal has been initiated! You will be notified when the process is completed.'),
+                Notifications::parse('text', 'If you have any problems, please contact support at '.env('LIBRACLASS_EMAIL'))
+            ];
+
+
+            $notification = Notifications::builder("Your Withdrawal has been initiated!", $message);
+            Notifications::send($user, $notification, ['mail', 'database']);
+
+
+            return Response::redirectBack('success', "Your Withdrawal process has been initiated! You will be notified when it is completed");
         } catch (\Throwable $th) {
             return Response::redirectBack('error', $th->getMessage());
         }

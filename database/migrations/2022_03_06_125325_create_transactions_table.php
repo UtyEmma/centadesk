@@ -24,6 +24,8 @@ return new class extends Migration
             $table->string('currency');
             $table->timestamps();
 
+            $table->softDeletes();
+
             $table->foreign('user_id')
                     ->references('unique_id')->on('users')
                     ->onDelete('cascade');

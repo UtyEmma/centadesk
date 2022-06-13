@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Casts\Serialize;
 use App\Library\DateTime;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Date;
@@ -12,7 +13,7 @@ use Laravel\Sanctum\HasApiTokens;
 use Laravel\Scout\Searchable;
 
 class User extends Authenticatable{
-    use HasApiTokens, HasFactory, Notifiable, Searchable;
+    use HasApiTokens, HasFactory, Notifiable, Searchable, SoftDeletes;
 
 
     protected $fillable = [ 'unique_id', 'email', 'firstname', 'lastname', 'username', 'account_name', 'account_no', 'bank', 'payment_method', 'crypto_address', 'specialty', 'id_number', 'id_image', 'interests', 'role', 'status', 'password', 'kyc_status', 'kyc_method', 'avatar', 'affiliate_id', 'city', 'state', 'country', 'experience','qualification', 'approved', 'currency', 'referrer_id', 'twitter', 'facebook', 'instagram', 'linkedin', 'desc', 'website', 'resume'];

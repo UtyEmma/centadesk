@@ -8,6 +8,7 @@ use App\Http\Traits\EnrollmentActions;
 use App\Http\Traits\TransactionActions;
 use App\Http\Traits\WalletActions;
 use App\Library\Currency;
+use App\Library\Notifications;
 use App\Library\Number;
 use App\Library\Response;
 use App\Library\Token;
@@ -54,6 +55,7 @@ class EnrollmentController extends Controller{
             ]);
 
             $this->enrollUser($user, $mentor, $batch, $course, $transaction);
+
             return Response::redirect("/learning/courses/$course->slug/$batch->short_code", 'success', 'You have successfully enrolled for this course');
         }
 
@@ -63,6 +65,7 @@ class EnrollmentController extends Controller{
         if($request->payment === 'card') return $this->payWithCard($transaction, $user, $redirect_url);
         if($request->payment === 'wallet') return $this->payFromWallet($transaction, $batch, $user);
     }
+
 
     function payWithCard($transaction, $user, $redirect_url){
         $rave_link = $this->initializeFlutterwave($transaction, $user, $redirect_url);

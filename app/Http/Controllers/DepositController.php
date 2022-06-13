@@ -6,6 +6,7 @@ use App\Http\Requests\DepositRequest;
 use App\Http\Traits\CryptoActions;
 use App\Http\Traits\TransactionActions;
 use App\Library\Currency;
+use App\Library\Notifications;
 use App\Library\Response;
 use App\Library\Token;
 use App\Models\Deposit;
@@ -37,11 +38,7 @@ class DepositController extends Controller{
 
             $redirect_url = env('MAIN_APP_URL')."/wallet/verify?method='bank'&ref=$deposit->unique_id";
 
-            // if($request->type === 'crypto') return $this->payWithCrypto($deposit, $user, $redirect_url);
-            // if($request->type === 'bank')
-
             return $this->initializeCardDeposit($deposit, $user, $redirect_url);
-            // throw new Exception('Invalid Payment Method Selected', 400);
 
         } catch (\Throwable $th) {
             return Response::redirectBack(400, $th->getMessage());
@@ -74,7 +71,20 @@ class DepositController extends Controller{
             $wallet->deposits += $deposit->amount;
             $wallet->save();
 
+            $message = [
+                Notifications::parse('image', asset('images/email/kyc-success.png')),
+                'greeting' => "Hi, $user->firstname",
+                Notifications::parse('text', 'You have successfully made a deposit of <strong>'.$deposit->currency.' '.$deposit->amount.'</strong> into your '.env('APP_NAME').' wallet.'),
+                Notifications::parse('text', 'You can proceed to enroll for Sessions using funds from your Wallet.'),
+                Notifications::parse('text', "Check out some amazing sessions by clicking the button below."),
+                Notifications::parse('action', [
+                    'link' => route('sessions'),
+                    'action' => "Find Sessions"
+                ])
+            ];
 
+            $notification = Notifications::builder("Your Deposit was successful!", $message);
+            Notifications::send($user, $notification, ['mail', 'database']);
 
             return Response::redirect($success_link, 'success', 'Your deposit was successful');
         }

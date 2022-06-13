@@ -11,6 +11,7 @@ use App\Models\Courses;
 use App\Models\Enrollment;
 use App\Models\Messages;
 use App\Models\Report;
+use App\Models\Review;
 use App\Models\Setting;
 use App\Models\User;
 use App\Notifications\NewBatchPublishedNotification;
@@ -48,6 +49,11 @@ trait BatchActions {
             $batch->discount_slots_percent = $batch->total_students * 100 / $batch->discount_slots;
         }
 
+        $reviews = Review::where('batch_id', $batch->unique_id)
+                    ->join('users', 'users.unique_id', 'reviews.user_id')
+                    ->select('reviews.*', 'users.firstname', 'users.lastname', 'users.avatar')
+                    ->get();
+
         if($user = Auth::user()){
             $enrollment = Enrollment::where([
                 'student_id' => $user->unique_id,
@@ -60,7 +66,8 @@ trait BatchActions {
         return [
             'batch' => $batch,
             'course' => $course,
-            'mentor' => $mentor
+            'mentor' => $mentor,
+            'reviews' => $reviews
         ];
     }
 

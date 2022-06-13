@@ -90,6 +90,10 @@
                                 </div>
                             </div>
                         </div>
+
+                        <div class="py-1">
+                            <x-courses.review-tab :reviews="$reviews" :batch="$batch" :can="['status' => false, 'message' => '']" />
+                        </div>
                     </div>
                 </div>
                 <div class="col-lg-4 mt-5 mt-md-0">

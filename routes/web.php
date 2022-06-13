@@ -24,6 +24,7 @@ use App\Http\Controllers\TransactionsController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WalletController;
 use App\Http\Controllers\WithdrawalController;
+use FontLib\Table\Type\name;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -88,7 +89,7 @@ Route::middleware(['set.currency', 'set.referrals'])->group(function(){
 
             Route::prefix('reports')->middleware('user.status')->group(function(){
                 Route::post('/create/{batch_id}', [ReportController::class, 'create']);
-                Route::get('/resolve/{batch_id}', [ReportController::class, 'resolve']);
+                // Route::get('/resolve/{batch_id}', [ReportController::class, 'resolve']);
             });
         });
 
@@ -114,8 +115,8 @@ Route::middleware(['set.currency', 'set.referrals'])->group(function(){
             });
 
             Route::prefix('courses')->group(function(){
-                Route::get('/', [CourseController::class, 'fetch']);
-                Route::get('/create', [CourseController::class, 'create'])->middleware('user.status');
+                Route::get('/', [CourseController::class, 'fetch'])->name('mentor.courses');
+                Route::get('/create', [CourseController::class, 'create'])->middleware('user.status')->name('mentor.new_session');
 
                 Route::middleware(['is.approved', 'user.status'])->group(function(){
                     Route::post('/new', [SessionController::class, 'createCourse']);
@@ -178,9 +179,9 @@ Route::middleware(['set.currency', 'set.referrals'])->group(function(){
     });
 
     Route::prefix('/courses')->group(function(){
-        Route::get('/', [CourseController::class, 'all']);
-        Route::get('/{slug}', [CourseController::class, 'show']);
-        Route::get('/{slug}/{shortcode}', [BatchController::class, 'batchDetails']);
+        // Route::get('/', [CourseController::class, 'all']);
+        Route::get('/{slug}', [CourseController::class, 'show'])->name('course.single');
+        Route::get('/{slug}/{shortcode}', [BatchController::class, 'batchDetails'])->name('course.single.session');
     });
 
     Route::prefix('/blog')->group(function(){
@@ -188,7 +189,7 @@ Route::middleware(['set.currency', 'set.referrals'])->group(function(){
         Route::get('/{slug}', [BlogController::class, 'show']);
     });
 
-    Route::get('/sessions', [BatchController::class, 'all']);
+    Route::get('/sessions', [BatchController::class, 'all'])->name('sessions');
 
 
     Route::get('/about', [AppController::class, 'about']);

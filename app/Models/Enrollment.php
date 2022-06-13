@@ -4,9 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Enrollment extends Model{
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $fillable = ['unique_id', 'batch_id', 'course_id', 'student_id', 'mentor_id', 'transaction_id'];
 

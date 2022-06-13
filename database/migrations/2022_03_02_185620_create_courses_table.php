@@ -25,6 +25,7 @@ return new class extends Migration
             $table->integer('rating');
             $table->string('status');
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('mentor_id')
                         ->references('unique_id')->on('users')

@@ -62,10 +62,6 @@
                                 </ul>
                             </div>
                         </div>
-                        {{-- <div class="py-1">
-                            <x-courses.review-tab :reviews="$course->course_reviews" :batch="$batch" :can="['status' => false, 'message' => '']" />
-                        </div> --}}
-                        <!-- Courses Details Tab End -->
                     </div>
                     <!-- Courses Details End -->
                 </div>
@@ -83,20 +79,6 @@
                     </div>
                 </div>
             </div>
-
-            {{-- @if (count($related) > 0)
-                <div class="mt-5">
-                    <h5 class="mb-4">Related Courses:</h5>
-
-                    <div class="row">
-                        @foreach ($related as $course)
-                            <div class="col-md-4">
-                                <x-courses.single-course-card :course="$course" :mentor="$course->mentor" />
-                            </div>
-                        @endforeach
-                    </div>
-                </div>
-            @endif --}}
         </div>
     </div>
     <!-- Courses End -->

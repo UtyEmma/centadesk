@@ -53,6 +53,7 @@ Route::middleware('auth:admin')->group(function(){
                 Route::get('/delete', [UserController::class, 'delete']);
                 Route::get('/approve', [MentorController::class, 'approve']);
                 Route::get('/verify', [MentorController::class, 'verify']);
+                Route::get('/freeze', [UserController::class, 'freezeWallet']);
             });
         });
     });
@@ -134,7 +135,7 @@ Route::middleware('auth:admin')->group(function(){
     });
 
     Route::prefix('/reports')->group(function(){
-        Route::get('/', [ReportController::class, 'viewAllReports']);
+        Route::get('/', [ReportController::class, 'viewAllReports'])->name('admin.reports');
         Route::get('/{id}/resolve', [ReportController::class, 'resolve']);
 
     });

@@ -6,6 +6,7 @@ use App\Http\Requests\NewBatchRequest;
 use App\Jobs\NewCourseAlert;
 use App\Library\Currency;
 use App\Library\FileHandler;
+use App\Library\Notifications;
 use App\Library\Number;
 use App\Library\Response;
 use App\Library\Str;
@@ -15,6 +16,7 @@ use App\Models\Category;
 use App\Models\Courses;
 use App\Notifications\NewBatchPublishedNotification;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\Notification;
 
 class SessionController extends Controller
@@ -94,8 +96,6 @@ class SessionController extends Controller
             'access_link' => $request->access_link,
             'attendees' => $request->attendees,
             'price' => $price,
-            'current' => true,
-            'count' => 1,
             'tags' => $request->tags,
             'category' => $request->category ?? $course->category,
             'desc' => $request->desc,
@@ -115,25 +115,30 @@ class SessionController extends Controller
             'currency' => $user->currency,
         ]);
 
-        if($course){
-            $course->update([
-                'total_batches' => $course->total_batches + 1
-            ]);
-        }
+        $course->update([
+            'total_batches' => $course->total_batches + 1
+        ]);
 
         $user->total_batches += 1;
         $user->save();
 
-        $notification = [
-            'subject' => 'You have successfully created a new Session',
-            'batch' => $batch,
-            'course' => $course
+        $message = [
+            Notifications::parse('image', asset('images/email/kyc-success.png')),
+            'greeting' => "Hi, $user->firstname",
+            Notifications::parse('text', 'Congratulations, you have successfully created a new Session on '.env('APP_NAME').' Your session details are as follows.'),
+            Notifications::parse('text', "<strong>Course Title:</strong> $course->name."),
+            Notifications::parse('text', "<strong>Session Name:</strong> $batch->title."),
+            Notifications::parse('text', "<strong>Start Date:</strong> ".Date::parse($batch->startdate)->format('M jS Y, g:i A')."."),
+            Notifications::parse('text', "Click the link below to view your Session on the front page"),
+            Notifications::parse('action', [
+                'link' => env('MAIN_APP_URL')."/$batch->short_code",
+                'action' => "Go to Session"
+            ]),
+            Notifications::parse('text', "Thank you for trusting us to help you create the best for your Students."),
         ];
 
-        try {
-            Notification::send($user, new NewBatchPublishedNotification($notification));
-        } catch (\Throwable $th) {}
-
+        $notification = Notifications::builder("Your session has been created successfully!", $message);
+        Notifications::send($user, $notification, ['mail', 'database']);
 
         return Response::redirect("/me/courses/$course->slug/$batch->short_code", 'success', 'Session Created Successfully');
     }

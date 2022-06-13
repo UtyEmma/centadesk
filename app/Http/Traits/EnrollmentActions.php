@@ -2,12 +2,15 @@
 
 namespace App\Http\Traits;
 
+use App\Library\Notifications;
 use App\Library\Number;
 use App\Library\Token;
+use App\Models\Batch;
 use App\Models\Enrollment;
 use App\Models\Setting;
 use App\Notifications\EnrollmentCompletedNotification;
 use App\Notifications\NewEnrollmentNotification;
+use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\Notification;
 
 trait EnrollmentActions {
@@ -59,6 +62,43 @@ trait EnrollmentActions {
             Notification::send($student, new EnrollmentCompletedNotification($notification));
             Notification::send($student, new NewEnrollmentNotification($notification));
         } catch (\Throwable $th) {}
+    }
+
+    function studentNotification($user, $session, $course){
+        $message = [
+            Notifications::parse('image', asset('images/email/kyc-success.png')),
+            'greeting' => "Hi, $user->firstname",
+            Notifications::parse('text', "You have successfully enrolled for the $session->title of the $course->name course. You can now gain access to the class through your <a href='".env('MAIN_APP_URL')."/learning/$course->slug/$session->short_code"."'><strong>Learning Center</strong></a>."),
+            Notifications::parse('text', "Your session is scheduled to begin at <strong>".Date::parse($session->startdate)->format("M jS, g:i A")."</strong>."),
+            $session->class_link ?
+            Notifications::parse('text', "Please click the link below to join the waiting group provided by your Mentor for this Session!") : '',
+            $session->class_link ?
+            Notifications::parse('action', [
+                'link' => $session->class_link,
+                'action' => "Join Waiting Group"
+            ]) : '',
+            Notifications::parse('text', "We are confident that you will find this session as amazing as your Mentor. If you have any complaints, please reach out to our support team ".env('LIBRACLASS_EMAIL')),
+        ];
+
+        $notification = Notifications::builder("Congratulations, your enrollment was Successful!", $message);
+        Notifications::send($user, $notification, ['mail']);
+    }
+
+    function mentorNotification($user, $session, $course){
+        $message = [
+            Notifications::parse('image', asset('images/email/kyc-success.png')),
+            'greeting' => "Hi, $user->firstname",
+            Notifications::parse('text', "Congratulations, a new student has joined your session, $session->title."),
+            Notifications::parse('text', 'To view more details about this and your session, please click the link below to visit your Mentor Dashboard!.'),
+            Notifications::parse('action', [
+                'link' => env('MAIN_APP_URL')."/me/courses/$course->slug/$session->short_code",
+                'action' => "View on Dashboard"
+            ]),
+            Notifications::parse('text', "Remember to send a message to your student on the Session forum to let them know you are there!."),
+        ];
+
+        $notification = Notifications::builder("Congratulations, you have a new Enrollment", $message);
+        Notifications::send($user, $notification, ['mail']);
     }
 
     function checkEnrollmentStatus($batch, $user){

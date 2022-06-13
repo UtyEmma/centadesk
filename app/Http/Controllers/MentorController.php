@@ -8,6 +8,7 @@ use App\Http\Requests\MentorSignupRequest;
 use App\Http\Traits\CourseActions;
 use App\Http\Traits\MentorActions;
 use App\Library\FileHandler;
+use App\Library\Notifications;
 use App\Library\Response;
 use App\Models\Bank;
 use App\Models\Batch;
@@ -106,7 +107,19 @@ class MentorController extends Controller{
             ]
         ));
 
-        MentorApplicationSent::dispatch($user);
+        $message = [
+            'greeting' => "Hi, $user->firstname",
+            Notifications::parse('text', 'We have received your application to become a Mentor on '.env('APP_NAME')),
+            Notifications::parse('text', 'Your Application will be duly considered and we will notify you after our review!'),
+            Notifications::parse('text', "For the meantime, feel free to check out some amazing Sessions that you might find interesting!"),
+            Notifications::parse('action', [
+                'link' => route('sessions'),
+                'action' => "Find a Session"
+            ])
+        ];
+
+        $notification = Notifications::builder("Your Mentor Application has been sent! 🎉", $message);
+        Notifications::send($user, $notification, ['mail', 'database']);
 
         return Response::redirectBack('success', 'Your application has been sent! 🎉');
 
@@ -125,6 +138,7 @@ class MentorController extends Controller{
 
             $request->merge(['avatar' => $avatar]);
             $user->update($request->all());
+
             return Response::redirectBack('success', "Your Profile has been updated Successfully");
         } catch (\Throwable $th) {
             return Response::redirectBack('error', $th->getMessage());

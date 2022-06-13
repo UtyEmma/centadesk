@@ -3,6 +3,7 @@
 namespace App\Http\Traits;
 
 use App\Library\FileHandler;
+use App\Library\Notifications;
 use App\Library\Token;
 use App\Models\User;
 use App\Models\Wallet;
@@ -37,14 +38,21 @@ trait UserActions{
             'user_id' => $user->unique_id
         ]);
 
-        $notification = [
-            'user' => $user,
-            'profile' =>  url(RouteServiceProvider::LEARNING_CENTER)
+        $message = [
+            Notifications::parse('image', asset('images/email/welcome.svg')),
+            'greeting' => "Hi, $user->firstname",
+            Notifications::parse('text', 'We are pleased to have you join us on Libraclass and we look forward to an amazing journey with you onboard.'),
+            Notifications::parse('text', 'You can proceed to checkout some ongoing courses that fit your area of interest and join in right away.'),
+            Notifications::parse('action', [
+                'link' => url(RouteServiceProvider::LEARNING_CENTER),
+                'action' => "Go to Learning Center"
+            ]),
+            Notifications::parse('text', "We Hope you'll enjoy the experience, we're here if you have any questions, drop us a line at support@libraclass.com anytime."),
         ];
 
-        try {
-            Notification::send($user, new NewSignupNotification($notification));
-        } catch (\Throwable $th) { }
+        $notification = Notifications::builder("Welcome to ".env('APP_NAME').", $user->firstname!", $message);
+        Notifications::send($user, $notification, ['mail', 'database']);
+
         return $user;
     }
 

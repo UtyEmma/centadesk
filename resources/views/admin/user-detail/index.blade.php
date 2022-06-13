@@ -59,6 +59,10 @@
                                 <div class="col-6 p-2">
                                     <x-swal href="/users/{{$user->unique_id}}/actions/delete"  class="btn btn-block btn-danger">Delete Account</x-swal>
                                 </div>
+
+                                <div class="col-6 p-2">
+                                    <x-swal href="/users/{{$user->unique_id}}/actions/freeze?action={{$user->wallet->status ? 'false' : 'true'}}"  class="btn btn-block {{$user->wallet->status ? 'btn-warning' : 'btn-success'}}">{{$user->wallet->status ? 'Freeze' : 'Unfreeze'}} Account</x-swal>
+                                </div>
                             </div>
                         </div>
 

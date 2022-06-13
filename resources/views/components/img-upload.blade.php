@@ -2,8 +2,14 @@
     <script>
         function setPreview(e){
             const preview = document.querySelector("#{{$id ?? 'avatar_preview'}}");
-            preview.src = URL.createObjectURL(e.target.files[0])
-            $('#del-btn').show()
+            const file = e.target.files[0]
+            const validation = this.validateImage(file)
+            if(validation.status){
+                preview.src = URL.createObjectURL(file)
+                $('#del-btn').show()
+            }else{
+                return document.getElementById('image-error').innerText = validation.message
+            }
         }
 
         function removeImg(){
@@ -16,13 +22,37 @@
         $(document).ready(() => {
             $('#del-btn').hide()
         })
+
+        function validateImage(file){
+            // console.log(file.type.substring('jsdkkj'))
+            if(!file){
+                return {
+                    status: false,
+                    message: "No file was selected"
+                }
+            }else if(file.size > 2000000){
+                return {
+                    status: false,
+                    message: "Image size must be less than 2mb"
+                }
+            }else{
+                return {
+                    status: true
+                }
+            }
+        }
     </script>
 @endpush
 <div class="row gx-3">
+    <div class="col-md-12" >
+        <small class="text-danger" id="image-error"></small>
+    </div>
     <div class="col-md-6">
         <label for="courseimg" class="btn btn-primary d-block text-white btn-hover-dark btn-custom">
             Upload Image
         </label>
+        <small>* Image must be less than 2mb</small> <br>
+        <small>* Recommended Image aspect ratio is 4:3</small>
         <input type="file" onchange="setPreview(event)" name="{{$name}}" hidden id="courseimg">
     </div>
     <div class="col-md-6 mt-2 mt-md-0">
