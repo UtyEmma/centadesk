@@ -17,7 +17,7 @@
       <div class="row">
           @foreach ($categories as $key => $category)
             <div class="col-lg-4 col-md-4 col-sm-6">
-                <a class="d-block" href="/courses?category={{$category->slug}}">
+                <a class="d-block" href="/sessions?category={{$category->slug}}">
                 <div class="category-content {{$badges[$key]}} radius">
                     <div class="category-content-left radius">
                         <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -44,4 +44,3 @@
           @endforeach
     </div>
   </div>
-  <!--End category-section -->
