@@ -220,7 +220,7 @@
 
     @include('components.testimonial-slider')
 
-    @include('components.partner-brands')
+    {{-- @include('components.partner-brands') --}}
 
     <!-- Blog Start -->
     @if ($posts->count() > 0)
