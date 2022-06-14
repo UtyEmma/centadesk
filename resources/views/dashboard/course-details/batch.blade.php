@@ -18,7 +18,7 @@
                 <div class="count">
                     {{$course->rating}}.0
                 </div>
-                <p><span>58</span> This months</p>
+                {{-- <p><span>58</span> This months</p> --}}
             </div>
             <div class="single-box mb-2">
                 <h5 class="title">Enrolled Students</h5>
@@ -29,7 +29,7 @@
                             <span class="rating-bar" style="width: {{$course->rating * 20}}%;"></span>
                     </span>
                 </div>
-                <p><span>58</span> This months</p>
+                {{-- <p><span>58</span> This months</p> --}}
             </div>
         </div>
 

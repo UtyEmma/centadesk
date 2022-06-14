@@ -148,7 +148,7 @@ trait BatchActions {
         return Batch::where([
             'mentor_id' => $user->unique_id,
             'paid' => false
-        ])->get();
+        ])->where('enddate', '>', now())->get();
     }
 
     function getBatchReports($batch){

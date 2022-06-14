@@ -105,7 +105,7 @@ trait TransactionActions {
 
         if($response->ok() && $response->status() === 200) {
             $res = $response->json();
-
+            // dd($res);
             $status = $res['data']['status'];
             $tx_ref = $res['data']['tx_ref'];
 

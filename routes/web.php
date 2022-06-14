@@ -165,7 +165,7 @@ Route::middleware(['set.currency', 'set.referrals'])->group(function(){
             });
 
             Route::prefix('/wallet')->group(function(){
-                Route::get('/', [WalletController::class, 'mentorWallet']);
+                Route::get('/', [WalletController::class, 'mentorWallet'])->name('mentor.wallet');
                 Route::post('/withdraw', [WithdrawalController::class, 'initiate'])->middleware('user.status');
             });
         });

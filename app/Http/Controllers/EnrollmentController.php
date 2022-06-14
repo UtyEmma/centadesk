@@ -92,7 +92,7 @@ class EnrollmentController extends Controller{
 
 
     public function complete(Request $request, $type, $batch_id){
-        if($type === 'crypto') return $this->verifyCryptoPayment($request, $batch_id);
+        // if($type === 'crypto') return $this->verifyCryptoPayment($request, $batch_id);
         if($type === 'card') return $this->verifyCardPayment($request, $batch_id);
     }
 

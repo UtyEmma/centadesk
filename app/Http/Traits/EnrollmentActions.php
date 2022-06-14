@@ -37,12 +37,12 @@ trait EnrollmentActions {
 
             $this->updateMentorWallet($mentor, $mentor_amount);
 
-            $course->total_students += 1;
-            $course->revenue += $mentor_amount;
+            $course->total_students = $course->total_students + 1;
+            $course->revenue = $course->revenue + $mentor_amount;
             $course->save();
 
-            $batch->total_students += 1;
-            $batch->earnings += $mentor_amount;
+            $batch->total_students = $batch->total_students + 1;
+            $batch->earnings = $batch->earnings + $mentor_amount;
             $batch->discount = $batch->total_students > $batch->signup_limit && $batch->signup_limit !== 0  ? 'none' : $batch->discount;
             $batch->save();
         }

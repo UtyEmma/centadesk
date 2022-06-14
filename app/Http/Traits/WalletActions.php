@@ -5,6 +5,7 @@ namespace App\Http\Traits;
 use App\Http\Traits\BatchActions;
 use App\Http\Traits\MentorActions;
 use App\Library\DateTime;
+use App\Library\Notifications;
 use App\Models\Batch;
 use App\Models\Report;
 use App\Models\Setting;
@@ -18,29 +19,50 @@ trait WalletActions {
     function updateEscrowFunds(){
         $updatedWallets = 0;
         $mentors = $this->getApprovedMentors();
-        $day_count = Setting::first()->withdrawal_day_count ?? env('WITHDRAWAL_DAY_COUNT');
 
-        $mentors->map(function ($mentor) use($day_count, $updatedWallets) {
+        $mentors->map(function ($mentor) use($updatedWallets) {
             $wallet = $this->getWalletWithEscrowFunds($mentor);
+
             if(is_null($wallet)) return;
+
             $batches = $this->getUnpaidBatches($mentor);
-            if(!!$batches->isNotEmpty()) return;
 
-            $batches->map(function($batch) use ($wallet, $day_count, $mentor, $updatedWallets) {
-                $withdrawalDate = Date::parse($batch->endate)->addDays($day_count);
-                if(now()->greaterThanOrEqualTo($withdrawalDate)){
-                    $this->updateWalletFunds($batch, $wallet, $mentor);
+            if($batches->isNotEmpty()) {
+                $batches->map(function($batch) use ($wallet, $mentor) {
+                    // if(env('APP_ENV') === 'local')
+                    $day_count = Setting::first()->withdrawal_day_count ?? env('WITHDRAWAL_DAY_COUNT');
+                    $withdrawalDate = Date::parse($batch->endate)->addMinutes($day_count);
+                    // $withdrawalDate = Date::parse($batch->endate)->addDays($day_count);
+                    if(now()->greaterThanOrEqualTo($withdrawalDate)){
+                        $this->updateWalletFunds($batch, $wallet, $mentor);
+                    };
+                });
 
-                    $updatedWallets++;
-                };
-            });
+                $updatedWallets++;
+
+                $message = [
+                    Notifications::parse('image', asset('images/email/kyc-pending.png')),
+                    Notifications::parse('text', "Your earnings on your sessions at Libraclass have been updated"),
+                    Notifications::parse('text', 'You can now withdraw your funds from your '.env('APP_NAME').' wallet!'),
+                    Notifications::parse('action', [
+                        'link' => route('mentor.wallet'),
+                        'action' => "Go to My Wallet"
+                    ]),
+                    Notifications::parse('text', 'If you have any complaints, please send an Email to '.env('LIBRACLASS_EMAIL')),
+                ];
+
+                $notification = Notifications::builder("Your Earnings have been updated!", $message);
+                Notifications::send($mentor, $notification, ['mail']);
+            }else{
+                return;
+            }
         });
 
         return $updatedWallets;
     }
 
-    function sendUpdateNotification($mentor, $batch) {
 
+    function sendUpdateNotification($mentor, $batch) {
     }
 
     function getWalletWithEscrowFunds($user){
@@ -48,18 +70,20 @@ trait WalletActions {
     }
 
     function updateWalletFunds($batch, $wallet, $mentor){
-        if($this->getBatchReports($batch)->isNotEmpty() || $batch->payable === false) return;
+        if($this->getBatchReports($batch)->isNotEmpty()) return;
 
-        $wallet->escrow -= $batch->earnings;
-        $wallet->available += $batch->earnings;
+        $wallet->escrow = $wallet->escrow - $batch->earnings;
+        $wallet->available = $wallet->available + $batch->earnings;
+        $wallet->save();
+
         $batch->paid = true;
-        $mentor->notify(new EarningsUpdatedNotification());
+        $batch->save();
     }
 
     function updateMentorWallet($mentor, $amount){
         $wallet = Wallet::where('user_id', $mentor->unique_id)->first();
-        $wallet->escrow += $amount;
-        $wallet->balance += $amount;
+        $wallet->escrow = $wallet->escrow - $amount;
+        $wallet->balance = $wallet->balance + $amount;
         $wallet->save();
     }
 

@@ -22,7 +22,7 @@
 
                                     <div class="my-2 col-md-12">
                                         @if (!$batch->isCompleted())
-                                            <h6>Session Links</h6>
+                                            <h6>Access this session:</h6>
                                             <div class="row">
                                                 <div class="col-6">
                                                     @if ($batch->class_link)

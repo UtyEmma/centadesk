@@ -14,7 +14,7 @@
                             </div>
                             <div class="col-8">
                                 <div>
-                                    <h4>{{$batch->title}}</h4>
+                                    <h5>{{$batch->title}}</h5>
                                     <a href="/me/courses/{{$course->slug}}">
                                         <h6 class="mb-1">{{$course->name}}</h6>
                                     </a>
@@ -63,7 +63,7 @@
                                                 Begins
                                             </p>
 
-                                            <small>{{$batch->startdate}}</small>
+                                            <small>{{Date::parse($batch->startdate)->format('M jS, g:i A')}}</small>
                                         </div>
                                         <div class="col-6">
                                             <p class="mb-0">
@@ -71,7 +71,7 @@
                                                 Ends
                                             </p>
 
-                                            <small>{{$batch->enddate}}</small>
+                                            <small>{{Date::parse($batch->enddate)->format('M jS, g:i A')}}</small>
                                         </div>
                                     </div>
                                 </div>

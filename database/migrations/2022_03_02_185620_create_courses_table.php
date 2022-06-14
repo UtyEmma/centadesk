@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('slug');
             $table->string('category');
+            $table->integer('revenue');
             $table->integer('total_batches');
             $table->integer('total_students');
             $table->integer('rating');

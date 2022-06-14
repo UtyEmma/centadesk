@@ -202,11 +202,11 @@
                                 <x-errors name="video" />
                             </div>
                         </div>
+                        <div class="mt-5 d-flex justify-content-end">
+                            <button type="submit" class="btn float-right btn-primary btn-hover-dark radius btn-custom">Create Session</button>
+                        </div>
                     </div>
 
-                    <div class="mt-5 d-flex justify-content-end">
-                        <button type="submit" class="btn float-right btn-primary btn-hover-dark radius btn-custom">Create Session</button>
-                    </div>
                 </div>
             </form>
         </div>
