@@ -39,7 +39,7 @@ trait UserActions{
         ]);
 
         $message = [
-            Notifications::parse('image', asset('images/email/welcome.svg')),
+            Notifications::parse('image', asset('images/email/welcome.png')),
             'greeting' => "Hi, $user->firstname",
             Notifications::parse('text', 'We are pleased to have you join us on Libraclass and we look forward to an amazing journey with you onboard.'),
             Notifications::parse('text', 'You can proceed to checkout some ongoing courses that fit your area of interest and join in right away.'),

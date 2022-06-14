@@ -48,31 +48,18 @@ class MentorController extends Controller{
             $user->approved = $action;
             $user->save();
 
-            $message =
-
-            $notification = [
-                'dashboard' => env('MAIN_APP_URL').'/me',
-                'subject' => $this->approvalMessage($request->action, $request->type)
-            ];
-
-            if($user->kyc_status === 'approved'){
-                Notification::send($user, new MentorAccountApprovedNotification($notification));
-            }else{
-                Notification::send($user, new MentorAccountDisapprovedNotification($notification));
-            }
-
             $message = [
                 Notifications::parse('image', asset('images/email/kyc-success.png')),
                 'greeting' => "Hi, $user->firstname",
                 Notifications::parse('text', $user->kyc_status === 'approved' ? 'After due consideration of your application, we are pleased to inform you that your application to become a Mentor on '.env('APP_NAME').' has been approved!' : 'After due consideration of your application, we regret to inform you that your application to become a Mentor on '.env('APP_NAME').' could not be approved at this time!'),
                 Notifications::parse('text', $user->kyc_status === 'approved' ? 'You can now gain access to your Mentor dashboard by clicking the link below.': 'But not to worry, we encourage you to continue building your portfolio and profile and re-apply in the future when you feel confident.'),
                 $user->kyc_status === 'approved' ? Notifications::parse('action', [
-                    'link' => route('dashboard'),
+                    'link' => env('MAIN_APP_URL')."/me",
                     'action' => "My Dashboard"
                 ]) : '',
                 Notifications::parse('text', $user->kyc_status === 'approved' ? "We cannot wait to see the amazing Sessions you will create as a Mentor on our platform." : "Thank you for your interest in joining our platform. You can still join amazing sessions by top professionals who are Mentors on our platform by clicking the link below"),
                 $user->kyc_status === 'approved' ? '' : Notifications::parse('action', [
-                    'link' => route('sessions'),
+                    'link' => env('MAIN_APP_URL')."/sessions",
                     'action' => "Find a Session"
                 ])
             ];
@@ -84,18 +71,6 @@ class MentorController extends Controller{
             return Response::redirectBack('success', "The Mentor has been approved successfully");
         } catch (\Throwable $th) {
             return Response::redirectBack('error', $th->getMessage());
-        }
-    }
-
-    function approvalMessage($status, $type){
-        switch ($type) {
-            case 'approval':
-                return $status === 'approved' ? "Congratulations! Your Mentor Signup Request has been approved." : "Sorry! Your Mentor Signup Request was not approved.";
-            case 'revoke':
-                return "Your Account Verification Status has been revoked!.";
-            default:
-                return "";
-                break;
         }
     }
 

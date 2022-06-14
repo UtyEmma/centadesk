@@ -19,7 +19,11 @@ class BanksController extends Controller{
     }
 
     function refresh(){
-        $this->setBanks();
-        return Response::redirectBack('success', 'Bank List Refreshed');
+        try {
+            $this->setBanks();
+            return Response::redirectBack('success', 'Bank List Refreshed');
+        } catch (\Throwable $th) {
+            return Response::redirectBack('error', $th->getMessage());
+        }
     }
 }

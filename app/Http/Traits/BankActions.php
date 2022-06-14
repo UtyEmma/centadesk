@@ -13,6 +13,7 @@ trait BankActions {
         $url = env('RAVE_API_BASE_URL').'/banks/NG';
         $response = Http::withToken(env('RAVE_SECRET_KEY'))->get($url);
         if($response->status() !== 200) throw new Exception("Banks info could not be retrieved");
+        // dd($response->collect());
         $res = $response->collect();
         return $res->get('data');
     }

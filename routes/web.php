@@ -75,8 +75,8 @@ Route::middleware(['set.currency', 'set.referrals'])->group(function(){
             Route::prefix('wallet')->group(function(){
                 Route::get('/', [WalletController::class, 'studentWallet']);
                 Route::post('/deposit', [DepositController::class, 'initiate'])->middleware('user.status');
-                Route::get('/update', [WalletController::class, 'updateWallet']);
                 Route::get('/verify', [DepositController::class, 'verify'])->middleware('user.status');
+                Route::get('/update', [WalletController::class, 'updateWallet']);
             });
 
 

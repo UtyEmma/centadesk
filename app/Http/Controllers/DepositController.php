@@ -36,7 +36,7 @@ class DepositController extends Controller{
                 'currency' => Currency::user()
             ]);
 
-            $redirect_url = env('MAIN_APP_URL')."/wallet/verify?method='bank'&ref=$deposit->unique_id";
+            $redirect_url = env('MAIN_APP_URL')."/wallet/verify?method=bank&ref=$deposit->unique_id";
 
             return $this->initializeCardDeposit($deposit, $user, $redirect_url);
 
@@ -89,7 +89,11 @@ class DepositController extends Controller{
             return Response::redirect($success_link, 'success', 'Your deposit was successful');
         }
 
-        if($deposit = Deposit::where('reference', $tx_ref)->first()) $deposit->delete();
+        if($deposit = Deposit::where('reference', $tx_ref)->first()) {
+            $deposit->status = 'failed';
+            $deposit->save();
+        }
+
         return Response::redirect($failed_link, 'error', "Your Payment attempt was cancelled");
     }
 
@@ -130,7 +134,6 @@ class DepositController extends Controller{
     }
 
     public function verify(Request $request){
-        if($request->method === 'crypto') return $this->verifyCryptoPayment($request);
-        if($request->method === 'bank') return $this->verifyCardDeposit($request);
+        return $this->verifyCardDeposit($request);
     }
 }
