@@ -37,23 +37,16 @@ class EnrollmentController extends Controller{
         $mentor = User::where('unique_id', $batch->mentor_id)->first();
         $course = Courses::find($batch->course_id);
         $amount = $this->getPayableAmount($batch->unique_id);
-
+        // $amount = Currency::convertUserCurrencyToDefault($amount);
 
         $transaction = $this->createTransaction([
-            'amount' => Currency::convertUserCurrencyToDefault($amount),
+            'amount' => $amount,
             'user_id' => $user->unique_id,
             'currency' => Currency::user(),
             'type' => $request->payment
         ]);
 
         if($amount < 1){
-            $transaction = $this->createTransaction([
-                'amount' => Currency::convertUserCurrencyToDefault($amount),
-                'user_id' => $user->unique_id,
-                'currency' => Currency::user(),
-                'type' => $request->payment
-            ]);
-
             $this->enrollUser($user, $mentor, $batch, $course, $transaction);
 
             return Response::redirect("/learning/courses/$course->slug/$batch->short_code", 'success', 'You have successfully enrolled for this course');

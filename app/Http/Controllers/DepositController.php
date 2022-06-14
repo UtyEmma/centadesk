@@ -25,14 +25,13 @@ class DepositController extends Controller{
             $reference = Token::text(6, 'deposits', 'reference');
             $user = $this->user();
 
-            $amount = Currency::convertUserCurrencyToDefault($request->amount);
-
+            // $amount = Currency::convertUserCurrencyToDefault($request->amount);
             $deposit = Deposit::create([
                 'unique_id' => $unique_id,
                 'user_id' => $user->unique_id,
                 'type' => 'bank',//$request->type,
                 'reference' => $reference,
-                'amount' => $amount,
+                'amount' => $request->amount,
                 'currency' => Currency::user()
             ]);
 
@@ -61,14 +60,14 @@ class DepositController extends Controller{
             $transaction = $this->verifyDepositStatus($deposit, $transaction_id);
             $success_link = "/wallet";
 
-            if(!$transaction['status'])
-                    return Response::redirect($failed_link, 'error', $transaction['message']);
+            if(!$transaction['status']) return Response::redirect($failed_link, 'error', $transaction['message']);
 
             $transaction = $transaction['transaction'];
             $user = User::find($transaction->user_id);
 
             $wallet = Wallet::where('user_id', $user->unique_id)->first();
-            $wallet->deposits += $deposit->amount;
+
+            $wallet->deposits += Currency::convertUserCurrencyToDefault($deposit->amount);
             $wallet->save();
 
             $message = [

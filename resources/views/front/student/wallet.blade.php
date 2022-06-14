@@ -1,5 +1,7 @@
 <x-student-layout>
     <x-page-title title="My Wallet - Learning Center" />
+    @inject('currency', "App\Library\Currency")
+
     <div class="section section-padding pt-3">
         <div class="container">
             <h4 class="title">Wallet Overview</h4>
@@ -8,17 +10,20 @@
                 <div class="single-box col-md-4">
                     <h5 class="title">Deposits</h5>
                     <div class="count">
-                        <span style="font-size: 16px;">
+                        <span style="font-size: 14px;">
                             {{request()->cookie('currency')}}
                         </span>
-                        {{number_format($wallet->deposits)}}</div>
+                        <span style="font-size: 24px;">{{number_format($wallet->deposits)}}</span>
+                    </div>
                 </div>
 
                 <div class="col-md-4 single-box">
                     <h5 class="title">Referral Earnings</h5>
                     <div class="count">
                         <span style="font-size: 16px;">{{request()->cookie('currency')}}</span>
-                        {{number_format($wallet->referrals)}}</div>
+                        <span style="font-size: 24px;">
+                            {{number_format($wallet->referrals)}}</div>
+                        </span>
                 </div>
             </div>
 
@@ -49,7 +54,7 @@
                             @if (count($deposits) > 0)
                                 @foreach ($deposits as $deposit)
                                     <tr class="border-top">
-                                        <td class="py-3">{{$deposit->currency}} {{number_format($deposit->amount)}}</td>
+                                        <td class="py-3">{{request()->cookie('currency')}} {{number_format($currency::convert($deposit->amount, $deposit->currency, request()->cookie('currency')))}}</td>
                                         <td> {{$deposit->type}} </td>
                                         <td>
                                             {{$deposit->status}}

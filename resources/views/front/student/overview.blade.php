@@ -13,8 +13,8 @@
                         <div class="row">
                             <div class="new-courses-title">
                                 <h3 class="title">Hi, {{$user->firstname}}</h3>
-                                <p class="text-white">You can start enrolling for courses you are interested in.</p>
-                                <a href="/courses" class="btn btn-custom btn-warning btn-hover-dark">Discover Courses</a>
+                                <p class="text-white fs-6">Find and enroll for amazing Sessions by some of the top experts in a subject you are interested in.</p>
+                                <a href="/sessions" class="btn btn-custom btn-warning btn-hover-dark">Discover session</a>
                             </div>
                         </div>
                     </div>
