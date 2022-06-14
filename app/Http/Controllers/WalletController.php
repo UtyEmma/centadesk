@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Traits\WalletActions;
 use App\Library\DateTime;
 use App\Library\Response;
 use App\Models\Deposit;
@@ -10,6 +11,7 @@ use App\Models\Withdrawal;
 use Illuminate\Http\Request;
 
 class WalletController extends Controller{
+    use WalletActions;
 
     public function mentorWallet(Request $request){
         $user = $this->user();
@@ -37,6 +39,10 @@ class WalletController extends Controller{
             'deposits' => $deposits
         ]);
 
+    }
+
+    public function updateWallet(){
+        $this->updateEscrowFunds();
     }
 
 }

@@ -68,7 +68,7 @@
                                 <x-errors name="access_link" />
                             </div>
 
-                            <div class="form-check">
+                            <div class="form-check mt-2">
                                 <input class="form-check-input" id="certificates" name="certificates" type="checkbox">
                                 <label class="form-check-label fs-6" for="certificates">
                                     Issue a Certificate for this Session

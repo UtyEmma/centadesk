@@ -17,7 +17,7 @@
                                     <h6 class="mt-1 mb-1">{{$course->name}}</h6>
 
                                     <p>
-                                        {{ $course->excerpt }}
+                                        {{ $batch->excerpt }}
                                     </p>
 
                                     <div class="my-2 col-md-12">

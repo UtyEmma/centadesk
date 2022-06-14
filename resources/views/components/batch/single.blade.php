@@ -58,7 +58,9 @@
             </div>
         </div>
 
-        <a href="/{{$batch->short_code}}" class="btn btn-primary btn-hover-dark w-100 mt-2 btn-custom">Enroll Now</a>
+        @if (!$batch->isCompleted() || !$batch->isOngoing())
+            <a href="/{{$batch->short_code}}" class="btn btn-primary btn-hover-dark w-100 mt-2 btn-custom">Enroll Now</a>
+        @endif
 
     </div>
 </div>

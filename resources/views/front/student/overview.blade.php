@@ -20,26 +20,12 @@
                     </div>
 
                     @if ($user->role === 'mentor' && $user->kyc_status === 'pending')
-                        {{-- <div class="alert alert-secondary border-primary bg-secondary radius my-4" role="alert">
-                            <div class="d-flex align-items-center">
-                                <div class="">
-                                    <i class="icofont-info-square text-warning fs-1"></i>
-                                </div>
-
-                                <div class="flex-1 ms-3">
-                                    <h6></h6>
-                                    <p>
-                                        <small>This process will a few days depending on the number of applications we have received! We appreciate your patience and will duly inform you when the process is completed.</small>
-                                    </p>
-                                </div>
-                            </div>
-                        </div> --}}
                         <div class="alert alert-secondary border alert-dismissible fade show my-3 radius" role="alert">
                             <small>
                                 <strong>Your Mentor Application is under Review</strong> This might take a few days depending on the number of applications we have received! We appreciate your patience and will duly inform you when the process is completed.
                                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                             </small>
-                          </div>
+                        </div>
                     @endif
 
 

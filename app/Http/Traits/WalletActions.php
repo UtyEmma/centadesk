@@ -9,6 +9,7 @@ use App\Library\Notifications;
 use App\Models\Batch;
 use App\Models\Report;
 use App\Models\Setting;
+use App\Models\User;
 use App\Models\Wallet;
 use App\Notifications\EarningsUpdatedNotification;
 use Illuminate\Support\Facades\Date;
@@ -18,41 +19,36 @@ trait WalletActions {
 
     function updateEscrowFunds(){
         $updatedWallets = 0;
-        $mentors = $this->getApprovedMentors();
+        // $mentors = $this->getApprovedMentors();
+        $mentors = User::where([
+            'role' => 'mentor',
+            'kyc_status' => 'approved'
+        ])->with('wallet')->get();
+
 
         $mentors->map(function ($mentor) use($updatedWallets) {
-            $wallet = $this->getWalletWithEscrowFunds($mentor);
-
-            if(is_null($wallet)) return;
-
-            $batches = $this->getUnpaidBatches($mentor);
+            $wallet = $mentor->wallet;
+            if($wallet->escrow < 1) return;
+            $batches = Batch::where([
+                'mentor_id' => $mentor->unique_id,
+                'paid' => false
+            ])->where('enddate', '<=', now())->get();
 
             if($batches->isNotEmpty()) {
                 $batches->map(function($batch) use ($wallet, $mentor) {
-                    // if(env('APP_ENV') === 'local')
+                    if($batch->earnings <= 0) return;
+
                     $day_count = Setting::first()->withdrawal_day_count ?? env('WITHDRAWAL_DAY_COUNT');
-                    $withdrawalDate = Date::parse($batch->endate)->addMinutes($day_count);
-                    // $withdrawalDate = Date::parse($batch->endate)->addDays($day_count);
+                    // $withdrawalDate = Date::parse($batch->enddate)->addMinutes($day_count);
+                    $withdrawalDate = Date::parse($batch->endate)->addDays($day_count);
+
                     if(now()->greaterThanOrEqualTo($withdrawalDate)){
-                        $this->updateWalletFunds($batch, $wallet, $mentor);
+                        $this->updateWalletFunds($batch, $wallet);
+                        $this->sendNotification($mentor, $batch);
                     };
                 });
 
                 $updatedWallets++;
-
-                $message = [
-                    Notifications::parse('image', asset('images/email/kyc-pending.png')),
-                    Notifications::parse('text', "Your earnings on your sessions at Libraclass have been updated"),
-                    Notifications::parse('text', 'You can now withdraw your funds from your '.env('APP_NAME').' wallet!'),
-                    Notifications::parse('action', [
-                        'link' => route('mentor.wallet'),
-                        'action' => "Go to My Wallet"
-                    ]),
-                    Notifications::parse('text', 'If you have any complaints, please send an Email to '.env('LIBRACLASS_EMAIL')),
-                ];
-
-                $notification = Notifications::builder("Your Earnings have been updated!", $message);
-                Notifications::send($mentor, $notification, ['mail']);
             }else{
                 return;
             }
@@ -61,17 +57,27 @@ trait WalletActions {
         return $updatedWallets;
     }
 
+    function sendNotification($mentor, $batch){
+        $message = [
+            Notifications::parse('image', asset('images/email/kyc-pending.png')),
+            Notifications::parse('text', "Your earnings on for your <strong>".$batch->title."</strong> session at".env('APP_NAME')." have been updated"),
+            Notifications::parse('text', 'You can now withdraw your funds from your '.env('APP_NAME').' wallet!'),
+            Notifications::parse('action', [
+                'link' => route('mentor.wallet'),
+                'action' => "Go to My Wallet"
+            ]),
+            Notifications::parse('text', 'If you have any complaints, please send an Email to '.env('LIBRACLASS_EMAIL')),
+        ];
 
-    function sendUpdateNotification($mentor, $batch) {
+        $notification = Notifications::builder("Your Earnings have been updated!", $message);
+        Notifications::send($mentor, $notification, ['mail']);
     }
 
     function getWalletWithEscrowFunds($user){
         return Wallet::where('user_id', $user->unique_id)->where('escrow', '>', 0)->first();
     }
 
-    function updateWalletFunds($batch, $wallet, $mentor){
-        if($this->getBatchReports($batch)->isNotEmpty()) return;
-
+    function updateWalletFunds($batch, $wallet){
         $wallet->escrow = $wallet->escrow - $batch->earnings;
         $wallet->available = $wallet->available + $batch->earnings;
         $wallet->save();
@@ -82,7 +88,8 @@ trait WalletActions {
 
     function updateMentorWallet($mentor, $amount){
         $wallet = Wallet::where('user_id', $mentor->unique_id)->first();
-        $wallet->escrow = $wallet->escrow - $amount;
+        $wallet->earnings = $wallet->earnings + $amount;
+        $wallet->escrow = $wallet->escrow + $amount;
         $wallet->balance = $wallet->balance + $amount;
         $wallet->save();
     }

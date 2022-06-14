@@ -30,7 +30,7 @@ class CreateCourseRequest extends FormRequest
             'attendees' => 'nullable|numeric',
             'price' => 'nullable|numeric',
             'video' => "nullable|string|url",
-            'images' => 'required|image|size:2000',
+            'images' => 'required|image|max:200000',
             'startdate' => 'required|string|date',
             'enddate' => 'required|string|date',
             'title' => 'required|string',
