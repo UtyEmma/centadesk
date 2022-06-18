@@ -5,8 +5,8 @@ const __batchSchema = (values) => {
             excerpt: 'required|string',
             desc: 'required|string',
             objectives: 'required',
-            startdate: `required`,
-            enddate: `required`,
+            startdate: `required|date|after:now`,
+            enddate: `required|date|after:startdate`,
             price: `required|numeric|min:0`,
             attendees: `numeric`,
             class_link: `required|string|url`,
@@ -16,6 +16,7 @@ const __batchSchema = (values) => {
             percent: 'numeric|digits_between:0,100',
             fixed: `numeric|max:${values.price}|min:0`,
             signup_limit: 'numeric',
+            time_limit: 'date|before:startdate',
             certificates: 'required|boolean',
             category: 'required|string',
             name: 'required|string'

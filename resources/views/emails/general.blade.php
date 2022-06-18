@@ -25,7 +25,7 @@
                     @if(isset($data['goodbye']))
                         <p style="margin-top: 25px; margin-bottom: 15px;">{{$data['goodbye']}}</p>
                     @else
-                        <p style="margin-top: 25px; margin-bottom: 15px;">---- <br> Regards<br>Libraclass Team</p>
+                        <p style="margin-top: 25px; margin-bottom: 15px;">---- <br> Regards<br>{{env('APP_NAME')}} Team</p>
                     @endif
                 </td>
             </tr>

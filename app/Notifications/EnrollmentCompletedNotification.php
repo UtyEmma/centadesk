@@ -27,8 +27,7 @@ class EnrollmentCompletedNotification extends Notification implements ShouldQueu
      * @param  mixed  $notifiable
      * @return array
      */
-    public function via($notifiable)
-    {
+    public function via($notifiable){
         return ['mail'];
     }
 

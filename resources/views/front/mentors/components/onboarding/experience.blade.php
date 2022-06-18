@@ -37,7 +37,7 @@
 
                                 <div class="single-form w-full col-6">
                                     <label for="" class="mb-1">Start Date</label>
-                                    <input type="date" class="form-control" id="startdate" placeholder="Start Date" />
+                                    <input type="date" class="form-control"  id="startdate" placeholder="Start Date" />
                                     <small id="startdate-error" class="text-danger"></small>
                                 </div>
 

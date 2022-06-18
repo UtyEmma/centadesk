@@ -117,19 +117,14 @@
 
                             <div class="row">
                                 <div class="single-form col-md-6">
-                                    <label>Start Date</label>
-                                    <x-date-range-picker name="startdate" enddate=".enddate" placeholder="Start Date" />
+                                    <label for="startdate">Start Date</label>
+                                    <input type="datetime-local" class="form-control" placeholder="Start Date" value="{{old('startdate')}}" id="startdate" name="startdate" placeholder="Start Date" />
                                     <x-errors name="startdate" />
                                 </div>
 
                                 <div class="single-form col-md-6">
-                                    <label>End Date</label>
-                                    <label for="startdate" class="w-auto d-flex align-items-center border radius pe-3 ms-0">
-                                        <input  class="form-control flex-1 border-0 radius-left radius-right-0 enddate" name="enddate" value="{{old('enddate')}}" placeholder="End Date" />
-                                        <small for="short_code" class="h-100 w-auto fw-medium fs-5 text-primary">
-                                            <i class="icofont-ui-calendar"></i>
-                                        </small>
-                                    </label>
+                                    <label for="enddate">End Date</label>
+                                    <input type="datetime-local" name="enddate" class="form-control" placeholder="End Date" id="enddate" value="{{old('enddate')}}" placeholder="End Date" />
                                     <x-errors name="enddate" />
                                 </div>
                             </div>
