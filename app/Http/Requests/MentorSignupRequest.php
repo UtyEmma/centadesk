@@ -21,26 +21,27 @@ class MentorSignupRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
-    {
+    public function rules() {
         return [
+            "username" => "required|string|between:4,10|unique:users,username",
             'username' => ['required', 'string', 'unique:users,username'],
-            'bank' => ['required', 'string'],
-            'account_no' => ['required', 'numeric', 'max:10'],
+            'bank' => ['required', 'numeric'],
+            'account_no' => ['required', 'numeric'],
             'account_name' => ['required', 'string'],
-            'desc' => ['nullable', 'string'],
+            'desc' => ['required', 'string'],
             'instagram' => ['nullable', 'string'],
             'twitter' => ['nullable', 'string'],
             'facebook' => ['nullable', 'string'],
             'linkedin' => ['nullable', 'string'],
             'specialty' => ['required','string'],
+            'website' => 'nullable|string|url',
+            'resume' => "nullable|string|url",
             'kyc_method' => ['required', 'string'],
             'id_image' => ['required', 'image'],
             'id_number' => ['required', 'numeric'],
-            'payment_method' => ['required', 'string'],
-            'crypto_wallet' => ['required', 'string'],
-            'experience' => ['required', 'string'],
-            'qualification' => ['required', 'string'],
+            'avatar' => ['nullable', 'image'],
+            'experience' => ['required'],
+            'qualification' => ['required'],
             'country' => ['required', 'string'],
             'state' => ['required', 'string'],
             'city' => ['required', 'string'],

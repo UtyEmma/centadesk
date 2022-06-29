@@ -22,62 +22,62 @@
                     <div class="count">
                         <span style="font-size: 16px;">{{request()->cookie('currency')}}</span>
                         <span style="font-size: 24px;">
-                            {{number_format($wallet->referrals)}}</div>
+                            {{number_format($wallet->referrals)}}
                         </span>
+                    </div>
                 </div>
             </div>
 
             <!-- Graph Top Start -->
             <div class="graph border-0 p-0">
-                <div class="graph-title mb-3">
-                    <h4 class="title">Your Deposits</h4>
+                <div class="w-100 mb-3">
+                    <div class="d-flex align-items-center justify-content-between">
+                        <h5 class="title mb-0">My Deposits</h5>
 
-                    <div class="graph-btn text-right">
-                        <button type="button" data-bs-toggle="modal" data-bs-target="#depositModal" class="btn btn-primary btn-hover-dark">Add Deposit</i></a>
+                        <button type="button" data-bs-toggle="modal" data-bs-target="#depositModal" class="btn btn-primary btn-hover-dark btn-custom">Add Deposit</i></a>
                     </div>
-
-                    <x-deposit-modal :user="$user" />
-
                 </div>
 
-                <div class="card radius p-4 w-100 text-center">
-                    <table class="w-100 hover table-striped table-active
-                    table-hover table-responsive">
-                        <thead class="bg-light radius" >
-                            <th class="py-3">Amount</th>
-                            <th>Payment Method</th>
-                            <th>Status</th>
-                            <th>Deposit Date</th>
-                        </thead>
+                <div class="radius w-100 text-center radius border overflow-hidden">
+                    <div class="table-responsive ">
+                        <table class="table table-borderless align-middle mb-0">
+                            <thead class="bg-light border-bottom border-muted" style="border-color: #dee2e6 !important;">
+                                <th class="py-3"  style="font-weight: 500;">Amount</th>
+                                <th class="py-3" style="font-weight: 500;">Payment Method</th>
+                                <th class="py-3" style="font-weight: 500;">Status</th>
+                                <th class="py-3" style="font-weight: 500;">Date</th>
+                            </thead>
 
-                        <tbody>
-                            @if (count($deposits) > 0)
-                                @foreach ($deposits as $deposit)
-                                    <tr class="border-top">
-                                        <td class="py-3">{{request()->cookie('currency')}} {{number_format($currency::convert($deposit->amount, $deposit->currency, request()->cookie('currency')))}}</td>
-                                        <td> {{$deposit->type}} </td>
-                                        <td>
-                                            {{$deposit->status}}
-                                        </td>
-                                        <td>
-                                            {{$deposit->created->date}}
+                            <tbody class="border-0 border-light border-1" style="border-style: none !important;">
+                                @if (count($deposits) > 0)
+                                    @foreach ($deposits as $deposit)
+                                        <tr class="border-top">
+                                            <td class="py-3">{{request()->cookie('currency')}} {{number_format($currency::convert($deposit->amount, $deposit->currency, request()->cookie('currency')))}}</td>
+                                            <td class="py-3"> {{ucfirst($deposit->type)}} </td>
+                                            <td class="py-3">
+                                                {{ucfirst($deposit->status)}}
+                                            </td class="py-3">
+                                            <td class="py-3">
+                                                {{Date::parse($deposit->updated_at)->format('jS M, Y')}}
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                @else
+                                    <tr>
+                                        <td colspan="5" class="text-center pt-5 ">
+                                            <h4>You have not made any deposits</h4>
                                         </td>
                                     </tr>
-                                @endforeach
-                            @else
-                                <tr>
-                                    <td colspan="5" class="text-center pt-5 ">
-                                        <h4>You have not made any deposits</h4>
-                                    </td>
-                                </tr>
-                            @endif
-                        </tbody>
-                    </table>
+                                @endif
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
             <!-- Graph Top End -->
         </div>
 
+        <x-deposit-modal :user="$user" />
     </div>
 
 </x-student-layout>

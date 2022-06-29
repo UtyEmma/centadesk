@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Events\MentorApplicationCreated;
-use App\Events\MentorApplicationSent;
 use App\Http\Requests\MentorSignupRequest;
 use App\Http\Traits\CourseActions;
 use App\Http\Traits\MentorActions;
@@ -12,14 +10,11 @@ use App\Library\Notifications;
 use App\Library\Response;
 use App\Models\Bank;
 use App\Models\Batch;
-use App\Models\Courses;
 use App\Models\Enrollment;
 use App\Models\Faq;
 use App\Models\User;
-use App\Notifications\NewMentorAccountRequestNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Str;
 
 class MentorController extends Controller{
@@ -37,27 +32,24 @@ class MentorController extends Controller{
     public function index(Request $request){
         $type = 'page';
 
-        if($request->keyword){
-            $mentors = User::search($request->keyword)
-                                ->where('role', 'mentor')
-                                ->where('kyc_status', 'approved');
-            $type = 'search';
-        }else{
-            $mentors = User::query();
+        $mentors = User::query();
 
-            $mentors->when($request->order === 'popularity', function($query){
-                return $query->orderBy('rating');
-            });
+        $mentors->when($request->keyword, function($query, $keyword){
+            return $query->where('username', '%like%', $keyword);
+        });
 
-            $mentors->when($request->order === 'rating', function($query){
-                return $query->orderBy('rating');
-            });
+        $mentors->when($request->order === 'popularity', function($query){
+            return $query->orderBy('rating');
+        });
 
-            $mentors->where([
-                'role' => 'mentor',
-                'kyc_status' => 'approved'
-            ]);
-        }
+        $mentors->when($request->order === 'rating', function($query){
+            return $query->orderBy('rating');
+        });
+
+        $mentors->where([
+            'role' => 'mentor',
+            'kyc_status' => 'approved'
+        ]);
 
         return view('front.mentors', [
             'mentors' => $mentors->paginate(env('PAGINATION_COUNT')),
@@ -66,11 +58,11 @@ class MentorController extends Controller{
     }
 
     public function home(){
-        $mentor = $this->user();
-        $enrollments = Enrollment::where('mentor_id', $mentor->unique_id)->get();
+        $query = User::query();
+        $mentor = $query->withCount('students')->with('wallet')->first();
+
         return view('dashboard.index', [
-            'user' => $mentor,
-            'enrollments' => $enrollments->count()
+            'user' => $mentor
         ]);
     }
 
@@ -86,26 +78,18 @@ class MentorController extends Controller{
         ]);
     }
 
-    public function store(Request $request){
+    public function store(MentorSignupRequest $request){
         $user = $this->user();
 
         $avatar = FileHandler::upload($request->file('avatar')) ?? "";
         $id_image = FileHandler::upload($request->file('id_image')) ?? "";
 
-        $user->update(array_merge(
-            $request->all(), [
-                'account_no' => $request->account_number,
-                'account_name' => $request->account_name,
-                'instagram' => $request->instagram,
-                'facebook' => $request->facebook,
-                'twitter' => $request->twitter,
-                'kyc_method' => Str::slug($request->kyc_method),
-                'desc' => $request->desc,
-                'role' => 'mentor',
-                'avatar' => $avatar,
-                'id_image' => $id_image
-            ]
-        ));
+        $user->update($request->safe()->merge([
+            'kyc_method' => Str::slug($request->kyc_method),
+            'role' => 'mentor',
+            'avatar' => $avatar,
+            'id_image' => $id_image
+        ])->all());
 
         $message = [
             'greeting' => "Hi, $user->firstname",
@@ -122,27 +106,22 @@ class MentorController extends Controller{
         Notifications::send($user, $notification, ['mail', 'database']);
 
         return Response::redirectBack('success', 'Your application has been sent! 🎉');
-
     }
 
     public function update(Request $request){
-        try {
-            $user = $this->user();
+        $user = $this->user();
 
-            $avatar = $user->avatar;
+        $avatar = $user->avatar;
 
-            if($request->avatar){
-                FileHandler::deleteFile($user->avatar);
-                $avatar = FileHandler::upload($request->avatar);
-            }
-
-            $request->merge(['avatar' => $avatar]);
-            $user->update($request->all());
-
-            return Response::redirectBack('success', "Your Profile has been updated Successfully");
-        } catch (\Throwable $th) {
-            return Response::redirectBack('error', $th->getMessage());
+        if($request->avatar){
+            FileHandler::deleteFile($user->avatar);
+            $avatar = FileHandler::upload($request->avatar);
         }
+
+        $request->merge(['avatar' => $avatar]);
+        $user->update($request->all());
+
+        return Response::redirectBack('success', "Your Profile has been updated Successfully");
     }
 
     public function show($username){
@@ -169,9 +148,13 @@ class MentorController extends Controller{
     }
 
     public function payments(){
-        $user = $this->user();
-        $bank = Bank::where('code', $user->bank)->first();
-        $user->bank = $bank->name;
+        $user = auth()->user();
+        $user = User::query();
+
+        $user->find($user->unique_id)
+            ->with('bank')
+            ->get();
+
         return Response::view('dashboard.profile.payment', [
             'user' => $user
         ]);
@@ -192,15 +175,13 @@ class MentorController extends Controller{
     }
 
     function delete(){
-        try {
-            $user = $this->user();
-            $wallet = $user->wallet;
-            if($wallet->balance > 0) return Response::redirectBack('error', "You cannot delete your account because you still have some pending balance in your Wallet");
-            Auth::logout();
-            $user->delete();
-            return Response::redirect('/login', 'success', "Your Account has been deleted successfully!");
-        } catch (\Throwable $th) {
-            //throw $th;
-        }
+
+        $user = $this->user();
+        $wallet = $user->wallet;
+        if($wallet->balance > 0) return Response::redirectBack('error', "You cannot delete your account because you still have some pending balance in your Wallet");
+        Auth::logout();
+        $user->delete();
+        return Response::redirect('/login', 'success', "Your Account has been deleted successfully!");
+
     }
 }

@@ -39,32 +39,31 @@
                             </div>
 
                             <div class="row mt-2">
-                                <div class="col-md-6 single-form">
+                                <div class="col-md-6 single-form px-0 pe-md-2">
                                     <label class="labels">First Name</label>
                                     <input type="text" required class="form-control" name="firstname" placeholder="First Name" value="{{$user->firstname}}">
                                 </div>
-                                <div class="col-md-6 single-form">
+                                <div class="col-md-6 single-form px-0">
                                     <label class="labels">Last Name</label>
                                     <input type="text" required class="form-control" name="lastname" value="{{$user->lastname}}" placeholder="Last Name">
                                 </div>
                             </div>
 
                             <div class="row mt-3">
-                                <div class="single-form">
+                                <div class="single-form px-0">
                                     <label class="labels">Email Address</label>
                                     <input type="email" required class="form-control" name="email" placeholder="Email Address" value="{{$user->email}}">
                                 </div>
 
-                                <div class="single-form">
+                                <div class="single-form px-0">
                                     <label class="labels">Headline</label>
                                     <input type="text" class="form-control" placeholder="'Engineer at Microsoft' or Architect" name="specialty" value="{{$user->specialty}}">
                                 </div>
 
-                                <div class="single-form">
+                                <div class="single-form px-0">
                                     <label class="labels">Bio</label>
                                     <textarea type="text" class="form-control" placeholder="Write a short description of your self" name="desc">{{$user->desc}}</textarea>
                                 </div>
-
                             </div>
                         </div>
                     </div>

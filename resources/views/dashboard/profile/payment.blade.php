@@ -8,7 +8,7 @@
                     <div class="p-5 px-3">
                         <div>
                             <h6 class="p-0">Bank Information</h6>
-                            <p>To update your account details, please reach out to our support team.</p>
+                            <p>To update your Bank Account details, please reach out to our support team.</p>
                         </div>
 
                         <p id="bank_info_error" class="text-danger"></p>
@@ -16,7 +16,7 @@
                         <div class="row">
                             <div class="single-form col-md-6">
                                 <label class="">Bank</label>
-                                <input class="input" name='bank' readonly     value="{{$user->bank}}" placeholder="Bank">
+                                <input class="input" name='bank' readonly     value="{{$user->bank->name}}" placeholder="Bank">
                                 <small class="text-danger text-capitalize">
                                     @error('bank')
                                         {{$message}}

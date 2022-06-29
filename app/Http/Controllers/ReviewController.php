@@ -40,12 +40,14 @@ class ReviewController extends Controller{
             ]);
 
             $course->rating = $this->calculateRatings('course_id', $course->unique_id);
-            ++$course->reviews;
             $course->save();
 
             $mentor->avg_rating = $this->calculateRatings('mentor_id', $mentor->unique_id);
             ++$mentor->total_reviews;
             $mentor->save();
+
+            $batch->rating = $this->calculateRatings('batch_id', $batch->unique_id);
+            $batch->save();
 
             $message = [
                 Notifications::parse('image', asset('images/email/kyc-success.png')),
@@ -87,6 +89,7 @@ class ReviewController extends Controller{
                 'mentor' => $user,
                 'batches' => $batches
             ]);
+
         } catch (\Throwable $th) {
             return Response::redirectBack('error', $th->getMessage());
         }

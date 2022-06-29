@@ -16,7 +16,7 @@
 
                         <div class="single-box my-1 px-3">
                             <h5 class="title">Enrollments</h5>
-                            <div class="count">{{$enrollments}}</div>
+                            <div class="count">{{$user->students_count}}</div>
                             {{-- <p><span>345</span> This months</p> --}}
                         </div>
 

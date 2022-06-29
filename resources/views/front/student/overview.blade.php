@@ -14,7 +14,7 @@
                             <div class="new-courses-title">
                                 <h3 class="title">Hi, {{$user->firstname}}</h3>
                                 <p class="text-white fs-6">Find and enroll for amazing Sessions by some of the top experts in a subject you are interested in.</p>
-                                <a href="/sessions" class="btn btn-custom btn-warning btn-hover-dark">Discover session</a>
+                                <a href="/sessions" class="btn btn-custom btn-warning btn-hover-dark">Discover Sessions</a>
                             </div>
                         </div>
                     </div>
@@ -91,7 +91,7 @@
                     @endphp
 
                     <div class="mt-4">
-                        <h5>Earn with your Affiliate link.</h5>
+                        <h6>Earn rewards when your friends join using your referral link.</h6>
                         <x-affiliate-link :user="$user" />
                     </div>
                 </div>

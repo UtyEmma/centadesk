@@ -9,25 +9,15 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 
-class AuthenticatedSessionController extends Controller
-{
-    /**
-     * Display the login view.
-     *
-     * @return \Illuminate\View\View
-     */
+class AuthenticatedSessionController extends Controller{
+
     public function create(Request $request){
         return view('auth.login', [
             'data' => $this->app_data()
         ]);
     }
 
-    /**
-     * Handle an incoming authentication request.
-     *
-     * @param  \App\Http\Requests\Auth\LoginRequest  $request
-     * @return \Illuminate\Http\RedirectResponse
-     */
+
     public function store(LoginRequest $request){
         $request->authenticate();
 
@@ -37,12 +27,7 @@ class AuthenticatedSessionController extends Controller
         return redirect()->intended($request->redirect ?? RouteServiceProvider::LEARNING_CENTER)->withCookie(cookie('currency', $user->currency));
     }
 
-    /**
-     * Destroy an authenticated session.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\RedirectResponse
-     */
+
     public function destroy(Request $request){
         Auth::guard('web')->logout();
 

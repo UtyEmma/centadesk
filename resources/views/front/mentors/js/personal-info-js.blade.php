@@ -7,15 +7,8 @@
 
         function setImagePreview(e, id){
             const preview = document.querySelector("#"+id);
-            console.log(preview)
             preview.src = URL.createObjectURL(e.target.files[0])
         }
-
-        // function removeImg(){
-        //     $('input[name="avatar"]').val('')
-        //     const image = document.querySelector("#mentor-avatar")
-        //     image.src = "{{asset('images/icon/user.png')}}"
-        // }
 
         const __personalInfoSchema = {
             rules: {
@@ -51,9 +44,7 @@
         const inputValues = ['username', 'specialty', 'desc', 'city', 'state', 'country', 'instagram', 'facebook', 'twitter', 'avatar']
 
         function validatePersonalInfo(){
-            const values = parseFormValues(inputValues)
-
-            const validator = new Validator(values, __personalInfoSchema.rules)
+            const validator = new Validator(parseFormValues(inputValues), __personalInfoSchema.rules)
             validator.setAttributeNames(__personalInfoSchema.attributes)
             if(validator.fails()){
                 const errors = validator.errors.errors

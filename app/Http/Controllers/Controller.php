@@ -20,9 +20,8 @@ class Controller extends BaseController{
 
     protected function app_data(){
         $currencies = Currencies::all();
-        $data = [
+        return [
             'currencies' => $currencies,
         ];
-        return $data;
     }
 }

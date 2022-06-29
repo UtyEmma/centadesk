@@ -2,7 +2,6 @@
     <x-page-title title="About - We are the next level online classes marketplace" />
     <!-- Page Banner Start -->
     <div class="section page-banner bg-transparent">
-
         <div class="container mt-5">
             <!-- Page Banner Start -->
             <div class="page-banner-content py-5">
@@ -118,8 +117,8 @@
 
     <x-testimonial-slider :testimonials="$testimonials" />
 
-    <div class="my-5">
+    {{-- <div class="my-5">
         @include('components.partner-brands')
-    </div>
+    </div> --}}
 
 </x-guest-layout>

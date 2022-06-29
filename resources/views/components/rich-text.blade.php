@@ -1,6 +1,6 @@
 <!-- Create the editor container -->
 <div id="editor" class="border radius" style="height: 200px"></div>
-<textarea type="text" id="text-content" hidden name="{{$name}}"></textarea>
+<textarea type="text" id="text-content" onchange="{{$onblur ?? ''}}" hidden name="{{$name}}"></textarea>
 
 @push('styles')
     <link rel="stylesheet" href="{{asset('/css/plugins/quill-snow.css')}}">
@@ -11,7 +11,6 @@
 
     <script>
         $(document).ready(() => {
-            console.log("Loaded")
             var quill = new Quill('#editor', {
                 modules: {
                     toolbar: [
@@ -26,16 +25,7 @@
                             'blockquote',
                             'code-block'
                         ],
-
-                        // [{ 'header': 1 }, { 'header': 2 }],
                         [{ 'list': 'ordered'}, { 'list': 'bullet' }],
-                        // [{ 'script': 'sub'}, { 'script': 'super' }],
-                        // [{ 'indent': '-1'}, { 'indent': '+1' }],
-
-
-                        // [{ 'align': [] }],
-
-                        // ['clean']
                     ],
                 },
                 placeholder: '{{$placeholder ?? "Compose an epic..."}}',

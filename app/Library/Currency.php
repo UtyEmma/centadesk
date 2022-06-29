@@ -18,8 +18,18 @@ class Currency {
         $from_rate = $from_currency->rate;
         $to_rate = $to_currency->rate;
 
-        $usd_value = self::convertToUSD($from_rate, $amount);
-        $to_value = self::convertFromUSD($to_rate, $usd_value);
+        if ($from === 'USD') {
+            $usd_value = $amount;
+        } else {
+            $usd_value = self::convertToUSD($from_rate, $amount);
+        }
+
+        if($to === "USD"){
+            $to_value = $usd_value;
+        }else{
+            $to_value = self::convertFromUSD($to_rate, $usd_value);
+        }
+
 
         return ceil($to_value);
     }

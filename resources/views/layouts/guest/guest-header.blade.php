@@ -18,10 +18,9 @@
 
                     <div class="header-top-right">
                         <ul class="social">
-                            <li><a href="#"><i class="flaticon-facebook"></i></a></li>
-                            <li><a href="#"><i class="flaticon-twitter"></i></a></li>
-                            <li><a href="#"><i class="flaticon-skype"></i></a></li>
-                            <li><a href="#"><i class="flaticon-instagram"></i></a></li>
+                            <li><a href="{{env('FACEBOOK_PROFILE_URL')}}{{env('LIBRACLASS_FACEBOOK')}}"><i class="flaticon-facebook"></i></a></li>
+                            <li><a href="{{env('TWITTER_PROFILE_URL')}}{{env('LIBRACLASS_TWITTER')}}"><i class="flaticon-twitter"></i></a></li>
+                            <li><a href="{{env('INSTAGRAM_PROFILE_URL')}}{{env('LIBRACLASS_INSTAGRAM')}}"><i class="flaticon-instagram"></i></a></li>
                         </ul>
                     </div>
                 </div>
@@ -47,7 +46,7 @@
                                 <a href="/blog">Blog</a>
                             </li>
                             <li>
-                                <a href="/mentor/join">Mentors</a>
+                                <a href="/mentor/join">For Mentors</a>
                             </li>
                         </ul>
                     </div>
@@ -124,7 +123,7 @@
                     <a href="/blog">Blog</a>
                 </li>
                 <li>
-                    <a href="/mentor/join">Mentors</a>
+                    <a href="/mentor/join">For Mentors</a>
                 </li>
             </ul>
 
@@ -169,6 +168,4 @@
 
     </div>
     <!-- Mobile Menu End -->
-
-
 </div>

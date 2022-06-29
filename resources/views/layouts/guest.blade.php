@@ -10,5 +10,4 @@
 
 
     @include('layouts.guest.guest-footer')
-
 </x-blank-layout>

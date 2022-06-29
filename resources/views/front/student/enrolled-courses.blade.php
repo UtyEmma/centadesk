@@ -5,13 +5,13 @@
 
         <div class="container">
             <!-- All Courses Tabs Menu Start -->
-            <div class="courses-tabs-menu border border-primary courses-active p-3 mt-0">
-                <h5>Enrolled Sessions</h5>
+            <h5>My Enrolled Sessions</h5>
+            <div class="courses-tabs-menu border border-primary courses-active p-3 py-2 mt-0">
                 <div>
                     <ul class="nav row gx-2">
-                        <li class="col-4 col-md-auto"><button type="button" class="active px-md-5" data-bs-toggle="tab" data-bs-target="#tabs1">Ongoing</button></li>
-                        <li class="col-4 col-md-auto"><button type="button" data-bs-toggle="tab" class="px-md-5" data-bs-target="#tabs2">Upcoming</button></li>
-                        <li class="col-4 col-md-auto"><button type="button" data-bs-toggle="tab" class="px-md-5" data-bs-target="#tabs3">Previous</button></li>
+                        <li class="col-4 col-md-auto"><button type="button" class="active px-md-5 py-2" data-bs-toggle="tab" data-bs-target="#tabs1">Ongoing</button></li>
+                        <li class="col-4 col-md-auto"><button type="button" data-bs-toggle="tab" class="py-2 px-md-5" data-bs-target="#tabs2">Upcoming</button></li>
+                        <li class="col-4 col-md-auto"><button type="button" data-bs-toggle="tab" class="py-2 px-md-5" data-bs-target="#tabs3">Previous</button></li>
                     </ul>
                 </div>
             </div>

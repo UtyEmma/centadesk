@@ -5,8 +5,6 @@ const __batchSchema = (values) => {
             excerpt: 'required|string',
             desc: 'required|string',
             objectives: 'required',
-            startdate: `required|date|after:now`,
-            enddate: `required|date|after:startdate`,
             price: `required|numeric|min:0`,
             attendees: `numeric`,
             class_link: `required|string|url`,
@@ -16,10 +14,12 @@ const __batchSchema = (values) => {
             percent: 'numeric|digits_between:0,100',
             fixed: `numeric|max:${values.price}|min:0`,
             signup_limit: 'numeric',
-            time_limit: 'date|before:startdate',
             certificates: 'required|boolean',
             category: 'required|string',
-            name: 'required|string'
+            name: 'required|string',
+            startdate: `required|date`,
+            enddate: `required|date`,
+            time_limit: 'date',
         },
 
         attributes: {
@@ -29,8 +29,6 @@ const __batchSchema = (values) => {
             excerpt: 'Short Description',
             desc: 'Description',
             objectives: 'Objectives',
-            startdate: `Start date`,
-            enddate: `End Date`,
             price: `Price`,
             attendees: `Expected Attendees`,
             class_link: `Batch Waiting Link`,
@@ -40,8 +38,10 @@ const __batchSchema = (values) => {
             percent: 'Discount Percentage',
             fixed: 'Discount Amount',
             time_limit: 'Discount Time Limit',
+            certificate: 'Certificate',
+            startdate: `Start date`,
+            enddate: `End Date`,
             signup_limit: 'Discount Signup Limit',
-            certificate: 'Certificate'
         }
     }
 }
@@ -69,6 +69,7 @@ const parseErrors = (errors) => {
     })
 }
 
+
 function validateBatchDetails(e){
     const values = Object.fromEntries(new FormData(e.target).entries())
     values.certificates = $('#certificates').is(":checked")
@@ -81,7 +82,7 @@ function validateBatchDetails(e){
         errors = {...validator.errors.errors}
     }
 
-    if(moment().isBefore(values.startdate)){
+    if(moment().isAfter(values.startdate)){
         errors.startdate = ['Start Date Cannot be before today']
     }
 
@@ -105,10 +106,9 @@ function validateBatchDetails(e){
 
 function validateInput(e, schema){
     const {name, value} = e.target
-
-    const validator = new Validator({[name]: value}, {[name]: schema.rules[name]})
-    validator.setAttributeNames({[name]: schema.attributes[name]})
-
+    const validationSchema = schema({[name]: value})
+    const validator = new Validator({[name]: value}, {[name]: validationSchema.rules[name]})
+    validator.setAttributeNames({[name]: validationSchema.attributes[name]})
     if(validator.fails()){
         const errors = validator.errors.errors
         return $(`#${name}-error`).text(errors[name][0])
@@ -118,6 +118,48 @@ function validateInput(e, schema){
 }
 
 function parseDateTimeToJsFormat(date){
-    const value = moment(date, 'HH:mm, DD MMM, YYYY').format('yyyy-mm-dd HH:MM:SS')
+    const value = moment(date).format('yyyy-mm-dd HH:MM:SS')
     return new Date(value)
+}
+
+function parseDate(e, id){
+    const {value} = e.target
+    const date = moment(date).format('yyyy-mm-dd HH:MM:SS')
+    const input = document.getElementById(id)
+    input.value = date
+}
+
+
+function validateDate(e){
+    const {name, value} = e.target
+    const startdate =  document.getElementById('startdate').value
+
+    if(name === 'startdate'){
+        if(moment().isAfter(value)){
+            return $(`#${name}-error`).text("Start date cannot fall before now")
+        }
+        return $(`#${name}-error`).text('')
+    }
+
+    if(name === 'enddate'){
+        if(startdate === ""){
+            return $(`#${name}-error`).text("Please select a Start date")
+        }
+
+        if(moment(value).isBefore(startdate)){
+            return $(`#${name}-error`).text("End date cannot fall after Startdate")
+        }
+        return $(`#${name}-error`).text('')
+    }
+
+    if(name === 'time_limit'){
+        if(startdate === ""){
+            return $(`#${name}-error`).text("Please select a Start date")
+        }
+
+        if(moment(value).isBefore(startdate)){
+            return $(`#${name}-error`).text("Discount Time limit cannot fall after Startdate")
+        }
+        return $(`#${name}-error`).text('')
+    }
 }

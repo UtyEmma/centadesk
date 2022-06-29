@@ -79,7 +79,7 @@
                                             </div>
 
                                             <h5 class="my-2" >Add Your Work Experience</h5>
-                                            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsam totam commodi odio voluptatibus minus ducimus culpa sed, fugiat.</p>
+                                            <p>Your entries will be displayed here.</p>
                                         </div>
                                     </div>
                                 </div>

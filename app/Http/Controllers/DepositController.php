@@ -57,6 +57,7 @@ class DepositController extends Controller{
         if($request->status === 'successful'){
             $transaction_id = $request->transaction_id;
             $deposit = Deposit::where('reference', $tx_ref)->first();
+
             $transaction = $this->verifyDepositStatus($deposit, $transaction_id);
             $success_link = "/wallet";
 

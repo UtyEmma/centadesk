@@ -58,6 +58,10 @@ class User extends Authenticatable{
         return $this->hasMany(Deposit::class, 'user_id', 'unique_id');
     }
 
+    public function bank(){
+        return $this->hasOne(Bank::class, 'code', 'bank');
+    }
+
     public function reviews(){
         return $this->hasMany(Review::class, 'mentor_id', 'unique_id');
     }
@@ -122,6 +126,10 @@ class User extends Authenticatable{
 
     public function sessions(){
         return $this->hasMany(Enrollment::class, 'student_id', 'unique_id');
+    }
+
+    public function students(){
+        return $this->hasMany(Enrollment::class, 'mentor_id', 'unique_id');
     }
 
     public function toSearchableArray(){

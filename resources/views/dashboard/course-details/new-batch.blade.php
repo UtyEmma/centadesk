@@ -165,7 +165,7 @@
                                             </div>
                                             <div class="single-form col-md-6 mt-2">
                                                 <label>Expiration Date</label>
-                                                <input  class="form-control" type="date" value="{{old('time_limit')}}" class="form-control" id="date" name="time_limit" placeholder="Expiration Date" />
+                                                <input  class="form-control" type="datetime-local" value="{{old('time_limit')}}" class="form-control" id="date" name="time_limit" placeholder="Expiration Date" />
 
                                                 <x-errors name="time_limit" />
                                             </div>

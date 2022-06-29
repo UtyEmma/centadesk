@@ -22,7 +22,7 @@
                         <div class="col-md-8">
                             <div class="single-form mt-2 mt-md-0">
                                 <label class="mb-1">Course Title</label>
-                                <input type="text" name="name" onblur="validateInput(event, __courseSchema)" maxlength="60" value="{{old('name')}}" placeholder="Class Title, Topic or Subject">
+                                <input type="text" name="name" onblur="validateInput(event, __batchSchema)" maxlength="60" value="{{old('name')}}" placeholder="Class Title, Topic or Subject">
                                 <x-errors name="name" />
                             </div>
                         </div>
@@ -33,7 +33,7 @@
                                 <button type="button" data-bs-toggle="modal" data-bs-target="#suggest-category" class="p-0 mb-1 bg-transparent border-0"><small>Suggest a Category</small></button>
                             </div>
 
-                            <select onblur="validateInput(event, __courseSchema)" name="category" class="selectpicker w-100" data-live-search="true" title="Select Category" data-style="border radius py-0 px-2 fw-normal">
+                            <select onblur="validateInput(event, __batchSchema)" name="category" class="selectpicker w-100" data-live-search="true" title="Select Category" data-style="border radius py-0 px-2 fw-normal">
                                 @foreach ($categories as $category)
                                     <option value="{{$category->slug}}">{{$category->name}}</option>
                                 @endforeach
@@ -58,42 +58,42 @@
 
                             <div class="single-form">
                                 <label>Session Title</label>
-                                <input type="text" name="title" value="{{old('title')}}"  class="form-control" placeholder="eg. Cohort One">
+                                <input type="text" name="title" onblur="validateInput(event, __batchSchema)" value="{{old('title')}}"  class="form-control" placeholder="eg. Cohort One">
                                 <x-errors name="title" />
                             </div>
 
                             <div class="single-form">
                                 <label>Short Description </label>
-                                <input type="text" name="excerpt" maxlength="120" value="{{old('name')}}" placeholder="Write a precise description - (Maximum 120 Characters)">
+                                <input type="text" name="excerpt" onblur="validateInput(event, __batchSchema)" maxlength="120" value="{{old('name')}}" placeholder="Write a precise description - (Maximum 120 Characters)">
                                 <x-errors name="excerpt" />
                             </div>
 
                             <div class="single-form">
                                 <label class="mb-1">Description</label>
-                                <x-rich-text placeholder="Write a compelling description of your class here" name="desc" />
+                                <x-rich-text onblur="validateInput(event, __batchSchema)" placeholder="Write a compelling description of your class here" name="desc" />
                                 <x-errors name="desc" />
                             </div>
 
                             <div class="single-form">
                                 <label class="mb-0">Objectives</label>
-                                <x-form-repeater name="objectives" />
+                                <x-form-repeater onblur="validateInput(event, __batchSchema)" name="objectives" />
                             </div>
 
                             <div class="single-form">
                                 <label class="mb-1">Tags</label>
-                                <x-tag-input />
+                                <x-tag-input onblur="validateInput(event, __batchSchema)" />
                                 <x-errors name="tags" />
                             </div>
 
                             <div class="single-form">
                                 <label>Session Waiting Link</label>
-                                <input type="text" name="class_link" value="{{old('class_link')}}" class="form-control" placeholder="https://">
+                                <input type="text" onblur="validateInput(event, __batchSchema)" name="class_link" value="{{old('class_link')}}" class="form-control" placeholder="https://">
                                 <x-errors name="class_link" />
                             </div>
 
                             <div class="single-form">
                                 <label>Session Access Link</label>
-                                <input type="text" name="access_link" value="{{old('access_link')}}" class="form-control" placeholder="https://">
+                                <input type="text" onblur="validateInput(event, __batchSchema)" name="access_link" value="{{old('access_link')}}" class="form-control" placeholder="https://">
                                 <x-errors name="access_link" />
                             </div>
 
@@ -118,13 +118,13 @@
                             <div class="row">
                                 <div class="single-form col-md-6">
                                     <label for="startdate">Start Date</label>
-                                    <input type="datetime-local" class="form-control" placeholder="Start Date" value="{{old('startdate')}}" id="startdate" name="startdate" placeholder="Start Date" />
+                                    <input type="datetime-local" onblur="validateDate(event)" name="startdate" class="form-control" placeholder="Start Date" value="{{old('startdate')}}" id="startdate" placeholder="Start Date" />
                                     <x-errors name="startdate" />
                                 </div>
 
                                 <div class="single-form col-md-6">
                                     <label for="enddate">End Date</label>
-                                    <input type="datetime-local" name="enddate" class="form-control" placeholder="End Date" id="enddate" value="{{old('enddate')}}" placeholder="End Date" />
+                                    <input type="datetime-local" onblur="validateDate(event)" name="enddate" class="form-control" placeholder="End Date" id="enddate" value="{{old('enddate')}}" placeholder="End Date" />
                                     <x-errors name="enddate" />
                                 </div>
                             </div>
@@ -134,14 +134,14 @@
                                     <label>Price</label>
                                     <label for="price" class="w-auto d-flex align-items-center border px-3 radius mr-0">
                                         <small for="short_code" class="h-100 w-auto fw-medium fs-6">{{Auth::user()->currency}}</small>
-                                        <x-amount-input name="price" class="form-control flex-1 border-0 radius-left-0" value="{{old('price')}}" />
+                                        <x-amount-input name="price" onblur="validateInput(event, __batchSchema)" class="form-control flex-1 border-0 radius-left-0" value="{{old('price')}}" />
                                     </label>
                                     <x-errors name="price" />
                                 </div>
 
                                 <div class="col-md-6 single-form">
                                     <label>Set Attendance Limit</label>
-                                    <input  class="form-control" type="number" value="{{old('attendees')}}" class="hide-increment" min="0" name="attendees" placeholder="0" />
+                                    <input  class="form-control" onblur="validateInput(event, __batchSchema)" type="number" value="{{old('attendees')}}" class="hide-increment" min="0" name="attendees" placeholder="0" />
                                     <x-errors name="attendees" />
                                 </div>
                             </div>
@@ -177,13 +177,13 @@
                                 <div id="discount_types">
                                     <div class="single-form">
                                         <label>Percentage</label>
-                                        <input  class="form-control hide-increment" name="percent" type="number" value="{{old('signups_discount')}}" id="percent" placeholder="Percent" />
+                                        <input  class="form-control hide-increment" onblur="validateInput(event, __batchSchema)" name="percent" type="number" value="{{old('signups_discount')}}" id="percent" placeholder="Percent" />
                                         <x-errors name="percent" />
                                     </div>
 
                                     <div class="single-form">
                                         <label>Fixed Price</label>
-                                        <input  class="form-control hide-increment" name="fixed" type="number" value="{{old('signups_discount')}}" id="fixed" placeholder="Fixed Price" />
+                                        <input  class="form-control hide-increment" onblur="validateInput(event, __batchSchema)" name="fixed" type="number" value="{{old('signups_discount')}}" id="fixed" placeholder="Fixed Price" />
                                         <x-errors name="fixed" />
                                     </div>
 
@@ -194,13 +194,13 @@
                                             </div>
                                             <div class="single-form col-md-6 mt-2">
                                                 <label>Expiration Date</label>
-                                                <input  class="form-control" type="date" value="{{old('time_limit')}}" class="form-control" id="date" name="time_limit" placeholder="Expiration Date" />
+                                                <input  class="form-control" onblur="validateDate(event)" type="datetime-local" value="{{old('time_limit')}}" class="form-control" id="date" name="time_limit" placeholder="Expiration Date" />
 
                                                 <x-errors name="time_limit" />
                                             </div>
                                             <div class="single-form col-md-6 mt-2">
                                                 <label>Limit Sign ups</label>
-                                                <input  class="form-control hide-increment" name="signup_limit" type="number" value="{{old('signup_limit')}}" id="signup_limit" placeholder="Signups Limit" />
+                                                <input  class="form-control hide-increment" onblur="validateInput(event, __batchSchema)" name="signup_limit" type="number" value="{{old('signup_limit')}}" id="signup_limit" placeholder="Signups Limit" />
                                                 <x-errors name="signup_limit" />
                                             </div>
                                         </div>
@@ -221,7 +221,7 @@
 
                             <div class="single-form my-2">
                                 <label class="mb-1">Promotional Video Link</label>
-                                <input type="text" name="video" class="px-2 mt-1" value="{{old('video')}}" placeholder="Link to promotional video" />
+                                <input type="text" onblur="validateInput(event, __batchSchema)" name="video" class="px-2 mt-1" value="{{old('video')}}" placeholder="Link to promotional video" />
                                 <x-errors name="video" />
                             </div>
                         </div>

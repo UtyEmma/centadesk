@@ -20,23 +20,33 @@
                                         {{ $batch->excerpt }}
                                     </p>
 
+                                    <div class="mt-2">
+                                        <div class="d-flex justify-content-between">
+                                            <h6>
+                                                <i class="text-primary mr-5 fs-5 icofont-calendar"></i>
+                                                <small>{{Date::parse($batch->startdate)->format('M jS, g:i A')}}</small>
+                                                -
+                                                <small>{{Date::parse($batch->enddate)->format('M jS, g:i A')}}</small>
+                                            </h6>
+                                        </div>
+                                    </div>
+
                                     <div class="my-2 col-md-12">
-                                        @if (!$batch->isCompleted())
-                                            <h6>Access this session:</h6>
-                                            <div class="row">
-                                                <div class="col-6">
-                                                    @if ($batch->class_link)
-                                                        <a href="{{$batch->class_link}}" class="btn btn-secondary btn-hover-primary w-100 btn-custom px-2" target="__blank">Waiting Link <i class="icofont-external-link"></i>
-                                                        </a>
-                                                    @endif
-                                                </div>
-                                                <div class="col-6">
-                                                    <a  href="{{$batch->access_link}}" class="btn btn-primary btn-hover-dark w-100 btn-custom px-2" target="__blank">
-                                                        Access Link <i class="icofont-external-link"></i>
+
+                                        <h6>Access this session:</h6>
+                                        <div class="row">
+                                            <div class="col-6">
+                                                @if ($batch->class_link)
+                                                    <a href="{{$batch->class_link}}" class="btn btn-secondary btn-hover-primary w-100 btn-custom px-2" target="__blank">Waiting Link <i class="icofont-external-link"></i>
                                                     </a>
-                                                </div>
+                                                @endif
                                             </div>
-                                        @endif
+                                            <div class="col-6">
+                                                <a  href="{{$batch->access_link}}" class="btn btn-primary btn-hover-dark w-100 btn-custom px-2" target="__blank">
+                                                    Access Link <i class="icofont-external-link"></i>
+                                                </a>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -76,11 +86,11 @@
                             </div>
 
                             <div>
-                                <a class="btn btn-secondary btn-hover-primary border border-primary btn-custom w-100" target="__blank" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text={{$batch->title}}&details={{$batch->excerpt}}&dates={{Date::parse($batch->startdate)}}/{{Date::parse($batch->enddate)}}">
+                                <a class="btn btn-secondary btn-hover-primary border border-primary btn-custom w-100" target="__blank" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text={{$batch->title}} - {{$course->name}}&details={{$batch->excerpt}}&dates={{Date::parse($batch->startdate)->format("Ymd\THis")}}/{{Date::parse($batch->enddate)->format("Ymd\THis")}}&location={{$batch->access_link}}">
                                     Add to Google Calendar
                                 </a>
 
-                                <a class="btn btn-secondary btn-hover-primary border border-primary btn-custom w-100 mt-3" target="__blank" href="https://outlook.office.com/calendar/0/deeplink/compose?subject={{$batch->title}}&body={{$batch->excerpt}}&startdt={{Date::parse($batch->startdate)}}&enddt={{Date::parse($batch->enddate)}}&path=%2Fcalendar%2Faction%2Fcompose&rru=addevent">Add to Outlook.com</a>
+                                {{-- <a class="btn btn-secondary btn-hover-primary border border-primary btn-custom w-100 mt-3" target="__blank" href="https://outlook.office.com/calendar/0/deeplink/compose?subject={{$batch->title}}&body={{$batch->excerpt}}&startdt={{Date::parse($batch->startdate)}}&enddt={{Date::parse($batch->enddate)}}&path=%2Fcalendar%2Faction%2Fcompose&rru=addevent">Add to Outlook.com</a> --}}
                             </div>
 
                             <div class="sidebar-widget my-3">
