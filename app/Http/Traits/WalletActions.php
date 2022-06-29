@@ -39,7 +39,7 @@ trait WalletActions {
 
                     $day_count = Setting::first()->withdrawal_day_count ?? env('WITHDRAWAL_DAY_COUNT');
                     // $withdrawalDate = Date::parse($batch->enddate)->addMinutes($day_count);
-                    $withdrawalDate = Date::parse($batch->enddate)->addMinutes($day_count);
+                    $withdrawalDate = Date::parse($batch->enddate)->addDays($day_count);
 
                     if(now()->greaterThanOrEqualTo($withdrawalDate)){
                         $this->updateWalletFunds($batch, $wallet);
