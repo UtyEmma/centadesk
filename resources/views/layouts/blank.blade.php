@@ -79,7 +79,7 @@
         <script src="{{asset('js/plugins/simple-notify.min.js')}}"></script>
 
         <!-- Hotjar Tracking Code for https://libraclass.com -->
-        <script>
+        {{-- <script>
             (function(h,o,t,j,a,r){
                 h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
                 h._hjSettings={hjid:2955498,hjsv:6};
@@ -88,7 +88,7 @@
                 r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
                 a.appendChild(r);
             })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
-        </script>
+        </script> --}}
 
         <!--Start of Tawk.to Script-->
         <script type="text/javascript">

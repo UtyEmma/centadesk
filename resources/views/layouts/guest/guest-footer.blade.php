@@ -94,7 +94,7 @@
 <!-- Footer End -->
 
 <!--Back To Start-->
-<a href="#" class="back-to-top" style="margin-bottom: 70px !important">
+<a href="#" class="back-to-top">
     <i class="icofont-simple-up"></i>
 </a>
 <!--Back To End-->
