@@ -35,18 +35,7 @@
                 </div>
             </div>
 
-            @if ($user->kyc_status === 'pending')
-                <div class="new-courses px-8 " style="background-image: url({{asset('images/new-courses-banner.jpg')}});">
-                    <div class="row">
-                        <div class="new-courses-title">
-                            <h3 class="title">Your Mentor account is under review. <br> You will be able to start creating courses after your account is approved.</h3>
-                            <p class="text-white">This should take between a few hours to a few days.</p>
-                        </div>
-                    </div>
-                </div>
-            @elseif ($user->kyc_status === 'approved')
-                <x-new-course />
-            @endif
+            <x-new-course />
 
             {{-- <x-mentor-charts /> --}}
 

@@ -3,7 +3,6 @@
         <div class="container-fluid px-3 px-md-5">
             <div class="mb-3">
                 <h4 class="my-0">Account Details</h4>
-                <p class="my-0">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laudantium, aliquam.</p>
             </div>
 
             <x-mentor.kyc-warning />

@@ -55,7 +55,7 @@
             </div>
         </div>
 
-        <div class="section-padding-02 mt-n6">
+        <div class="section-padding-02 mt-n6 mb-5">
             <div class="container">
                 <div class="about-items-wrapper">
                     <div class="row g-3">

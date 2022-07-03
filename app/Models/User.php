@@ -62,6 +62,10 @@ class User extends Authenticatable{
         return $this->hasOne(Bank::class, 'code', 'bank');
     }
 
+    public function bankDetail(){
+        return $this->hasOne(Bank::class, 'code', 'bank');
+    }
+
     public function reviews(){
         return $this->hasMany(Review::class, 'mentor_id', 'unique_id');
     }

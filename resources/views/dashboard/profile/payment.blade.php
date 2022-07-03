@@ -16,7 +16,7 @@
                         <div class="row">
                             <div class="single-form col-md-6">
                                 <label class="">Bank</label>
-                                <input class="input" name='bank' readonly     value="{{$user->bank->name}}" placeholder="Bank">
+                                <input class="input"  readonly     value="{{$user->bankDetail->name}}" placeholder="Bank">
                                 <small class="text-danger text-capitalize">
                                     @error('bank')
                                         {{$message}}
@@ -26,7 +26,7 @@
 
                             <div class="single-form col-md-6">
                                 <label class="">Account Number</label>
-                                <input class="input" name='account_number' readonly  value="{{$user->account_no}}" placeholder="Account Number">
+                                <input class="input"  readonly  value="{{$user->account_no}}" placeholder="Account Number">
                                 <small class="text-danger text-capitalize">
                                     @error('account_number')
                                         {{$message}}
@@ -37,7 +37,7 @@
                             <div class="single-form">
                                 <label class="">Account Name</label>
                                 <h5 id="account_name"></h5>
-                                <input class="input" name="account_name" readonly value="{{$user->account_name}}"  placeholder="Account Name" >
+                                <input class="input"  readonly value="{{$user->account_name}}"  placeholder="Account Name" >
                                 <small class="text-danger text-capitalize">
                                     @error('account_name')
                                         {{$message}}

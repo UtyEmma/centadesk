@@ -40,7 +40,7 @@
             <div class="login-header-search dropdown"></div>
 
             <div class="login-header-action ml-auto">
-                <div class="dropdown dropleft">
+                {{-- <div class="dropdown dropleft">
                     <button class="action notification" data-bs-toggle="dropdown">
                         <i class="flaticon-notification"></i>
                         <span class="active"></span>
@@ -60,9 +60,8 @@
                                 </li>
                             @endforeach
                         </ul>
-                        {{-- <a class="all-notification" href="#">See all notifications <i class="icofont-simple-right"></i></a> --}}
                     </div>
-                </div>
+                </div> --}}
 
                 <a class="action rounded-img" href="/me/account" style="">
                     <img src="{{$user->avatar ?? asset('images/author/author-07.jpg')}}" alt="Author">

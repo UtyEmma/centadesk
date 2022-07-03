@@ -149,11 +149,7 @@ class MentorController extends Controller{
 
     public function payments(){
         $user = auth()->user();
-        $user = User::query();
-
-        $user->find($user->unique_id)
-            ->with('bank')
-            ->get();
+        $user = User::with('bankDetail')->find($user->unique_id)->first();
 
         return Response::view('dashboard.profile.payment', [
             'user' => $user
@@ -180,7 +176,7 @@ class MentorController extends Controller{
         $wallet = $user->wallet;
         if($wallet->balance > 0) return Response::redirectBack('error', "You cannot delete your account because you still have some pending balance in your Wallet");
         Auth::logout();
-        $user->delete();
+        // $user->delete();
         return Response::redirect('/login', 'success', "Your Account has been deleted successfully!");
 
     }

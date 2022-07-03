@@ -5,6 +5,7 @@ namespace App\Library;
 use Cloudinary\Cloudinary;
 use Exception;
 use Illuminate\Http\File;
+use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\Storage;
 
 class FileHandler {
@@ -14,20 +15,37 @@ class FileHandler {
             if(!$files) return false;
 
             if(is_array($files)){
+
                 for($i=0; $i < count($files); $i++) {
                     $file = $files[$i];
-                    if(!file_exists($file)) throw new Exception("No files Selected");
-                    $url = cloudinary()->upload($file->getRealPath())->getSecurePath();
-                    $file_array[$i] = $url;
+                    if(env('STORAGE') === 'local' ){
+                        self::saveToStorage($file);
+                    }else if (env('STORAGE') === 'cloud') {
+                        $url = cloudinary()->upload($file->getRealPath())->getSecurePath();
+                        $file_array[$i] = $url;
+                    }
                 }
+
                 return json_encode($file_array);
             }
 
-            $url = cloudinary()->upload($files->getRealPath())->getSecurePath();
-        return $url;
+            if(env('STORAGE') === 'local'){
+                $url = self::saveToStorage($files);
+            }else if(env('STORAGE') === 'cloud'){
+                $url = cloudinary()->upload($files->getRealPath())->getSecurePath();
+            }
+
+            return $url;
         } catch (\Throwable $th) {
             throw $th;
         }
+    }
+
+    static function saveToStorage($file){
+        $ext = $file->getClientOriginalExtension();
+        $imageName = Str::random().'.'.$ext;
+        $file->move(public_path('/images/storage'), $imageName);
+        return asset('/images/storage/'.$imageName);
     }
 
     static function updateFile($file, $oldFile){

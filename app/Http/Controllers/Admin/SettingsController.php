@@ -10,9 +10,9 @@ use Illuminate\Http\Request;
 class SettingsController extends Controller{
 
     function updateSettings(Request $request){
-        $settings = Setting::all();
-        if(count($settings) < 0) return Response::redirectBack('error', 'App Configuration has not been set');
-        $settings[0]->update($request->all());
+        $settings = Setting::first();
+        if(!$settings) return Response::redirectBack('error', 'App Configuration has not been set');
+        $settings->update($request->all());
 
         return Response::redirectBack('success', "App Configuration updated");
     }

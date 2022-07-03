@@ -37,7 +37,7 @@ trait WalletActions {
                 $batches->map(function($batch) use ($wallet, $mentor) {
                     if($batch->earnings <= 0) return;
 
-                    $day_count = Setting::first()->withdrawal_day_count ?? env('WITHDRAWAL_DAY_COUNT');
+                    $day_count = Setting::first()->withdrawal_day_count;
                     // $withdrawalDate = Date::parse($batch->enddate)->addMinutes($day_count);
                     $withdrawalDate = Date::parse($batch->enddate)->addDays($day_count);
 

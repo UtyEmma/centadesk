@@ -28,28 +28,26 @@
                     </div>
                 </div>
 
-                <div class="message mt-3">
+                <div class="message text-center mt-3">
                     <div>
                         <div>
-                            <div class="d-flex align-items-center">
-                                <img src="{{asset('images/menu-icon/icon-6.png')}}" alt="">
-                                <h6 class="my-0 ms-3">Account Verification Status</h6>
+                            <div class="text-center">
+                                {{-- <img src="{{asset('images/menu-icon/icon-6.png')}}" alt=""> --}}
+                                <h5 class="my-0 ms-3">Account Verification Status</h5>
                             </div>
                         </div>
 
                         @if ($user->is_verified === 'unverified')
-                            <div class="p-3 px-0">
-                                <p>Your Mentor Account has not been verified! <br> Click the button below to request verification.</p>
-                                <a href="/me/verify">
-                                    <x-btn classes="btn-primary btn-hover-dark">Request Verification</x-btn>
-                                </a>
+                            <div class="p-3 text-center px-0">
+                                <p>Your Mentor Account is not verified! Click the button below to request verification.</p>
+                                <a href="/me/verify" class="btn btn-primary btn-hover-dark w-100 btn-custom">Request Verification</a>
                             </div>
                         @elseif ($user->is_verified === 'requested')
-                            <div class="p-3 px-0">
+                            <div class="p-3 text-center px-0">
                                 <p>Your Verification request is Pending!</p>
                             </div>
                         @elseif ($user->is_verified === 'verified')
-                            <div class="p-3 px-0">
+                            <div class="p-3 text-center px-0">
                                 <p>Your Mentor Account has been Verified!</p>
                             </div>
                         @endif
@@ -143,13 +141,10 @@
 
                             <div class="card mb-4 radius">
                                 <div class="card-body row">
-                                    <div class="col-md-6">
+                                    <div class="col-md-4">
                                         <div class="single-form">
                                             <label for="">Instagram</label>
-                                            <div class="input-group mb-3">
-                                                <span  class="input-group-text px-3 fs-6 radius-left bg-white border border-end-0" id="instagram">Instagram</span>
-                                                <input type="text" class="form-control w-auto border-start-0" id="facebook-input" onblur="validateInput(event, __personalInfoSchema)" name="instagram" placeholder="Username" value="{{$user->instagram}}" aria-describedby="instagram" value="">
-                                            </div>
+                                                <input type="text" class="form-control" id="facebook-input" onblur="validateInput(event, __personalInfoSchema)" name="instagram" placeholder="Username" value="{{$user->instagram}}" aria-describedby="instagram" value="">
                                         </div>
                                         <small class="text-danger text-capitalize" id="instagram-error">
                                             @error('instagram')
@@ -158,13 +153,10 @@
                                         </small>
                                     </div>
 
-                                    <div class="col-md-6">
+                                    <div class="col-md-4">
                                         <div class="single-form">
                                             <label for="">Facebook</label>
-                                            <div class="input-group mb-3">
-                                                <span  class="input-group-text px-3 fs-6 radius-left bg-white border border-end-0" id="facebook">Facebook</span>
-                                                <input type="text" class="form-control w-auto border-start-0" id="facebook-input" onblur="validateInput(event, __personalInfoSchema)" name="facebook" placeholder="Username" value="{{$user->facebook}}" aria-describedby="facebook" value="">
-                                            </div>
+                                            <input type="text" class="form-control" id="facebook-input" onblur="validateInput(event, __personalInfoSchema)" name="facebook" placeholder="Username" value="{{$user->facebook}}" aria-describedby="facebook" value="">
                                         </div>
                                         <small class="text-danger text-capitalize" id="facebook-error">
                                             @error('facebook')
@@ -173,13 +165,10 @@
                                         </small>
                                     </div>
 
-                                    <div class="col-md-6">
+                                    <div class="col-md-4">
                                         <div class="single-form">
                                             <label for="">Twitter</label>
-                                            <div class="input-group mb-3">
-                                                <span  class="input-group-text px-3 fs-6 radius-left bg-white border border-end-0" id="twitter">Twitter</span>
-                                                <input type="text" class="form-control w-auto border-start-0" id="twitter-input" onblur="validateInput(event, __personalInfoSchema)" name="twitter" placeholder="Username" value="{{$user->twitter}}" aria-describedby="twitter" value="">
-                                            </div>
+                                            <input type="text" class="form-control" id="twitter-input" onblur="validateInput(event, __personalInfoSchema)" name="twitter" placeholder="Username" value="{{$user->twitter}}" aria-describedby="twitter" value="">
                                         </div>
                                         <small class="text-danger text-capitalize" id="twitter-error">
                                             @error('twitter')
@@ -192,7 +181,7 @@
                         </div>
 
                         <div class="text-end">
-                            <button class="btn btn-primary" type="button">Save changes</button>
+                            <button class="btn btn-primary btn-custom btn-hover-dark" type="button">Save changes</button>
                         </div>
                     </div>
                 </div>
